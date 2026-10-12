@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameBase</class>
+  <widget class="QWidget" name="SetupFrameBase">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>685</width><height>528</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>685</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>528</number></property>
+    <widget class="QCheckBox" name="MinimizeToTrayCheckBox">
+      <property name="geometry"><rect><x>16</x><y>20</y><width>649</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Minimize to tray area</string></property>
+    </widget>
+    <widget class="QCheckBox" name="StartWithWindowsCheckBox">
+      <property name="geometry"><rect><x>16</x><y>52</y><width>649</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Start with Windows</string></property>
+    </widget>
+    <widget class="QCheckBox" name="OnlySingleInstanceCheckBox">
+      <property name="geometry"><rect><x>16</x><y>84</y><width>649</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Allow only one running instance</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>MinimizeToTrayCheckBox</tabstop>
+    <tabstop>StartWithWindowsCheckBox</tabstop>
+    <tabstop>OnlySingleInstanceCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

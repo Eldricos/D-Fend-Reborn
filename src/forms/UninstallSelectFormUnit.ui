@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>UninstallSelectForm</class>
+  <widget class="QDialog" name="UninstallSelectForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>439</width><height>503</height></rect></property>
+    <property name="windowTitle"><string>Programme deinstallieren</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsDialog</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclDesignWidth" stdset="0"><number>439</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>503</number></property>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>8</x><y>8</y><width>272</width><height>13</height></rect></property>
+      <property name="text"><string>Bitte wählen Sie die zu deinstallierenden Programme aus:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="TRadioGroupWidget" name="ActionsRadioGroup">
+      <property name="geometry"><rect><x>8</x><y>352</y><width>423</width><height>105</height></rect></property>
+      <property name="title"><string>Aktionen</string></property>
+      <property name="items" stdset="0">
+        <stringlist notr="true">
+          <string>Nur Profi-Listen Eintrag löschen</string>
+          <string>Profil-Listen Eintrag und Programmverzeichnis löschen</string>
+          <string>Profil-Listen Eintrag und alle Programmdatenverzeichnisse löschen</string>
+          <string>Für jeden Eintrag einzelen auswählen</string>
+        </stringlist>
+      </property>
+      <property name="itemIndex" stdset="0"><number>2</number></property>
+    </widget>
+    <widget class="QListWidget" name="ListBox">
+      <property name="geometry"><rect><x>8</x><y>27</y><width>423</width><height>270</height></rect></property>
+      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QPushButton" name="OKButton">
+      <property name="geometry"><rect><x>8</x><y>470</y><width>97</width><height>25</height></rect></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+      <property name="default"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="CancelButton">
+      <property name="geometry"><rect><x>120</x><y>470</y><width>97</width><height>25</height></rect></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+    </widget>
+    <widget class="QPushButton" name="SelectAllButton">
+      <property name="geometry"><rect><x>8</x><y>303</y><width>107</width><height>25</height></rect></property>
+      <property name="text"><string>SelectAllButton</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="SelectNoneButton">
+      <property name="geometry"><rect><x>127</x><y>303</y><width>107</width><height>25</height></rect></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="text"><string>SelectNoneButton</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="SelectGenreButton">
+      <property name="geometry"><rect><x>246</x><y>303</y><width>107</width><height>25</height></rect></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="text"><string>By ...</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="HelpButton">
+      <property name="geometry"><rect><x>232</x><y>470</y><width>97</width><height>25</height></rect></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+    </widget>
+    <widget class="QMenu" name="PopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TRadioGroupWidget</class>
+      <extends>QGroupBox</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>ListBox</tabstop>
+    <tabstop>SelectAllButton</tabstop>
+    <tabstop>SelectNoneButton</tabstop>
+    <tabstop>SelectGenreButton</tabstop>
+    <tabstop>OKButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

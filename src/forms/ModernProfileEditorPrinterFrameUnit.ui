@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorPrinterFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorPrinterFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>640</width><height>520</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>640</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>520</number></property>
+    <widget class="QLabel" name="ResolutionLabel">
+      <property name="geometry"><rect><x>16</x><y>56</y><width>75</width><height>13</height></rect></property>
+      <property name="text"><string>ResolutionLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="PaperWidthLabel">
+      <property name="geometry"><rect><x>16</x><y>104</y><width>81</width><height>13</height></rect></property>
+      <property name="text"><string>PaperWidthLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="PaperHeightLabel">
+      <property name="geometry"><rect><x>128</x><y>104</y><width>84</width><height>13</height></rect></property>
+      <property name="text"><string>PaperHeightLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="PaperSizeInfoLabel">
+      <property name="geometry"><rect><x>16</x><y>151</y><width>92</width><height>13</height></rect></property>
+      <property name="text"><string>PaperSizeInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="OutputFormatLabel">
+      <property name="geometry"><rect><x>16</x><y>184</y><width>93</width><height>13</height></rect></property>
+      <property name="text"><string>OutputFormatLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="OutputFormatInfoLabel">
+      <property name="geometry"><rect><x>143</x><y>200</y><width>474</width><height>33</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>OutputFormatInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="MultiPageInfoLabel">
+      <property name="geometry"><rect><x>32</x><y>271</y><width>585</width><height>50</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>MultiPageInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QCheckBox" name="EnablePrinterEmulationCheckBox">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>601</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>EnablePrinterEmulationCheckBox</string></property>
+    </widget>
+    <widget class="QSpinBox" name="ResolutionEdit">
+      <property name="geometry"><rect><x>16</x><y>72</y><width>65</width><height>22</height></rect></property>
+      <property name="minimum"><number>72</number></property>
+      <property name="maximum"><number>1200</number></property>
+      <property name="value"><number>360</number></property>
+    </widget>
+    <widget class="QSpinBox" name="PaperWidthEdit">
+      <property name="geometry"><rect><x>16</x><y>123</y><width>65</width><height>22</height></rect></property>
+      <property name="minimum"><number>1</number></property>
+      <property name="maximum"><number>250</number></property>
+      <property name="value"><number>1</number></property>
+    </widget>
+    <widget class="QSpinBox" name="PaperHeightEdit">
+      <property name="geometry"><rect><x>128</x><y>123</y><width>65</width><height>22</height></rect></property>
+      <property name="minimum"><number>1</number></property>
+      <property name="maximum"><number>250</number></property>
+      <property name="value"><number>1</number></property>
+    </widget>
+    <widget class="QComboBox" name="OutputFormatComboBox">
+      <property name="geometry"><rect><x>16</x><y>200</y><width>121</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QCheckBox" name="MultiPageCheckBox">
+      <property name="geometry"><rect><x>16</x><y>248</y><width>601</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>MultiPageCheckBox</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>EnablePrinterEmulationCheckBox</tabstop>
+    <tabstop>ResolutionEdit</tabstop>
+    <tabstop>PaperWidthEdit</tabstop>
+    <tabstop>PaperHeightEdit</tabstop>
+    <tabstop>OutputFormatComboBox</tabstop>
+    <tabstop>MultiPageCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

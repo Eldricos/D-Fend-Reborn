@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>PlayVideoForm</class>
+  <widget class="QDialog" name="PlayVideoForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>631</width><height>393</height></rect></property>
+    <property name="windowTitle"><string>PlayVideoForm</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biSystemMenu,biMaximize</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclMinWidth" stdset="0"><number>400</number></property>
+    <property name="vclMinHeight" stdset="0"><number>300</number></property>
+    <property name="vclDesignWidth" stdset="0"><number>631</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>393</number></property>
+    <widget class="QFrame" name="CoolBar">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>631</width><height>28</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TCoolBar</string></property>
+      <widget class="QToolBar" name="ToolBar">
+        <property name="geometry"><rect><x>2</x><y>0</y><width>625</width><height>24</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+        <property name="movable"><bool>false</bool></property>
+        <property name="floatable"><bool>false</bool></property>
+        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+        <property name="vclButtonWidth" stdset="0"><number>100</number></property>
+        <property name="vclButtonHeight" stdset="0"><number>22</number></property>
+        <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+        <property name="vclWrapable" stdset="0"><bool>false</bool></property>
+        <addaction name="PreviousButton"/>
+        <addaction name="NextButton"/>
+        <addaction name="separator"/>
+        <addaction name="SaveButton"/>
+        <addaction name="separator"/>
+        <addaction name="PlayPauseButton"/>
+        <addaction name="separator"/>
+        <addaction name="ZoomButton"/>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="MediaPanel">
+      <property name="geometry"><rect><x>0</x><y>28</y><width>631</width><height>306</height></rect></property>
+      <property name="styleSheet"><string notr="true">#MediaPanel { background-color: #000000; }</string></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QLabel" name="InfoLabel">
+        <property name="geometry"><rect><x>16</x><y>16</y><width>601</width><height>65</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>InfoLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="wordWrap"><bool>true</bool></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      </widget>
+      <widget class="QPushButton" name="InstallButton">
+        <property name="geometry"><rect><x>16</x><y>96</y><width>186</width><height>25</height></rect></property>
+        <property name="text"><string>InstallButton</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/3a424dac33bae56c.png</normaloff></iconset></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">InstallButtonClick</string></property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry"><rect><x>0</x><y>334</y><width>631</width><height>40</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QSlider" name="TrackBar">
+        <property name="geometry"><rect><x>2</x><y>4</y><width>625</width><height>33</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="orientation"><enum>Qt::Horizontal</enum></property>
+        <property name="minimum"><number>0</number></property>
+        <property name="maximum"><number>100</number></property>
+        <property name="pageStep"><number>5</number></property>
+        <property name="tickInterval"><number>5</number></property>
+        <property name="tickPosition"><enum>QSlider::TicksBelow</enum></property>
+      </widget>
+    </widget>
+    <widget class="QStatusBar" name="StatusBar">
+      <property name="geometry"><rect><x>0</x><y>374</y><width>631</width><height>19</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="sizeGripEnabled"><bool>false</bool></property>
+      <property name="vclPanelWidths" stdset="0"><string notr="true">100,75,75,50</string></property>
+    </widget>
+    <widget class="QMenu" name="PopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QMenu" name="ZoomPopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+      <addaction name="ZoomMenuItem1"/>
+      <addaction name="ZoomMenuItem2"/>
+      <addaction name="ZoomMenuItem3"/>
+      <addaction name="ZoomMenuItem4"/>
+      <addaction name="ZoomMenuItem5"/>
+      <addaction name="ZoomMenuItem6"/>
+      <addaction name="ZoomMenuItem7"/>
+      <addaction name="ZoomMenuItem8"/>
+      <addaction name="ZoomMenuItem9"/>
+      <addaction name="ZoomMenuItem10"/>
+      <addaction name="ZoomMenuItem11"/>
+      <addaction name="ZoomMenuItem12"/>
+    </widget>
+    <action name="PreviousButton">
+      <property name="text"><string>PreviousButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PlayVideoFormUnit/ImageList/1.png</normaloff></iconset></property>
+    </action>
+    <action name="NextButton">
+      <property name="text"><string>NextButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PlayVideoFormUnit/ImageList/2.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="ToolButton1">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="SaveButton">
+      <property name="text"><string>Speichern</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PlayVideoFormUnit/ImageList/0.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="ToolButton2">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="PlayPauseButton">
+      <property name="text"><string>Play/Pause</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PlayVideoFormUnit/ImageList/3.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="ToolButton3">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="ZoomButton">
+      <property name="text"><string>ZoomButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PlayVideoFormUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="vclDropdownMenu" stdset="0"><string notr="true">ZoomPopupMenu</string></property>
+    </action>
+    <action name="ZoomMenuItem1">
+      <property name="text"><string>25%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem2">
+      <property name="text"><string>33%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem3">
+      <property name="text"><string>50%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem4">
+      <property name="text"><string>75%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem5">
+      <property name="text"><string>100%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem6">
+      <property name="text"><string>125%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem7">
+      <property name="text"><string>150%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem8">
+      <property name="text"><string>175%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem9">
+      <property name="text"><string>200%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem10">
+      <property name="text"><string>250%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem11">
+      <property name="text"><string>300%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ZoomMenuItem12">
+      <property name="text"><string>400%</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+  </widget>
+  <tabstops>
+    <tabstop>InstallButton</tabstop>
+    <tabstop>TrackBar</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

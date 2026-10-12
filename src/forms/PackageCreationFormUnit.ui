@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>PackageCreationForm</class>
+  <widget class="QDialog" name="PackageCreationForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>704</width><height>539</height></rect></property>
+    <property name="windowTitle"><string>PackageCreationForm</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biSystemMenu,biMaximize</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclMinWidth" stdset="0"><number>500</number></property>
+    <property name="vclMinHeight" stdset="0"><number>250</number></property>
+    <property name="vclDesignWidth" stdset="0"><number>704</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>539</number></property>
+    <widget class="QToolButton" name="OutputFileButton">
+      <property name="geometry"><rect><x>673</x><y>438</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>8</x><y>465</y><width>659</width><height>35</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="text"><string>All additionally needed files (like game package archive files) will be created in th directory of the package list file.</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QPushButton" name="OKButton">
+      <property name="geometry"><rect><x>8</x><y>506</y><width>90</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+      <property name="default"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="CancelButton">
+      <property name="geometry"><rect><x>104</x><y>506</y><width>90</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+    </widget>
+    <widget class="QPushButton" name="HelpButton">
+      <property name="geometry"><rect><x>201</x><y>506</y><width>90</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+    </widget>
+    <widget class="QTabWidget" name="PageControl">
+      <property name="geometry"><rect><x>-1</x><y>-2</y><width>707</width><height>370</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="currentIndex"><number>6</number></property>
+      <widget class="QWidget" name="TabSheet1">
+        <attribute name="title"><string>Games</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PackageCreationFormUnit/ImageList/4.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>699</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>342</number></property>
+        <widget class="QFrame" name="GamesPanel">
+          <property name="geometry"><rect><x>0</x><y>305</y><width>699</width><height>36</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QPushButton" name="GamesSelectAllButton">
+            <property name="geometry"><rect><x>0</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="text"><string>SelectAllButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="GamesSelectNoneButton">
+            <property name="geometry"><rect><x>113</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>1</number></property>
+            <property name="text"><string>SelectNoneButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="GamesSelectGenreButton">
+            <property name="geometry"><rect><x>226</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>2</number></property>
+            <property name="text"><string>By ...</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+        </widget>
+        <widget class="TListView" name="GamesListView">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>699</width><height>305</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+          <property name="checkboxes" stdset="0"><bool>true</bool></property>
+          <property name="readOnly" stdset="0"><bool>true</bool></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TabSheet2">
+        <attribute name="title"><string>Auto setup templates</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PackageCreationFormUnit/ImageList/5.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>699</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>342</number></property>
+        <widget class="QFrame" name="AutoSetupPanel">
+          <property name="geometry"><rect><x>0</x><y>305</y><width>699</width><height>36</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QPushButton" name="AutoSetupSelectAllButton">
+            <property name="geometry"><rect><x>0</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>3</number></property>
+            <property name="text"><string>SelectAllButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="AutoSetupSelectNoneButton">
+            <property name="geometry"><rect><x>113</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>4</number></property>
+            <property name="text"><string>SelectNoneButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="AutoSetupSelectGenreButton">
+            <property name="geometry"><rect><x>226</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>5</number></property>
+            <property name="text"><string>By ...</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+        </widget>
+        <widget class="TListView" name="AutoSetupListView">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>699</width><height>305</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+          <property name="checkboxes" stdset="0"><bool>true</bool></property>
+          <property name="readOnly" stdset="0"><bool>true</bool></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TabSheet3">
+        <attribute name="title"><string>Icons</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PackageCreationFormUnit/ImageList/6.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>699</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>342</number></property>
+        <widget class="QFrame" name="IconsPanel">
+          <property name="geometry"><rect><x>0</x><y>305</y><width>699</width><height>36</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QPushButton" name="IconsSelectAllButton">
+            <property name="geometry"><rect><x>0</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>6</number></property>
+            <property name="text"><string>SelectAllButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="IconsSelectNoneButton">
+            <property name="geometry"><rect><x>113</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>7</number></property>
+            <property name="text"><string>SelectNoneButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+        </widget>
+        <widget class="TListView" name="IconsListView">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>699</width><height>305</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+          <property name="columnCaptions" stdset="0">
+            <stringlist notr="true">
+              <string>Name</string>
+            </stringlist>
+          </property>
+          <property name="columnWidths" stdset="0"><string notr="true">50</string></property>
+          <property name="checkboxes" stdset="0"><bool>true</bool></property>
+          <property name="readOnly" stdset="0"><bool>true</bool></property>
+          <property name="showColumnHeaders" stdset="0"><bool>false</bool></property>
+          <property name="vclSmallImages" stdset="0"><string notr="true">IconsImageList</string></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TabSheet6">
+        <attribute name="title"><string>Icon sets</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PackageCreationFormUnit/ImageList/7.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>699</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>342</number></property>
+        <widget class="QFrame" name="IconSetsPanel">
+          <property name="geometry"><rect><x>0</x><y>305</y><width>699</width><height>36</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QPushButton" name="IconSetsSelectAllButton">
+            <property name="geometry"><rect><x>0</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>8</number></property>
+            <property name="text"><string>SelectAllButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="IconSetsSelectNoneButton">
+            <property name="geometry"><rect><x>113</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>9</number></property>
+            <property name="text"><string>SelectNoneButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+        </widget>
+        <widget class="QListWidget" name="IconSetsListBox">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>699</width><height>305</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TabSheet4">
+        <attribute name="title"><string>Language files</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PackageCreationFormUnit/ImageList/8.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>699</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>342</number></property>
+        <widget class="QFrame" name="LanguageFilesPanel">
+          <property name="geometry"><rect><x>0</x><y>305</y><width>699</width><height>36</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QPushButton" name="LanguageFilesSelectAllButton">
+            <property name="geometry"><rect><x>0</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>10</number></property>
+            <property name="text"><string>SelectAllButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="LanguageFilesSelectNoneButton">
+            <property name="geometry"><rect><x>113</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>11</number></property>
+            <property name="text"><string>SelectNoneButton</string></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+        </widget>
+        <widget class="QListWidget" name="LanguageFilesListBox">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>699</width><height>305</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TabSheet5">
+        <attribute name="title"><string>Multiple games packages</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PackageCreationFormUnit/ImageList/9.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>699</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>342</number></property>
+        <widget class="QFrame" name="PackagesPanel">
+          <property name="geometry"><rect><x>0</x><y>305</y><width>699</width><height>36</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QPushButton" name="PackagesAddButton">
+            <property name="geometry"><rect><x>0</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>12</number></property>
+            <property name="text"><string>Add</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="PackagesEditButton">
+            <property name="geometry"><rect><x>113</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>13</number></property>
+            <property name="text"><string>Edit</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="PackagesDelButton">
+            <property name="geometry"><rect><x>226</x><y>6</y><width>107</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>14</number></property>
+            <property name="text"><string>Delete</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+        </widget>
+        <widget class="QListWidget" name="PackagesListBox">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>699</width><height>305</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TabSheet7">
+        <attribute name="title"><string>Tools</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PackageCreationFormUnit/ImageList/10.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>699</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>342</number></property>
+        <widget class="QCheckBox" name="ToolsCheckBox">
+          <property name="geometry"><rect><x>16</x><y>16</y><width>636</width><height>17</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="text"><string>Ignore records selected on the other pages and do this:</string></property>
+        </widget>
+        <widget class="QRadioButton" name="ToolsRadioButton1">
+          <property name="geometry"><rect><x>16</x><y>56</y><width>677</width><height>17</height></rect></property>
+          <property name="enabled"><bool>false</bool></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="text"><string>Make package list file from plain archive files in package list folder</string></property>
+          <property name="checked"><bool>true</bool></property>
+        </widget>
+        <widget class="QRadioButton" name="ToolsRadioButton2">
+          <property name="geometry"><rect><x>16</x><y>79</y><width>677</width><height>17</height></rect></property>
+          <property name="enabled"><bool>false</bool></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="text"><string>Make package list file from plain archive files in package list folder and add auto setup templates</string></property>
+        </widget>
+        <widget class="QRadioButton" name="ToolsRadioButton3">
+          <property name="geometry"><rect><x>16</x><y>102</y><width>677</width><height>17</height></rect></property>
+          <property name="enabled"><bool>false</bool></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="text"><string>Make package list file from auto setup templates in package list folder</string></property>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QLineEdit" name="OutputFileEdit">
+      <property name="geometry"><rect><x>8</x><y>438</y><width>659</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+    </widget>
+    <widget class="QLabel" name="OutputFileEdit_EditLabel">
+      <property name="geometry"><rect><x>8</x><y>422</y><width>150</width><height>13</height></rect></property>
+      <property name="text"><string>Filename of the package list file</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">OutputFileEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">OutputFileEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="DescriptionEdit">
+      <property name="geometry"><rect><x>8</x><y>393</y><width>659</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+    </widget>
+    <widget class="QLabel" name="DescriptionEdit_EditLabel">
+      <property name="geometry"><rect><x>8</x><y>377</y><width>71</width><height>13</height></rect></property>
+      <property name="text"><string>DescriptionEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">DescriptionEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DescriptionEdit</string></property>
+    </widget>
+    <widget class="QMenu" name="GamesPopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QMenu" name="AutoSetupPopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TListView</class>
+      <extends>QWidget</extends>
+      <header>ComCtrls.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>PageControl</tabstop>
+    <tabstop>GamesListView</tabstop>
+    <tabstop>GamesSelectAllButton</tabstop>
+    <tabstop>GamesSelectNoneButton</tabstop>
+    <tabstop>GamesSelectGenreButton</tabstop>
+    <tabstop>AutoSetupListView</tabstop>
+    <tabstop>AutoSetupSelectAllButton</tabstop>
+    <tabstop>AutoSetupSelectNoneButton</tabstop>
+    <tabstop>AutoSetupSelectGenreButton</tabstop>
+    <tabstop>IconsListView</tabstop>
+    <tabstop>IconsSelectAllButton</tabstop>
+    <tabstop>IconsSelectNoneButton</tabstop>
+    <tabstop>IconSetsListBox</tabstop>
+    <tabstop>IconSetsSelectAllButton</tabstop>
+    <tabstop>IconSetsSelectNoneButton</tabstop>
+    <tabstop>LanguageFilesListBox</tabstop>
+    <tabstop>LanguageFilesSelectAllButton</tabstop>
+    <tabstop>LanguageFilesSelectNoneButton</tabstop>
+    <tabstop>PackagesListBox</tabstop>
+    <tabstop>PackagesAddButton</tabstop>
+    <tabstop>PackagesEditButton</tabstop>
+    <tabstop>PackagesDelButton</tabstop>
+    <tabstop>ToolsCheckBox</tabstop>
+    <tabstop>ToolsRadioButton1</tabstop>
+    <tabstop>ToolsRadioButton2</tabstop>
+    <tabstop>ToolsRadioButton3</tabstop>
+    <tabstop>DescriptionEdit</tabstop>
+    <tabstop>OutputFileEdit</tabstop>
+    <tabstop>OKButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

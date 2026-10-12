@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorVolumeFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorVolumeFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>583</width><height>475</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>583</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>475</number></property>
+    <widget class="QLabel" name="SoundVolumeLeftLabel1">
+      <property name="geometry"><rect><x>16</x><y>157</y><width>23</width><height>13</height></rect></property>
+      <property name="text"><string>Links</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeRightLabel1">
+      <property name="geometry"><rect><x>80</x><y>157</y><width>33</width><height>13</height></rect></property>
+      <property name="text"><string>Rechts</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeMasterLabel">
+      <property name="geometry"><rect><x>16</x><y>12</y><width>33</width><height>13</height></rect></property>
+      <property name="text"><string>Master</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeDisneyLabel">
+      <property name="geometry"><rect><x>160</x><y>12</y><width>103</width><height>13</height></rect></property>
+      <property name="text"><string>Disney Sound System</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeSpeakerLabel">
+      <property name="geometry"><rect><x>304</x><y>12</y><width>80</width><height>13</height></rect></property>
+      <property name="text"><string>Internal Speaker</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeGUSLabel">
+      <property name="geometry"><rect><x>16</x><y>236</y><width>20</width><height>13</height></rect></property>
+      <property name="text"><string>GUS</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeSBLabel">
+      <property name="geometry"><rect><x>160</x><y>236</y><width>63</width><height>13</height></rect></property>
+      <property name="text"><string>SoundBlaster</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeFMLabel">
+      <property name="geometry"><rect><x>304</x><y>236</y><width>14</width><height>13</height></rect></property>
+      <property name="text"><string>FM</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeLeftLabel2">
+      <property name="geometry"><rect><x>160</x><y>157</y><width>23</width><height>13</height></rect></property>
+      <property name="text"><string>Links</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeRightLabel2">
+      <property name="geometry"><rect><x>224</x><y>157</y><width>33</width><height>13</height></rect></property>
+      <property name="text"><string>Rechts</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeLeftLabel3">
+      <property name="geometry"><rect><x>304</x><y>157</y><width>23</width><height>13</height></rect></property>
+      <property name="text"><string>Links</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeRightLabel3">
+      <property name="geometry"><rect><x>368</x><y>157</y><width>33</width><height>13</height></rect></property>
+      <property name="text"><string>Rechts</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeLeftLabel4">
+      <property name="geometry"><rect><x>16</x><y>381</y><width>23</width><height>13</height></rect></property>
+      <property name="text"><string>Links</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeRightLabel4">
+      <property name="geometry"><rect><x>80</x><y>381</y><width>33</width><height>13</height></rect></property>
+      <property name="text"><string>Rechts</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeLeftLabel5">
+      <property name="geometry"><rect><x>160</x><y>381</y><width>23</width><height>13</height></rect></property>
+      <property name="text"><string>Links</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeRightLabel5">
+      <property name="geometry"><rect><x>224</x><y>381</y><width>33</width><height>13</height></rect></property>
+      <property name="text"><string>Rechts</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeLeftLabel6">
+      <property name="geometry"><rect><x>304</x><y>381</y><width>23</width><height>13</height></rect></property>
+      <property name="text"><string>Links</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeRightLabel6">
+      <property name="geometry"><rect><x>368</x><y>381</y><width>33</width><height>13</height></rect></property>
+      <property name="text"><string>Rechts</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeCDLabel">
+      <property name="geometry"><rect><x>448</x><y>236</y><width>14</width><height>13</height></rect></property>
+      <property name="text"><string>CD</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeLeftLabel7">
+      <property name="geometry"><rect><x>448</x><y>381</y><width>23</width><height>13</height></rect></property>
+      <property name="text"><string>Links</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SoundVolumeRightLabel7">
+      <property name="geometry"><rect><x>512</x><y>381</y><width>33</width><height>13</height></rect></property>
+      <property name="text"><string>Rechts</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeMasterLeftEdit">
+      <property name="geometry"><rect><x>16</x><y>176</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeMasterRightEdit">
+      <property name="geometry"><rect><x>80</x><y>176</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeDisneyLeftEdit">
+      <property name="geometry"><rect><x>160</x><y>176</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeDisneyRightEdit">
+      <property name="geometry"><rect><x>224</x><y>176</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeSpeakerLeftEdit">
+      <property name="geometry"><rect><x>304</x><y>176</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeSpeakerRightEdit">
+      <property name="geometry"><rect><x>368</x><y>176</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeGUSLeftEdit">
+      <property name="geometry"><rect><x>16</x><y>399</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeGUSRightEdit">
+      <property name="geometry"><rect><x>80</x><y>399</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeSBLeftEdit">
+      <property name="geometry"><rect><x>160</x><y>400</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeSBRightEdit">
+      <property name="geometry"><rect><x>224</x><y>400</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeFMLeftEdit">
+      <property name="geometry"><rect><x>304</x><y>400</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeFMRightEdit">
+      <property name="geometry"><rect><x>368</x><y>400</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeMasterLeftTrackBar">
+      <property name="geometry"><rect><x>16</x><y>31</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeMasterRightTrackBar">
+      <property name="geometry"><rect><x>80</x><y>31</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeDisneyLeftTrackBar">
+      <property name="geometry"><rect><x>160</x><y>31</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeDisneyRightTrackBar">
+      <property name="geometry"><rect><x>224</x><y>31</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeSpeakerLeftTrackBar">
+      <property name="geometry"><rect><x>304</x><y>31</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeSpeakerRightTrackBar">
+      <property name="geometry"><rect><x>368</x><y>31</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeGUSLeftTrackBar">
+      <property name="geometry"><rect><x>16</x><y>255</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeGUSRightTrackBar">
+      <property name="geometry"><rect><x>80</x><y>255</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeSBLeftTrackBar">
+      <property name="geometry"><rect><x>160</x><y>255</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeSBRightTrackBar">
+      <property name="geometry"><rect><x>224</x><y>255</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeFMLeftTrackBar">
+      <property name="geometry"><rect><x>304</x><y>255</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeFMRightTrackBar">
+      <property name="geometry"><rect><x>368</x><y>255</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeCDLeftEdit">
+      <property name="geometry"><rect><x>448</x><y>400</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SoundVolumeCDRightEdit">
+      <property name="geometry"><rect><x>512</x><y>400</y><width>49</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeCDLeftTrackBar">
+      <property name="geometry"><rect><x>448</x><y>255</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+    <widget class="QSlider" name="SoundVolumeCDRightTrackBar">
+      <property name="geometry"><rect><x>512</x><y>255</y><width>45</width><height>114</height></rect></property>
+      <property name="orientation"><enum>Qt::Vertical</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>200</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>10</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBothSides</enum></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>SoundVolumeMasterLeftTrackBar</tabstop>
+    <tabstop>SoundVolumeMasterLeftEdit</tabstop>
+    <tabstop>SoundVolumeMasterRightTrackBar</tabstop>
+    <tabstop>SoundVolumeMasterRightEdit</tabstop>
+    <tabstop>SoundVolumeDisneyLeftTrackBar</tabstop>
+    <tabstop>SoundVolumeDisneyLeftEdit</tabstop>
+    <tabstop>SoundVolumeDisneyRightTrackBar</tabstop>
+    <tabstop>SoundVolumeDisneyRightEdit</tabstop>
+    <tabstop>SoundVolumeSpeakerLeftTrackBar</tabstop>
+    <tabstop>SoundVolumeSpeakerLeftEdit</tabstop>
+    <tabstop>SoundVolumeSpeakerRightTrackBar</tabstop>
+    <tabstop>SoundVolumeSpeakerRightEdit</tabstop>
+    <tabstop>SoundVolumeGUSLeftTrackBar</tabstop>
+    <tabstop>SoundVolumeGUSLeftEdit</tabstop>
+    <tabstop>SoundVolumeGUSRightTrackBar</tabstop>
+    <tabstop>SoundVolumeGUSRightEdit</tabstop>
+    <tabstop>SoundVolumeSBLeftTrackBar</tabstop>
+    <tabstop>SoundVolumeSBLeftEdit</tabstop>
+    <tabstop>SoundVolumeSBRightTrackBar</tabstop>
+    <tabstop>SoundVolumeSBRightEdit</tabstop>
+    <tabstop>SoundVolumeFMLeftTrackBar</tabstop>
+    <tabstop>SoundVolumeFMLeftEdit</tabstop>
+    <tabstop>SoundVolumeFMRightTrackBar</tabstop>
+    <tabstop>SoundVolumeFMRightEdit</tabstop>
+    <tabstop>SoundVolumeCDLeftEdit</tabstop>
+    <tabstop>SoundVolumeCDRightEdit</tabstop>
+    <tabstop>SoundVolumeCDLeftTrackBar</tabstop>
+    <tabstop>SoundVolumeCDRightTrackBar</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

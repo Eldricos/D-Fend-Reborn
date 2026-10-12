@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorMouseFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorMouseFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>545</width><height>348</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>545</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>348</number></property>
+    <widget class="QLabel" name="LockMouseLabel">
+      <property name="geometry"><rect><x>36</x><y>47</y><width>494</width><height>51</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>LockMouseLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="MouseSensitivityLabel">
+      <property name="geometry"><rect><x>16</x><y>112</y><width>105</width><height>13</height></rect></property>
+      <property name="text"><string>MouseSensitivityLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="Force2ButtonsInfoLabel">
+      <property name="geometry"><rect><x>32</x><y>199</y><width>498</width><height>42</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Force2ButtonsInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="SwapButtonsInfoLabel">
+      <property name="geometry"><rect><x>32</x><y>287</y><width>498</width><height>42</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Force2ButtonsInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QCheckBox" name="LockMouseCheckBox">
+      <property name="geometry"><rect><x>16</x><y>24</y><width>514</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>LockMouseCheckBox</string></property>
+    </widget>
+    <widget class="QSpinBox" name="MouseSensitivityEdit">
+      <property name="geometry"><rect><x>16</x><y>131</y><width>65</width><height>22</height></rect></property>
+      <property name="minimum"><number>1</number></property>
+      <property name="maximum"><number>1000</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QCheckBox" name="Force2ButtonsCheckBox">
+      <property name="geometry"><rect><x>16</x><y>176</y><width>514</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Force2ButtonsCheckBox</string></property>
+    </widget>
+    <widget class="QCheckBox" name="SwapButtonsCheckBox">
+      <property name="geometry"><rect><x>16</x><y>264</y><width>514</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>SwapButtonsCheckBox</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>LockMouseCheckBox</tabstop>
+    <tabstop>MouseSensitivityEdit</tabstop>
+    <tabstop>Force2ButtonsCheckBox</tabstop>
+    <tabstop>SwapButtonsCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameImageScaling</class>
+  <widget class="QWidget" name="SetupFrameImageScaling">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>489</width><height>373</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>489</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>373</number></property>
+    <widget class="QLabel" name="ImageScalerLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>159</width><height>13</height></rect></property>
+      <property name="text"><string>Algorithm used for scaling images</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QComboBox" name="ImageScalerComboBox">
+      <property name="geometry"><rect><x>16</x><y>35</y><width>193</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+  </widget>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>DownloadWaitForm</class>
+  <widget class="QDialog" name="DownloadWaitForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>458</width><height>37</height></rect></property>
+    <property name="windowTitle"><string>Downloading</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsSingle</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true"></string></property>
+    <property name="vclDesignWidth" stdset="0"><number>458</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>37</number></property>
+    <widget class="QProgressBar" name="ProgressBar">
+      <property name="geometry"><rect><x>8</x><y>8</y><width>353</width><height>17</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>100</number></property>
+      <property name="value"><number>0</number></property>
+      <property name="textVisible"><bool>false</bool></property>
+    </widget>
+    <widget class="QPushButton" name="AbortButton">
+      <property name="geometry"><rect><x>375</x><y>4</y><width>75</width><height>25</height></rect></property>
+      <property name="text"><string>Abort</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">AbortButtonClick</string></property>
+    </widget>
+  </widget>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

@@ -1,0 +1,8 @@
+build/
+build-*/
+*.user
+*.autosave
+CMakeLists.txt.user*
+__pycache__/
+*.pyc
+.qtc_clangd/

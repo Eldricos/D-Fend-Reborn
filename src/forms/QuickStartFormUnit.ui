@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>QuickStartForm</class>
+  <widget class="QDialog" name="QuickStartForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>678</width><height>485</height></rect></property>
+    <property name="windowTitle"><string>QuickStartForm</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biSystemMenu,biMaximize</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclMinWidth" stdset="0"><number>350</number></property>
+    <property name="vclMinHeight" stdset="0"><number>250</number></property>
+    <property name="vclDesignWidth" stdset="0"><number>678</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>485</number></property>
+    <widget class="QFrame" name="CoolBar">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>678</width><height>22</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TCoolBar</string></property>
+      <widget class="QToolBar" name="ToolBar">
+        <property name="geometry"><rect><x>2</x><y>0</y><width>676</width><height>22</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+        <property name="movable"><bool>false</bool></property>
+        <property name="floatable"><bool>false</bool></property>
+        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+        <property name="vclButtonWidth" stdset="0"><number>94</number></property>
+        <property name="vclButtonHeight" stdset="0"><number>22</number></property>
+        <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+        <property name="vclWrapable" stdset="0"><bool>false</bool></property>
+        <addaction name="CloseButton"/>
+        <addaction name="separator"/>
+        <addaction name="UpdateButton"/>
+        <addaction name="StartButton"/>
+        <addaction name="separator"/>
+        <addaction name="HelpButton"/>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="BottomPanel">
+      <property name="geometry"><rect><x>0</x><y>451</y><width>678</width><height>34</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QComboBox" name="TemplateComboBox">
+        <property name="geometry"><rect><x>2</x><y>6</y><width>290</width><height>21</height></rect></property>
+        <property name="editable"><bool>false</bool></property>
+        <property name="maxVisibleItems"><number>8</number></property>
+      </widget>
+      <widget class="QComboBox" name="SetupComboBox1">
+        <property name="geometry"><rect><x>300</x><y>6</y><width>125</width><height>21</height></rect></property>
+        <property name="editable"><bool>false</bool></property>
+        <property name="maxVisibleItems"><number>8</number></property>
+      </widget>
+      <widget class="QComboBox" name="SetupComboBox2">
+        <property name="geometry"><rect><x>431</x><y>6</y><width>244</width><height>21</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="editable"><bool>false</bool></property>
+        <property name="maxVisibleItems"><number>8</number></property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="MainPanel">
+      <property name="geometry"><rect><x>0</x><y>22</y><width>678</width><height>429</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="TSplitterWidget" name="Splitter">
+        <property name="geometry"><rect><x>185</x><y>0</y><width>0</width><height>429</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
+      </widget>
+      <widget class="QFrame" name="LeftPanel">
+        <property name="geometry"><rect><x>0</x><y>0</y><width>185</width><height>429</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
+        <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+        <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+        <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+        <widget class="QComboBox" name="TreeTypeComboBox">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>185</width><height>21</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+        </widget>
+        <widget class="QTreeWidget" name="Tree">
+          <property name="geometry"><rect><x>0</x><y>21</y><width>185</width><height>408</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="vclPopupMenu" stdset="0"><string notr="true">TreePopupMenu</string></property>
+          <property name="headerHidden"><bool>true</bool></property>
+          <property name="columnCount"><number>1</number></property>
+          <column><property name="text"><string notr="true">1</string></property></column>
+          <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+          <property name="indentation"><number>19</number></property>
+          <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+        </widget>
+      </widget>
+      <widget class="TListView" name="List">
+        <property name="geometry"><rect><x>188</x><y>0</y><width>490</width><height>429</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+        <property name="vclPopupMenu" stdset="0"><string notr="true">ListPopupMenu</string></property>
+        <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+        <property name="readOnly" stdset="0"><bool>true</bool></property>
+        <property name="vclSmallImages" stdset="0"><string notr="true">ImageList</string></property>
+      </widget>
+    </widget>
+    <widget class="QMenu" name="TreePopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+      <widget class="QMenu" name="TreeViewMode">
+        <property name="title"><string>View mode</string></property>
+        <addaction name="TreeViewModeGames"/>
+        <addaction name="TreeViewModeCapture"/>
+        <addaction name="TreeViewModeData"/>
+        <addaction name="TreeViewModeFull"/>
+      </widget>
+      <addaction name="TreeUpdate"/>
+      <addaction name="TreeCreateFolder"/>
+      <addaction name="TreeRename"/>
+      <addaction name="TreeDelete"/>
+      <addaction name="N4"/>
+      <addaction name="TreeExplorer"/>
+      <addaction name="TreeDOSBox"/>
+      <addaction name="N1"/>
+      <addaction name="TreeViewMode"/>
+    </widget>
+    <widget class="QMenu" name="ListPopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+      <addaction name="ListRun"/>
+      <addaction name="ListRunWithParameters"/>
+      <addaction name="ListOpenInDefaultViewer"/>
+      <addaction name="ListOpenInEditor"/>
+      <addaction name="N2"/>
+      <addaction name="ListMakeProfile"/>
+      <addaction name="ListMakeProfileWizard"/>
+      <addaction name="N3"/>
+      <addaction name="ListUpdate"/>
+      <addaction name="ListCreateFolder"/>
+      <addaction name="ListRename"/>
+      <addaction name="ListDelete"/>
+      <addaction name="N5"/>
+      <addaction name="ListExplorer"/>
+      <addaction name="ListDOSBox"/>
+    </widget>
+    <action name="CloseButton">
+      <property name="text"><string>CloseButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/0.png</normaloff></iconset></property>
+    </action>
+    <action name="ToolButton2">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="UpdateButton">
+      <property name="text"><string>UpdateButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/1.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="StartButton">
+      <property name="text"><string>StartButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/2.png</normaloff></iconset></property>
+      <property name="enabled"><bool>false</bool></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="ToolButton1">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="HelpButton">
+      <property name="text"><string>HelpButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/3.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="TreeUpdate">
+      <property name="text"><string>Update</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/1.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F5</string></property>
+      <property name="tag" stdset="0"><number>10</number></property>
+    </action>
+    <action name="TreeCreateFolder">
+      <property name="text"><string>Create folder...</string></property>
+      <property name="tag" stdset="0"><number>19</number></property>
+    </action>
+    <action name="TreeRename">
+      <property name="text"><string>Rename</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/17.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F2</string></property>
+      <property name="tag" stdset="0"><number>17</number></property>
+    </action>
+    <action name="TreeDelete">
+      <property name="text"><string>Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/18.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>18</number></property>
+    </action>
+    <action name="TreeExplorer">
+      <property name="text"><string>Open folder in Explorer</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>15</number></property>
+    </action>
+    <action name="TreeDOSBox">
+      <property name="text"><string>Open folder in DOSBox</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/9.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>16</number></property>
+    </action>
+    <action name="TreeViewModeGames">
+      <property name="text"><string>Games folder</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="checked"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>11</number></property>
+    </action>
+    <action name="TreeViewModeCapture">
+      <property name="text"><string>Capture folder</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>12</number></property>
+    </action>
+    <action name="TreeViewModeData">
+      <property name="text"><string>Games data folder</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>13</number></property>
+    </action>
+    <action name="TreeViewModeFull">
+      <property name="text"><string>All folders</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>14</number></property>
+    </action>
+    <action name="N4">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N1">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="ListRun">
+      <property name="text"><string>Run</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/2.png</normaloff></iconset></property>
+      <property name="vclDefault" stdset="0"><bool>true</bool></property>
+      <property name="tag" stdset="0"><number>21</number></property>
+    </action>
+    <action name="ListRunWithParameters">
+      <property name="text"><string>Run with parameters...</string></property>
+      <property name="tag" stdset="0"><number>27</number></property>
+    </action>
+    <action name="ListOpenInDefaultViewer">
+      <property name="text"><string>Open in default viewer</string></property>
+      <property name="tag" stdset="0"><number>28</number></property>
+    </action>
+    <action name="ListOpenInEditor">
+      <property name="text"><string>Open in text editor</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/8.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>24</number></property>
+    </action>
+    <action name="ListMakeProfile">
+      <property name="text"><string>Make profile from file...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/16.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>22</number></property>
+    </action>
+    <action name="ListMakeProfileWizard">
+      <property name="text"><string>Make profile from file (wizard)...</string></property>
+      <property name="tag" stdset="0"><number>23</number></property>
+    </action>
+    <action name="ListUpdate">
+      <property name="text"><string>Update</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/1.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F5</string></property>
+      <property name="tag" stdset="0"><number>10</number></property>
+    </action>
+    <action name="ListCreateFolder">
+      <property name="text"><string>Create folder...</string></property>
+      <property name="tag" stdset="0"><number>19</number></property>
+    </action>
+    <action name="ListRename">
+      <property name="text"><string>Rename</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/17.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F2</string></property>
+      <property name="tag" stdset="0"><number>25</number></property>
+    </action>
+    <action name="ListDelete">
+      <property name="text"><string>Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/18.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>26</number></property>
+    </action>
+    <action name="ListExplorer">
+      <property name="text"><string>Open folder in Explorer</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>15</number></property>
+    </action>
+    <action name="ListDOSBox">
+      <property name="text"><string>Open folder in DOSBox</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/QuickStartFormUnit/ImageList/9.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>16</number></property>
+    </action>
+    <action name="N2">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N3">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N5">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TListView</class>
+      <extends>QWidget</extends>
+      <header>ComCtrls.h</header>
+    </customwidget>
+    <customwidget>
+      <class>TSplitterWidget</class>
+      <extends>QFrame</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>TreeTypeComboBox</tabstop>
+    <tabstop>Tree</tabstop>
+    <tabstop>List</tabstop>
+    <tabstop>TemplateComboBox</tabstop>
+    <tabstop>SetupComboBox1</tabstop>
+    <tabstop>SetupComboBox2</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

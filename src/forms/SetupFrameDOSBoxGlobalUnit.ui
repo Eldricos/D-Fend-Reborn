@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameDOSBoxGlobal</class>
+  <widget class="QWidget" name="SetupFrameDOSBoxGlobal">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>660</width><height>491</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>660</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>491</number></property>
+    <widget class="QGroupBox" name="GlobalGroupBox">
+      <property name="geometry"><rect><x>8</x><y>15</y><width>642</width><height>194</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="title"><string>Global settings (for all installations)</string></property>
+      <widget class="QLabel" name="DOSBoxFailedLabel">
+        <property name="geometry"><rect><x>8</x><y>142</y><width>385</width><height>13</height></rect></property>
+        <property name="text"><string>Show dialog to fix problems if DOSBox closes in less than this number of seconds</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="MinimizeDFendCheckBox">
+        <property name="geometry"><rect><x>8</x><y>20</y><width>631</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>D-Fend Reloaded minimieren, wenn DOSBox gestartet wird</string></property>
+      </widget>
+      <widget class="QCheckBox" name="RestoreWindowCheckBox">
+        <property name="geometry"><rect><x>29</x><y>40</y><width>610</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Restore program window when DOSBox is closed</string></property>
+      </widget>
+      <widget class="QCheckBox" name="UseShortPathNamesCheckBox">
+        <property name="geometry"><rect><x>8</x><y>68</y><width>631</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Use short path names for mount commands</string></property>
+      </widget>
+      <widget class="QCheckBox" name="ShortNameWarningsCheckBox">
+        <property name="geometry"><rect><x>8</x><y>92</y><width>631</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Show warning messages on DOSBox path name translation errors</string></property>
+      </widget>
+      <widget class="QCheckBox" name="CreateConfFilesCheckBox">
+        <property name="geometry"><rect><x>8</x><y>116</y><width>631</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Always create conf files for all profiles (off: only when starting DOSBox)</string></property>
+      </widget>
+      <widget class="QSpinBox" name="DOSBoxFailedEdit">
+        <property name="geometry"><rect><x>8</x><y>161</y><width>73</width><height>22</height></rect></property>
+        <property name="minimum"><number>1</number></property>
+        <property name="maximum"><number>60</number></property>
+        <property name="value"><number>3</number></property>
+      </widget>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>MinimizeDFendCheckBox</tabstop>
+    <tabstop>RestoreWindowCheckBox</tabstop>
+    <tabstop>UseShortPathNamesCheckBox</tabstop>
+    <tabstop>ShortNameWarningsCheckBox</tabstop>
+    <tabstop>CreateConfFilesCheckBox</tabstop>
+    <tabstop>DOSBoxFailedEdit</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

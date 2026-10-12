@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SmallWaitForm</class>
+  <widget class="QDialog" name="SmallWaitForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>264</width><height>51</height></rect></property>
+    <property name="windowTitle"><string>D-Fend Reloaded</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsDialog</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biHelp</string></property>
+    <property name="vclDesignWidth" stdset="0"><number>264</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>51</number></property>
+    <widget class="QLabel" name="Label1">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>241</width><height>17</height></rect></property>
+      <property name="text"><string>Das "DOSBox DOS" Profil wird erstellt...</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+  </widget>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

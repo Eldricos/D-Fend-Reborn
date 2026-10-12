@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>CreateShortcutForm</class>
+  <widget class="QDialog" name="CreateShortcutForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>338</width><height>286</height></rect></property>
+    <property name="windowTitle"><string>CreateShortcut</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsDialog</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclDesignWidth" stdset="0"><number>338</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>286</number></property>
+    <widget class="QRadioButton" name="DesktopRadioButton">
+      <property name="geometry"><rect><x>16</x><y>120</y><width>209</width><height>17</height></rect></property>
+      <property name="text"><string>DesktopRadioButton</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QRadioButton" name="StartmenuRadioButton">
+      <property name="geometry"><rect><x>16</x><y>152</y><width>209</width><height>17</height></rect></property>
+      <property name="text"><string>StartmenuRadioButton</string></property>
+    </widget>
+    <widget class="QLineEdit" name="StartmenuEdit">
+      <property name="geometry"><rect><x>40</x><y>175</y><width>121</width><height>21</height></rect></property>
+      <property name="text"><string>Dosgames</string></property>
+    </widget>
+    <widget class="QPushButton" name="OKButton">
+      <property name="geometry"><rect><x>8</x><y>251</y><width>97</width><height>25</height></rect></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+      <property name="default"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="CancelButton">
+      <property name="geometry"><rect><x>120</x><y>253</y><width>97</width><height>25</height></rect></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+    </widget>
+    <widget class="QCheckBox" name="UseProfileIconCheckBox">
+      <property name="geometry"><rect><x>16</x><y>216</y><width>209</width><height>17</height></rect></property>
+      <property name="text"><string>UseProfileIconCheckBox</string></property>
+    </widget>
+    <widget class="QLineEdit" name="LinkNameEdit">
+      <property name="geometry"><rect><x>16</x><y>24</y><width>305</width><height>21</height></rect></property>
+    </widget>
+    <widget class="QLabel" name="LinkNameEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>8</y><width>63</width><height>13</height></rect></property>
+      <property name="text"><string>LinkNameEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">LinkNameEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">LinkNameEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="LinkCommentEdit">
+      <property name="geometry"><rect><x>16</x><y>69</y><width>305</width><height>21</height></rect></property>
+    </widget>
+    <widget class="QLabel" name="LinkCommentEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>53</y><width>81</width><height>13</height></rect></property>
+      <property name="text"><string>LinkCommentEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">LinkCommentEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">LinkCommentEdit</string></property>
+    </widget>
+    <widget class="QPushButton" name="HelpButton">
+      <property name="geometry"><rect><x>232</x><y>253</y><width>97</width><height>25</height></rect></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>LinkNameEdit</tabstop>
+    <tabstop>LinkCommentEdit</tabstop>
+    <tabstop>DesktopRadioButton</tabstop>
+    <tabstop>StartmenuRadioButton</tabstop>
+    <tabstop>StartmenuEdit</tabstop>
+    <tabstop>UseProfileIconCheckBox</tabstop>
+    <tabstop>OKButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

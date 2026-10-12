@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorStartFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorStartFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>518</width><height>478</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>518</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>478</number></property>
+    <widget class="QLabel" name="AutoexecBootFloppyImageInfoLabel">
+      <property name="geometry"><rect><x>52</x><y>418</y><width>194</width><height>42</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>AutoexecBootFloppyImageInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QToolButton" name="AutoexecBootFloppyImageButton">
+      <property name="geometry"><rect><x>485</x><y>391</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="AutoexecBootFloppyImageAddButton">
+      <property name="geometry"><rect><x>485</x><y>417</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="AutoexecBootFloppyImageDelButton">
+      <property name="geometry"><rect><x>485</x><y>443</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QCheckBox" name="AutoexecOverrideGameStartCheckBox">
+      <property name="geometry"><rect><x>24</x><y>24</y><width>465</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Spiel-Start überspringen</string></property>
+    </widget>
+    <widget class="QCheckBox" name="AutoexecOverrideMountingCheckBox">
+      <property name="geometry"><rect><x>24</x><y>47</y><width>457</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Mounting überspringen</string></property>
+    </widget>
+    <widget class="QRadioButton" name="AutoexecBootNormal">
+      <property name="geometry"><rect><x>36</x><y>341</y><width>457</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>DosBox normal starten</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QRadioButton" name="AutoexecBootHDImage">
+      <property name="geometry"><rect><x>36</x><y>368</y><width>210</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Festplattenimage starten</string></property>
+    </widget>
+    <widget class="QRadioButton" name="AutoexecBootFloppyImage">
+      <property name="geometry"><rect><x>36</x><y>395</y><width>210</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Diskettenimage starten</string></property>
+    </widget>
+    <widget class="QTableWidget" name="AutoexecBootFloppyImageTab">
+      <property name="geometry"><rect><x>256</x><y>391</y><width>223</width><height>74</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="columnCount"><number>1</number></property>
+      <property name="rowCount"><number>1</number></property>
+      <property name="vclFixedCols" stdset="0"><number>0</number></property>
+      <property name="vclFixedRows" stdset="0"><number>0</number></property>
+      <attribute name="horizontalHeaderVisible"><bool>false</bool></attribute>
+      <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+      <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+    </widget>
+    <widget class="QComboBox" name="AutoexecBootHDImageComboBox">
+      <property name="geometry"><rect><x>256</x><y>364</y><width>223</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+      <item><property name="text"><string>Master (2)</string></property></item>
+      <item><property name="text"><string>Slave (3)</string></property></item>
+      <property name="currentIndex"><number>0</number></property>
+    </widget>
+    <widget class="QTabWidget" name="AutoexecPageControl">
+      <property name="geometry"><rect><x>24</x><y>80</y><width>484</width><height>249</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="currentIndex"><number>0</number></property>
+      <widget class="QWidget" name="AutoexecSheet1">
+        <attribute name="title"><string>Autoexec.bat</string></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>476</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>221</number></property>
+        <widget class="QFrame" name="Panel1">
+          <property name="geometry"><rect><x>0</x><y>192</y><width>476</width><height>29</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QPushButton" name="AutoexecClearButton">
+            <property name="geometry"><rect><x>0</x><y>3</y><width>105</width><height>25</height></rect></property>
+            <property name="text"><string>Löschen</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="AutoexecLoadButton">
+            <property name="geometry"><rect><x>111</x><y>3</y><width>105</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>1</number></property>
+            <property name="text"><string>Laden...</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="AutoexecSaveButton">
+            <property name="geometry"><rect><x>222</x><y>3</y><width>105</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>2</number></property>
+            <property name="text"><string>Speichern...</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+        </widget>
+        <widget class="QTextEdit" name="AutoexecMemo">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>476</width><height>192</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="acceptRichText"><bool>false</bool></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="AutoexecSheet2">
+        <attribute name="title"><string>Abschluss</string></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>476</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>221</number></property>
+        <widget class="QFrame" name="Panel12">
+          <property name="geometry"><rect><x>0</x><y>192</y><width>476</width><height>29</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QPushButton" name="FinalizationClearButton">
+            <property name="geometry"><rect><x>0</x><y>3</y><width>105</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>6</number></property>
+            <property name="text"><string>Löschen</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="FinalizationLoadButton">
+            <property name="geometry"><rect><x>111</x><y>3</y><width>105</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>7</number></property>
+            <property name="text"><string>Laden...</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+          <widget class="QPushButton" name="FinalizationSaveButton">
+            <property name="geometry"><rect><x>222</x><y>3</y><width>105</width><height>25</height></rect></property>
+            <property name="tag" stdset="0"><number>8</number></property>
+            <property name="text"><string>Speichern...</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          </widget>
+        </widget>
+        <widget class="QTextEdit" name="FinalizationMemo">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>476</width><height>192</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="acceptRichText"><bool>false</bool></property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>AutoexecOverrideGameStartCheckBox</tabstop>
+    <tabstop>AutoexecOverrideMountingCheckBox</tabstop>
+    <tabstop>AutoexecPageControl</tabstop>
+    <tabstop>AutoexecMemo</tabstop>
+    <tabstop>AutoexecClearButton</tabstop>
+    <tabstop>AutoexecLoadButton</tabstop>
+    <tabstop>AutoexecSaveButton</tabstop>
+    <tabstop>FinalizationMemo</tabstop>
+    <tabstop>FinalizationClearButton</tabstop>
+    <tabstop>FinalizationLoadButton</tabstop>
+    <tabstop>FinalizationSaveButton</tabstop>
+    <tabstop>AutoexecBootNormal</tabstop>
+    <tabstop>AutoexecBootHDImage</tabstop>
+    <tabstop>AutoexecBootFloppyImage</tabstop>
+    <tabstop>AutoexecBootFloppyImageTab</tabstop>
+    <tabstop>AutoexecBootHDImageComboBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

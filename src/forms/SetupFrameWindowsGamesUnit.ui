@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameWindowsGames</class>
+  <widget class="QWidget" name="SetupFrameWindowsGames">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>671</width><height>406</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>671</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>406</number></property>
+    <widget class="QLabel" name="AutoRestoreInfoLabel">
+      <property name="geometry"><rect><x>56</x><y>69</y><width>593</width><height>92</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>AutoRestoreInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="AllowWindowsPackagesLabel">
+      <property name="geometry"><rect><x>37</x><y>207</y><width>612</width><height>57</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Most Windows games are not intended to be moved to other installations so transfering Windows games in archive files can cause many problems and is not recommended to do.</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QCheckBox" name="MinimizeDFendCheckBox">
+      <property name="geometry"><rect><x>16</x><y>23</y><width>633</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>D-Fend minimieren, wenn ein Windows-Spiel gestartet wird</string></property>
+    </widget>
+    <widget class="QCheckBox" name="RestoreWindowCheckBox">
+      <property name="geometry"><rect><x>37</x><y>46</y><width>612</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Restore program window when the Windowsgame is closed</string></property>
+    </widget>
+    <widget class="QCheckBox" name="AllowWindowsPackagesCheckBox">
+      <property name="geometry"><rect><x>16</x><y>184</y><width>633</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Allow D-Fend Reloaded to create archive files from Windows profiles and import Windows profile package files</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>MinimizeDFendCheckBox</tabstop>
+    <tabstop>RestoreWindowCheckBox</tabstop>
+    <tabstop>AllowWindowsPackagesCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

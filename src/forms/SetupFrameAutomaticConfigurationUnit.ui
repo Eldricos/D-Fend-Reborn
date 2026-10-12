@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameAutomaticConfiguration</class>
+  <widget class="QWidget" name="SetupFrameAutomaticConfiguration">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>681</width><height>563</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>681</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>563</number></property>
+    <widget class="QScrollArea" name="ScrollBox">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>681</width><height>563</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="widgetResizable"><bool>false</bool></property>
+      <widget class="QWidget" name="ScrollBox_Contents">
+        <property name="geometry"><rect><x>0</x><y>0</y><width>677</width><height>559</height></rect></property>
+        <property name="vclScrollContents" stdset="0"><bool>true</bool></property>
+        <property name="vclDesignWidth" stdset="0"><number>677</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>559</number></property>
+        <widget class="QLabel" name="InstallerNamesLabel">
+          <property name="geometry"><rect><x>8</x><y>216</y><width>297</width><height>13</height></rect></property>
+          <property name="text"><string>Program file names to identify games that need to be installed</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QLabel" name="ArchiveIDFilesLabel">
+          <property name="geometry"><rect><x>8</x><y>392</y><width>224</width><height>13</height></rect></property>
+          <property name="text"><string>Description files for the content of archive files</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QPlainTextEdit" name="InstallerNamesMemo">
+          <property name="geometry"><rect><x>8</x><y>235</y><width>145</width><height>142</height></rect></property>
+          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAsNeeded</enum></property>
+        </widget>
+        <widget class="TRadioGroupWidget" name="WizardRadioGroup">
+          <property name="geometry"><rect><x>8</x><y>96</y><width>660</width><height>105</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="title"><string>Profile wizard</string></property>
+        </widget>
+        <widget class="QGroupBox" name="ZipImportGroupBox">
+          <property name="geometry"><rect><x>8</x><y>16</y><width>660</width><height>57</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="title"><string>Archive file import</string></property>
+          <widget class="QCheckBox" name="ZipImportCheckBox">
+            <property name="geometry"><rect><x>16</x><y>24</y><width>641</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Do not show dialog if the game can be identifed by an auto setup template</string></property>
+          </widget>
+        </widget>
+        <widget class="QPlainTextEdit" name="ArchiveIDFilesMemo">
+          <property name="geometry"><rect><x>8</x><y>411</y><width>145</width><height>142</height></rect></property>
+          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAsNeeded</enum></property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TRadioGroupWidget</class>
+      <extends>QGroupBox</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>InstallerNamesMemo</tabstop>
+    <tabstop>ZipImportCheckBox</tabstop>
+    <tabstop>ArchiveIDFilesMemo</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

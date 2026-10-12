@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ProfileMountEditorCDImageFrame</class>
+  <widget class="QWidget" name="ProfileMountEditorCDImageFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>697</width><height>266</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>697</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>266</number></property>
+    <widget class="QLabel" name="CDROMImageLabel">
+      <property name="geometry"><rect><x>16</x><y>10</y><width>223</width><height>13</height></rect></property>
+      <property name="text"><string>Select drive/CDROM/Image or floppy to mount</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QToolButton" name="CDROMImageButton">
+      <property name="geometry"><rect><x>640</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="CDROMImageAddButton">
+      <property name="geometry"><rect><x>640</x><y>59</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>8</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="CDROMImageDelButton">
+      <property name="geometry"><rect><x>671</x><y>59</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>9</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="ISOImageCreateButton">
+      <property name="geometry"><rect><x>671</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>15</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/a7fc1030571280f9.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="CDROMImageSwitchLabel">
+      <property name="geometry"><rect><x>16</x><y>103</y><width>337</width><height>13</height></rect></property>
+      <property name="text"><string>(You can switch between the images by pressing Strg+F4 in DOSBox.)</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="CDROMImageDriveLetterLabel">
+      <property name="geometry"><rect><x>16</x><y>141</y><width>98</width><height>13</height></rect></property>
+      <property name="text"><string>Mounted drive letter</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="CDImageDriveLetterWarningLabel">
+      <property name="geometry"><rect><x>176</x><y>163</y><width>510</width><height>18</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>CDImageDriveLetterWarningLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="ImageTypeInfoLabel">
+      <property name="geometry"><rect><x>16</x><y>200</y><width>670</width><height>49</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>ImageTypeInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QTableWidget" name="CDROMImageTab">
+      <property name="geometry"><rect><x>16</x><y>29</y><width>618</width><height>68</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="columnCount"><number>1</number></property>
+      <property name="rowCount"><number>1</number></property>
+      <property name="vclFixedCols" stdset="0"><number>0</number></property>
+      <property name="vclFixedRows" stdset="0"><number>0</number></property>
+      <attribute name="horizontalHeaderVisible"><bool>false</bool></attribute>
+      <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+      <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+    </widget>
+    <widget class="QComboBox" name="CDROMImageDriveLetterComboBox">
+      <property name="geometry"><rect><x>16</x><y>160</y><width>145</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>CDROMImageTab</tabstop>
+    <tabstop>CDROMImageDriveLetterComboBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

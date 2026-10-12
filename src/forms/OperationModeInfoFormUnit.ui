@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>OperationModeInfoForm</class>
+  <widget class="QDialog" name="OperationModeInfoForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>621</width><height>367</height></rect></property>
+    <property name="windowTitle"><string>OperationModeInfoForm</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsDialog</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclDesignWidth" stdset="0"><number>621</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>367</number></property>
+    <widget class="QLabel" name="TopLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>205</width><height>13</height></rect></property>
+      <property name="text"><string>Operation mode chosen during installation:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="OpModeLabel">
+      <property name="geometry"><rect><x>16</x><y>35</y><width>65</width><height>13</height></rect></property>
+      <property name="text"><string>OpModeLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QPushButton" name="OKButton">
+      <property name="geometry"><rect><x>16</x><y>334</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+      <property name="default"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+    </widget>
+    <widget class="QLineEdit" name="PrgDirEdit">
+      <property name="geometry"><rect><x>16</x><y>204</y><width>597</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="PrgDirEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>188</y><width>47</width><height>13</height></rect></property>
+      <property name="text"><string>PrgDirEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">PrgDirEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">PrgDirEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="PrgDataDirEdit">
+      <property name="geometry"><rect><x>16</x><y>252</y><width>597</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="PrgDataDirEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>236</y><width>70</width><height>13</height></rect></property>
+      <property name="text"><string>PrgDataDirEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">PrgDataDirEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">PrgDataDirEdit</string></property>
+    </widget>
+    <widget class="QCheckBox" name="CheckBox1">
+      <property name="geometry"><rect><x>16</x><y>64</y><width>597</width><height>17</height></rect></property>
+      <property name="enabled"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Program settings are stored in program folder</string></property>
+    </widget>
+    <widget class="QCheckBox" name="CheckBox3">
+      <property name="geometry"><rect><x>16</x><y>111</y><width>597</width><height>17</height></rect></property>
+      <property name="enabled"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>All users on this system share settings and profiles</string></property>
+    </widget>
+    <widget class="QCheckBox" name="CheckBox4">
+      <property name="geometry"><rect><x>16</x><y>134</y><width>597</width><height>17</height></rect></property>
+      <property name="enabled"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Useable without admin rights and under Windows Vista or higher</string></property>
+    </widget>
+    <widget class="QCheckBox" name="CheckBox5">
+      <property name="geometry"><rect><x>16</x><y>157</y><width>597</width><height>17</height></rect></property>
+      <property name="enabled"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>DOSBox and games directories are stored relative to D-Fend Reloaded folder (for portable use)</string></property>
+    </widget>
+    <widget class="QCheckBox" name="CheckBox2">
+      <property name="geometry"><rect><x>16</x><y>87</y><width>597</width><height>17</height></rect></property>
+      <property name="enabled"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Program settings are stored in the user profile folder</string></property>
+    </widget>
+    <widget class="QPushButton" name="HelpButton">
+      <property name="geometry"><rect><x>124</x><y>334</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+    </widget>
+    <widget class="QLineEdit" name="BaseDirEdit">
+      <property name="geometry"><rect><x>16</x><y>300</y><width>597</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="BaseDirEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>284</y><width>54</width><height>13</height></rect></property>
+      <property name="text"><string>BaseDirEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">BaseDirEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">BaseDirEdit</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>OKButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+    <tabstop>CheckBox1</tabstop>
+    <tabstop>CheckBox2</tabstop>
+    <tabstop>CheckBox3</tabstop>
+    <tabstop>CheckBox4</tabstop>
+    <tabstop>CheckBox5</tabstop>
+    <tabstop>PrgDirEdit</tabstop>
+    <tabstop>PrgDataDirEdit</tabstop>
+    <tabstop>BaseDirEdit</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

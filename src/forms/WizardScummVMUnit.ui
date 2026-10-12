@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>WizardScummVMFrame</class>
+  <widget class="QWidget" name="WizardScummVMFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>592</width><height>552</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>592</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>552</number></property>
+    <widget class="QFrame" name="Bevel">
+      <property name="geometry"><rect><x>3</x><y>71</y><width>589</width><height>18</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="frameShape"><enum>QFrame::HLine</enum></property>
+      <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TBevel</string></property>
+    </widget>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>8</x><y>16</y><width>569</width><height>65</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Bitte geben Sie an, wo sich das zu startende Spiel oder Programm befindet. Wenn Sie die Spieldateien jeweils in den Unterverzeichnissen der angegebenen Verzeichnisse ablegen, kann D-Fend Reloaded mit relativen Pfaden arbeiten.</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QToolButton" name="ProgramButton">
+      <property name="geometry"><rect><x>561</x><y>115</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="GamesFolderButton">
+      <property name="geometry"><rect><x>476</x><y>158</y><width>79</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="text"><string>Explorer</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+      <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+    </widget>
+    <widget class="QToolButton" name="FolderInfoButton">
+      <property name="geometry"><rect><x>561</x><y>158</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/9d4f31912d33ff58.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="BaseInfoLabel3">
+      <property name="geometry"><rect><x>8</x><y>243</y><width>188</width><height>13</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Zusätzliche Dateien (Handbücher usw.)</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QToolButton" name="BaseDataFolderButton">
+      <property name="geometry"><rect><x>505</x><y>330</y><width>79</width><height>22</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="text"><string>Explorer</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+      <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+    </widget>
+    <widget class="QToolButton" name="DataFolderButton">
+      <property name="geometry"><rect><x>561</x><y>283</y><width>23</width><height>22</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="GameNameLabel">
+      <property name="geometry"><rect><x>8</x><y>187</y><width>77</width><height>13</height></rect></property>
+      <property name="text"><string>Name des Spiels</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLineEdit" name="ProgramEdit">
+      <property name="geometry"><rect><x>8</x><y>115</y><width>547</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="ProgramEdit_EditLabel">
+      <property name="geometry"><rect><x>8</x><y>99</y><width>103</width><height>13</height></rect></property>
+      <property name="text"><string>Verzeichnis des Spiels</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ProgramEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ProgramEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="GamesFolderEdit">
+      <property name="geometry"><rect><x>8</x><y>158</y><width>462</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="GamesFolderEdit_EditLabel">
+      <property name="geometry"><rect><x>8</x><y>142</y><width>318</width><height>13</height></rect></property>
+      <property name="text"><string>Empfohlenes übergeordnetes Verzeichnis für das Spieleverzeichnis</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">GamesFolderEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">GamesFolderEdit</string></property>
+    </widget>
+    <widget class="QPushButton" name="DataFolderShowButton">
+      <property name="geometry"><rect><x>8</x><y>252</y><width>257</width><height>25</height></rect></property>
+      <property name="text"><string>Zusätzliche Dateien konfigurieren</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1caf3e36d49c7929.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">DataFolderShowButtonClick</string></property>
+    </widget>
+    <widget class="QLineEdit" name="DataFolderEdit">
+      <property name="geometry"><rect><x>8</x><y>283</y><width>547</width><height>21</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="DataFolderEdit_EditLabel">
+      <property name="geometry"><rect><x>8</x><y>267</y><width>241</width><height>13</height></rect></property>
+      <property name="text"><string>Verzeichnis mit den zusätzlichen Dateien (optional)</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">DataFolderEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DataFolderEdit</string></property>
+      <property name="visible"><bool>false</bool></property>
+    </widget>
+    <widget class="QLineEdit" name="BaseDataFolderEdit">
+      <property name="geometry"><rect><x>8</x><y>331</y><width>491</width><height>21</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="BaseDataFolderEdit_EditLabel">
+      <property name="geometry"><rect><x>8</x><y>315</y><width>354</width><height>13</height></rect></property>
+      <property name="text"><string>Empfohlenes übergeordnetes Verzeichnis für das Zusatzdaten-Verzeichnis</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">BaseDataFolderEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">BaseDataFolderEdit</string></property>
+      <property name="visible"><bool>false</bool></property>
+    </widget>
+    <widget class="QComboBox" name="GameNameComboBox">
+      <property name="geometry"><rect><x>8</x><y>204</y><width>547</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QCheckBox" name="DataFolderAutomaticCheckBox">
+      <property name="geometry"><rect><x>8</x><y>231</y><width>569</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Verzeichnis für zusätzliche Dateien automatisch festlegen</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>ProgramEdit</tabstop>
+    <tabstop>GamesFolderEdit</tabstop>
+    <tabstop>DataFolderAutomaticCheckBox</tabstop>
+    <tabstop>DataFolderShowButton</tabstop>
+    <tabstop>DataFolderEdit</tabstop>
+    <tabstop>BaseDataFolderEdit</tabstop>
+    <tabstop>GameNameComboBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

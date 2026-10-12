@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameDataPrivacy</class>
+  <widget class="QWidget" name="SetupFrameDataPrivacy">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>663</width><height>531</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>663</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>531</number></property>
+    <widget class="QLabel" name="OpenFileLabel">
+      <property name="geometry"><rect><x>16</x><y>144</y><width>144</width><height>13</height></rect></property>
+      <property name="text"><string>Open histroy file in text editor</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>16</x><y>176</y><width>633</width><height>113</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>InfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QCheckBox" name="StoreHistoryCheckBox">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>633</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Store history of started games</string></property>
+    </widget>
+    <widget class="QPushButton" name="ShowHistoryButton">
+      <property name="geometry"><rect><x>16</x><y>56</y><width>185</width><height>25</height></rect></property>
+      <property name="text"><string>Show recorded history</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/ade72445ec027212.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ShowHistoryButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="DeleteHistoryButton">
+      <property name="geometry"><rect><x>16</x><y>96</y><width>185</width><height>25</height></rect></property>
+      <property name="text"><string>Delete recorded history</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">DeleteHistoryButtonClick</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>StoreHistoryCheckBox</tabstop>
+    <tabstop>ShowHistoryButton</tabstop>
+    <tabstop>DeleteHistoryButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>CreateImageForm</class>
+  <widget class="QDialog" name="CreateImageForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>554</width><height>544</height></rect></property>
+    <property name="windowTitle"><string>CreateImage</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsDialog</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclDesignWidth" stdset="0"><number>554</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>544</number></property>
+    <widget class="QToolButton" name="ImageFileButton">
+      <property name="geometry"><rect><x>523</x><y>167</y><width>23</width><height>22</height></rect></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="NeedFreeDOSLabel">
+      <property name="geometry"><rect><x>24</x><y>276</y><width>500</width><height>40</height></rect></property>
+      <property name="text"><string>NeedFreeDOSLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QTabWidget" name="PageControl">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>556</width><height>145</height></rect></property>
+      <property name="currentIndex"><number>0</number></property>
+      <widget class="QWidget" name="FloppyImageSheet">
+        <attribute name="title"><string>Floppy Image</string></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>548</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>117</number></property>
+        <widget class="QLabel" name="FloppyImageTypeLabel">
+          <property name="geometry"><rect><x>16</x><y>16</y><width>96</width><height>13</height></rect></property>
+          <property name="text"><string>Floppy Image Type:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QLabel" name="FloppyCylindersLabel">
+          <property name="geometry"><rect><x>16</x><y>63</y><width>48</width><height>13</height></rect></property>
+          <property name="text"><string>Cylinders:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QLabel" name="FloppyHeadsLabel">
+          <property name="geometry"><rect><x>128</x><y>63</y><width>34</width><height>13</height></rect></property>
+          <property name="text"><string>Heads:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QLabel" name="FloppySPTLabel">
+          <property name="geometry"><rect><x>240</x><y>63</y><width>88</width><height>13</height></rect></property>
+          <property name="text"><string>Sectors per Track:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QComboBox" name="FloppyImageTypeComboBox">
+          <property name="geometry"><rect><x>16</x><y>32</y><width>516</width><height>21</height></rect></property>
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+        </widget>
+        <widget class="QComboBox" name="FloppyCylindersComboBox">
+          <property name="geometry"><rect><x>16</x><y>79</y><width>96</width><height>21</height></rect></property>
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+        </widget>
+        <widget class="QComboBox" name="FloppyHeadsComboBox">
+          <property name="geometry"><rect><x>128</x><y>79</y><width>96</width><height>21</height></rect></property>
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+        </widget>
+        <widget class="QComboBox" name="FloppySPTComboBox">
+          <property name="geometry"><rect><x>240</x><y>79</y><width>96</width><height>21</height></rect></property>
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+        </widget>
+        <widget class="QLineEdit" name="FloppyImageSizeEdit">
+          <property name="geometry"><rect><x>352</x><y>79</y><width>180</width><height>21</height></rect></property>
+          <property name="readOnly"><bool>true</bool></property>
+        </widget>
+        <widget class="QLabel" name="FloppyImageSizeEdit_EditLabel">
+          <property name="geometry"><rect><x>352</x><y>63</y><width>56</width><height>13</height></rect></property>
+          <property name="text"><string>Image Size:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+          <property name="vclFocusControl" stdset="0"><string notr="true">FloppyImageSizeEdit</string></property>
+          <property name="vclLabeledEditOf" stdset="0"><string notr="true">FloppyImageSizeEdit</string></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="HDImageSheet">
+        <attribute name="title"><string>HD Image</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/CreateImageUnit/ImageList/1.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>548</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>117</number></property>
+        <widget class="QLineEdit" name="HDSizeEdit">
+          <property name="geometry"><rect><x>16</x><y>32</y><width>121</width><height>21</height></rect></property>
+          <property name="text"><string>20</string></property>
+        </widget>
+        <widget class="QLabel" name="HDSizeEdit_EditLabel">
+          <property name="geometry"><rect><x>16</x><y>16</y><width>91</width><height>13</height></rect></property>
+          <property name="text"><string>Image size (in MB):</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+          <property name="vclFocusControl" stdset="0"><string notr="true">HDSizeEdit</string></property>
+          <property name="vclLabeledEditOf" stdset="0"><string notr="true">HDSizeEdit</string></property>
+        </widget>
+        <widget class="QLineEdit" name="HDGeometryEdit">
+          <property name="geometry"><rect><x>160</x><y>32</y><width>209</width><height>21</height></rect></property>
+          <property name="readOnly"><bool>true</bool></property>
+        </widget>
+        <widget class="QLabel" name="HDGeometryEdit_EditLabel">
+          <property name="geometry"><rect><x>160</x><y>16</y><width>83</width><height>13</height></rect></property>
+          <property name="text"><string>Image geometry:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+          <property name="vclFocusControl" stdset="0"><string notr="true">HDGeometryEdit</string></property>
+          <property name="vclLabeledEditOf" stdset="0"><string notr="true">HDGeometryEdit</string></property>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="OKButton">
+      <property name="geometry"><rect><x>8</x><y>511</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+      <property name="default"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="CancelButton">
+      <property name="geometry"><rect><x>120</x><y>511</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+    </widget>
+    <widget class="QPushButton" name="HelpButton">
+      <property name="geometry"><rect><x>232</x><y>511</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+    </widget>
+    <widget class="QLineEdit" name="ImageFileEdit">
+      <property name="geometry"><rect><x>8</x><y>168</y><width>509</width><height>21</height></rect></property>
+    </widget>
+    <widget class="QLabel" name="ImageFileEdit_EditLabel">
+      <property name="geometry"><rect><x>8</x><y>152</y><width>46</width><height>13</height></rect></property>
+      <property name="text"><string>Filename:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ImageFileEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ImageFileEdit</string></property>
+    </widget>
+    <widget class="QCheckBox" name="CompressedCheckBox">
+      <property name="geometry"><rect><x>8</x><y>195</y><width>516</width><height>17</height></rect></property>
+      <property name="text"><string>Store Image with NTFS-compression</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="MakeBootableCheckBox">
+      <property name="geometry"><rect><x>8</x><y>258</y><width>516</width><height>17</height></rect></property>
+      <property name="text"><string>Make floppy image bootable</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="AddKeyboardDriverCheckBox">
+      <property name="geometry"><rect><x>8</x><y>317</y><width>516</width><height>17</height></rect></property>
+      <property name="text"><string>Use DOSBox default keyboard layout on bootdisk</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="AddMouseDriverCheckBox">
+      <property name="geometry"><rect><x>8</x><y>340</y><width>516</width><height>17</height></rect></property>
+      <property name="text"><string>Include mouse driver on bootdisk</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="AddFormatCheckBox">
+      <property name="geometry"><rect><x>8</x><y>386</y><width>516</width><height>17</height></rect></property>
+      <property name="text"><string>Add disk management utilities</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="AddEditCheckbox">
+      <property name="geometry"><rect><x>8</x><y>409</y><width>516</width><height>17</height></rect></property>
+      <property name="text"><string>Add text editor</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="FormatImageCheckBox">
+      <property name="geometry"><rect><x>8</x><y>235</y><width>516</width><height>17</height></rect></property>
+      <property name="text"><string>Create preformated image</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="MemoryManagerCheckBox">
+      <property name="geometry"><rect><x>8</x><y>363</y><width>516</width><height>17</height></rect></property>
+      <property name="text"><string>Use memory manager on disk image</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="WriteToFloppyCheckBox">
+      <property name="geometry"><rect><x>8</x><y>455</y><width>518</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Write image file to real floppy after creation</string></property>
+    </widget>
+    <widget class="QCheckBox" name="AddDoszipCheckBox">
+      <property name="geometry"><rect><x>8</x><y>432</y><width>518</width><height>17</height></rect></property>
+      <property name="text"><string>Add Doszip file manager</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="CreateProfileCheckBox">
+      <property name="geometry"><rect><x>8</x><y>478</y><width>518</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Create DOSBox profile for booting the image</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>PageControl</tabstop>
+    <tabstop>FloppyImageTypeComboBox</tabstop>
+    <tabstop>FloppyCylindersComboBox</tabstop>
+    <tabstop>FloppyHeadsComboBox</tabstop>
+    <tabstop>FloppySPTComboBox</tabstop>
+    <tabstop>FloppyImageSizeEdit</tabstop>
+    <tabstop>HDSizeEdit</tabstop>
+    <tabstop>HDGeometryEdit</tabstop>
+    <tabstop>ImageFileEdit</tabstop>
+    <tabstop>CompressedCheckBox</tabstop>
+    <tabstop>FormatImageCheckBox</tabstop>
+    <tabstop>MakeBootableCheckBox</tabstop>
+    <tabstop>AddKeyboardDriverCheckBox</tabstop>
+    <tabstop>AddMouseDriverCheckBox</tabstop>
+    <tabstop>MemoryManagerCheckBox</tabstop>
+    <tabstop>AddFormatCheckBox</tabstop>
+    <tabstop>AddEditCheckbox</tabstop>
+    <tabstop>AddDoszipCheckBox</tabstop>
+    <tabstop>WriteToFloppyCheckBox</tabstop>
+    <tabstop>OKButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+    <tabstop>CreateProfileCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

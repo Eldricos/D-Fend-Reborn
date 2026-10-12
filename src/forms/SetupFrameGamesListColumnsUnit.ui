@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameGamesListColumns</class>
+  <widget class="QWidget" name="SetupFrameGamesListColumns">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>577</width><height>265</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>577</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>265</number></property>
+    <widget class="QLabel" name="ListViewLabel">
+      <property name="geometry"><rect><x>14</x><y>16</y><width>200</width><height>13</height></rect></property>
+      <property name="text"><string>Sichtbare Spalten und deren Reihenfolge:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QToolButton" name="ListViewUpButton">
+      <property name="geometry"><rect><x>231</x><y>35</y><width>23</width><height>22</height></rect></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0ae3fe79a233a82b.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="ListViewDownButton">
+      <property name="geometry"><rect><x>231</x><y>63</y><width>23</width><height>22</height></rect></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1caf3e36d49c7929.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="AddButton">
+      <property name="geometry"><rect><x>231</x><y>91</y><width>23</width><height>22</height></rect></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="DelButton">
+      <property name="geometry"><rect><x>231</x><y>119</y><width>23</width><height>22</height></rect></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QListWidget" name="ListViewListBox">
+      <property name="geometry"><rect><x>14</x><y>35</y><width>211</width><height>150</height></rect></property>
+      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="StoreColumnWidthsCheckBox">
+      <property name="geometry"><rect><x>14</x><y>232</y><width>551</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Spaltenbereiten speichern</string></property>
+    </widget>
+    <widget class="QCheckBox" name="GridLinesCheckBox">
+      <property name="geometry"><rect><x>14</x><y>209</y><width>551</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Gitterlinien im Ansichtsmodus "Details" anzeigen</string></property>
+    </widget>
+    <widget class="QMenu" name="PopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>ListViewListBox</tabstop>
+    <tabstop>GridLinesCheckBox</tabstop>
+    <tabstop>StoreColumnWidthsCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

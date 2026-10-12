@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ZipWaitInfoForm</class>
+  <widget class="QDialog" name="ZipWaitInfoForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>734</width><height>294</height></rect></property>
+    <property name="windowTitle"><string>Zip drive management</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsSizeToolWin</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclDesignWidth" stdset="0"><number>734</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>294</number></property>
+    <widget class="QFrame" name="BottomPanel">
+      <property name="geometry"><rect><x>0</x><y>253</y><width>734</width><height>41</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QPushButton" name="CloseButton">
+        <property name="geometry"><rect><x>8</x><y>8</y><width>97</width><height>25</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkClose</string></property>
+        <property name="vclModalResult" stdset="0"><string notr="true">mrClose</string></property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="TopPanel">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>734</width><height>32</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QLabel" name="InfoLabel">
+        <property name="geometry"><rect><x>8</x><y>8</y><width>454</width><height>13</height></rect></property>
+        <property name="text"><string>D-Fend Reloaded is waiting for the following DOSBox instances for close to repack the zip files:</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+    </widget>
+    <widget class="QTreeWidget" name="Tree">
+      <property name="geometry"><rect><x>0</x><y>32</y><width>734</width><height>221</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+      <property name="headerHidden"><bool>true</bool></property>
+      <property name="columnCount"><number>1</number></property>
+      <column><property name="text"><string notr="true">1</string></property></column>
+      <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+      <property name="indentation"><number>19</number></property>
+      <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>CloseButton</tabstop>
+    <tabstop>Tree</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

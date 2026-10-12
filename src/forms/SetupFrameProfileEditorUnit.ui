@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameProfileEditor</class>
+  <widget class="QWidget" name="SetupFrameProfileEditor">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>542</width><height>358</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>542</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>358</number></property>
+    <widget class="QCheckBox" name="ReopenLastActiveProfileSheetCheckBox">
+      <property name="geometry"><rect><x>16</x><y>24</y><width>520</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Zuletzt aktive Seite im Profileditor merken</string></property>
+    </widget>
+    <widget class="QRadioButton" name="ProfileEditorDFendRadioButton">
+      <property name="geometry"><rect><x>16</x><y>65</y><width>520</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Klassischen D-Fend Profileditor verwenden</string></property>
+    </widget>
+    <widget class="QRadioButton" name="ProfileEditorModernRadioButton">
+      <property name="geometry"><rect><x>16</x><y>85</y><width>520</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Modernen Profileditor verwenden</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="TRadioGroupWidget" name="AutoSetScreenshotFolderRadioGroup">
+      <property name="geometry"><rect><x>16</x><y>120</y><width>520</width><height>65</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="title"><string>Screenshot-Ordner beim Hinzufügen von Profilen automatisch festlegen</string></property>
+      <property name="items" stdset="0">
+        <stringlist notr="true">
+          <string>Nur beim Hinzufügen über den Assistenten</string>
+          <string>Beim Hinzufügen über den Assistenten und über den modernen Profileditor</string>
+        </stringlist>
+      </property>
+      <property name="itemIndex" stdset="0"><number>1</number></property>
+    </widget>
+    <widget class="QCheckBox" name="RenameProfFilesCheckBox">
+      <property name="geometry"><rect><x>16</x><y>208</y><width>520</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Profildateinamen immer gemäß dem Profilnamen umbenennen</string></property>
+    </widget>
+    <widget class="TRadioGroupWidget" name="AutoAddMountingsRadioGroup">
+      <property name="geometry"><rect><x>16</x><y>250</y><width>520</width><height>63</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="title"><string>Mounting-Einstellungen bei Bedarf automatisch hinzufügen</string></property>
+      <property name="items" stdset="0">
+        <stringlist notr="true">
+          <string>Nur beim Hinzufügen über den Assistenten</string>
+          <string>Beim Hinzufügen über den Assistenten und über den modernen Profileditor</string>
+        </stringlist>
+      </property>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TRadioGroupWidget</class>
+      <extends>QGroupBox</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>ReopenLastActiveProfileSheetCheckBox</tabstop>
+    <tabstop>ProfileEditorDFendRadioButton</tabstop>
+    <tabstop>ProfileEditorModernRadioButton</tabstop>
+    <tabstop>RenameProfFilesCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

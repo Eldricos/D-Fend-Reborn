@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ProfileEditorForm</class>
+  <widget class="QDialog" name="ProfileEditorForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>537</width><height>654</height></rect></property>
+    <property name="windowTitle"><string>ProfileEditorForm</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsDialog</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclDesignWidth" stdset="0"><number>537</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>654</number></property>
+    <widget class="QTabWidget" name="PageControl">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>537</width><height>615</height></rect></property>
+      <property name="currentIndex"><number>0</number></property>
+      <property name="usesScrollButtons"><bool>false</bool></property>
+      <widget class="QWidget" name="ProfileSettingsSheet">
+        <attribute name="title"><string>ProfileSettingsSheet</string></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>529</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>587</number></property>
+        <widget class="QLabel" name="ExtraDirsLabel">
+          <property name="geometry"><rect><x>13</x><y>437</y><width>172</width><height>13</height></rect></property>
+          <property name="text"><string>Zusätzliche Programmverzeichnisse:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QToolButton" name="ExtraDirsAddButton">
+          <property name="geometry"><rect><x>490</x><y>456</y><width>23</width><height>22</height></rect></property>
+          <property name="tag" stdset="0"><number>2</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QToolButton" name="ExtraDirsEditButton">
+          <property name="geometry"><rect><x>490</x><y>484</y><width>23</width><height>22</height></rect></property>
+          <property name="tag" stdset="0"><number>3</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QToolButton" name="ExtraDirsDelButton">
+          <property name="geometry"><rect><x>490</x><y>512</y><width>23</width><height>22</height></rect></property>
+          <property name="tag" stdset="0"><number>4</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QLabel" name="ExtraFilesLabel">
+          <property name="geometry"><rect><x>13</x><y>324</y><width>327</width><height>13</height></rect></property>
+          <property name="text"><string>Zusätzliche Programmdateien (außerhalb des Spiele-Verzeichnisses):</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QToolButton" name="ExtraFilesAddButton">
+          <property name="geometry"><rect><x>490</x><y>343</y><width>23</width><height>22</height></rect></property>
+          <property name="tag" stdset="0"><number>27</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QToolButton" name="ExtraFilesEditButton">
+          <property name="geometry"><rect><x>490</x><y>371</y><width>23</width><height>22</height></rect></property>
+          <property name="tag" stdset="0"><number>28</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QToolButton" name="ExtraFilesDelButton">
+          <property name="geometry"><rect><x>490</x><y>399</y><width>23</width><height>22</height></rect></property>
+          <property name="tag" stdset="0"><number>29</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QFrame" name="IconPanel">
+          <property name="geometry"><rect><x>12</x><y>3</y><width>35</width><height>35</height></rect></property>
+          <property name="frameShape"><enum>QFrame::Panel</enum></property>
+          <property name="frameShadow"><enum>QFrame::Raised</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="TImageWidget" name="IconImage">
+            <property name="geometry"><rect><x>1</x><y>1</y><width>33</width><height>33</height></rect></property>
+            <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          </widget>
+        </widget>
+        <widget class="QPushButton" name="IconSelectButton">
+          <property name="geometry"><rect><x>72</x><y>9</y><width>141</width><height>25</height></rect></property>
+          <property name="text"><string>Icon auswählen...</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QPushButton" name="IconDeleteButton">
+          <property name="geometry"><rect><x>228</x><y>9</y><width>141</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>1</number></property>
+          <property name="text"><string>Icon löschen</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="TValueListEditorWidget" name="ProfileSettingsValueListEditor">
+          <property name="geometry"><rect><x>13</x><y>44</y><width>500</width><height>237</height></rect></property>
+          <property name="vclColumnWidths" stdset="0"><string notr="true">150,344</string></property>
+        </widget>
+        <widget class="QListWidget" name="ExtraDirsListBox">
+          <property name="geometry"><rect><x>13</x><y>456</y><width>471</width><height>88</height></rect></property>
+        </widget>
+        <widget class="QPushButton" name="GenerateScreenshotFolderNameButton">
+          <property name="geometry"><rect><x>13</x><y>287</y><width>316</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>9</number></property>
+          <property name="text"><string>Screenshot-Verzeichnis automatisch festlegen</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/b95a66cb73ac2323.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QListWidget" name="ExtraFilesListBox">
+          <property name="geometry"><rect><x>13</x><y>343</y><width>471</width><height>88</height></rect></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="GameInfoSheet">
+        <attribute name="title"><string>GameInfoSheet</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/1.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>529</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>587</number></property>
+        <widget class="QLabel" name="NotesLabel">
+          <property name="geometry"><rect><x>12</x><y>282</y><width>69</width><height>13</height></rect></property>
+          <property name="text"><string>Bemerkungen:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="TValueListEditorWidget" name="GameInfoValueListEditor">
+          <property name="geometry"><rect><x>12</x><y>16</y><width>501</width><height>177</height></rect></property>
+          <property name="vclColumnWidths" stdset="0"><string notr="true">150,345</string></property>
+        </widget>
+        <widget class="QTextEdit" name="NotesMemo">
+          <property name="geometry"><rect><x>12</x><y>296</y><width>501</width><height>257</height></rect></property>
+          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="acceptRichText"><bool>false</bool></property>
+        </widget>
+        <widget class="QPushButton" name="GenerateGameDataFolderNameButton">
+          <property name="geometry"><rect><x>12</x><y>239</y><width>278</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>19</number></property>
+          <property name="text"><string>Daten-Verzeichnis automatisch erstellen</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1ecd1554339d9b00.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QPushButton" name="GameInfoMetaDataButton">
+          <property name="geometry"><rect><x>296</x><y>239</y><width>217</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>23</number></property>
+          <property name="text"><string>Benutzerdefinierte Informationen</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QFrame" name="Panel2">
+          <property name="geometry"><rect><x>16</x><y>194</y><width>500</width><height>30</height></rect></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QToolBar" name="ToolBar">
+            <property name="geometry"><rect><x>0</x><y>0</y><width>500</width><height>29</height></rect></property>
+            <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+            <property name="movable"><bool>false</bool></property>
+            <property name="floatable"><bool>false</bool></property>
+            <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+            <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+            <property name="vclButtonWidth" stdset="0"><number>140</number></property>
+            <property name="vclButtonHeight" stdset="0"><number>30</number></property>
+            <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+            <addaction name="SearchGameButton"/>
+          </widget>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="GeneralSheet">
+        <attribute name="title"><string>GeneralSheet</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/2.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>529</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>587</number></property>
+        <widget class="TValueListEditorWidget" name="GeneralValueListEditor">
+          <property name="geometry"><rect><x>11</x><y>16</y><width>501</width><height>537</height></rect></property>
+          <property name="vclColumnWidths" stdset="0"><string notr="true">248,247</string></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="EnvironmentSheet">
+        <attribute name="title"><string>EnvironmentSheet</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/3.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>529</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>587</number></property>
+        <widget class="QLabel" name="KeyboardLayoutInfoLabel">
+          <property name="geometry"><rect><x>12</x><y>524</y><width>501</width><height>42</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+        <widget class="TValueListEditorWidget" name="EnvironmentValueListEditor">
+          <property name="geometry"><rect><x>12</x><y>16</y><width>501</width><height>505</height></rect></property>
+          <property name="vclColumnWidths" stdset="0"><string notr="true">248,247</string></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="MountingSheet">
+        <attribute name="title"><string>MountingSheet</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/4.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>529</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>587</number></property>
+        <widget class="TListView" name="MountingListView">
+          <property name="geometry"><rect><x>3</x><y>16</y><width>523</width><height>481</height></rect></property>
+          <property name="vclPopupMenu" stdset="0"><string notr="true">PopupMenu</string></property>
+          <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+          <property name="readOnly" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QPushButton" name="MountingAddButton">
+          <property name="geometry"><rect><x>3</x><y>503</y><width>94</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>5</number></property>
+          <property name="text"><string>Hinzufügen...</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/a7fc1030571280f9.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QPushButton" name="MountingEditButton">
+          <property name="geometry"><rect><x>103</x><y>503</y><width>94</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>6</number></property>
+          <property name="text"><string>Bearbeiten...</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QPushButton" name="MountingDelButton">
+          <property name="geometry"><rect><x>203</x><y>503</y><width>94</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>7</number></property>
+          <property name="text"><string>Löschen</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QPushButton" name="MountingDeleteAllButton">
+          <property name="geometry"><rect><x>303</x><y>503</y><width>90</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>8</number></property>
+          <property name="text"><string>Alle löschen</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QPushButton" name="MountingAutoCreateButton">
+          <property name="geometry"><rect><x>399</x><y>503</y><width>127</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>20</number></property>
+          <property name="text"><string>Autom. erstellen</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QCheckBox" name="AutoMountCheckBox">
+          <property name="geometry"><rect><x>3</x><y>538</y><width>501</width><height>17</height></rect></property>
+          <property name="text"><string>Aktuell verfügbare CDs in allen Laufwerken automatisch mounten</string></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="SoundSheet">
+        <attribute name="title"><string>SoundSheet</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/5.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>529</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>587</number></property>
+        <widget class="TValueListEditorWidget" name="SoundValueListEditor">
+          <property name="geometry"><rect><x>12</x><y>16</y><width>501</width><height>121</height></rect></property>
+          <property name="vclColumnWidths" stdset="0"><string notr="true">248,247</string></property>
+        </widget>
+        <widget class="QTabWidget" name="PageControl2">
+          <property name="geometry"><rect><x>12</x><y>152</y><width>501</width><height>241</height></rect></property>
+          <property name="currentIndex"><number>0</number></property>
+          <widget class="QWidget" name="SoundSBSheet">
+            <attribute name="title"><string>SoundSBSheet</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/8.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>493</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>213</number></property>
+            <widget class="TValueListEditorWidget" name="SoundSBValueListEditor">
+              <property name="geometry"><rect><x>3</x><y>16</y><width>487</width><height>185</height></rect></property>
+              <property name="vclColumnWidths" stdset="0"><string notr="true">248,233</string></property>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="SoundGUSSheet">
+            <attribute name="title"><string>SoundGUSSheet</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/9.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>493</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>213</number></property>
+            <widget class="TValueListEditorWidget" name="SoundGUSValueListEditor">
+              <property name="geometry"><rect><x>3</x><y>16</y><width>487</width><height>185</height></rect></property>
+              <property name="vclColumnWidths" stdset="0"><string notr="true">248,233</string></property>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="SoundMIDISheet">
+            <attribute name="title"><string>SoundMIDISheet</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/10.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>493</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>213</number></property>
+            <widget class="TValueListEditorWidget" name="SoundMIDIValueListEditor">
+              <property name="geometry"><rect><x>3</x><y>16</y><width>487</width><height>185</height></rect></property>
+              <property name="vclColumnWidths" stdset="0"><string notr="true">248,233</string></property>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="SoundJoystickSheet">
+            <attribute name="title"><string>SoundJoystickSheet</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/11.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>493</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>213</number></property>
+            <widget class="TValueListEditorWidget" name="SoundJoystickValueListEditor">
+              <property name="geometry"><rect><x>3</x><y>16</y><width>487</width><height>185</height></rect></property>
+              <property name="vclColumnWidths" stdset="0"><string notr="true">248,233</string></property>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="SoundMiscSheet">
+            <attribute name="title"><string>SoundMiscSheet</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/12.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>493</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>213</number></property>
+            <widget class="TValueListEditorWidget" name="SoundMiscValueListEditor">
+              <property name="geometry"><rect><x>3</x><y>16</y><width>487</width><height>185</height></rect></property>
+              <property name="vclColumnWidths" stdset="0"><string notr="true">248,233</string></property>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="SoundVolumeSheet">
+            <attribute name="title"><string>SoundVolumeSheet</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/13.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>493</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>213</number></property>
+            <widget class="QLabel" name="SoundVolumeLeftLabel">
+              <property name="geometry"><rect><x>148</x><y>13</y><width>23</width><height>13</height></rect></property>
+              <property name="text"><string>Links</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+            </widget>
+            <widget class="QLabel" name="SoundVolumeRightLabel">
+              <property name="geometry"><rect><x>212</x><y>13</y><width>33</width><height>13</height></rect></property>
+              <property name="text"><string>Rechts</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+            </widget>
+            <widget class="QLabel" name="SoundVolumeMasterLabel">
+              <property name="geometry"><rect><x>16</x><y>36</y><width>33</width><height>13</height></rect></property>
+              <property name="text"><string>Master</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+            </widget>
+            <widget class="QLabel" name="SoundVolumeDisneyLabel">
+              <property name="geometry"><rect><x>16</x><y>64</y><width>103</width><height>13</height></rect></property>
+              <property name="text"><string>Disney Sound System</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+            </widget>
+            <widget class="QLabel" name="SoundVolumeSpeakerLabel">
+              <property name="geometry"><rect><x>16</x><y>92</y><width>80</width><height>13</height></rect></property>
+              <property name="text"><string>Internal Speaker</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+            </widget>
+            <widget class="QLabel" name="SoundVolumeGUSLabel">
+              <property name="geometry"><rect><x>16</x><y>120</y><width>20</width><height>13</height></rect></property>
+              <property name="text"><string>GUS</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+            </widget>
+            <widget class="QLabel" name="SoundVolumeSBLabel">
+              <property name="geometry"><rect><x>16</x><y>148</y><width>63</width><height>13</height></rect></property>
+              <property name="text"><string>SoundBlaster</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+            </widget>
+            <widget class="QLabel" name="SoundVolumeFMLabel">
+              <property name="geometry"><rect><x>16</x><y>176</y><width>14</width><height>13</height></rect></property>
+              <property name="text"><string>FM</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeMasterLeftEdit">
+              <property name="geometry"><rect><x>148</x><y>32</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeMasterRightEdit">
+              <property name="geometry"><rect><x>212</x><y>32</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeDisneyLeftEdit">
+              <property name="geometry"><rect><x>148</x><y>60</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeDisneyRightEdit">
+              <property name="geometry"><rect><x>212</x><y>60</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeSpeakerLeftEdit">
+              <property name="geometry"><rect><x>148</x><y>88</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeSpeakerRightEdit">
+              <property name="geometry"><rect><x>212</x><y>88</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeGUSLeftEdit">
+              <property name="geometry"><rect><x>148</x><y>116</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeGUSRightEdit">
+              <property name="geometry"><rect><x>212</x><y>116</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeSBLeftEdit">
+              <property name="geometry"><rect><x>148</x><y>144</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeSBRightEdit">
+              <property name="geometry"><rect><x>212</x><y>144</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeFMLeftEdit">
+              <property name="geometry"><rect><x>148</x><y>172</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+            <widget class="QSpinBox" name="SoundVolumeFMRightEdit">
+              <property name="geometry"><rect><x>212</x><y>172</y><width>49</width><height>22</height></rect></property>
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>200</number></property>
+              <property name="value"><number>100</number></property>
+            </widget>
+          </widget>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="AutoexecSheet">
+        <attribute name="title"><string>AutoexecSheet</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/6.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>529</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>587</number></property>
+        <widget class="QToolButton" name="AutoexecBootFloppyImageButton">
+          <property name="geometry"><rect><x>496</x><y>480</y><width>23</width><height>22</height></rect></property>
+          <property name="tag" stdset="0"><number>13</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QToolButton" name="AutoexecBootFloppyImageAddButton">
+          <property name="geometry"><rect><x>496</x><y>508</y><width>23</width><height>22</height></rect></property>
+          <property name="tag" stdset="0"><number>21</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QToolButton" name="AutoexecBootFloppyImageDelButton">
+          <property name="geometry"><rect><x>496</x><y>532</y><width>23</width><height>22</height></rect></property>
+          <property name="tag" stdset="0"><number>22</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QLabel" name="AutoexecBootFloppyImageInfoLabel">
+          <property name="geometry"><rect><x>38</x><y>507</y><width>194</width><height>42</height></rect></property>
+          <property name="text"><string>AutoexecBootFloppyImageInfoLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+        <widget class="QCheckBox" name="AutoexecOverrideGameStartCheckBox">
+          <property name="geometry"><rect><x>16</x><y>16</y><width>465</width><height>17</height></rect></property>
+          <property name="text"><string>Spiel-Start überspringen</string></property>
+        </widget>
+        <widget class="QCheckBox" name="AutoexecOverrideMountingCheckBox">
+          <property name="geometry"><rect><x>16</x><y>39</y><width>457</width><height>17</height></rect></property>
+          <property name="text"><string>Mounting überspringen</string></property>
+        </widget>
+        <widget class="QRadioButton" name="AutoexecBootNormal">
+          <property name="geometry"><rect><x>22</x><y>430</y><width>457</width><height>17</height></rect></property>
+          <property name="text"><string>DosBox normal starten</string></property>
+          <property name="checked"><bool>true</bool></property>
+        </widget>
+        <widget class="QRadioButton" name="AutoexecBootHDImage">
+          <property name="geometry"><rect><x>22</x><y>457</y><width>210</width><height>17</height></rect></property>
+          <property name="text"><string>Festplattenimage starten</string></property>
+        </widget>
+        <widget class="QRadioButton" name="AutoexecBootFloppyImage">
+          <property name="geometry"><rect><x>22</x><y>484</y><width>210</width><height>17</height></rect></property>
+          <property name="text"><string>Diskettenimage starten</string></property>
+        </widget>
+        <widget class="QComboBox" name="AutoexecBootHDImageComboBox">
+          <property name="geometry"><rect><x>242</x><y>453</y><width>248</width><height>21</height></rect></property>
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+          <item><property name="text"><string>Master (2)</string></property></item>
+          <item><property name="text"><string>Slave (3)</string></property></item>
+          <property name="currentIndex"><number>0</number></property>
+        </widget>
+        <widget class="QCheckBox" name="AutoexecUse4DOSCheckBox">
+          <property name="geometry"><rect><x>16</x><y>65</y><width>497</width><height>17</height></rect></property>
+          <property name="text"><string>Use 4DOS as command line interpreter</string></property>
+        </widget>
+        <widget class="QTableWidget" name="AutoexecBootFloppyImageTab">
+          <property name="geometry"><rect><x>242</x><y>480</y><width>248</width><height>74</height></rect></property>
+          <property name="columnCount"><number>1</number></property>
+          <property name="rowCount"><number>1</number></property>
+          <property name="vclFixedCols" stdset="0"><number>0</number></property>
+          <property name="vclFixedRows" stdset="0"><number>0</number></property>
+          <attribute name="horizontalHeaderVisible"><bool>false</bool></attribute>
+          <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+          <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+        </widget>
+        <widget class="QTabWidget" name="AutoexecPageControl">
+          <property name="geometry"><rect><x>16</x><y>96</y><width>505</width><height>157</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+          <property name="currentIndex"><number>0</number></property>
+          <widget class="QWidget" name="AutoexecSheet1">
+            <attribute name="title"><string>Autoexec.bat</string></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>497</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>129</number></property>
+            <widget class="QFrame" name="Panel1">
+              <property name="geometry"><rect><x>0</x><y>114</y><width>497</width><height>29</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+              <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+              <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+              <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+              <widget class="QPushButton" name="AutoexecClearButton">
+                <property name="geometry"><rect><x>0</x><y>3</y><width>105</width><height>25</height></rect></property>
+                <property name="tag" stdset="0"><number>10</number></property>
+                <property name="text"><string>Löschen</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              </widget>
+              <widget class="QPushButton" name="AutoexecLoadButton">
+                <property name="geometry"><rect><x>111</x><y>3</y><width>105</width><height>25</height></rect></property>
+                <property name="tag" stdset="0"><number>11</number></property>
+                <property name="text"><string>Laden...</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              </widget>
+              <widget class="QPushButton" name="AutoexecSaveButton">
+                <property name="geometry"><rect><x>222</x><y>3</y><width>105</width><height>25</height></rect></property>
+                <property name="tag" stdset="0"><number>12</number></property>
+                <property name="text"><string>Speichern...</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              </widget>
+            </widget>
+            <widget class="QTextEdit" name="AutoexecMemo">
+              <property name="geometry"><rect><x>0</x><y>0</y><width>497</width><height>114</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+              <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+              <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="acceptRichText"><bool>false</bool></property>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="AutoexecSheet2">
+            <attribute name="title"><string>Abschluss</string></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>497</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>129</number></property>
+            <widget class="QFrame" name="Panel12">
+              <property name="geometry"><rect><x>0</x><y>114</y><width>497</width><height>29</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+              <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+              <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+              <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+              <widget class="QPushButton" name="FinalizationClearButton">
+                <property name="geometry"><rect><x>0</x><y>3</y><width>105</width><height>25</height></rect></property>
+                <property name="tag" stdset="0"><number>24</number></property>
+                <property name="text"><string>Löschen</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              </widget>
+              <widget class="QPushButton" name="FinalizationLoadButton">
+                <property name="geometry"><rect><x>111</x><y>3</y><width>105</width><height>25</height></rect></property>
+                <property name="tag" stdset="0"><number>25</number></property>
+                <property name="text"><string>Laden...</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              </widget>
+              <widget class="QPushButton" name="FinalizationSaveButton">
+                <property name="geometry"><rect><x>222</x><y>3</y><width>105</width><height>25</height></rect></property>
+                <property name="tag" stdset="0"><number>26</number></property>
+                <property name="text"><string>Speichern...</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              </widget>
+            </widget>
+            <widget class="QTextEdit" name="FinalizationMemo">
+              <property name="geometry"><rect><x>0</x><y>0</y><width>497</width><height>114</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+              <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+              <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="acceptRichText"><bool>false</bool></property>
+            </widget>
+          </widget>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="CustomSetsSheet">
+        <attribute name="title"><string>CustomSetsSheet</string></attribute>
+        <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/7.png</normaloff></iconset></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>529</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>587</number></property>
+        <widget class="QLabel" name="CustomSetsEnvLabel">
+          <property name="geometry"><rect><x>13</x><y>275</y><width>104</width><height>13</height></rect></property>
+          <property name="text"><string>Umgebungsvariablen:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QPushButton" name="CustomSetsClearButton">
+          <property name="geometry"><rect><x>13</x><y>223</y><width>105</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>14</number></property>
+          <property name="text"><string>Löschen</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QPushButton" name="CustomSetsLoadButton">
+          <property name="geometry"><rect><x>126</x><y>223</y><width>105</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>15</number></property>
+          <property name="text"><string>Laden...</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QPushButton" name="CustomSetsSaveButton">
+          <property name="geometry"><rect><x>237</x><y>223</y><width>105</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>16</number></property>
+          <property name="text"><string>Speichern...</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="TValueListEditorWidget" name="CustomSetsValueListEditor">
+          <property name="geometry"><rect><x>12</x><y>294</y><width>501</width><height>227</height></rect></property>
+          <property name="vclColumnWidths" stdset="0"><string notr="true">150,345</string></property>
+          <property name="keyEdit" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QPushButton" name="CustomSetsEnvAdd">
+          <property name="geometry"><rect><x>13</x><y>527</y><width>105</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>17</number></property>
+          <property name="text"><string>Hinzufügen</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QPushButton" name="CustomSetsEnvDel">
+          <property name="geometry"><rect><x>126</x><y>527</y><width>105</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>18</number></property>
+          <property name="text"><string>Löschen</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+        </widget>
+        <widget class="QTextEdit" name="CustomSetsMemo">
+          <property name="geometry"><rect><x>13</x><y>16</y><width>500</width><height>201</height></rect></property>
+          <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="acceptRichText"><bool>false</bool></property>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="OKButton">
+      <property name="geometry"><rect><x>4</x><y>621</y><width>90</width><height>25</height></rect></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+      <property name="default"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="CancelButton">
+      <property name="geometry"><rect><x>100</x><y>621</y><width>90</width><height>25</height></rect></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+    </widget>
+    <widget class="QPushButton" name="PreviousButton">
+      <property name="geometry"><rect><x>293</x><y>621</y><width>113</width><height>25</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="text"><string>Vorheriges</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/53b2106da7e1dd27.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="NextButton">
+      <property name="geometry"><rect><x>412</x><y>621</y><width>113</width><height>25</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="text"><string>Nächstes</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/65f2d89bba697ee8.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="HelpButton">
+      <property name="geometry"><rect><x>197</x><y>621</y><width>90</width><height>25</height></rect></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+    </widget>
+    <widget class="QMenu" name="SearchPopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QMenu" name="PopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+      <addaction name="PopupAdd"/>
+      <addaction name="PopupEdit"/>
+      <addaction name="PopupDelete"/>
+    </widget>
+    <action name="SearchGameButton">
+      <property name="text"><string>Search for game at ...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageList/14.png</normaloff></iconset></property>
+      <property name="vclDropDown" stdset="0"><bool>true</bool></property>
+      <property name="vclDropdownMenu" stdset="0"><string notr="true">SearchPopupMenu</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="PopupAdd">
+      <property name="text"><string>Add</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageListM/0.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ins</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+    </action>
+    <action name="PopupEdit">
+      <property name="text"><string>Edit</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageListM/1.png</normaloff></iconset></property>
+      <property name="vclDefault" stdset="0"><bool>true</bool></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+    </action>
+    <action name="PopupDelete">
+      <property name="text"><string>Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/ProfileEditorFormUnit/ImageListM/2.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>7</number></property>
+    </action>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TImageWidget</class>
+      <extends>QLabel</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+    <customwidget>
+      <class>TListView</class>
+      <extends>QWidget</extends>
+      <header>ComCtrls.h</header>
+    </customwidget>
+    <customwidget>
+      <class>TValueListEditorWidget</class>
+      <extends>QTableWidget</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>PageControl</tabstop>
+    <tabstop>IconSelectButton</tabstop>
+    <tabstop>IconDeleteButton</tabstop>
+    <tabstop>ProfileSettingsValueListEditor</tabstop>
+    <tabstop>GenerateScreenshotFolderNameButton</tabstop>
+    <tabstop>ExtraFilesListBox</tabstop>
+    <tabstop>ExtraDirsListBox</tabstop>
+    <tabstop>GameInfoValueListEditor</tabstop>
+    <tabstop>GenerateGameDataFolderNameButton</tabstop>
+    <tabstop>GameInfoMetaDataButton</tabstop>
+    <tabstop>NotesMemo</tabstop>
+    <tabstop>GeneralValueListEditor</tabstop>
+    <tabstop>EnvironmentValueListEditor</tabstop>
+    <tabstop>MountingListView</tabstop>
+    <tabstop>MountingAddButton</tabstop>
+    <tabstop>MountingEditButton</tabstop>
+    <tabstop>MountingDelButton</tabstop>
+    <tabstop>MountingDeleteAllButton</tabstop>
+    <tabstop>MountingAutoCreateButton</tabstop>
+    <tabstop>AutoMountCheckBox</tabstop>
+    <tabstop>SoundValueListEditor</tabstop>
+    <tabstop>PageControl2</tabstop>
+    <tabstop>SoundSBValueListEditor</tabstop>
+    <tabstop>SoundGUSValueListEditor</tabstop>
+    <tabstop>SoundMIDIValueListEditor</tabstop>
+    <tabstop>SoundJoystickValueListEditor</tabstop>
+    <tabstop>SoundMiscValueListEditor</tabstop>
+    <tabstop>SoundVolumeMasterLeftEdit</tabstop>
+    <tabstop>SoundVolumeMasterRightEdit</tabstop>
+    <tabstop>SoundVolumeDisneyLeftEdit</tabstop>
+    <tabstop>SoundVolumeDisneyRightEdit</tabstop>
+    <tabstop>SoundVolumeSpeakerLeftEdit</tabstop>
+    <tabstop>SoundVolumeSpeakerRightEdit</tabstop>
+    <tabstop>SoundVolumeGUSLeftEdit</tabstop>
+    <tabstop>SoundVolumeGUSRightEdit</tabstop>
+    <tabstop>SoundVolumeSBLeftEdit</tabstop>
+    <tabstop>SoundVolumeSBRightEdit</tabstop>
+    <tabstop>SoundVolumeFMLeftEdit</tabstop>
+    <tabstop>SoundVolumeFMRightEdit</tabstop>
+    <tabstop>AutoexecOverrideGameStartCheckBox</tabstop>
+    <tabstop>AutoexecOverrideMountingCheckBox</tabstop>
+    <tabstop>AutoexecPageControl</tabstop>
+    <tabstop>AutoexecMemo</tabstop>
+    <tabstop>AutoexecClearButton</tabstop>
+    <tabstop>AutoexecLoadButton</tabstop>
+    <tabstop>AutoexecSaveButton</tabstop>
+    <tabstop>FinalizationMemo</tabstop>
+    <tabstop>FinalizationClearButton</tabstop>
+    <tabstop>FinalizationLoadButton</tabstop>
+    <tabstop>FinalizationSaveButton</tabstop>
+    <tabstop>AutoexecBootNormal</tabstop>
+    <tabstop>AutoexecBootHDImage</tabstop>
+    <tabstop>AutoexecBootFloppyImage</tabstop>
+    <tabstop>AutoexecBootHDImageComboBox</tabstop>
+    <tabstop>AutoexecUse4DOSCheckBox</tabstop>
+    <tabstop>AutoexecBootFloppyImageTab</tabstop>
+    <tabstop>CustomSetsMemo</tabstop>
+    <tabstop>CustomSetsClearButton</tabstop>
+    <tabstop>CustomSetsLoadButton</tabstop>
+    <tabstop>CustomSetsSaveButton</tabstop>
+    <tabstop>CustomSetsValueListEditor</tabstop>
+    <tabstop>CustomSetsEnvAdd</tabstop>
+    <tabstop>CustomSetsEnvDel</tabstop>
+    <tabstop>OKButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+    <tabstop>PreviousButton</tabstop>
+    <tabstop>NextButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

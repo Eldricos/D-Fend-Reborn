@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ProfileMountEditorHDImageFrame</class>
+  <widget class="QWidget" name="ProfileMountEditorHDImageFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>697</width><height>429</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>697</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>429</number></property>
+    <widget class="QToolButton" name="ImageButton">
+      <property name="geometry"><rect><x>640</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="ImageCreateButton">
+      <property name="geometry"><rect><x>671</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>7</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/a7fc1030571280f9.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="ImageDriveLetterLabel">
+      <property name="geometry"><rect><x>16</x><y>115</y><width>98</width><height>13</height></rect></property>
+      <property name="text"><string>Mounted drive letter</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="DriveLetterInfoLabel2">
+      <property name="geometry"><rect><x>18</x><y>155</y><width>676</width><height>63</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>DriveLetterInfoLabel2</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="HDImageDriveLetterWarningLabel">
+      <property name="geometry"><rect><x>176</x><y>131</y><width>510</width><height>18</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>HDImageDriveLetterWarningLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLineEdit" name="ImageEdit">
+      <property name="geometry"><rect><x>16</x><y>32</y><width>609</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="ImageEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>223</width><height>13</height></rect></property>
+      <property name="text"><string>Select drive/CDROM/Image or floppy to mount</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ImageEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ImageEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="ImageGeometryEdit">
+      <property name="geometry"><rect><x>16</x><y>82</y><width>609</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="ImageGeometryEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>66</y><width>282</width><height>13</height></rect></property>
+      <property name="text"><string>Drive geometry (Sectorsize, Cylinders, Heads and Sectors)</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ImageGeometryEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ImageGeometryEdit</string></property>
+    </widget>
+    <widget class="QComboBox" name="ImageDriveLetterComboBox">
+      <property name="geometry"><rect><x>16</x><y>128</y><width>145</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>ImageEdit</tabstop>
+    <tabstop>ImageGeometryEdit</tabstop>
+    <tabstop>ImageDriveLetterComboBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

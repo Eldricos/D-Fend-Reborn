@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameScummVM</class>
+  <widget class="QWidget" name="SetupFrameScummVM">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>663</width><height>347</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>663</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>347</number></property>
+    <widget class="QToolButton" name="ScummVMButton">
+      <property name="geometry"><rect><x>594</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>16</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="FindScummVMButton">
+      <property name="geometry"><rect><x>623</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>17</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="ScummVMDownloadURLInfo">
+      <property name="geometry"><rect><x>16</x><y>304</y><width>162</width><height>13</height></rect></property>
+      <property name="text"><string>You can download ScummVM from</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="ScummVMDownloadURL">
+      <property name="geometry"><rect><x>16</x><y>323</y><width>113</width><height>13</height></rect></property>
+      <property name="text"><string>ScummVMDownloadURL</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLineEdit" name="ScummVMDirEdit">
+      <property name="geometry"><rect><x>16</x><y>32</y><width>572</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="ScummVMDirEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>78</width><height>13</height></rect></property>
+      <property name="text"><string>ScummVMDirEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ScummVMDirEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ScummVMDirEdit</string></property>
+    </widget>
+    <widget class="QPushButton" name="ScummVMReadList">
+      <property name="geometry"><rect><x>16</x><y>59</y><width>289</width><height>25</height></rect></property>
+      <property name="tag" stdset="0"><number>18</number></property>
+      <property name="text"><string>Liste unterstützter Spiele einlesen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/916d878d86dd6903.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QCheckBox" name="MinimizeDFendScummVMCheckBox">
+      <property name="geometry"><rect><x>16</x><y>135</y><width>628</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>D-Fend minimieren, wenn ScummVM gestartet wird</string></property>
+    </widget>
+    <widget class="QPushButton" name="ScummVMShowListButton">
+      <property name="geometry"><rect><x>16</x><y>90</y><width>289</width><height>25</height></rect></property>
+      <property name="tag" stdset="0"><number>19</number></property>
+      <property name="text"><string>Liste unterstützter Spiele anzeigen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/813e1c2e8e29a4bc.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QCheckBox" name="CenterScummVMCheckBox">
+      <property name="geometry"><rect><x>16</x><y>182</y><width>628</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Center ScummVM window</string></property>
+    </widget>
+    <widget class="QCheckBox" name="HideConsoleCheckBox">
+      <property name="geometry"><rect><x>16</x><y>205</y><width>628</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Hide ScummVM console</string></property>
+    </widget>
+    <widget class="QCheckBox" name="RestoreWindowCheckBox">
+      <property name="geometry"><rect><x>37</x><y>158</y><width>607</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Restore program window when ScummVM is closed</string></property>
+    </widget>
+    <widget class="QLineEdit" name="CommandLineEdit">
+      <property name="geometry"><rect><x>16</x><y>256</y><width>630</width><height>21</height></rect></property>
+    </widget>
+    <widget class="QLabel" name="CommandLineEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>240</y><width>84</width><height>13</height></rect></property>
+      <property name="text"><string>CommandLineEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">CommandLineEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">CommandLineEdit</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>ScummVMDirEdit</tabstop>
+    <tabstop>ScummVMReadList</tabstop>
+    <tabstop>ScummVMShowListButton</tabstop>
+    <tabstop>MinimizeDFendScummVMCheckBox</tabstop>
+    <tabstop>RestoreWindowCheckBox</tabstop>
+    <tabstop>CenterScummVMCheckBox</tabstop>
+    <tabstop>HideConsoleCheckBox</tabstop>
+    <tabstop>CommandLineEdit</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

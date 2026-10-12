@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>HistoryForm</class>
+  <widget class="QDialog" name="HistoryForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>684</width><height>464</height></rect></property>
+    <property name="windowTitle"><string>Verlauf</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclMinWidth" stdset="0"><number>570</number></property>
+    <property name="vclMinHeight" stdset="0"><number>450</number></property>
+    <property name="vclDesignWidth" stdset="0"><number>684</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>464</number></property>
+    <widget class="QPushButton" name="CloseButton">
+      <property name="geometry"><rect><x>8</x><y>434</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>&amp;Schließen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/3b5b38c3bde6a17f.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+    </widget>
+    <widget class="QPushButton" name="ClearButton">
+      <property name="geometry"><rect><x>111</x><y>434</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>&amp;Löschen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ClearButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="HelpButton">
+      <property name="geometry"><rect><x>214</x><y>434</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+    </widget>
+    <widget class="QTabWidget" name="PageControl">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>684</width><height>428</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="currentIndex"><number>0</number></property>
+      <widget class="QWidget" name="TabSheet1">
+        <attribute name="title"><string>Verlauf</string></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>676</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>400</number></property>
+        <widget class="TListView" name="ListView">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>676</width><height>400</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+          <property name="readOnly" stdset="0"><bool>true</bool></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TabSheet2">
+        <attribute name="title"><string>Statistik</string></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>676</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>400</number></property>
+        <widget class="TListView" name="ListView2">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>676</width><height>400</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+          <property name="readOnly" stdset="0"><bool>true</bool></property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TListView</class>
+      <extends>QWidget</extends>
+      <header>ComCtrls.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>CloseButton</tabstop>
+    <tabstop>ClearButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+    <tabstop>PageControl</tabstop>
+    <tabstop>ListView</tabstop>
+    <tabstop>ListView2</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

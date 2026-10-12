@@ -1,0 +1,1875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>DFendReloadedMainForm</class>
+  <widget class="QMainWindow" name="DFendReloadedMainForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>774</width><height>1039</height></rect></property>
+    <property name="windowTitle"><string>D-Fend Reloaded</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poScreenCenter</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="windowIcon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/icons/MainUnit_DFendReloadedMainForm.ico</normaloff></iconset></property>
+    <property name="vclDesignWidth" stdset="0"><number>774</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>1018</number></property>
+    <widget class="QWidget" name="centralwidget">
+      <property name="vclDesignWidth" stdset="0"><number>774</number></property>
+      <property name="vclDesignHeight" stdset="0"><number>1018</number></property>
+      <widget class="TSplitterWidget" name="Splitter">
+        <property name="geometry"><rect><x>169</x><y>24</y><width>0</width><height>872</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
+      </widget>
+      <widget class="QTreeWidget" name="TreeView">
+        <property name="geometry"><rect><x>0</x><y>24</y><width>169</width><height>872</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
+        <property name="vclMinWidth" stdset="0"><number>50</number></property>
+        <property name="vclPopupMenu" stdset="0"><string notr="true">TreeViewPopupMenu</string></property>
+        <property name="headerHidden"><bool>true</bool></property>
+        <property name="columnCount"><number>1</number></property>
+        <column><property name="text"><string notr="true">1</string></property></column>
+        <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+        <property name="indentation"><number>19</number></property>
+        <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+      </widget>
+      <widget class="QFrame" name="CoolBar">
+        <property name="geometry"><rect><x>0</x><y>0</y><width>774</width><height>24</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+        <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+        <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+        <property name="vclClass" stdset="0"><string notr="true">TCoolBar</string></property>
+        <widget class="QToolBar" name="ToolBar">
+          <property name="geometry"><rect><x>2</x><y>0</y><width>772</width><height>24</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="movable"><bool>false</bool></property>
+          <property name="floatable"><bool>false</bool></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+          <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+          <property name="vclButtonWidth" stdset="0"><number>76</number></property>
+          <property name="vclButtonHeight" stdset="0"><number>22</number></property>
+          <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+          <addaction name="ButtonClose"/>
+          <addaction name="ButtonRun"/>
+          <addaction name="ButtonRunSetup"/>
+          <addaction name="separator"/>
+          <addaction name="ButtonAdd"/>
+          <addaction name="ButtonEdit"/>
+          <addaction name="ButtonDelete"/>
+          <addaction name="separator"/>
+          <addaction name="separator"/>
+          <addaction name="ButtonHelp"/>
+          <widget class="QLineEdit" name="SearchEdit">
+            <property name="geometry"><rect><x>364</x><y>0</y><width>121</width><height>22</height></rect></property>
+            <property name="vclToolbarPos" stdset="0"><number>8</number></property>
+          </widget>
+        </widget>
+      </widget>
+      <widget class="QFrame" name="Panel1">
+        <property name="geometry"><rect><x>172</x><y>24</y><width>602</width><height>872</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+        <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+        <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+        <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+        <widget class="TSplitterWidget" name="Splitter1">
+          <property name="geometry"><rect><x>0</x><y>669</y><width>602</width><height>3</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+        </widget>
+        <widget class="TListView" name="ListView">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>602</width><height>669</height></rect></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+          <property name="vclPopupMenu" stdset="0"><string notr="true">PopupMenu</string></property>
+          <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+          <property name="readOnly" stdset="0"><bool>true</bool></property>
+          <property name="hideSelection" stdset="0"><bool>false</bool></property>
+          <property name="rowSelect" stdset="0"><bool>true</bool></property>
+          <property name="vclSmallImages" stdset="0"><string notr="true">ListviewImageList</string></property>
+          <property name="vclLargeImages" stdset="0"><string notr="true">ListviewIconImageList</string></property>
+        </widget>
+        <widget class="QTabWidget" name="CapturePageControl">
+          <property name="geometry"><rect><x>0</x><y>672</y><width>602</width><height>200</height></rect></property>
+          <property name="visible"><bool>false</bool></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+          <property name="vclMinHeight" stdset="0"><number>50</number></property>
+          <property name="currentIndex"><number>2</number></property>
+          <property name="usesScrollButtons"><bool>false</bool></property>
+          <widget class="QWidget" name="CaptureScreenshotsTab">
+            <attribute name="title"><string>Screenshots</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/35.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>594</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>172</number></property>
+            <widget class="TListView" name="ScreenshotListView">
+              <property name="geometry"><rect><x>0</x><y>35</y><width>594</width><height>136</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+              <property name="vclPopupMenu" stdset="0"><string notr="true">ScreenshotPopupMenu</string></property>
+              <property name="viewStyle" stdset="0"><string notr="true">vsIcon</string></property>
+              <property name="readOnly" stdset="0"><bool>true</bool></property>
+              <property name="vclLargeImages" stdset="0"><string notr="true">ScreenshotImageList</string></property>
+            </widget>
+            <widget class="QFrame" name="ScreenshotsInfoPanel">
+              <property name="geometry"><rect><x>0</x><y>0</y><width>594</width><height>35</height></rect></property>
+              <property name="visible"><bool>false</bool></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+              <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+              <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+              <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+              <widget class="QLabel" name="ScreenshotsInfoPanel_Caption">
+                <property name="geometry"><rect><x>0</x><y>0</y><width>594</width><height>35</height></rect></property>
+                <property name="text"><string>You can save screenshots by pressing Ctrl+F5 in DOSBox.</string></property>
+                <property name="alignment"><set>Qt::AlignHCenter|Qt::AlignVCenter</set></property>
+                <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+                <property name="vclPanelCaptionOf" stdset="0"><string notr="true">ScreenshotsInfoPanel</string></property>
+              </widget>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="CaptureSoundTab">
+            <attribute name="title"><string>Sounds</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/33.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>594</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>172</number></property>
+            <widget class="TListView" name="SoundListView">
+              <property name="geometry"><rect><x>0</x><y>35</y><width>594</width><height>136</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+              <property name="vclPopupMenu" stdset="0"><string notr="true">SoundPopupMenu</string></property>
+              <property name="viewStyle" stdset="0"><string notr="true">vsList</string></property>
+              <property name="readOnly" stdset="0"><bool>true</bool></property>
+              <property name="vclSmallImages" stdset="0"><string notr="true">ImageList</string></property>
+            </widget>
+            <widget class="QFrame" name="SoundInfoPanel">
+              <property name="geometry"><rect><x>0</x><y>0</y><width>594</width><height>35</height></rect></property>
+              <property name="visible"><bool>false</bool></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+              <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+              <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+              <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+              <widget class="QLabel" name="SoundInfoPanel_Caption">
+                <property name="geometry"><rect><x>0</x><y>0</y><width>594</width><height>35</height></rect></property>
+                <property name="text"><string>You can start/stop sound recording by pressing Ctrl+F6 in DOSBox.</string></property>
+                <property name="alignment"><set>Qt::AlignHCenter|Qt::AlignVCenter</set></property>
+                <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+                <property name="vclPanelCaptionOf" stdset="0"><string notr="true">SoundInfoPanel</string></property>
+              </widget>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="CaptureVideoTab">
+            <attribute name="title"><string>Videos</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/38.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>594</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>172</number></property>
+            <widget class="TListView" name="VideoListView">
+              <property name="geometry"><rect><x>0</x><y>35</y><width>594</width><height>136</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+              <property name="vclPopupMenu" stdset="0"><string notr="true">VideoPopupMenu</string></property>
+              <property name="viewStyle" stdset="0"><string notr="true">vsList</string></property>
+              <property name="readOnly" stdset="0"><bool>true</bool></property>
+              <property name="vclSmallImages" stdset="0"><string notr="true">ImageList</string></property>
+            </widget>
+            <widget class="QFrame" name="VideoInfoPanel">
+              <property name="geometry"><rect><x>0</x><y>0</y><width>594</width><height>35</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+              <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+              <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+              <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+              <widget class="QLabel" name="VideoInfoPanel_Caption">
+                <property name="geometry"><rect><x>0</x><y>0</y><width>594</width><height>35</height></rect></property>
+                <property name="text"><string>You can start/stop video recording by pressing Ctrl+Alt+F5 in DOSBox.</string></property>
+                <property name="alignment"><set>Qt::AlignHCenter|Qt::AlignVCenter</set></property>
+                <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+                <property name="vclPanelCaptionOf" stdset="0"><string notr="true">VideoInfoPanel</string></property>
+              </widget>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="GameNotesPanel">
+            <attribute name="title"><string>Notes</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/44.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>594</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>172</number></property>
+            <widget class="QTextEdit" name="GameNotesEdit">
+              <property name="geometry"><rect><x>0</x><y>22</y><width>594</width><height>149</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+              <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="acceptRichText"><bool>false</bool></property>
+            </widget>
+            <widget class="QToolBar" name="GameNotesToolBar">
+              <property name="geometry"><rect><x>0</x><y>0</y><width>594</width><height>22</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+              <property name="movable"><bool>false</bool></property>
+              <property name="floatable"><bool>false</bool></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+              <property name="vclButtonWidth" stdset="0"><number>54</number></property>
+              <property name="vclButtonHeight" stdset="0"><number>22</number></property>
+              <property name="vclImages" stdset="0"><string notr="true">GameNotesImageList</string></property>
+              <addaction name="GameNotesCutButton"/>
+              <addaction name="GameNotesCopyButton"/>
+              <addaction name="GameNotesPasteButton"/>
+              <addaction name="separator"/>
+              <addaction name="GameNotesUndoButton"/>
+            </widget>
+          </widget>
+          <widget class="QWidget" name="DataFilesTab">
+            <attribute name="title"><string>Data folder</string></attribute>
+            <attribute name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/13.png</normaloff></iconset></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>594</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>172</number></property>
+          </widget>
+        </widget>
+      </widget>
+      <widget class="QFrame" name="ZipInfoPanel">
+        <property name="geometry"><rect><x>0</x><y>896</y><width>774</width><height>40</height></rect></property>
+        <property name="visible"><bool>false</bool></property>
+        <property name="styleSheet"><string notr="true">#ZipInfoPanel { background-color: #F0FBFF; }</string></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+        <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+        <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+        <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+        <widget class="QLabel" name="ZipInfoLabel">
+          <property name="geometry"><rect><x>8</x><y>4</y><width>762</width><height>32</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="text"><string>ZipInfoLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </widget>
+      <widget class="QFrame" name="FirstRunInfoPanel">
+        <property name="geometry"><rect><x>0</x><y>936</y><width>774</width><height>82</height></rect></property>
+        <property name="visible"><bool>false</bool></property>
+        <property name="styleSheet"><string notr="true">#FirstRunInfoPanel { background-color: #F0FBFF; }</string></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+        <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+        <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+        <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+        <widget class="QLabel" name="FirstRunInfoLabel">
+          <property name="geometry"><rect><x>8</x><y>2</y><width>745</width><height>78</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+          <property name="text"><string>To add a new game to D-Fend Reloaded just drop the archive file containing the game to the program window or copy the game to a subfolder of the games folder (see Extras|Open games folder) and add it via the wizard (Profiles|Add with wizard) or scan the games folder for new games (Extras|Scan games folder for new games). Also see the online help on how to add a game (Help|Adding games).</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+        <widget class="QToolButton" name="FirstRunInfoButton">
+          <property name="geometry"><rect><x>750</x><y>6</y><width>23</width><height>22</height></rect></property>
+          <property name="toolTip"><string>Remove this information bar.</string></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/ef9628bfbea83c17.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+          <property name="autoRaise"><bool>true</bool></property>
+        </widget>
+      </widget>
+      <widget class="QMenu" name="PopupMenu">
+        <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+        <widget class="QMenu" name="PopupFilesFolders">
+          <property name="title"><string>Files &amp;&amp; Folders</string></property>
+          <addaction name="PopupOpenFolder"/>
+          <addaction name="PopupOpenFolderDOSBox"/>
+          <addaction name="PopupOpenCaptureFolder"/>
+          <addaction name="PopupOpenDataFolder"/>
+          <addaction name="PopupOpenFileInProgramFolder"/>
+          <addaction name="PopupOpenFileInDataFolder"/>
+        </widget>
+        <widget class="QMenu" name="PopupViews">
+          <property name="title"><string>&amp;View</string></property>
+          <addaction name="PopupSimpleListNoIcons"/>
+          <addaction name="PopupSimpleList"/>
+          <addaction name="PopupListNoIcons"/>
+          <addaction name="PopupList"/>
+          <addaction name="PopupSmallIcons"/>
+          <addaction name="PopupIcons"/>
+          <addaction name="PopupScreenshots"/>
+        </widget>
+        <addaction name="PopupRunGame"/>
+        <addaction name="PopupRunSetup"/>
+        <addaction name="PopupRunExtraFile"/>
+        <addaction name="N3"/>
+        <addaction name="PopupEdit"/>
+        <addaction name="PopupCopy"/>
+        <addaction name="PopupDelete"/>
+        <addaction name="PopupDeinstall"/>
+        <addaction name="PopupMarkAsFavorite"/>
+        <addaction name="N30"/>
+        <addaction name="PopupMakeInstaller"/>
+        <addaction name="PopupMakeZipArchive"/>
+        <addaction name="PopupViewConfFile"/>
+        <addaction name="PopupViewINIFile"/>
+        <addaction name="PopupCreateShortcut"/>
+        <addaction name="N4"/>
+        <addaction name="PopupFilesFolders"/>
+        <addaction name="PopupWWW"/>
+        <addaction name="PopupSearchGame"/>
+        <addaction name="PopupCheating"/>
+        <addaction name="N19"/>
+        <addaction name="PopupViews"/>
+      </widget>
+      <widget class="QMenu" name="ScreenshotPopupMenu">
+        <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+        <addaction name="ScreenshotPopupOpen"/>
+        <addaction name="ScreenshotPopupOpenExternal"/>
+        <addaction name="ScreenshotPopupOpenCaptureFolder"/>
+        <addaction name="N7"/>
+        <addaction name="ScreenshotPopupRefresh"/>
+        <addaction name="N8"/>
+        <addaction name="ScreenshotPopupImport"/>
+        <addaction name="ScreenshotPopupCopy"/>
+        <addaction name="ScreenshotPopupSave"/>
+        <addaction name="ScreenshotPopupRename"/>
+        <addaction name="ScreenshotPopupRenameAll"/>
+        <addaction name="ScreenshotPopupDelete"/>
+        <addaction name="ScreenshotPopupDeleteAll"/>
+        <addaction name="N24"/>
+        <addaction name="ScreenshotPopupUseAsBackground"/>
+        <addaction name="N29"/>
+        <addaction name="ScreenshotPopupUseInScreenshotList"/>
+      </widget>
+      <widget class="QMenu" name="AddButtonPopupMenu">
+        <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+        <widget class="QMenu" name="AddButtonMenuAddManually">
+          <property name="title"><string>Add manually</string></property>
+          <addaction name="AddButtonMenuAdd"/>
+          <addaction name="AddButtonMenuAddScummVM"/>
+          <addaction name="AddButtonMenuAddWindows"/>
+          <addaction name="AddButtonMenuAddOther"/>
+        </widget>
+        <addaction name="AddButtonMenuAddManually"/>
+        <addaction name="AddButtonMenuAddFromTemplate"/>
+        <addaction name="AddButtonMenuAddWithWizard"/>
+        <addaction name="N43"/>
+        <addaction name="AddButtonMenuImportZip"/>
+        <addaction name="AddButtonMenuAddInstallationSupport"/>
+        <addaction name="AddButtonMenuDownloadPackages"/>
+        <addaction name="N45"/>
+        <addaction name="AddButtonMenuAddGetGames"/>
+      </widget>
+      <widget class="QMenu" name="SoundPopupMenu">
+        <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+        <addaction name="SoundPopupOpen"/>
+        <addaction name="SoundPopupOpenExternal"/>
+        <addaction name="SoundPopupOpenCaptureFolder"/>
+        <addaction name="N21"/>
+        <addaction name="SoundPopupRefresh"/>
+        <addaction name="N22"/>
+        <addaction name="SoundPopupImport"/>
+        <addaction name="SoundPopupSave"/>
+        <addaction name="SoundPopupSaveMp3"/>
+        <addaction name="SoundPopupSaveOgg"/>
+        <addaction name="SoundPopupRename"/>
+        <addaction name="SoundPopupRenameAll"/>
+        <addaction name="SoundPopupDelete"/>
+        <addaction name="SoundPopupDeleteAll"/>
+        <addaction name="N23"/>
+        <addaction name="SoundPopupSaveMp3All"/>
+        <addaction name="SoundPopupSaveOggAll"/>
+      </widget>
+      <widget class="QMenu" name="TreeViewPopupMenu">
+        <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+        <addaction name="TreeViewPopupEditUserFilters"/>
+      </widget>
+      <widget class="QMenu" name="TrayIconPopupMenu">
+        <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+        <addaction name="TrayIconPopupRestore"/>
+        <addaction name="N9"/>
+        <addaction name="TrayIconPopupRun"/>
+        <addaction name="TrayIconPopupRecentlyStarted"/>
+        <addaction name="N27"/>
+        <addaction name="TrayIconPopupAddProfile"/>
+        <addaction name="TrayIconPopupAddScummVMProfile"/>
+        <addaction name="TrayIconPopupAddWindowsProfile"/>
+        <addaction name="TrayIconPopupAddOther"/>
+        <addaction name="TrayIconPopupAddFromTemplate"/>
+        <addaction name="TrayIconPopupAddWithWizard"/>
+        <addaction name="N26"/>
+        <addaction name="TrayIconPopupClose"/>
+      </widget>
+      <widget class="QMenu" name="VideoPopupMenu">
+        <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+        <addaction name="VideoPopupOpen"/>
+        <addaction name="VideoPopupOpenExternal"/>
+        <addaction name="VideoPopupOpenCaptureFolder"/>
+        <addaction name="MenuItem2"/>
+        <addaction name="VideoPopupRefresh"/>
+        <addaction name="MenuItem4"/>
+        <addaction name="VideoPopupImport"/>
+        <addaction name="VideoPopupSave"/>
+        <addaction name="VideoPopupRename"/>
+        <addaction name="VideoPopupRenameAll"/>
+        <addaction name="VideoPopupDelete"/>
+        <addaction name="VideoPopupDeleteAll"/>
+      </widget>
+      <widget class="QMenu" name="ToolbarPopupMenu">
+        <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+        <addaction name="ToolbarPopupSetupButtons"/>
+        <addaction name="ToolbarPopupSetupIconSet"/>
+        <addaction name="N34"/>
+        <addaction name="ToolbarPopupShowMenubar"/>
+      </widget>
+    </widget>
+    <widget class="QMenuBar" name="MainMenu">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>774</width><height>21</height></rect></property>
+      <widget class="QMenu" name="MenuFile">
+        <property name="title"><string>&amp;File</string></property>
+        <widget class="QMenu" name="MenuFileImport">
+          <property name="title"><string>&amp;Import</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/21.png</normaloff></iconset></property>
+          <addaction name="MenuFileImportConfFile"/>
+          <addaction name="MenuFileImportProfFile"/>
+          <addaction name="MenuFileImportXMLFile"/>
+          <addaction name="N37"/>
+          <addaction name="MenuFileImportZIPFile"/>
+          <addaction name="MenuFileImportZIPFileWithInstallationSupport"/>
+          <addaction name="MenuFileImportFolder"/>
+          <addaction name="MenuFileImportFolderWithInstallationSupport"/>
+          <addaction name="N39"/>
+          <addaction name="MenuFileImportDownload"/>
+        </widget>
+        <widget class="QMenu" name="MenuFileExport">
+          <property name="title"><string>&amp;Export</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/22.png</normaloff></iconset></property>
+          <addaction name="MenuFileExportGamesList"/>
+          <addaction name="N35"/>
+          <addaction name="MenuFileCreateConf"/>
+          <addaction name="MenuFileCreateProf"/>
+          <addaction name="MenuFileCreateXML"/>
+          <addaction name="N36"/>
+          <addaction name="MenuFileCreateZIP"/>
+          <addaction name="MenuFileCreateInstaller"/>
+          <addaction name="N41"/>
+          <addaction name="MenuFileExportBuildZipPackages"/>
+          <addaction name="MenuFileExportBuildInstaller"/>
+          <addaction name="MenuFileExportTransferProfiles"/>
+          <addaction name="N38"/>
+          <addaction name="MenuFileCreateXMlPackageList"/>
+        </widget>
+        <addaction name="MenuFileImport"/>
+        <addaction name="MenuFileExport"/>
+        <addaction name="N10"/>
+        <addaction name="MenuFileSetup"/>
+        <addaction name="N2"/>
+        <addaction name="MenuFileQuit"/>
+      </widget>
+      <widget class="QMenu" name="MenuView">
+        <property name="title"><string>&amp;View</string></property>
+        <addaction name="MenuViewShowMenubar"/>
+        <addaction name="MenuViewShowToolbar"/>
+        <addaction name="MenuViewsShowTree"/>
+        <addaction name="MenuViewsShowScreenshots"/>
+        <addaction name="MenuViewsShowSearchBox"/>
+        <addaction name="MenuViewsShowExtraInfo"/>
+        <addaction name="MenuViewsShowTooltips"/>
+        <addaction name="N12"/>
+        <addaction name="MenuViewsSimpleListNoIcons"/>
+        <addaction name="MenuViewsSimpleList"/>
+        <addaction name="MenuViewsListNoIcons"/>
+        <addaction name="MenuViewsList"/>
+        <addaction name="MenuViewsSmallIcons"/>
+        <addaction name="MenuViewsIcons"/>
+        <addaction name="MenuViewsScreenshots"/>
+        <addaction name="N18"/>
+        <addaction name="MenuViewsQuickStarter"/>
+      </widget>
+      <widget class="QMenu" name="MenuRun">
+        <property name="title"><string>&amp;Run</string></property>
+        <addaction name="MenuRunGame"/>
+        <addaction name="MenuRunSetup"/>
+        <addaction name="MenuRunExtraFile"/>
+        <addaction name="N6"/>
+        <addaction name="MenuRunRunDosBox"/>
+        <addaction name="MenuRunRunDosBoxKeyMapper"/>
+        <addaction name="MenuRunOpenDosBoxConfig"/>
+        <addaction name="MenuRunDOSBoxOutputTest"/>
+        <addaction name="N28"/>
+        <addaction name="MenuRunRunScummVM"/>
+        <addaction name="MenuRunOpenScummVMConfig"/>
+      </widget>
+      <widget class="QMenu" name="MenuProfile">
+        <property name="title"><string>&amp;Profile</string></property>
+        <widget class="QMenu" name="MenuProfileAddManually">
+          <property name="title"><string>Add manually</string></property>
+          <addaction name="MenuProfileAdd"/>
+          <addaction name="MenuProfileAddScummVM"/>
+          <addaction name="MenuProfileAddWindows"/>
+          <addaction name="MenuProfileAddOther"/>
+        </widget>
+        <widget class="QMenu" name="MenuProfileFilesFolders">
+          <property name="title"><string>Files &amp;&amp; Folders</string></property>
+          <addaction name="MenuProfileOpenFolder"/>
+          <addaction name="MenuProfileOpenFolderDOSBox"/>
+          <addaction name="MenuProfileOpenCaptureFolder"/>
+          <addaction name="MenuProfileOpenDataFolder"/>
+          <addaction name="MenuProfileOpenFileInProgramFolder"/>
+          <addaction name="MenuProfileOpenFileInDataFolder"/>
+        </widget>
+        <addaction name="MenuProfileAddManually"/>
+        <addaction name="MenuProfileAddFromTemplate"/>
+        <addaction name="MenuProfileAddWithWizard"/>
+        <addaction name="N46"/>
+        <addaction name="MenuProfileImportZip"/>
+        <addaction name="MenuProfileAddInstallationSupport"/>
+        <addaction name="MenuProfileDownloadPackages"/>
+        <addaction name="N11"/>
+        <addaction name="MenuProfileEdit"/>
+        <addaction name="MenuProfileCopy"/>
+        <addaction name="MenuProfileDelete"/>
+        <addaction name="MenuProfileDeinstall"/>
+        <addaction name="MenuProfileMarkAsFavorite"/>
+        <addaction name="N31"/>
+        <addaction name="MenuProfileMakeInstaller"/>
+        <addaction name="MenuProfileMakeZipArchive"/>
+        <addaction name="MenuProfileViewConfFile"/>
+        <addaction name="MenuProfileViewIniFile"/>
+        <addaction name="MenuProfileCreateShortcut"/>
+        <addaction name="N5"/>
+        <addaction name="MenuProfileFilesFolders"/>
+        <addaction name="MenuProfileWWW"/>
+        <addaction name="MenuProfileSearchGame"/>
+        <addaction name="N48"/>
+        <addaction name="MenuProfileCheating"/>
+      </widget>
+      <widget class="QMenu" name="MenuExtras">
+        <property name="title"><string>&amp;Extras</string></property>
+        <widget class="QMenu" name="MenuExtrasCheating">
+          <property name="title"><string>Cheating</string></property>
+          <addaction name="MenuExtrasCheatingApply"/>
+          <addaction name="MenuExtrasCheatingEdit"/>
+          <addaction name="MenuExtrasCheatingSearch"/>
+        </widget>
+        <widget class="QMenu" name="MenuExtrasImageFiles">
+          <property name="title"><string>Image files</string></property>
+          <addaction name="MenuExtrasCreateImage"/>
+          <addaction name="N25"/>
+          <addaction name="MenuExtrasCreateIMGImage"/>
+          <addaction name="MenuExtrasWriteIMGImage"/>
+          <addaction name="MenuExtrasImageFromFolder"/>
+          <addaction name="MenuExtrasExtractImage"/>
+          <addaction name="MenuExtrasCreateISOImage"/>
+          <addaction name="N44"/>
+          <addaction name="MenuExtrasImageFromProfile"/>
+        </widget>
+        <widget class="QMenu" name="MenuExtrasTranslation">
+          <property name="title"><string>&amp;Translation editor</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/43.png</normaloff></iconset></property>
+          <addaction name="MenuExtrasTranslationDFendReloaded"/>
+          <addaction name="MenuExtrasTranslationDOSBox"/>
+        </widget>
+        <addaction name="MenuExtrasIconManager"/>
+        <addaction name="MenuExtrasViewLogs"/>
+        <addaction name="MenuExtrasOpenGamesFolder"/>
+        <addaction name="MenuExtrasTemplates"/>
+        <addaction name="MenuExtrasCheating"/>
+        <addaction name="N1"/>
+        <addaction name="MenuExtrasImageFiles"/>
+        <addaction name="N17"/>
+        <addaction name="MenuExtrasScanGamesFolder"/>
+        <addaction name="MenuExtrasCheckProfiles"/>
+        <addaction name="MenuExtrasChangeProfiles"/>
+        <addaction name="MenuExtrasDeinstallMultipleGames"/>
+        <addaction name="MenuExtrasTransferProfiles"/>
+        <addaction name="MenuExtrasCreateShortcuts"/>
+        <addaction name="N40"/>
+        <addaction name="MenuExtrasTranslation"/>
+      </widget>
+      <widget class="QMenu" name="MenuHelp">
+        <property name="title"><string>&amp;Help</string></property>
+        <widget class="QMenu" name="MenuHelpDosBox">
+          <property name="title"><string>&amp;DosBox</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
+          <addaction name="MenuHelpDosBoxReadme"/>
+          <addaction name="MenuHelpDosBoxFAQ"/>
+          <addaction name="N16"/>
+          <addaction name="MenuHelpDosBoxIntro"/>
+          <addaction name="MenuHelpDosBoxIntroDosBox"/>
+          <addaction name="N13"/>
+          <addaction name="MenuHelpDosBoxHotkeys"/>
+          <addaction name="MenuHelpDosBoxHotkeysDosbox"/>
+          <addaction name="N14"/>
+          <addaction name="MenuHelpDosBoxHomepage"/>
+          <addaction name="MenuHelpDosBoxCompatibility"/>
+          <addaction name="MenuHelpDemoCompatibility"/>
+        </widget>
+        <widget class="QMenu" name="MenuHelpScummVM">
+          <property name="title"><string>ScummVM</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/37.png</normaloff></iconset></property>
+          <addaction name="MenuHelpScummVMReadme"/>
+          <addaction name="MenuHelpScummVMFAQ"/>
+          <addaction name="N15"/>
+          <addaction name="MenuHelpScummVMHomepage"/>
+          <addaction name="MenuHelpScummVMCompatibility"/>
+          <addaction name="MenuHelpScummVMCompatibilityIntern"/>
+        </widget>
+        <addaction name="MenuHelpHelp"/>
+        <addaction name="MenuHelpHelpContent"/>
+        <addaction name="MenuHelpIntroduction"/>
+        <addaction name="MenuHelpGetGames"/>
+        <addaction name="MenuHelpAddingGames"/>
+        <addaction name="N47"/>
+        <addaction name="MenuHelpHomepage"/>
+        <addaction name="MenuHelpForum"/>
+        <addaction name="N33"/>
+        <addaction name="MenuHelpDosBox"/>
+        <addaction name="MenuHelpScummVM"/>
+        <addaction name="MenuHelpAbandonware"/>
+        <addaction name="N20"/>
+        <addaction name="MenuHelpStatistics"/>
+        <addaction name="MenuHelpOperationMode"/>
+        <addaction name="MenuHelpUpdates"/>
+        <addaction name="N32"/>
+        <addaction name="MenuHelpAbout"/>
+      </widget>
+      <addaction name="MenuFile"/>
+      <addaction name="MenuView"/>
+      <addaction name="MenuRun"/>
+      <addaction name="MenuProfile"/>
+      <addaction name="MenuExtras"/>
+      <addaction name="MenuHelp"/>
+    </widget>
+    <action name="ButtonClose">
+      <property name="text"><string>Close</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/7.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1007</number></property>
+    </action>
+    <action name="ButtonRun">
+      <property name="text"><string>Run</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/1.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3001</number></property>
+    </action>
+    <action name="ButtonRunSetup">
+      <property name="text"><string>Run setup</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/2.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3002</number></property>
+    </action>
+    <action name="ToolButton2">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="ButtonAdd">
+      <property name="text"><string>Add</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/3.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4000</number></property>
+    </action>
+    <action name="ButtonEdit">
+      <property name="text"><string>Edit</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4003</number></property>
+    </action>
+    <action name="ButtonDelete">
+      <property name="text"><string>Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4005</number></property>
+    </action>
+    <action name="ToolButton1">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="ToolButton3">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="ButtonHelp">
+      <property name="text"><string>Help</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/17.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6024</number></property>
+    </action>
+    <action name="GameNotesCutButton">
+      <property name="text"><string>Cut</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/GameNotesImageList/0.png</normaloff></iconset></property>
+    </action>
+    <action name="GameNotesCopyButton">
+      <property name="text"><string>Copy</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/GameNotesImageList/1.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="GameNotesPasteButton">
+      <property name="text"><string>Paste</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/GameNotesImageList/2.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="ToolButton7">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="GameNotesUndoButton">
+      <property name="text"><string>Undo</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/GameNotesImageList/3.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="PopupRunGame">
+      <property name="text"><string>Run &amp;program</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/1.png</normaloff></iconset></property>
+      <property name="vclDefault" stdset="0"><bool>true</bool></property>
+      <property name="tag" stdset="0"><number>3001</number></property>
+    </action>
+    <action name="PopupRunSetup">
+      <property name="text"><string>Run &amp;setup</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/2.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3002</number></property>
+    </action>
+    <action name="PopupRunExtraFile">
+      <property name="text"><string>Additional program file</string></property>
+      <property name="visible"><bool>false</bool></property>
+    </action>
+    <action name="PopupEdit">
+      <property name="text"><string>&amp;Edit...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4003</number></property>
+    </action>
+    <action name="PopupCopy">
+      <property name="text"><string>&amp;Copy...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/15.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Shift+Ins</string></property>
+      <property name="tag" stdset="0"><number>4004</number></property>
+    </action>
+    <action name="PopupDelete">
+      <property name="text"><string>&amp;Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>4005</number></property>
+    </action>
+    <action name="PopupDeinstall">
+      <property name="text"><string>&amp;Uninstall...</string></property>
+      <property name="shortcut"><string notr="true">Shift+Del</string></property>
+      <property name="tag" stdset="0"><number>4006</number></property>
+    </action>
+    <action name="PopupMarkAsFavorite">
+      <property name="text"><string>Mark as &amp;favorite</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/9.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ctrl+M</string></property>
+      <property name="tag" stdset="0"><number>4010</number></property>
+    </action>
+    <action name="PopupMakeInstaller">
+      <property name="text"><string>&amp;Make installer package...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/25.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4012</number></property>
+    </action>
+    <action name="PopupMakeZipArchive">
+      <property name="text"><string>Make &amp;archive file package...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/39.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4017</number></property>
+    </action>
+    <action name="PopupViewConfFile">
+      <property name="text"><string>&amp;View DOSBox conf file</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/27.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4013</number></property>
+    </action>
+    <action name="PopupViewINIFile">
+      <property name="text"><string>ScummVM Ini-Datei anzeigen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/27.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4013</number></property>
+    </action>
+    <action name="PopupCreateShortcut">
+      <property name="text"><string>Create &amp;shortcut...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/19.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4011</number></property>
+    </action>
+    <action name="PopupOpenFolder">
+      <property name="text"><string>Open &amp;program folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/11.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ctrl+F</string></property>
+      <property name="tag" stdset="0"><number>4007</number></property>
+    </action>
+    <action name="PopupOpenFolderDOSBox">
+      <property name="text"><string>Open DOSBox prompt in program folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4022</number></property>
+    </action>
+    <action name="PopupOpenCaptureFolder">
+      <property name="text"><string>Open &amp;capture folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/35.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4019</number></property>
+    </action>
+    <action name="PopupOpenDataFolder">
+      <property name="text"><string>Open &amp;data folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/13.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ctrl+G</string></property>
+      <property name="tag" stdset="0"><number>4008</number></property>
+    </action>
+    <action name="PopupOpenFileInProgramFolder">
+      <property name="text"><string>Open file in program folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/23.png</normaloff></iconset></property>
+    </action>
+    <action name="PopupOpenFileInDataFolder">
+      <property name="text"><string>Open file in data folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/23.png</normaloff></iconset></property>
+    </action>
+    <action name="PopupWWW">
+      <property name="text"><string>Internet-Adresse öffnen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/20.png</normaloff></iconset></property>
+    </action>
+    <action name="PopupSearchGame">
+      <property name="text"><string>Search game</string></property>
+    </action>
+    <action name="PopupCheating">
+      <property name="text"><string>Cheat saved game...</string></property>
+      <property name="tag" stdset="0"><number>4021</number></property>
+    </action>
+    <action name="PopupSimpleListNoIcons">
+      <property name="text"><string>List (no icons)</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2006</number></property>
+    </action>
+    <action name="PopupSimpleList">
+      <property name="text"><string>List</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2007</number></property>
+    </action>
+    <action name="PopupListNoIcons">
+      <property name="text"><string>Report (no icons)</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2008</number></property>
+    </action>
+    <action name="PopupList">
+      <property name="text"><string>Report</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="checked"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2009</number></property>
+    </action>
+    <action name="PopupSmallIcons">
+      <property name="text"><string>Small icons</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2010</number></property>
+    </action>
+    <action name="PopupIcons">
+      <property name="text"><string>Icons</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2011</number></property>
+    </action>
+    <action name="PopupScreenshots">
+      <property name="text"><string>Screenshtos</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2012</number></property>
+    </action>
+    <action name="N3">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N30">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N4">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N19">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="ScreenshotPopupOpen">
+      <property name="text"><string>&amp;Open...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/28.png</normaloff></iconset></property>
+      <property name="vclDefault" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="ScreenshotPopupOpenExternal">
+      <property name="text"><string>Open in default viewer</string></property>
+      <property name="tag" stdset="0"><number>10</number></property>
+    </action>
+    <action name="ScreenshotPopupOpenCaptureFolder">
+      <property name="text"><string>Open &amp;capture folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/11.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4019</number></property>
+    </action>
+    <action name="ScreenshotPopupRefresh">
+      <property name="text"><string>&amp;Update</string></property>
+      <property name="shortcut"><string notr="true">F5</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="ScreenshotPopupImport">
+      <property name="text"><string>Import...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/21.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ins</string></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+    </action>
+    <action name="ScreenshotPopupCopy">
+      <property name="text"><string>&amp;Copy</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/29.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ctrl+C</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="ScreenshotPopupSave">
+      <property name="text"><string>&amp;Save...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/30.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="ScreenshotPopupRename">
+      <property name="text"><string>&amp;Rename...</string></property>
+      <property name="shortcut"><string notr="true">F2</string></property>
+      <property name="tag" stdset="0"><number>8</number></property>
+    </action>
+    <action name="ScreenshotPopupRenameAll">
+      <property name="text"><string>Rename all...</string></property>
+      <property name="tag" stdset="0"><number>11</number></property>
+    </action>
+    <action name="ScreenshotPopupDelete">
+      <property name="text"><string>&amp;Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ScreenshotPopupDeleteAll">
+      <property name="text"><string>Delete &amp;all</string></property>
+      <property name="shortcut"><string notr="true">Shift+Del</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+    </action>
+    <action name="ScreenshotPopupUseAsBackground">
+      <property name="text"><string>Use as &amp;desktop wallpaper...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/35.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>7</number></property>
+    </action>
+    <action name="ScreenshotPopupUseInScreenshotList">
+      <property name="text"><string>Use as screenshot in profiles list</string></property>
+      <property name="tag" stdset="0"><number>9</number></property>
+    </action>
+    <action name="N7">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N8">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N24">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N29">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="AddButtonMenuAdd">
+      <property name="text"><string>&amp;Add...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ins</string></property>
+      <property name="tag" stdset="0"><number>4001</number></property>
+    </action>
+    <action name="AddButtonMenuAddScummVM">
+      <property name="text"><string>Add &amp;ScummVM profile...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/37.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4014</number></property>
+    </action>
+    <action name="AddButtonMenuAddWindows">
+      <property name="text"><string>Add &amp;Windows game profile...</string></property>
+      <property name="tag" stdset="0"><number>4018</number></property>
+    </action>
+    <action name="AddButtonMenuAddOther">
+      <property name="text"><string>Add game for other platform</string></property>
+    </action>
+    <action name="AddButtonMenuAddFromTemplate">
+      <property name="text"><string>Add from &amp;template</string></property>
+    </action>
+    <action name="AddButtonMenuAddWithWizard">
+      <property name="text"><string>&amp;Add with wizard...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/41.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F3</string></property>
+      <property name="tag" stdset="0"><number>4002</number></property>
+    </action>
+    <action name="AddButtonMenuImportZip">
+      <property name="text"><string>Import archive file...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/39.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1010</number></property>
+    </action>
+    <action name="AddButtonMenuAddInstallationSupport">
+      <property name="text"><string>Install from source media with wizard...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/0.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4020</number></property>
+    </action>
+    <action name="AddButtonMenuDownloadPackages">
+      <property name="text"><string>Download packages...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/31.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1011</number></property>
+    </action>
+    <action name="AddButtonMenuAddGetGames">
+      <property name="text"><string>How to get games</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/17.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6028</number></property>
+    </action>
+    <action name="N43">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N45">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="SoundPopupOpen">
+      <property name="text"><string>&amp;Open</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/33.png</normaloff></iconset></property>
+      <property name="vclDefault" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="SoundPopupOpenExternal">
+      <property name="text"><string>Open in default media player</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="SoundPopupOpenCaptureFolder">
+      <property name="text"><string>Open &amp;capture folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/11.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4019</number></property>
+    </action>
+    <action name="SoundPopupRefresh">
+      <property name="text"><string>&amp;Update</string></property>
+      <property name="shortcut"><string notr="true">F5</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="SoundPopupImport">
+      <property name="text"><string>Import...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/21.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ins</string></property>
+      <property name="tag" stdset="0"><number>8</number></property>
+    </action>
+    <action name="SoundPopupSave">
+      <property name="text"><string>&amp;Save...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/30.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="SoundPopupSaveMp3">
+      <property name="text"><string>Save as &amp;mp3 file...</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="SoundPopupSaveOgg">
+      <property name="text"><string>Save as &amp;ogg file...</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+    </action>
+    <action name="SoundPopupRename">
+      <property name="text"><string>&amp;Rename...</string></property>
+      <property name="shortcut"><string notr="true">F2</string></property>
+      <property name="tag" stdset="0"><number>11</number></property>
+    </action>
+    <action name="SoundPopupRenameAll">
+      <property name="text"><string>Rename all...</string></property>
+      <property name="tag" stdset="0"><number>12</number></property>
+    </action>
+    <action name="SoundPopupDelete">
+      <property name="text"><string>&amp;Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+    </action>
+    <action name="SoundPopupDeleteAll">
+      <property name="text"><string>Delete &amp;all</string></property>
+      <property name="shortcut"><string notr="true">Shift+Del</string></property>
+      <property name="tag" stdset="0"><number>7</number></property>
+    </action>
+    <action name="SoundPopupSaveMp3All">
+      <property name="text"><string>Save all wave files as mp3 files</string></property>
+      <property name="tag" stdset="0"><number>9</number></property>
+    </action>
+    <action name="SoundPopupSaveOggAll">
+      <property name="text"><string>Save all wave files as ogg files</string></property>
+      <property name="tag" stdset="0"><number>10</number></property>
+    </action>
+    <action name="N21">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N22">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N23">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="TreeViewPopupEditUserFilters">
+      <property name="text"><string>Setup user-defined categories...</string></property>
+    </action>
+    <action name="TrayIconPopupRestore">
+      <property name="text"><string>Restore</string></property>
+      <property name="vclDefault" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="TrayIconPopupRun">
+      <property name="text"><string>Run...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/1.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+    </action>
+    <action name="TrayIconPopupRecentlyStarted">
+      <property name="text"><string>Recently started</string></property>
+    </action>
+    <action name="TrayIconPopupAddProfile">
+      <property name="text"><string>&amp;Hinzufügen...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="TrayIconPopupAddScummVMProfile">
+      <property name="text"><string>ScummVM-Profil hinzufügen...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/37.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="TrayIconPopupAddWindowsProfile">
+      <property name="text"><string>&amp;Windows-Spiel hinzufügen...</string></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+    </action>
+    <action name="TrayIconPopupAddOther">
+      <property name="text"><string>Add game for other platform</string></property>
+      <property name="visible"><bool>false</bool></property>
+    </action>
+    <action name="TrayIconPopupAddFromTemplate">
+      <property name="text"><string>Hinzufügen von &amp;Vorlage</string></property>
+    </action>
+    <action name="TrayIconPopupAddWithWizard">
+      <property name="text"><string>Hinzufügen mit Assistent...</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="TrayIconPopupClose">
+      <property name="text"><string>&amp;Close</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/7.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="N9">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N27">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N26">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="VideoPopupOpen">
+      <property name="text"><string>&amp;Open...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/38.png</normaloff></iconset></property>
+      <property name="vclDefault" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="VideoPopupOpenExternal">
+      <property name="text"><string>Open in default media player</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="VideoPopupOpenCaptureFolder">
+      <property name="text"><string>Open &amp;capture folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/11.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4019</number></property>
+    </action>
+    <action name="VideoPopupRefresh">
+      <property name="text"><string>&amp;Update</string></property>
+      <property name="shortcut"><string notr="true">F5</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="VideoPopupImport">
+      <property name="text"><string>Import...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/21.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ins</string></property>
+      <property name="tag" stdset="0"><number>8</number></property>
+    </action>
+    <action name="VideoPopupSave">
+      <property name="text"><string>&amp;Save...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/30.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="VideoPopupRename">
+      <property name="text"><string>&amp;Rename...</string></property>
+      <property name="shortcut"><string notr="true">F2</string></property>
+      <property name="tag" stdset="0"><number>11</number></property>
+    </action>
+    <action name="VideoPopupRenameAll">
+      <property name="text"><string>Rename all...</string></property>
+      <property name="tag" stdset="0"><number>12</number></property>
+    </action>
+    <action name="VideoPopupDelete">
+      <property name="text"><string>&amp;Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+    </action>
+    <action name="VideoPopupDeleteAll">
+      <property name="text"><string>Delete &amp;all</string></property>
+      <property name="shortcut"><string notr="true">Shift+Del</string></property>
+      <property name="tag" stdset="0"><number>7</number></property>
+    </action>
+    <action name="MenuItem2">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuItem4">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="ToolbarPopupSetupButtons">
+      <property name="text"><string>Schaltflächen konfigurieren</string></property>
+    </action>
+    <action name="ToolbarPopupSetupIconSet">
+      <property name="text"><string>Icon-Zusammenstallung auswählen</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="ToolbarPopupShowMenubar">
+      <property name="text"><string>Show menubar</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="N34">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuFileImportConfFile">
+      <property name="text"><string>Import conf file...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1001</number></property>
+    </action>
+    <action name="MenuFileImportProfFile">
+      <property name="text"><string>Import prof file...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/34.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1008</number></property>
+    </action>
+    <action name="MenuFileImportXMLFile">
+      <property name="text"><string>Import xml file...</string></property>
+      <property name="tag" stdset="0"><number>1009</number></property>
+    </action>
+    <action name="MenuFileImportZIPFile">
+      <property name="text"><string>Import archive file...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/39.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1010</number></property>
+    </action>
+    <action name="MenuFileImportZIPFileWithInstallationSupport">
+      <property name="text"><string>Import archive file with installation support...</string></property>
+      <property name="tag" stdset="0"><number>1015</number></property>
+    </action>
+    <action name="MenuFileImportFolder">
+      <property name="text"><string>Import folder...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/11.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1016</number></property>
+    </action>
+    <action name="MenuFileImportFolderWithInstallationSupport">
+      <property name="text"><string>Import folder with installation support...</string></property>
+      <property name="tag" stdset="0"><number>1017</number></property>
+    </action>
+    <action name="MenuFileImportDownload">
+      <property name="text"><string>Download packages...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/31.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1011</number></property>
+    </action>
+    <action name="N37">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N39">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuFileExportGamesList">
+      <property name="text"><string>Export &amp;gamelist...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/32.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1002</number></property>
+    </action>
+    <action name="MenuFileCreateConf">
+      <property name="text"><string>Create &amp;conf files...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1003</number></property>
+    </action>
+    <action name="MenuFileCreateProf">
+      <property name="text"><string>Create &amp;prof files...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/34.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1004</number></property>
+    </action>
+    <action name="MenuFileCreateXML">
+      <property name="text"><string>Create &amp;xml file...</string></property>
+      <property name="tag" stdset="0"><number>1005</number></property>
+    </action>
+    <action name="MenuFileCreateZIP">
+      <property name="text"><string>Create &amp;archive file...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/39.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4017</number></property>
+    </action>
+    <action name="MenuFileCreateInstaller">
+      <property name="text"><string>&amp;Create installer package...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/25.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4012</number></property>
+    </action>
+    <action name="MenuFileExportBuildZipPackages">
+      <property name="text"><string>Build &amp;archive file packages for multiple games...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/39.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1013</number></property>
+    </action>
+    <action name="MenuFileExportBuildInstaller">
+      <property name="text"><string>&amp;Build installer for multiple games...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/25.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1014</number></property>
+    </action>
+    <action name="MenuFileExportTransferProfiles">
+      <property name="text"><string>&amp;Transfer profiles...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/15.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5008</number></property>
+    </action>
+    <action name="MenuFileCreateXMlPackageList">
+      <property name="text"><string>Create package list file...</string></property>
+      <property name="tag" stdset="0"><number>1012</number></property>
+    </action>
+    <action name="N35">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N36">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N41">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N38">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuFileSetup">
+      <property name="text"><string>&amp;Program options...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/6.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ctrl+P</string></property>
+      <property name="tag" stdset="0"><number>1006</number></property>
+    </action>
+    <action name="MenuFileQuit">
+      <property name="text"><string>&amp;Quit</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/7.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1007</number></property>
+    </action>
+    <action name="N10">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N2">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuViewShowMenubar">
+      <property name="text"><string>Show menubar</string></property>
+      <property name="tag" stdset="0"><number>2014</number></property>
+    </action>
+    <action name="MenuViewShowToolbar">
+      <property name="text"><string>Show toolbar</string></property>
+      <property name="tag" stdset="0"><number>2015</number></property>
+    </action>
+    <action name="MenuViewsShowTree">
+      <property name="text"><string>Show groups &amp;tree</string></property>
+      <property name="tag" stdset="0"><number>2001</number></property>
+    </action>
+    <action name="MenuViewsShowScreenshots">
+      <property name="text"><string>Show &amp;screenshots and sound files</string></property>
+      <property name="tag" stdset="0"><number>2002</number></property>
+    </action>
+    <action name="MenuViewsShowSearchBox">
+      <property name="text"><string>Show se&amp;archbox</string></property>
+      <property name="tag" stdset="0"><number>2003</number></property>
+    </action>
+    <action name="MenuViewsShowExtraInfo">
+      <property name="text"><string>Show &amp;infocolumns in games list</string></property>
+      <property name="tag" stdset="0"><number>2004</number></property>
+    </action>
+    <action name="MenuViewsShowTooltips">
+      <property name="text"><string>Show &amp;tooltips in games list</string></property>
+      <property name="tag" stdset="0"><number>2005</number></property>
+    </action>
+    <action name="MenuViewsSimpleListNoIcons">
+      <property name="text"><string>List (no icons)</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2006</number></property>
+    </action>
+    <action name="MenuViewsSimpleList">
+      <property name="text"><string>List</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2007</number></property>
+    </action>
+    <action name="MenuViewsListNoIcons">
+      <property name="text"><string>Report (no icons)</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2008</number></property>
+    </action>
+    <action name="MenuViewsList">
+      <property name="text"><string>Report</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="checked"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2009</number></property>
+    </action>
+    <action name="MenuViewsSmallIcons">
+      <property name="text"><string>Small icons</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2010</number></property>
+    </action>
+    <action name="MenuViewsIcons">
+      <property name="text"><string>Icons</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2011</number></property>
+    </action>
+    <action name="MenuViewsScreenshots">
+      <property name="text"><string>Screenshots</string></property>
+      <property name="checkable"><bool>true</bool></property>
+      <property name="vclRadioItem" stdset="0"><bool>true</bool></property>
+      <property name="vclGroupIndex" stdset="0"><number>1</number></property>
+      <property name="tag" stdset="0"><number>2012</number></property>
+    </action>
+    <action name="MenuViewsQuickStarter">
+      <property name="text"><string>Show quick starter window</string></property>
+      <property name="shortcut"><string notr="true">F9</string></property>
+      <property name="tag" stdset="0"><number>2013</number></property>
+    </action>
+    <action name="N12">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N18">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuRunGame">
+      <property name="text"><string>Run &amp;program</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/1.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3001</number></property>
+    </action>
+    <action name="MenuRunSetup">
+      <property name="text"><string>Run &amp;setup</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/2.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3002</number></property>
+    </action>
+    <action name="MenuRunExtraFile">
+      <property name="text"><string>Additional program file</string></property>
+      <property name="visible"><bool>false</bool></property>
+    </action>
+    <action name="MenuRunRunDosBox">
+      <property name="text"><string>Run &amp;DOSBox</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3003</number></property>
+    </action>
+    <action name="MenuRunRunDosBoxKeyMapper">
+      <property name="text"><string>Run DOSBox &amp;keymapper</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/18.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3004</number></property>
+    </action>
+    <action name="MenuRunOpenDosBoxConfig">
+      <property name="text"><string>Open DOSBox &amp;configuration file</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/27.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3005</number></property>
+    </action>
+    <action name="MenuRunDOSBoxOutputTest">
+      <property name="text"><string>Test DOSBox output methods</string></property>
+      <property name="tag" stdset="0"><number>3008</number></property>
+    </action>
+    <action name="MenuRunRunScummVM">
+      <property name="text"><string>Run &amp;ScummVM</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/37.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3006</number></property>
+    </action>
+    <action name="MenuRunOpenScummVMConfig">
+      <property name="text"><string>Open ScummVM configuration file</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/27.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3007</number></property>
+    </action>
+    <action name="N6">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N28">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuProfileAdd">
+      <property name="text"><string>&amp;Add...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ins</string></property>
+      <property name="tag" stdset="0"><number>4001</number></property>
+    </action>
+    <action name="MenuProfileAddScummVM">
+      <property name="text"><string>Add &amp;ScummVM profile...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/37.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4014</number></property>
+    </action>
+    <action name="MenuProfileAddWindows">
+      <property name="text"><string>Add &amp;Windows game profile...</string></property>
+      <property name="tag" stdset="0"><number>4018</number></property>
+    </action>
+    <action name="MenuProfileAddOther">
+      <property name="text"><string>Add game for other platform</string></property>
+      <property name="visible"><bool>false</bool></property>
+    </action>
+    <action name="MenuProfileAddFromTemplate">
+      <property name="text"><string>Add from &amp;template</string></property>
+    </action>
+    <action name="MenuProfileAddWithWizard">
+      <property name="text"><string>&amp;Add with wizard...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/41.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F3</string></property>
+      <property name="tag" stdset="0"><number>4002</number></property>
+    </action>
+    <action name="MenuProfileImportZip">
+      <property name="text"><string>Import archive file...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/39.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1010</number></property>
+    </action>
+    <action name="MenuProfileAddInstallationSupport">
+      <property name="text"><string>Install from source media...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/0.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4020</number></property>
+    </action>
+    <action name="MenuProfileDownloadPackages">
+      <property name="text"><string>Download packages...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/31.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1011</number></property>
+    </action>
+    <action name="MenuProfileEdit">
+      <property name="text"><string>&amp;Edit...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4003</number></property>
+    </action>
+    <action name="MenuProfileCopy">
+      <property name="text"><string>&amp;Copy...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/15.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Shift+Ins</string></property>
+      <property name="tag" stdset="0"><number>4004</number></property>
+    </action>
+    <action name="MenuProfileDelete">
+      <property name="text"><string>&amp;Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4005</number></property>
+    </action>
+    <action name="MenuProfileDeinstall">
+      <property name="text"><string>&amp;Uninstall...</string></property>
+      <property name="shortcut"><string notr="true">Shift+Del</string></property>
+      <property name="tag" stdset="0"><number>4006</number></property>
+    </action>
+    <action name="MenuProfileMarkAsFavorite">
+      <property name="text"><string>Mark as &amp;favorite</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/9.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ctrl+M</string></property>
+      <property name="tag" stdset="0"><number>4010</number></property>
+    </action>
+    <action name="MenuProfileMakeInstaller">
+      <property name="text"><string>&amp;Make installer package...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/25.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4012</number></property>
+    </action>
+    <action name="MenuProfileMakeZipArchive">
+      <property name="text"><string>Make &amp;archive file package...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/39.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4017</number></property>
+    </action>
+    <action name="MenuProfileViewConfFile">
+      <property name="text"><string>&amp;View DOSBox conf file</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/27.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4013</number></property>
+    </action>
+    <action name="MenuProfileViewIniFile">
+      <property name="text"><string>&amp;View ScummVM ini file</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/27.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4013</number></property>
+    </action>
+    <action name="MenuProfileCreateShortcut">
+      <property name="text"><string>Create &amp;shortcut...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/19.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4011</number></property>
+    </action>
+    <action name="MenuProfileOpenFolder">
+      <property name="text"><string>Open &amp;program folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/11.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ctrl+F</string></property>
+      <property name="tag" stdset="0"><number>4007</number></property>
+    </action>
+    <action name="MenuProfileOpenFolderDOSBox">
+      <property name="text"><string>Open DOSBox prompt in program folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4022</number></property>
+    </action>
+    <action name="MenuProfileOpenCaptureFolder">
+      <property name="text"><string>Open &amp;capture folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/35.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4019</number></property>
+    </action>
+    <action name="MenuProfileOpenDataFolder">
+      <property name="text"><string>Open &amp;data folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/13.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ctrl+G</string></property>
+      <property name="tag" stdset="0"><number>4008</number></property>
+    </action>
+    <action name="MenuProfileOpenFileInProgramFolder">
+      <property name="text"><string>Open file in program folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/23.png</normaloff></iconset></property>
+    </action>
+    <action name="MenuProfileOpenFileInDataFolder">
+      <property name="text"><string>Open file in data folder</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/23.png</normaloff></iconset></property>
+    </action>
+    <action name="MenuProfileWWW">
+      <property name="text"><string>Internet-Adresse öffnen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/20.png</normaloff></iconset></property>
+    </action>
+    <action name="MenuProfileSearchGame">
+      <property name="text"><string>Search game</string></property>
+    </action>
+    <action name="MenuProfileCheating">
+      <property name="text"><string>Cheat saved game...</string></property>
+      <property name="tag" stdset="0"><number>4021</number></property>
+    </action>
+    <action name="N46">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N11">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N31">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N5">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N48">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuExtrasIconManager">
+      <property name="text"><string>Manage &amp;icons...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/42.png</normaloff></iconset></property>
+      <property name="statusTip"><string>MenuExtrasIconManager</string></property>
+      <property name="tag" stdset="0"><number>5001</number></property>
+    </action>
+    <action name="MenuExtrasViewLogs">
+      <property name="text"><string>View &amp;history...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/26.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5002</number></property>
+    </action>
+    <action name="MenuExtrasOpenGamesFolder">
+      <property name="text"><string>Open &amp;games folder...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/11.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5003</number></property>
+    </action>
+    <action name="MenuExtrasTemplates">
+      <property name="text"><string>&amp;Templates...</string></property>
+      <property name="shortcut"><string notr="true">F4</string></property>
+      <property name="tag" stdset="0"><number>5005</number></property>
+    </action>
+    <action name="MenuExtrasCheatingApply">
+      <property name="text"><string>&amp;Apply cheat to saved game...</string></property>
+      <property name="tag" stdset="0"><number>5022</number></property>
+    </action>
+    <action name="MenuExtrasCheatingEdit">
+      <property name="text"><string>&amp;Edit cheats data base...</string></property>
+      <property name="tag" stdset="0"><number>5023</number></property>
+    </action>
+    <action name="MenuExtrasCheatingSearch">
+      <property name="text"><string>&amp;Search for address in saved game...</string></property>
+      <property name="shortcut"><string notr="true">Ctrl+Alt+S</string></property>
+      <property name="tag" stdset="0"><number>5024</number></property>
+    </action>
+    <action name="MenuExtrasCreateImage">
+      <property name="text"><string>&amp;Create image file...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/14.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5007</number></property>
+    </action>
+    <action name="MenuExtrasCreateIMGImage">
+      <property name="text"><string>Create I&amp;MG image from floppy...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/0.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5012</number></property>
+    </action>
+    <action name="MenuExtrasWriteIMGImage">
+      <property name="text"><string>&amp;Write IMG to floppy...</string></property>
+      <property name="tag" stdset="0"><number>5013</number></property>
+    </action>
+    <action name="MenuExtrasImageFromFolder">
+      <property name="text"><string>Create image file from folder content...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/11.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5015</number></property>
+    </action>
+    <action name="MenuExtrasExtractImage">
+      <property name="text"><string>Extract image file to folder...</string></property>
+      <property name="tag" stdset="0"><number>5014</number></property>
+    </action>
+    <action name="MenuExtrasCreateISOImage">
+      <property name="text"><string>Create &amp;ISO image from CD...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/36.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5011</number></property>
+    </action>
+    <action name="MenuExtrasImageFromProfile">
+      <property name="text"><string>Create image file based profile from normal profile...</string></property>
+      <property name="tag" stdset="0"><number>5021</number></property>
+    </action>
+    <action name="N25">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N44">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuExtrasScanGamesFolder">
+      <property name="text"><string>Scan games folder for new games...</string></property>
+      <property name="tag" stdset="0"><number>5018</number></property>
+    </action>
+    <action name="MenuExtrasCheckProfiles">
+      <property name="text"><string>Check profiles for not existing files...</string></property>
+      <property name="tag" stdset="0"><number>5016</number></property>
+    </action>
+    <action name="MenuExtrasChangeProfiles">
+      <property name="text"><string>Edit multiple profiles...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5010</number></property>
+    </action>
+    <action name="MenuExtrasDeinstallMultipleGames">
+      <property name="text"><string>Uninstall &amp;multiple games...</string></property>
+      <property name="tag" stdset="0"><number>5006</number></property>
+    </action>
+    <action name="MenuExtrasTransferProfiles">
+      <property name="text"><string>&amp;Transfer profiles...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/15.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5008</number></property>
+    </action>
+    <action name="MenuExtrasCreateShortcuts">
+      <property name="text"><string>Create shortcuts for multiple games...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/19.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>5019</number></property>
+    </action>
+    <action name="MenuExtrasTranslationDFendReloaded">
+      <property name="text"><string>D-Fend Reloaded translation editor...</string></property>
+      <property name="tag" stdset="0"><number>5020</number></property>
+    </action>
+    <action name="MenuExtrasTranslationDOSBox">
+      <property name="text"><string>DOSBox translation editor...</string></property>
+      <property name="tag" stdset="0"><number>5025</number></property>
+    </action>
+    <action name="N1">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N17">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N40">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuHelpHelp">
+      <property name="text"><string>Help</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/17.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F1</string></property>
+      <property name="tag" stdset="0"><number>6024</number></property>
+    </action>
+    <action name="MenuHelpHelpContent">
+      <property name="text"><string>Help contents</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/13.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ctrl+F1</string></property>
+      <property name="tag" stdset="0"><number>6025</number></property>
+    </action>
+    <action name="MenuHelpIntroduction">
+      <property name="text"><string>Introduction</string></property>
+      <property name="tag" stdset="0"><number>6026</number></property>
+    </action>
+    <action name="MenuHelpGetGames">
+      <property name="text"><string>How to get games</string></property>
+      <property name="tag" stdset="0"><number>6028</number></property>
+    </action>
+    <action name="MenuHelpAddingGames">
+      <property name="text"><string>Adding games</string></property>
+      <property name="tag" stdset="0"><number>6027</number></property>
+    </action>
+    <action name="MenuHelpHomepage">
+      <property name="text"><string>D-Fend Reloaded homepage</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/20.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6008</number></property>
+    </action>
+    <action name="MenuHelpForum">
+      <property name="text"><string>&amp;Forum</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/45.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6009</number></property>
+    </action>
+    <action name="MenuHelpDosBoxReadme">
+      <property name="text"><string>Manual</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/13.png</normaloff></iconset></property>
+    </action>
+    <action name="MenuHelpDosBoxFAQ">
+      <property name="text"><string>&amp;FAQ</string></property>
+      <property name="tag" stdset="0"><number>6001</number></property>
+    </action>
+    <action name="MenuHelpDosBoxIntro">
+      <property name="text"><string>Introduction (Webpage)</string></property>
+      <property name="tag" stdset="0"><number>6006</number></property>
+    </action>
+    <action name="MenuHelpDosBoxIntroDosBox">
+      <property name="text"><string>Introduction (DOSBox)</string></property>
+      <property name="tag" stdset="0"><number>6007</number></property>
+    </action>
+    <action name="MenuHelpDosBoxHotkeys">
+      <property name="text"><string>&amp;Hotkeys (Webpage)</string></property>
+      <property name="tag" stdset="0"><number>6002</number></property>
+    </action>
+    <action name="MenuHelpDosBoxHotkeysDosbox">
+      <property name="text"><string>&amp;Hotkeys (DOSBox)</string></property>
+      <property name="tag" stdset="0"><number>6003</number></property>
+    </action>
+    <action name="MenuHelpDosBoxHomepage">
+      <property name="text"><string>DOSBox homepage</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/20.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6016</number></property>
+    </action>
+    <action name="MenuHelpDosBoxCompatibility">
+      <property name="text"><string>Compatibility list (Webpage)</string></property>
+      <property name="tag" stdset="0"><number>6004</number></property>
+    </action>
+    <action name="MenuHelpDemoCompatibility">
+      <property name="text"><string>Demo compatibility list (Webpage)</string></property>
+      <property name="tag" stdset="0"><number>6005</number></property>
+    </action>
+    <action name="N16">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N13">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N14">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuHelpScummVMReadme">
+      <property name="text"><string>Manual</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/13.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6017</number></property>
+    </action>
+    <action name="MenuHelpScummVMFAQ">
+      <property name="text"><string>&amp;FAQ</string></property>
+      <property name="tag" stdset="0"><number>6018</number></property>
+    </action>
+    <action name="MenuHelpScummVMHomepage">
+      <property name="text"><string>ScummVM homepage</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/20.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6019</number></property>
+    </action>
+    <action name="MenuHelpScummVMCompatibility">
+      <property name="text"><string>Compatibility list (Webpage)</string></property>
+      <property name="tag" stdset="0"><number>6020</number></property>
+    </action>
+    <action name="MenuHelpScummVMCompatibilityIntern">
+      <property name="text"><string>Compatibility list (from installed ScummVM)</string></property>
+      <property name="tag" stdset="0"><number>6021</number></property>
+    </action>
+    <action name="N15">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuHelpAbandonware">
+      <property name="text"><string>Old &amp;games</string></property>
+    </action>
+    <action name="MenuHelpStatistics">
+      <property name="text"><string>Statistics...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/32.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6014</number></property>
+    </action>
+    <action name="MenuHelpOperationMode">
+      <property name="text"><string>Operation mode...</string></property>
+      <property name="tag" stdset="0"><number>6022</number></property>
+    </action>
+    <action name="MenuHelpUpdates">
+      <property name="text"><string>Search for updates...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/31.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6010</number></property>
+    </action>
+    <action name="MenuHelpAbout">
+      <property name="text"><string>&amp;About...</string></property>
+      <property name="shortcut"><string notr="true">Shift+F1</string></property>
+      <property name="tag" stdset="0"><number>6015</number></property>
+    </action>
+    <action name="N47">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N33">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N20">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="N32">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TListView</class>
+      <extends>QWidget</extends>
+      <header>ComCtrls.h</header>
+    </customwidget>
+    <customwidget>
+      <class>TSplitterWidget</class>
+      <extends>QFrame</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>TreeView</tabstop>
+    <tabstop>ListView</tabstop>
+    <tabstop>CapturePageControl</tabstop>
+    <tabstop>ScreenshotListView</tabstop>
+    <tabstop>SoundListView</tabstop>
+    <tabstop>VideoListView</tabstop>
+    <tabstop>GameNotesEdit</tabstop>
+    <tabstop>SearchEdit</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>
