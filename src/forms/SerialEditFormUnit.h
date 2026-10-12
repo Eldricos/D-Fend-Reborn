@@ -36,12 +36,14 @@ public:
     //   NullModemServerRadioButton.OnClick = DeviceTypeClick
     //   NullModemClientRadioButton.OnClick = DeviceTypeClick
     //   HelpButton.OnClick = HelpButtonClick
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 public slots:
     void FormShow(QObject* Sender);
     void OKButtonClick(QObject* Sender);
     void DeviceTypeClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
 private:
     void InitGUI();
     void DecodeString();

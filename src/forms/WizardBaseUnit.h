@@ -27,6 +27,7 @@ public:
     void WriteDataToGame(TGame* Game);
     // properties
     int EmulationType() { return GetEmulationType(); }
+    void SetEmulationType(int I);
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   ListScummGamesLabel.OnClick = ButtonWork
@@ -37,5 +38,4 @@ public slots:
 private:
     QWidget* FDialog = nullptr;
     int GetEmulationType();
-    void SetEmulationType(int I);
 };

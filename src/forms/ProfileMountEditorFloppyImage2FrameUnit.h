@@ -22,11 +22,11 @@ public:
     Ui::ProfileMountEditorFloppyImage2Frame ui;
     explicit TProfileMountEditorFloppyImage2Frame(QWidget *AOwner = nullptr);
     ~TProfileMountEditorFloppyImage2Frame() override;
-    bool Init(const TInfoData& AInfoData);
-    bool CheckBeforeDone();
-    QString Done();
-    QString GetName();
-    void ShowFrame();
+    bool Init(const TInfoData& AInfoData) override;
+    bool CheckBeforeDone() override;
+    QString Done() override;
+    QString GetName() override;
+    void ShowFrame() override;
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   ProfileMountEditorFloppyImage2Frame.OnResize = FrameResize
@@ -45,6 +45,9 @@ public slots:
     void FloppyImageDriveLetterComboBox2Change(QObject* Sender);
     void FrameResize(QObject* Sender);
     void FloppyPopupWork(QObject* Sender);
+protected:
+    void resizeEvent(QResizeEvent *E) override;
 private:
     TInfoData InfoData;
+    TOpenDialog* OpenDialog = nullptr;
 };

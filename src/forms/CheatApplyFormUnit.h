@@ -44,10 +44,12 @@ public slots:
     void GameComboBoxChange(QObject* Sender);
     void OKButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
     void EditButtonClick(QObject* Sender);
     void SelectButtonClick(QObject* Sender);
     void FilesListBoxClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 private:
     TCheatDB* CheatDB = nullptr;
     TStringList* GameFolders = nullptr;

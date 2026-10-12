@@ -10,8 +10,11 @@
 #include <QtNetwork>
 #include <functional>
 
+// PrgSetup.ImageFilter: 0..8, 0=off, 1=simple&slow, 2=Box, 3=Triangle, 4=Hermite, 5=Bell, 6=B-Spline, 7=Lanczos3, 8=Mitchell
+// Dest (TBitmap in Delphi) is an output parameter: its size defines the target
+// size.  If Dest is a null image it is created with the requested size.
 QImage ScaleImage(const QPixmap& SourcePic, double Factor);
-void ScaleImage(const QImage& Source, const QImage& Dest, int DestW, int DestH, bool UseFiltering = true);
-void ScaleImage(const QImage& Source, const QImage& Dest, bool UseFiltering = true);
-void ScaleImage(const QPixmap& Source, const QImage& Dest, bool UseFiltering = true);
-void ScaleImage(const QIcon& Source, const QImage& Dest, bool UseFiltering = true);
+void ScaleImage(const QImage& Source, QImage& Dest, int DestW, int DestH, bool UseFiltering = true);
+void ScaleImage(const QImage& Source, QImage& Dest, bool UseFiltering = true);
+void ScaleImage(const QPixmap& Source, QImage& Dest, bool UseFiltering = true);
+void ScaleImage(const QIcon& Source, QImage& Dest, bool UseFiltering = true);

@@ -22,11 +22,11 @@ public:
     Ui::ProfileMountEditorFloppyImage1Frame ui;
     explicit TProfileMountEditorFloppyImage1Frame(QWidget *AOwner = nullptr);
     ~TProfileMountEditorFloppyImage1Frame() override;
-    bool Init(const TInfoData& AInfoData);
-    bool CheckBeforeDone();
-    QString Done();
-    QString GetName();
-    void ShowFrame();
+    bool Init(const TInfoData& AInfoData) override;
+    bool CheckBeforeDone() override;
+    QString Done() override;
+    QString GetName() override;
+    void ShowFrame() override;
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   FloppyImageButton.OnClick = FloppyImageButtonClick
@@ -41,4 +41,5 @@ public slots:
     void FloppyPopupWork(QObject* Sender);
 private:
     TInfoData InfoData;
+    TOpenDialog* OpenDialog = nullptr;
 };

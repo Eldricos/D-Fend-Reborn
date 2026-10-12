@@ -49,5 +49,7 @@ private:
     PString CurrentGameName;
     PString CurrentScummVMPath;
     TConfOpt* ConfOpt = nullptr;
+    TOpenDialog* OpenDialog = nullptr;  // DFM TOpenDialog
+    TSaveDialog* SaveDialog = nullptr;  // DFM TSaveDialog
     void ShowFrame(QObject* Sender);
 };

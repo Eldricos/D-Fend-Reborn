@@ -29,6 +29,8 @@ public:
     // DFM wiring:
     //   SelectCDDriveToMountForm.OnShow = FormShow
     //   OKButton.OnClick = OKButtonClick
+protected:
+    void showEvent(QShowEvent *E) override;
 public slots:
     void FormShow(QObject* Sender);
     void OKButtonClick(QObject* Sender);

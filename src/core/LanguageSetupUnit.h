@@ -6340,3 +6340,8 @@ extern TStringList* LanguageSetupEnglishLicenses;
 extern TStringList* LanguageSetupEnglishLicensesUpper;
 extern TStringList* LanguageSetupCustomLicenses;
 extern TStringList* LanguageSetupCustomLicensesUpper;
+
+// initialization / finalization sections of LanguageSetupUnit.pas
+// (requires PrgSetup, i.e. PrgSetupUnit_Initialization() must run first)
+void LanguageSetupUnit_Initialization();
+void LanguageSetupUnit_Finalization();

@@ -34,7 +34,9 @@ public slots:
     void ButtonWork(QObject* Sender);
     void OKButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
+public:
+    TOpenDialog* OpenDialog = nullptr;
 private:
     bool ExpandImage(const QString& FileName, const QString& Dir, int ImageType);
 };

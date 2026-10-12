@@ -26,6 +26,7 @@ private:
 class TCheatActionStep : public TCheatBaseClass
 {
 public:
+    // Delphi: virtual constructor (used through TCheatActionStepClass)
     TCheatActionStep(TCheatBaseClass* AOwner);
     virtual bool LoadFromXML(const QDomElement& XML) = 0;
     virtual void SaveToXML(const QDomElement& XML) = 0;
@@ -36,7 +37,25 @@ public:
 protected:
     virtual QString GetXMLNodeName() = 0;
 };
-using TCheatActionStepClass = std::function<QWidget*(QWidget*)>;  // Delphi metaclass: class of TCheatActionStep
+// Delphi metaclass "class of TCheatActionStep".  The Delphi code uses the
+// virtual class function GetXMLNodeName, the virtual constructor and the "is"
+// operator through the class reference; in C++ these are bundled in a record
+// of plain functions.  Use CheatActionStepClassOf<T>() to obtain the record of
+// a concrete class.
+struct TCheatActionStepClass
+{
+    QString (*GetXMLNodeName)() = nullptr;                      // class function GetXMLNodeName
+    TCheatActionStep* (*Create)(TCheatBaseClass* AOwner) = nullptr;  // TCheatActionStepClass.Create(AOwner)
+    bool (*IsInstance)(TCheatActionStep* A) = nullptr;           // A is TCheatActionStepClass
+};
+template <typename T> TCheatActionStepClass CheatActionStepClassOf()
+{
+    TCheatActionStepClass C;
+    C.GetXMLNodeName = &T::ClassXMLNodeName;
+    C.Create = [](TCheatBaseClass* AOwner) -> TCheatActionStep* { return new T(AOwner); };
+    C.IsInstance = [](TCheatActionStep* A) -> bool { return dynamic_cast<T*>(A) != nullptr; };
+    return C;
+}
 class TCheatActionStepChangeAddress : public TCheatActionStep
 {
 public:
@@ -46,13 +65,15 @@ public:
     void CopyFrom(TCheatActionStep* ACheatActionStep) override;
     bool Apply(QFile* St) override;
     // properties
-    QString Addresses() { return FAddresses(0); }
+    QString Addresses() { return FAddresses; }
     void SetAddresses(const QString& Value) { SetString(0, Value); }
     int Bytes() const { return FBytes; }
-    QString NewValue() { return FNewValue(1); }
+    void SetBytes(int Value);
+    QString NewValue() { return FNewValue; }
     void SetNewValue(const QString& Value) { SetString(1, Value); }
+    static QString ClassXMLNodeName();   // Delphi: class function GetXMLNodeName
 protected:
-    static QString GetXMLNodeName() override;
+    QString GetXMLNodeName() override { return ClassXMLNodeName(); }
 private:
     QString FAddresses;
     QString FNewValue;
@@ -60,7 +81,6 @@ private:
     int FBytes = 0;
     int FNewValueInt = 0;
     void SetString(int Index, const QString& S);
-    void SetBytes(int Value);
 };
 class TCheatActionStepChangeAddressWithDialog : public TCheatActionStep
 {
@@ -71,21 +91,23 @@ public:
     void CopyFrom(TCheatActionStep* ACheatActionStep) override;
     bool Apply(QFile* St) override;
     // properties
-    QString Addresses() { return FAddresses(0); }
+    QString Addresses() { return FAddresses; }
     void SetAddresses(const QString& Value) { SetString(0, Value); }
     int Bytes() const { return FBytes; }
-    QString DefaultValue() { return FDefaultValue(1); }
+    void SetBytes(int Value);
+    QString DefaultValue() { return FDefaultValue; }
     void SetDefaultValue(const QString& Value) { SetString(1, Value); }
-    QString DefaultValueAddress() { return FDefaultValueAddress(2); }
+    QString DefaultValueAddress() { return FDefaultValueAddress; }
     void SetDefaultValueAddress(const QString& Value) { SetString(2, Value); }
     QString DialogPrompt() const { return FPrompt; }
     void SetDialogPrompt(const QString& Value) { FPrompt = Value; }
-    QString MinValue() { return FMinValue(3); }
+    QString MinValue() { return FMinValue; }
     void SetMinValue(const QString& Value) { SetString(3, Value); }
-    QString MaxValue() { return FMaxValue(4); }
+    QString MaxValue() { return FMaxValue; }
     void SetMaxValue(const QString& Value) { SetString(4, Value); }
+    static QString ClassXMLNodeName();   // Delphi: class function GetXMLNodeName
 protected:
-    static QString GetXMLNodeName() override;
+    QString GetXMLNodeName() override { return ClassXMLNodeName(); }
 private:
     QString FAddresses;
     QString FDefaultValue;
@@ -99,7 +121,6 @@ private:
     int FMinValueInt = 0;
     int FMaxValueInt = 0;
     void SetString(int Index, const QString& S);
-    void SetBytes(int Value);
 };
 class TCheatActionStepInternal : public TCheatActionStep
 {
@@ -111,11 +132,12 @@ public:
     bool Apply(QFile* St) override;
     // properties
     int Nr() const { return FNr; }
+    void SetNr(int Value);
+    static QString ClassXMLNodeName();   // Delphi: class function GetXMLNodeName
 protected:
-    static QString GetXMLNodeName() override;
+    QString GetXMLNodeName() override { return ClassXMLNodeName(); }
 private:
     int FNr = 0;
-    void SetNr(int Value);
 };
 class TCheatAction : public TCheatBaseClass
 {
@@ -135,9 +157,9 @@ public:
     bool SetNewActionStep(TCheatActionStep* ACheatActionStep, int APosition);
     void CompressActionSteps();
     // properties
-    QString Name() { return FName(0); }
+    QString Name() { return FName; }
     void SetName(const QString& Value) { SetString(0, Value); }
-    QString FileMask() { return FFileMask(1); }
+    QString FileMask() { return FFileMask; }
     void SetFileMask(const QString& Value) { SetString(1, Value); }
     int Count() { return GetCount(); }
     TCheatActionStep* ActionStep(int I) { return GetActionStep(I); }
@@ -166,6 +188,7 @@ public:
     void CompressActionSteps();
     // properties
     QString Name() const { return FName; }
+    void SetName(const QString& Value);
     int Count() { return GetCount(); }
     TCheatAction* Action(int I) { return GetAction(I); }
 private:
@@ -173,7 +196,6 @@ private:
     TList* FActions = nullptr;
     TCheatAction* GetAction(int I);
     int GetCount();
-    void SetName(const QString& Value);
 };
 class TCheatDB : public TCheatBaseClass
 {
@@ -196,11 +218,14 @@ public:
     bool Changed() const { return FChanged; }
     void SetChanged(bool Value) { FChanged = Value; }
     int Version() const { return FVersion; }
+    void SetVersion(int Value);
 private:
     TList* FGameRecords = nullptr;
     bool FChanged = false;
     int FVersion = 0;
     int GetCount();
     TCheatGameRecord* GetGameRecord(int I);
-    void SetVersion(int Value);
 };
+
+// unit initialization section (RegisterCheatActionSteps)
+void CheatDBUnit_Initialization();

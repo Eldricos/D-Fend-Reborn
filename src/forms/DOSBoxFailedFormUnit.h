@@ -28,6 +28,9 @@ public:
     // DFM wiring:
     //   DOSBoxFailedForm.OnClose = FormClose
     //   DOSBoxFailedForm.OnShow = FormShow
+protected:
+    void showEvent(QShowEvent *E) override;
+    void done(int R) override;   // OnClose (every close path of a QDialog ends in done())
 public slots:
     void FormShow(QObject* Sender);
     void FormClose(QObject* Sender, TCloseAction& Action);

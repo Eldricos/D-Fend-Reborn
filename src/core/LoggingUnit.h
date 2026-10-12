@@ -11,3 +11,6 @@
 #include <functional>
 
 void LogInfo(const QString& Info, bool ContinueLogging = true);
+
+// initialization section (looks for D-Fend-Reloaded-Log.txt on the desktop)
+void LoggingUnit_Initialization();

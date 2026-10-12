@@ -46,13 +46,18 @@ public slots:
     void SearchNameChange(QObject* Sender);
     void NextButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
     void SearchValueChange(QObject* Sender);
     void FileNameButtonClick(QObject* Sender);
     void UseDialogEditChange(QObject* Sender);
     void SearchNameDeleteButtonClick(QObject* Sender);
     void BytesComboBoxChange(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;               // OnShow
+    bool eventFilter(QObject* Obj, QEvent* E) override;   // ValueEdit.OnClick
 private:
+    TOpenDialog* OpenDialog = nullptr;
+    int GameNameComboBoxItemIndex() const;                // ItemIndex of the csDropDown combo box
     TStringList* SearchFiles = nullptr;
     TStringList* SearchNames = nullptr;
     TAddressSearcher* AddressSearcher = nullptr;

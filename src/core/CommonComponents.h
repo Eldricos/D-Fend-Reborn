@@ -33,6 +33,9 @@ class TBasePrgSetup
 public:
     TBasePrgSetup(const QString& ASetupFile);
     static TBasePrgSetup* CreateNoTimeStampCheck(const QString& ASetupFile);  // Delphi named constructor
+    // Constructor used by CreateNoTimeStampCheck (ATimeStampCheck=false); derived classes
+    // (e.g. TGame.CreateDelayed) call it as "inherited CreateNoTimeStampCheck".
+    TBasePrgSetup(const QString& ASetupFile, bool ATimeStampCheck);
     TBasePrgSetup(TBasePrgSetup* ABasePrgSetup);
     virtual ~TBasePrgSetup();
     virtual void UpdateFile();
@@ -59,6 +62,11 @@ public:
     bool OwnINI() const { return FOwnINI; }
     TMemIniFile* MemIni() { return GetIni(); }
 protected:
+    // Body of the Delphi destructor (store changed values and write the ini file).
+    // Called by ~TBasePrgSetup; derived classes that override UpdateFile() should call
+    // it at the start of their own destructor so that the virtual UpdateFile() call
+    // dispatches to the override like in Delphi.  Runs only once.
+    void DestroySetup();
     void FastAddRecStart();
     void FastAddRecDone();
     void AddBooleanRec(int Nr, const QString& Section, const QString& Key, bool Default);
@@ -77,18 +85,19 @@ private:
     TConfigRecArray BooleanList;
     TConfigRecArray IntegerList;
     TConfigRecArray StringList;
-    int BooleanListUsed = 0;
-    int IntegerListUsed = 0;
-    int StringListUsed = 0;
+    int BooleanListUsed = -1;
+    int IntegerListUsed = -1;
+    int StringListUsed = -1;
     TConfigIndexArray BooleanIndex;
     TConfigIndexArray IntegerIndex;
     TConfigIndexArray StringIndex;
-    bool FStoreConfigOnExit = false;
+    bool FStoreConfigOnExit = true;
     TNotifyEvent FOnChanged;
     quint32 FLastTimeStamp = 0;
     bool FChanged = false;
+    bool FDestroyed = false;
     void ClearLists();
-    int IndexOf(int Nr, TConfigRecArray List, TConfigIndexArray& Index);
+    int IndexOf(int Nr, const TConfigRecArray& List, TConfigIndexArray& Index);
     int AddRec(int ANr, const QString& ASection, const QString& AKey, TConfigRecArray& List);
     int AddRecFast(int ANr, const QString& ASection, const QString& AKey, TConfigRecArray& List, int& UsedCounter);
     void ReadStringFromINI(int I);

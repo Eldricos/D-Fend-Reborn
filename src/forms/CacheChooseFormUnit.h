@@ -30,6 +30,8 @@ public:
     //   CacheChooseForm.OnCreate = FormCreate
     //   CacheChooseForm.OnShow = FormShow
     //   OKButton.OnClick = OKButtonClick
+protected:
+    void showEvent(QShowEvent *E) override;
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);

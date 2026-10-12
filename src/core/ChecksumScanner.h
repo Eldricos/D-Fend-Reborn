@@ -22,6 +22,9 @@ public:
     QString Directory() const { return FDirectory; }
     int Count() { return GetCount(); }
 protected:
+    // C++: virtual calls in a base constructor do not reach overrides, so
+    // derived classes use this constructor (ADoScan=false) and call ReScan.
+    TChecksumScanner(const QString& ADirectory, const QString& AFileMask, bool ASmallFiles, bool AShowScanDialog, QWidget* AOwner, bool ADoScan);
     virtual QString GetFileChecksum(const QString& Filename);
 private:
     QString FDirectory;

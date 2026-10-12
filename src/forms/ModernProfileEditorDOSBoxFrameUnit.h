@@ -54,6 +54,8 @@ private:
     PString ProfileDOSBoxInstallation;
     PString ProfileCaptureDir;
     TTextEvent FOnProfileNameChange;
+    TOpenDialog* OpenDialog = nullptr;  // DFM TOpenDialog
+    TSaveDialog* SaveDialog = nullptr;  // DFM TSaveDialog
     void UpdateLanguageList();
     void SelectInLanguageList(const QString& LangName);
     void SelectInConsoleList();

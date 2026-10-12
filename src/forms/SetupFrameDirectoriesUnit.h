@@ -42,5 +42,5 @@ public slots:
     void ButtonWork(QObject* Sender);
     void BaseDirEditChange(QObject* Sender);
 private:
-    PString PBaseDir;
+    PString PBaseDir = nullptr;
 };

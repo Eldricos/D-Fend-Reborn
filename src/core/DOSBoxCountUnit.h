@@ -28,3 +28,6 @@ extern TPrgCounter* ScummVMCounter;
 extern TPrgCounter* WindowsGameCounter;
 extern quint32 LastDOSBoxStartTime;  // initial value: 0
 extern TGame* LastDOSBoxProfile;  // initial value: nullptr
+
+void DOSBoxCountUnit_Initialization();
+void DOSBoxCountUnit_Finalization();

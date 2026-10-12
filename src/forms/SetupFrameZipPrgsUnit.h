@@ -61,4 +61,5 @@ private:
     QList<TPacker> Packers;
     int LastIndex = 0;
     bool JustChanging = false;
+    TOpenDialog* PrgOpenDialog = nullptr;   // DFM TOpenDialog (DefaultExt='exe')
 };

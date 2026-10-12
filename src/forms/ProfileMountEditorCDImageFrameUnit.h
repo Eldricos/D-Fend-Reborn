@@ -22,11 +22,11 @@ public:
     Ui::ProfileMountEditorCDImageFrame ui;
     explicit TProfileMountEditorCDImageFrame(QWidget *AOwner = nullptr);
     ~TProfileMountEditorCDImageFrame() override;
-    bool Init(const TInfoData& AInfoData);
-    bool CheckBeforeDone();
-    QString Done();
-    QString GetName();
-    void ShowFrame();
+    bool Init(const TInfoData& AInfoData) override;
+    bool CheckBeforeDone() override;
+    QString Done() override;
+    QString GetName() override;
+    void ShowFrame() override;
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   ProfileMountEditorCDImageFrame.OnResize = FrameResize
@@ -42,6 +42,9 @@ public slots:
     void CDROMImageDelButtonClick(QObject* Sender);
     void CDROMImageDriveLetterComboBoxChange(QObject* Sender);
     void FrameResize(QObject* Sender);
+protected:
+    void resizeEvent(QResizeEvent *E) override;
 private:
     TInfoData InfoData;
+    TOpenDialog* OpenDialog = nullptr;
 };

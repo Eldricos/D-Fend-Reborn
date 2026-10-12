@@ -14,6 +14,7 @@
 #include "VclWidgets.h"
 #include "ui_SetupFrameWaveEncoderUnit.h"
 #include "SetupFormUnit.h"
+#include "Dialogs.h"
 
 class TSetupFrameWaveEncoder : public QWidget, public ISetupFrame
 {
@@ -39,6 +40,8 @@ public:
     //   WaveEncOggButton2.OnClick = ButtonWork
 public slots:
     void ButtonWork(QObject* Sender);
+private:
+    TOpenDialog* PrgOpenDialog = nullptr;  // non visual DFM component
 };
 QString UpdateEncoderParameters(const QString& S);
 QString ProcessEncoderParameters(const QString& ParameterString, const QString& InFile, const QString& OutFile);

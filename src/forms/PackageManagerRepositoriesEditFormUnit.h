@@ -57,7 +57,11 @@ public slots:
     void ListViewDblClick(QObject* Sender);
     void ListViewKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
     void PageControlChange(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
 private:
+    bool FShown = false;
+    TImageList *ImageList = nullptr;
     QString DBDir;
     TPackageListFile* MainPackageList = nullptr;
     TPackageListFile* UserPackageList = nullptr;

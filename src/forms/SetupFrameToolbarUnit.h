@@ -14,6 +14,7 @@
 #include "VclWidgets.h"
 #include "ui_SetupFrameToolbarUnit.h"
 #include "SetupFormUnit.h"
+#include "Dialogs.h"
 
 class TSetupFrameToolbar : public QWidget, public ISetupFrame
 {
@@ -39,6 +40,7 @@ public slots:
     void ToolbarImageEditChange(QObject* Sender);
     void ToolbarImageButtonClick(QObject* Sender);
 private:
-    PString PBaseDir;
+    PString PBaseDir = nullptr;
+    TOpenDialog* ImageOpenDialog = nullptr;  // non visual DFM component
     void CloseCheck(bool& CloseOK);
 };

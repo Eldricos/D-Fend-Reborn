@@ -36,6 +36,9 @@ public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);
     void ProviderURLLabelClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+    bool eventFilter(QObject *Watched, QEvent *Event) override;   // ProviderURLLabel.OnClick
 };
 extern TProviderForm* ProviderForm;
 void ShowProviderDialog(QWidget* AOwner, TStringList* AFiles, const QString& AProviderName, const QString& AProviderText, const QString& AProviderURL);

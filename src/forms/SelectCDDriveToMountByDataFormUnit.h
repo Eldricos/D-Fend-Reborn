@@ -23,7 +23,7 @@ public:
     explicit TSelectCDDriveToMountByDataForm(QWidget *AOwner = nullptr);
     ~TSelectCDDriveToMountByDataForm() override;
     QString ProfileName;
-    TMountByData MountByDataType;
+    TMountByData MountByDataType = mbLabel;
     QString Data;
     QString LetterToMountAt;
     QString ChosenDrive;
@@ -31,9 +31,13 @@ public:
     // DFM wiring:
     //   SelectCDDriveToMountByDataForm.OnShow = FormShow
     //   Timer.OnTimer = TimerTimer
+protected:
+    void showEvent(QShowEvent *E) override;
 public slots:
     void FormShow(QObject* Sender);
     void TimerTimer(QObject* Sender);
+private:
+    QTimer* Timer = nullptr;   // DFM TTimer (Interval 200, Enabled False)
 };
 extern TSelectCDDriveToMountByDataForm* SelectCDDriveToMountByDataForm;
 bool ShowSelectCDDriveToMountByDataDialog(QWidget* AOwner, TMountByData MountByDataType, const QString& Data, const QString& LetterToMountAt, const QString& ProfileName, QString& ChosenDrive);

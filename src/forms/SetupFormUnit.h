@@ -16,6 +16,11 @@
 #include "GameDBUnit.h"
 #include "LinkFileUnit.h"
 
+// Delphi metaclass "class of TFrame".  As a factory it creates a frame
+// ([](QWidget *P) { return new TFoo(P); }).  For TGetFrameFunction it is used as
+// the "is" test: GetFrame returns the first hosted frame F for which
+// FrameClass(F) != nullptr, so pass a cast lambda, e.g.
+//   FGetFrame([](QWidget *W) -> QWidget* { return dynamic_cast<TSetupFrameToolbar*>(W); })
 using TFrameClass = std::function<QWidget*(QWidget*)>;  // Delphi metaclass: class of TFrame
 using TSimpleEvent = std::function<void()>;
 using TOpenLanguageEditorEvent = std::function<void(int)>;
@@ -34,6 +39,9 @@ struct TInitData {
     TGetFrameFunction GetFrame;
     TLinkFile* SearchLinkFile = nullptr;
 };
+// Frames (QWidget + ISetupFrame) store their Delphi HelpContext as the dynamic
+// property "HelpContext" (setProperty("HelpContext", ID_...)); the setup form
+// reads it for the help button / F1.
 class ISetupFrame
 {
 public:
@@ -48,7 +56,7 @@ public:
     virtual void RestoreDefaults() = 0;
     virtual void SaveSetup() = 0;
 };
-struct TFrameRecord {
+struct TSetupFrameRecord {   // Delphi: TFrameRecord (renamed, clashes with ModernProfileEditorFormUnit)
     QWidget* Frame = nullptr;
     ISetupFrame* IFrame = nullptr;
     bool AdvancedModeOnly = false;
@@ -65,7 +73,7 @@ public:
     Ui::SetupForm ui;
     explicit TSetupForm(QWidget *AOwner = nullptr);
     ~TSetupForm() override;
-    TOpenMode OpenMode;
+    TOpenMode OpenMode = omNormal;
     int LanguageEditorMode = 0;
     TGameDB* GameDB = nullptr;
     TLinkFile* SearchLinkFile = nullptr;
@@ -87,10 +95,13 @@ public slots:
     void OKButtonClick(QObject* Sender);
     void RestoreDefaultValuesButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);   // Key: Qt::Key_* (Delphi: var Key : Word)
+protected:
+    void showEvent(QShowEvent *E) override;
 private:
-    QList<TFrameRecord> Frames;
-    int VisibleFrame = 0;
+    friend bool ShowSetupDialogSpecial(QWidget* AOwner, TGameDB* AGameDB, TLinkFile* ASearchLinkFile, TOpenMode OpenMode);
+    QList<TSetupFrameRecord> Frames;
+    int VisibleFrame = -1;
     bool SetAdvanced = false;
     QWidget* LanguageFrame = nullptr;
     QWidget* TreeListFrame = nullptr;
@@ -110,7 +121,13 @@ private:
     void PopupClick(QObject* Sender);
     void SelectFrame(int Nr);
     QWidget* GetFrame(TFrameClass FrameClass);
+    // Qt port helpers
+    TImageList* ImageList = nullptr;   // DFM ImageList (tree and popup menu icons)
+    bool FirstShowDone = false;
+    void LayoutFrames();               // frames are alClient in RightPanel below TopPanel
+    bool eventFilter(QObject* Watched, QEvent* Event) override;
 };
+bool ShowSetupDialogSpecial(QWidget* AOwner, TGameDB* AGameDB, TLinkFile* ASearchLinkFile, TOpenMode OpenMode);
 extern TSetupForm* SetupForm;
 bool ShowSetupDialog(QWidget* AOwner, TGameDB* AGameDB, TLinkFile* ASearchLinkFile, bool OpenLanguageTab = false);
 bool ShowTreeListSetupDialog(QWidget* AOwner, TGameDB* AGameDB, TLinkFile* ASearchLinkFile);

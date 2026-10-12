@@ -37,13 +37,15 @@ public:
     //   SelectAllButton.OnClick = SelectButtonClick
     //   SelectNoneButton.OnClick = SelectButtonClick
     //   HelpButton.OnClick = HelpButtonClick
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);
     void OKButtonClick(QObject* Sender);
     void FormDestroy(QObject* Sender);
     void SelectButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key: Qt::Key_* value
     void HelpButtonClick(QObject* Sender);
     void RadioButtonWork(QObject* Sender);
 private:

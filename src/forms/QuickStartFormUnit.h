@@ -93,10 +93,23 @@ public slots:
     void ListKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
     void TreePopupMenuPopup(QObject* Sender);
     void FormCloseQuery(QObject* Sender, bool& CanClose);
-    void TreeDragDrop(QObject* Sender, QObject* Source, int X, int Y);
-    void ListDragDrop(QObject* Sender, QObject* Source, int X, int Y);
+    void TreeDragDrop(QObject* Sender, TStringList* Source, int X, int Y);   // Source: dropped file list (TStringList in the VCL code)
+    void ListDragDrop(QObject* Sender, TStringList* Source, int X, int Y);
     void ListPopupMenuPopup(QObject* Sender);
+protected:
+    bool closeQuery() override;                     // OnCloseQuery
+    void closeEvent(QCloseEvent *E) override;       // OnClose
+    void reject() override;
+    void showEvent(QShowEvent *E) override;         // OnShow
+    void dragEnterEvent(QDragEnterEvent *E) override;   // files dropped on Tree / List
+    void dragMoveEvent(QDragMoveEvent *E) override;
+    void dropEvent(QDropEvent *E) override;
 private:
+    TImageList* ImageList = nullptr;                // DFM ImageList
+    QFileSystemWatcher* ChangeWatcher = nullptr;    // FindFirstChangeNotification replacement (non Windows)
+    bool ChangeDetected = false;
+    bool FInClose = false;
+    bool FFormShown = false;
     QString CurrentPath;
     QString GameDir;
     QString CaptureDir;

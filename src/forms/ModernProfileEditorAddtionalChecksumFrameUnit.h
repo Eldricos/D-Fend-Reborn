@@ -13,6 +13,7 @@
 #include "VclLayout.h"
 #include "VclWidgets.h"
 #include "ui_ModernProfileEditorAddtionalChecksumFrameUnit.h"
+#include "Dialogs.h"
 #include "GameDBUnit.h"
 #include "ModernProfileEditorFormUnit.h"
 
@@ -43,6 +44,7 @@ public:
 public slots:
     void ButtonWork(QObject* Sender);
 private:
+    TOpenDialog* OpenDialog = nullptr;  // DFM TOpenDialog
     TGame* FGame = nullptr;
     QString LastDir;
 };

@@ -14,6 +14,7 @@
 #include "VclWidgets.h"
 #include "ui_SetupFrameViewerUnit.h"
 #include "SetupFormUnit.h"
+#include "Dialogs.h"
 
 class TSetupFrameViewer : public QWidget, public ISetupFrame
 {
@@ -44,4 +45,6 @@ public slots:
     void ImagesEditChange(QObject* Sender);
     void SoundsEditChange(QObject* Sender);
     void VideosEditChange(QObject* Sender);
+private:
+    TOpenDialog* PrgOpenDialog = nullptr;  // non visual DFM component
 };

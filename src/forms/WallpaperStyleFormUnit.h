@@ -28,7 +28,7 @@ public:
     //   WallpaperStyleForm.OnKeyDown = FormKeyDown
 public slots:
     void FormCreate(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
 };
 extern TWallpaperStyleForm* WallpaperStyleForm;
 bool ShowWallpaperStyleDialog(QWidget* AOwner, TWallpaperStyle& WPStyle);

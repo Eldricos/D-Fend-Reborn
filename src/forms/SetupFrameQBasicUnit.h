@@ -14,6 +14,7 @@
 #include "VclWidgets.h"
 #include "ui_SetupFrameQBasicUnit.h"
 #include "SetupFormUnit.h"
+#include "Dialogs.h"
 
 class TSetupFrameQBasic : public QWidget, public ISetupFrame
 {
@@ -40,5 +41,6 @@ public slots:
     void ButtonWork(QObject* Sender);
     void QBasicDownloadURLClick(QObject* Sender);
 private:
-    PString PBaseDir;
+    PString PBaseDir = nullptr;
+    TOpenDialog* PrgOpenDialog = nullptr;  // non visual DFM component
 };

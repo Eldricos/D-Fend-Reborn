@@ -66,9 +66,11 @@ public slots:
     void OKButtonClick(QObject* Sender);
     void TypeComboBoxChange(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
+protected:
+    void showEvent(QShowEvent *E) override;
 private:
-    int LastVisible = 0;
+    int LastVisible = -1;
     QList<TFrameInfoRec> FrameInfoRec;
     void AddFrame(QWidget* Frame, TProfileMountEditorFrame* FrameI);
     void CloseRequest(QObject* Sender);

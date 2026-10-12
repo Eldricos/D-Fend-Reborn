@@ -39,11 +39,13 @@ public slots:
     void FormCreate(QObject* Sender);
     void StartmenuEditChange(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
     void OKButtonClick(QObject* Sender);
     void SelectFolderButtonClick(QObject* Sender);
     void SelectButtonClick(QObject* Sender);
     void FormShow(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 };
 extern TCreateShortcutsForm* CreateShortcutsForm;
 bool ShowCreateShortcutsDialog(QWidget* AOwner, TGameDB* AGameDB);

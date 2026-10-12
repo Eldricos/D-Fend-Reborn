@@ -30,7 +30,7 @@ public:
     TGameDB* AutoSetupDB = nullptr;
     bool HideIfAlreadyInstalled = false;
     QString LanguageToActivate;
-    int SortCol[(4) + 1];
+    int SortCol[(4) + 1] = {1, 1, 1, 1, 1};
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   PackageManagerForm.OnCreate = FormCreate
@@ -84,9 +84,13 @@ public slots:
     void IconSetsButtonClick(QObject* Sender);
     void ListViewClick(QObject* Sender);
     void ListViewChanging(QObject* Sender, TListItem* Item, int Change, bool& AllowChange);
-    void GamesListViewColumnClick(QObject* Sender, TListColumn Column);
+    void GamesListViewColumnClick(QObject* Sender, TListColumn* Column);
     void ListViewPopupMenuDeleteClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
 private:
+    bool FShown = false;
+    TImageList* ImageList = nullptr;
     TPackageDB* PackageDB = nullptr;
     TPackageDBCache* PackageDBCache = nullptr;
     TLanguageFileChecksumScanner* LanguageChecksumScanner1 = nullptr;

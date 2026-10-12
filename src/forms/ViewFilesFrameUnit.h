@@ -13,6 +13,8 @@
 #include "VclLayout.h"
 #include "VclWidgets.h"
 #include "ui_ViewFilesFrameUnit.h"
+
+class QFileSystemWatcher;
 #include "GameDBUnit.h"
 
 class TViewFilesFrame : public QWidget
@@ -64,9 +66,15 @@ public slots:
     void ListChange(QObject* Sender, TListItem* Item, int Change);
     void MenuWork(QObject* Sender);
     void TreePopupMenuPopup(QObject* Sender);
-    void TreeDragDrop(QObject* Sender, QObject* Source, int X, int Y);
-    void ListDragDrop(QObject* Sender, QObject* Source, int X, int Y);
+    void TreeDragDrop(QObject* Sender, TStringList* Source, int X, int Y);   // Source: dropped files
+    void ListDragDrop(QObject* Sender, TStringList* Source, int X, int Y);   // Source: dropped files
+protected:
+    bool eventFilter(QObject* O, QEvent* E) override;
 private:
+    TImageList* ImageList = nullptr;     // DFM TImageList
+    QFileSystemWatcher* FWatcher = nullptr;   // FindFirstChangeNotification replacement
+    bool FChangeSignaled = false;
+    bool FTreeUpdating = false;
     TGame* Game = nullptr;
     THandle hChangeNotification = 0;
     QTimer* Timer = nullptr;

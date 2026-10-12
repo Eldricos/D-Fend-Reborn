@@ -14,6 +14,8 @@
 #include "VclWidgets.h"
 #include "ui_IconManagerFormUnit.h"
 
+class QFileSystemWatcher;
+
 class TIconManagerForm : public TVclForm
 {
     Q_OBJECT
@@ -53,7 +55,7 @@ public slots:
     void FormCreate(QObject* Sender);
     void ListViewDblClick(QObject* Sender);
     void OKButtonClick(QObject* Sender);
-    void ListViewKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void ListViewKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void AddButtonClick(QObject* Sender);
     void DelButtonClick(QObject* Sender);
     void ListViewChange(QObject* Sender, TListItem* Item, int Change);
@@ -62,13 +64,22 @@ public slots:
     void ListViewClick(QObject* Sender);
     void FormShow(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void FormResize(QObject* Sender);
     void FormDestroy(QObject* Sender);
     void TimerTimer(QObject* Sender);
-    void ListViewDragDrop(QObject* Sender, QObject* Source, int X, int Y);
+    void ListViewDragDrop(QObject* Sender, TStringList* Source, int X, int Y);   // Source: dropped files
     void ToolsButtonClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+    void resizeEvent(QResizeEvent *E) override;
+    bool eventFilter(QObject *O, QEvent *E) override;
 private:
+    TImageList* ImageList = nullptr;          // DFM TImageList (32x32)
+    TOpenDialog* OpenDialog = nullptr;
+    QTimer* Timer = nullptr;
+    QFileSystemWatcher* FWatcher = nullptr;   // FindFirstChangeNotification replacement
+    bool FChangeSignaled = false;
     QString Dir;
     QString LastIcon;
     THandle hIconsChangeNotification = 0;

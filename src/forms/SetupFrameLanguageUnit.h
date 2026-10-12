@@ -20,7 +20,7 @@ class TSetupFrameLanguage : public QWidget, public ISetupFrame
     Q_OBJECT
 public:
     Ui::SetupFrameLanguage ui;
-    TSetupFrameLanguage(QWidget* AOwner);
+    explicit TSetupFrameLanguage(QWidget* AOwner = nullptr);
     ~TSetupFrameLanguage() override;
     QString GetName();
     void InitGUIAndLoadSetup(TInitData& InitData);
@@ -61,4 +61,5 @@ private:
     int LangTimerCounter = 0;
     void ReadCurrentInstallerLanguage();
     QString ExtendLanguageName(const QString& ShortName);
+    QTimer* Timer = nullptr;   // DFM TTimer (Enabled=False)
 };

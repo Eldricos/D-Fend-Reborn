@@ -37,19 +37,24 @@ public:
     //   ListBox.OnClick = ListBoxClick
     //   ListBox.OnDragDrop = ListBoxDragDrop
     //   ListBox.OnKeyDown = ListBoxKeyDown
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
+    bool eventFilter(QObject* Watched, QEvent* E) override;  // ListBox key/drop events
 public slots:
     void FormCreate(QObject* Sender);
     void InstallTypeComboBoxChange(QObject* Sender);
-    void ListBoxKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void ListBoxKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key: Qt::Key_* value
     void ButtonWork(QObject* Sender);
     void ListBoxClick(QObject* Sender);
     void FormShow(QObject* Sender);
-    void ListBoxDragDrop(QObject* Sender, QObject* Source, int X, int Y);
+    void ListBoxDragDrop(QObject* Sender, TStringList* Source, int X, int Y);  // Source: dropped files (TListBoxAcceptingFiles)
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key: Qt::Key_* value
     void OKButtonClick(QObject* Sender);
 private:
     int LastInstallType = 0;
+    TOpenDialog* OpenDialog = nullptr;  // DFM OpenDialog (non visual)
+    bool AcceptFilesActivated = false;  // TListBoxAcceptingFiles.ActivateAcceptFiles done
     bool EntryInList(const QString& S);
 };
 extern TInstallationSupportForm* InstallationSupportForm;

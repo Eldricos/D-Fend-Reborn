@@ -14,6 +14,10 @@
 #include "VclWidgets.h"
 #include "ui_PlayVideoFormUnit.h"
 
+class QMediaPlayer;
+class QAudioOutput;
+class QVideoWidget;
+
 class TPlayVideoForm : public TVclForm
 {
     Q_OBJECT
@@ -61,10 +65,35 @@ public slots:
     void ButtonWork(QObject* Sender);
     void FormResize(QObject* Sender);
     void InstallButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void FormMouseWheel(QObject* Sender, TShiftState Shift, int WheelDelta, QPoint MousePos, bool& Handled);
     void ZoomPopupMenuPopup(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+    void resizeEvent(QResizeEvent *E) override;
+    void wheelEvent(QWheelEvent *E) override;
 private:
+    TImageList* ImageList = nullptr;      // DFM TImageList (tool bar icons)
+    TSaveDialog* SaveDialog = nullptr;
+    QTimer* Timer = nullptr;
+    // MediaInterface replacement (Qt Multimedia)
+    QMediaPlayer* FPlayer = nullptr;
+    QAudioOutput* FAudioOutput = nullptr;
+    QVideoWidget* FVideoWidget = nullptr;  // placed inside MediaPanel
+    QSize FVideoSize;
+    void loadMediaFile(const QString& AFileName);
+    bool MediaStreamAvailable() const;
+    bool VideoAvailable() const;
+    bool MediaStreamPlayed() const;
+    void playMediaStream();
+    void pauseMediaStream();
+    void freeMediaStream();
+    qint64 getMediaStreamPos() const;
+    qint64 getMediaStreamDuration() const;
+    void setMediaStreamPos(qint64 Pos);
+    int getVideoWidth() const;
+    int getCoupledVideoHeight(int Width) const;
+    void setVideoPos(int X, int Y, int W, int H);
     bool JustChanging = false;
     void CenterWindow();
     bool VideoFileDamaged();

@@ -22,7 +22,7 @@ public:
     Ui::DriveReadForm ui;
     explicit TDriveReadForm(QWidget *AOwner = nullptr);
     ~TDriveReadForm() override;
-    TReadDataResult ReadResult;
+    TReadDataResult ReadResult = RD_OK;
     QChar Drive;
     QString FileName;
     int Count = 0;
@@ -32,6 +32,8 @@ public:
     //   DriveReadForm.OnCreate = FormCreate
     //   DriveReadForm.OnShow = FormShow
     //   AbortButton.OnClick = AbortButtonClick
+protected:
+    void showEvent(QShowEvent *E) override;
 public slots:
     void AbortButtonClick(QObject* Sender);
     void FormCreate(QObject* Sender);

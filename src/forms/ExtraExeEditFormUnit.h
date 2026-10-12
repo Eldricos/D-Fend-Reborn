@@ -35,12 +35,14 @@ public:
     //   HelpButton.OnClick = HelpButtonClick
     //   Tab.OnClick = TabClick
     //   SelectButton.OnClick = SelectButtonClick
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);
     void OKButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
     void SelectButtonClick(QObject* Sender);
     void TabClick(QObject* Sender);
 };

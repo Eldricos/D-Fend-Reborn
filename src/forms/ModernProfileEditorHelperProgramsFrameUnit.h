@@ -40,4 +40,6 @@ public slots:
     void Command1TabSetEditText(QObject* Sender, int ACol, int ARow, const QString& Value);
     void Command2TabSetEditText(QObject* Sender, int ACol, int ARow, const QString& Value);
     void FrameResize(QObject* Sender);
+protected:
+    void resizeEvent(QResizeEvent* E) override;  // OnResize
 };

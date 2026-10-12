@@ -14,3 +14,7 @@ enum TUpdateResult { urNoUpdatesAvailable, urUpdateAvailable, urUpdateInstalled,
 TUpdateResult RunUpdateCheck(QWidget* AOwner, bool Quite, bool QuiteOnError);
 void RunUpdateCheckIfSetup(QWidget* AOwner);
 void RunUpdateCheckIdleCloseHandle();
+
+// initialization (empty) / finalization sections
+void ProgramUpdateCheckUnit_Initialization();
+void ProgramUpdateCheckUnit_Finalization();

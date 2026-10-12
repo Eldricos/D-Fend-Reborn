@@ -72,6 +72,7 @@ private:
     bool ScummVM = false;
     bool WindowsMode = false;
     TGameDB* FGameDB = nullptr;
+    TOpenDialog* OpenDialog = nullptr;  // DFM TOpenDialog
     void LoadIcon();
     void CheckValue(QObject* Sender, bool& OK);
     void ShowFrame(QObject* Sender);

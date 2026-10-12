@@ -13,6 +13,7 @@
 #include "VclLayout.h"
 #include "VclWidgets.h"
 #include "ui_ModernProfileEditorKeyboardFrameUnit.h"
+#include "Dialogs.h"
 #include "GameDBUnit.h"
 #include "ModernProfileEditorFormUnit.h"
 
@@ -34,5 +35,6 @@ public slots:
     void CustomKeyMapperButtonClick(QObject* Sender);
     void CustomKeyMapperEditChange(QObject* Sender);
 private:
+    TOpenDialog* DosBoxTxtOpenDialog = nullptr;  // DFM TOpenDialog
     bool CheckIsDOSBOXDefaultMapperFile(TGame* Game, const QString& MapperFile);
 };

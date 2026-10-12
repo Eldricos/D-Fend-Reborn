@@ -47,8 +47,10 @@ public slots:
     void FormDestroy(QObject* Sender);
     void ComboBoxChange(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
     void OKButtonClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 private:
     TGameDB* TemplateDB = nullptr;
     TGameDB* AutoSetupDB = nullptr;

@@ -39,7 +39,11 @@ public slots:
     void OKButtonClick(QObject* Sender);
     void FormShow(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
+public:
+    TSaveDialog* SaveDialog = nullptr;
+protected:
+    void showEvent(QShowEvent *E) override;
 };
 extern TCreateISOImageForm* CreateISOImageForm;
 bool ShowCreateISOImageDialog(QWidget* AOwner, QString& AFileName, bool AFloppyMode);

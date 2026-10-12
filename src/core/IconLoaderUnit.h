@@ -104,6 +104,8 @@ public:
     void DialogImage(int Nr, QPushButton* BitBtn);
     void DialogImage(int Nr, TImageList* ImageList, int NrInImageList);
     // properties
+    void SetIconSet(const QString& Value);
+    friend QImage GetExampleImage(const QString& ShortName);   // Delphi: same unit, private access
     QString IconSet() const { return FIconSet; }
     QString IconSetPath() const { return FIconSetPath; }
     bool IconsLoaded() const { return FIconsLoaded; }
@@ -114,11 +116,10 @@ private:
     bool FIconsLoaded = false;
     QString FIconSet;
     QString FIconSetPath;
-    QImage CreateMask(const QImage& B);
+    QImage CreateMask(const QImage& B, bool Transparent = false);
     bool LoadIconToImageList(TImageList* ImageList, int Nr, const QString& FileName);
     void LoadUserIconsForList(TImageList* ImageList, const QString& IniSectionName, bool AddImages, TList* ImageLoaded, TIniFile* Ini, const QString& RelBase);
     void AddEmptyImages(TImageList* ImageList, TList* ImageLoaded, int MaxNr);
-    void SetIconSet(const QString& Value);
     QImage GetButtonBitmap(TImageList* ImageList, TList* ImageListLoaded, int Nr);
     QImage GetDialogButtonBitmap(int Nr);
     bool IsImageEmpty(const QImage& B);
@@ -128,3 +129,6 @@ private:
 extern TUserIconLoader* UserIconLoader;
 void ListOfIconSets(TStringList* ShortName, TStringList* LongName, TStringList* Author, TStringList* FolderName);
 QImage GetExampleImage(const QString& ShortName);
+
+void IconLoaderUnit_Initialization();
+void IconLoaderUnit_Finalization();

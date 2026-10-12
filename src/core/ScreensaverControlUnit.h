@@ -23,3 +23,7 @@ private:
     void TimerWork(QObject* Sender);
 };
 extern TScreensaverControl* ScreensaverControl;
+
+// initialization / finalization sections (ScreensaverControl:=TScreensaverControl.Create / .Free)
+void ScreensaverControlUnit_Initialization();
+void ScreensaverControlUnit_Finalization();

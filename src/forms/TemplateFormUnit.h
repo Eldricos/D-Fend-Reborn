@@ -90,9 +90,9 @@ public slots:
     void ListViewKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
     void FormDestroy(QObject* Sender);
     void ListViewSelectItem(QObject* Sender, TListItem* Item, bool Selected);
-    void ListViewColumnClick(QObject* Sender, TListColumn Column);
+    void ListViewColumnClick(QObject* Sender, TListColumn* Column);
     void ListView2SelectItem(QObject* Sender, TListItem* Item, bool Selected);
-    void ListView2ColumnClick(QObject* Sender, TListColumn Column);
+    void ListView2ColumnClick(QObject* Sender, TListColumn* Column);
     void ListView2KeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
     void ListViewAdvancedCustomDrawItem(TListView* Sender, TListItem* Item, int State, int Stage, bool& DefaultDraw);
     void PageControlChange(QObject* Sender);
@@ -100,11 +100,14 @@ public slots:
     void ListViewDblClick(QObject* Sender);
     void ListView2DblClick(QObject* Sender);
 private:
+    TImageList* ImageList = nullptr;              // DFM image lists
+    TImageList* ListViewImageList = nullptr;
+    TImageList* ListviewIconImageList = nullptr;
     TGameDB* TemplateDB = nullptr;
     TGameDB* AutoSetupDB = nullptr;
     TGame* DefaultTemplate = nullptr;
-    TSortListBy ListSort;
-    TSortListBy ListSort2;
+    TSortListBy ListSort = slbName;
+    TSortListBy ListSort2 = slbName;
     bool ListSortReverse = false;
     bool ListSortReverse2 = false;
     void LoadList();

@@ -28,3 +28,6 @@ private:
     QImage CalcThumbnail(const QString& ScreenshotFile, int Width, int Height);
 };
 extern TScreenshotsCache* ScreenshotsCache;
+
+void ScreenshotsCacheUnit_Initialization();
+void ScreenshotsCacheUnit_Finalization();

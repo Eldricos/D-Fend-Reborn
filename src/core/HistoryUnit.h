@@ -39,7 +39,11 @@ private:
     TStringList* StartDates = nullptr;
     TStringList* StartTimes = nullptr;
     TList* StartDataIndex = nullptr;
+    // FindFirstChangeNotification is replaced by polling the time stamp of the
+    // history file (see LoadOrUpdateList); hChangeNotification<>0 = watching.
     THandle hChangeNotification = 0;
+    qint64 LastHistoryStamp = -1;
+    qint64 GetHistoryFileStamp();
     quint32 LastChangeNotifyCheck = 0;
     int LastHistoryTime = 0;
     QString GetHistoryFileName();
@@ -55,3 +59,7 @@ private:
     TDateTime GetStartDateTimeLast(int I);
 };
 extern THistory* History;
+
+// initialization / finalization sections of HistoryUnit.pas
+void HistoryUnit_Initialization();
+void HistoryUnit_Finalization();

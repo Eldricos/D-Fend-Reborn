@@ -29,11 +29,14 @@ public:
     //   DOSBoxOutputTestForm.OnShow = FormShow
     //   TestButton.OnClick = TestButtonClick
     //   HelpButton.OnClick = HelpButtonClick
+protected:
+    void showEvent(QShowEvent *E) override;
+    void keyPressEvent(QKeyEvent *E) override;   // OnKeyDown (no KeyPreview)
 public slots:
     void FormShow(QObject* Sender);
     void TestButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);   // Key: Qt::Key_* value
 private:
     bool SingleCheck(const QString& Renderer, bool Fullscreen);
     void CheckRenderer(const QString& Renderer, bool& Window, bool& Fullscreen);

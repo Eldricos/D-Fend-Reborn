@@ -32,6 +32,10 @@ public:
 public slots:
     void TimerTimer(QObject* Sender);
     void FormShow(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+private:
+    QTimer* Timer = nullptr;   // DFM TTimer (Interval 50)
 };
 extern TInternetDataWaitForm* InternetDataWaitForm;
 bool ShowDataReaderInternetConfigWaitDialog(QWidget* AOwner, TDataReader* ADataReader, bool AForceUpdate, const QString& ACaption, const QString& AInfo, const QString& AError);

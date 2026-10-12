@@ -22,11 +22,11 @@ public:
     Ui::ProfileMountEditorCDDriveFrame ui;
     explicit TProfileMountEditorCDDriveFrame(QWidget *AOwner = nullptr);
     ~TProfileMountEditorCDDriveFrame() override;
-    bool Init(const TInfoData& AInfoData);
-    bool CheckBeforeDone();
-    QString Done();
-    QString GetName();
-    void ShowFrame();
+    bool Init(const TInfoData& AInfoData) override;
+    bool CheckBeforeDone() override;
+    QString Done() override;
+    QString GetName() override;
+    void ShowFrame() override;
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   CDROMButton.OnClick = CDROMButtonClick

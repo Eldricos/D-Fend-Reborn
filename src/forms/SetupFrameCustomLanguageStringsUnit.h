@@ -46,6 +46,8 @@ public slots:
     void FrameResize(QObject* Sender);
     void TypeComboBoxChange(QObject* Sender);
     void TabClick(QObject* Sender);
+protected:
+    void resizeEvent(QResizeEvent* Event) override;   // OnResize
 private:
     int LastType = 0;
     TStringList* GenreEnglish = nullptr;

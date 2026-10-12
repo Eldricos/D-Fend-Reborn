@@ -19,9 +19,9 @@ struct TZipRecord {
     bool IsScummVM = false;
     QString Folder[(9) + 1];
     QString ZipFile[(9) + 1];
-    int DeleteType[(9) + 1];
+    int DeleteType[(9) + 1] = {};
     QString DriveLetter[(9) + 1];
-    bool OnlyRepack[(9) + 1];
+    bool OnlyRepack[(9) + 1] = {};
 };
 class TZipManager
 {
@@ -50,3 +50,6 @@ private:
     int AddGameScummVM(TGame* Game, bool& Error);
 };
 extern TZipManager* ZipManager;
+
+void ZipManagerUnit_Initialization();
+void ZipManagerUnit_Finalization();

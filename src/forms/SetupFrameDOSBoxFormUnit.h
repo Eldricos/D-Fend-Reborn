@@ -52,10 +52,18 @@ public slots:
     void FormDestroy(QObject* Sender);
     void WarningButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);   // Key: Qt::Key_* (Delphi: var Key : Word)
+protected:
+    void showEvent(QShowEvent* Event) override;   // OnShow
 private:
+    friend bool ShowSetupFrameDOSBoxDialog(QWidget* AOwner, TDOSBoxData& DOSBoxData, bool IsDefault, TGameDB* GameDB);
     TStringList* DosBoxLang = nullptr;
     TGameDB* GameDB = nullptr;
+    bool FirstShowDone = false;
+    // non visual DFM components
+    TOpenDialog* DosBoxTxtOpenDialog = nullptr;
+    TOpenDialog* OpenDialog = nullptr;
+    TSaveDialog* SaveDialog = nullptr;
     QString ExtendLanguageName(const QString& ShortName);
 };
 extern TSetupFrameDOSBoxForm* SetupFrameDOSBoxForm;

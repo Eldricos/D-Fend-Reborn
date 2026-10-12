@@ -47,6 +47,8 @@ public:
     //   SelectNoneButton2.OnClick = SelectButtonClick2
     //   SelectGenreButton2.OnClick = SelectButtonClick2
     //   HelpButton2.OnClick = HelpButtonClick
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);
@@ -61,8 +63,9 @@ public slots:
     void DestFileButton3Click(QObject* Sender);
     void OKButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key: Qt::Key_* value
 private:
+    TSaveDialog* SaveDialog = nullptr;  // DFM SaveDialog (non visual)
     TGameDB* TemplateDB = nullptr;
     TGameDB* AutoSetupDB = nullptr;
     bool GetNSIFileName(QString& NSIFileName, int Mode);

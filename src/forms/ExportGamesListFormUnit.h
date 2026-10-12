@@ -41,7 +41,7 @@ public slots:
     void FormCreate(QObject* Sender);
     void OKButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
     void SelectFileButtonClick(QObject* Sender);
     void FileNameEditChange(QObject* Sender);
     void FormShow(QObject* Sender);
@@ -49,6 +49,11 @@ public slots:
     void ListBoxClickCheck(QObject* Sender);
     void FormClose(QObject* Sender, TCloseAction& Action);
     void ExportFormatComboBoxChange(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
+    void done(int R) override;               // OnClose
+private:
+    TSaveDialog* SaveDialog = nullptr;
 };
 extern TExportGamesListForm* ExportGamesListForm;
 bool ShowExportGamesListDialog(QWidget* AOwner, TGameDB* AGameDB);

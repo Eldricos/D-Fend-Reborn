@@ -42,8 +42,17 @@ public slots:
     void AddButtonClick(QObject* Sender);
     void DelButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
+protected:
+    void showEvent(QShowEvent* E) override;      // OnShow
+    void resizeEvent(QResizeEvent* E) override;  // OnResize
 private:
+    // TStringGrid emulation: Cells[ACol,ARow] (row 0 = horizontal header), RowCount, Row
+    QString Cells(int ACol, int ARow) const;
+    void SetCells(int ACol, int ARow, const QString& Value);
+    int RowCount() const;
+    void SetRowCount(int ARowCount);
+    void CommitTabEditor();
     void TabListForCell(int ACol, int ARow, bool& UseDropdownListForCell);
     void TabGetListForCell(int ACol, int ARow, TStringList* DropdownListForCell);
 };

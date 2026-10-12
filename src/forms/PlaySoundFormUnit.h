@@ -14,6 +14,9 @@
 #include "VclWidgets.h"
 #include "ui_PlaySoundFormUnit.h"
 
+class QMediaPlayer;
+class QAudioOutput;
+
 class TPlaySoundForm : public TVclForm
 {
     Q_OBJECT
@@ -48,10 +51,30 @@ public slots:
     void TrackBarChange(QObject* Sender);
     void TimerTimer(QObject* Sender);
     void FormDestroy(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void FormMouseWheel(QObject* Sender, TShiftState Shift, int WheelDelta, QPoint MousePos, bool& Handled);
+protected:
+    void showEvent(QShowEvent *E) override;
+    void wheelEvent(QWheelEvent *E) override;
 private:
     bool JustChanging = false;
+    TImageList* ImageList = nullptr;      // DFM TImageList (tool bar icons)
+    TSaveDialog* SaveDialog = nullptr;
+    QTimer* Timer = nullptr;
+    // MediaInterface replacement (Qt Multimedia)
+    QMediaPlayer* FPlayer = nullptr;
+    QAudioOutput* FAudioOutput = nullptr;
+    void loadMediaFile(const QString& AFileName);
+    bool MediaStreamAvailable() const;
+    bool MediaStreamPlayed() const;
+    void playMediaStream();
+    void pauseMediaStream();
+    void stopMediaStream();
+    void resetMediaStream();
+    void freeMediaStream();
+    qint64 getMediaStreamPos() const;
+    qint64 getMediaStreamDuration() const;
+    void setMediaStreamPos(qint64 Pos);
 };
 extern TPlaySoundForm* PlaySoundForm;
 void PlaySoundDialog(QWidget* AOwner, const QString& AFileName, TStringList* APrevSounds, TStringList* ANextSounds);

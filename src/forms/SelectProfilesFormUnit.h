@@ -30,6 +30,8 @@ public:
     //   SelectAllButton.OnClick = SelectButtonClick
     //   SelectNoneButton.OnClick = SelectButtonClick
     //   SelectGenreButton.OnClick = SelectButtonClick
+protected:
+    void showEvent(QShowEvent *E) override;
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);

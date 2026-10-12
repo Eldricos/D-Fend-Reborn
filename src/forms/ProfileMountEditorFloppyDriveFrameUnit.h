@@ -22,11 +22,11 @@ public:
     Ui::ProfileMountEditorFloppyDriveFrame ui;
     explicit TProfileMountEditorFloppyDriveFrame(QWidget *AOwner = nullptr);
     ~TProfileMountEditorFloppyDriveFrame() override;
-    bool Init(const TInfoData& AInfoData);
-    bool CheckBeforeDone();
-    QString Done();
-    QString GetName();
-    void ShowFrame();
+    bool Init(const TInfoData& AInfoData) override;
+    bool CheckBeforeDone() override;
+    QString Done() override;
+    QString GetName() override;
+    void ShowFrame() override;
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   FloppyButton.OnClick = FloppyButtonClick

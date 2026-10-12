@@ -35,9 +35,11 @@ public:
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void HelpButtonClick(QObject* Sender);
     void OKButtonClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
 private:
     bool GetFoldersToCopy(TGame* Game, TStringList* SourceDirs, TStringList* DestDirs);
     void CalcDestDirs(TStringList* SourceDirs, TStringList* DestDirs);

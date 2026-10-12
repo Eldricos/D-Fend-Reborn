@@ -428,6 +428,10 @@ public:
     void SetNoDOSBoxFailedDialog(bool Value) { SetBoolean(NR_NoDOSBoxFailedDialog, Value); }
     QString ExtraPrgFile(int I) { return GetExtraPrgFile(I); }
     QString ExtraPrgFileParameter(int I) { return GetExtraPrgFileParameter(I); }
+    // property setters ExtraPrgFile[I] / ExtraPrgFileParameter[I] / Mount[I]
+    void SetExtraPrgFile(int I, const QString& S);
+    void SetExtraPrgFileParameter(int I, const QString& S);
+    void SetMount(int I, const QString& Value);
     QString Genre() { return GetString(NR_Genre); }
     void SetGenre(const QString& Value) { SetString(NR_Genre, Value); }
     QString Developer() { return GetString(NR_Developer); }
@@ -836,14 +840,14 @@ public:
     QString AddtionalChecksumFile5Checksum() { return GetString(NR_AddtionalChecksumFile5Checksum); }
     void SetAddtionalChecksumFile5Checksum(const QString& Value) { SetString(NR_AddtionalChecksumFile5Checksum, Value); }
 private:
+    friend class TGameDB;   // Delphi: same unit (TGameDB calls InitData)
+    // used by CreateDelayed (no InitData/LoadCache)
+    TGame(const QString& ASetupFile, bool ATimeStampCheck, bool ADelayed);
     TGameDB* FGameDB = nullptr;
     void InitData();
     QString GetExtraPrgFile(int I);
-    void SetExtraPrgFile(int I, const QString& S);
     QString GetExtraPrgFileParameter(int I);
-    void SetExtraPrgFileParameter(int I, const QString& S);
     QString GetMount(int I);
-    void SetMount(int I, const QString& Value);
     void CreateConfFile();
     QString GetLicense();
     QString GetWWWNameString(int I);
@@ -895,8 +899,8 @@ private:
     bool FCreateConfFilesOnSave = false;
     QBuffer* BinLoadCache = nullptr;
     int BinLoadCacheOffset = 0;
-    TStringList* BinLoadCacheIndex[26];
-    int BinLoadCacheIndexLastIndex[26];
+    TStringList* BinLoadCacheIndex[26] = {};          // Delphi: Array['A'..'Z']
+    int BinLoadCacheIndexLastIndex[26] = {};
     TStringList* BinLoadCacheIndexRest = nullptr;
     int BinLoadCacheIndexRestLastIndex = 0;
     void LoadList();
@@ -915,6 +919,10 @@ private:
     bool CheckGameBinaryVersionID(int CacheVersionID);
 };
 extern TGame* DefaultValueReaderGame;  // initial value: nullptr
+
+// initialization / finalization sections of GameDBUnit.pas
+void GameDBUnit_Initialization();
+void GameDBUnit_Finalization();
 inline const QString DefaultValuesResolutionFullscreen = QStringLiteral("original,320x200,320x240,640x432,640x480,720x480,800x600,1024x768,1152x864,1280x720,1280x768,1280x960,1280x1024,1366x760,1366x768,1600x1200,1680x1050,1920x1080,1920x1200,0x0");
 inline const QString DefaultValuesResolutionWindow = QStringLiteral("original,320x200,320x240,640x432,640x480,720x480,800x600,1024x768,1152x864,1280x720,1280x768,1280x960,1280x1024,1366x760,1366x768,1600x1200,1920x1080,1920x1200");
 inline const QString DefaultValuesJoysticks = QStringLiteral("none,auto,2axis,4axis,4axis_2,fcs,ch");

@@ -31,6 +31,8 @@ public:
     //   ImportSelectTemplateForm.OnCreate = FormCreate
     //   ImportSelectTemplateForm.OnShow = FormShow
     //   OKButton.OnClick = OKButtonClick
+protected:
+    void showEvent(QShowEvent *E) override;
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);

@@ -62,14 +62,23 @@ public slots:
     void ButtonWork(QObject* Sender);
     void FormShow(QObject* Sender);
     void FormDestroy(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void FormMouseWheel(QObject* Sender, TShiftState Shift, int WheelDelta, QPoint MousePos, bool& Handled);
     void FormResize(QObject* Sender);
     void ZoomPopupMenuPopup(QObject* Sender);
     void StatusBarMouseDown(QObject* Sender, Qt::MouseButton Button, TShiftState Shift, int X, int Y);
     void TimerTimer(QObject* Sender);
     void FormClose(QObject* Sender, TCloseAction& Action);
+protected:
+    void showEvent(QShowEvent *E) override;
+    void resizeEvent(QResizeEvent *E) override;
+    void closeEvent(QCloseEvent *E) override;
+    void wheelEvent(QWheelEvent *E) override;
+    bool eventFilter(QObject *O, QEvent *E) override;
 private:
+    TImageList* ImageList = nullptr;      // DFM TImageList (tool bar icons)
+    TSaveDialog* SaveDialog = nullptr;
+    QTimer* Timer = nullptr;
     QPixmap IntPicture;
     QImage IntBitmap100;
     void CenterWindow();

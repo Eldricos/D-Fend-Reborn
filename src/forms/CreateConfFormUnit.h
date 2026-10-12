@@ -42,7 +42,9 @@ public slots:
     void OKButtonClick(QObject* Sender);
     void SelectFolderButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 private:
     void SelectGamesWithoutTemplate();
     bool FindAutoSetupForGame(TGame* Game, TGameDB* AutoSetupDB);

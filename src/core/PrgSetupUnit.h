@@ -534,3 +534,8 @@ bool WineSupportEnabled();
 void DOSBoxSettingToDOSBoxData(TDOSBoxSetting* DOSBoxSetting, TDOSBoxData& DOSBoxData);
 void DOSBoxDataToDOSBoxSetting(const TDOSBoxData& DOSBoxData, TDOSBoxSetting* DOSBoxSetting);
 void InitDOSBoxData(TDOSBoxData& DOSBoxData);
+
+// initialization section: ReadOperationMode; UpdateSettingsFilesLocation; PrgSetup:=TPrgSetup.Create
+void PrgSetupUnit_Initialization();
+// finalization section: PrgSetup.Free; PrgSetup:=nil
+void PrgSetupUnit_Finalization();

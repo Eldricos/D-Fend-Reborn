@@ -9,6 +9,29 @@
 #include <QtXml>
 #include <QtNetwork>
 #include <functional>
+#include "WinApi.h"
+
+#ifndef _WIN32
+// WinHelp commands (winuser.h) - Application.HelpCommand(HELP_CONTEXT, ID) ...
+constexpr int HELP_CONTEXT = 0x0001;
+constexpr int HELP_QUIT = 0x0002;
+constexpr int HELP_INDEX = 0x0003;
+constexpr int HELP_CONTENTS = 0x0003;
+constexpr int HELP_HELPONHELP = 0x0004;
+constexpr int HELP_SETINDEX = 0x0005;
+constexpr int HELP_SETCONTENTS = 0x0005;
+constexpr int HELP_CONTEXTPOPUP = 0x0008;
+constexpr int HELP_FORCEFILE = 0x0009;
+constexpr int HELP_KEY = 0x0101;
+constexpr int HELP_COMMAND = 0x0102;
+constexpr int HELP_PARTIALKEY = 0x0105;
+constexpr int HELP_MULTIKEY = 0x0201;
+constexpr int HELP_SETWINPOS = 0x0203;
+constexpr int HELP_CONTEXTMENU = 0x000a;
+constexpr int HELP_FINDER = 0x000b;
+constexpr int HELP_WM_HELP = 0x000c;
+constexpr int HELP_SETPOPUP_POS = 0x000d;
+#endif
 
 inline const QString cVersion = QStringLiteral("2.02");
 constexpr int HH_DISPLAY_TOPIC = 0x0000;
@@ -63,6 +86,9 @@ struct THH_AKLINK {
     QString pszMsgWindow;
     bool fIndexOnFail = false;
 };
+// Delphi THelpEvent = function(Command: Word; Data: Longint; var CallHelp: Boolean): Boolean of object
+// (Data is pointer sized here because HELP_KEY passes a string pointer: const char16_t* / utf16)
+using THelpEvent = std::function<bool(quint16 Command, qintptr Data, bool& CallHelp)>;
 enum THelpType { htAuto, htWinhelp, htHTMLhelp };
 enum TShowType { stDefault, stMain, stPopup };
 class EOwnerError : public Exception { public: using Exception::Exception; };
@@ -80,30 +106,45 @@ public:
     bool HelpPopup(int X, int Y, const QString& text);
     // properties
     THelpType HelpType() const { return fHelpType; }
+    void SetHelpType(THelpType value);
     TShowType ShowType() const { return fShowType; }
     void SetShowType(TShowType Value) { fShowType = Value; }
     QString Helpfile() const { return fHelpfile; }
     void SetHelpfile(const QString& Value) { fHelpfile = Value; }
-    TNotifyEvent OnHelp() const { return fOnHelp; }
-    void SetOnHelp(TNotifyEvent Value) { fOnHelp = Value; }
+    THelpEvent OnHelp() const { return fOnHelp; }
+    void SetOnHelp(THelpEvent Value) { fOnHelp = Value; }
+    void SetVersion(const QString& dummy);
     QString Version() { return GetVersion(); }
 private:
-    THelpType fHelpType;
-    TShowType fShowType;
-    TNotifyEvent fAppOnHelp;
-    TNotifyEvent fOnHelp;
+    THelpType fHelpType = htAuto;
+    TShowType fShowType = stDefault;
+    THelpEvent fAppOnHelp;
+    THelpEvent fOnHelp;
     QString fHelpfile;
     QWidget* CurrentForm();
     bool FindHandle(WId& Helphandle, QString& hfile);
-    void SetHelpType(THelpType value);
     QString GetVersion();
-    void SetVersion(const QString& dummy);
-    bool OnRouteHelp(quint16 Command, int Data, bool& CallHelp);
+    bool OnRouteHelp(quint16 Command, qintptr Data, bool& CallHelp);
 };
-using THtmlHelpA = std::function<THandle(THandle, const QString&, quint32, int)>;
+// HtmlHelp(hwndCaller, pszFile, uCommand, dwData).  An empty pszFile means nil.
+// On Windows this calls HtmlHelpW from HHCTRL.OCX; elsewhere a portable
+// emulation is installed (opens the .chm file with the associated viewer).
+using THtmlHelpA = std::function<THandle(THandle hwndCaller, const QString& pszFile, quint32 uCommand, qintptr dwData)>;
 extern THtmlHelpA HtmlHelpA;
 extern THandle HHCTRL;
 extern THTMLhelpRouter* GLOBAL_HELPROUTER;
 bool LoadHHCTRL();
 THTMLhelpRouter* InitHTMLHelp(const QString& HelpFileName);
 void Register();
+
+// --- TApplication help support (Application.OnHelp / Application.HelpCommand / Application.HelpFile)
+// Application.OnHelp: the router installs itself here (and chains the previous handler).
+// The main form assigns its ApplicationEventsHelp handler here *before* InitHTMLHelp is called.
+extern THelpEvent ApplicationOnHelp;
+extern QString ApplicationHelpFile;
+// Application.HelpCommand(Command, Data), e.g. ApplicationHelpCommand(HELP_CONTEXT, ID_Index)
+bool ApplicationHelpCommand(int Command, qintptr Data);
+
+// initialization (HHCTRL:=0) / finalization (FreeLibrary(HHCTRL))
+void HelpTools_Initialization();
+void HelpTools_Finalization();

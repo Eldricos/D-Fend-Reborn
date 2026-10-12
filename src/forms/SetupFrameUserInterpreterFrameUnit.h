@@ -49,7 +49,8 @@ private:
     TStringList* Programs = nullptr;
     TStringList* Extensions = nullptr;
     TStringList* Parameters = nullptr;
-    int LastItem = 0;
+    int LastItem = -1;
     bool JustChanging = false;
     void LoadList();
+    TOpenDialog* OpenDialog = nullptr;   // DFM TOpenDialog (DefaultExt='exe')
 };

@@ -36,15 +36,15 @@ public:
 private:
     QString FLastSavedGameFileName;
     QString FName;
-    QBuffer* FCompleteFile = nullptr;
-    TList* FAddressList = nullptr;
-    TList* FAddressSizeList = nullptr;
-    TList* FAddressLastValue = nullptr;
+    QByteArray* FCompleteFile = nullptr;     // TMemoryStream
+    QList<int>* FAddressList = nullptr;      // TList of Integer
+    QList<int>* FAddressSizeList = nullptr;
+    QList<int>* FAddressLastValue = nullptr;
     QString FSearchDataFileName;
-    void SearchAddressWholeFile(QBuffer* AMSt, int AValue);
-    void SearchAddressInList(QBuffer* AMSt, int AValue);
-    void SearchAddressIndirectAgainstWholeFile(QBuffer* AMSt, TValueChangeType AValueChangeType);
-    void SearchAddressIndirectAgainstAddressList(QBuffer* AMSt, TValueChangeType AValueChangeType);
+    void SearchAddressWholeFile(const QByteArray& AMSt, int AValue);
+    void SearchAddressInList(const QByteArray& AMSt, int AValue);
+    void SearchAddressIndirectAgainstWholeFile(const QByteArray& AMSt, TValueChangeType AValueChangeType);
+    void SearchAddressIndirectAgainstAddressList(const QByteArray& AMSt, TValueChangeType AValueChangeType);
 };
 void GetAddressSearchFiles(TStringList* AFiles, TStringList* ANames);
 QString GetNewAddressSearchFile();

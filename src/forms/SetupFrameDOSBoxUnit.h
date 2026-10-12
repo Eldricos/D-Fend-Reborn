@@ -23,7 +23,7 @@ class TSetupFrameDOSBox : public QWidget, public ISetupFrame
 public:
     Ui::SetupFrameDOSBox ui;
     ~TSetupFrameDOSBox() override;
-    TSetupFrameDOSBox(QWidget* AOwner);
+    explicit TSetupFrameDOSBox(QWidget* AOwner = nullptr);
     QString GetName();
     void InitGUIAndLoadSetup(TInitData& InitData);
     void BeforeChangeLanguage();
@@ -60,7 +60,7 @@ private:
     PString PDosBoxDir;
     PString PDOSBoxLang;
     TSimpleEvent DosBoxDirChange;
-    int LastIndex = 0;
+    int LastIndex = -1;
     TGameDB* GameDB = nullptr;
-    int OrigPortableModeInfoButtonTop = 0;
+    int OrigPortableModeInfoButtonTop = -1;
 };

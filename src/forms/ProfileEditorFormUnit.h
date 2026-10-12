@@ -97,23 +97,27 @@ public slots:
     void ProfileSettingsValueListEditorEditButtonClick(QObject* Sender);
     void ExtraDirsListBoxClick(QObject* Sender);
     void ExtraDirsListBoxDblClick(QObject* Sender);
-    void ExtraDirsListBoxKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void ExtraDirsListBoxKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void MountingListViewDblClick(QObject* Sender);
-    void MountingListViewKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void MountingListViewKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void FormDestroy(QObject* Sender);
     void GameInfoValueListEditorEditButtonClick(QObject* Sender);
     void ProfileSettingsValueListEditorSetEditText(QObject* Sender, int ACol, int ARow, const QString& Value);
-    void ProfileSettingsValueListEditorKeyUp(QObject* Sender, quint16& Key, TShiftState Shift);
+    void ProfileSettingsValueListEditorKeyUp(QObject* Sender, int& Key, TShiftState Shift);
     void EnvironmentValueListEditorEditButtonClick(QObject* Sender);
     void GeneralValueListEditorEditButtonClick(QObject* Sender);
     void AutoexecBootHDImageComboBoxChange(QObject* Sender);
     void ExtraFilesListBoxClick(QObject* Sender);
     void ExtraFilesListBoxDblClick(QObject* Sender);
-    void ExtraFilesListBoxKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void ExtraFilesListBoxKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void SearchClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void FormCreate(QObject* Sender);
+    // public in C++: called by EditGameProfilInt (same unit in Delphi)
+    void SetExeFileName(const QString& NewExeFileName);
+protected:
+    void showEvent(QShowEvent *E) override;
 private:
     QString IconName;
     TStringList* Mounting = nullptr;
@@ -126,7 +130,13 @@ private:
     QString UsedDriveLetters(int AllowedNr = - 1);
     bool CheckProfile();
     void LoadLinks();
-    void SetExeFileName(const QString& NewExeFileName);
+    // non visual DFM components
+    TOpenDialog* OpenDialog = nullptr;
+    TSaveDialog* SaveDialog = nullptr;
+    TOpenDialog* DosBoxTxtOpenDialog = nullptr;
+    TImageList* ImageList = nullptr;
+    TImageList* ImageListM = nullptr;
+    void ApplyImageLists();
 };
 extern TProfileEditorForm* ProfileEditorForm;
 bool EditGameProfil(QWidget* AOwner, TGameDB* AGameDB, TGame*& AGame, TGame* ADefaultGame, TLinkFile* ASearchLinkFile, TStringList* ADeleteOnExit, const QString& ANewProfileName, const QString& ANewExeFile, TList* GameList = nullptr);

@@ -42,6 +42,10 @@ public slots:
     void OKButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
     void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+protected:
+    void showEvent(QShowEvent *E) override;
+private:
+    bool FShown = false;
 };
 extern TBuildZipPackagesForm* BuildZipPackagesForm;
 bool ShowBuildZipPackagesDialog(QWidget* AOwner, TGameDB* AGameDB);

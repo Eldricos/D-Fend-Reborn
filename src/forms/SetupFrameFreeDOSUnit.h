@@ -39,5 +39,5 @@ public slots:
     void PathFREEDOSButtonClick(QObject* Sender);
     void FreeDOSDownloadURLClick(QObject* Sender);
 private:
-    PString PBaseDir;
+    PString PBaseDir = nullptr;
 };

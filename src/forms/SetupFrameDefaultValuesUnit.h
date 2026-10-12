@@ -21,7 +21,7 @@ class TSetupFrameDefaultValues : public QWidget, public ISetupFrame
     Q_OBJECT
 public:
     Ui::SetupFrameDefaultValues ui;
-    TSetupFrameDefaultValues(QWidget* AOwner);
+    explicit TSetupFrameDefaultValues(QWidget* AOwner = nullptr);
     ~TSetupFrameDefaultValues() override;
     QString GetName();
     void InitGUIAndLoadSetup(TInitData& InitData);
@@ -46,6 +46,6 @@ public slots:
     void DefaultValueComboBoxDropDown(QObject* Sender);
 private:
     TGameDB* GameDB = nullptr;
-    int LastIndex = 0;
-    QList<TStringList*> DefaultValueLists;
+    int LastIndex = -1;
+    QList<TStringList*> DefaultValueLists;   // = DefaultValueComboBox.Items.Objects
 };

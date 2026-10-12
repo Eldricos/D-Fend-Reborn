@@ -22,11 +22,11 @@ public:
     Ui::ProfileMountEditorDriveFrame ui;
     explicit TProfileMountEditorDriveFrame(QWidget *AOwner = nullptr);
     ~TProfileMountEditorDriveFrame() override;
-    bool Init(const TInfoData& AInfoData);
-    bool CheckBeforeDone();
-    QString Done();
-    QString GetName();
-    void ShowFrame();
+    bool Init(const TInfoData& AInfoData) override;
+    bool CheckBeforeDone() override;
+    QString Done() override;
+    QString GetName() override;
+    void ShowFrame() override;
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   FolderButton.OnClick = FolderButtonClick
@@ -40,6 +40,7 @@ public slots:
     void MakeZipDriveButtonClick(QObject* Sender);
 private:
     TInfoData InfoData;
+    TSaveDialog* SaveDialog = nullptr;
     QString SpecialSettings;
     QString SelectZip();
     bool UpdateGameExe(const QString& OldPath, const QString& DriveLetter, QString& Name);

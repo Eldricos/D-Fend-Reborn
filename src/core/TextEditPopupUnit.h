@@ -11,3 +11,6 @@
 #include <functional>
 
 void SetRichEditPopup(QTextEdit* Edit);
+
+void TextEditPopupUnit_Initialization();
+void TextEditPopupUnit_Finalization();

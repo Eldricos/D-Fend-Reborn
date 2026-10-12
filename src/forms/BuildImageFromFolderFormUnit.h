@@ -38,9 +38,13 @@ public slots:
     void OKButtonClick(QObject* Sender);
     void MakeBootableCheckBoxClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void ImageTypeGroupBoxClick(QObject* Sender);
     void FormShow(QObject* Sender);
+public:
+    TSaveDialog* SaveDialog = nullptr;
+protected:
+    void showEvent(QShowEvent *E) override;
 private:
     bool FloppyDriveAvailable = false;
 };

@@ -41,7 +41,15 @@ public slots:
     void DelButtonClick(QObject* Sender);
     void SearchClick(QObject* Sender);
     void GameInfoValueListEditorEditButtonClick(QObject* Sender);
+protected:
+    void resizeEvent(QResizeEvent* E) override;  // OnResize = FrameResize
 private:
+    TImageList* ImageList = nullptr;  // DFM TImageList
+    // Tab is a TStringGrid with one fixed row: Delphi grid coordinates
+    QString TabCell(int ACol, int ARow) const;
+    void SetTabCell(int ACol, int ARow, const QString& S);
+    int TabRowCount() const;
+    void SetTabRowCount(int Count);
     TLinkFile* LinkFile = nullptr;
     PString PProfileName;
     PString PCaptureDir;

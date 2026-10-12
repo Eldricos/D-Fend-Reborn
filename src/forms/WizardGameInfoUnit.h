@@ -44,6 +44,7 @@ private:
     QString TempCaptureDir;
     TStringList* WWWNames = nullptr;
     TStringList* WWWLinks = nullptr;
+    TImageList* FImageList = nullptr;   // DFM ImageList (toolbar / popup menu icons)
     void LoadLinks();
     void TabListForCell(int ACol, int ARow, bool& UseDropdownListForCell);
     void TabGetListForCell(int ACol, int ARow, TStringList* DropdownListForCell);

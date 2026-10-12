@@ -43,7 +43,9 @@ public slots:
     void OKButtonClick(QObject* Sender);
     void FormShow(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 };
 extern TCreateShortcutForm* CreateShortcutForm;
 bool ShowCreateShortcutDialog(QWidget* AOwner, const QString& AGameName, const QString& AGameFileName, const QString& AGameIconFile, const QString& AGammExeName, const QString& AWinGameParameters, bool AGameScummVM, bool AGameWindowsExe);

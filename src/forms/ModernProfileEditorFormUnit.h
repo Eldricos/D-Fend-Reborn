@@ -101,10 +101,18 @@ public slots:
     void TreeChange(QObject* Sender, QTreeWidgetItem* Node);
     void FormCreate(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void ShowConfButtonClick(QObject* Sender);
     void ToolsButtonClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;
+    bool eventFilter(QObject* O, QEvent* E) override;
 private:
+    TImageList* ImageList = nullptr;       // DFM TImageList (tree icons)
+    TImageList* ToolsImageList = nullptr;  // DFM TImageList (tools menu icons)
+    bool FShown = false;
+    QList<QTreeWidgetItem*> TreeItems() const;  // Tree.Items[0..Count-1]
+    void LayoutFrames();                        // Align:=alClient of the frames in RightPanel
     QString ProfileName;
     QString ProfileExe;
     QString ProfileSetup;

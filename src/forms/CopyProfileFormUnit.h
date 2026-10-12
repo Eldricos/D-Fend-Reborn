@@ -29,7 +29,7 @@ public:
 public slots:
     void FormCreate(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);   // Key: Qt::Key_* value
 };
 extern TCopyProfileForm* CopyProfileForm;
 bool ShowCopyProfileDialog(QWidget* AOwner, bool ADataFolderAvailable, QString& ANewName, bool& AUpdateScreenshotFolder, bool& ARemoveDataFolderRecord);

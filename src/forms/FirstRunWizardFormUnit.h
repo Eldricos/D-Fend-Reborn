@@ -49,11 +49,15 @@ public slots:
     void DOSBoxButtonClick(QObject* Sender);
     void FormDestroy(QObject* Sender);
     void FormClose(QObject* Sender, TCloseAction& Action);
+protected:
+    void showEvent(QShowEvent *E) override;   // OnShow
+    void done(int R) override;                // OnClose
 private:
+    bool FFormShown = false;
     bool JustLoadingLanguage = false;
     bool DefaultDOSBoxAvailable = false;
     TStringList* DosBoxLang = nullptr;
-    TDOSBoxWarningType DOSBoxWarningType;
+    TDOSBoxWarningType DOSBoxWarningType = wtNoDir;
     void SetDOSBoxWarningLanguage();
     void LoadAndSetupLanguageList();
     void LoadGUILanguage();

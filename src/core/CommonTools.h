@@ -10,6 +10,33 @@
 #include <QtNetwork>
 #include <functional>
 
+// CSIDL constants for GetSpecialFolder (shlobj.h defines them as macros on
+// Windows; they are provided here so that the code compiles everywhere).
+#if !defined(CSIDL_DESKTOP)
+constexpr int CSIDL_DESKTOP = 0x0000;
+constexpr int CSIDL_PROGRAMS = 0x0002;
+constexpr int CSIDL_PERSONAL = 0x0005;
+constexpr int CSIDL_FAVORITES = 0x0006;
+constexpr int CSIDL_STARTUP = 0x0007;
+constexpr int CSIDL_RECENT = 0x0008;
+constexpr int CSIDL_SENDTO = 0x0009;
+constexpr int CSIDL_STARTMENU = 0x000B;
+constexpr int CSIDL_MYMUSIC = 0x000D;
+constexpr int CSIDL_MYVIDEO = 0x000E;
+constexpr int CSIDL_DESKTOPDIRECTORY = 0x0010;
+constexpr int CSIDL_APPDATA = 0x001A;
+constexpr int CSIDL_LOCAL_APPDATA = 0x001C;
+constexpr int CSIDL_INTERNET_CACHE = 0x0020;
+constexpr int CSIDL_COOKIES = 0x0021;
+constexpr int CSIDL_HISTORY = 0x0022;
+constexpr int CSIDL_COMMON_APPDATA = 0x0023;
+constexpr int CSIDL_WINDOWS = 0x0024;
+constexpr int CSIDL_SYSTEM = 0x0025;
+constexpr int CSIDL_PROGRAM_FILES = 0x0026;
+constexpr int CSIDL_MYPICTURES = 0x0027;
+constexpr int CSIDL_PROFILE = 0x0028;
+#endif
+
 QString ExtUpperCase(const QString& S);
 QString ExtLowerCase(const QString& S);
 double StrToFloatEx(const QString& S);

@@ -25,6 +25,7 @@ public:
     // properties
     TDataReaderConfig* Config() const { return FConfig; }
 private:
+    friend class TDownloadDataThread;   // same-unit access in Delphi
     TDataReaderConfig* FConfig = nullptr;
     bool DownloadConfigFile(const QString& DestFile);
     bool ReadListGlobalPart(const QString& Lines, THTMLStructureElement* NextElement);
@@ -36,13 +37,20 @@ private:
     void ProcessLinks(const QString& BaseURL, TStringList* Links, const QString& ImageBaseURL, TStringList* ImageURLs, int MaxImages);
     void GetGameCoverFromMediaList(const QString& ListPageURL, TStringList* ImageURLs, int MaxImages);
 };
+// TThread descendants: the Delphi constructors start the thread (Resume), so
+// the C++ constructors of the concrete classes call start().  Deleting a thread
+// waits for it to finish (like TThread.Destroy).  TThread.Execute is mapped to
+// the virtual Execute() which is called by QThread::run().
 class TDataReaderThread : public QThread
 {
 public:
     TDataReaderThread(TDataReader* ADataReader);
+    ~TDataReaderThread() override;
     // properties
     bool Success() const { return FSuccess; }
 protected:
+    void run() override { Execute(); }
+    virtual void Execute() = 0;
     TDataReader* FDataReader = nullptr;
     bool FSuccess = false;
 };

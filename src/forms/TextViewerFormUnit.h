@@ -27,6 +27,8 @@ public:
     // DFM wiring:
     //   TextViewerForm.OnCreate = FormCreate
     //   TextViewerForm.OnShow = FormShow
+protected:
+    void showEvent(QShowEvent *E) override;
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);

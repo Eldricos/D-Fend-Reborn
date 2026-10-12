@@ -23,7 +23,7 @@ public:
     Ui::InstallationRunForm ui;
     explicit TInstallationRunForm(QWidget *AOwner = nullptr);
     ~TInstallationRunForm() override;
-    TInstallType InstallType;
+    TInstallType InstallType = itArchive;
     TStringList* Sources = nullptr;
     QString FilesAlreadyInTempDir;
     QString NewGameDir;
@@ -34,6 +34,8 @@ public:
     //   InstallationRunForm.OnShow = FormShow
     //   SourceListBox.OnClickCheck = SourceListBoxClick
     //   SourceListBox.OnClick = SourceListBoxClick
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 public slots:
     void FormCreate(QObject* Sender);
     void FormDestroy(QObject* Sender);
@@ -45,6 +47,7 @@ private:
     int LastFolder = 0;
     bool AbortSetup = false;
     bool SecondTry = false;
+    bool InSourceListBoxClick = false;  // guards OnClickCheck re-entrance
     void PostShow(QEvent*& Msg);
     TStringList* InitialScanDir(const QString& Dir);
     QString FindNewDir(TStringList* OldDir, const QString& NewDir);

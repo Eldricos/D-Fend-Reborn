@@ -14,6 +14,7 @@
 #include "VclWidgets.h"
 #include "ui_SetupFrameGamesListScreenshotAppearanceUnit.h"
 #include "SetupFormUnit.h"
+#include "Dialogs.h"
 
 class TSetupFrameGamesListScreenshotAppearance : public QWidget, public ISetupFrame
 {
@@ -41,5 +42,6 @@ public slots:
     void ScreenshotsListBackgroundEditChange(QObject* Sender);
     void ScreenshotsListBackgroundButtonClick(QObject* Sender);
 private:
-    PString PBaseDir;
+    PString PBaseDir = nullptr;
+    TOpenDialog* ImageOpenDialog = nullptr;  // non visual DFM component
 };

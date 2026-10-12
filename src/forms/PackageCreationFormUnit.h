@@ -65,14 +65,27 @@ public slots:
     void PackagesListBoxClick(QObject* Sender);
     void PackagesListBoxDblClick(QObject* Sender);
     void PackagesListBoxKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
-    void GamesListViewColumnClick(QObject* Sender, TListColumn Column);
-    void AutoSetupListViewColumnClick(QObject* Sender, TListColumn Column);
+    void GamesListViewColumnClick(QObject* Sender, TListColumn* Column);
+    void AutoSetupListViewColumnClick(QObject* Sender, TListColumn* Column);
     void FormCreate(QObject* Sender);
     void FormDestroy(QObject* Sender);
     void ToolsCheckBoxClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+    bool eventFilter(QObject *O, QEvent *E) override;
 private:
-    TSortListBy ListSortGames;
-    TSortListBy ListSortAutoSetups;
+    bool FShown = false;
+    // non visual DFM components
+    TOpenDialog* OpenDialog = nullptr;
+    TSaveDialog* SaveDialog = nullptr;
+    TImageList* IconsImageList = nullptr;
+    TImageList* DummyImageList1 = nullptr;
+    TImageList* DummyImageList2 = nullptr;
+    TImageList* ImageList = nullptr;
+    TImageList* FMainImageList = nullptr;
+    TImageList* MainImageList();
+    TSortListBy ListSortGames = slbName;
+    TSortListBy ListSortAutoSetups = slbName;
     bool ListSortGamesReverse = false;
     bool ListSortAutoSetupsReverse = false;
     TStringList* IconSetFolderNames = nullptr;

@@ -48,9 +48,23 @@ public slots:
     void ButtonWork(QObject* Sender);
     void TabClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
     void FormResize(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;      // OnShow
+    void resizeEvent(QResizeEvent* E) override;  // OnResize
 private:
+    TOpenDialog* OpenDialog = nullptr;
+    TSaveDialog* SaveDialog = nullptr;
+    // TStringGrid emulation (row 0 = horizontal header)
+    QString Cells(int ACol, int ARow) const;
+    void SetCells(int ACol, int ARow, const QString& Value);
+    int RowCount() const;
+    void SetRowCount(int ARowCount);
+    int Row() const;
+    int Col() const;
+    void SetRowCol(int ARow, int ACol);
+    void CommitTabEditor();
     TStringList* GetLinks();
 };
 extern TLinkFileEditForm* LinkFileEditForm;

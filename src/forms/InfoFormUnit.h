@@ -43,7 +43,14 @@ public slots:
     void LicenseComboBoxChange(QObject* Sender);
     void ChangeLogComboBoxChange(QObject* Sender);
     void LanguageAuthorsTabMouseMove(QObject* Sender, TShiftState Shift, int X, int Y);
+protected:
+    void showEvent(QShowEvent* E) override;               // OnShow
+    bool eventFilter(QObject* Obj, QEvent* E) override;   // OnDblClick/OnClick of labels, grid OnMouseMove
 private:
+    QTimer* Timer = nullptr;
+    // TStringGrid emulation (row 0 = horizontal header)
+    QString Cells(int ACol, int ARow) const;
+    void SetCells(int ACol, int ARow, const QString& Value);
     TImageWidget* FImage = nullptr;
     int Dir = 0;
 };

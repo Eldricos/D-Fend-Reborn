@@ -50,10 +50,12 @@ public slots:
     void SearchButtonClick(QObject* Sender);
     void ListBoxClick(QObject* Sender);
     void InsertButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);   // Key = Qt::Key_* value
     void SearchTypeCheckBoxClick(QObject* Sender);
     void DownloadCoverCheckBoxClick(QObject* Sender);
     void SourceComboBoxChange(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
 private:
     TStringList* GenreSt = nullptr;
     TStringList* DeveloperSt = nullptr;

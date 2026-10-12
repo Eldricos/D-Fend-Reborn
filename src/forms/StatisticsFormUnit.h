@@ -30,7 +30,7 @@ public:
 public slots:
     void FormCreate(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);   // Key: Qt::Key_* value
 };
 extern TStatisticsForm* StatisticsForm;
 void ShowInfoTextDialog(QWidget* AOwner, const QString& ACaption, TStringList* AText, bool WordWrap = false);

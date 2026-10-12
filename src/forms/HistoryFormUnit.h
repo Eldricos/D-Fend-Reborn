@@ -31,12 +31,14 @@ public:
     //   ListView.OnCompare = ListViewCompare
     //   ListView2.OnColumnClick = ListViewColumnClick
     //   ListView2.OnCompare = ListViewCompare
+protected:
+    void showEvent(QShowEvent *E) override;
 public slots:
     void FormShow(QObject* Sender);
     void ClearButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
-    void ListViewColumnClick(QObject* Sender, TListColumn Column);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);   // Key: Qt::Key_* value
+    void ListViewColumnClick(QObject* Sender, TListColumn* Column);
     void ListViewCompare(QObject* Sender, TListItem* Item1, TListItem* Item2, int Data, int& Compare);
 private:
     int List1CompareMode = 0;

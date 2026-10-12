@@ -22,7 +22,7 @@ public:
     Ui::SetupDosBoxForm ui;
     explicit TSetupDosBoxForm(QWidget *AOwner = nullptr);
     ~TSetupDosBoxForm() override;
-    TSearchType SearchType;
+    TSearchType SearchType = stDOSBox;
     QString DOSBoxDir;
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
@@ -32,9 +32,13 @@ public:
 public slots:
     void FormShow(QObject* Sender);
     void AbortButtonClick(QObject* Sender);
-    void StartSearch(QEvent*& Msg);
+    void StartSearch();   // Delphi: message WM_USER+1 (posted in FormShow)
     void FormCreate(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* Event) override;   // OnShow
 private:
+    friend bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir);
+    bool FirstShowDone = false;
     bool Aborted = false;
     int Count = 0;
     bool SearchDir(const QString& Dir);

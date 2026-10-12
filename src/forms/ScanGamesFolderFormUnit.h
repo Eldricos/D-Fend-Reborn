@@ -74,7 +74,7 @@ public:
     //   PopupSelectNone.OnClick = ButtonWork
 public slots:
     void FormCreate(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void FormDestroy(QObject* Sender);
     void ButtonWork(QObject* Sender);
     void ListChange(QObject* Sender, TListItem* Item, int Change);
@@ -82,7 +82,11 @@ public slots:
     void Template1ComboBoxChange(QObject* Sender);
     void UpdateListRec(QObject* Sender);
     void ComboBoxDropDown(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+    bool eventFilter(QObject *O, QEvent *E) override;
 private:
+    TImageList* ImageList = nullptr;   // DFM TImageList (tool bar icons)
     TList* NewGames = nullptr;
     TGameDB* AutoSetupDB = nullptr;
     TGameDB* TemplateDB = nullptr;

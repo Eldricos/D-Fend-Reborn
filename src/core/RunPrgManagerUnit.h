@@ -38,3 +38,6 @@ private:
     void RunCommands(const QString& Commands, bool Wait, bool Parallel, bool Minimized);
 };
 extern TRunPrgManager* RunPrgManager;
+
+void RunPrgManagerUnit_Initialization();
+void RunPrgManagerUnit_Finalization();

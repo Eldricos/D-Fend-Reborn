@@ -55,13 +55,15 @@ public slots:
     void GameComboBoxChange(QObject* Sender);
     void ActionComboBoxChange(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
     void ActionStepComboBoxChange(QObject* Sender);
     void ButtonWork(QObject* Sender);
     void ChangeAddressWithDialogDefaultEditChange(QObject* Sender);
     void FormShow(QObject* Sender);
     void UpdateButtonClick(QObject* Sender);
     void ActionStepComboBoxDropDown(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 private:
     int LastGame = 0;
     int LastAction = 0;

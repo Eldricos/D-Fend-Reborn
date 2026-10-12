@@ -39,6 +39,9 @@ public slots:
     void LanguageStringComboBoxChange(QObject* Sender);
     void ButtonWork(QObject* Sender);
     void FormCloseQuery(QObject* Sender, bool& CanClose);
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
+    bool closeQuery() override;              // OnCloseQuery
 private:
     int LastID = 0;
     bool Changed = false;

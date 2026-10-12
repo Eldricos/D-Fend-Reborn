@@ -28,6 +28,10 @@ public:
     //   SelectAutoSetupForm.OnShow = FormShow
 public slots:
     void FormShow(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;   // OnShow
+private:
+    bool FFormShown = false;
 };
 extern TSelectAutoSetupForm* SelectAutoSetupForm;
 int ShowSelectAutoSetupDialog(QWidget* AOwner, TGameDB* AAutoSetupDB);

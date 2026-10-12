@@ -35,6 +35,10 @@ public:
     bool AllowLinesAndSubs() const { return FAllowLinesAndSubs; }
     void SetAllowLinesAndSubs(bool Value) { FAllowLinesAndSubs = Value; }
 protected:
+    // Delphi: FDataNames/FDataLinks.OnChange:=DataChanged.  The compat
+    // TStringList has no OnChange event; FChanged is set explicitly where the
+    // lists are modified.  The derived destructors call SaveData if FChanged
+    // (a virtual call from ~TLinkList would not reach the override).
     TStringList* FDataNames = nullptr;
     TStringList* FDataLinks = nullptr;
     bool FChanged = false;
@@ -45,7 +49,7 @@ private:
     bool FAllowLinesAndSubs = false;
     bool FFixedNumber = false;
     QKeySequence FShortCutForFirstLink;
-    TList* FParentMenuItems = nullptr;
+    TList* FParentMenuItems = nullptr;      // QMenu* (menu items with sub menu / popup menus)
     TList* FMenuItemsEditIcons = nullptr;
     void DataChanged(QObject* Sender);
     int GetCount();
@@ -59,6 +63,7 @@ class TLinkFile : public TLinkList
 {
 public:
     TLinkFile(const QString& AFileNameOnly, bool AAllowLinesAndSubs, int AHelpID);
+    ~TLinkFile() override;
 protected:
     void LoadData() override;
     void SaveData() override;
@@ -69,6 +74,7 @@ class TGameLinks : public TLinkList
 {
 public:
     TGameLinks(TGame* AGame);
+    ~TGameLinks() override;
 protected:
     void LoadData() override;
     void SaveData() override;

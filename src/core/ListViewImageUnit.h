@@ -11,3 +11,6 @@
 #include <functional>
 
 void SetListViewImage(TListView* ListView, const QString& FileName);
+
+void ListViewImageUnit_Initialization();
+void ListViewImageUnit_Finalization();

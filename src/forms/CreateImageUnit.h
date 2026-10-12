@@ -50,9 +50,14 @@ public slots:
     void HDSizeEditChange(QObject* Sender);
     void MakeBootableCheckBoxClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void PageControlChange(QObject* Sender);
     void FormShow(QObject* Sender);
+public:
+    TImageList* ImageList = nullptr;     // DFM TImageList (tab icons)
+    TOpenDialog* OpenDialog = nullptr;
+protected:
+    void showEvent(QShowEvent *E) override;
 private:
     bool JustChanging = false;
     bool FloppyDriveAvailable = false;

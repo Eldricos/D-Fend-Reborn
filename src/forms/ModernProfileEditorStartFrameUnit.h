@@ -13,6 +13,7 @@
 #include "VclLayout.h"
 #include "VclWidgets.h"
 #include "ui_ModernProfileEditorStartFrameUnit.h"
+#include "Dialogs.h"
 #include "GameDBUnit.h"
 #include "ModernProfileEditorFormUnit.h"
 
@@ -41,4 +42,7 @@ public:
 public slots:
     void ButtonWork(QObject* Sender);
     void AutoexecBootHDImageComboBoxChange(QObject* Sender);
+private:
+    TOpenDialog* OpenDialog = nullptr;  // DFM TOpenDialog
+    TSaveDialog* SaveDialog = nullptr;  // DFM TSaveDialog
 };

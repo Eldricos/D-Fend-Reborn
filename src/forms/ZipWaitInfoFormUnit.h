@@ -30,8 +30,12 @@ public slots:
     void FormShow(QObject* Sender);
     void FormHide(QObject* Sender);
     void FormCreate(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+    void hideEvent(QHideEvent *E) override;
 private:
     TNotifyEvent SaveInfoBarNotify;
+    TImageList *ImageList = nullptr;
     void InfoBarEvent(QObject* Sender);
     void UpdateTree();
 };

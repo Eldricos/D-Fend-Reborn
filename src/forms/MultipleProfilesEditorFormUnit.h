@@ -54,17 +54,26 @@ public:
     //   SelectGenreButton.OnClick = SelectButtonClick
     //   OKButton.OnClick = OKButtonClick
     //   HelpButton.OnClick = HelpButtonClick
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
+    bool eventFilter(QObject* Watched, QEvent* E) override;  // caption clicks, mouse wheel, scroll box resize
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);
     void SelectButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key: Qt::Key_* value
     void OKButtonClick(QObject* Sender);
     void FormMouseWheelDown(QObject* Sender, TShiftState Shift, QPoint MousePos, bool& Handled);
     void FormMouseWheelUp(QObject* Sender, TShiftState Shift, QPoint MousePos, bool& Handled);
 private:
     QList<TSectionData> Sections;
+    TImageList* ImageList = nullptr;  // DFM ImageList (non visual)
+    // Anchors=[akLeft,akTop,akRight] / [akTop,akRight] of the controls created at runtime in the scroll box
+    struct TAnchoredControl { QWidget* Control = nullptr; int RightGap = 0; bool StretchWidth = false; };
+    QList<TAnchoredControl> AnchoredControls;
+    void AnchorRight(QWidget* Control, bool StretchWidth);
+    void UpdateAnchoredControls();
     void InitSettings();
     void CaptionClick(QObject* Sender);
     void CheckBoxClick(QObject* Sender);

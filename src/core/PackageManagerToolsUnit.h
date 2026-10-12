@@ -36,4 +36,14 @@ extern TStringList* FilterSelectYear;  // initial value: nullptr
 extern TStringList* FilterSelectLanguage;  // initial value: nullptr
 void OpenFilterPopup(QPoint OpenPos, bool AutoSetups, QMenu* PopupMenu, TPackageDB* PackageDB, TNotifyEvent OnClick, bool HideIfAlreadyInstalled, TChecksumScanner* AutoSetupChecksumScanner, TGameDB* GameDB);
 void SortListView(TListView* AListView, int ColNr, bool Reverse, bool IsSize);
-TStringList* ExePackageInfo(QObject* AObject, TPackageDBCache* PackageDBCache);
+// AObject is either a TDownloadExeData* or a TCachedPackage* (Delphi used
+// "AObject is TDownloadExeData"; here packages contained in PackageDBCache
+// are treated as TCachedPackage, everything else as TDownloadExeData).
+TStringList* ExePackageInfo(void* AObject, TPackageDBCache* PackageDBCache);
+// OpenFilterPopup: the menu entries are QActions with the dynamic property
+// "tag" (TMenuItem.Tag); sub menu entries also carry "parentTag"
+// (TMenuItem.Parent.Tag).  PopupMenu gets the property "tag" (1=auto setups).
+// OnClick is called with the triggered QAction as Sender.
+
+void PackageManagerToolsUnit_Initialization();
+void PackageManagerToolsUnit_Finalization();

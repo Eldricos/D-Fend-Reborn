@@ -31,7 +31,7 @@ public slots:
     void FormCreate(QObject* Sender);
     void LanguageNameEditChange(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
 };
 extern TLanguageEditorStartForm* LanguageEditorStartForm;
 bool ShowLanguageEditorStartDialog(QWidget* AOwner, QString& LanguageFile, bool NewOnly = false);

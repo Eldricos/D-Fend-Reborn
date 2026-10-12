@@ -41,7 +41,7 @@ public:
 public slots:
     void ButtonWork(QObject* Sender);
     void MountingListViewDblClick(QObject* Sender);
-    void MountingListViewKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void MountingListViewKeyDown(QObject* Sender, int& Key, TShiftState Shift);
 private:
     TStringList* Mounting = nullptr;
     PString ProfileExe;
@@ -49,6 +49,7 @@ private:
     PString ProfileName;
     TGetFrameFunction FGetFrame;
     TGameDB* GameDB = nullptr;
+    TImageList* ImageList = nullptr;  // DFM TImageList (PopupMenu images)
     void LoadMountingList();
     QChar NextFreeDriveLetter();
     QString UsedDriveLetters(int AllowedNr = - 1);

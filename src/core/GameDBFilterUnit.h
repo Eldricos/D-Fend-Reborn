@@ -11,6 +11,9 @@
 #include <functional>
 #include "GameDBUnit.h"
 
+// Note: Delphi called the virtual ProcessStringList from TFilterBase.Create;
+// in C++ the derived constructors call it (a virtual call from the base
+// constructor would not reach the override).
 class TFilterBase
 {
 public:
@@ -31,16 +34,17 @@ enum TSpecialProcessingType { sptNone, sptNumber, sptGenre, sptLanguage, sptLice
 class TFilterElement : public TFilterBase
 {
 public:
+    TFilterElement(TStringList* ASt, bool ANotPrefix);
     bool FilterOk(TGame* AGame) override;
     TStringList* Print(const QString& Indent) override;
 protected:
     void ProcessStringList(TStringList* ASt) override;
 private:
-    TFilterType FFilterType;
+    TFilterType FFilterType = ftAll;
     QString FFilterValueUpper;
     int FFilterValueNumber = 0;
     bool FFilterValueNumberOk = false;
-    TCompareType FCompareType;
+    TCompareType FCompareType = ftEqual;
     QString FUserKeyUpper;
     bool Compare(const QString& GameValue, TSpecialProcessingType ProcessingType = sptNone);
     QString GetUserData(TGame* AGame);
@@ -49,13 +53,14 @@ enum TFilterListType { fltOr, fltAnd };
 class TFilterList : public TFilterBase
 {
 public:
+    TFilterList(TStringList* ASt, bool ANotPrefix);
     ~TFilterList() override;
     bool FilterOk(TGame* AGame) override;
     TStringList* Print(const QString& Indent) override;
 protected:
     void ProcessStringList(TStringList* ASt) override;
 private:
-    TFilterListType FFilterListType;
+    TFilterListType FFilterListType = fltOr;
     TList* FList = nullptr;
 };
 class TGamesListFilter

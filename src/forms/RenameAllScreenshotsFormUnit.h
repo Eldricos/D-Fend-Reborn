@@ -30,6 +30,10 @@ public:
 public slots:
     void FormShow(QObject* Sender);
     void OKButtonClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+private:
+    bool FShown = false;
 };
 extern TRenameAllScreenshotsForm* RenameAllScreenshotsForm;
 bool RenameMediaFiles(QWidget* AOwner, TGame* Game, TGameDB* GameDB, TRenameFiles RenameFiles);

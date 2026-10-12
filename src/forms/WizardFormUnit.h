@@ -57,7 +57,13 @@ public slots:
     void HelpButtonClick(QObject* Sender);
     void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
     void FormClose(QObject* Sender, TCloseAction& Action);
+protected:
+    void showEvent(QShowEvent *E) override;   // OnShow
+    void hideEvent(QHideEvent *E) override;   // OnHide
+    void done(int R) override;                // OnClose
 private:
+    QWidget* FrameHost = nullptr;             // alClient container of the wizard page frames
+    bool FFormShown = false;
     int ActivePage = 0;
     TWizardBaseFrame* WizardBaseFrame = nullptr;
     TWizardPrgFileFrame* WizardPrgFileFrame = nullptr;

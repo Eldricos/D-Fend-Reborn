@@ -31,6 +31,9 @@ public:
 public slots:
     void AbortButtonClick(QObject* Sender);
     void FormCreate(QObject* Sender);
+    // Access for the download worker (THTTPThread was a friend by unit scope in Delphi)
+    void SetWorkEvent1WorkSize(qint64 Value) { FWorkEvent1WorkSize = Value; }
+    void DoWorkEvent(QObject* ASender, int AWorkMode, qint64 AWorkCount) { WorkEvent(ASender, AWorkMode, AWorkCount); }
 private:
     qint64 FWorkEvent1WorkSize = 0;
     void WorkEvent(QObject* ASender, int AWorkMode, qint64 AWorkCount);

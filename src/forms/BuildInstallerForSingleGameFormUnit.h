@@ -31,14 +31,17 @@ public:
     //   DestFileButton.OnClick = DestFileButtonClick
     //   OKButton.OnClick = OKButtonClick
     //   HelpButton.OnClick = HelpButtonClick
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 public slots:
     void FormCreate(QObject* Sender);
     void DestFileButtonClick(QObject* Sender);
     void FormShow(QObject* Sender);
     void OKButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key: Qt::Key_* value
 private:
+    TSaveDialog* SaveDialog = nullptr;  // DFM SaveDialog (non visual)
     bool BuildNSIScript();
 };
 extern TBuildInstallerForSingleGameForm* BuildInstallerForSingleGameForm;

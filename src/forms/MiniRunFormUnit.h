@@ -33,12 +33,15 @@ public:
     //   ListBox.OnDblClick = OKButtonClick
     //   ListBox.OnKeyUp = NameEditKeyUp
     //   NameEdit.OnKeyUp = NameEditKeyUp
+protected:
+    void showEvent(QShowEvent *E) override;
+    bool eventFilter(QObject *O, QEvent *E) override;   // OnKeyUp
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);
     void FormDestroy(QObject* Sender);
     void OKButtonClick(QObject* Sender);
-    void NameEditKeyUp(QObject* Sender, quint16& Key, TShiftState Shift);
+    void NameEditKeyUp(QObject* Sender, int& Key, TShiftState Shift);   // Key: Qt::Key_* value
 private:
     TStringList* List = nullptr;
     TStringList* ListUpper = nullptr;

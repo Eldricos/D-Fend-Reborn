@@ -14,6 +14,7 @@
 #include "VclWidgets.h"
 #include "ui_SetupFrameEditorUnit.h"
 #include "SetupFormUnit.h"
+#include "Dialogs.h"
 
 class TSetupFrameEditor : public QWidget, public ISetupFrame
 {
@@ -42,4 +43,6 @@ public slots:
     void CustomEditChange(QObject* Sender);
     void CustomButtonClick(QObject* Sender);
     void RadioButtonClick(QObject* Sender);
+private:
+    TOpenDialog* PrgOpenDialog = nullptr;  // non visual DFM component
 };

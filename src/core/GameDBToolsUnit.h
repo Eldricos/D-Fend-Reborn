@@ -14,6 +14,9 @@
 
 extern bool GameDBToolsUnitShowDialogs;  // initial value: false
 enum TSortListBy { slbName = 1, slbSetup = 2, slbGenre = 3, slbDeveloper = 4, slbPublisher = 5, slbYear = 6, slbLanguage = 7, slbComment = 8, slbStartCount = 9 };
+// Node images: taken from the TImageList* stored as void* in the tree's
+// dynamic property "vclImageList"; fall back: design time list named by
+// "vclImages" (MainUnit).  ImageIndex is also stored in data(0, Qt::UserRole+1).
 void InitTreeViewForGamesList(QTreeWidget* ATreeView, TGameDB* GameDB);
 void InitListViewForGamesList(TListView* AListView, bool ShowExtraInfo);
 void AddGameToList(TListView* AListView, int& ItemsUsed, TImageList* AListViewImageList, TImageList* AListViewIconImageList, TImageList* AImageList, TGame* Game, bool ShowExtraInfo, const QString& O, const QString& V, TStringList* VUserSt, const QString& T, bool ScreenshotViewMode, bool ScummVMTemplate, bool UseBackgroundColor, TColor BackgroundColor);
@@ -32,6 +35,11 @@ QString GetUserCols();
 void SetSortTypeByListViewCol(int ColumnIndex, TSortListBy& ListSort, bool& ListSortReverse);
 void InitMountingListView(TListView* MountingListView);
 void LoadMountingListView(TListView* MountingListView, TStringList* Mounting);
+// TCheckListBox -> QListWidget: items are checkable, Items.Objects[I] (TGame*)
+// is stored as void* in item->data(Qt::UserRole).
+// TPopupMenu -> QMenu: "Select"/"Unselect" and the category entries are
+// QMenus (Tag in property "tag"), the value entries are QActions whose
+// parent() is the category QMenu; OnClick is called with the QAction.
 void BuildCheckList(QListWidget* CheckListBox, TGameDB* GameDB, bool WithDefaultProfile, bool HideScummVMAndWindowsProfiles, bool HideWindowsProfiles = false);
 void BuildSelectPopupMenu(QMenu* Popup, TGameDB* GameDB, TNotifyEvent OnClick, bool WithDefaultProfile, bool HideWindowsProfiles = false);
 void SelectGamesByPopupMenu(QObject* Sender, QListWidget* CheckListBox);

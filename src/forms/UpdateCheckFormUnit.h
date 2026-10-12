@@ -33,6 +33,8 @@ public slots:
     void FormCreate(QObject* Sender);
     void DFRHomepageLabelClick(QObject* Sender);
     void UpdateButtonClick(QObject* Sender);
+protected:
+    bool eventFilter(QObject *O, QEvent *E) override;
 private:
     void UpdateWindow();
     void SetStatus(QLabel* ALabel, const QString& AText, TColor AColor);

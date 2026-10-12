@@ -47,7 +47,7 @@ public:
     //   ExtraFilesListBox.OnKeyDown = ExtraFilesListBoxKeyDown
     //   Timer.OnTimer = TimerTimer
 public slots:
-    void ExtraDirsListBoxKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void ExtraDirsListBoxKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void ExtraDirsListBoxClick(QObject* Sender);
     void ExtraDirsListBoxDblClick(QObject* Sender);
     void ButtonWork(QObject* Sender);
@@ -56,9 +56,13 @@ public slots:
     void TimerTimer(QObject* Sender);
     void ExtraFilesListBoxClick(QObject* Sender);
     void ExtraFilesListBoxDblClick(QObject* Sender);
-    void ExtraFilesListBoxKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void ExtraFilesListBoxKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void ScreenshotFolderEditChange(QObject* Sender);
+protected:
+    bool eventFilter(QObject* O, QEvent* E) override;  // OnKeyDown of the list boxes
 private:
+    QTimer* Timer = nullptr;            // DFM TTimer
+    TOpenDialog* OpenDialog = nullptr;  // DFM TOpenDialog
     PString FCurrentProfileName;
     PString FCurrentCaptureDir;
     QString FLastCurrentProfileName;

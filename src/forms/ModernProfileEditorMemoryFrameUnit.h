@@ -41,4 +41,5 @@ private:
     QString LastProfileExe;
     PString ProfileExe;
     void SetFreeMemInfo();
+    QTimer* Timer = nullptr;  // DFM TTimer (Interval 100, Enabled False)
 };

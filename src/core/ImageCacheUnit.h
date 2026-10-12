@@ -44,3 +44,6 @@ private:
 };
 extern TImageCache* IconCache;  // initial value: nullptr
 extern TImageCache* PictureCache;  // initial value: nullptr
+
+void ImageCacheUnit_Initialization();
+void ImageCacheUnit_Finalization();

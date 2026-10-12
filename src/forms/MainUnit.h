@@ -29,6 +29,9 @@ public:
     TGameDB* GameDB = nullptr;
     TStringList* DeleteOnExit = nullptr;
     void SelectHelpFile();
+    // true when FormCreate decided that the program must not start (another
+    // instance is already running, ...); src/main.cpp checks it.
+    bool FormCreateAborted() const { return FFormCreateAborted; }
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   DFendReloadedMainForm.OnClose = FormClose
@@ -294,17 +297,18 @@ public slots:
     void ApplicationEventsRestore(QObject* Sender);
     void TrayIconDblClick(QObject* Sender);
     void ScreenshotListViewDblClick(QObject* Sender);
-    void ScreenshotListViewKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    // Key: Qt::Key_* value (Delphi virtual key code in the original)
+    void ScreenshotListViewKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void ScreenshotMenuWork(QObject* Sender);
     void ScreenshotListViewSelectItem(QObject* Sender, TListItem* Item, bool Selected);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void SearchEditChange(QObject* Sender);
     void ListViewInfoTip(QObject* Sender, TListItem* Item, QString& InfoTip);
     void ApplicationEventsIdle(QObject* Sender, bool& Done);
-    void ListViewColumnClick(QObject* Sender, TListColumn Column);
+    void ListViewColumnClick(QObject* Sender, TListColumn* Column);
     void SoundMenuWork(QObject* Sender);
     void SoundListViewDblClick(QObject* Sender);
-    void SoundListViewKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void SoundListViewKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void SoundListViewSelectItem(QObject* Sender, TListItem* Item, bool Selected);
     void TreeViewPopupEditUserFiltersClick(QObject* Sender);
     void IdleAddonTimerTimer(QObject* Sender);
@@ -313,12 +317,13 @@ public slots:
     void FormCloseQuery(QObject* Sender, bool& CanClose);
     void FormResize(QObject* Sender);
     void VideoListViewDblClick(QObject* Sender);
-    void VideoListViewKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void VideoListViewKeyDown(QObject* Sender, int& Key, TShiftState Shift);
     void VideoListViewSelectItem(QObject* Sender, TListItem* Item, bool Selected);
     void VideoMenuWork(QObject* Sender);
     void CapturePageControlChange(QObject* Sender);
-    void MainDragDrop(QObject* Sender, QObject* Source, int X, int Y);
-    void CaptureDragDrop(QObject* Sender, QObject* Source, int X, int Y);
+    // Source: list of the dropped files (TStringList in the Delphi code)
+    void MainDragDrop(QObject* Sender, TStringList* Source, int X, int Y);
+    void CaptureDragDrop(QObject* Sender, TStringList* Source, int X, int Y);
     void ToolbarPopupClick(QObject* Sender);
     void FormClose(QObject* Sender, TCloseAction& Action);
     void FirstRunInfoButtonClick(QObject* Sender);
@@ -328,11 +333,22 @@ public slots:
     void SearchEditTimerTimer(QObject* Sender);
     bool ApplicationEventsHelp(quint16 Command, int Data, bool& CallHelp);
     void TrayIconPopupMenuPopup(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;              // OnShow
+    void closeEvent(QCloseEvent* E) override;            // OnCloseQuery + OnClose
+    void resizeEvent(QResizeEvent* E) override;          // OnResize
+    void moveEvent(QMoveEvent* E) override;              // WM_MOVE
+    void changeEvent(QEvent* E) override;                // ApplicationEvents.OnMinimize/OnRestore
+    void dragEnterEvent(QDragEnterEvent* E) override;    // IDropTarget / WM_DROPFILES
+    void dragMoveEvent(QDragMoveEvent* E) override;
+    void dragLeaveEvent(QDragLeaveEvent* E) override;
+    void dropEvent(QDropEvent* E) override;
+    bool eventFilter(QObject* O, QEvent* E) override;
 private:
     THandle hScreenshotsChangeNotification = 0;
     THandle hConfsChangeNotification = 0;
     bool JustStarted = false;
-    TSortListBy ListSort;
+    TSortListBy ListSort = slbName;
     bool ListSortReverse = false;
     bool OldGamesMenuUsed = false;
     bool StartTrayMinimize = false;
@@ -347,6 +363,36 @@ private:
     TGame* LastSelectedGame = nullptr;
     int LastDragDropEffect = 0;
     THandle hEvent = 0;
+    // --- non visual DFM components
+    TImageList* ImageList = nullptr;
+    TImageList* ListviewImageList = nullptr;
+    TImageList* ListviewIconImageList = nullptr;
+    TImageList* ScreenshotImageList = nullptr;
+    TImageList* ListviewScreenshotImageList = nullptr;
+    TImageList* GameNotesImageList = nullptr;
+    QSystemTrayIcon* TrayIcon = nullptr;
+    QTimer* IdleAddonTimer = nullptr;
+    QTimer* SearchEditTimer = nullptr;
+    QTimer* ApplicationEventsIdleTimer = nullptr;   // ApplicationEvents.OnIdle emulation
+    TOpenDialog* OpenDialog = nullptr;
+    TSaveDialog* SaveDialog = nullptr;
+    TSaveDialog* ScreenshotSaveDialog = nullptr;
+    // --- emulation of assigning nil to VCL event properties
+    bool FFormCreateAborted = false;
+    bool FApplicationEventsOnIdle = true;
+    bool FTreeViewOnChange = true;
+    bool FListViewOnSelectItem = true;
+    bool FSearchEditOnChange = true;
+    bool FSearchEditGray = false;           // SearchEdit.Font.Color=clGray
+    bool FBorderStyleNone = false;          // BorderStyle=bsNone
+    bool FDesignedPosition = false;         // Position=poDesigned set in InitGUI
+    QPoint FDesignedPos;
+    bool FWasMinimized = false;
+    // --- FindFirstChangeNotification emulation
+    QFileSystemWatcher* ScreenshotsWatcher = nullptr;
+    QFileSystemWatcher* ConfsWatcher = nullptr;
+    bool ScreenshotsChanged = false;
+    bool ConfsChanged = false;
     void AfterSetupDialog(const QString& ColWidths, const QString& UserCols);
     void StartCaptureChangeNotify();
     void StopCaptureChangeNotify();
@@ -368,8 +414,8 @@ private:
     void OpenFileInDataProgramFolderMenuWork(QObject* Sender);
     void UpdateAddFromTemplateMenu();
     void AddFromTemplateClick(QObject* Sender);
-    void PostShow(QEvent*& Msg);
-    void PostResize(QEvent*& Msg);
+    void PostShow();       // WM_USER+1
+    void PostResize();     // WM_USER+2
     void LoadGUISetup(bool PrgStart);
     void SetupToolbarHints();
     void LoadListViewGUISetup(TListView* ListView, const QString& Background, const QString& FontColor, int FontSize);
@@ -378,7 +424,7 @@ private:
     void LoadTreeViewGUISetup(QTreeWidget* TreeView, const QString& Background, const QString& FontColor, int FontSize);
     void LoadCoolBarGUISetup(QFrame* CoolBar, const QString& Background, int FontSize);
     void ConfFileCheck();
-    void WMMove(QEvent*& Message);
+    void WMMove();         // WM_MOVE
     void DropImportFile(const QString& FileName, QString& ErrorCode);
     void StartWizard(const QString& ExeFile, bool WindowsExeFile);
     void AddProfile(const QString& ExeFile, const QString& Mode, int TemplateNr);
@@ -386,14 +432,24 @@ private:
     void ZipInfoNotify(QObject* Sender);
     void AddProfileFromQuickStarter(QObject* Sender, const QString& FileName, bool WindowsProfile, bool UseWizard, int TemplateNr);
     void QuickStarterCloseNotify(QObject* Sender);
-    void DisplayResolutionChange(QEvent*& Msg);
+    void DisplayResolutionChange(int BitsPerPixel);   // WM_DISPLAYCHANGE
     void UpdateGamesListByViewFilesFrame(QObject* Sender);
     void RunDOSBoxWithDefaultConfFile();
     void OpenDOSBoxDefaultConfFile();
-    long DragEnter(IDataObject dataObj, int grfKeyState, QPoint pt, int& dwEffect);
+    // IDropTarget (OLE drag & drop of links)
+    long DragEnter(const QMimeData* dataObj, int grfKeyState, QPoint pt, int& dwEffect);
     long DragOver(int grfKeyState, QPoint pt, int& dwEffect);
     long DragLeave();
-    long Drop(IDataObject dataObj, int grfKeyState, QPoint pt, int& dwEffect);
+    long Drop(const QMimeData* dataObj, int grfKeyState, QPoint pt, int& dwEffect);
+    // --- port helpers
+    void SetFormEnabled(bool Enabled);           // Form.Enabled
+    void SetSearchEditText(const QString& S);    // assignment with OnChange=nil
+    void SetSearchEditGray(bool Gray);           // SearchEdit.Font.Color:=clGray/clWindowText
+    void SetListViewShowHint(bool B);            // ListView.ShowHint
+    void SetListViewCustomDraw(bool B);          // ListView.OnAdvancedCustomDrawItem:=nil / handler
+    void UpdateImageListIcons();                 // re-applies ImageIndex icons after icon set changes
+    void ApplicationHelpCommand(quint16 Command, int Data);   // Application.HelpCommand
+    void ApplicationRestore();                   // Application.Restore
 };
 extern TDFendReloadedMainForm* DFendReloadedMainForm;
 extern bool MainWindowShowComplete;  // initial value: false

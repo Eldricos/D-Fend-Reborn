@@ -65,6 +65,9 @@ public slots:
     void ProfileNameEditChange(QObject* Sender);
     void InstallSupportButtonClick(QObject* Sender);
     void FormShow(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+    bool eventFilter(QObject *O, QEvent *E) override;
 private:
     bool JustChanging = false;
     void InitialFolderCheck();

@@ -40,12 +40,20 @@ public slots:
     void SectionComboBoxChange(QObject* Sender);
     void FormClose(QObject* Sender, TCloseAction& Action);
     void FormResize(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key = Qt::Key_* value
     void TabDrawCell(QObject* Sender, int ACol, int ARow, QRect Rect, int State);
     void ShowComboBoxChange(QObject* Sender);
     void ComboBoxDropDown(QObject* Sender);
+protected:
+    void showEvent(QShowEvent* E) override;      // OnShow
+    void resizeEvent(QResizeEvent* E) override;  // OnResize
+    void done(int R) override;                   // OnClose
 private:
     QString DefaultLanguageFile;
+    // TStringGrid emulation: Cells[ACol,ARow] (row 0 = horizontal header, columns 0 and 1 are read only)
+    QString Cells(int ACol, int ARow) const;
+    void SetCells(int ACol, int ARow, const QString& Value);
+    void SetRowCount(int ARowCount);
     int LastSection = 0;
     int ViewMode = 0;
     void LoadSection(const QString& Section);

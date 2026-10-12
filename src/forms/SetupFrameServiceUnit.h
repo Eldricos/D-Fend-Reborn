@@ -53,4 +53,5 @@ public slots:
 private:
     TGameDB* GameDB = nullptr;
     TLinkFile* SearchLinkFile = nullptr;
+    TImageList* ImageList = nullptr;  // non visual DFM component (images of RenamePopupMenu)
 };

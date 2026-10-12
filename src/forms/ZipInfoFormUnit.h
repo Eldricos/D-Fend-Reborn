@@ -14,6 +14,10 @@
 #include "VclWidgets.h"
 #include "ui_ZipInfoFormUnit.h"
 
+// SevenZipVCL TCompressStrength (the 7-Zip/ZipMaster components are replaced by
+// the external 7-Zip program, see ZipInfoFormUnit.cpp)
+enum TCompressStrength : int { SAVE = 0, FAST = 1, NORMAL = 2, MAXIMUM = 3, ULTRA = 4 };
+
 enum TZipMode { zmExtract, zmCreate, zmAdd, zmCreateAndDelete, zmAddAndDelete, zmDeleteOnly };
 enum TDeleteMode { dmNo, dmFiles, dmFolder, dmNoNoWarning, dmFilesNoWarning, dmFolderNoWarning };
 class TZipInfoForm : public TVclForm
@@ -38,34 +42,41 @@ public slots:
     void FormShow(QObject* Sender);
     void FormCreate(QObject* Sender);
     void CancelButtonClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+    bool closeQuery() override;
 private:
-    void* Zip = nullptr;
-    void* SevenZip = nullptr;
+    QProcess* Zip = nullptr;        // TZipMaster -> external 7-Zip (zip format)
+    QProcess* SevenZip = nullptr;   // TSevenZip -> external 7-Zip (7z format)
     quint32 Start = 0;
     QString ZipFile;
     QString Folder;
-    TZipMode Mode;
-    int FCompressStrength = 0;
-    TDeleteMode FDeleteMode;
+    TZipMode Mode = zmExtract;
+    int FCompressStrength = MAXIMUM;
+    TDeleteMode FDeleteMode = dmNo;
     bool FProcessingCanceled = false;
+    bool FWorking = false;
     int SevenZipLastError = 0;
     qint64 SevenZipMaxProgress = 0;
-    void PostShow(QEvent*& Msg);
+    int ZipErrCode = 0;             // Zip.ErrCode / SevenZip.ErrCode
+    QString ZipPasswordValue;       // password entered in ZipPassword
+    void PostShow();                // WM_USER+1
     bool ZipWork();
     void ZipExtract();
     void ZipCreate();
     void ZipAdd();
-    void ZipPassword(QObject* Sender, bool IsZipAction, QString& NewPassword, const QString& ForFile, quint32& RepeatCount, int& Action);
-    void ZipProgress(QObject* Sender, int Details);
+    bool ZipPassword(QObject* Sender, bool IsZipAction, QString& NewPassword, const QString& ForFile);
+    void ZipProgress(QObject* Sender, int TotalPerCent, qint64 TotalPosition);
     bool SevenZipWork();
     void SevenZipExtract();
     void SevenZipCreate();
     void SevenZipPreProgress(QObject* Sender, qint64 MaxProgress);
     void SevenZipProgress(QObject* Sender, const QString& Filename, qint64 FilePosArc, qint64 FilePosFile);
-    void SevenZipExtractOverwrite(QObject* Sender, const QString& FileName, bool& DoOverwrite);
     void SevenZipMessage(QObject* Sender, int ErrCode, const QString& Message, const QString& Filename);
+    // Runs the 7-Zip command line program; returns the exit code (-1: could not be started).
+    int Run7Zip(QProcess*& P, const QStringList& Arguments, const QString& WorkingDir, bool IsZip, qint64 TotalSize, QString& Output);
     bool ExternalWork(int Nr);
-    bool DeleteFolder(const QString& Folder, bool ThisIsMainFolder);
+    bool DeleteFolder(QString Folder, bool ThisIsMainFolder);
     bool DeleteFiles();
 };
 extern TZipInfoForm* ZipInfoForm;

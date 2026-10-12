@@ -36,10 +36,16 @@ public slots:
     void FormShow(QObject* Sender);
     void OKButtonClick(QObject* Sender);
     void FormCreate(QObject* Sender);
-    void ListViewColumnClick(QObject* Sender, TListColumn Column);
+    void ListViewColumnClick(QObject* Sender, TListColumn* Column);
     void ListViewDblClick(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;   // OnShow
 private:
-    TSortListBy ListSort;
+    TImageList* ImageList = nullptr;              // DFM image lists
+    TImageList* ListViewImageList = nullptr;
+    TImageList* ListviewIconImageList = nullptr;
+    bool FFormShown = false;
+    TSortListBy ListSort = slbName;
     bool ListSortReverse = false;
     void LoadList();
 };

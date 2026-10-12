@@ -41,6 +41,11 @@ public slots:
     void OKButtonClick(QObject* Sender);
     void EditChange(QObject* Sender);
     void RadioButtonOrEditChange(QObject* Sender);
+protected:
+    void showEvent(QShowEvent *E) override;
+private:
+    QTimer *ClipboardTimer = nullptr;
+    TOpenDialog *OpenDialog = nullptr;
 };
 extern TPackageManagerRepositoriesEditURLForm* PackageManagerRepositoriesEditURLForm;
 bool ShowPackageManagerRepositoriesEditURLDialog(QWidget* AOwner, QString& AURL);

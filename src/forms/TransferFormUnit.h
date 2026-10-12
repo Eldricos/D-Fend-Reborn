@@ -35,6 +35,8 @@ public:
     //   OKButton.OnClick = OKButtonClick
     //   SelectGenreButton.OnClick = SelectButtonClick
     //   HelpButton.OnClick = HelpButtonClick
+protected:
+    void showEvent(QShowEvent* E) override;  // OnShow
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);
@@ -42,7 +44,7 @@ public slots:
     void OKButtonClick(QObject* Sender);
     void DestPrgDirButtonClick(QObject* Sender);
     void HelpButtonClick(QObject* Sender);
-    void FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift);
+    void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);  // Key: Qt::Key_* value
 private:
     bool CopyInstallation(const QString& DestPrgDir);
     bool GetOperationMode(TOperationMode& OpMode);

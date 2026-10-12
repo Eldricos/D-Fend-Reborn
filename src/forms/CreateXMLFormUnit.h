@@ -23,6 +23,7 @@ public:
     explicit TCreateXMLForm(QWidget *AOwner = nullptr);
     ~TCreateXMLForm() override;
     TGameDB* GameDB = nullptr;
+    TSaveDialog* SaveDialog = nullptr;   // DFM TSaveDialog
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
     //   CreateXMLForm.OnCreate = FormCreate
@@ -31,6 +32,8 @@ public:
     //   SelectNoneButton.OnClick = SelectButtonClick
     //   OKButton.OnClick = OKButtonClick
     //   SelectGenreButton.OnClick = SelectButtonClick
+protected:
+    void showEvent(QShowEvent *E) override;
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);

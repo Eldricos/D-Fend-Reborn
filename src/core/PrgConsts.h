@@ -10,6 +10,19 @@
 #include <QtNetwork>
 #include <functional>
 
+// Sub folder constants containing '\' are file system paths: use the native delimiter.
+inline QString PrgConstsSubPath(const char *S)
+{
+#ifdef Q_OS_WIN
+    return QString::fromLatin1(S);
+#else
+    return QString::fromLatin1(S).replace(QLatin1Char('\\'), QLatin1Char('/'));
+#endif
+}
+
+// Note: the Delphi arrays ProgramExts, IgnoreGameExeFilesIgnore, SetupExeFilesLevel1..4 and
+// ProgramExeFiles are 1-based (Array[1..N]); the QStringList versions below are 0-based.
+
 inline const QString DosBoxFileName = QStringLiteral("DOSBOX.EXE");
 inline const QString DosBoxConfFileName = QStringLiteral("DOSBOX.CONF");
 inline const QString MakeDOSFilesystemFileName = QStringLiteral("mkdosfs.exe");
@@ -43,8 +56,8 @@ inline const QString ScummVMConfFileName = QStringLiteral("scummvm.ini");
 inline const QString QBasicPrgFile = QStringLiteral("QBasic.exe");
 inline const QString QB45PrgFile = QStringLiteral("QB.exe");
 inline const QString QB71PrgFile = QStringLiteral("QBX.exe");
-inline const QString PackageDBSubFolder = QStringLiteral("Settings\\Packages");
-inline const QString PackageDBCacheSubFolder = QStringLiteral("Settings\\Packages\\Cache");
+inline const QString PackageDBSubFolder = PrgConstsSubPath("Settings\\Packages");
+inline const QString PackageDBCacheSubFolder = PrgConstsSubPath("Settings\\Packages\\Cache");
 inline const QString PackageDBMainFileURL = DFRHomepage + QStringLiteral("Packages/DFR.xml?version=%s");
 inline const QString PackageDBTempFile = QStringLiteral("DFRTemp.xml");
 inline const QString PackageDBMainFile = QStringLiteral("DFR.xml");
@@ -56,7 +69,7 @@ inline const QString CacheFile = QStringLiteral("Cache.dfr");
 inline const QString DataReaderUpdateURL = DFRHomepage + QStringLiteral("DataReader/DataReader.xml");
 inline const QString DataReaderConfigFile = QStringLiteral("DataReader.xml");
 inline const QString CheatDBFile = QStringLiteral("Cheats.xml");
-inline const QString CheatDBSearchSubFolder = QStringLiteral("Settings\\AddressSearch");
+inline const QString CheatDBSearchSubFolder = PrgConstsSubPath("Settings\\AddressSearch");
 inline const QString CheatDBUpdateURL = DFRHomepage + QStringLiteral("Cheats/Cheats.xml");
 inline const QString DBGLPackageInfoFile = QStringLiteral("profiles.xml");
 constexpr double MinSupportedDOSBoxVersion = 0.73;
@@ -79,3 +92,6 @@ inline const QStringList AdditionalChecksumDataGoodFileExt = {QStringLiteral("EX
 inline const QStringList AdditionalChecksumDataExcludeFiles = {QStringLiteral("SCORE"), QStringLiteral("DOS4GW"), QStringLiteral("CATALOG"), QStringLiteral("LHARC"), QStringLiteral("ARJ"), QStringLiteral("UNARJ"), QStringLiteral("UNZIP"), QStringLiteral("ORDER"), QStringLiteral("DEALERS"), QStringLiteral("ULTRAMID"), QStringLiteral("UNIVBE"), QStringLiteral("SWCBBS"), QStringLiteral("COMMIT"), QStringLiteral("SETMAIN"), QStringLiteral("IMUSE"), QStringLiteral("CWSDPMI"), QStringLiteral("PSETD"), QStringLiteral("PSETM"), QStringLiteral("ADLIB"), QStringLiteral("ADLIBG"), QStringLiteral("CMIDPAK"), QStringLiteral("CVXSND"), QStringLiteral("DIGISP"), QStringLiteral("DIGVESA"), QStringLiteral("LANTSND"), QStringLiteral("MULTISND"), QStringLiteral("NOSOUND"), QStringLiteral("PAUDIO"), QStringLiteral("SBCLONE"), QStringLiteral("SBLASTER"), QStringLiteral("SMSND"), QStringLiteral("SNDSYS"), QStringLiteral("VMSND"), QStringLiteral("CWSDPMI")};
 extern QString MainSetupFile;
 extern QString OperationModeConfig;
+
+// initialization section (MainSetupFile, OperationModeConfig)
+void PrgConsts_Initialization();

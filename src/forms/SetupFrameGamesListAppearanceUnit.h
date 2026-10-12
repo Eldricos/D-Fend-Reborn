@@ -44,4 +44,5 @@ public slots:
     void NotSetEditChange(QObject* Sender);
 private:
     PString PBaseDir;
+    TOpenDialog* ImageOpenDialog = nullptr;   // DFM TOpenDialog (DefaultExt='jpeg')
 };
