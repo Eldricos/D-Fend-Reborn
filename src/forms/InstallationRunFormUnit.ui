@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>InstallationRunForm</class>
+  <widget class="QDialog" name="InstallationRunForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>341</width><height>177</height></rect></property>
+    <property name="windowTitle"><string>Game installation</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsDialog</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biMinimize,biMaximize</string></property>
+    <property name="vclDesignWidth" stdset="0"><number>341</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>177</number></property>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>8</x><y>8</y><width>325</width><height>41</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>InfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="SourceLabel">
+      <property name="geometry"><rect><x>8</x><y>55</y><width>100</width><height>13</height></rect></property>
+      <property name="text"><string>Select active source:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QListWidget" name="SourceListBox">
+      <property name="geometry"><rect><x>8</x><y>74</y><width>325</width><height>97</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+    </widget>
+  </widget>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

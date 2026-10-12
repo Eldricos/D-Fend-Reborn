@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupForm</class>
+  <widget class="QDialog" name="SetupForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>709</width><height>434</height></rect></property>
+    <property name="windowTitle"><string>SetupForm</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biSystemMenu</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclMinWidth" stdset="0"><number>710</number></property>
+    <property name="vclMinHeight" stdset="0"><number>470</number></property>
+    <property name="vclDesignWidth" stdset="0"><number>709</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>434</number></property>
+    <widget class="QFrame" name="BottomPanel">
+      <property name="geometry"><rect><x>0</x><y>399</y><width>709</width><height>35</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QLabel" name="ModeLabel">
+        <property name="geometry"><rect><x>532</x><y>10</y><width>35</width><height>13</height></rect></property>
+        <property name="text"><string>Modus:</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+      <widget class="QPushButton" name="CancelButton">
+        <property name="geometry"><rect><x>108</x><y>6</y><width>97</width><height>25</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+        <property name="vclCancel" stdset="0"><bool>true</bool></property>
+        <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+      </widget>
+      <widget class="QPushButton" name="OKButton">
+        <property name="geometry"><rect><x>6</x><y>6</y><width>97</width><height>25</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+        <property name="default"><bool>true</bool></property>
+        <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+      </widget>
+      <widget class="QComboBox" name="ModeComboBox">
+        <property name="geometry"><rect><x>590</x><y>6</y><width>110</width><height>21</height></rect></property>
+        <property name="editable"><bool>false</bool></property>
+        <property name="maxVisibleItems"><number>8</number></property>
+        <item><property name="text"><string></string></property></item>
+        <item><property name="text"><string></string></property></item>
+      </widget>
+      <widget class="QPushButton" name="RestoreDefaultValuesButton">
+        <property name="geometry"><rect><x>312</x><y>6</y><width>202</width><height>25</height></rect></property>
+        <property name="text"><string>Vorgabewerte wiederherstellen</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/90dee0f3d0aa0e54.png</normaloff></iconset></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">RestoreDefaultValuesButtonClick</string></property>
+      </widget>
+      <widget class="QPushButton" name="HelpButton">
+        <property name="geometry"><rect><x>210</x><y>6</y><width>97</width><height>25</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="MainPanel">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>709</width><height>399</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="TSplitterWidget" name="Splitter1">
+        <property name="geometry"><rect><x>209</x><y>0</y><width>0</width><height>399</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
+      </widget>
+      <widget class="QTreeWidget" name="Tree">
+        <property name="geometry"><rect><x>0</x><y>0</y><width>209</width><height>399</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
+        <property name="headerHidden"><bool>true</bool></property>
+        <property name="columnCount"><number>1</number></property>
+        <column><property name="text"><string notr="true">1</string></property></column>
+        <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+        <property name="indentation"><number>19</number></property>
+        <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+      </widget>
+      <widget class="QFrame" name="RightPanel">
+        <property name="geometry"><rect><x>212</x><y>0</y><width>497</width><height>399</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+        <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+        <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+        <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+        <widget class="QFrame" name="TopPanel">
+          <property name="geometry"><rect><x>0</x><y>0</y><width>497</width><height>25</height></rect></property>
+          <property name="font">
+            <font>
+              <pointsize>12</pointsize>
+              <bold>true</bold>
+            </font>
+          </property>
+          <property name="styleSheet"><string notr="true">#TopPanel { color: #FFFFFF; background-color: #808080; }</string></property>
+          <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <widget class="QLabel" name="TopPanel_Caption">
+            <property name="geometry"><rect><x>0</x><y>0</y><width>497</width><height>25</height></rect></property>
+            <property name="text"><string>TopPanel</string></property>
+            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignVCenter</set></property>
+            <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+            <property name="vclPanelCaptionOf" stdset="0"><string notr="true">TopPanel</string></property>
+          </widget>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QMenu" name="PopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TSplitterWidget</class>
+      <extends>QFrame</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>OKButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+    <tabstop>RestoreDefaultValuesButton</tabstop>
+    <tabstop>ModeComboBox</tabstop>
+    <tabstop>Tree</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

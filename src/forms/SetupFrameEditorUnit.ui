@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameEditor</class>
+  <widget class="QWidget" name="SetupFrameEditor">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>597</width><height>458</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>597</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>458</number></property>
+    <widget class="QToolButton" name="CustomButton">
+      <property name="geometry"><rect><x>562</x><y>135</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QRadioButton" name="RadioButtonDefault">
+      <property name="geometry"><rect><x>8</x><y>24</y><width>578</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Use default editor for file type</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="FallbackCheckBox">
+      <property name="geometry"><rect><x>23</x><y>47</y><width>571</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>If no default editor is registered for given file type use default editor for txt files</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QRadioButton" name="RadioButtonNotepad">
+      <property name="geometry"><rect><x>8</x><y>80</y><width>578</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Always use Notepad</string></property>
+    </widget>
+    <widget class="QRadioButton" name="RadioButtonCustom">
+      <property name="geometry"><rect><x>8</x><y>112</y><width>578</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Use custom editor</string></property>
+    </widget>
+    <widget class="QLineEdit" name="CustomEdit">
+      <property name="geometry"><rect><x>23</x><y>135</y><width>533</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QCheckBox" name="FixLineWrapCheckBox">
+      <property name="geometry"><rect><x>8</x><y>200</y><width>578</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Automatically fix line wrap on opening files if needed</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>RadioButtonDefault</tabstop>
+    <tabstop>FallbackCheckBox</tabstop>
+    <tabstop>RadioButtonNotepad</tabstop>
+    <tabstop>RadioButtonCustom</tabstop>
+    <tabstop>CustomEdit</tabstop>
+    <tabstop>FixLineWrapCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ListScummVMGamesForm</class>
+  <widget class="QDialog" name="ListScummVMGamesForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>409</width><height>485</height></rect></property>
+    <property name="windowTitle"><string>ListScummVMGamesForm</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsSizeToolWin</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclDesignWidth" stdset="0"><number>409</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>485</number></property>
+    <widget class="QListWidget" name="ListBox">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>409</width><height>451</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+    </widget>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry"><rect><x>0</x><y>451</y><width>409</width><height>34</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QPushButton" name="CloseButton">
+        <property name="geometry"><rect><x>4</x><y>4</y><width>97</width><height>27</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkClose</string></property>
+        <property name="vclModalResult" stdset="0"><string notr="true">mrClose</string></property>
+      </widget>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>ListBox</tabstop>
+    <tabstop>CloseButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

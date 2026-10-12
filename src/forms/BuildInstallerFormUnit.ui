@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>BuildInstallerForm</class>
+  <widget class="QDialog" name="BuildInstallerForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>408</width><height>578</height></rect></property>
+    <property name="windowTitle"><string>Installer-Paket erstellen</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsDialog</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclDesignWidth" stdset="0"><number>408</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>578</number></property>
+    <widget class="QTabWidget" name="PageControl">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>409</width><height>577</height></rect></property>
+      <property name="currentIndex"><number>0</number></property>
+      <widget class="QWidget" name="GamesSheet">
+        <attribute name="title"><string>GamesSheet</string></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>401</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>549</number></property>
+        <widget class="QLabel" name="InfoLabel">
+          <property name="geometry"><rect><x>8</x><y>8</y><width>376</width><height>13</height></rect></property>
+          <property name="text"><string>Bitte wählen Sie die Programme, die in das Paket aufgenommen werden sollen:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QToolButton" name="DestFileButton">
+          <property name="geometry"><rect><x>362</x><y>478</y><width>23</width><height>22</height></rect></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QListWidget" name="ListBox">
+          <property name="geometry"><rect><x>8</x><y>27</y><width>377</width><height>270</height></rect></property>
+          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QPushButton" name="SelectAllButton">
+          <property name="geometry"><rect><x>8</x><y>303</y><width>107</width><height>25</height></rect></property>
+          <property name="text"><string>SelectAllButton</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+        </widget>
+        <widget class="QPushButton" name="SelectNoneButton">
+          <property name="geometry"><rect><x>121</x><y>303</y><width>107</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>1</number></property>
+          <property name="text"><string>SelectNoneButton</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+        </widget>
+        <widget class="QLineEdit" name="DestFileEdit">
+          <property name="geometry"><rect><x>8</x><y>478</y><width>348</width><height>21</height></rect></property>
+        </widget>
+        <widget class="QLabel" name="DestFileEdit_EditLabel">
+          <property name="geometry"><rect><x>8</x><y>462</y><width>112</width><height>13</height></rect></property>
+          <property name="text"><string>Dateiname des Paketes</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+          <property name="vclFocusControl" stdset="0"><string notr="true">DestFileEdit</string></property>
+          <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestFileEdit</string></property>
+        </widget>
+        <widget class="QPushButton" name="OKButton">
+          <property name="geometry"><rect><x>8</x><y>516</y><width>97</width><height>25</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+          <property name="default"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+        </widget>
+        <widget class="QPushButton" name="CancelButton">
+          <property name="geometry"><rect><x>120</x><y>516</y><width>97</width><height>25</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+          <property name="vclCancel" stdset="0"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+        </widget>
+        <widget class="TRadioGroupWidget" name="InstTypeRadioGroup">
+          <property name="geometry"><rect><x>8</x><y>376</y><width>348</width><height>73</height></rect></property>
+          <property name="title"><string>Paket-Erstellung</string></property>
+          <property name="items" stdset="0">
+            <stringlist notr="true">
+              <string>Nur NSI-Skript erstellen</string>
+              <string>Skript erstellen und mit NSIS compilieren</string>
+            </stringlist>
+          </property>
+          <property name="itemIndex" stdset="0"><number>1</number></property>
+        </widget>
+        <widget class="QCheckBox" name="GroupGamesCheckBox">
+          <property name="geometry"><rect><x>8</x><y>344</y><width>376</width><height>17</height></rect></property>
+          <property name="text"><string>Spiele im Installer nach Generes gruppieren</string></property>
+        </widget>
+        <widget class="QPushButton" name="SelectGenreButton">
+          <property name="geometry"><rect><x>234</x><y>303</y><width>107</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>2</number></property>
+          <property name="text"><string>By ...</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+        </widget>
+        <widget class="QPushButton" name="HelpButton">
+          <property name="geometry"><rect><x>234</x><y>516</y><width>97</width><height>25</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TemplatesSheet">
+        <attribute name="title"><string>TemplatesSheet</string></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>401</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>549</number></property>
+        <widget class="QLabel" name="InfoLabel3">
+          <property name="geometry"><rect><x>8</x><y>8</y><width>376</width><height>13</height></rect></property>
+          <property name="text"><string>Bitte wählen Sie die Programme, die in das Paket aufgenommen werden sollen:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QToolButton" name="DestFileButton3">
+          <property name="geometry"><rect><x>362</x><y>478</y><width>23</width><height>22</height></rect></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QListWidget" name="ListBox3">
+          <property name="geometry"><rect><x>8</x><y>27</y><width>377</width><height>270</height></rect></property>
+          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QPushButton" name="SelectAllButton3">
+          <property name="geometry"><rect><x>8</x><y>303</y><width>107</width><height>25</height></rect></property>
+          <property name="text"><string>SelectAllButton</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick3</string></property>
+        </widget>
+        <widget class="QPushButton" name="SelectNoneButton3">
+          <property name="geometry"><rect><x>121</x><y>303</y><width>107</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>1</number></property>
+          <property name="text"><string>SelectNoneButton</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick3</string></property>
+        </widget>
+        <widget class="QPushButton" name="SelectGenreButton3">
+          <property name="geometry"><rect><x>234</x><y>303</y><width>107</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>2</number></property>
+          <property name="text"><string>By ...</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick3</string></property>
+        </widget>
+        <widget class="QCheckBox" name="GroupGamesCheckBox3">
+          <property name="geometry"><rect><x>8</x><y>344</y><width>376</width><height>17</height></rect></property>
+          <property name="text"><string>Spiele im Installer nach Generes gruppieren</string></property>
+        </widget>
+        <widget class="TRadioGroupWidget" name="InstTypeRadioGroup3">
+          <property name="geometry"><rect><x>8</x><y>376</y><width>348</width><height>73</height></rect></property>
+          <property name="title"><string>Paket-Erstellung</string></property>
+          <property name="items" stdset="0">
+            <stringlist notr="true">
+              <string>Nur NSI-Skript erstellen</string>
+              <string>Skript erstellen und mit NSIS compilieren</string>
+            </stringlist>
+          </property>
+          <property name="itemIndex" stdset="0"><number>1</number></property>
+        </widget>
+        <widget class="QLineEdit" name="DestFileEdit3">
+          <property name="geometry"><rect><x>8</x><y>478</y><width>348</width><height>21</height></rect></property>
+        </widget>
+        <widget class="QLabel" name="DestFileEdit3_EditLabel">
+          <property name="geometry"><rect><x>8</x><y>462</y><width>112</width><height>13</height></rect></property>
+          <property name="text"><string>Dateiname des Paketes</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+          <property name="vclFocusControl" stdset="0"><string notr="true">DestFileEdit3</string></property>
+          <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestFileEdit3</string></property>
+        </widget>
+        <widget class="QPushButton" name="OKButton3">
+          <property name="geometry"><rect><x>8</x><y>516</y><width>97</width><height>25</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+          <property name="default"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">OKButton3Click</string></property>
+        </widget>
+        <widget class="QPushButton" name="CancelButton3">
+          <property name="geometry"><rect><x>120</x><y>516</y><width>97</width><height>25</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+          <property name="vclCancel" stdset="0"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+        </widget>
+        <widget class="QPushButton" name="HelpButton3">
+          <property name="geometry"><rect><x>234</x><y>516</y><width>97</width><height>25</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="AutoSetupSheet">
+        <attribute name="title"><string>AutoSetupSheet</string></attribute>
+        <property name="vclDesignWidth" stdset="0"><number>401</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>549</number></property>
+        <widget class="QLabel" name="InfoLabel2">
+          <property name="geometry"><rect><x>8</x><y>8</y><width>376</width><height>13</height></rect></property>
+          <property name="text"><string>Bitte wählen Sie die Programme, die in das Paket aufgenommen werden sollen:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QToolButton" name="DestFileButton2">
+          <property name="geometry"><rect><x>362</x><y>478</y><width>23</width><height>22</height></rect></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        </widget>
+        <widget class="QPushButton" name="OKButton2">
+          <property name="geometry"><rect><x>8</x><y>516</y><width>97</width><height>25</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+          <property name="default"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">OKButton2Click</string></property>
+        </widget>
+        <widget class="QPushButton" name="CancelButton2">
+          <property name="geometry"><rect><x>120</x><y>516</y><width>97</width><height>25</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+          <property name="vclCancel" stdset="0"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+        </widget>
+        <widget class="QListWidget" name="ListBox2">
+          <property name="geometry"><rect><x>8</x><y>27</y><width>377</width><height>270</height></rect></property>
+          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QPushButton" name="SelectAllButton2">
+          <property name="geometry"><rect><x>8</x><y>303</y><width>107</width><height>25</height></rect></property>
+          <property name="text"><string>SelectAllButton</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick2</string></property>
+        </widget>
+        <widget class="QPushButton" name="SelectNoneButton2">
+          <property name="geometry"><rect><x>121</x><y>303</y><width>107</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>1</number></property>
+          <property name="text"><string>SelectNoneButton</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick2</string></property>
+        </widget>
+        <widget class="QPushButton" name="SelectGenreButton2">
+          <property name="geometry"><rect><x>234</x><y>303</y><width>107</width><height>25</height></rect></property>
+          <property name="tag" stdset="0"><number>2</number></property>
+          <property name="text"><string>By ...</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick2</string></property>
+        </widget>
+        <widget class="QCheckBox" name="GroupGamesCheckBox2">
+          <property name="geometry"><rect><x>8</x><y>344</y><width>376</width><height>17</height></rect></property>
+          <property name="text"><string>Spiele im Installer nach Generes gruppieren</string></property>
+        </widget>
+        <widget class="TRadioGroupWidget" name="InstTypeRadioGroup2">
+          <property name="geometry"><rect><x>8</x><y>376</y><width>348</width><height>73</height></rect></property>
+          <property name="title"><string>Paket-Erstellung</string></property>
+          <property name="items" stdset="0">
+            <stringlist notr="true">
+              <string>Nur NSI-Skript erstellen</string>
+              <string>Skript erstellen und mit NSIS compilieren</string>
+            </stringlist>
+          </property>
+          <property name="itemIndex" stdset="0"><number>1</number></property>
+        </widget>
+        <widget class="QLineEdit" name="DestFileEdit2">
+          <property name="geometry"><rect><x>8</x><y>478</y><width>348</width><height>21</height></rect></property>
+        </widget>
+        <widget class="QLabel" name="DestFileEdit2_EditLabel">
+          <property name="geometry"><rect><x>8</x><y>462</y><width>112</width><height>13</height></rect></property>
+          <property name="text"><string>Dateiname des Paketes</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+          <property name="vclFocusControl" stdset="0"><string notr="true">DestFileEdit2</string></property>
+          <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestFileEdit2</string></property>
+        </widget>
+        <widget class="QPushButton" name="HelpButton2">
+          <property name="geometry"><rect><x>234</x><y>516</y><width>97</width><height>25</height></rect></property>
+          <property name="text"><string></string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QMenu" name="PopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QMenu" name="PopupMenu2">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QMenu" name="PopupMenu3">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TRadioGroupWidget</class>
+      <extends>QGroupBox</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>PageControl</tabstop>
+    <tabstop>ListBox</tabstop>
+    <tabstop>SelectAllButton</tabstop>
+    <tabstop>SelectNoneButton</tabstop>
+    <tabstop>DestFileEdit</tabstop>
+    <tabstop>OKButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>GroupGamesCheckBox</tabstop>
+    <tabstop>SelectGenreButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+    <tabstop>ListBox3</tabstop>
+    <tabstop>SelectAllButton3</tabstop>
+    <tabstop>SelectNoneButton3</tabstop>
+    <tabstop>SelectGenreButton3</tabstop>
+    <tabstop>GroupGamesCheckBox3</tabstop>
+    <tabstop>DestFileEdit3</tabstop>
+    <tabstop>OKButton3</tabstop>
+    <tabstop>CancelButton3</tabstop>
+    <tabstop>HelpButton3</tabstop>
+    <tabstop>OKButton2</tabstop>
+    <tabstop>CancelButton2</tabstop>
+    <tabstop>ListBox2</tabstop>
+    <tabstop>SelectAllButton2</tabstop>
+    <tabstop>SelectNoneButton2</tabstop>
+    <tabstop>SelectGenreButton2</tabstop>
+    <tabstop>GroupGamesCheckBox2</tabstop>
+    <tabstop>DestFileEdit2</tabstop>
+    <tabstop>HelpButton2</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

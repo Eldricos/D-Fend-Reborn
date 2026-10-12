@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>LinkFileEditForm</class>
+  <widget class="QDialog" name="LinkFileEditForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>724</width><height>356</height></rect></property>
+    <property name="windowTitle"><string>LinkFileEditForm</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biSystemMenu,biMaximize</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclMinWidth" stdset="0"><number>740</number></property>
+    <property name="vclMinHeight" stdset="0"><number>250</number></property>
+    <property name="vclDesignWidth" stdset="0"><number>724</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>356</number></property>
+    <widget class="QTableWidget" name="Tab">
+      <property name="geometry"><rect><x>0</x><y>41</y><width>724</width><height>215</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+      <property name="columnCount"><number>2</number></property>
+      <property name="rowCount"><number>4</number></property>
+      <property name="vclFixedCols" stdset="0"><number>0</number></property>
+      <property name="vclFixedRows" stdset="0"><number>1</number></property>
+      <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+      <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+    </widget>
+    <widget class="QFrame" name="TopPanel">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>724</width><height>41</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QPushButton" name="AddButton">
+        <property name="geometry"><rect><x>8</x><y>8</y><width>113</width><height>25</height></rect></property>
+        <property name="text"><string>AddButton</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+      </widget>
+      <widget class="QPushButton" name="DeleteButton">
+        <property name="geometry"><rect><x>127</x><y>8</y><width>113</width><height>25</height></rect></property>
+        <property name="tag" stdset="0"><number>1</number></property>
+        <property name="text"><string>DeleteButton</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+      </widget>
+      <widget class="QPushButton" name="MoveUpButton">
+        <property name="geometry"><rect><x>246</x><y>8</y><width>113</width><height>25</height></rect></property>
+        <property name="tag" stdset="0"><number>2</number></property>
+        <property name="text"><string>MoveUpButton</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0ae3fe79a233a82b.png</normaloff></iconset></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+      </widget>
+      <widget class="QPushButton" name="MoveDownButton">
+        <property name="geometry"><rect><x>365</x><y>8</y><width>113</width><height>25</height></rect></property>
+        <property name="tag" stdset="0"><number>3</number></property>
+        <property name="text"><string>MoveDownButton</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1caf3e36d49c7929.png</normaloff></iconset></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+      </widget>
+      <widget class="QPushButton" name="ImportButton">
+        <property name="geometry"><rect><x>484</x><y>8</y><width>113</width><height>25</height></rect></property>
+        <property name="tag" stdset="0"><number>4</number></property>
+        <property name="text"><string>ImportButton</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/22757710f9f65b9c.png</normaloff></iconset></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+      </widget>
+      <widget class="QPushButton" name="ExportButton">
+        <property name="geometry"><rect><x>603</x><y>8</y><width>113</width><height>25</height></rect></property>
+        <property name="tag" stdset="0"><number>5</number></property>
+        <property name="text"><string>ExportButton</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8e942893982b8939.png</normaloff></iconset></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="BottomPanel">
+      <property name="geometry"><rect><x>0</x><y>315</y><width>724</width><height>41</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QPushButton" name="OKButton">
+        <property name="geometry"><rect><x>8</x><y>8</y><width>97</width><height>25</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+        <property name="default"><bool>true</bool></property>
+        <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+      </widget>
+      <widget class="QPushButton" name="CancelButton">
+        <property name="geometry"><rect><x>120</x><y>8</y><width>97</width><height>25</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+        <property name="vclCancel" stdset="0"><bool>true</bool></property>
+        <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+      </widget>
+      <widget class="QPushButton" name="HelpButton">
+        <property name="geometry"><rect><x>232</x><y>8</y><width>97</width><height>25</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="InfoPanel">
+      <property name="geometry"><rect><x>0</x><y>256</y><width>724</width><height>59</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QLabel" name="InfoLabel">
+        <property name="geometry"><rect><x>8</x><y>8</y><width>702</width><height>45</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+        <property name="text"><string>InfoLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="wordWrap"><bool>true</bool></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      </widget>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>Tab</tabstop>
+    <tabstop>AddButton</tabstop>
+    <tabstop>DeleteButton</tabstop>
+    <tabstop>MoveUpButton</tabstop>
+    <tabstop>MoveDownButton</tabstop>
+    <tabstop>ImportButton</tabstop>
+    <tabstop>ExportButton</tabstop>
+    <tabstop>OKButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

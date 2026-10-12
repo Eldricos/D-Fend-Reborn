@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameFreeDOS</class>
+  <widget class="QWidget" name="SetupFrameFreeDOS">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>638</width><height>429</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>638</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>429</number></property>
+    <widget class="QToolButton" name="PathFREEDOSButton">
+      <property name="geometry"><rect><x>594</x><y>31</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>16</x><y>117</y><width>601</width><height>60</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>InfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="FreeDOSDownloadURLInfo">
+      <property name="geometry"><rect><x>16</x><y>64</y><width>158</width><height>13</height></rect></property>
+      <property name="text"><string>You can download FreeDOS from</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="FreeDOSDownloadURL">
+      <property name="geometry"><rect><x>16</x><y>83</y><width>109</width><height>13</height></rect></property>
+      <property name="text"><string>FreeDOSDownloadURL</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLineEdit" name="PathFREEDOSEdit">
+      <property name="geometry"><rect><x>16</x><y>32</y><width>572</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="PathFREEDOSEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>86</width><height>13</height></rect></property>
+      <property name="text"><string>PathFREEDOSEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">PathFREEDOSEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">PathFREEDOSEdit</string></property>
+    </widget>
+  </widget>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

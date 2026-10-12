@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameUpdate</class>
+  <widget class="QWidget" name="SetupFrameUpdate">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>583</width><height>282</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>583</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>282</number></property>
+    <widget class="QLabel" name="DataReaderInfoLabel">
+      <property name="geometry"><rect><x>16</x><y>174</y><width>199</width><height>13</height></rect></property>
+      <property name="text"><string>Mobygames reader configuration update:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="PackagesLabel">
+      <property name="geometry"><rect><x>16</x><y>80</y><width>102</width><height>13</height></rect></property>
+      <property name="text"><string>Package lists update:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="CheatsLabel">
+      <property name="geometry"><rect><x>16</x><y>126</y><width>86</width><height>13</height></rect></property>
+      <property name="text"><string>Cheats database:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="ProgramUpdateInfoLabel">
+      <property name="geometry"><rect><x>16</x><y>8</y><width>81</width><height>13</height></rect></property>
+      <property name="text"><string>Program update:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="UpdateCheckBox">
+      <property name="geometry"><rect><x>16</x><y>48</y><width>553</width><height>17</height></rect></property>
+      <property name="text"><string>Kennung der aktuellen Version in die Abfrage-URL integrieren</string></property>
+    </widget>
+    <widget class="QComboBox" name="DataReaderComboBox">
+      <property name="geometry"><rect><x>16</x><y>189</y><width>401</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="PackagesComboBox">
+      <property name="geometry"><rect><x>16</x><y>95</y><width>401</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QPushButton" name="UpdateButton">
+      <property name="geometry"><rect><x>16</x><y>236</y><width>169</width><height>25</height></rect></property>
+      <property name="text"><string>Search for updates now</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/e25f5585dc4c1fa1.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QComboBox" name="CheatsComboBox">
+      <property name="geometry"><rect><x>16</x><y>141</y><width>401</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="ProgramUpdateComboBox">
+      <property name="geometry"><rect><x>16</x><y>23</y><width>401</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>ProgramUpdateComboBox</tabstop>
+    <tabstop>UpdateCheckBox</tabstop>
+    <tabstop>PackagesComboBox</tabstop>
+    <tabstop>CheatsComboBox</tabstop>
+    <tabstop>DataReaderComboBox</tabstop>
+    <tabstop>UpdateButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

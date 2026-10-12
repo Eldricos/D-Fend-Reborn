@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>TemplateForm</class>
+  <widget class="QDialog" name="TemplateForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>705</width><height>511</height></rect></property>
+    <property name="windowTitle"><string>Vorlagen</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biSystemMenu,biMaximize</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclDesignWidth" stdset="0"><number>705</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>511</number></property>
+    <layout class="QVBoxLayout" name="vclMenuLayout" stretch="0,1">
+      <property name="spacing"><number>0</number></property>
+      <property name="leftMargin"><number>0</number></property>
+      <property name="topMargin"><number>0</number></property>
+      <property name="rightMargin"><number>0</number></property>
+      <property name="bottomMargin"><number>0</number></property>
+      <item>
+        <widget class="QMenuBar" name="MainMenu">
+          <widget class="QMenu" name="MenuFile">
+            <property name="title"><string>&amp;File</string></property>
+            <widget class="QMenu" name="MenuFileUse">
+              <property name="title"><string>&amp;Use</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/2.png</normaloff></iconset></property>
+              <addaction name="MenuFileUseAsProfile"/>
+              <addaction name="MenuFileUseAsDefault"/>
+            </widget>
+            <addaction name="MenuFileUse"/>
+            <addaction name="N2"/>
+            <addaction name="MenuFileClose"/>
+          </widget>
+          <widget class="QMenu" name="MenuEdit">
+            <property name="title"><string>&amp;Edit</string></property>
+            <widget class="QMenu" name="MenuEditAdd">
+              <property name="title"><string>&amp;Add...</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/3.png</normaloff></iconset></property>
+              <addaction name="MenuEditAddNewTemplate"/>
+              <addaction name="MenuEditAddTemplateFromProfile"/>
+            </widget>
+            <widget class="QMenu" name="MenuEditAdd2">
+              <property name="title"><string>&amp;Add...</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/3.png</normaloff></iconset></property>
+              <addaction name="MenuEditAdd2NewTemplate"/>
+              <addaction name="MenuEditAdd2TemplateFromProfile"/>
+            </widget>
+            <addaction name="MenuEditAdd"/>
+            <addaction name="MenuEditAdd2"/>
+            <addaction name="MenuEditEdit"/>
+            <addaction name="MenuEditEdit2"/>
+            <addaction name="MenuEditEditMultipleTemplates"/>
+            <addaction name="MenuEditEditMultipleTemplates2"/>
+            <addaction name="MenuEditCopy"/>
+            <addaction name="MenuEditCopy2"/>
+            <addaction name="MenuEditDelete"/>
+            <addaction name="MenuEditDelete2"/>
+            <addaction name="N3"/>
+            <addaction name="MenuEditCheck"/>
+          </widget>
+          <widget class="QMenu" name="MenuHelp">
+            <property name="title"><string>&amp;Help</string></property>
+            <addaction name="MenuHelpHelp"/>
+          </widget>
+          <addaction name="MenuFile"/>
+          <addaction name="MenuEdit"/>
+          <addaction name="MenuHelp"/>
+        </widget>
+      </item>
+      <item>
+        <widget class="QWidget" name="vclClientArea">
+          <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+          <property name="vclDesignWidth" stdset="0"><number>705</number></property>
+          <property name="vclDesignHeight" stdset="0"><number>511</number></property>
+          <widget class="QTabWidget" name="PageControl">
+            <property name="geometry"><rect><x>0</x><y>52</y><width>705</width><height>440</height></rect></property>
+            <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+            <property name="currentIndex"><number>0</number></property>
+            <widget class="QWidget" name="TemplateTab">
+              <attribute name="title"><string>TemplateTab</string></attribute>
+              <property name="vclDesignWidth" stdset="0"><number>697</number></property>
+              <property name="vclDesignHeight" stdset="0"><number>412</number></property>
+              <widget class="TListView" name="ListView">
+                <property name="geometry"><rect><x>0</x><y>0</y><width>697</width><height>412</height></rect></property>
+                <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+                <property name="vclPopupMenu" stdset="0"><string notr="true">PopupMenu</string></property>
+                <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+                <property name="readOnly" stdset="0"><bool>false</bool></property>
+                <property name="vclSmallImages" stdset="0"><string notr="true">ListViewImageList</string></property>
+              </widget>
+            </widget>
+            <widget class="QWidget" name="AutoSetupSheet">
+              <attribute name="title"><string>AutoSetupSheet</string></attribute>
+              <property name="vclDesignWidth" stdset="0"><number>697</number></property>
+              <property name="vclDesignHeight" stdset="0"><number>412</number></property>
+              <widget class="TListView" name="ListView2">
+                <property name="geometry"><rect><x>0</x><y>0</y><width>697</width><height>412</height></rect></property>
+                <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+                <property name="vclPopupMenu" stdset="0"><string notr="true">PopupMenu2</string></property>
+                <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+                <property name="readOnly" stdset="0"><bool>false</bool></property>
+                <property name="vclSmallImages" stdset="0"><string notr="true">ListViewImageList</string></property>
+              </widget>
+            </widget>
+          </widget>
+          <widget class="QStatusBar" name="StatusBar">
+            <property name="geometry"><rect><x>0</x><y>492</y><width>705</width><height>19</height></rect></property>
+            <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+            <property name="sizeGripEnabled"><bool>false</bool></property>
+            <property name="vclPanelWidths" stdset="0"><string notr="true">300,300,50</string></property>
+          </widget>
+          <widget class="QFrame" name="CoolBar">
+            <property name="geometry"><rect><x>0</x><y>0</y><width>705</width><height>26</height></rect></property>
+            <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+            <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+            <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+            <property name="vclClass" stdset="0"><string notr="true">TCoolBar</string></property>
+            <widget class="QToolBar" name="ToolBar">
+              <property name="geometry"><rect><x>2</x><y>0</y><width>703</width><height>26</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+              <property name="movable"><bool>false</bool></property>
+              <property name="floatable"><bool>false</bool></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+              <property name="vclButtonWidth" stdset="0"><number>90</number></property>
+              <property name="vclButtonHeight" stdset="0"><number>22</number></property>
+              <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+              <addaction name="CloseButton"/>
+              <addaction name="ToolButton7"/>
+              <addaction name="UseButton"/>
+              <addaction name="ToolButton3"/>
+              <addaction name="AddButton"/>
+              <addaction name="EditButton"/>
+              <addaction name="DeleteButton"/>
+              <addaction name="ToolButton4"/>
+              <addaction name="HelpButton"/>
+            </widget>
+          </widget>
+          <widget class="QFrame" name="CoolBar1">
+            <property name="geometry"><rect><x>0</x><y>26</y><width>705</width><height>26</height></rect></property>
+            <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+            <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+            <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+            <property name="vclClass" stdset="0"><string notr="true">TCoolBar</string></property>
+            <widget class="QToolBar" name="ToolBar2">
+              <property name="geometry"><rect><x>2</x><y>0</y><width>703</width><height>26</height></rect></property>
+              <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+              <property name="movable"><bool>false</bool></property>
+              <property name="floatable"><bool>false</bool></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+              <property name="vclButtonWidth" stdset="0"><number>90</number></property>
+              <property name="vclButtonHeight" stdset="0"><number>22</number></property>
+              <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+              <addaction name="CloseButton2"/>
+              <addaction name="ToolButton2"/>
+              <addaction name="AddButton2"/>
+              <addaction name="EditButton2"/>
+              <addaction name="DeleteButton2"/>
+              <addaction name="ToolButton1"/>
+              <addaction name="HelpButton2"/>
+            </widget>
+          </widget>
+          <widget class="QMenu" name="PopupMenu">
+            <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+            <widget class="QMenu" name="PopupUse">
+              <property name="title"><string>&amp;Verwenden</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/2.png</normaloff></iconset></property>
+              <addaction name="PopupUseProfile"/>
+              <addaction name="PopupUseDefault"/>
+            </widget>
+            <addaction name="PopupUse"/>
+            <addaction name="N1"/>
+            <addaction name="PopupEdit"/>
+            <addaction name="PopupCopy"/>
+            <addaction name="PopupDel"/>
+          </widget>
+          <widget class="QMenu" name="UsePopupMenu">
+            <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+            <addaction name="PopupUseProfile2"/>
+            <addaction name="PopupUseDefault2"/>
+          </widget>
+          <widget class="QMenu" name="AddPopupMenu">
+            <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+            <addaction name="PopupAddNew"/>
+            <addaction name="PopupAddFromProfile"/>
+          </widget>
+          <widget class="QMenu" name="AddPopupMenu2">
+            <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+            <addaction name="PopupAddNew2"/>
+            <addaction name="PopupAddFromProfile2"/>
+          </widget>
+          <widget class="QMenu" name="PopupMenu2">
+            <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+            <addaction name="PopupEdit2"/>
+            <addaction name="PopupCopy2"/>
+            <addaction name="PopupDel2"/>
+          </widget>
+        </widget>
+      </item>
+    </layout>
+    <action name="MenuFileUseAsProfile">
+      <property name="text"><string>für neues &amp;Profile</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+    </action>
+    <action name="MenuFileUseAsDefault">
+      <property name="text"><string>als neues &amp;Vorgabeprofil</string></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+    </action>
+    <action name="MenuFileClose">
+      <property name="text"><string>&amp;Close</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/1.png</normaloff></iconset></property>
+    </action>
+    <action name="N2">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuEditAddNewTemplate">
+      <property name="text"><string>neue Vorlage</string></property>
+      <property name="shortcut"><string notr="true">Ins</string></property>
+      <property name="tag" stdset="0"><number>7</number></property>
+    </action>
+    <action name="MenuEditAddTemplateFromProfile">
+      <property name="text"><string>Vorlage von Profil</string></property>
+      <property name="tag" stdset="0"><number>8</number></property>
+    </action>
+    <action name="MenuEditAdd2NewTemplate">
+      <property name="text"><string>neue Vorlage</string></property>
+      <property name="shortcut"><string notr="true">Ins</string></property>
+      <property name="tag" stdset="0"><number>13</number></property>
+    </action>
+    <action name="MenuEditAdd2TemplateFromProfile">
+      <property name="text"><string>Vorlage von Profil</string></property>
+      <property name="tag" stdset="0"><number>14</number></property>
+    </action>
+    <action name="MenuEditEdit">
+      <property name="text"><string>Edit...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F2</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="MenuEditEdit2">
+      <property name="text"><string>Edit...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F2</string></property>
+      <property name="tag" stdset="0"><number>11</number></property>
+    </action>
+    <action name="MenuEditEditMultipleTemplates">
+      <property name="text"><string>Edit multiple templates...</string></property>
+      <property name="tag" stdset="0"><number>16</number></property>
+    </action>
+    <action name="MenuEditEditMultipleTemplates2">
+      <property name="text"><string>Edit multiple templates...</string></property>
+      <property name="tag" stdset="0"><number>17</number></property>
+    </action>
+    <action name="MenuEditCopy">
+      <property name="text"><string>Copy...</string></property>
+      <property name="shortcut"><string notr="true">Shift+Ins</string></property>
+      <property name="tag" stdset="0"><number>9</number></property>
+    </action>
+    <action name="MenuEditCopy2">
+      <property name="text"><string>Copy...</string></property>
+      <property name="shortcut"><string notr="true">Shift+Ins</string></property>
+      <property name="tag" stdset="0"><number>15</number></property>
+    </action>
+    <action name="MenuEditDelete">
+      <property name="text"><string>Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="MenuEditDelete2">
+      <property name="text"><string>Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>12</number></property>
+    </action>
+    <action name="MenuEditCheck">
+      <property name="text"><string>Check for duplicate checksums...</string></property>
+      <property name="tag" stdset="0"><number>19</number></property>
+    </action>
+    <action name="N3">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="MenuHelpHelp">
+      <property name="text"><string>&amp;Help</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/6.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F1</string></property>
+      <property name="tag" stdset="0"><number>18</number></property>
+    </action>
+    <action name="CloseButton">
+      <property name="text"><string>CloseButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/1.png</normaloff></iconset></property>
+    </action>
+    <action name="ToolButton7">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="UseButton">
+      <property name="text"><string>UseButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/2.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="ToolButton3">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="AddButton">
+      <property name="text"><string>AddButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/3.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="EditButton">
+      <property name="text"><string>EditButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="DeleteButton">
+      <property name="text"><string>DeleteButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="ToolButton4">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="HelpButton">
+      <property name="text"><string>HelpButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/6.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>18</number></property>
+    </action>
+    <action name="CloseButton2">
+      <property name="text"><string>CloseButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/1.png</normaloff></iconset></property>
+    </action>
+    <action name="ToolButton2">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="AddButton2">
+      <property name="text"><string>AddButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/3.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>10</number></property>
+    </action>
+    <action name="EditButton2">
+      <property name="text"><string>EditButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>11</number></property>
+    </action>
+    <action name="DeleteButton2">
+      <property name="text"><string>DeleteButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>12</number></property>
+    </action>
+    <action name="ToolButton1">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="HelpButton2">
+      <property name="text"><string>HelpButton2</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/6.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>18</number></property>
+    </action>
+    <action name="PopupUseProfile">
+      <property name="text"><string>für neues &amp;Profile</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+    </action>
+    <action name="PopupUseDefault">
+      <property name="text"><string>als neues &amp;Vorgabeprofil</string></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+    </action>
+    <action name="PopupEdit">
+      <property name="text"><string>&amp;Bearbeiten</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F2</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="PopupCopy">
+      <property name="text"><string>Kopieren...</string></property>
+      <property name="shortcut"><string notr="true">Shift+Ins</string></property>
+      <property name="tag" stdset="0"><number>9</number></property>
+    </action>
+    <action name="PopupDel">
+      <property name="text"><string>&amp;Löschen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="N1">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="PopupUseProfile2">
+      <property name="text"><string>für neues &amp;Profile</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+    </action>
+    <action name="PopupUseDefault2">
+      <property name="text"><string>als neues &amp;Vorgabeprofil</string></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+    </action>
+    <action name="PopupAddNew">
+      <property name="text"><string>neue Vorlage</string></property>
+      <property name="tag" stdset="0"><number>7</number></property>
+    </action>
+    <action name="PopupAddFromProfile">
+      <property name="text"><string>Vorlage von Profil</string></property>
+      <property name="tag" stdset="0"><number>8</number></property>
+    </action>
+    <action name="PopupAddNew2">
+      <property name="text"><string>neue Vorlage</string></property>
+      <property name="tag" stdset="0"><number>13</number></property>
+    </action>
+    <action name="PopupAddFromProfile2">
+      <property name="text"><string>Vorlage von Profil</string></property>
+      <property name="tag" stdset="0"><number>14</number></property>
+    </action>
+    <action name="PopupEdit2">
+      <property name="text"><string>&amp;Bearbeiten</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/4.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">F2</string></property>
+      <property name="tag" stdset="0"><number>11</number></property>
+    </action>
+    <action name="PopupCopy2">
+      <property name="text"><string>Kopieren...</string></property>
+      <property name="shortcut"><string notr="true">Shift+Ins</string></property>
+      <property name="tag" stdset="0"><number>15</number></property>
+    </action>
+    <action name="PopupDel2">
+      <property name="text"><string>&amp;Löschen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/TemplateFormUnit/ImageList/5.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>12</number></property>
+    </action>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TListView</class>
+      <extends>QWidget</extends>
+      <header>ComCtrls.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>PageControl</tabstop>
+    <tabstop>ListView</tabstop>
+    <tabstop>ListView2</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

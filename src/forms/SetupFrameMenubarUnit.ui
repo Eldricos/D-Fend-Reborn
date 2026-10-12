@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameMenubar</class>
+  <widget class="QWidget" name="SetupFrameMenubar">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>451</width><height>227</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>451</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>227</number></property>
+    <widget class="QLabel" name="ShowMenubarLabel">
+      <property name="geometry"><rect><x>30</x><y>48</y><width>403</width><height>57</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>ShowMenubarLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QCheckBox" name="ShowMenubarCheckBox">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>417</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Show menubar</string></property>
+    </widget>
+  </widget>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

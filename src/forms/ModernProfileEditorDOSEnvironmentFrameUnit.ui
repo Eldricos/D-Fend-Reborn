@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorDOSEnvironmentFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorDOSEnvironmentFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>546</width><height>456</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>546</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>456</number></property>
+    <widget class="QLabel" name="ReportedDOSVersionLabel">
+      <property name="geometry"><rect><x>24</x><y>24</y><width>126</width><height>13</height></rect></property>
+      <property name="text"><string>ReportedDOSVersionLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="CustomSetsEnvLabel">
+      <property name="geometry"><rect><x>25</x><y>181</y><width>104</width><height>13</height></rect></property>
+      <property name="text"><string>Umgebungsvariablen:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="Use4DOSInfoLabel">
+      <property name="geometry"><rect><x>40</x><y>111</y><width>480</width><height>64</height></rect></property>
+      <property name="text"><string>Use4DOSInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QComboBox" name="ReportedDOSVersionComboBox">
+      <property name="geometry"><rect><x>24</x><y>43</y><width>97</width><height>21</height></rect></property>
+      <property name="editable"><bool>true</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QCheckBox" name="Use4DOSCheckBox">
+      <property name="geometry"><rect><x>24</x><y>88</y><width>496</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Use4DOSCheckBox</string></property>
+    </widget>
+    <widget class="TValueListEditorWidget" name="CustomSetsValueListEditor">
+      <property name="geometry"><rect><x>24</x><y>200</y><width>501</width><height>219</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="vclColumnWidths" stdset="0"><string notr="true">150,345</string></property>
+      <property name="keyEdit" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QPushButton" name="CustomSetsEnvAdd">
+      <property name="geometry"><rect><x>25</x><y>425</y><width>105</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Hinzufügen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QPushButton" name="CustomSetsEnvDel">
+      <property name="geometry"><rect><x>138</x><y>425</y><width>105</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="text"><string>Löschen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TValueListEditorWidget</class>
+      <extends>QTableWidget</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>ReportedDOSVersionComboBox</tabstop>
+    <tabstop>Use4DOSCheckBox</tabstop>
+    <tabstop>CustomSetsValueListEditor</tabstop>
+    <tabstop>CustomSetsEnvAdd</tabstop>
+    <tabstop>CustomSetsEnvDel</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

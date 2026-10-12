@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameMoreEmulators</class>
+  <widget class="QWidget" name="SetupFrameMoreEmulators">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>468</width><height>436</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>468</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>436</number></property>
+    <widget class="QToolButton" name="ProgramButton">
+      <property name="geometry"><rect><x>442</x><y>127</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="InterpreterLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>120</width><height>13</height></rect></property>
+      <property name="text"><string>Windows based Emulator</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QToolButton" name="DownButton">
+      <property name="geometry"><rect><x>413</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1caf3e36d49c7929.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="UpButton">
+      <property name="geometry"><rect><x>384</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0ae3fe79a233a82b.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="DelButton">
+      <property name="geometry"><rect><x>355</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="AddButton">
+      <property name="geometry"><rect><x>326</x><y>32</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>16</x><y>264</y><width>420</width><height>153</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>InfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QComboBox" name="ComboBox">
+      <property name="geometry"><rect><x>16</x><y>32</y><width>304</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QLineEdit" name="ExtensionsEdit">
+      <property name="geometry"><rect><x>16</x><y>224</y><width>420</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="ExtensionsEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>208</y><width>70</width><height>13</height></rect></property>
+      <property name="text"><string>ExtensionsEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ExtensionsEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ExtensionsEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="ParametersEdit">
+      <property name="geometry"><rect><x>16</x><y>176</y><width>420</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="ParametersEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>160</y><width>73</width><height>13</height></rect></property>
+      <property name="text"><string>ParametersEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ParametersEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ParametersEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="ProgramEdit">
+      <property name="geometry"><rect><x>16</x><y>128</y><width>420</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="ProgramEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>112</y><width>58</width><height>13</height></rect></property>
+      <property name="text"><string>ProgramEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ProgramEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ProgramEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="NameEdit">
+      <property name="geometry"><rect><x>16</x><y>80</y><width>420</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="NameEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>64</y><width>45</width><height>13</height></rect></property>
+      <property name="text"><string>NameEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">NameEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">NameEdit</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>ComboBox</tabstop>
+    <tabstop>NameEdit</tabstop>
+    <tabstop>ProgramEdit</tabstop>
+    <tabstop>ParametersEdit</tabstop>
+    <tabstop>ExtensionsEdit</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

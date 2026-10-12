@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameDirectories</class>
+  <widget class="QWidget" name="SetupFrameDirectories">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>729</width><height>586</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>729</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>586</number></property>
+    <widget class="QToolButton" name="DataDirButton">
+      <property name="geometry"><rect><x>695</x><y>127</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="GameDirButton">
+      <property name="geometry"><rect><x>695</x><y>79</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="BaseDirButton">
+      <property name="geometry"><rect><x>695</x><y>31</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>16</x><y>216</y><width>702</width><height>65</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>InfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QToolButton" name="CaptureDirButton">
+      <property name="geometry"><rect><x>695</x><y>175</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLineEdit" name="BaseDirEdit">
+      <property name="geometry"><rect><x>16</x><y>32</y><width>665</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="BaseDirEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>54</width><height>13</height></rect></property>
+      <property name="text"><string>BaseDirEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">BaseDirEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">BaseDirEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="GameDirEdit">
+      <property name="geometry"><rect><x>16</x><y>79</y><width>665</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="GameDirEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>63</y><width>58</width><height>13</height></rect></property>
+      <property name="text"><string>GameDirEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">GameDirEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">GameDirEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="DataDirEdit">
+      <property name="geometry"><rect><x>16</x><y>129</y><width>665</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="DataDirEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>113</y><width>54</width><height>13</height></rect></property>
+      <property name="text"><string>DataDirEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">DataDirEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DataDirEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="CaptureDirEdit">
+      <property name="geometry"><rect><x>16</x><y>177</y><width>665</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="CaptureDirEdit_EditLabel">
+      <property name="geometry"><rect><x>16</x><y>161</y><width>70</width><height>13</height></rect></property>
+      <property name="text"><string>CaptureDirEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">CaptureDirEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">CaptureDirEdit</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>BaseDirEdit</tabstop>
+    <tabstop>GameDirEdit</tabstop>
+    <tabstop>DataDirEdit</tabstop>
+    <tabstop>CaptureDirEdit</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

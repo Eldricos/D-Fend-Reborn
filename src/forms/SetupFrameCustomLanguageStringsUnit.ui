@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameCustomLanguageStrings</class>
+  <widget class="QWidget" name="SetupFrameCustomLanguageStrings">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>717</width><height>552</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>717</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>552</number></property>
+    <widget class="QToolButton" name="AddButton">
+      <property name="geometry"><rect><x>595</x><y>15</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="DelButton">
+      <property name="geometry"><rect><x>624</x><y>15</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="UpButton">
+      <property name="geometry"><rect><x>653</x><y>15</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0ae3fe79a233a82b.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="DownButton">
+      <property name="geometry"><rect><x>682</x><y>15</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1caf3e36d49c7929.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>16</x><y>512</y><width>689</width><height>34</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="text"><string>Attention: After changing the program language changes made on this list cannot been undone by pressing "Cancel".</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="EnglsihLabel">
+      <property name="geometry"><rect><x>16</x><y>19</y><width>689</width><height>54</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Setting up Non-English custom translations for the games list is only available if a Non-English program language is selected.</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QComboBox" name="TypeComboBox">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>145</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QTableWidget" name="Tab">
+      <property name="geometry"><rect><x>16</x><y>43</y><width>689</width><height>468</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="columnCount"><number>2</number></property>
+      <property name="rowCount"><number>4</number></property>
+      <property name="vclFixedCols" stdset="0"><number>0</number></property>
+      <property name="vclFixedRows" stdset="0"><number>1</number></property>
+      <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+      <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+      <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+    </widget>
+    <widget class="QMenu" name="AddLinePopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>TypeComboBox</tabstop>
+    <tabstop>Tab</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

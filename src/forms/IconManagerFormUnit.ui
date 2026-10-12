@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>IconManagerForm</class>
+  <widget class="QDialog" name="IconManagerForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>624</width><height>347</height></rect></property>
+    <property name="windowTitle"><string>Icon Manager</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biSystemMenu,biMaximize</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclMinWidth" stdset="0"><number>640</number></property>
+    <property name="vclMinHeight" stdset="0"><number>250</number></property>
+    <property name="vclDesignWidth" stdset="0"><number>624</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>347</number></property>
+    <widget class="QToolButton" name="CustomIconButton">
+      <property name="geometry"><rect><x>593</x><y>268</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="TListView" name="ListView">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>624</width><height>239</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="viewStyle" stdset="0"><string notr="true">vsIcon</string></property>
+      <property name="readOnly" stdset="0"><bool>true</bool></property>
+      <property name="hideSelection" stdset="0"><bool>false</bool></property>
+      <property name="sortType" stdset="0"><string notr="true">stText</string></property>
+      <property name="vclSmallImages" stdset="0"><string notr="true">ImageList</string></property>
+      <property name="vclLargeImages" stdset="0"><string notr="true">ImageList</string></property>
+    </widget>
+    <widget class="QPushButton" name="OKButton">
+      <property name="geometry"><rect><x>8</x><y>314</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+      <property name="default"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="CancelButton">
+      <property name="geometry"><rect><x>111</x><y>314</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+    </widget>
+    <widget class="QPushButton" name="AddButton">
+      <property name="geometry"><rect><x>214</x><y>314</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Add</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">AddButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="DelButton">
+      <property name="geometry"><rect><x>317</x><y>314</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">DelButtonClick</string></property>
+    </widget>
+    <widget class="QRadioButton" name="LibraryIconRadioButton">
+      <property name="geometry"><rect><x>8</x><y>245</y><width>608</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="text"><string>Use icon from list above</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QRadioButton" name="CustomIconRadioButton">
+      <property name="geometry"><rect><x>8</x><y>270</y><width>217</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Use custom icon</string></property>
+    </widget>
+    <widget class="QLineEdit" name="CustomIconEdit">
+      <property name="geometry"><rect><x>224</x><y>268</y><width>358</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+    </widget>
+    <widget class="QPushButton" name="HelpButton">
+      <property name="geometry"><rect><x>420</x><y>314</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="ToolsButton">
+      <property name="geometry"><rect><x>523</x><y>314</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Tools</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/afba2014684d3cd7.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ToolsButtonClick</string></property>
+    </widget>
+    <widget class="QMenu" name="AddPopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+      <addaction name="PopupAddIcon"/>
+      <addaction name="PopupAddIconsFromFolder"/>
+      <addaction name="PopupAddAllIcons"/>
+    </widget>
+    <widget class="QMenu" name="ToolsPopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+      <addaction name="PopupToolsExplorer"/>
+      <addaction name="N1"/>
+      <addaction name="PopupToolsRenameUpper"/>
+      <addaction name="PopupToolsRenameLower"/>
+    </widget>
+    <action name="PopupAddIcon">
+      <property name="text"><string>Add single icon...</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="PopupAddIconsFromFolder">
+      <property name="text"><string>Add all icons from folder...</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="PopupAddAllIcons">
+      <property name="text"><string>Scan games folder and add all icons</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="PopupToolsExplorer">
+      <property name="text"><string>Open icons folder in Explorer</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="PopupToolsRenameUpper">
+      <property name="text"><string>Rename all icons to have upper case ICO extensions</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="PopupToolsRenameLower">
+      <property name="text"><string>Rename all icons to have lower case ico extensions</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="N1">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TListView</class>
+      <extends>QWidget</extends>
+      <header>ComCtrls.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>ListView</tabstop>
+    <tabstop>LibraryIconRadioButton</tabstop>
+    <tabstop>CustomIconRadioButton</tabstop>
+    <tabstop>CustomIconEdit</tabstop>
+    <tabstop>OKButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>AddButton</tabstop>
+    <tabstop>DelButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+    <tabstop>ToolsButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

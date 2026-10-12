@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>PlaySoundForm</class>
+  <widget class="QDialog" name="PlaySoundForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>484</width><height>91</height></rect></property>
+    <property name="windowTitle"><string>PlaySoundForm</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsSizeToolWin</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclMinWidth" stdset="0"><number>500</number></property>
+    <property name="vclMinHeight" stdset="0"><number>125</number></property>
+    <property name="vclDesignWidth" stdset="0"><number>484</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>91</number></property>
+    <widget class="QStatusBar" name="StatusBar">
+      <property name="geometry"><rect><x>0</x><y>72</y><width>484</width><height>19</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="sizeGripEnabled"><bool>false</bool></property>
+      <property name="vclPanelWidths" stdset="0"><string notr="true">100,50</string></property>
+    </widget>
+    <widget class="QSlider" name="TrackBar">
+      <property name="geometry"><rect><x>8</x><y>32</y><width>468</width><height>33</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>100</number></property>
+      <property name="pageStep"><number>5</number></property>
+      <property name="tickInterval"><number>5</number></property>
+      <property name="tickPosition"><enum>QSlider::TicksBelow</enum></property>
+    </widget>
+    <widget class="QFrame" name="CoolBar">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>484</width><height>28</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TCoolBar</string></property>
+      <widget class="QToolBar" name="ToolBar">
+        <property name="geometry"><rect><x>2</x><y>0</y><width>478</width><height>24</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+        <property name="movable"><bool>false</bool></property>
+        <property name="floatable"><bool>false</bool></property>
+        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+        <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+        <property name="vclButtonWidth" stdset="0"><number>100</number></property>
+        <property name="vclButtonHeight" stdset="0"><number>22</number></property>
+        <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+        <property name="vclWrapable" stdset="0"><bool>false</bool></property>
+        <addaction name="PreviousButton"/>
+        <addaction name="NextButton"/>
+        <addaction name="ToolButton1"/>
+        <addaction name="SaveButton"/>
+        <addaction name="ToolButton2"/>
+        <addaction name="PlayPauseButton"/>
+      </widget>
+    </widget>
+    <widget class="QMenu" name="PopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+      <addaction name="MenuSave"/>
+      <addaction name="MenuSaveMp3"/>
+      <addaction name="MenuSaveOgg"/>
+    </widget>
+    <action name="PreviousButton">
+      <property name="text"><string>PreviousButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PlaySoundFormUnit/ImageList/1.png</normaloff></iconset></property>
+    </action>
+    <action name="NextButton">
+      <property name="text"><string>NextButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PlaySoundFormUnit/ImageList/2.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+    </action>
+    <action name="ToolButton1">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="SaveButton">
+      <property name="text"><string>Speichern</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PlaySoundFormUnit/ImageList/0.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+    <action name="ToolButton2">
+      <property name="vclSeparator" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="PlayPauseButton">
+      <property name="text"><string>Play/Pause</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/PlaySoundFormUnit/ImageList/3.png</normaloff></iconset></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+    </action>
+    <action name="MenuSave">
+      <property name="text"><string>Speichern...</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+    </action>
+    <action name="MenuSaveMp3">
+      <property name="text"><string>Speichern als mp3-Datei...</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+    </action>
+    <action name="MenuSaveOgg">
+      <property name="text"><string>Speichern als ogg-Datei...</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+    </action>
+  </widget>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

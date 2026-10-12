@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>DataReaderForm</class>
+  <widget class="QDialog" name="DataReaderForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>592</width><height>494</height></rect></property>
+    <property name="windowTitle"><string>DataReaderForm</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biSystemMenu,biMaximize</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclMinWidth" stdset="0"><number>600</number></property>
+    <property name="vclMinHeight" stdset="0"><number>532</number></property>
+    <property name="vclDesignWidth" stdset="0"><number>592</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>494</number></property>
+    <widget class="QLabel" name="SearchResultsLabel">
+      <property name="geometry"><rect><x>8</x><y>128</y><width>68</width><height>13</height></rect></property>
+      <property name="text"><string>Search results</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SourceLabel">
+      <property name="geometry"><rect><x>8</x><y>6</y><width>58</width><height>13</height></rect></property>
+      <property name="text"><string>Data source</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">SourceComboBox</string></property>
+    </widget>
+    <widget class="QLineEdit" name="GameNameEdit">
+      <property name="geometry"><rect><x>8</x><y>72</y><width>473</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="GameNameEdit_EditLabel">
+      <property name="geometry"><rect><x>8</x><y>56</y><width>72</width><height>13</height></rect></property>
+      <property name="text"><string>GameNameEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">GameNameEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">GameNameEdit</string></property>
+    </widget>
+    <widget class="QPushButton" name="SearchButton">
+      <property name="geometry"><rect><x>495</x><y>70</y><width>89</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="text"><string>Search</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">SearchButtonClick</string></property>
+    </widget>
+    <widget class="QListWidget" name="ListBox">
+      <property name="geometry"><rect><x>8</x><y>147</y><width>201</width><height>310</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akBottom</string></property>
+    </widget>
+    <widget class="QGroupBox" name="GameDataBox">
+      <property name="geometry"><rect><x>232</x><y>128</y><width>352</width><height>329</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="title"><string>GameDataBox</string></property>
+      <widget class="QLabel" name="GenreLabel">
+        <property name="geometry"><rect><x>32</x><y>90</y><width>54</width><height>13</height></rect></property>
+        <property name="text"><string>GenreLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+      <widget class="QLabel" name="DeveloperLabel">
+        <property name="geometry"><rect><x>32</x><y>134</y><width>74</width><height>13</height></rect></property>
+        <property name="text"><string>DeveloperLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+      <widget class="QLabel" name="PublisherLabel">
+        <property name="geometry"><rect><x>32</x><y>178</y><width>68</width><height>13</height></rect></property>
+        <property name="text"><string>PublisherLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+      <widget class="QLabel" name="YearLabel">
+        <property name="geometry"><rect><x>32</x><y>222</y><width>47</width><height>13</height></rect></property>
+        <property name="text"><string>YearLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+      <widget class="QLabel" name="NameLabel">
+        <property name="geometry"><rect><x>32</x><y>42</y><width>54</width><height>13</height></rect></property>
+        <property name="text"><string>GenreLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="GenreCheckBox">
+        <property name="geometry"><rect><x>16</x><y>72</y><width>324</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Genre</string></property>
+        <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="DeveloperCheckBox">
+        <property name="geometry"><rect><x>16</x><y>116</y><width>324</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Developer</string></property>
+        <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="PublisherCheckBox">
+        <property name="geometry"><rect><x>16</x><y>160</y><width>324</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Publisher</string></property>
+        <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="YearCheckBox">
+        <property name="geometry"><rect><x>16</x><y>204</y><width>324</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Year</string></property>
+        <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="DownloadCoverCheckBox">
+        <property name="geometry"><rect><x>16</x><y>248</y><width>324</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Download cover and store it in the capture folder</string></property>
+        <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="NameCheckBox">
+        <property name="geometry"><rect><x>16</x><y>24</y><width>321</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Game name</string></property>
+        <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="DownloadCoverAllCheckBox">
+        <property name="geometry"><rect><x>32</x><y>271</y><width>305</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Download all available images</string></property>
+      </widget>
+      <widget class="QCheckBox" name="DescriptionCheckBox">
+        <property name="geometry"><rect><x>16</x><y>304</y><width>321</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Description</string></property>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="InsertButton">
+      <property name="geometry"><rect><x>16</x><y>463</y><width>97</width><height>25</height></rect></property>
+      <property name="enabled"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Insert data</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/e14ef6f791580315.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">InsertButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="CancelButton">
+      <property name="geometry"><rect><x>128</x><y>463</y><width>97</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+    </widget>
+    <widget class="QCheckBox" name="SearchTypeCheckBox">
+      <property name="geometry"><rect><x>8</x><y>94</y><width>473</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Search for DOS games only</string></property>
+      <property name="checked"><bool>true</bool></property>
+    </widget>
+    <widget class="QComboBox" name="SourceComboBox">
+      <property name="geometry"><rect><x>8</x><y>23</y><width>473</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+      <item><property name="text"><string>The Games DB (thegamesdb.net)</string></property></item>
+      <item><property name="text"><string>Moby Games (www.mobygames.com)</string></property></item>
+      <property name="currentIndex"><number>0</number></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>SourceComboBox</tabstop>
+    <tabstop>GameNameEdit</tabstop>
+    <tabstop>SearchButton</tabstop>
+    <tabstop>ListBox</tabstop>
+    <tabstop>NameCheckBox</tabstop>
+    <tabstop>GenreCheckBox</tabstop>
+    <tabstop>DeveloperCheckBox</tabstop>
+    <tabstop>PublisherCheckBox</tabstop>
+    <tabstop>YearCheckBox</tabstop>
+    <tabstop>DownloadCoverCheckBox</tabstop>
+    <tabstop>DownloadCoverAllCheckBox</tabstop>
+    <tabstop>DescriptionCheckBox</tabstop>
+    <tabstop>InsertButton</tabstop>
+    <tabstop>CancelButton</tabstop>
+    <tabstop>SearchTypeCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

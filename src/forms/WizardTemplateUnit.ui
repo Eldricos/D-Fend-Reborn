@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>WizardTemplateFrame</class>
+  <widget class="QWidget" name="WizardTemplateFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>666</width><height>502</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>666</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>502</number></property>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>8</x><y>16</y><width>617</width><height>65</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Bitte geben Sie an, auf welcher Vorlage das neue Profil angelegt werden soll.</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QFrame" name="Bevel">
+      <property name="geometry"><rect><x>3</x><y>71</y><width>663</width><height>18</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="frameShape"><enum>QFrame::HLine</enum></property>
+      <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TBevel</string></property>
+    </widget>
+    <widget class="QToolButton" name="HelpButton">
+      <property name="geometry"><rect><x>631</x><y>16</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/9d4f31912d33ff58.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="SpeedButton1">
+      <property name="geometry"><rect><x>631</x><y>124</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/9d4f31912d33ff58.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="SpeedButton2">
+      <property name="geometry"><rect><x>631</x><y>178</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/9d4f31912d33ff58.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="SpeedButton3">
+      <property name="geometry"><rect><x>631</x><y>232</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/9d4f31912d33ff58.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="SpeedButton4">
+      <property name="geometry"><rect><x>631</x><y>286</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/9d4f31912d33ff58.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QRadioButton" name="TemplateType1">
+      <property name="geometry"><rect><x>16</x><y>107</y><width>635</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Passende Autosetup Vorlage verwenden (empfohlen)</string></property>
+    </widget>
+    <widget class="QRadioButton" name="TemplateType2">
+      <property name="geometry"><rect><x>16</x><y>161</y><width>561</width><height>17</height></rect></property>
+      <property name="text"><string>Autosetup Vorlage, welche nur vom Dateinamen her passt, verwenden</string></property>
+    </widget>
+    <widget class="QComboBox" name="TemplateType1List">
+      <property name="geometry"><rect><x>32</x><y>125</y><width>593</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="TemplateType2List">
+      <property name="geometry"><rect><x>32</x><y>179</y><width>593</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QRadioButton" name="TemplateType4">
+      <property name="geometry"><rect><x>16</x><y>269</y><width>635</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Benutzervorlage verwenden</string></property>
+    </widget>
+    <widget class="QComboBox" name="TemplateType4List">
+      <property name="geometry"><rect><x>32</x><y>287</y><width>593</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QRadioButton" name="TemplateType5">
+      <property name="geometry"><rect><x>16</x><y>323</y><width>561</width><height>17</height></rect></property>
+      <property name="text"><string>Standard-Assistentenvorlage verwenden</string></property>
+    </widget>
+    <widget class="QRadioButton" name="TemplateType3">
+      <property name="geometry"><rect><x>16</x><y>215</y><width>561</width><height>17</height></rect></property>
+      <property name="text"><string>Beliebige Autosetup Vorlage verwenden</string></property>
+    </widget>
+    <widget class="QComboBox" name="TemplateType3List">
+      <property name="geometry"><rect><x>32</x><y>233</y><width>593</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QFrame" name="InfoPanel">
+      <property name="geometry"><rect><x>8</x><y>91</y><width>467</width><height>89</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="frameShape"><enum>QFrame::Panel</enum></property>
+      <property name="frameShadow"><enum>QFrame::Raised</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QLabel" name="PanelInfoLabel">
+        <property name="geometry"><rect><x>16</x><y>16</y><width>71</width><height>13</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+        <property name="text"><string>PanelInfoLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="wordWrap"><bool>true</bool></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+      <widget class="QPushButton" name="OKButton">
+        <property name="geometry"><rect><x>16</x><y>56</y><width>97</width><height>25</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+        <property name="text"><string>OK</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/e14ef6f791580315.png</normaloff></iconset></property>
+        <property name="default"><bool>true</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+      </widget>
+      <widget class="QPushButton" name="OperationModeInfoButton">
+        <property name="geometry"><rect><x>128</x><y>56</y><width>177</width><height>25</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+        <property name="text"><string>Operation mode info</string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">OperationModeInfoButtonClick</string></property>
+      </widget>
+    </widget>
+    <widget class="QGroupBox" name="TemplateType5GroupBox">
+      <property name="geometry"><rect><x>32</x><y>346</y><width>619</width><height>130</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="title"><string>Einstellungen zur Standard-Assistentenvorlage</string></property>
+      <widget class="QLabel" name="CPULabel">
+        <property name="geometry"><rect><x>8</x><y>24</y><width>68</width><height>13</height></rect></property>
+        <property name="text"><string>CPU-Leistung:</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      </widget>
+      <widget class="QComboBox" name="CPUComboBox">
+        <property name="geometry"><rect><x>88</x><y>21</y><width>515</width><height>21</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="tag" stdset="0"><number>4</number></property>
+        <property name="editable"><bool>false</bool></property>
+        <property name="maxVisibleItems"><number>8</number></property>
+        <item><property name="text"><string>gering (Jump&amp;&amp;Run- und Brett-Spiele)</string></property></item>
+        <item><property name="text"><string>mehr (grafisch aufwendige Spiele)</string></property></item>
+        <item><property name="text"><string>viel (3D-Spiele)</string></property></item>
+        <property name="currentIndex"><number>0</number></property>
+      </widget>
+      <widget class="QCheckBox" name="MoreRAMCheckBox">
+        <property name="geometry"><rect><x>8</x><y>102</y><width>592</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="tag" stdset="0"><number>4</number></property>
+        <property name="text"><string>Programm benötigt viel Arbeitsspeicher</string></property>
+      </widget>
+      <widget class="QCheckBox" name="CloseDosBoxOnExitCheckBox">
+        <property name="geometry"><rect><x>8</x><y>79</y><width>592</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="tag" stdset="0"><number>4</number></property>
+        <property name="text"><string>DosBox beim Beenden schließen</string></property>
+        <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="StartFullscreenCheckBox">
+        <property name="geometry"><rect><x>8</x><y>56</y><width>592</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="tag" stdset="0"><number>4</number></property>
+        <property name="text"><string>Im Vollbildmodus starten</string></property>
+        <property name="checked"><bool>true</bool></property>
+      </widget>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>TemplateType1</tabstop>
+    <tabstop>TemplateType1List</tabstop>
+    <tabstop>TemplateType2</tabstop>
+    <tabstop>TemplateType2List</tabstop>
+    <tabstop>TemplateType3</tabstop>
+    <tabstop>TemplateType3List</tabstop>
+    <tabstop>TemplateType4</tabstop>
+    <tabstop>TemplateType4List</tabstop>
+    <tabstop>TemplateType5</tabstop>
+    <tabstop>OKButton</tabstop>
+    <tabstop>OperationModeInfoButton</tabstop>
+    <tabstop>CPUComboBox</tabstop>
+    <tabstop>MoreRAMCheckBox</tabstop>
+    <tabstop>CloseDosBoxOnExitCheckBox</tabstop>
+    <tabstop>StartFullscreenCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

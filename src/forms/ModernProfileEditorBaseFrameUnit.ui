@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorBaseFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorBaseFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>598</width><height>686</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>598</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>686</number></property>
+    <widget class="QFrame" name="IconPanel">
+      <property name="geometry"><rect><x>20</x><y>11</y><width>35</width><height>35</height></rect></property>
+      <property name="frameShape"><enum>QFrame::Panel</enum></property>
+      <property name="frameShadow"><enum>QFrame::Raised</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="TImageWidget" name="IconImage">
+        <property name="geometry"><rect><x>1</x><y>1</y><width>33</width><height>33</height></rect></property>
+        <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="IconSelectButton">
+      <property name="geometry"><rect><x>80</x><y>17</y><width>153</width><height>25</height></rect></property>
+      <property name="text"><string>Icon auswählen...</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">IconButtonClick</string></property>
+    </widget>
+    <widget class="QPushButton" name="IconDeleteButton">
+      <property name="geometry"><rect><x>239</x><y>17</y><width>153</width><height>25</height></rect></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="text"><string>Icon löschen</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">IconButtonClick</string></property>
+    </widget>
+    <widget class="QLineEdit" name="ProfileNameEdit">
+      <property name="geometry"><rect><x>21</x><y>74</y><width>428</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="ProfileNameEdit_EditLabel">
+      <property name="geometry"><rect><x>21</x><y>58</y><width>75</width><height>13</height></rect></property>
+      <property name="text"><string>ProfileNameEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ProfileNameEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ProfileNameEdit</string></property>
+    </widget>
+    <widget class="QLineEdit" name="ProfileFileNameEdit">
+      <property name="geometry"><rect><x>455</x><y>74</y><width>127</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="ProfileFileNameEdit_EditLabel">
+      <property name="geometry"><rect><x>455</x><y>58</y><width>91</width><height>13</height></rect></property>
+      <property name="text"><string>ProfileFileNameEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">ProfileFileNameEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ProfileFileNameEdit</string></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+    </widget>
+    <widget class="QGroupBox" name="GameExeGroup">
+      <property name="geometry"><rect><x>12</x><y>329</y><width>570</width><height>143</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="title"><string>GameExeGroup</string></property>
+      <widget class="QToolButton" name="GameExeButton">
+        <property name="geometry"><rect><x>532</x><y>45</y><width>23</width><height>22</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+      </widget>
+      <widget class="QToolButton" name="InfoButton1">
+        <property name="geometry"><rect><x>532</x><y>68</y><width>23</width><height>16</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+        <property name="text"><string>Info</string></property>
+        <property name="toolButtonStyle"><enum>Qt::ToolButtonTextOnly</enum></property>
+      </widget>
+      <widget class="QLineEdit" name="GameExeEdit">
+        <property name="geometry"><rect><x>16</x><y>45</y><width>510</width><height>21</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      </widget>
+      <widget class="QLabel" name="GameExeEdit_EditLabel">
+        <property name="geometry"><rect><x>16</x><y>29</y><width>63</width><height>13</height></rect></property>
+        <property name="text"><string>GameExeEdit</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        <property name="vclFocusControl" stdset="0"><string notr="true">GameExeEdit</string></property>
+        <property name="vclLabeledEditOf" stdset="0"><string notr="true">GameExeEdit</string></property>
+      </widget>
+      <widget class="QLineEdit" name="GameParameterEdit">
+        <property name="geometry"><rect><x>16</x><y>110</y><width>510</width><height>21</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      </widget>
+      <widget class="QLabel" name="GameParameterEdit_EditLabel">
+        <property name="geometry"><rect><x>16</x><y>94</y><width>95</width><height>13</height></rect></property>
+        <property name="text"><string>GameParameterEdit</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        <property name="vclFocusControl" stdset="0"><string notr="true">GameParameterEdit</string></property>
+        <property name="vclLabeledEditOf" stdset="0"><string notr="true">GameParameterEdit</string></property>
+      </widget>
+      <widget class="QCheckBox" name="GameRelPathCheckBox">
+        <property name="geometry"><rect><x>16</x><y>68</y><width>510</width><height>17</height></rect></property>
+        <property name="visible"><bool>false</bool></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Dateipfad relativ zur DOSBox-Verzeichnisstruktur interpretieren</string></property>
+      </widget>
+      <widget class="QCheckBox" name="RunAsAdminCheckBox">
+        <property name="geometry"><rect><x>16</x><y>68</y><width>510</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>RunAsAdminCheckBox</string></property>
+      </widget>
+    </widget>
+    <widget class="QGroupBox" name="SetupExeGroup">
+      <property name="geometry"><rect><x>12</x><y>470</y><width>570</width><height>187</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="title"><string>SetupExeGroup</string></property>
+      <widget class="QToolButton" name="SetupExeButton">
+        <property name="geometry"><rect><x>532</x><y>45</y><width>23</width><height>22</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+        <property name="tag" stdset="0"><number>1</number></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+      </widget>
+      <widget class="QLabel" name="InfoLabel">
+        <property name="geometry"><rect><x>15</x><y>137</y><width>540</width><height>47</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+        <property name="text"><string>InfoLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="wordWrap"><bool>true</bool></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      </widget>
+      <widget class="QToolButton" name="InfoButton2">
+        <property name="geometry"><rect><x>532</x><y>68</y><width>23</width><height>16</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+        <property name="text"><string>Info</string></property>
+        <property name="toolButtonStyle"><enum>Qt::ToolButtonTextOnly</enum></property>
+      </widget>
+      <widget class="QLineEdit" name="SetupExeEdit">
+        <property name="geometry"><rect><x>16</x><y>45</y><width>510</width><height>21</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      </widget>
+      <widget class="QLabel" name="SetupExeEdit_EditLabel">
+        <property name="geometry"><rect><x>16</x><y>29</y><width>64</width><height>13</height></rect></property>
+        <property name="text"><string>SetupExeEdit</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        <property name="vclFocusControl" stdset="0"><string notr="true">SetupExeEdit</string></property>
+        <property name="vclLabeledEditOf" stdset="0"><string notr="true">SetupExeEdit</string></property>
+      </widget>
+      <widget class="QLineEdit" name="SetupParameterEdit">
+        <property name="geometry"><rect><x>16</x><y>110</y><width>510</width><height>21</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      </widget>
+      <widget class="QLabel" name="SetupParameterEdit_EditLabel">
+        <property name="geometry"><rect><x>16</x><y>94</y><width>96</width><height>13</height></rect></property>
+        <property name="text"><string>SetupParameterEdit</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        <property name="vclFocusControl" stdset="0"><string notr="true">SetupParameterEdit</string></property>
+        <property name="vclLabeledEditOf" stdset="0"><string notr="true">SetupParameterEdit</string></property>
+      </widget>
+      <widget class="QCheckBox" name="SetupRelPathCheckBox">
+        <property name="geometry"><rect><x>16</x><y>68</y><width>510</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="tag" stdset="0"><number>1</number></property>
+        <property name="text"><string>Dateipfad relativ zur DOSBox-Verzeichnisstruktur interpretieren</string></property>
+      </widget>
+    </widget>
+    <widget class="QGroupBox" name="GameGroup">
+      <property name="geometry"><rect><x>12</x><y>107</y><width>570</width><height>222</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="title"><string>GameGroup</string></property>
+      <widget class="QToolButton" name="GameButton">
+        <property name="geometry"><rect><x>532</x><y>77</y><width>23</width><height>22</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+        <property name="tag" stdset="0"><number>2</number></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+      </widget>
+      <widget class="QToolButton" name="GameZipButton">
+        <property name="geometry"><rect><x>532</x><y>128</y><width>23</width><height>22</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+        <property name="tag" stdset="0"><number>3</number></property>
+        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+      </widget>
+      <widget class="QLabel" name="GameZipLabel">
+        <property name="geometry"><rect><x>16</x><y>157</y><width>505</width><height>62</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>GameZipLabel</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="wordWrap"><bool>true</bool></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      </widget>
+      <widget class="QComboBox" name="GameComboBox">
+        <property name="geometry"><rect><x>15</x><y>26</y><width>506</width><height>21</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="editable"><bool>false</bool></property>
+        <property name="maxVisibleItems"><number>8</number></property>
+      </widget>
+      <widget class="QLineEdit" name="GameEdit">
+        <property name="geometry"><rect><x>15</x><y>77</y><width>506</width><height>21</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      </widget>
+      <widget class="QLabel" name="GameEdit_EditLabel">
+        <property name="geometry"><rect><x>15</x><y>61</y><width>45</width><height>13</height></rect></property>
+        <property name="text"><string>GameEdit</string></property>
+        <property name="textFormat"><enum>Qt::PlainText</enum></property>
+        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        <property name="vclFocusControl" stdset="0"><string notr="true">GameEdit</string></property>
+        <property name="vclLabeledEditOf" stdset="0"><string notr="true">GameEdit</string></property>
+      </widget>
+      <widget class="QCheckBox" name="GameZipCheckBox">
+        <property name="geometry"><rect><x>16</x><y>112</y><width>505</width><height>17</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+        <property name="text"><string>Spieledateien aus dieser Zip-Datei in Ordner entpacken (und wieder einpacken)</string></property>
+      </widget>
+      <widget class="QLineEdit" name="GameZipEdit">
+        <property name="geometry"><rect><x>16</x><y>130</y><width>505</width><height>21</height></rect></property>
+        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="ExtraExeFilesButton">
+      <property name="geometry"><rect><x>12</x><y>655</y><width>245</width><height>25</height></rect></property>
+      <property name="text"><string>ExtraExeFilesButton</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/813e1c2e8e29a4bc.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ExtraExeFilesButtonClick</string></property>
+    </widget>
+    <widget class="QCheckBox" name="IgnoreWindowsWarningsCheckBox">
+      <property name="geometry"><rect><x>265</x><y>660</y><width>330</width><height>17</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Ignore Windows file warnings for this profile</string></property>
+    </widget>
+    <widget class="QCheckBox" name="TurnOffDOSBoxFailedWarningCheckBox">
+      <property name="geometry"><rect><x>265</x><y>669</y><width>330</width><height>17</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Turn off DOSBox failed warning for this profile</string></property>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TImageWidget</class>
+      <extends>QLabel</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>IconSelectButton</tabstop>
+    <tabstop>IconDeleteButton</tabstop>
+    <tabstop>ProfileNameEdit</tabstop>
+    <tabstop>ProfileFileNameEdit</tabstop>
+    <tabstop>GameExeEdit</tabstop>
+    <tabstop>GameRelPathCheckBox</tabstop>
+    <tabstop>RunAsAdminCheckBox</tabstop>
+    <tabstop>GameParameterEdit</tabstop>
+    <tabstop>SetupExeEdit</tabstop>
+    <tabstop>SetupRelPathCheckBox</tabstop>
+    <tabstop>SetupParameterEdit</tabstop>
+    <tabstop>GameComboBox</tabstop>
+    <tabstop>GameEdit</tabstop>
+    <tabstop>GameZipCheckBox</tabstop>
+    <tabstop>GameZipEdit</tabstop>
+    <tabstop>ExtraExeFilesButton</tabstop>
+    <tabstop>IgnoreWindowsWarningsCheckBox</tabstop>
+    <tabstop>TurnOffDOSBoxFailedWarningCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

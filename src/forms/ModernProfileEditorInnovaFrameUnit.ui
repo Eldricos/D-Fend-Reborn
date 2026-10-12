@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorInnovaFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorInnovaFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>701</width><height>256</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>701</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>256</number></property>
+    <widget class="QLabel" name="InnovaSampleRateLabel">
+      <property name="geometry"><rect><x>24</x><y>64</y><width>158</width><height>13</height></rect></property>
+      <property name="text"><string>Innovation SSI-2001 sample rate</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="InnovaBaseLabel">
+      <property name="geometry"><rect><x>24</x><y>128</y><width>166</width><height>13</height></rect></property>
+      <property name="text"><string>Innovation SSI-2001 base address</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="InnovaQualityLabel">
+      <property name="geometry"><rect><x>24</x><y>192</y><width>183</width><height>13</height></rect></property>
+      <property name="text"><string>Innovation SSI-2001 emulation quality</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="EnableInnovaCheckBox">
+      <property name="geometry"><rect><x>24</x><y>24</y><width>665</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Enable Innovation SSI-2001 emulation</string></property>
+    </widget>
+    <widget class="QComboBox" name="InnovaSampleRateComboBox">
+      <property name="geometry"><rect><x>24</x><y>83</y><width>113</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="InnovaBaseComboBox">
+      <property name="geometry"><rect><x>24</x><y>147</y><width>113</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="InnovaQualityComboBox">
+      <property name="geometry"><rect><x>24</x><y>211</y><width>113</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>EnableInnovaCheckBox</tabstop>
+    <tabstop>InnovaSampleRateComboBox</tabstop>
+    <tabstop>InnovaBaseComboBox</tabstop>
+    <tabstop>InnovaQualityComboBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

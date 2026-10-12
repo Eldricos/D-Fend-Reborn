@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>WizardFinishFrame</class>
+  <widget class="QWidget" name="WizardFinishFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>592</width><height>523</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>592</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>523</number></property>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>8</x><y>16</y><width>569</width><height>65</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Bitte überprüfen Sie, ob die von D-Fend Reloaded erstellten Laufwerksverknüpfungen Ihren Wünschen entsprechen und bestätigen Sie dann die Erstellung des neuen Profils mit "OK".</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QFrame" name="Bevel">
+      <property name="geometry"><rect><x>3</x><y>71</y><width>589</width><height>18</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="frameShape"><enum>QFrame::HLine</enum></property>
+      <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TBevel</string></property>
+    </widget>
+    <widget class="QLabel" name="DriveSetupLabel">
+      <property name="geometry"><rect><x>8</x><y>109</y><width>153</width><height>13</height></rect></property>
+      <property name="text"><string>Aktuell konfigurierte Laufwerke:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="ProfileEditorLabel">
+      <property name="geometry"><rect><x>8</x><y>448</y><width>569</width><height>65</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="text"><string>Die gewählte Vorlage für das neue Profil enthält potentielle Sicherheitsrisiken (z.B. Autoexec-Abschnitte). Sollte die Vorlage nicht von Ihnen selbst erstellt worden sein, so wird dringend empfohlen, folgende Abschnitte auf möglicherweise schadenverursachende Befehle zu untersuchen: Autoexec und Abschluss-Befehle, Benutzereinstellung, eingebundene Laufwerke.</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="TListView" name="MountingListView">
+      <property name="geometry"><rect><x>8</x><y>128</y><width>569</width><height>230</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="vclPopupMenu" stdset="0"><string notr="true">PopupMenu</string></property>
+      <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+      <property name="readOnly" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="ProfileEditorCheckBox">
+      <property name="geometry"><rect><x>8</x><y>415</y><width>561</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="text"><string>Profileditor nach Abschluss des Assistenten öffnen</string></property>
+    </widget>
+    <widget class="QPushButton" name="MountingAddButton">
+      <property name="geometry"><rect><x>8</x><y>364</y><width>98</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Hinzufügen...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/a7fc1030571280f9.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QPushButton" name="MountingEditButton">
+      <property name="geometry"><rect><x>112</x><y>364</y><width>98</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="text"><string>Bearbeiten...</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QPushButton" name="MountingDelButton">
+      <property name="geometry"><rect><x>216</x><y>364</y><width>98</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="text"><string>Löschen</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QPushButton" name="MountingDeleteAllButton">
+      <property name="geometry"><rect><x>320</x><y>364</y><width>98</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="text"><string>Alle löschen</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QPushButton" name="MountingAutoCreateButton">
+      <property name="geometry"><rect><x>424</x><y>364</y><width>153</width><height>25</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+      <property name="text"><string>Autom. erstellen</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QMenu" name="PopupMenu">
+      <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
+      <addaction name="PopupAdd"/>
+      <addaction name="PopupEdit"/>
+      <addaction name="PopupDelete"/>
+    </widget>
+    <action name="PopupAdd">
+      <property name="text"><string>Add</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/WizardFinishUnit/ImageList/0.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Ins</string></property>
+    </action>
+    <action name="PopupEdit">
+      <property name="text"><string>Edit</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/WizardFinishUnit/ImageList/1.png</normaloff></iconset></property>
+      <property name="vclDefault" stdset="0"><bool>true</bool></property>
+    </action>
+    <action name="PopupDelete">
+      <property name="text"><string>Delete</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/WizardFinishUnit/ImageList/2.png</normaloff></iconset></property>
+      <property name="shortcut"><string notr="true">Del</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+    </action>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TListView</class>
+      <extends>QWidget</extends>
+      <header>ComCtrls.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>MountingListView</tabstop>
+    <tabstop>ProfileEditorCheckBox</tabstop>
+    <tabstop>MountingAddButton</tabstop>
+    <tabstop>MountingEditButton</tabstop>
+    <tabstop>MountingDelButton</tabstop>
+    <tabstop>MountingDeleteAllButton</tabstop>
+    <tabstop>MountingAutoCreateButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

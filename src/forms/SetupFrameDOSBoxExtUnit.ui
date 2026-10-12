@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameDOSBoxExt</class>
+  <widget class="QWidget" name="SetupFrameDOSBoxExt">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>585</width><height>675</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>585</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>675</number></property>
+    <widget class="QScrollArea" name="ScrollBox">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>585</width><height>675</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+      <property name="widgetResizable"><bool>false</bool></property>
+      <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOff</enum></property>
+      <widget class="QWidget" name="ScrollBox_Contents">
+        <property name="geometry"><rect><x>0</x><y>0</y><width>581</width><height>671</height></rect></property>
+        <property name="vclScrollContents" stdset="0"><bool>true</bool></property>
+        <property name="vclDesignWidth" stdset="0"><number>581</number></property>
+        <property name="vclDesignHeight" stdset="0"><number>671</number></property>
+        <widget class="QLabel" name="WarningLabel">
+          <property name="geometry"><rect><x>16</x><y>16</y><width>545</width><height>65</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="text"><string>WarningLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+        <widget class="QLabel" name="InfoLabel">
+          <property name="geometry"><rect><x>16</x><y>608</y><width>281</width><height>13</height></rect></property>
+          <property name="text"><string>You can download DOSBoxs supporting this features here:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QLabel" name="InfoURLLabel">
+          <property name="geometry"><rect><x>16</x><y>627</y><width>64</width><height>13</height></rect></property>
+          <property name="text"><string>InfoURLLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+        </widget>
+        <widget class="QGroupBox" name="MountDialogGroupBox">
+          <property name="geometry"><rect><x>16</x><y>96</y><width>545</width><height>73</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="title"><string>MountDialogGroupBox</string></property>
+          <widget class="QCheckBox" name="MultiFloppyImageCheckBox">
+            <property name="geometry"><rect><x>16</x><y>24</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Allow multiple floppy images per drive</string></property>
+          </widget>
+          <widget class="QCheckBox" name="PhysFSCheckBox">
+            <property name="geometry"><rect><x>16</x><y>47</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Activate PhysFS tab</string></property>
+          </widget>
+        </widget>
+        <widget class="QGroupBox" name="GraphicsGroupBox">
+          <property name="geometry"><rect><x>16</x><y>183</y><width>545</width><height>170</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="title"><string>GraphicsGroupBox</string></property>
+          <widget class="QCheckBox" name="ExtendedTextModeCheckBox">
+            <property name="geometry"><rect><x>16</x><y>24</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Activate 28 and 50 line text modes</string></property>
+          </widget>
+          <widget class="QCheckBox" name="GlideEmulationCheckBox">
+            <property name="geometry"><rect><x>16</x><y>47</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Activate Glide emulation settings</string></property>
+          </widget>
+          <widget class="QCheckBox" name="VGAChipsetCheckBox">
+            <property name="geometry"><rect><x>16</x><y>72</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Activate VGA chipset settings</string></property>
+          </widget>
+          <widget class="QCheckBox" name="RenderModesCheckBox">
+            <property name="geometry"><rect><x>16</x><y>95</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Add "openglhq" and "direct3d" render modes</string></property>
+          </widget>
+          <widget class="QCheckBox" name="VideoModesCheckBox">
+            <property name="geometry"><rect><x>16</x><y>118</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="tag" stdset="0"><number>1</number></property>
+            <property name="text"><string>Add "pcjr", "ega" and "demovga" graphic modes</string></property>
+          </widget>
+          <widget class="QCheckBox" name="PixelShaderCheckBox">
+            <property name="geometry"><rect><x>16</x><y>141</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="tag" stdset="0"><number>3</number></property>
+            <property name="text"><string>Activate pixel shader settings</string></property>
+          </widget>
+        </widget>
+        <widget class="QGroupBox" name="SoundGroupBox">
+          <property name="geometry"><rect><x>16</x><y>368</y><width>545</width><height>73</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="title"><string>SoundGroupBox</string></property>
+          <widget class="QCheckBox" name="MIDICheckBox">
+            <property name="geometry"><rect><x>16</x><y>24</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="tag" stdset="0"><number>2</number></property>
+            <property name="text"><string>Add "mt32" MIDI device</string></property>
+          </widget>
+          <widget class="QCheckBox" name="InnovaCheckBox">
+            <property name="geometry"><rect><x>16</x><y>47</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Activate Innova emulation settings</string></property>
+          </widget>
+        </widget>
+        <widget class="QGroupBox" name="PrinterGroupBox">
+          <property name="geometry"><rect><x>16</x><y>455</y><width>545</width><height>58</height></rect></property>
+          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+          <property name="title"><string>PrinterGroupBox</string></property>
+          <widget class="QCheckBox" name="PrinterCheckBox">
+            <property name="geometry"><rect><x>16</x><y>24</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Activate printer settings</string></property>
+          </widget>
+        </widget>
+        <widget class="QGroupBox" name="NetworkGroupBox">
+          <property name="geometry"><rect><x>16</x><y>528</y><width>545</width><height>58</height></rect></property>
+          <property name="title"><string>NetworkGroupBox</string></property>
+          <widget class="QCheckBox" name="NE2000CheckBox">
+            <property name="geometry"><rect><x>16</x><y>24</y><width>513</width><height>17</height></rect></property>
+            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+            <property name="text"><string>Activate NE2000 emulation settings</string></property>
+          </widget>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>MultiFloppyImageCheckBox</tabstop>
+    <tabstop>PhysFSCheckBox</tabstop>
+    <tabstop>ExtendedTextModeCheckBox</tabstop>
+    <tabstop>GlideEmulationCheckBox</tabstop>
+    <tabstop>VGAChipsetCheckBox</tabstop>
+    <tabstop>RenderModesCheckBox</tabstop>
+    <tabstop>VideoModesCheckBox</tabstop>
+    <tabstop>PixelShaderCheckBox</tabstop>
+    <tabstop>MIDICheckBox</tabstop>
+    <tabstop>InnovaCheckBox</tabstop>
+    <tabstop>PrinterCheckBox</tabstop>
+    <tabstop>NE2000CheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

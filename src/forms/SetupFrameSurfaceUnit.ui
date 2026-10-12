@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameSurface</class>
+  <widget class="QWidget" name="SetupFrameSurface">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>733</width><height>315</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>733</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>315</number></property>
+    <widget class="QLabel" name="StartSizeLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>168</width><height>13</height></rect></property>
+      <property name="text"><string>Fenstergröße beim Programmstart:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="IconSetLabel">
+      <property name="geometry"><rect><x>16</x><y>80</y><width>48</width><height>13</height></rect></property>
+      <property name="text"><string>Icon sets:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="IconSetAuthorLabel">
+      <property name="geometry"><rect><x>16</x><y>271</y><width>37</width><height>13</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Author:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="IconSetAuthorNameLabel">
+      <property name="geometry"><rect><x>16</x><y>290</y><width>697</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
+      <property name="text"><string></string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="IconSetPreviewLabel">
+      <property name="geometry"><rect><x>16</x><y>232</y><width>42</width><height>13</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="text"><string>Preview:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="TImageWidget" name="IconSetImage">
+      <property name="geometry"><rect><x>16</x><y>247</y><width>113</width><height>20</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="IconCustomizeLabel">
+      <property name="geometry"><rect><x>312</x><y>99</y><width>128</width><height>13</height></rect></property>
+      <property name="text"><string>Open icons customizing file</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QComboBox" name="StartSizeComboBox">
+      <property name="geometry"><rect><x>16</x><y>37</y><width>281</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+      <item><property name="text"><string>Vorgabewerte für Fenstergröße</string></property></item>
+      <item><property name="text"><string>Letzte Fenstergröße wiederherstellen</string></property></item>
+      <item><property name="text"><string>Minimiert starten</string></property></item>
+      <item><property name="text"><string>Maximiert starten</string></property></item>
+      <item><property name="text"><string>Vollbildmodus ohne Fensterrahmen</string></property></item>
+      <property name="currentIndex"><number>0</number></property>
+    </widget>
+    <widget class="QListWidget" name="IconSetListbox">
+      <property name="geometry"><rect><x>16</x><y>99</y><width>281</width><height>127</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akBottom</string></property>
+      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TImageWidget</class>
+      <extends>QLabel</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <tabstops>
+    <tabstop>StartSizeComboBox</tabstop>
+    <tabstop>IconSetListbox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

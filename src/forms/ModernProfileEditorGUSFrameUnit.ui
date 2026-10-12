@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorGUSFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorGUSFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>621</width><height>489</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>621</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>489</number></property>
+    <widget class="QLabel" name="AddressLabel">
+      <property name="geometry"><rect><x>24</x><y>64</y><width>64</width><height>13</height></rect></property>
+      <property name="text"><string>AddressLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SampleRateLabel">
+      <property name="geometry"><rect><x>128</x><y>64</y><width>82</width><height>13</height></rect></property>
+      <property name="text"><string>SampleRateLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="Interrupt1Label">
+      <property name="geometry"><rect><x>24</x><y>120</y><width>75</width><height>13</height></rect></property>
+      <property name="text"><string>Interrupt1Label</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="DMA1Label">
+      <property name="geometry"><rect><x>24</x><y>176</y><width>53</width><height>13</height></rect></property>
+      <property name="text"><string>DMA1Label</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QCheckBox" name="ActivateGUSCheckBox">
+      <property name="geometry"><rect><x>24</x><y>24</y><width>569</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>ActivateGUSCheckBox</string></property>
+    </widget>
+    <widget class="QComboBox" name="AddressComboBox">
+      <property name="geometry"><rect><x>24</x><y>83</y><width>81</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="SampleRateComboBox">
+      <property name="geometry"><rect><x>128</x><y>83</y><width>81</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="Interrupt1ComboBox">
+      <property name="geometry"><rect><x>24</x><y>139</y><width>81</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="DMA1ComboBox">
+      <property name="geometry"><rect><x>24</x><y>195</y><width>81</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QLineEdit" name="PathEdit">
+      <property name="geometry"><rect><x>24</x><y>248</y><width>577</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="PathEdit_EditLabel">
+      <property name="geometry"><rect><x>24</x><y>232</y><width>40</width><height>13</height></rect></property>
+      <property name="text"><string>PathEdit</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+      <property name="vclFocusControl" stdset="0"><string notr="true">PathEdit</string></property>
+      <property name="vclLabeledEditOf" stdset="0"><string notr="true">PathEdit</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>ActivateGUSCheckBox</tabstop>
+    <tabstop>AddressComboBox</tabstop>
+    <tabstop>SampleRateComboBox</tabstop>
+    <tabstop>Interrupt1ComboBox</tabstop>
+    <tabstop>DMA1ComboBox</tabstop>
+    <tabstop>PathEdit</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

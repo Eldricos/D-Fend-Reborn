@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>StatisticsForm</class>
+  <widget class="QDialog" name="StatisticsForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>394</width><height>516</height></rect></property>
+    <property name="windowTitle"><string>Statistik</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biSystemMenu,biMaximize</string></property>
+    <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
+    <property name="vclDesignWidth" stdset="0"><number>394</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>516</number></property>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry"><rect><x>0</x><y>478</y><width>394</width><height>38</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alBottom</string></property>
+      <property name="frameShape"><enum>QFrame::Panel</enum></property>
+      <property name="frameShadow"><enum>QFrame::Raised</enum></property>
+      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+      <widget class="QPushButton" name="OKButton">
+        <property name="geometry"><rect><x>8</x><y>6</y><width>97</width><height>25</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+        <property name="default"><bool>true</bool></property>
+        <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+      </widget>
+      <widget class="QPushButton" name="HelpButton">
+        <property name="geometry"><rect><x>120</x><y>6</y><width>97</width><height>25</height></rect></property>
+        <property name="text"><string></string></property>
+        <property name="autoDefault"><bool>false</bool></property>
+        <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+        <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+      </widget>
+    </widget>
+    <widget class="QTextEdit" name="Memo">
+      <property name="geometry"><rect><x>0</x><y>0</y><width>394</width><height>478</height></rect></property>
+      <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+      <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+      <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+      <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>OKButton</tabstop>
+    <tabstop>HelpButton</tabstop>
+    <tabstop>Memo</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

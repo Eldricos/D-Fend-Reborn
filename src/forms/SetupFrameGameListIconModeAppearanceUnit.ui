@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameGameListIconModeAppearance</class>
+  <widget class="QWidget" name="SetupFrameGameListIconModeAppearance">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>603</width><height>497</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>603</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>497</number></property>
+    <widget class="TRadioGroupWidget" name="IconSizeRadioGroup">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>185</width><height>105</height></rect></property>
+      <property name="title"><string>IconSizeRadioGroup</string></property>
+      <property name="items" stdset="0">
+        <stringlist notr="true">
+          <string>32</string>
+          <string>64</string>
+          <string>128</string>
+          <string>256</string>
+        </stringlist>
+      </property>
+    </widget>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>TRadioGroupWidget</class>
+      <extends>QGroupBox</extends>
+      <header>VclWidgets.h</header>
+    </customwidget>
+  </customwidgets>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

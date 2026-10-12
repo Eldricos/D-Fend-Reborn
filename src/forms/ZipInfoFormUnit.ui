@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ZipInfoForm</class>
+  <widget class="QDialog" name="ZipInfoForm">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>452</width><height>176</height></rect></property>
+    <property name="windowTitle"><string>ZipInfoForm</string></property>
+    <property name="vclBorderStyle" stdset="0"><string notr="true">bsDialog</string></property>
+    <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
+    <property name="vclBorderIcons" stdset="0"><string notr="true">biMinimize,biMaximize</string></property>
+    <property name="vclDesignWidth" stdset="0"><number>452</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>176</number></property>
+    <widget class="QLabel" name="InfoLabel">
+      <property name="geometry"><rect><x>24</x><y>56</y><width>411</width><height>112</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
+      <property name="text"><string>InfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QProgressBar" name="ProgressBar">
+      <property name="geometry"><rect><x>24</x><y>16</y><width>307</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>100</number></property>
+      <property name="value"><number>0</number></property>
+      <property name="textVisible"><bool>false</bool></property>
+    </widget>
+    <widget class="QPushButton" name="CancelButton">
+      <property name="geometry"><rect><x>346</x><y>12</y><width>97</width><height>25</height></rect></property>
+      <property name="enabled"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="text"><string>Abbrechen</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">CancelButtonClick</string></property>
+    </widget>
+  </widget>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

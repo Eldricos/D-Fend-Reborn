@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SetupFrameLanguage</class>
+  <widget class="QWidget" name="SetupFrameLanguage">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>606</width><height>419</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>606</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>419</number></property>
+    <widget class="QLabel" name="LanguageLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>90</width><height>13</height></rect></property>
+      <property name="text"><string>Programmsprache:</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="DosBoxLangLabel">
+      <property name="geometry"><rect><x>16</x><y>136</y><width>84</width><height>13</height></rect></property>
+      <property name="text"><string>DosBoxLangLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="LanguageInfoLabel">
+      <property name="geometry"><rect><x>200</x><y>31</y><width>393</width><height>174</height></rect></property>
+      <property name="visible"><bool>false</bool></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>LanguageInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QLabel" name="InstallerLangLabel">
+      <property name="geometry"><rect><x>16</x><y>192</y><width>87</width><height>13</height></rect></property>
+      <property name="text"><string>InstallerLangLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="InstallerLangInfoLabel">
+      <property name="geometry"><rect><x>16</x><y>238</y><width>577</width><height>83</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>InstallerLangInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
+    <widget class="QComboBox" name="LanguageComboBox">
+      <property name="geometry"><rect><x>16</x><y>32</y><width>169</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="DosBoxLangEditComboBox">
+      <property name="geometry"><rect><x>16</x><y>155</y><width>169</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QPushButton" name="LanguageOpenEditor">
+      <property name="geometry"><rect><x>16</x><y>59</y><width>153</width><height>25</height></rect></property>
+      <property name="text"><string>Spracheditor öffnen</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QPushButton" name="LanguageNew">
+      <property name="geometry"><rect><x>16</x><y>90</y><width>153</width><height>25</height></rect></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="text"><string>Neue Sprache anlegen</string></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QComboBox" name="InstallerLangEditComboBox">
+      <property name="geometry"><rect><x>16</x><y>211</y><width>169</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>LanguageComboBox</tabstop>
+    <tabstop>LanguageOpenEditor</tabstop>
+    <tabstop>InstallerLangEditComboBox</tabstop>
+    <tabstop>DosBoxLangEditComboBox</tabstop>
+    <tabstop>LanguageNew</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

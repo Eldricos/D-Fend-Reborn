@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorAddtionalChecksumFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorAddtionalChecksumFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>436</width><height>437</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>436</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>437</number></property>
+    <widget class="QLabel" name="FilenameLabel">
+      <property name="geometry"><rect><x>16</x><y>5</y><width>42</width><height>13</height></rect></property>
+      <property name="text"><string>Filename</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="ChecksumLabel">
+      <property name="geometry"><rect><x>151</x><y>5</y><width>48</width><height>13</height></rect></property>
+      <property name="text"><string>Checksum</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QToolButton" name="SelectButton1">
+      <property name="geometry"><rect><x>378</x><y>24</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="DeleteButton1">
+      <property name="geometry"><rect><x>405</x><y>24</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>5</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="SelectButton2">
+      <property name="geometry"><rect><x>378</x><y>50</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>1</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="DeleteButton2">
+      <property name="geometry"><rect><x>405</x><y>50</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>6</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="SelectButton3">
+      <property name="geometry"><rect><x>378</x><y>78</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>2</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="DeleteButton3">
+      <property name="geometry"><rect><x>405</x><y>78</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>7</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="SelectButton4">
+      <property name="geometry"><rect><x>378</x><y>104</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>3</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="DeleteButton4">
+      <property name="geometry"><rect><x>405</x><y>104</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>8</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="SelectButton5">
+      <property name="geometry"><rect><x>378</x><y>131</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>4</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QToolButton" name="DeleteButton5">
+      <property name="geometry"><rect><x>405</x><y>131</y><width>23</width><height>22</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="tag" stdset="0"><number>9</number></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    </widget>
+    <widget class="QLineEdit" name="FilenameEdit1">
+      <property name="geometry"><rect><x>16</x><y>24</y><width>129</width><height>21</height></rect></property>
+    </widget>
+    <widget class="QLineEdit" name="ChecksumEdit1">
+      <property name="geometry"><rect><x>151</x><y>24</y><width>221</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLineEdit" name="FilenameEdit2">
+      <property name="geometry"><rect><x>16</x><y>51</y><width>129</width><height>21</height></rect></property>
+    </widget>
+    <widget class="QLineEdit" name="ChecksumEdit2">
+      <property name="geometry"><rect><x>151</x><y>51</y><width>221</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLineEdit" name="FilenameEdit3">
+      <property name="geometry"><rect><x>16</x><y>78</y><width>129</width><height>21</height></rect></property>
+    </widget>
+    <widget class="QLineEdit" name="ChecksumEdit3">
+      <property name="geometry"><rect><x>151</x><y>78</y><width>221</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLineEdit" name="FilenameEdit4">
+      <property name="geometry"><rect><x>16</x><y>105</y><width>129</width><height>21</height></rect></property>
+    </widget>
+    <widget class="QLineEdit" name="ChecksumEdit4">
+      <property name="geometry"><rect><x>151</x><y>105</y><width>221</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QLineEdit" name="FilenameEdit5">
+      <property name="geometry"><rect><x>16</x><y>132</y><width>129</width><height>21</height></rect></property>
+    </widget>
+    <widget class="QLineEdit" name="ChecksumEdit5">
+      <property name="geometry"><rect><x>151</x><y>132</y><width>221</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="readOnly"><bool>true</bool></property>
+    </widget>
+    <widget class="QPushButton" name="AddAllButton">
+      <property name="geometry"><rect><x>16</x><y>176</y><width>217</width><height>25</height></rect></property>
+      <property name="tag" stdset="0"><number>-1</number></property>
+      <property name="text"><string>Autonatically add checksums</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/3a424dac33bae56c.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+    <widget class="QPushButton" name="ClearAllButton">
+      <property name="geometry"><rect><x>16</x><y>207</y><width>217</width><height>25</height></rect></property>
+      <property name="tag" stdset="0"><number>-2</number></property>
+      <property name="text"><string>Remove all checksums</string></property>
+      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+      <property name="autoDefault"><bool>false</bool></property>
+      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>FilenameEdit1</tabstop>
+    <tabstop>ChecksumEdit1</tabstop>
+    <tabstop>FilenameEdit2</tabstop>
+    <tabstop>ChecksumEdit2</tabstop>
+    <tabstop>FilenameEdit3</tabstop>
+    <tabstop>ChecksumEdit3</tabstop>
+    <tabstop>FilenameEdit4</tabstop>
+    <tabstop>ChecksumEdit4</tabstop>
+    <tabstop>FilenameEdit5</tabstop>
+    <tabstop>ChecksumEdit5</tabstop>
+    <tabstop>AddAllButton</tabstop>
+    <tabstop>ClearAllButton</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>

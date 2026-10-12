@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ModernProfileEditorScummVMSoundFrame</class>
+  <widget class="QWidget" name="ModernProfileEditorScummVMSoundFrame">
+    <property name="geometry"><rect><x>0</x><y>0</y><width>602</width><height>439</height></rect></property>
+    <property name="vclDesignWidth" stdset="0"><number>602</number></property>
+    <property name="vclDesignHeight" stdset="0"><number>439</number></property>
+    <widget class="QLabel" name="MusicVolumeLabel">
+      <property name="geometry"><rect><x>16</x><y>16</y><width>85</width><height>13</height></rect></property>
+      <property name="text"><string>MusicVolumeLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SpeechVolumeLabel">
+      <property name="geometry"><rect><x>160</x><y>16</y><width>94</width><height>13</height></rect></property>
+      <property name="text"><string>SpeechVolumeLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="SFXVolumeLabel">
+      <property name="geometry"><rect><x>304</x><y>16</y><width>77</width><height>13</height></rect></property>
+      <property name="text"><string>SFXVolumeLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="MIDIGainLabel">
+      <property name="geometry"><rect><x>16</x><y>80</y><width>69</width><height>13</height></rect></property>
+      <property name="text"><string>MIDIGainLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="OutputRateLabel">
+      <property name="geometry"><rect><x>16</x><y>144</y><width>82</width><height>13</height></rect></property>
+      <property name="text"><string>OutputRateLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QLabel" name="MusicDriverLabel">
+      <property name="geometry"><rect><x>16</x><y>200</y><width>80</width><height>13</height></rect></property>
+      <property name="text"><string>MusicDriverLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    </widget>
+    <widget class="QSpinBox" name="MusicVolumeEdit">
+      <property name="geometry"><rect><x>16</x><y>35</y><width>77</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>255</number></property>
+      <property name="value"><number>192</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SpeechVolumeEdit">
+      <property name="geometry"><rect><x>160</x><y>35</y><width>77</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>255</number></property>
+      <property name="value"><number>192</number></property>
+    </widget>
+    <widget class="QSpinBox" name="SFXVolumeEdit">
+      <property name="geometry"><rect><x>304</x><y>35</y><width>77</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>255</number></property>
+      <property name="value"><number>192</number></property>
+    </widget>
+    <widget class="QSpinBox" name="MIDIGainEdit">
+      <property name="geometry"><rect><x>16</x><y>99</y><width>77</width><height>22</height></rect></property>
+      <property name="minimum"><number>0</number></property>
+      <property name="maximum"><number>1000</number></property>
+      <property name="value"><number>100</number></property>
+    </widget>
+    <widget class="QComboBox" name="OutputRateComboBox">
+      <property name="geometry"><rect><x>16</x><y>163</y><width>94</width><height>21</height></rect></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QComboBox" name="MusicDriverComboBox">
+      <property name="geometry"><rect><x>16</x><y>219</y><width>569</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="editable"><bool>false</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QCheckBox" name="NativeMT32CheckBox">
+      <property name="geometry"><rect><x>16</x><y>264</y><width>569</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>NativeMT32CheckBox</string></property>
+    </widget>
+    <widget class="QCheckBox" name="EnableGSCheckBox">
+      <property name="geometry"><rect><x>16</x><y>296</y><width>569</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>EnableGSCheckBox</string></property>
+    </widget>
+    <widget class="QCheckBox" name="MultiMIDICheckBox">
+      <property name="geometry"><rect><x>16</x><y>328</y><width>569</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>MultiMIDICheckBox</string></property>
+    </widget>
+    <widget class="QCheckBox" name="SpeechMuteCheckBox">
+      <property name="geometry"><rect><x>16</x><y>360</y><width>569</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>SpeechMuteCheckBox</string></property>
+    </widget>
+  </widget>
+  <tabstops>
+    <tabstop>MusicVolumeEdit</tabstop>
+    <tabstop>SpeechVolumeEdit</tabstop>
+    <tabstop>SFXVolumeEdit</tabstop>
+    <tabstop>MIDIGainEdit</tabstop>
+    <tabstop>OutputRateComboBox</tabstop>
+    <tabstop>MusicDriverComboBox</tabstop>
+    <tabstop>NativeMT32CheckBox</tabstop>
+    <tabstop>EnableGSCheckBox</tabstop>
+    <tabstop>MultiMIDICheckBox</tabstop>
+    <tabstop>SpeechMuteCheckBox</tabstop>
+  </tabstops>
+  <resources><include location="../../resources/dfend.qrc"/></resources>
+  <connections/>
+</ui>
