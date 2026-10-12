@@ -93,11 +93,11 @@
         <property name="vclWrapable" stdset="0"><bool>false</bool></property>
         <addaction name="CloseButton"/>
         <addaction name="OpenFolderButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton2"/>
         <addaction name="NameTypeButton"/>
         <addaction name="ScanButton"/>
         <addaction name="AddButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton7"/>
         <addaction name="HelpButton"/>
       </widget>
     </widget>

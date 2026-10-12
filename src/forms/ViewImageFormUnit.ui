@@ -36,10 +36,10 @@
         <addaction name="PreviousButton"/>
         <addaction name="NextButton"/>
         <addaction name="CopyButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton2"/>
         <addaction name="SaveButton"/>
         <addaction name="ClearButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton1"/>
         <addaction name="ZoomButton"/>
         <addaction name="BackgroundButton"/>
       </widget>

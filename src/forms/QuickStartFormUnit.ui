@@ -29,10 +29,10 @@
         <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
         <property name="vclWrapable" stdset="0"><bool>false</bool></property>
         <addaction name="CloseButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton2"/>
         <addaction name="UpdateButton"/>
         <addaction name="StartButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton1"/>
         <addaction name="HelpButton"/>
       </widget>
     </widget>

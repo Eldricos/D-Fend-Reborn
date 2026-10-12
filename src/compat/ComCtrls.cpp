@@ -9,6 +9,18 @@
 #include <QMouseEvent>
 #include <QScrollBar>
 #include <algorithm>
+#include <QScopedValueRollback>
+#include <QGuiApplication>
+
+namespace {
+// gives access to the protected QTreeView::sizeHintForColumn
+class TReportView : public QTreeView
+{
+public:
+    using QTreeView::QTreeView;
+    int contentWidth(int Column) const { return sizeHintForColumn(Column); }
+};
+}
 
 // ---------------------------------------------------------------------------
 // TSubItems
@@ -210,6 +222,9 @@ void TListColumn::SetCaption(const QString &S)
 
 int TListColumn::Width() const
 {
+    // like VCL: the stored value is returned (including the auto size values
+    // -1/-2); it is updated when the user resizes the column.
+    if (FWidth != 0) return FWidth;
     int I = Index();
     if (I >= 0 && FOwner->reportView()->header()->count() > I) return FOwner->reportView()->header()->sectionSize(I);
     return FWidth;
@@ -219,7 +234,7 @@ void TListColumn::SetWidth(int W)
 {
     FWidth = W;
     int I = Index();
-    if (I >= 0 && FOwner->reportView()->header()->count() > I) FOwner->reportView()->header()->resizeSection(I, W < 0 ? 100 : W);
+    if (I >= 0 && FOwner->reportView()->header()->count() > I) FOwner->applyColumnWidth(I);
 }
 
 void TListColumn::SetAlignment(TAlignment A)
@@ -381,7 +396,7 @@ TListView::TListView(QWidget *parent) : QWidget(parent)
     FItems = new TListItems(this);
     FColumns = new TListColumns(this);
     FModel = new TListViewModel(this);
-    FTree = new QTreeView(this);
+    FTree = new TReportView(this);
     FList = new QListView(this);
     FTree->setObjectName("reportView");
     FList->setObjectName("iconView");
@@ -414,6 +429,11 @@ TListView::TListView(QWidget *parent) : QWidget(parent)
         connect(V, &QAbstractItemView::clicked, this, [this](const QModelIndex &) { emit click(); });
     }
     connect(FTree->header(), &QHeaderView::sectionClicked, this, [this](int C) { emit columnClick(C); });
+    connect(FTree->header(), &QHeaderView::sectionResized, this, [this](int C, int, int NewSize) {
+        // user resized a column (HDN_ENDTRACK in VCL updates the stored width)
+        if (FApplyingWidths || !FColumns || !(QGuiApplication::mouseButtons() & Qt::LeftButton)) return;
+        if (TListColumn *Col = FColumns->Item(C)) Col->FWidth = NewSize;
+    });
     connect(FSel, &QItemSelectionModel::selectionChanged, this, &TListView::onSelectionChanged);
     connect(FSel, &QItemSelectionModel::currentChanged, this, [this](const QModelIndex &, const QModelIndex &) { onCurrentChanged(); });
     setFocusProxy(FTree);
@@ -683,15 +703,45 @@ void TListView::columnsChanged()
     applyColumnWidths();
 }
 
-void TListView::applyColumnWidths()
+// VCL: Width -1 = LVSCW_AUTOSIZE (fit the contents), -2 = LVSCW_AUTOSIZE_USEHEADER
+// (fit contents and header; the last column fills the remaining space).
+void TListView::applyColumnWidth(int I)
 {
     QHeaderView *H = FTree->header();
-    for (int i = 0; i < FColumns->Count() && i < H->count(); i++) {
-        int W = FColumns->Item(i)->FWidth;
-        if (W == -1) FTree->resizeColumnToContents(i);
-        else if (W == -2) H->resizeSection(i, qMax(H->sectionSizeHint(i), 50));
-        else H->resizeSection(i, W);
+    QScopedValueRollback<bool> Guard(FApplyingWidths, true);
+    if (I < 0 || I >= FColumns->Count() || I >= H->count()) return;
+    int W = FColumns->Item(I)->FWidth;
+    if (W >= 0) { H->resizeSection(I, W); return; }
+    // measure the texts directly (works before the view has been laid out)
+    QFontMetrics FM(FTree->font());
+    QFontMetrics FMB([this]() { QFont F = FTree->font(); F.setBold(true); return F; }());
+    int Content = 0;
+    for (int R = 0; R < FItems->Count(); R++) {
+        TListItem *It = FItems->Item(R);
+        QString T = (I == 0) ? It->Caption() : It->SubItems().Strings(I - 1);
+        int Wt = (It->HasFont() ? QFontMetrics(It->Font()) : (OnCustomDrawItem ? FMB : FM)).horizontalAdvance(T);
+        if (I == 0) {
+            if (FSmall && It->ImageIndex() >= 0) Wt += FSmall->Width() + 6;
+            if (FCheckboxes) Wt += 20;
+        }
+        Content = qMax(Content, Wt);
     }
+    Content += 14;
+    int Size = Content;
+    if (W == -2) {
+        Size = qMax(Content, H->sectionSizeHint(I));
+        if (I == FColumns->Count() - 1) {
+            int Used = 0;
+            for (int J = 0; J < I; J++) Used += H->sectionSize(J);
+            Size = qMax(Size, FTree->viewport()->width() - Used);
+        }
+    }
+    H->resizeSection(I, qMax(Size, 20));
+}
+
+void TListView::applyColumnWidths()
+{
+    for (int i = 0; i < FColumns->Count() && i < FTree->header()->count(); i++) applyColumnWidth(i);
 }
 
 void TListView::refresh()

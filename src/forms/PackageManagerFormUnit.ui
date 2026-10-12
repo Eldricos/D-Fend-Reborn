@@ -28,10 +28,10 @@
         <property name="vclButtonHeight" stdset="0"><number>22</number></property>
         <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
         <addaction name="CloseButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton3"/>
         <addaction name="UpdateButton"/>
         <addaction name="ResponsitoriesButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton5"/>
         <addaction name="HelpButton"/>
       </widget>
     </widget>

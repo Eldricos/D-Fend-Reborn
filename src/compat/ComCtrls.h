@@ -273,6 +273,7 @@ public:
     void itemsReset();
     void columnsChanged();
     void refresh();
+    void applyColumnWidth(int I);
     int indexOfItem(const TListItem *Item) const { return FItems->IndexOf(Item); }
 
 signals:
@@ -306,6 +307,7 @@ private:
     bool FHideSelection = true, FGridLines = false, FRowSelect = false;
     TSortType FSortType = stNone;
     TListItem *FLastCurrent = nullptr;
+    bool FApplyingWidths = false;
     void applyViewStyle();
     void applyColumnWidths();
     void onCurrentChanged();

@@ -47,12 +47,12 @@
           <addaction name="ButtonClose"/>
           <addaction name="ButtonRun"/>
           <addaction name="ButtonRunSetup"/>
-          <addaction name="separator"/>
+          <addaction name="ToolButton2"/>
           <addaction name="ButtonAdd"/>
           <addaction name="ButtonEdit"/>
           <addaction name="ButtonDelete"/>
-          <addaction name="separator"/>
-          <addaction name="separator"/>
+          <addaction name="ToolButton1"/>
+          <addaction name="ToolButton3"/>
           <addaction name="ButtonHelp"/>
           <widget class="QLineEdit" name="SearchEdit">
             <property name="geometry"><rect><x>364</x><y>0</y><width>121</width><height>22</height></rect></property>
@@ -199,7 +199,7 @@
               <addaction name="GameNotesCutButton"/>
               <addaction name="GameNotesCopyButton"/>
               <addaction name="GameNotesPasteButton"/>
-              <addaction name="separator"/>
+              <addaction name="ToolButton7"/>
               <addaction name="GameNotesUndoButton"/>
             </widget>
           </widget>

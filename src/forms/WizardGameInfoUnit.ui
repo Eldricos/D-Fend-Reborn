@@ -98,7 +98,7 @@
         <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
         <property name="vclWrapable" stdset="0"><bool>false</bool></property>
         <addaction name="SearchGameButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton1"/>
         <addaction name="DownloadDataButton"/>
       </widget>
     </widget>

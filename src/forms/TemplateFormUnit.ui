@@ -124,13 +124,13 @@
               <property name="vclButtonHeight" stdset="0"><number>22</number></property>
               <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
               <addaction name="CloseButton"/>
-              <addaction name="separator"/>
+              <addaction name="ToolButton7"/>
               <addaction name="UseButton"/>
-              <addaction name="separator"/>
+              <addaction name="ToolButton3"/>
               <addaction name="AddButton"/>
               <addaction name="EditButton"/>
               <addaction name="DeleteButton"/>
-              <addaction name="separator"/>
+              <addaction name="ToolButton4"/>
               <addaction name="HelpButton"/>
             </widget>
           </widget>
@@ -151,11 +151,11 @@
               <property name="vclButtonHeight" stdset="0"><number>22</number></property>
               <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
               <addaction name="CloseButton2"/>
-              <addaction name="separator"/>
+              <addaction name="ToolButton2"/>
               <addaction name="AddButton2"/>
               <addaction name="EditButton2"/>
               <addaction name="DeleteButton2"/>
-              <addaction name="separator"/>
+              <addaction name="ToolButton1"/>
               <addaction name="HelpButton2"/>
             </widget>
           </widget>

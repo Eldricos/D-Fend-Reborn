@@ -191,7 +191,7 @@ class ResourceStore:
         files = []
         for dirpath, dirnames, filenames in os.walk(self.outdir):
             for fn in filenames:
-                if fn.endswith('.qrc'):
+                if fn.endswith('.qrc') or fn.endswith('.rc'):
                     continue
                 files.append(os.path.relpath(os.path.join(dirpath, fn), self.outdir).replace(os.sep, '/'))
         with open(path, 'w', encoding='utf-8') as f:
@@ -1243,9 +1243,13 @@ class Converter:
             if c.cls == 'TToolButton':
                 style = str(c.props.get('Style', 'tbsButton'))
                 if style in ('tbsSeparator', 'tbsDivider'):
-                    ui.w('<addaction name="separator"/>')
                     if c.name:
+                        # named separator action (VclLayout turns it into a separator) so that
+                        # code like ToolButton5.Visible := False keeps working
+                        ui.w(f'<addaction name="{c.name}"/>')
                         self.actions.append((c.name, {'vclSeparator': True, 'visible': c.props.get('Visible') != Ident('False')}))
+                    else:
+                        ui.w('<addaction name="separator"/>')
                 else:
                     ui.w(f'<addaction name="{c.name}"/>')
                     props = {'text': c.props.get('Caption', ''), 'toolTip': c.props.get('Hint', '')}

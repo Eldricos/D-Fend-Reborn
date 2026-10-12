@@ -46,9 +46,9 @@
         <property name="vclWrapable" stdset="0"><bool>false</bool></property>
         <addaction name="PreviousButton"/>
         <addaction name="NextButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton1"/>
         <addaction name="SaveButton"/>
-        <addaction name="separator"/>
+        <addaction name="ToolButton2"/>
         <addaction name="PlayPauseButton"/>
       </widget>
     </widget>
