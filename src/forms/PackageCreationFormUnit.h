@@ -82,8 +82,6 @@ private:
     TImageList* DummyImageList1 = nullptr;
     TImageList* DummyImageList2 = nullptr;
     TImageList* ImageList = nullptr;
-    TImageList* FMainImageList = nullptr;
-    TImageList* MainImageList();
     TSortListBy ListSortGames = slbName;
     TSortListBy ListSortAutoSetups = slbName;
     bool ListSortGamesReverse = false;

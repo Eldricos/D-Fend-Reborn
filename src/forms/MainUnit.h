@@ -363,13 +363,15 @@ private:
     TGame* LastSelectedGame = nullptr;
     int LastDragDropEffect = 0;
     THandle hEvent = 0;
-    // --- non visual DFM components
+public:
+    // --- non visual DFM components (image lists are used by other forms, e.g. PackageCreationForm)
     TImageList* ImageList = nullptr;
     TImageList* ListviewImageList = nullptr;
     TImageList* ListviewIconImageList = nullptr;
     TImageList* ScreenshotImageList = nullptr;
     TImageList* ListviewScreenshotImageList = nullptr;
     TImageList* GameNotesImageList = nullptr;
+private:
     QSystemTrayIcon* TrayIcon = nullptr;
     QTimer* IdleAddonTimer = nullptr;
     QTimer* SearchEditTimer = nullptr;
@@ -448,7 +450,6 @@ private:
     void SetListViewShowHint(bool B);            // ListView.ShowHint
     void SetListViewCustomDraw(bool B);          // ListView.OnAdvancedCustomDrawItem:=nil / handler
     void UpdateImageListIcons();                 // re-applies ImageIndex icons after icon set changes
-    void ApplicationHelpCommand(quint16 Command, int Data);   // Application.HelpCommand
     void ApplicationRestore();                   // Application.Restore
 };
 extern TDFendReloadedMainForm* DFendReloadedMainForm;

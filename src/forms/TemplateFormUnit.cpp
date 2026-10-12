@@ -39,15 +39,6 @@ quint16 QtKeyToVK(int Key)
     }
 }
 
-// Application.HelpCommand(HELP_CONTEXT,ID)
-void ApplicationHelpContext(int ID)
-{
-    // TODO(port): the VCL routes Application.HelpCommand through THTMLhelpRouter (HelpTools);
-    // call the HTML help API directly when it is available.
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 TGame *ItemGame(TListItem *Item) { return Item ? static_cast<TGame *>(Item->Data()) : nullptr; }
 
 // ToolBar.ClientToScreen(Point(Button.Left+5,Button.Top+5))
@@ -690,7 +681,7 @@ void TTemplateForm::ButtonWork(QObject* Sender)
         LoadList2();
         SelectGame2(G);
         break;
-    case 18: ApplicationHelpContext(ID_ExtrasTemplates); break;
+    case 18: ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasTemplates); break;
     case 19:
         // AutoSetup: Check for duplicate checksums
         DoubleChecksumCheck();

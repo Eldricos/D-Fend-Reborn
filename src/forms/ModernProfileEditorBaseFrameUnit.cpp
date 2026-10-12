@@ -146,7 +146,7 @@ void TModernProfileEditorBaseFrame::InitGUI(TModernProfileEditorInitData& InitDa
     ui.TurnOffDOSBoxFailedWarningCheckBox->setText(LanguageSetup->TurnOffDOSBoxFailedWarning());
     ui.TurnOffDOSBoxFailedWarningCheckBox->setToolTip(LanguageSetup->TurnOffDOSBoxFailedWarningHints());
 
-    setProperty("helpContext", ID_ProfileEditProfile);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditProfile);  // HelpContext
 }
 
 void TModernProfileEditorBaseFrame::SetGame(TGame* Game, bool LoadFromTemplate)

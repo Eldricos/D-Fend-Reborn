@@ -26,6 +26,7 @@ class QAction;
 class QMenu;
 class QTreeWidget;
 class QTabWidget;
+class QLabel;
 
 namespace VclLayout {
 
@@ -73,5 +74,13 @@ QIcon bitBtnKindIcon(const QString &Kind);
 
 // Returns the QMenu used as PopupMenu for widget W (or nullptr).
 QMenu *popupMenuOf(QWidget *W);
+
+// TLabel.OnClick: QLabel has no clicked signal; Handler is called when the
+// label is clicked with the left mouse button.
+void onLabelClick(QLabel *Label, std::function<void()> Handler);
+
+// Link style label: with Label.Font do begin Color:=clBlue;
+// Style:=[fsUnderline]; end; Label.Cursor:=crHandPoint;
+void makeLinkLabel(QLabel *Label);
 
 }  // namespace VclLayout

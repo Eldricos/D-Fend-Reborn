@@ -75,7 +75,7 @@ void TModernProfileEditorCPUFrame::InitGUI(TModernProfileEditorInitData& InitDat
 
     AddDefaultValueHint(ui.CPUTypeComboBox);
 
-    setProperty("helpContext", ID_ProfileEditCPU);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditCPU);  // HelpContext:=...
 }
 
 void TModernProfileEditorCPUFrame::SetGame(TGame* Game, bool LoadFromTemplate)

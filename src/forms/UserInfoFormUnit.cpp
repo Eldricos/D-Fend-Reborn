@@ -10,14 +10,6 @@
 
 TUserInfoForm* UserInfoForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, Data)
-static void HelpCommandContext(int Data)
-{
-    // TODO(port): no HTML help (hh.exe) context jump available; open the help file instead.
-    Q_UNUSED(Data);
-    if (GLOBAL_HELPROUTER != nullptr && !GLOBAL_HELPROUTER->Helpfile().isEmpty()) ShellOpen(GLOBAL_HELPROUTER->Helpfile());
-}
-
 // Replacement for TStringGridEx (ClassExtensions): cells for which OnListForCell
 // returns true get an editable combo box (esPickList) filled by OnGetListForCell.
 namespace {
@@ -277,7 +269,7 @@ void TUserInfoForm::OKButtonClick(QObject* Sender)
 void TUserInfoForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpCommandContext(ID_ProfileEditProgramInformation);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ProfileEditProgramInformation);
 }
 
 void TUserInfoForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

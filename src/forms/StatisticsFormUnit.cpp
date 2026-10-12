@@ -11,18 +11,6 @@
 
 TStatisticsForm* StatisticsForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void ApplicationHelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through HelpTools (THTMLhelpRouter.OnRouteHelp)
-    // in the original; there is no TApplication help hook in Qt.  Call HtmlHelp directly if
-    // available, otherwise open the help file with the associated viewer.
-    if (GLOBAL_HELPROUTER == nullptr) return;
-    const QString HFile = ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm");
-    if (HtmlHelpA && HtmlHelpA(0, HFile, HH_HELP_CONTEXT, ID) != 0) return;
-    if (FileExists(HFile)) ShellOpen(HFile);
-}
-
 TStatisticsForm::TStatisticsForm(QWidget *AOwner) : TVclForm(AOwner)
 {
     ui.setupUi(this);
@@ -53,7 +41,7 @@ void TStatisticsForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
     if (ui.HelpButton->isHidden()) return;   // StatisticsForm.HelpButton.Visible (StatisticsForm = self)
-    ApplicationHelpContext(ID_HelpStatistics);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_HelpStatistics);
 }
 
 void TStatisticsForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

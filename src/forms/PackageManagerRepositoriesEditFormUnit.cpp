@@ -32,28 +32,6 @@ static quint16 QtKeyToVK(int Key)
     }
 }
 
-// TODO(port): TPackageListFile.Active[I] / URL[I] are writable properties in Delphi, but the
-// generated PackageDBUnit.h declares SetActive/SetURL private.  Access them through the
-// standard explicit-instantiation access idiom until the header makes them public.
-namespace {
-template <typename Tag, typename Tag::type M> struct PrivateAccess { friend typename Tag::type Get(Tag) { return M; } };
-struct SetActiveTag { using type = void (TPackageListFile::*)(int, bool); friend type Get(SetActiveTag); };
-struct SetURLTag { using type = void (TPackageListFile::*)(int, const QString &); friend type Get(SetURLTag); };
-template struct PrivateAccess<SetActiveTag, &TPackageListFile::SetActive>;
-template struct PrivateAccess<SetURLTag, &TPackageListFile::SetURL>;
-void SetListActive(TPackageListFile *L, int I, bool Value) { (L->*Get(SetActiveTag()))(I, Value); }
-void SetListURL(TPackageListFile *L, int I, const QString &Value) { (L->*Get(SetURLTag()))(I, Value); }
-}
-
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through THTMLhelpRouter.OnRouteHelp (private in the
-    // C++ port); call the HTML help directly (HELP_CONTEXT -> HH_HELP_CONTEXT).
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 // Column.Width:=-1 / -2 (LVSCW_AUTOSIZE / LVSCW_AUTOSIZE_USEHEADER)
 static void AutoSizeColumn(TListView *LV, int I)
 {
@@ -234,9 +212,9 @@ void TPackageManagerRepositoriesEditForm::ListViewChange(QObject * /*Sender*/, T
 
     if ((!JustLoading) && (Item != nullptr) && (Change == ctState)) {
         if (Item->ListView() == ui.ListView1)
-            SetListActive(MainPackageList, ItemNr(Item), Item->Checked());
+            MainPackageList->SetActive(ItemNr(Item), Item->Checked());
         else
-            SetListActive(UserPackageList, ItemNr(Item), Item->Checked());
+            UserPackageList->SetActive(ItemNr(Item), Item->Checked());
     }
 
     if (ui.PageControl->currentIndex() == 0) {
@@ -295,14 +273,14 @@ void TPackageManagerRepositoriesEditForm::ButtonWork(QObject *Sender)
                 if (ui.ListView1->Selected() != nullptr) {
                     ui.ListView1->Selected()->SetChecked(!ui.ListView1->Selected()->Checked());
                     I = ItemNr(ui.ListView1->Selected());
-                    SetListActive(MainPackageList, I, !MainPackageList->Active(I));
+                    MainPackageList->SetActive(I, !MainPackageList->Active(I));
                     ListViewChange(this, ui.ListView1->Selected(), ctState);
                 }
             } else {
                 if (ui.ListView->Selected() != nullptr) {
                     ui.ListView->Selected()->SetChecked(!ui.ListView->Selected()->Checked());
                     I = ItemNr(ui.ListView->Selected());
-                    SetListActive(UserPackageList, I, !UserPackageList->Active(I));
+                    UserPackageList->SetActive(I, !UserPackageList->Active(I));
                     ListViewChange(this, ui.ListView->Selected(), ctState);
                 }
             }
@@ -320,7 +298,7 @@ void TPackageManagerRepositoriesEditForm::ButtonWork(QObject *Sender)
                 I = ItemNr(ui.ListView->Selected());
                 S = UserPackageList->URL(I);
                 if (!ShowPackageManagerRepositoriesEditURLDialog(this, S)) return;
-                SetListURL(UserPackageList, I, S);
+                UserPackageList->SetURL(I, S);
                 ui.ListView->Selected()->SetCaption(S);
                 ui.ListView->Selected()->SubItems().SetStrings(0, GetDescription(S));
             }
@@ -370,7 +348,7 @@ void TPackageManagerRepositoriesEditForm::FormKeyDown(QObject *Sender, quint16 &
 
 void TPackageManagerRepositoriesEditForm::HelpButtonClick(QObject * /*Sender*/)
 {
-    HelpContext(ID_FileImportDownload);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_FileImportDownload);
 }
 
 // global

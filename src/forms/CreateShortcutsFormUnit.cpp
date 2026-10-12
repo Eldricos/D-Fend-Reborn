@@ -13,14 +13,6 @@
 
 TCreateShortcutsForm* CreateShortcutsForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, Data)
-static void HelpCommandContext(int Data)
-{
-    // TODO(port): no HTML help (hh.exe) context jump available; open the help file instead.
-    Q_UNUSED(Data);
-    if (GLOBAL_HELPROUTER != nullptr && !GLOBAL_HELPROUTER->Helpfile().isEmpty()) ShellOpen(GLOBAL_HELPROUTER->Helpfile());
-}
-
 TCreateShortcutsForm::TCreateShortcutsForm(QWidget *AOwner) : TVclForm(AOwner)
 {
     ui.setupUi(this);
@@ -179,7 +171,7 @@ void TCreateShortcutsForm::OKButtonClick(QObject* Sender)
 void TCreateShortcutsForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpCommandContext(ID_ExtrasCreateShortcuts);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasCreateShortcuts);
 }
 
 void TCreateShortcutsForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

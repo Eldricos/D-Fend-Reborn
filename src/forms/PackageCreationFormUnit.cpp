@@ -30,15 +30,6 @@ static quint16 QtKeyToVK(int Key)
     }
 }
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through THTMLhelpRouter.OnRouteHelp (private in the
-    // C++ port); call the HTML help directly (HELP_CONTEXT -> HH_HELP_CONTEXT).
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 // TCheckListBox helpers
 static void CheckListAddStrings(QListWidget *L, const TStringList &St)
 {
@@ -117,7 +108,6 @@ TPackageCreationForm::~TPackageCreationForm()
     delete DummyImageList1;
     delete DummyImageList2;
     delete ImageList;
-    delete FMainImageList;
 }
 
 void TPackageCreationForm::showEvent(QShowEvent *E)
@@ -274,23 +264,11 @@ void TPackageCreationForm::LoadLists()
     PackagesListBoxClick(this);
 }
 
-// DFendReloadedMainForm.ImageList
-// TODO(port): TDFendReloadedMainForm::ImageList is private in MainUnit.h; a copy of the main
-// form's image list (with the user icon set applied) is used instead.
-TImageList *TPackageCreationForm::MainImageList()
-{
-    if (FMainImageList == nullptr) {
-        FMainImageList = TImageList::FromResource("MainUnit", "ImageList");
-        UserIconLoader->DirectLoad(FMainImageList, "Main");
-    }
-    return FMainImageList;
-}
-
 void TPackageCreationForm::LoadGamesList()
 {
     TList CheckedGames;
     for (int I = 0; I < ui.GamesListView->Items()->Count(); I++) if (ui.GamesListView->Items()->Item(I)->Checked()) CheckedGames.append(ui.GamesListView->Items()->Item(I)->Data());
-    AddGamesToList(ui.GamesListView, DummyImageList1, DummyImageList2, MainImageList(), GameDB, "", "", "", true, ListSortGames, ListSortGamesReverse, false, true, true, false);
+    AddGamesToList(ui.GamesListView, DummyImageList1, DummyImageList2, DFendReloadedMainForm->ImageList, GameDB, "", "", "", true, ListSortGames, ListSortGamesReverse, false, true, true, false);
     for (int I = 0; I < ui.GamesListView->Items()->Count(); I++) ui.GamesListView->Items()->Item(I)->SetChecked(CheckedGames.indexOf(ui.GamesListView->Items()->Item(I)->Data()) >= 0);
 }
 
@@ -298,7 +276,7 @@ void TPackageCreationForm::LoadAutoSetupsList()
 {
     TList CheckedGames;
     for (int I = 0; I < ui.AutoSetupListView->Items()->Count(); I++) if (ui.AutoSetupListView->Items()->Item(I)->Checked()) CheckedGames.append(ui.AutoSetupListView->Items()->Item(I)->Data());
-    AddGamesToList(ui.AutoSetupListView, DummyImageList1, DummyImageList2, MainImageList(), AutoSetupDB, "", "", "", true, ListSortAutoSetups, ListSortAutoSetupsReverse, false, true, false, false);
+    AddGamesToList(ui.AutoSetupListView, DummyImageList1, DummyImageList2, DFendReloadedMainForm->ImageList, AutoSetupDB, "", "", "", true, ListSortAutoSetups, ListSortAutoSetupsReverse, false, true, false, false);
     for (int I = 0; I < ui.AutoSetupListView->Items()->Count(); I++) ui.AutoSetupListView->Items()->Item(I)->SetChecked(CheckedGames.indexOf(ui.AutoSetupListView->Items()->Item(I)->Data()) >= 0);
 }
 
@@ -576,7 +554,7 @@ void TPackageCreationForm::OKButtonClick(QObject * /*Sender*/)
 
 void TPackageCreationForm::HelpButtonClick(QObject * /*Sender*/)
 {
-    HelpContext(ID_FileExportPackageListCreator);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_FileExportPackageListCreator);
 }
 
 void TPackageCreationForm::ToolsCheckBoxClick(QObject * /*Sender*/)

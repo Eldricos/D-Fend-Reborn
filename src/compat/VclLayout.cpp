@@ -18,6 +18,7 @@
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QLabel>
+#include <QMouseEvent>
 #include <QMainWindow>
 #include <QMenu>
 #include <QPointer>
@@ -765,6 +766,40 @@ public:
 void installKeyPreview(QWidget *Form, const std::function<bool(int Key, Qt::KeyboardModifiers Mods)> &Handler)
 {
     new KeyPreviewFilter(Form, Handler);
+}
+
+class LabelClickFilter : public QObject
+{
+public:
+    LabelClickFilter(QLabel *Label, std::function<void()> Handler) : QObject(Label), FHandler(std::move(Handler)) { Label->installEventFilter(this); }
+protected:
+    bool eventFilter(QObject *Watched, QEvent *Event) override
+    {
+        if (Event->type() == QEvent::MouseButtonRelease && static_cast<QMouseEvent *>(Event)->button() == Qt::LeftButton) {
+            if (FHandler) FHandler();
+            return true;
+        }
+        return QObject::eventFilter(Watched, Event);
+    }
+private:
+    std::function<void()> FHandler;
+};
+
+void onLabelClick(QLabel *Label, std::function<void()> Handler)
+{
+    if (Label != nullptr) new LabelClickFilter(Label, std::move(Handler));
+}
+
+void makeLinkLabel(QLabel *Label)
+{
+    if (Label == nullptr) return;
+    QPalette P = Label->palette();
+    P.setColor(QPalette::WindowText, QColor(0, 0, 255));   // clBlue
+    Label->setPalette(P);
+    QFont F = Label->font();
+    F.setUnderline(true);
+    Label->setFont(F);
+    Label->setCursor(Qt::PointingHandCursor);
 }
 
 // ---------------------------------------------------------------------------

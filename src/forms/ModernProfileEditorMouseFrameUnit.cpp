@@ -49,7 +49,7 @@ void TModernProfileEditorMouseFrame::InitGUI(TModernProfileEditorInitData& InitD
         SetFontColor(ui.SwapButtonsInfoLabel, clRed);
     }
 
-    setProperty("helpContext", ID_ProfileEditMouse);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditMouse);  // HelpContext:=...
 }
 
 void TModernProfileEditorMouseFrame::SetGame(TGame* Game, bool LoadFromTemplate)

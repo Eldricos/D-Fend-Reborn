@@ -13,7 +13,6 @@
 #include "DOSBoxCountUnit.h"
 #include "HistoryUnit.h"
 #include "PrgConsts.h"
-struct IDataObject;  // TODO(port): MainUnit.h uses IDataObject without declaring it
 #include "MainUnit.h"
 
 #ifdef Q_OS_WIN

@@ -205,7 +205,7 @@ void TModernProfileEditorGameInfoFrame::InitGUI(TModernProfileEditorInitData& In
     ProfileCaptureDir = InitData.CurrentCaptureDir;
     FOnProfileNameChange = InitData.OnProfileNameChange;
 
-    setProperty("helpContext", ID_ProfileEditProgramInformation);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditProgramInformation);  // HelpContext
 }
 
 void TModernProfileEditorGameInfoFrame::LoadLinks()

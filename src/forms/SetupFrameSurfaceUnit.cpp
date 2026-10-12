@@ -9,39 +9,6 @@
 #include "Dialogs.h"
 
 namespace {
-// VCL TLabel.OnClick: QLabel has no clicked signal, so a small event filter
-// forwards left mouse button releases to the handler.
-class TLabelClickFilter : public QObject
-{
-public:
-    TLabelClickFilter(QLabel *Label, std::function<void()> Handler) : QObject(Label), FHandler(std::move(Handler)) { Label->installEventFilter(this); }
-protected:
-    bool eventFilter(QObject *Watched, QEvent *Event) override
-    {
-        if (Event->type() == QEvent::MouseButtonRelease && static_cast<QMouseEvent *>(Event)->button() == Qt::LeftButton) {
-            FHandler();
-            return true;
-        }
-        return QObject::eventFilter(Watched, Event);
-    }
-private:
-    std::function<void()> FHandler;
-};
-
-// with Label.Font do begin Color:=clBlue; Style:=[fsUnderline]; end; Label.Cursor:=crHandPoint;
-void MakeLinkLabel(QLabel *Label)
-{
-    QPalette P = Label->palette();
-    P.setColor(QPalette::WindowText, TColorToQColor(clBlue));
-    Label->setPalette(P);
-    QFont F = Label->font();
-    F.setUnderline(true);
-    Label->setFont(F);
-    Label->setCursor(Qt::PointingHandCursor);
-}
-} // namespace
-
-namespace {
 // TCheckListBox helpers
 void AddCheckItem(QListWidget *L, const QString &S)
 {
@@ -60,7 +27,7 @@ TSetupFrameSurface::TSetupFrameSurface(QWidget *AOwner) : QWidget(AOwner)
     ui.setupUi(this);
     VclLayout::setupForm(this);
     // DFM event wiring
-    new TLabelClickFilter(ui.IconCustomizeLabel, [this]() { IconCustomizeLabelClick(ui.IconCustomizeLabel); });
+    VclLayout::onLabelClick(ui.IconCustomizeLabel, [this]() { IconCustomizeLabelClick(ui.IconCustomizeLabel); });
     connect(ui.IconSetListbox, &QListWidget::itemChanged, this, [this]() { IconSetListboxClickCheck(ui.IconSetListbox); });   // OnClickCheck
     connect(ui.IconSetListbox, &QListWidget::currentRowChanged, this, [this]() { IconSetListboxClick(ui.IconSetListbox); });  // OnClick
 }
@@ -102,7 +69,7 @@ void TSetupFrameSurface::InitGUIAndLoadSetup(TInitData &InitData)
         }
     }
     IconSetListboxClick(this);
-    MakeLinkLabel(ui.IconCustomizeLabel);
+    VclLayout::makeLinkLabel(ui.IconCustomizeLabel);
 }
 
 void TSetupFrameSurface::BeforeChangeLanguage()

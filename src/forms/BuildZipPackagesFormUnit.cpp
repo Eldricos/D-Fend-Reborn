@@ -14,15 +14,6 @@ TBuildZipPackagesForm *BuildZipPackagesForm = nullptr;
 
 static constexpr quint16 VK_F1_Code = 0x70;   // VK_F1
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through THTMLhelpRouter.OnRouteHelp (private in the
-    // C++ port); call the HTML help directly (HELP_CONTEXT -> HH_HELP_CONTEXT).
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 TBuildZipPackagesForm::TBuildZipPackagesForm(QWidget *AOwner) : TVclForm(AOwner)
 {
     ui.setupUi(this);
@@ -125,7 +116,7 @@ void TBuildZipPackagesForm::OKButtonClick(QObject * /*Sender*/)
 
 void TBuildZipPackagesForm::HelpButtonClick(QObject * /*Sender*/)
 {
-    HelpContext(ID_FileExportBuildZipPackages);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_FileExportBuildZipPackages);
 }
 
 void TBuildZipPackagesForm::FormKeyDown(QObject *Sender, quint16 &Key, TShiftState Shift)

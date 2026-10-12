@@ -91,7 +91,7 @@ void TModernProfileEditorHelperProgramsFrame::InitGUI(TModernProfileEditorInitDa
 
     FrameResize(this);
 
-    setProperty("helpContext", ID_ProfileEditHelperPrograms);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditHelperPrograms);  // HelpContext:=...
 }
 
 void TModernProfileEditorHelperProgramsFrame::SetGame(TGame* Game, bool LoadFromTemplate)

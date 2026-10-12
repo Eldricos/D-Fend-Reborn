@@ -13,15 +13,6 @@ TSelectTemplateForZipImportForm *SelectTemplateForZipImportForm = nullptr;
 
 static constexpr quint16 VK_F1_Code = 0x70;   // VK_F1
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through THTMLhelpRouter.OnRouteHelp (private in the
-    // C++ port); call the HTML help directly (HELP_CONTEXT -> HH_HELP_CONTEXT).
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 // TComboBox.Items.Objects[I] (stored as Qt::UserRole data)
 static int ComboObject(QComboBox *C, int I) { return (I >= 0 && I < C->count()) ? C->itemData(I).toInt() : 0; }
 
@@ -401,7 +392,7 @@ void TSelectTemplateForZipImportForm::InstallSupportButtonClick(QObject * /*Send
 
 void TSelectTemplateForZipImportForm::HelpButtonClick(QObject * /*Sender*/)
 {
-    HelpContext(ID_FileImportZip);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_FileImportZip);
 }
 
 void TSelectTemplateForZipImportForm::FormKeyDown(QObject *Sender, quint16 &Key, TShiftState Shift)

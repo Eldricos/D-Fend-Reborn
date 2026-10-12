@@ -53,14 +53,6 @@ TModernProfileEditorForm* ModernProfileEditorForm = nullptr;
 
 static int LastPage = 0, LastPageExt = 0, LastTop = 0, LastLeft = 0;
 
-// Application.HelpCommand(HELP_CONTEXT,I)
-static void HelpCommandContext(int Context)
-{
-    // TODO(port): no context sensitive HTML help router yet; open the help file instead.
-    Q_UNUSED(Context);
-    if (GLOBAL_HELPROUTER != nullptr) GLOBAL_HELPROUTER->HelpContent();
-}
-
 // Frame index stored in TTreeNode.Data
 static int NodeData(QTreeWidgetItem* Node)
 {
@@ -816,9 +808,9 @@ void TModernProfileEditorForm::HelpButtonClick(QObject* Sender)
     int I;
 
     I = 0;
-    if (LastVisibleFrame != nullptr) I = LastVisibleFrame->property("helpContext").toInt();
+    if (LastVisibleFrame != nullptr) I = LastVisibleFrame->property("HelpContext").toInt();
     if (I == 0) I = ID_FileEdit;
-    HelpCommandContext(I);
+    ApplicationHelpCommand(HELP_CONTEXT, I);
 }
 
 void TModernProfileEditorForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

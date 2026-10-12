@@ -37,7 +37,7 @@ void TModernProfileEditorGUSFrame::InitGUI(TModernProfileEditorInitData& InitDat
     AddDefaultValueHint(ui.Interrupt1ComboBox);
     AddDefaultValueHint(ui.DMA1ComboBox);
 
-    setProperty("helpContext", ID_ProfileEditSoundGUS);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditSoundGUS);  // HelpContext:=...
 }
 
 static void SetComboBox(QComboBox* ComboBox, const QString& Value, int Default)

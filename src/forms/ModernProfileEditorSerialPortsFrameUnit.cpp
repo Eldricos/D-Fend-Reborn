@@ -20,7 +20,7 @@ void TModernProfileEditorSerialPortsFrame::InitGUI(TModernProfileEditorInitData&
 
     ui.InfoLabel->setText(LanguageSetup->ProfileEditorSerialPortsInfo());
 
-    setProperty("helpContext", ID_ProfileEditSerialPorts);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditSerialPorts);  // HelpContext:=...
 }
 
 void TModernProfileEditorSerialPortsFrame::SetGame(TGame* Game, bool LoadFromTemplate)

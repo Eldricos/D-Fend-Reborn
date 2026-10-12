@@ -107,7 +107,7 @@ void TModernProfileEditorDirectoryFrame::InitGUI(TModernProfileEditorInitData& I
 
     FLastCurrentProfileName = "";
 
-    setProperty("helpContext", ID_ProfileEditProgramDirectories);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditProgramDirectories);  // HelpContext
 }
 
 void TModernProfileEditorDirectoryFrame::ScreenshotFolderEditChange(QObject* Sender)

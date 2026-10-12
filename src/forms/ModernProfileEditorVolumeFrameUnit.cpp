@@ -74,7 +74,7 @@ void TModernProfileEditorVolumeFrame::InitGUI(TModernProfileEditorInitData& Init
 
     JustChanging = false;
 
-    setProperty("helpContext", ID_ProfileEditSoundVolume);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditSoundVolume);  // HelpContext:=...
 }
 
 void TModernProfileEditorVolumeFrame::SetGame(TGame* Game, bool LoadFromTemplate)

@@ -12,14 +12,6 @@
 
 TExtraExeEditForm* ExtraExeEditForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, Data)
-static void HelpCommandContext(int Data)
-{
-    // TODO(port): no HTML help (hh.exe) context jump available; open the help file instead.
-    Q_UNUSED(Data);
-    if (GLOBAL_HELPROUTER != nullptr && !GLOBAL_HELPROUTER->Helpfile().isEmpty()) ShellOpen(GLOBAL_HELPROUTER->Helpfile());
-}
-
 // TStringGrid helpers: VCL row/column indices include the fixed rows/columns,
 // which are the Qt header sections (see PORTING.md).
 static int GridFixedRows(QTableWidget* T) { return T->property("vclFixedRows").toInt(); }
@@ -159,7 +151,7 @@ void TExtraExeEditForm::OKButtonClick(QObject* Sender)
 void TExtraExeEditForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpCommandContext(ID_ProfileEditProfile);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ProfileEditProfile);
 }
 
 void TExtraExeEditForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

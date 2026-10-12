@@ -11,39 +11,6 @@
 #include "Process.h"
 #include "Dialogs.h"
 
-namespace {
-// VCL TLabel.OnClick: QLabel has no clicked signal, so a small event filter
-// forwards left mouse button releases to the handler.
-class TLabelClickFilter : public QObject
-{
-public:
-    TLabelClickFilter(QLabel *Label, std::function<void()> Handler) : QObject(Label), FHandler(std::move(Handler)) { Label->installEventFilter(this); }
-protected:
-    bool eventFilter(QObject *Watched, QEvent *Event) override
-    {
-        if (Event->type() == QEvent::MouseButtonRelease && static_cast<QMouseEvent *>(Event)->button() == Qt::LeftButton) {
-            FHandler();
-            return true;
-        }
-        return QObject::eventFilter(Watched, Event);
-    }
-private:
-    std::function<void()> FHandler;
-};
-
-// with Label.Font do begin Color:=clBlue; Style:=[fsUnderline]; end; Label.Cursor:=crHandPoint;
-void MakeLinkLabel(QLabel *Label)
-{
-    QPalette P = Label->palette();
-    P.setColor(QPalette::WindowText, TColorToQColor(clBlue));
-    Label->setPalette(P);
-    QFont F = Label->font();
-    F.setUnderline(true);
-    Label->setFont(F);
-    Label->setCursor(Qt::PointingHandCursor);
-}
-} // namespace
-
 // NoFlicker (VistaToolsUnit) is not needed in the Qt port.
 
 TSetupFrameScummVM::TSetupFrameScummVM(QWidget *AOwner) : QWidget(AOwner)
@@ -53,7 +20,7 @@ TSetupFrameScummVM::TSetupFrameScummVM(QWidget *AOwner) : QWidget(AOwner)
     // DFM event wiring
     connect(ui.ScummVMButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.ScummVMButton); });
     connect(ui.FindScummVMButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.FindScummVMButton); });
-    new TLabelClickFilter(ui.ScummVMDownloadURL, [this]() { ScummVMDownloadURLClick(ui.ScummVMDownloadURL); });
+    VclLayout::onLabelClick(ui.ScummVMDownloadURL, [this]() { ScummVMDownloadURLClick(ui.ScummVMDownloadURL); });
     connect(ui.ScummVMReadList, &QPushButton::clicked, this, [this]() { ButtonWork(ui.ScummVMReadList); });
     connect(ui.MinimizeDFendScummVMCheckBox, &QCheckBox::clicked, this, [this]() { MinimizeDFendScummVMCheckBoxClick(ui.MinimizeDFendScummVMCheckBox); });
     connect(ui.ScummVMShowListButton, &QPushButton::clicked, this, [this]() { ButtonWork(ui.ScummVMShowListButton); });
@@ -102,7 +69,7 @@ void TSetupFrameScummVM::LoadLanguage()
     ui.CommandLineEdit_EditLabel->setText(LanguageSetup->SetupFormScummVMAdditionalParameters());
     ui.ScummVMDownloadURLInfo->setText(LanguageSetup->SetupFormScummVMDownloadURL());
     ui.ScummVMDownloadURL->setText(QString("http:/") + "/www.scummvm.org/downloads.php");
-    MakeLinkLabel(ui.ScummVMDownloadURL);
+    VclLayout::makeLinkLabel(ui.ScummVMDownloadURL);
     setProperty("HelpContext", ID_FileOptionsScummVM);
 }
 

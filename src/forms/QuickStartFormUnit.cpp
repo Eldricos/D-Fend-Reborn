@@ -138,32 +138,6 @@ constexpr int RoleHasChildren = Qt::UserRole + 3;
 
 int ItemType(TListItem *Item) { return static_cast<int>(reinterpret_cast<intptr_t>(Item->Data())); }
 
-// Application.HelpCommand(HELP_CONTEXT,ID)
-void ApplicationHelpContext(int ID)
-{
-    // TODO(port): the VCL routes Application.HelpCommand through THTMLhelpRouter (HelpTools);
-    // call the HTML help API directly when it is available.
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
-// Game.Mount[I]:=S (TGame::SetMount is private in GameDBUnit.h)
-void SetGameMount(TGame *Game, int I, const QString &S)
-{
-    switch (I) {
-    case 0: Game->SetMount0(S); break;
-    case 1: Game->SetMount1(S); break;
-    case 2: Game->SetMount2(S); break;
-    case 3: Game->SetMount3(S); break;
-    case 4: Game->SetMount4(S); break;
-    case 5: Game->SetMount5(S); break;
-    case 6: Game->SetMount6(S); break;
-    case 7: Game->SetMount7(S); break;
-    case 8: Game->SetMount8(S); break;
-    case 9: Game->SetMount9(S); break;
-    }
-}
-
 QString MakePathShort(const QString &S)
 {
 #ifdef Q_OS_WIN
@@ -896,7 +870,7 @@ void TQuickStartForm::ButtonWork(QObject* Sender)
     case 0: close(); break;
     case 1: BuildTree(); break;
     case 2: MenuWork(ui.ListRun); break;
-    case 3: ApplicationHelpContext(ID_ViewQuickStarter); break;
+    case 3: ApplicationHelpCommand(HELP_CONTEXT, ID_ViewQuickStarter); break;
     }
 }
 
@@ -1197,7 +1171,7 @@ void TQuickStartForm::CheckPathAvialableInProfile(TGame* Game, const QString& Pa
 
     for (J = 1; J <= Length(Letters); J++) if (Letters[J - 1] != '-') {
         S = Path + ";DRIVE;" + Letters[J - 1] + ";False;;";
-        SetGameMount(Game, Game->NrOfMounts(), S);
+        Game->SetMount(Game->NrOfMounts(), S);
         Game->SetNrOfMounts(Game->NrOfMounts() + 1);
         return;
     }

@@ -33,7 +33,7 @@ void TModernProfileEditorPrinterFrame::InitGUI(TModernProfileEditorInitData& Ini
     ui.MultiPageCheckBox->setText(LanguageSetup->GamePrinterMultiPage());
     ui.MultiPageInfoLabel->setText(LanguageSetup->GamePrinterMultiPageInfo());
 
-    setProperty("helpContext", ID_ProfileEditPrinter);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditPrinter);  // HelpContext:=...
 }
 
 void TModernProfileEditorPrinterFrame::SetGame(TGame* Game, bool LoadFromTemplate)

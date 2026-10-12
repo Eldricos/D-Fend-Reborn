@@ -327,23 +327,6 @@ static QString GetCodepage()
     return LanguageSetup->GameKeyboardCodepageDefault();
 }
 
-// TGame.Mount[I]:=Value (the generated TGame header has no public indexed setter)
-static void SetGameMount(TGame* G, int I, const QString& Value)
-{
-    switch (I) {
-        case 0: G->SetMount0(Value); break;
-        case 1: G->SetMount1(Value); break;
-        case 2: G->SetMount2(Value); break;
-        case 3: G->SetMount3(Value); break;
-        case 4: G->SetMount4(Value); break;
-        case 5: G->SetMount5(Value); break;
-        case 6: G->SetMount6(Value); break;
-        case 7: G->SetMount7(Value); break;
-        case 8: G->SetMount8(Value); break;
-        case 9: G->SetMount9(Value); break;
-    }
-}
-
 static bool DiskImageCreatorRunDOSBoxCommandsOnFloppyImage(const QString& ImageFileName, TStringList* Autoexec, TStringList* AdditionalFolders)
 {
     QString FreeDOSDir, DoszipDir;
@@ -361,7 +344,7 @@ static bool DiskImageCreatorRunDOSBoxCommandsOnFloppyImage(const QString& ImageF
     if (AdditionalFolders != nullptr) {
         TempGame->Game()->SetNrOfMounts(2 + Add + AdditionalFolders->Count());
         for (int I = 0; I < AdditionalFolders->Count(); I++)
-            SetGameMount(TempGame->Game(), 2 + Add + I, (*AdditionalFolders)[I] + ";DRIVE;" + QChar('D' + I + Add) + ";False;;1000");
+            TempGame->Game()->SetMount(2 + Add + I, (*AdditionalFolders)[I] + ";DRIVE;" + QChar('D' + I + Add) + ";False;;1000");
     } else {
         TempGame->Game()->SetNrOfMounts(2 + Add);
     }
@@ -392,7 +375,7 @@ static bool DiskImageCreatorRunDOSBoxCommandsOnHDImage(const QString& ImageFileN
     if (AdditionalFolders != nullptr) {
         TempGame->Game()->SetNrOfMounts(2 + Add + AdditionalFolders->Count());
         for (int I = 0; I < AdditionalFolders->Count(); I++)
-            SetGameMount(TempGame->Game(), 2 + I + Add, (*AdditionalFolders)[I] + ";DRIVE;" + QChar('E' + I + Add) + ";False;;1000");
+            TempGame->Game()->SetMount(2 + I + Add, (*AdditionalFolders)[I] + ";DRIVE;" + QChar('E' + I + Add) + ";False;;1000");
     } else {
         TempGame->Game()->SetNrOfMounts(2 + Add);
     }

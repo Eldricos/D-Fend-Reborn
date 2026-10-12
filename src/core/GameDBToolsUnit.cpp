@@ -44,24 +44,6 @@ static QWidget *MainFormWidget()
     return DFendReloadedMainForm;
 }
 
-// TGame.Mount[I]:=Value (the C++ TGame header only exposes the read accessor)
-static void SetGameMount(TGame *G, int I, const QString &Value)
-{
-    switch (I) {
-        case 0: G->SetMount0(Value); break;
-        case 1: G->SetMount1(Value); break;
-        case 2: G->SetMount2(Value); break;
-        case 3: G->SetMount3(Value); break;
-        case 4: G->SetMount4(Value); break;
-        case 5: G->SetMount5(Value); break;
-        case 6: G->SetMount6(Value); break;
-        case 7: G->SetMount7(Value); break;
-        case 8: G->SetMount8(Value); break;
-        case 9: G->SetMount9(Value); break;
-        default: break;
-    }
-}
-
 // Case O[I+1] of '1'..'9' : ...; 'A'..'Z' : ...; 'a'..'z' : ... end;
 static int ColumnCharToNr(QChar C)
 {
@@ -1421,7 +1403,7 @@ void ReplaceAbsoluteDirs(TGameDB *GameDB)
                 }
                 T = T + RemoveBackslash(MakeRelPath(Trim(S), PrgSetup->BaseDir(), true));
                 (*St)[0] = T;
-                SetGameMount(G, J, ListToValue(St));
+                G->SetMount(J, ListToValue(St));
             }
             delete St;
         }
@@ -2471,7 +2453,7 @@ static void AddDrive(TGame *Game, const QString &RealFolder, const QString &Lett
     // RealFolder;DRIVE;Letter;False;;FreeSpace
     QString S = MakeRelPath(RealFolder, PrgSetup->BaseDir(), true) + ";Drive;" + Letter + ";;" + FreeSpace;
 
-    SetGameMount(Game, Game->NrOfMounts(), S);
+    Game->SetMount(Game->NrOfMounts(), S);
     Game->SetNrOfMounts(Game->NrOfMounts() + 1);
 }
 
@@ -2480,7 +2462,7 @@ static void AddCDImageDrive(TGame *Game, const QString &RealFolder, const QStrin
     // ImageFile;CDROMIMAGE;Letter;;;
     QString S = MakeRelPath(RealFolder, PrgSetup->BaseDir(), true) + ";CDRomImage;" + Letter + ";;";
 
-    SetGameMount(Game, Game->NrOfMounts(), S);
+    Game->SetMount(Game->NrOfMounts(), S);
     Game->SetNrOfMounts(Game->NrOfMounts() + 1);
 }
 

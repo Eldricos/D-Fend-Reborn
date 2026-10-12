@@ -44,7 +44,7 @@ void TModernProfileEditorScummVMGameFrame::InitGUI(TModernProfileEditorInitData&
     CurrentGameName = InitData.CurrentScummVMGameName;
     EditingTemplate = InitData.EditingTemplate;
 
-    setProperty("helpContext", ID_ProfileEditScummVMGame);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditScummVMGame);  // HelpContext
 }
 
 QString TModernProfileEditorScummVMGameFrame::GameNames(const QList<QString>& Games)

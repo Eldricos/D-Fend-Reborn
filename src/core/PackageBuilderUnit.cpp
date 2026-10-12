@@ -7,11 +7,7 @@
 #include "LanguageSetupUnit.h"
 #include "GameDBToolsUnit.h"
 #include "PrgConsts.h"
-// TODO(port): ZipInfoFormUnit.h currently does not compile on its own (it uses
-// the SevenZipVCL constant MAXIMUM as default argument).  The routines needed
-// here are declared locally until that header is fixed; replace these
-// declarations by #include "ZipInfoFormUnit.h" then.
-bool ExtractZipFile(QWidget* AOwner, const QString& AZipFile, const QString& ADestFolder);
+#include "ZipInfoFormUnit.h"
 #include "ZipPackageUnit.h"
 
 // IXMLNode.AddChild on the document element

@@ -59,7 +59,7 @@ void TModernProfileEditorSerialPortFrame::InitGUI(TModernProfileEditorInitData& 
     ui.DirectSerialPortEdit_EditLabel->setText(LanguageSetup->SerialFormDirectSerialPort());
     ui.DirectSerialRXDelayLabel->setText(LanguageSetup->SerialFormRXDelay());
 
-    setProperty("helpContext", ID_ProfileEditSerialPorts);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditSerialPorts);  // HelpContext:=...
 }
 
 static void Divide(const QString& Data, QString& Name, QString& Value)

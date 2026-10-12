@@ -15,14 +15,6 @@
 
 TBuildImageFromFolderForm* BuildImageFromFolderForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpCommandContext(int ID)
-{
-    // TODO(port): no public help context entry point in HelpTools yet; open the help contents.
-    Q_UNUSED(ID);
-    if (GLOBAL_HELPROUTER != nullptr) GLOBAL_HELPROUTER->HelpContent();
-}
-
 // GetDriveType(PChar(C+':\'))=DRIVE_REMOVABLE
 static bool IsRemovableDrive(QChar C)
 {
@@ -222,7 +214,7 @@ void TBuildImageFromFolderForm::OKButtonClick(QObject* Sender)
 void TBuildImageFromFolderForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpCommandContext(ID_ExtrasImagesCreateFromFolder);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasImagesCreateFromFolder);
 }
 
 void TBuildImageFromFolderForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

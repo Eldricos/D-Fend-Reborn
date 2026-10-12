@@ -5,7 +5,6 @@
 #include "DOSBoxTempUnit.h"
 #include "DosBoxUnit.h"
 #include "CommonTools.h"
-struct IDataObject;  // TODO(port): MainUnit.h uses IDataObject without declaring it
 #include "MainUnit.h"
 
 static void ProcessMIDIInfoLine(const QString& Line, TStringList* List)

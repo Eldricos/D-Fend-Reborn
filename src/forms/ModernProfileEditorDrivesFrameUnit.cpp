@@ -75,7 +75,7 @@ void TModernProfileEditorDrivesFrame::InitGUI(TModernProfileEditorInitData& Init
 
     GameDB = InitData.GameDB;
 
-    setProperty("helpContext", ID_ProfileEditDrives);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditDrives);  // HelpContext
 }
 
 void TModernProfileEditorDrivesFrame::SetGame(TGame* Game, bool LoadFromTemplate)

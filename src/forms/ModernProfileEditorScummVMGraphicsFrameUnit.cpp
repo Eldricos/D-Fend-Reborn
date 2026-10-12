@@ -34,7 +34,7 @@ void TModernProfileEditorScummVMGraphicsFrame::InitGUI(TModernProfileEditorInitD
     ui.StartFullscreenCheckBox->setText(LanguageSetup->GameStartFullscreen());
     ui.KeepAspectRatioCheckBox->setText(LanguageSetup->GameAspectCorrection());
 
-    setProperty("helpContext", ID_ProfileEditGraphics);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditGraphics);  // HelpContext
 }
 
 void TModernProfileEditorScummVMGraphicsFrame::SetGame(TGame* Game, bool LoadFromTemplate)

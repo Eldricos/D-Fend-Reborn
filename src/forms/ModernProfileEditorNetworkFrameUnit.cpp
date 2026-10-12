@@ -71,7 +71,7 @@ void TModernProfileEditorNetworkFrame::InitGUI(TModernProfileEditorInitData& Ini
 
     ProfileDOSBoxInstallation = InitData.CurrentDOSBoxInstallation;
 
-    setProperty("helpContext", ID_ProfileEditNetwork);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditNetwork);  // HelpContext:=...
 }
 
 void TModernProfileEditorNetworkFrame::SetGame(TGame* Game, bool LoadFromTemplate)

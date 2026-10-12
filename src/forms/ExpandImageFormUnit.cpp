@@ -11,19 +11,10 @@
 #include "IconLoaderUnit.h"
 #include "DOSBoxTempUnit.h"
 #include "PrgConsts.h"
-struct IDataObject;  // work around: MainUnit.h uses IDataObject without declaring it
 #include "MainUnit.h"
 #include "Process.h"
 
 TExpandImageForm* ExpandImageForm = nullptr;
-
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpCommandContext(int ID)
-{
-    // TODO(port): no public help context entry point in HelpTools yet; open the help contents.
-    Q_UNUSED(ID);
-    if (GLOBAL_HELPROUTER != nullptr) GLOBAL_HELPROUTER->HelpContent();
-}
 
 TExpandImageForm::TExpandImageForm(QWidget *AOwner) : TVclForm(AOwner)
 {
@@ -189,7 +180,7 @@ bool TExpandImageForm::ExpandImage(const QString& FileName, const QString& Dir, 
 void TExpandImageForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpCommandContext(ID_ExtrasImagesExtractToFolder);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasImagesExtractToFolder);
 }
 
 void TExpandImageForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

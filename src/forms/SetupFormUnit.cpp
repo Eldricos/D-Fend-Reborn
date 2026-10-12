@@ -57,16 +57,6 @@ static QWidget* DFendReloadedMainFormWidget()
     return nullptr;
 }
 
-// Application.HelpCommand(HELP_CONTEXT,Context)
-static void ApplicationHelpContext(int Context)
-{
-    // TODO(port): Application.HelpCommand(HELP_CONTEXT,...) has no compat
-    // equivalent yet (THTMLhelpRouter::OnRouteHelp is private); show the help
-    // contents instead.
-    Q_UNUSED(Context);
-    if (GLOBAL_HELPROUTER != nullptr) GLOBAL_HELPROUTER->HelpContent();
-}
-
 static int FrameHelpContext(QWidget *Frame)
 {
     if (Frame == nullptr) return 0;
@@ -481,7 +471,7 @@ void TSetupForm::HelpButtonClick(QObject* Sender)
     int I = 0;
     if (VisibleFrame >= 0) I = FrameHelpContext(Frames[VisibleFrame].Frame);
     if (I == 0) I = ID_FileOptions;
-    ApplicationHelpContext(I);
+    ApplicationHelpCommand(HELP_CONTEXT, I);
 }
 
 void TSetupForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

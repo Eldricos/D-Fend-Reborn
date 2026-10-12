@@ -13,14 +13,6 @@
 
 TLanguageEditorForm* LanguageEditorForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, Data)
-static void HelpCommandContext(int Data)
-{
-    // TODO(port): no HTML help (hh.exe) context jump available; open the help file instead.
-    Q_UNUSED(Data);
-    if (GLOBAL_HELPROUTER != nullptr && !GLOBAL_HELPROUTER->Helpfile().isEmpty()) ShellOpen(GLOBAL_HELPROUTER->Helpfile());
-}
-
 // The TStringGrid "Tab" (ColCount=3, FixedCols=2, FixedRows=1) is a QTableWidget
 // with 3 columns: the fixed row 0 is the horizontal header, the fixed columns 0
 // and 1 are read only cells drawn with a light gray background (TabDrawCell).
@@ -282,7 +274,7 @@ void TLanguageEditorForm::ShowComboBoxChange(QObject* Sender)
 void TLanguageEditorForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)
 {
     Q_UNUSED(Sender);
-    if ((Key == Qt::Key_F1) && (Shift == Qt::NoModifier)) { HelpCommandContext(ID_ExtrasLanguageEditor); Key = 0; }
+    if ((Key == Qt::Key_F1) && (Shift == Qt::NoModifier)) { ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasLanguageEditor); Key = 0; }
 }
 
 /* global */

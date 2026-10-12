@@ -31,7 +31,7 @@ void TModernProfileEditorJoystickFrame::InitGUI(TModernProfileEditorInitData& In
 
     AddDefaultValueHint(ui.TypeComboBox);
 
-    setProperty("helpContext", ID_ProfileEditJoystick);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditJoystick);  // HelpContext:=...
 }
 
 static void SetComboBox(QComboBox* ComboBox, const QString& Value, int Default)

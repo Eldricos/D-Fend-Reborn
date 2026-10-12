@@ -7,24 +7,6 @@
 #include "HelpConsts.h"
 #include "Process.h"
 
-namespace {
-
-// TLabel.OnClick
-class TClickHook : public QObject
-{
-public:
-    TClickHook(QWidget *W, std::function<void()> Handler) : QObject(W), FHandler(std::move(Handler)) { W->installEventFilter(this); }
-    bool eventFilter(QObject *, QEvent *E) override
-    {
-        if (E->type() == QEvent::MouseButtonRelease && static_cast<QMouseEvent *>(E)->button() == Qt::LeftButton) FHandler();
-        return false;
-    }
-private:
-    std::function<void()> FHandler;
-};
-
-}  // namespace
-
 TSetupFrameDOSBoxExt::TSetupFrameDOSBoxExt(QWidget *AOwner) : QWidget(AOwner)
 {
     ui.setupUi(this);
@@ -33,7 +15,7 @@ TSetupFrameDOSBoxExt::TSetupFrameDOSBoxExt(QWidget *AOwner) : QWidget(AOwner)
     for (bool &B : ValueChanged) B = false;
 
     // DFM event wiring (TCheckBox.OnClick is also fired by assignments to Checked)
-    new TClickHook(ui.InfoURLLabel, [this]() { InfoURLLabelClick(ui.InfoURLLabel); });
+    VclLayout::onLabelClick(ui.InfoURLLabel, [this]() { InfoURLLabelClick(ui.InfoURLLabel); });
     connect(ui.RenderModesCheckBox, &QCheckBox::stateChanged, this, [this]() { DefaultValueChanged(ui.RenderModesCheckBox); });
     // AllowGrayed=False: the grayed state can only be set by the program
     connect(ui.RenderModesCheckBox, &QCheckBox::clicked, this, [this]() { ui.RenderModesCheckBox->setTristate(false); });
@@ -135,11 +117,7 @@ void TSetupFrameDOSBoxExt::LoadLanguage()
 
     ui.InfoLabel->setText(LanguageSetup->SetupFormDOSBoxCVSInfo());
     ui.InfoURLLabel->setText(QString("http:/") + "/ykhwong.x-y.net/");
-    {
-        QFont F = ui.InfoURLLabel->font(); F.setUnderline(true); ui.InfoURLLabel->setFont(F);
-        QPalette P = ui.InfoURLLabel->palette(); P.setColor(QPalette::WindowText, TColorToQColor(clBlue)); ui.InfoURLLabel->setPalette(P);
-    }
-    ui.InfoURLLabel->setCursor(Qt::PointingHandCursor);
+    VclLayout::makeLinkLabel(ui.InfoURLLabel);
 
     setProperty("HelpContext", ID_FileOptionsDOSBoxCVSFeatures);
 }

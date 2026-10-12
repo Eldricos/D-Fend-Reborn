@@ -117,7 +117,7 @@ void TModernProfileEditorStartFrame::InitGUI(TModernProfileEditorInitData& InitD
 
     ui.AutoexecBootFloppyImageTab->setColumnWidth(0, ui.AutoexecBootFloppyImageTab->viewport()->width() - 25);
 
-    setProperty("helpContext", ID_ProfileEditStarting);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditStarting);  // HelpContext:=...
 }
 
 void TModernProfileEditorStartFrame::SetGame(TGame* Game, bool LoadFromTemplate)

@@ -12,18 +12,6 @@
 
 THistoryForm* HistoryForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void ApplicationHelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through HelpTools (THTMLhelpRouter.OnRouteHelp)
-    // in the original; there is no TApplication help hook in Qt.  Call HtmlHelp directly if
-    // available, otherwise open the help file with the associated viewer.
-    if (GLOBAL_HELPROUTER == nullptr) return;
-    const QString HFile = ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm");
-    if (HtmlHelpA && HtmlHelpA(0, HFile, HH_HELP_CONTEXT, ID) != 0) return;
-    if (FileExists(HFile)) ShellOpen(HFile);
-}
-
 THistoryForm::THistoryForm(QWidget *AOwner) : TVclForm(AOwner)
 {
     ui.setupUi(this);
@@ -82,7 +70,7 @@ void THistoryForm::ClearButtonClick(QObject* Sender)
 void THistoryForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_ExtrasViewHistory);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasViewHistory);
 }
 
 void THistoryForm::ListViewColumnClick(QObject* Sender, TListColumn* Column)

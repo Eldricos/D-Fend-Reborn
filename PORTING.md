@@ -111,7 +111,7 @@ Multimedia).
 | `Graphics.h` | `TColor` + `clXxx` constants, `TColorToQColor`, `StringToColor`, `TImageList` |
 | `ComCtrls.h` | `TListView` widget with the VCL object model (`Items()->Add()`, `TListItem::Caption()/SubItems()/Data()/ImageIndex()`, `Columns()`, `ViewStyle`, `Selected()`, `SmallImages/LargeImages`, signals `selectItem`, `dblClick`, `columnClick`, `change`, …) |
 | `VclForm.h` | `TVclForm` (base of all forms): `ShowModal()`, `ModalResult()`/`setModalResult()`, `closeQuery()` |
-| `VclLayout.h` | `VclLayout::setupForm()` (Align/Anchors engine and all runtime fix-ups), status bar helpers, `imageList()`, `setTabVisible()`, `installKeyPreview()`, `setAlignedExtent()` |
+| `VclLayout.h` | `VclLayout::setupForm()` (Align/Anchors engine and all runtime fix-ups), status bar helpers, `imageList()`, `setTabVisible()`, `installKeyPreview()`, `setAlignedExtent()`, `onLabelClick()` (TLabel.OnClick), `makeLinkLabel()` (blue underlined hand-cursor label) |
 | `VclWidgets.h` | `TRadioGroupWidget`, `TSplitterWidget`, `TColorBoxWidget`, `TValueListEditorWidget`, `TImageWidget` |
 | `WinApi.h` | `<windows.h>` without the macros that clash with Delphi names |
 

@@ -106,7 +106,6 @@ bool MainWindowShowComplete = false;
 // ---------------------------------------------------------------------------
 
 // Windows constants used by the original code
-constexpr quint16 cHELP_CONTEXT = 0x0001;            // WinHelp HELP_CONTEXT
 constexpr long cS_OK = 0, cS_FALSE = 1;
 constexpr int cDROPEFFECT_NONE = 0, cDROPEFFECT_COPY = 1, cDROPEFFECT_LINK = 4;
 constexpr THandle cINVALID_HANDLE_VALUE = -1;
@@ -755,13 +754,6 @@ void TDFendReloadedMainForm::UpdateImageListIcons()
         int I = V.toInt();
         if (I >= 0 && I < ImageList->Count()) ui.CapturePageControl->setTabIcon(T, ImageList->Icon(I));
     }
-}
-
-void TDFendReloadedMainForm::ApplicationHelpCommand(quint16 Command, int Data)
-{
-    // Application.HelpCommand (HelpTools emulation of TApplication help support;
-    // calls ApplicationOnHelp = ApplicationEventsHelp + the THTMLhelpRouter)
-    ::ApplicationHelpCommand(Command, Data);
 }
 
 void TDFendReloadedMainForm::ApplicationRestore()
@@ -3606,7 +3598,7 @@ void TDFendReloadedMainForm::MenuWork(QObject *Sender)
             break;
         case 6008: ShellOpen(LanguageSetup->MenuHelpHomepageURL()); break;
         case 6009: /*ShellExecute(Handle,'open',PChar('http:/'+'/vogons.zetafleet.com/viewtopic.php?t=17415'),nil,nil,SW_SHOW);*/
-            ApplicationHelpCommand(cHELP_CONTEXT, ID_HelpForum);
+            ApplicationHelpCommand(HELP_CONTEXT, ID_HelpForum);
             break;
         case 6010: ShowUpdateCheckDialog(this, GameDB, SearchLinkFile); break;
         case 6014: ShowStatisticsDialog(this, GameDB); break;
@@ -3623,11 +3615,11 @@ void TDFendReloadedMainForm::MenuWork(QObject *Sender)
         case 6020: ShellOpen(QString("http:/") + "/www.scummvm.org/compatibility.php"); break;
         case 6021: ShowListScummVMGamesDialog(this); break;
         case 6022: ShowOperationModeInfoDialog(this); break;
-        case 6024: ApplicationHelpCommand(cHELP_CONTEXT, ID_Menu); break;
-        case 6025: ApplicationHelpCommand(cHELP_CONTEXT, ID_Index); break;
-        case 6026: ApplicationHelpCommand(cHELP_CONTEXT, ID_Introduction); break;
-        case 6027: ApplicationHelpCommand(cHELP_CONTEXT, ID_Introduction2); break;
-        case 6028: ApplicationHelpCommand(cHELP_CONTEXT, ID_HelpGetGames); break;
+        case 6024: ApplicationHelpCommand(HELP_CONTEXT, ID_Menu); break;
+        case 6025: ApplicationHelpCommand(HELP_CONTEXT, ID_Index); break;
+        case 6026: ApplicationHelpCommand(HELP_CONTEXT, ID_Introduction); break;
+        case 6027: ApplicationHelpCommand(HELP_CONTEXT, ID_Introduction2); break;
+        case 6028: ApplicationHelpCommand(HELP_CONTEXT, ID_HelpGetGames); break;
         case 6101:
             if (auto *A = qobject_cast<QAction *>(Sender))
                 OpenFileInEditor(IncludeTrailingPathDelimiter(PrgSetup->DOSBoxSettings(0)->DosBoxDir()) + RemoveUnderline(A->text()));
@@ -4423,9 +4415,9 @@ void TDFendReloadedMainForm::IdleAddonTimerTimer(QObject *Sender)
 
 bool TDFendReloadedMainForm::ApplicationEventsHelp(quint16 Command, int Data, bool &CallHelp)
 {
-    if (Command == cHELP_CONTEXT && Data == 0) {
+    if (Command == HELP_CONTEXT && Data == 0) {
         CallHelp = false;
-        ApplicationHelpCommand(cHELP_CONTEXT, ID_Index);
+        ApplicationHelpCommand(HELP_CONTEXT, ID_Index);
     }
     return false;
 }

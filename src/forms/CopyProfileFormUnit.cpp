@@ -9,18 +9,6 @@
 
 TCopyProfileForm* CopyProfileForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void ApplicationHelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through HelpTools (THTMLhelpRouter.OnRouteHelp)
-    // in the original; there is no TApplication help hook in Qt.  Call HtmlHelp directly if
-    // available, otherwise open the help file with the associated viewer.
-    if (GLOBAL_HELPROUTER == nullptr) return;
-    const QString HFile = ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm");
-    if (HtmlHelpA && HtmlHelpA(0, HFile, HH_HELP_CONTEXT, ID) != 0) return;
-    if (FileExists(HFile)) ShellOpen(HFile);
-}
-
 TCopyProfileForm::TCopyProfileForm(QWidget *AOwner) : TVclForm(AOwner)
 {
     ui.setupUi(this);
@@ -56,7 +44,7 @@ void TCopyProfileForm::FormCreate(QObject* Sender)
 void TCopyProfileForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_ProfileCopy);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ProfileCopy);
 }
 
 void TCopyProfileForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

@@ -19,16 +19,6 @@
 
 TInstallationSupportForm* InstallationSupportForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT,ContextID) - routed through
-// THTMLhelpRouter.OnRouteHelp in the original program.
-static void ApplicationHelpContext(int ContextID)
-{
-    if (HtmlHelpA && GLOBAL_HELPROUTER != nullptr) {
-        HtmlHelpA(0, GLOBAL_HELPROUTER->Helpfile(), HH_HELP_CONTEXT, ContextID);
-    }
-    // TODO(port): no HTML help (.chm) viewer outside of Windows
-}
-
 static bool SystemHasFloppyDiskDrive()
 {
 #ifdef Q_OS_WIN
@@ -447,7 +437,7 @@ bool TInstallationSupportForm::EntryInList(const QString& S)
 void TInstallationSupportForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_ProfileInstallationSupport);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ProfileInstallationSupport);
 }
 
 void TInstallationSupportForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

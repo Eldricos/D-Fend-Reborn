@@ -14,16 +14,6 @@
 
 TUninstallSelectForm* UninstallSelectForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT,ContextID) - routed through
-// THTMLhelpRouter.OnRouteHelp in the original program.
-static void ApplicationHelpContext(int ContextID)
-{
-    if (HtmlHelpA && GLOBAL_HELPROUTER != nullptr) {
-        HtmlHelpA(0, GLOBAL_HELPROUTER->Helpfile(), HH_HELP_CONTEXT, ContextID);
-    }
-    // TODO(port): no HTML help (.chm) viewer outside of Windows
-}
-
 // TCheckListBox helpers
 static bool CheckListChecked(QListWidget* L, int I) { return L->item(I)->checkState() == Qt::Checked; }
 static void CheckListSetChecked(QListWidget* L, int I, bool B) { L->item(I)->setCheckState(B ? Qt::Checked : Qt::Unchecked); }
@@ -263,7 +253,7 @@ void TUninstallSelectForm::OKButtonClick(QObject* Sender)
 void TUninstallSelectForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_ExtrasUninstallMultipleGames);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasUninstallMultipleGames);
 }
 
 void TUninstallSelectForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

@@ -11,16 +11,6 @@
 
 TUninstallForm* UninstallForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT,ContextID) - routed through
-// THTMLhelpRouter.OnRouteHelp in the original program.
-static void ApplicationHelpContext(int ContextID)
-{
-    if (HtmlHelpA && GLOBAL_HELPROUTER != nullptr) {
-        HtmlHelpA(0, GLOBAL_HELPROUTER->Helpfile(), HH_HELP_CONTEXT, ContextID);
-    }
-    // TODO(port): no HTML help (.chm) viewer outside of Windows
-}
-
 // TCheckListBox helpers
 static void CheckListAdd(QListWidget* L, const QString& S)
 {
@@ -291,7 +281,7 @@ void TUninstallForm::FormDestroy(QObject* Sender)
 void TUninstallForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_ProfileUninstall);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ProfileUninstall);
 }
 
 void TUninstallForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

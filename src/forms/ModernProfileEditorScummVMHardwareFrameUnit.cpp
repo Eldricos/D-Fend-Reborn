@@ -37,7 +37,7 @@ void TModernProfileEditorScummVMHardwareFrame::InitGUI(TModernProfileEditorInitD
 
     AddDefaultValueHint(ui.PlatformComboBox);
 
-    setProperty("helpContext", ID_ProfileEditHardware);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditHardware);  // HelpContext
 }
 
 void TModernProfileEditorScummVMHardwareFrame::SetGame(TGame* Game, bool LoadFromTemplate)

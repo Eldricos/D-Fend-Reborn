@@ -93,7 +93,7 @@ void TModernProfileEditorGraphicsFrame::InitGUI(TModernProfileEditorInitData& In
     AddDefaultValueHint(ui.VideoRamComboBox);
     AddDefaultValueHint(ui.ScaleComboBox);
 
-    setProperty("helpContext", ID_ProfileEditGraphics);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditGraphics);  // HelpContext
 }
 
 void TModernProfileEditorGraphicsFrame::PixelShaderComboBoxChange(QObject* Sender)

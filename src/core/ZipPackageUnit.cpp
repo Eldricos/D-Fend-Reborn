@@ -11,14 +11,7 @@
 #include "PrgSetupUnit.h"
 #include "PrgConsts.h"
 #include "UninstallFormUnit.h"
-// TODO(port): ZipInfoFormUnit.h currently does not compile on its own (it uses
-// the SevenZipVCL constant MAXIMUM as default argument).  The routines needed
-// here are declared locally until that header is fixed; replace these
-// declarations by #include "ZipInfoFormUnit.h" then.
-enum TDeleteMode { dmNo, dmFiles, dmFolder, dmNoNoWarning, dmFilesNoWarning, dmFolderNoWarning };
-bool ExtractZipFile(QWidget* AOwner, const QString& AZipFile, const QString& ADestFolder);
-bool CreateZipFile(QWidget* AOwner, const QString& AZipFile, const QString& ADestFolder, TDeleteMode DeleteMode, int CompressStrength);
-int GetCompressStrengthFromPrgSetup();
+#include "ZipInfoFormUnit.h"
 #include "DosBoxUnit.h"
 #include "ScummVMUnit.h"
 #include "HashCalc.h"
@@ -118,36 +111,6 @@ static QString LastPathPart(QString T)
 {
     while (PosDelim(T) > 0) T = Copy(T, PosDelim(T) + 1, MaxInt);
     return T;
-}
-
-// TGame.ExtraPrgFile[I]:=... / TGame.Mount[I]:=... (the setters are private
-// in GameDBUnit.h - see report); SetString is protected in TBasePrgSetup.
-namespace {
-struct TGameAccess : TGame {
-    static void SetStr(TGame* G, int Index, const QString& Value) { (G->*(&TGameAccess::SetString))(Index, Value); }
-};
-}
-
-static void SetGameExtraPrgFile(TGame* Game, int I, const QString& S)
-{
-    if ((I < 0) || (I > 49)) return;
-    TGameAccess::SetStr(Game, NR_ExtraPrgFile + I, S);
-}
-
-static void SetGameMount(TGame* Game, int I, const QString& Value)
-{
-    switch (I) {
-        case 0: Game->SetMount0(Value); break;
-        case 1: Game->SetMount1(Value); break;
-        case 2: Game->SetMount2(Value); break;
-        case 3: Game->SetMount3(Value); break;
-        case 4: Game->SetMount4(Value); break;
-        case 5: Game->SetMount5(Value); break;
-        case 6: Game->SetMount6(Value); break;
-        case 7: Game->SetMount7(Value); break;
-        case 8: Game->SetMount8(Value); break;
-        case 9: Game->SetMount9(Value); break;
-    }
 }
 
 static QList<QDomElement> ChildElements(const QDomElement& N)
@@ -997,7 +960,7 @@ static void FixFileNamesForWindowsProfiles(TGame* Game)
     for (int I = 0; I <= 49; I++) {
         S = Game->ExtraPrgFile(I);
         if (Pos(";", S) == 0) continue;
-        SetGameExtraPrgFile(Game, I, Copy(S, 1, Pos(";", S) - 1) + ";" + FixSingleFileRecord(Copy(S, Pos(";", S) + 1, MaxInt), true));
+        Game->SetExtraPrgFile(I, Copy(S, 1, Pos(";", S) - 1) + ";" + FixSingleFileRecord(Copy(S, Pos(";", S) + 1, MaxInt), true));
     }
 
     S = Trim(Game->ExtraFiles());
@@ -1226,7 +1189,7 @@ static TGame* CreateGameFromDBGLPackage(const QString& Dir, TGameDB* GameDB, con
         St = ValueToList(result->Mount(I));
         if ((St->Count() > 0) && ((Trim((*St)[0]) == ".") || (Trim((*St)[0]) == ".\\") || (Trim((*St)[0]) == "./"))) {
             (*St)[0] = MakeRelPath(PrgSetup->GameDir(), PrgSetup->BaseDir());
-            SetGameMount(result, I, ListToValue(St));
+            result->SetMount(I, ListToValue(St));
         }
         delete St;
     }

@@ -9,14 +9,6 @@
 
 TLinkFileEditForm* LinkFileEditForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, Data)
-static void HelpCommandContext(int Data)
-{
-    // TODO(port): no HTML help (hh.exe) context jump available; open the help file instead.
-    Q_UNUSED(Data);
-    if (GLOBAL_HELPROUTER != nullptr && !GLOBAL_HELPROUTER->Helpfile().isEmpty()) ShellOpen(GLOBAL_HELPROUTER->Helpfile());
-}
-
 /* TStringGrid "Tab" (ColCount=2, FixedCols=0, FixedRows=1) */
 
 QString TLinkFileEditForm::Cells(int ACol, int ARow) const
@@ -266,7 +258,7 @@ void TLinkFileEditForm::OKButtonClick(QObject* Sender)
 void TLinkFileEditForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    if (HelpID >= 0) HelpCommandContext(HelpID);
+    if (HelpID >= 0) ApplicationHelpCommand(HELP_CONTEXT, HelpID);
 }
 
 void TLinkFileEditForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

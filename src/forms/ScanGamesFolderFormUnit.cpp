@@ -16,14 +16,6 @@
 
 TScanGamesFolderForm* ScanGamesFolderForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpCommandContext(int ID)
-{
-    // TODO(port): no public help context entry point in HelpTools yet; open the help contents.
-    Q_UNUSED(ID);
-    if (GLOBAL_HELPROUTER != nullptr) GLOBAL_HELPROUTER->HelpContent();
-}
-
 static inline TNewGame* NG(TList* L, int I) { return static_cast<TNewGame*>((*L)[I]); }
 
 // TNewGame
@@ -224,7 +216,7 @@ void TScanGamesFolderForm::ButtonWork(QObject* Sender)
                 delete NG(NewGames, I); NewGames->removeAt(I); ui.List->Items()->Delete(I);
             }
             break;
-        case 5: HelpCommandContext(ID_ExtrasScanGamesFolder); break;
+        case 5: ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasScanGamesFolder); break;
         case 6: ui.PopupNameFilename->setChecked(true); break;
         case 7: ui.PopupNameFoldername->setChecked(true); break;
         case 8:

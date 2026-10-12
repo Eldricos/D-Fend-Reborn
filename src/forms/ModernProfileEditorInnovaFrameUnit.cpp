@@ -41,7 +41,7 @@ void TModernProfileEditorInnovaFrame::InitGUI(TModernProfileEditorInitData& Init
     ui.InnovaQualityComboBox->addItems(St->ToQStringList());
     delete St;
 
-    setProperty("helpContext", ID_ProfileEditSoundInnova);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditSoundInnova);  // HelpContext:=...
 }
 
 void TModernProfileEditorInnovaFrame::SetGame(TGame* Game, bool LoadFromTemplate)

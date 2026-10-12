@@ -25,15 +25,6 @@ static bool IsWindowsVista()
 #endif
 }
 
-// Application.HelpCommand(HELP_CONTEXT,Context)
-static void ApplicationHelpContext(int Context)
-{
-    // TODO(port): Application.HelpCommand(HELP_CONTEXT,...) has no compat
-    // equivalent yet; show the help contents instead.
-    Q_UNUSED(Context);
-    if (GLOBAL_HELPROUTER != nullptr) GLOBAL_HELPROUTER->HelpContent();
-}
-
 TSetupFrameDOSBoxForm::TSetupFrameDOSBoxForm(QWidget *AOwner) : TVclForm(AOwner)
 {
     ui.setupUi(this);
@@ -344,7 +335,7 @@ void TSetupFrameDOSBoxForm::OKButtonClick(QObject* Sender)
 void TSetupFrameDOSBoxForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_FileOptionsDOSBox);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_FileOptionsDOSBox);
 }
 
 void TSetupFrameDOSBoxForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

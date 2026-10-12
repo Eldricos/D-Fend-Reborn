@@ -18,14 +18,6 @@ TIconManagerForm* IconManagerForm = nullptr;
 
 static const QString IconFileExts[6] = {"ico", "png", "jpeg", "jpg", "gif", "bmp"};
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpCommandContext(int ID)
-{
-    // TODO(port): no public help context entry point in HelpTools yet; open the help contents.
-    Q_UNUSED(ID);
-    if (GLOBAL_HELPROUTER != nullptr) GLOBAL_HELPROUTER->HelpContent();
-}
-
 // Adds Dir and all sub directories to the file system watcher
 static void WatchFolderTree(QFileSystemWatcher* W, const QString& Dir)
 {
@@ -488,7 +480,7 @@ void TIconManagerForm::DelButtonClick(QObject* Sender)
 void TIconManagerForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpCommandContext(ID_ExtrasManageIcons);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasManageIcons);
 }
 
 void TIconManagerForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

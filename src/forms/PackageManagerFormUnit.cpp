@@ -25,15 +25,6 @@ TPackageManagerForm *PackageManagerForm = nullptr;
 // Delphi virtual key codes
 static constexpr quint16 VK_F1_Code = 0x70;
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through THTMLhelpRouter.OnRouteHelp (private in the
-    // C++ port); call the HTML help directly (HELP_CONTEXT -> HH_HELP_CONTEXT).
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 // GetKeyState(VK_LSHIFT) / GetKeyState(VK_RSHIFT)
 static bool ShiftPressed()
 {
@@ -397,7 +388,7 @@ void TPackageManagerForm::ButtonWork(QObject *Sender)
                 LoadLists();
             }
             break;
-        case 3: HelpContext(ID_FileImportDownload); break;
+        case 3: ApplicationHelpCommand(HELP_CONTEXT, ID_FileImportDownload); break;
     }
 }
 

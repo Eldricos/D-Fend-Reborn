@@ -50,7 +50,7 @@ void TModernProfileEditorSoundFrame::InitGUI(TModernProfileEditorInitData& InitD
     AddDefaultValueHint(ui.SampleRateComboBox);
     AddDefaultValueHint(ui.BlockSizeComboBox);
 
-    setProperty("helpContext", ID_ProfileEditSound);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditSound);  // HelpContext:=...
 }
 
 void TModernProfileEditorSoundFrame::SetGame(TGame* Game, bool LoadFromTemplate)

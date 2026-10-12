@@ -39,7 +39,7 @@ void TModernProfileEditorScummVMSoundFrame::InitGUI(TModernProfileEditorInitData
 
     AddDefaultValueHint(ui.MusicDriverComboBox);
 
-    setProperty("helpContext", ID_ProfileEditSound);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditSound);  // HelpContext
 }
 
 void TModernProfileEditorScummVMSoundFrame::SetGame(TGame* Game, bool LoadFromTemplate)

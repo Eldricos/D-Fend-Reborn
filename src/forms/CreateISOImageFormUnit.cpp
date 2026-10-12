@@ -12,14 +12,6 @@
 
 TCreateISOImageForm* CreateISOImageForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpCommandContext(int ID)
-{
-    // TODO(port): no public help context entry point in HelpTools yet; open the help contents.
-    Q_UNUSED(ID);
-    if (GLOBAL_HELPROUTER != nullptr) GLOBAL_HELPROUTER->HelpContent();
-}
-
 // GetDriveType(PChar(C+':\'))
 enum { DRIVE_TYPE_OTHER = 0, DRIVE_TYPE_REMOVABLE = 2, DRIVE_TYPE_CDROM = 5 };
 static quint32 GetDriveTypeOf(QChar C)
@@ -167,11 +159,11 @@ void TCreateISOImageForm::HelpButtonClick(QObject* Sender)
     Q_UNUSED(Sender);
     if (FloppyMode) {
         if (WriteMode)
-            HelpCommandContext(ID_ExtrasImagesWriteImageToFloppy);
+            ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasImagesWriteImageToFloppy);
         else
-            HelpCommandContext(ID_ExtrasImagesCreateImageFromFloppy);
+            ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasImagesCreateImageFromFloppy);
     } else {
-        HelpCommandContext(ID_ExtrasImagesCreateImageFromCD);
+        ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasImagesCreateImageFromCD);
     }
 }
 

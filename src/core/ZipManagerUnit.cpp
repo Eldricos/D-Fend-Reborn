@@ -11,19 +11,8 @@
 #include "GameDBToolsUnit.h"
 #include "PrgSetupUnit.h"
 #include "DosBoxUnit.h"
-struct IDataObject;  // TODO(port): MainUnit.h uses IDataObject without declaring it
 #include "MainUnit.h"
-
-// TODO(port): ZipInfoFormUnit.h currently does not compile on its own (it uses
-// the SevenZipVCL constant MAXIMUM as default argument).  The routines needed
-// here are declared locally until that header is fixed; replace these
-// declarations by #include "ZipInfoFormUnit.h" then.
-enum TDeleteMode { dmNo, dmFiles, dmFolder, dmNoNoWarning, dmFilesNoWarning, dmFolderNoWarning };
-bool ExtractZipFile(QWidget* AOwner, const QString& AZipFile, const QString& ADestFolder);
-bool CreateZipFile(QWidget* AOwner, const QString& AZipFile, const QString& ADestFolder, TDeleteMode DeleteMode, int CompressStrength);
-bool AddToZipFile(QWidget* AOwner, const QString& AZipFile, const QString& ADestFolder, TDeleteMode DeleteMode, int CompressStrength);
-bool DeleteUnpackedFiles(QWidget* AOwner, const QString& ADestFolder, TDeleteMode DeleteMode);
-int GetCompressStrengthFromPrgSetup();
+#include "ZipInfoFormUnit.h"
 
 TZipManager* ZipManager = nullptr;
 

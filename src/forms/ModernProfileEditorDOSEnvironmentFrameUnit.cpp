@@ -54,7 +54,7 @@ void TModernProfileEditorDOSEnvironmentFrame::InitGUI(TModernProfileEditorInitDa
 
     AddDefaultValueHint(ui.ReportedDOSVersionComboBox);
 
-    setProperty("helpContext", ID_ProfileEditDOSEnvironment);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditDOSEnvironment);  // HelpContext:=...
 }
 
 void TModernProfileEditorDOSEnvironmentFrame::SetGame(TGame* Game, bool LoadFromTemplate)

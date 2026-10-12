@@ -98,7 +98,7 @@ void TModernProfileEditorScummVMFrame::InitGUI(TModernProfileEditorInitData& Ini
     CurrentScummVMPath = InitData.CurrentScummVMPath;
     ConfOpt = InitData.GameDB->ConfOpt();
 
-    setProperty("helpContext", ID_ProfileEditScummVM);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditScummVM);  // HelpContext
 }
 
 void TModernProfileEditorScummVMFrame::SetGame(TGame* Game, bool LoadFromTemplate)

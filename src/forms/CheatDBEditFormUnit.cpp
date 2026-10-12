@@ -13,14 +13,6 @@
 
 TCheatDBEditForm* CheatDBEditForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, Data)
-static void HelpCommandContext(int Data)
-{
-    // TODO(port): no HTML help (hh.exe) context jump available; open the help file instead.
-    Q_UNUSED(Data);
-    if (GLOBAL_HELPROUTER != nullptr && !GLOBAL_HELPROUTER->Helpfile().isEmpty()) ShellOpen(GLOBAL_HELPROUTER->Helpfile());
-}
-
 // Application.MainForm
 static QWidget* ApplicationMainForm()
 {
@@ -545,7 +537,7 @@ void TCheatDBEditForm::UpdateButtonClick(QObject* Sender)
 void TCheatDBEditForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpCommandContext(ID_ExtrasEditCheatDB);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasEditCheatDB);
 }
 
 void TCheatDBEditForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

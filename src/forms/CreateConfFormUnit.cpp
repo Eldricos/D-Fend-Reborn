@@ -17,14 +17,6 @@
 
 TCreateConfForm* CreateConfForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, Data)
-static void HelpCommandContext(int Data)
-{
-    // TODO(port): no HTML help (hh.exe) context jump available; open the help file instead.
-    Q_UNUSED(Data);
-    if (GLOBAL_HELPROUTER != nullptr && !GLOBAL_HELPROUTER->Helpfile().isEmpty()) ShellOpen(GLOBAL_HELPROUTER->Helpfile());
-}
-
 static TGame* CheckListGame(QListWidget* ListBox, int I)
 {
     return static_cast<TGame*>(ListBox->item(I)->data(Qt::UserRole).value<void*>());
@@ -283,9 +275,9 @@ void TCreateConfForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
     if (ProfFileMode)
-        HelpCommandContext(ID_FileExportProf);
+        ApplicationHelpCommand(HELP_CONTEXT, ID_FileExportProf);
     else
-        HelpCommandContext(ID_FileExportConf);
+        ApplicationHelpCommand(HELP_CONTEXT, ID_FileExportConf);
 }
 
 void TCreateConfForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

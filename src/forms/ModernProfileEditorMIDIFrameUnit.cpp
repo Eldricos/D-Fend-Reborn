@@ -61,7 +61,7 @@ void TModernProfileEditorMIDIFrame::InitGUI(TModernProfileEditorInitData& InitDa
     ui.MT32LevelComboBox->addItems(St->ToQStringList());
     delete St;
 
-    setProperty("helpContext", ID_ProfileEditSoundMIDI);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditSoundMIDI);  // HelpContext:=...
 }
 
 static void SetComboBox(QComboBox* ComboBox, const QString& Value, int Default)

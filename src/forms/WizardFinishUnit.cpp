@@ -255,20 +255,7 @@ void TWizardFinishFrame::WriteDataToGame(TGame* Game)
 {
     Game->SetNrOfMounts(Mounting->Count());
     for (int I = 0; I <= 9; I++) {
-        const QString V = (Mounting->Count() > I) ? (*Mounting)[I] : QString();
-        // Game.Mount[I]:=... (TGame::SetMount is private in GameDBUnit.h, use the public MountN setters)
-        switch (I) {
-        case 0: Game->SetMount0(V); break;
-        case 1: Game->SetMount1(V); break;
-        case 2: Game->SetMount2(V); break;
-        case 3: Game->SetMount3(V); break;
-        case 4: Game->SetMount4(V); break;
-        case 5: Game->SetMount5(V); break;
-        case 6: Game->SetMount6(V); break;
-        case 7: Game->SetMount7(V); break;
-        case 8: Game->SetMount8(V); break;
-        case 9: Game->SetMount9(V); break;
-        }
+        if (Mounting->Count() > I) Game->SetMount(I, (*Mounting)[I]); else Game->SetMount(I, "");
     }
     Game->SetAutoMountCDs(false);
 }

@@ -10,39 +10,6 @@
 #include "HistoryUnit.h"
 #include "Dialogs.h"
 
-namespace {
-// VCL TLabel.OnClick: QLabel has no clicked signal, so a small event filter
-// forwards left mouse button releases to the handler.
-class TLabelClickFilter : public QObject
-{
-public:
-    TLabelClickFilter(QLabel *Label, std::function<void()> Handler) : QObject(Label), FHandler(std::move(Handler)) { Label->installEventFilter(this); }
-protected:
-    bool eventFilter(QObject *Watched, QEvent *Event) override
-    {
-        if (Event->type() == QEvent::MouseButtonRelease && static_cast<QMouseEvent *>(Event)->button() == Qt::LeftButton) {
-            FHandler();
-            return true;
-        }
-        return QObject::eventFilter(Watched, Event);
-    }
-private:
-    std::function<void()> FHandler;
-};
-
-// with Label.Font do begin Color:=clBlue; Style:=[fsUnderline]; end; Label.Cursor:=crHandPoint;
-void MakeLinkLabel(QLabel *Label)
-{
-    QPalette P = Label->palette();
-    P.setColor(QPalette::WindowText, TColorToQColor(clBlue));
-    Label->setPalette(P);
-    QFont F = Label->font();
-    F.setUnderline(true);
-    Label->setFont(F);
-    Label->setCursor(Qt::PointingHandCursor);
-}
-} // namespace
-
 // NoFlicker (VistaToolsUnit) is not needed in the Qt port.
 
 TSetupFrameDataPrivacy::TSetupFrameDataPrivacy(QWidget *AOwner) : QWidget(AOwner)
@@ -50,7 +17,7 @@ TSetupFrameDataPrivacy::TSetupFrameDataPrivacy(QWidget *AOwner) : QWidget(AOwner
     ui.setupUi(this);
     VclLayout::setupForm(this);
     // DFM event wiring
-    new TLabelClickFilter(ui.OpenFileLabel, [this]() { OpenFileLabelClick(ui.OpenFileLabel); });
+    VclLayout::onLabelClick(ui.OpenFileLabel, [this]() { OpenFileLabelClick(ui.OpenFileLabel); });
     connect(ui.ShowHistoryButton, &QPushButton::clicked, this, [this]() { ShowHistoryButtonClick(ui.ShowHistoryButton); });
     connect(ui.DeleteHistoryButton, &QPushButton::clicked, this, [this]() { DeleteHistoryButtonClick(ui.DeleteHistoryButton); });
 }
@@ -69,7 +36,7 @@ void TSetupFrameDataPrivacy::InitGUIAndLoadSetup(TInitData &InitData)
     Q_UNUSED(InitData);
     UserIconLoader->DirectLoad("Main", 26, ui.ShowHistoryButton);
     UserIconLoader->DialogImage(DI_Delete, ui.DeleteHistoryButton);
-    MakeLinkLabel(ui.OpenFileLabel);
+    VclLayout::makeLinkLabel(ui.OpenFileLabel);
     ui.StoreHistoryCheckBox->setChecked(PrgSetup->StoreHistory());
 }
 

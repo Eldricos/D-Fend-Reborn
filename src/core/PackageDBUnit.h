@@ -211,6 +211,9 @@ public:
     int Count() { return GetCount(); }
     QString URL(int I) { return GetURL(I); }
     bool Active(int I) { return GetActive(I); }
+    // property setters Active[I] / URL[I]
+    void SetActive(int I, bool Value);
+    void SetURL(int I, const QString& Value);
 private:
     TDateTime FUpdateDate = 0;
     TStringList* FURL = nullptr;
@@ -220,8 +223,6 @@ private:
     int GetCount();
     QString GetURL(int I);
     bool GetActive(int I);
-    void SetActive(int I, bool Value);
-    void SetURL(int I, const QString& Value);
     void SpecialLoadActiveState();
     void SpecialSaveActiveState();
 };

@@ -130,7 +130,7 @@ void TModernProfileEditorDOSBoxFrame::InitGUI(TModernProfileEditorInitData& Init
     ProfileCaptureDir = InitData.CurrentCaptureDir;
     FOnProfileNameChange = InitData.OnProfileNameChange;
 
-    setProperty("helpContext", ID_ProfileEditDOSBox);  // HelpContext
+    setProperty("HelpContext", ID_ProfileEditDOSBox);  // HelpContext
 }
 
 void TModernProfileEditorDOSBoxFrame::SetGame(TGame* Game, bool LoadFromTemplate)

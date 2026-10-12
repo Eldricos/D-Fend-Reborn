@@ -14,18 +14,6 @@
 
 TDOSBoxOutputTestForm* DOSBoxOutputTestForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void ApplicationHelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through HelpTools (THTMLhelpRouter.OnRouteHelp)
-    // in the original; there is no TApplication help hook in Qt.  Call HtmlHelp directly if
-    // available, otherwise open the help file with the associated viewer.
-    if (GLOBAL_HELPROUTER == nullptr) return;
-    const QString HFile = ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm");
-    if (HtmlHelpA && HtmlHelpA(0, HFile, HH_HELP_CONTEXT, ID) != 0) return;
-    if (FileExists(HFile)) ShellOpen(HFile);
-}
-
 // TStringGrid.Cells[C,R] on a grid with FixedCols=1 and FixedRows=1: row 0 is the
 // horizontal header, column 0 the vertical header.
 static void SetCell(QTableWidget* Tab, int C, int R, const QString& S)
@@ -202,7 +190,7 @@ void TDOSBoxOutputTestForm::TestButtonClick(QObject* Sender)
 void TDOSBoxOutputTestForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_RunDOSBoxOutputTest);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_RunDOSBoxOutputTest);
 }
 
 void TDOSBoxOutputTestForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

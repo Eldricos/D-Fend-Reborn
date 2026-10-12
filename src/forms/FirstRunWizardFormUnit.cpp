@@ -21,15 +21,6 @@ namespace {
 
 constexpr quint16 VK_F1 = 0x70;
 
-// Application.HelpCommand(HELP_CONTEXT,ID)
-void ApplicationHelpContext(int ID)
-{
-    // TODO(port): the VCL routes Application.HelpCommand through THTMLhelpRouter (HelpTools);
-    // call the HTML help API directly when it is available.
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 void SetBold(QWidget *W)
 {
     QFont F = W->font(); F.setBold(true); W->setFont(F);
@@ -475,7 +466,7 @@ void TFirstRunWizardForm::FormClose(QObject* Sender, TCloseAction& Action)
 void TFirstRunWizardForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_FirstRunWizard);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_FirstRunWizard);
 }
 
 void TFirstRunWizardForm::FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift)

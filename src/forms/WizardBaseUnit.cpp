@@ -12,31 +12,6 @@
 
 namespace {
 
-// TLabel.OnClick
-class LabelClickFilter : public QObject
-{
-public:
-    LabelClickFilter(QLabel *L, std::function<void()> F) : QObject(L), FF(std::move(F)) { L->installEventFilter(this); }
-    bool eventFilter(QObject *, QEvent *E) override
-    {
-        if (E->type() == QEvent::MouseButtonRelease && static_cast<QMouseEvent *>(E)->button() == Qt::LeftButton) {
-            FF();
-            return true;
-        }
-        return false;
-    }
-private:
-    std::function<void()> FF;
-};
-
-void SetLinkStyle(QLabel *L)
-{
-    // with Font do begin Color:=clBlue; Style:=[fsUnderline]; end; Cursor:=crHandPoint;
-    QFont F = L->font(); F.setUnderline(true); L->setFont(F);
-    QPalette P = L->palette(); P.setColor(QPalette::WindowText, TColorToQColor(clBlue)); L->setPalette(P);
-    L->setCursor(Qt::PointingHandCursor);
-}
-
 void SetBold(QWidget *W)
 {
     QFont F = W->font(); F.setBold(true); W->setFont(F);
@@ -51,9 +26,9 @@ TWizardBaseFrame::TWizardBaseFrame(QWidget *AOwner) : QWidget(AOwner)
     ui.setupUi(this);
     VclLayout::setupForm(this);
 
-    new LabelClickFilter(ui.ListScummGamesLabel, [this]() { ButtonWork(ui.ListScummGamesLabel); });
-    new LabelClickFilter(ui.ShowInfoLabel, [this]() { ButtonWork(ui.ShowInfoLabel); });
-    new LabelClickFilter(ui.InfoLabelInstallationSupportLink, [this]() { ButtonWork(ui.InfoLabelInstallationSupportLink); });
+    VclLayout::onLabelClick(ui.ListScummGamesLabel, [this]() { ButtonWork(ui.ListScummGamesLabel); });
+    VclLayout::onLabelClick(ui.ShowInfoLabel, [this]() { ButtonWork(ui.ShowInfoLabel); });
+    VclLayout::onLabelClick(ui.InfoLabelInstallationSupportLink, [this]() { ButtonWork(ui.InfoLabelInstallationSupportLink); });
 }
 
 TWizardBaseFrame::~TWizardBaseFrame()
@@ -102,9 +77,9 @@ void TWizardBaseFrame::Init(TGameDB* GameDB, QWidget* ADialog)
         VclLayout::setBounds(ui.ShowInfoLabel, ui.ShowInfoLabel->x(), ui.ListScummGamesLabel->y(), ui.ShowInfoLabel->width(), ui.ShowInfoLabel->height());
     }
 
-    SetLinkStyle(ui.ListScummGamesLabel);
-    SetLinkStyle(ui.ShowInfoLabel);
-    SetLinkStyle(ui.InfoLabelInstallationSupportLink);
+    VclLayout::makeLinkLabel(ui.ListScummGamesLabel);
+    VclLayout::makeLinkLabel(ui.ShowInfoLabel);
+    VclLayout::makeLinkLabel(ui.InfoLabelInstallationSupportLink);
 }
 
 int TWizardBaseFrame::GetEmulationType()

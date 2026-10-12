@@ -14,15 +14,6 @@ namespace {
 
 constexpr quint16 VK_F1 = 0x70;
 
-// Application.HelpCommand(HELP_CONTEXT,ID)
-void ApplicationHelpContext(int ID)
-{
-    // TODO(port): the VCL routes Application.HelpCommand through THTMLhelpRouter (HelpTools);
-    // call the HTML help API directly when it is available.
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 // Edit.Color:=clBtnFace
 void SetEditColorBtnFace(QLineEdit *E)
 {
@@ -116,7 +107,7 @@ void TOperationModeInfoForm::FormCreate(QObject* Sender)
 void TOperationModeInfoForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_HelpOperationMode);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_HelpOperationMode);
 }
 
 void TOperationModeInfoForm::FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift)

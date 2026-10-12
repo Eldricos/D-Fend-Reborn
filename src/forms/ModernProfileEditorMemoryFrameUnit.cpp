@@ -56,7 +56,7 @@ void TModernProfileEditorMemoryFrame::InitGUI(TModernProfileEditorInitData& Init
     LastProfileExe = "-";
     ProfileExe = InitData.CurrentProfileExe;
 
-    setProperty("helpContext", ID_ProfileEditMemory);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditMemory);  // HelpContext:=...
 }
 
 void TModernProfileEditorMemoryFrame::SetGame(TGame* Game, bool LoadFromTemplate)

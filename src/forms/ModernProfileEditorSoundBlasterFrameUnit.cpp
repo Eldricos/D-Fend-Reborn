@@ -48,7 +48,7 @@ void TModernProfileEditorSoundBlasterFrame::InitGUI(TModernProfileEditorInitData
     AddDefaultValueHint(ui.OplEmuComboBox);
     AddDefaultValueHint(ui.OplSampleRateComboBox);
 
-    setProperty("helpContext", ID_ProfileEditSoundSoundBlaster);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditSoundSoundBlaster);  // HelpContext:=...
 }
 
 static void SetComboBox(QComboBox* ComboBox, const QString& Value, int Default)

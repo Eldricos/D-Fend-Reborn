@@ -73,7 +73,7 @@ void TModernProfileEditorKeyboardFrame::InitGUI(TModernProfileEditorInitData& In
     AddDefaultValueHint(ui.KeyboardLayoutComboBox);
     AddDefaultValueHint(ui.CodepageComboBox);
 
-    setProperty("helpContext", ID_ProfileEditKeyboard);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditKeyboard);  // HelpContext:=...
 }
 
 bool TModernProfileEditorKeyboardFrame::CheckIsDOSBOXDefaultMapperFile(TGame* Game, const QString& MapperFile)

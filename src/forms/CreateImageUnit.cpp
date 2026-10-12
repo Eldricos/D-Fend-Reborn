@@ -15,14 +15,6 @@
 TCreateImageForm* CreateImageForm = nullptr;
 TGame* NewProfileFromImageCreator = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, ID)
-static void HelpCommandContext(int ID)
-{
-    // TODO(port): no public help context entry point in HelpTools yet; open the help contents.
-    Q_UNUSED(ID);
-    if (GLOBAL_HELPROUTER != nullptr) GLOBAL_HELPROUTER->HelpContent();
-}
-
 // GetDriveType(PChar(C+':\'))=DRIVE_REMOVABLE
 static bool IsRemovableDrive(QChar C)
 {
@@ -426,7 +418,7 @@ void TCreateImageForm::PageControlChange(QObject* Sender)
 void TCreateImageForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpCommandContext(ID_ExtrasImagesCreateImage);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ExtrasImagesCreateImage);
 }
 
 void TCreateImageForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

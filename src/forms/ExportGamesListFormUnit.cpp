@@ -12,14 +12,6 @@
 
 TExportGamesListForm* ExportGamesListForm = nullptr;
 
-// Application.HelpCommand(HELP_CONTEXT, Data)
-static void HelpCommandContext(int Data)
-{
-    // TODO(port): no HTML help (hh.exe) context jump available; open the help file instead.
-    Q_UNUSED(Data);
-    if (GLOBAL_HELPROUTER != nullptr && !GLOBAL_HELPROUTER->Helpfile().isEmpty()) ShellOpen(GLOBAL_HELPROUTER->Helpfile());
-}
-
 TExportGamesListForm::TExportGamesListForm(QWidget *AOwner) : TVclForm(AOwner)
 {
     ui.setupUi(this);
@@ -191,7 +183,7 @@ void TExportGamesListForm::OKButtonClick(QObject* Sender)
 void TExportGamesListForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpCommandContext(ID_FileExportList);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_FileExportList);
 }
 
 void TExportGamesListForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

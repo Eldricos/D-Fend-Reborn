@@ -13,20 +13,6 @@ static constexpr int CSIDL_PROGRAM_FILES_ = 0x0026;   // ShlObj.CSIDL_PROGRAM_FI
 
 namespace {
 
-// TLabel.OnClick
-class TClickHook : public QObject
-{
-public:
-    TClickHook(QWidget *W, std::function<void()> Handler) : QObject(W), FHandler(std::move(Handler)) { W->installEventFilter(this); }
-    bool eventFilter(QObject *, QEvent *E) override
-    {
-        if (E->type() == QEvent::MouseButtonRelease && static_cast<QMouseEvent *>(E)->button() == Qt::LeftButton) FHandler();
-        return false;
-    }
-private:
-    std::function<void()> FHandler;
-};
-
 // ComboBox.Items.Exchange(I1,I2)
 void ComboExchange(QComboBox *Combo, int I1, int I2)
 {
@@ -53,7 +39,7 @@ TSetupFrameDOSBox::TSetupFrameDOSBox(QWidget* AOwner) : QWidget(AOwner)
     // DFM event wiring
     connect(ui.DosBoxButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.DosBoxButton); });
     connect(ui.FindDosBoxButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.FindDosBoxButton); });
-    new TClickHook(ui.DOSBoxDownloadURL, [this]() { DOSBoxDownloadURLClick(ui.DOSBoxDownloadURL); });
+    VclLayout::onLabelClick(ui.DOSBoxDownloadURL, [this]() { DOSBoxDownloadURLClick(ui.DOSBoxDownloadURL); });
     connect(ui.DOSBoxAddButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.DOSBoxAddButton); });
     connect(ui.DOSBoxDeleteButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.DOSBoxDeleteButton); });
     connect(ui.DOSBoxDownButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.DOSBoxDownButton); });
@@ -137,11 +123,7 @@ void TSetupFrameDOSBox::LoadLanguage()
 
     ui.DOSBoxDownloadURLInfo->setText(LanguageSetup->SetupFormDOSBoxDownloadURL());
     ui.DOSBoxDownloadURL->setText(QString("http:/") + "/www.dosbox.com/download.php?main=1");
-    {
-        QFont F = ui.DOSBoxDownloadURL->font(); F.setUnderline(true); ui.DOSBoxDownloadURL->setFont(F);
-        QPalette P = ui.DOSBoxDownloadURL->palette(); P.setColor(QPalette::WindowText, TColorToQColor(clBlue)); ui.DOSBoxDownloadURL->setPalette(P);
-    }
-    ui.DOSBoxDownloadURL->setCursor(Qt::PointingHandCursor);
+    VclLayout::makeLinkLabel(ui.DOSBoxDownloadURL);
 }
 
 void TSetupFrameDOSBox::PortableModeInfoButtonClick(QObject* Sender)

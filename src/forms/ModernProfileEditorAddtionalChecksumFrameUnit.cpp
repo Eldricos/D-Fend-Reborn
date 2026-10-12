@@ -66,7 +66,7 @@ void TModernProfileEditorAddtionalChecksumFrame::InitGUI(TModernProfileEditorIni
     UserIconLoader->DialogImage(DI_Load, ui.AddAllButton);
     UserIconLoader->DialogImage(DI_Delete, ui.ClearAllButton);
 
-    setProperty("helpContext", ID_ProfileEditAdditionalChecksums);  // HelpContext:=...
+    setProperty("HelpContext", ID_ProfileEditAdditionalChecksums);  // HelpContext:=...
 
     LastDir = MakeAbsPath(PrgSetup->GameDir(), PrgSetup->BaseDir());
 }

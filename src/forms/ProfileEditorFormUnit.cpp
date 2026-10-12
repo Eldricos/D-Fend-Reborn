@@ -185,32 +185,6 @@ void SetTabCaption(QTabWidget *Tabs, QWidget *Page, const QString &S)
     if (I >= 0) Tabs->setTabText(I, S);
 }
 
-// Game.Mount[I]:=S (the indexed setter is private in the C++ TGame)
-void SetGameMount(TGame *G, int I, const QString &S)
-{
-    switch (I) {
-        case 0: G->SetMount0(S); break;
-        case 1: G->SetMount1(S); break;
-        case 2: G->SetMount2(S); break;
-        case 3: G->SetMount3(S); break;
-        case 4: G->SetMount4(S); break;
-        case 5: G->SetMount5(S); break;
-        case 6: G->SetMount6(S); break;
-        case 7: G->SetMount7(S); break;
-        case 8: G->SetMount8(S); break;
-        case 9: G->SetMount9(S); break;
-    }
-}
-
-// Application.HelpCommand(HELP_CONTEXT, ID)
-void HelpContext(int ID)
-{
-    // TODO(port): Application.HelpCommand is routed through THTMLhelpRouter.OnRouteHelp (private in the
-    // C++ port); call the HTML help directly (HELP_CONTEXT -> HH_HELP_CONTEXT).
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 }  // namespace
 
 // ---------------------------------------------------------------------------
@@ -1623,7 +1597,7 @@ void TProfileEditorForm::OKButtonClick(QObject* Sender)
 
         Game->SetNrOfMounts(Mounting->Count());
         for (I = 0; I <= 9; I++)
-            if (Mounting->Count() > I) SetGameMount(Game, I, (*Mounting)[I]); else SetGameMount(Game, I, "");
+            if (Mounting->Count() > I) Game->SetMount(I, (*Mounting)[I]); else Game->SetMount(I, "");
         Game->SetAutoMountCDs(ui.AutoMountCheckBox->isChecked());
 
         // Sound Sheet
@@ -2245,7 +2219,7 @@ void TProfileEditorForm::MountingListViewKeyDown(QObject* Sender, int& Key, TShi
 void TProfileEditorForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    HelpContext(ID_ProfileWithWizard);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ProfileWithWizard);
 }
 
 void TProfileEditorForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

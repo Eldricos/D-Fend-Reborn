@@ -17,15 +17,6 @@ namespace {
 
 constexpr quint16 VK_F1 = 0x70;
 
-// Application.HelpCommand(HELP_CONTEXT,ID)
-void ApplicationHelpContext(int ID)
-{
-    // TODO(port): the VCL routes Application.HelpCommand through THTMLhelpRouter (HelpTools);
-    // call the HTML help API directly when it is available.
-    if (GLOBAL_HELPROUTER != nullptr && HtmlHelpA)
-        HtmlHelpA(0, ChangeFileExt(GLOBAL_HELPROUTER->Helpfile(), ".chm"), HH_HELP_CONTEXT, ID);
-}
-
 void RedrawFrameIfVisible(QWidget *F)
 {
     if (F == nullptr || F->isHidden()) return;
@@ -430,7 +421,7 @@ bool TWizardForm::DoubleProfileCheck(const QString& GameFileName)
 void TWizardForm::HelpButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ApplicationHelpContext(ID_ProfileWithWizard);
+    ApplicationHelpCommand(HELP_CONTEXT, ID_ProfileWithWizard);
 }
 
 void TWizardForm::FormKeyDown(QObject* Sender, quint16& Key, TShiftState Shift)
