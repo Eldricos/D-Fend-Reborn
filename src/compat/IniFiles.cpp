@@ -9,6 +9,7 @@ void TMemIniFile::Load()
 {
     FSections.clear();
     FPreamble.clear();
+    FSectionIndexValid = false;
     if (FFileName.isEmpty() || !FileExists(FFileName)) return;
     bool Ok = false;
     QString Text = ReadTextFile(FFileName, &Ok, &FUtf8);
@@ -22,6 +23,7 @@ void TMemIniFile::Load()
 void TMemIniFile::SetStrings(const TStringList &List)
 {
     FSections.clear();
+    FSectionIndexValid = false;
     FPreamble.clear();
     int Cur = -1;
     for (int i = 0; i < List.Count(); i++) {
@@ -39,6 +41,7 @@ void TMemIniFile::SetStrings(const TStringList &List)
             if (Idx < 0) {
                 FSections.append(Section{Name, {}});
                 Idx = FSections.size() - 1;
+                FSectionIndexValid = false;
             }
             Cur = Idx;
             continue;
@@ -70,18 +73,36 @@ void TMemIniFile::GetStrings(TStringList &List) const
     }
 }
 
+// Section and key lookups use hash indexes (case insensitive like Delphi);
+// files with many keys (language files: >2000 entries) are read and written
+// often, linear searches made that noticeably slow.
 int TMemIniFile::FindSection(const QString &Name) const
 {
-    for (int i = 0; i < FSections.size(); i++)
-        if (QString::compare(FSections[i].Name, Name, Qt::CaseInsensitive) == 0) return i;
-    return -1;
+    if (!FSectionIndexValid) {
+        FSectionIndex.clear();
+        FSectionIndex.reserve(FSections.size());
+        for (int i = 0; i < FSections.size(); i++) {
+            QString K = FSections[i].Name.toCaseFolded();
+            if (!FSectionIndex.contains(K)) FSectionIndex.insert(K, i);
+        }
+        FSectionIndexValid = true;
+    }
+    return FSectionIndex.value(Name.toCaseFolded(), -1);
 }
 
 int TMemIniFile::FindKey(const Section &S, const QString &Name) const
 {
-    for (int i = 0; i < S.Lines.size(); i++)
-        if (S.Lines[i].IsKey && QString::compare(S.Lines[i].Name, Name, Qt::CaseInsensitive) == 0) return i;
-    return -1;
+    if (!S.KeyIndexValid) {
+        S.KeyIndex.clear();
+        S.KeyIndex.reserve(S.Lines.size());
+        for (int i = 0; i < S.Lines.size(); i++) {
+            if (!S.Lines[i].IsKey) continue;
+            QString K = S.Lines[i].Name.toCaseFolded();
+            if (!S.KeyIndex.contains(K)) S.KeyIndex.insert(K, i);
+        }
+        S.KeyIndexValid = true;
+    }
+    return S.KeyIndex.value(Name.toCaseFolded(), -1);
 }
 
 void TMemIniFile::Rename(const QString &FileName, bool Reload)
@@ -105,6 +126,7 @@ void TMemIniFile::WriteString(const QString &SectionName, const QString &Ident, 
     if (S < 0) {
         FSections.append(Section{SectionName, {}});
         S = FSections.size() - 1;
+        if (FSectionIndexValid) FSectionIndex.insert(SectionName.toCaseFolded(), S);
     }
     Section &Sec = FSections[S];
     int K = FindKey(Sec, Ident);
@@ -118,6 +140,9 @@ void TMemIniFile::WriteString(const QString &SectionName, const QString &Ident, 
         L.Name = Ident;
         L.Value = Value;
         Sec.Lines.insert(Pos, L);
+        // all keys are before Pos (only trailing empty lines follow), so the
+        // index stays valid and only needs the new key
+        if (Sec.KeyIndexValid) Sec.KeyIndex.insert(Ident.toCaseFolded(), Pos);
     }
     FModified = true;
 }
@@ -206,7 +231,7 @@ void TMemIniFile::ReadSectionValues(const QString &Section, TStringList &Strings
 void TMemIniFile::EraseSection(const QString &Section)
 {
     int S = FindSection(Section);
-    if (S >= 0) { FSections.removeAt(S); FModified = true; }
+    if (S >= 0) { FSections.removeAt(S); FSectionIndexValid = false; FModified = true; }
 }
 
 void TMemIniFile::DeleteKey(const QString &Section, const QString &Ident)
@@ -214,12 +239,13 @@ void TMemIniFile::DeleteKey(const QString &Section, const QString &Ident)
     int S = FindSection(Section);
     if (S < 0) return;
     int K = FindKey(FSections[S], Ident);
-    if (K >= 0) { FSections[S].Lines.removeAt(K); FModified = true; }
+    if (K >= 0) { FSections[S].Lines.removeAt(K); FSections[S].KeyIndexValid = false; FModified = true; }
 }
 
 void TMemIniFile::Clear()
 {
     FSections.clear();
+    FSectionIndexValid = false;
     FPreamble.clear();
     FModified = true;
 }

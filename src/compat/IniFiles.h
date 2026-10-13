@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Classes.h"
+#include <QHash>
 
 class TMemIniFile
 {
@@ -46,10 +47,18 @@ public:
 
 protected:
     struct Line { QString Name; QString Value; bool IsKey = true; };   // non key lines keep raw text in Value
-    struct Section { QString Name; QList<Line> Lines; };
+    struct Section {
+        QString Name;
+        QList<Line> Lines;
+        // case folded key name -> line index (built on demand)
+        mutable QHash<QString, int> KeyIndex;
+        mutable bool KeyIndexValid = false;
+    };
     QString FFileName;
     QList<Section> FSections;
     QList<Line> FPreamble;   // lines before the first section
+    mutable QHash<QString, int> FSectionIndex;   // case folded section name -> index
+    mutable bool FSectionIndexValid = false;
     bool FUtf8 = false;
     bool FModified = false;
 
