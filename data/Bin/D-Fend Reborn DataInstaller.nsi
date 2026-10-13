@@ -3,7 +3,7 @@
 
 ; This is an include file. Example of a installer script file:
 ; OutFile "...-Setup.exe"
-; !include "D-Fend Reloaded DataInstaller.nsi"
+; !include "D-Fend Reborn DataInstaller.nsi"
 ;
 ;Section "PrgName"
 ;  SetOutPath "$DataInstDir\Confs"
@@ -15,14 +15,14 @@
 !include "MUI.nsh"
 !include WinMessages.nsh
 
-Name "D-Fend Reloaded data package"
-BrandingText "D-Fend Reloaded data package"
+Name "D-Fend Reborn data package"
+BrandingText "D-Fend Reborn data package"
 
 SetCompressor /solid lzma
 RequestExecutionLevel user
 XPStyle on
-InstallDir "$PROGRAMFILES\D-Fend Reloaded\"
-InstallDirRegKey HKLM "Software\D-Fend Reloaded" "ProgramFolder"
+InstallDir "$PROGRAMFILES\D-Fend Reborn\"
+InstallDirRegKey HKLM "Software\D-Fend Reborn" "ProgramFolder"
 !insertmacro MUI_RESERVEFILE_LANGDLL
 
 !define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\orange-install.ico"
@@ -39,7 +39,7 @@ InstallDirRegKey HKLM "Software\D-Fend Reloaded" "ProgramFolder"
 !define MUI_FINISHPAGE_RUN_TEXT "$(LANGNAME_RunDFend)"
 
 !define MUI_LANGDLL_REGISTRY_ROOT "HKLM" 
-!define MUI_LANGDLL_REGISTRY_KEY "Software\D-Fend Reloaded" 
+!define MUI_LANGDLL_REGISTRY_KEY "Software\D-Fend Reborn" 
 !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
 
 !insertmacro MUI_PAGE_WELCOME
@@ -63,49 +63,49 @@ InstallDirRegKey HKLM "Software\D-Fend Reloaded" "ProgramFolder"
 
 Var DataInstDir
 
-LangString LANGNAME_WelcomeText ${LANG_DANISH} "Denne guide fшrer dig gennem installationen af.\r\n\r\nLuk D-Fend Reloaded, fшr du fortsжtter.\r\n\r\nKlik Nжste for at fortsжtte."
+LangString LANGNAME_WelcomeText ${LANG_DANISH} "Denne guide fшrer dig gennem installationen af.\r\n\r\nLuk D-Fend Reborn, fшr du fortsжtter.\r\n\r\nKlik Nжste for at fortsжtte."
 LangString LANGNAME_InstallError ${LANG_DANISH} "$INSTDIR\DFend.dat bliv ikke fundet."
-LangString LANGNAME_RunDFend ${LANG_DANISH} "Kшr D-Fend Reloaded nu"
+LangString LANGNAME_RunDFend ${LANG_DANISH} "Kшr D-Fend Reborn nu"
 
-LangString LANGNAME_WelcomeText ${LANG_DUTCH} "Deze wizard zal je begeleiden bij de installatie.\r\n\r\nGelieve D-Fend Reloaded te sluiten voor verder te gaan.\r\n\r\nKlik op Volgende om verder te gaan."
+LangString LANGNAME_WelcomeText ${LANG_DUTCH} "Deze wizard zal je begeleiden bij de installatie.\r\n\r\nGelieve D-Fend Reborn te sluiten voor verder te gaan.\r\n\r\nKlik op Volgende om verder te gaan."
 LangString LANGNAME_InstallError ${LANG_DUTCH} "$INSTDIR\DFend.dat niet gevonden."
-LangString LANGNAME_RunDFend ${LANG_DUTCH} "D-Fend Reloaded nu starten"
+LangString LANGNAME_RunDFend ${LANG_DUTCH} "D-Fend Reborn nu starten"
 
-LangString LANGNAME_WelcomeText ${LANG_ENGLISH} "This wizard will guide you through the installation.\r\n\r\nPlease close D-Fend Reloaded before continuing.\r\n\r\nClick Next to continue."
+LangString LANGNAME_WelcomeText ${LANG_ENGLISH} "This wizard will guide you through the installation.\r\n\r\nPlease close D-Fend Reborn before continuing.\r\n\r\nClick Next to continue."
 LangString LANGNAME_InstallError ${LANG_ENGLISH} "$INSTDIR\DFend.dat not found."
-LangString LANGNAME_RunDFend ${LANG_ENGLISH} "Run D-Fend Reloaded now"
+LangString LANGNAME_RunDFend ${LANG_ENGLISH} "Run D-Fend Reborn now"
 
-LangString LANGNAME_WelcomeText ${LANG_FRENCH} "Cet assistant va vous guider durant l'installation.\r\n\r\nVeuillez fermer D-Fend Reloaded avant de continuer.\r\n\r\nCliquez sur Suivant pour continuer."
+LangString LANGNAME_WelcomeText ${LANG_FRENCH} "Cet assistant va vous guider durant l'installation.\r\n\r\nVeuillez fermer D-Fend Reborn avant de continuer.\r\n\r\nCliquez sur Suivant pour continuer."
 LangString LANGNAME_InstallError ${LANG_FRENCH} "$INSTDIR\DFend.dat introuvable."
-LangString LANGNAME_RunDFend ${LANG_FRENCH} "Lancer D-Fend Reloaded maintenant"
+LangString LANGNAME_RunDFend ${LANG_FRENCH} "Lancer D-Fend Reborn maintenant"
 
-LangString LANGNAME_WelcomeText ${LANG_GERMAN} "Dieser Assistent wird Sie durch die Installation begleiten.\r\n\r\nBitte beenden Sie D-Fend Reloaded, bevor Sie fortfahren.\r\n\r\nKlicken Sie auf Weiter, um fortzufahren."
+LangString LANGNAME_WelcomeText ${LANG_GERMAN} "Dieser Assistent wird Sie durch die Installation begleiten.\r\n\r\nBitte beenden Sie D-Fend Reborn, bevor Sie fortfahren.\r\n\r\nKlicken Sie auf Weiter, um fortzufahren."
 LangString LANGNAME_InstallError ${LANG_GERMAN} "Die Datei $INSTDIR\DFend.dat existiert nicht."
-LangString LANGNAME_RunDFend ${LANG_GERMAN} "D-Fend Reloaded jetzt ausfьhren"
+LangString LANGNAME_RunDFend ${LANG_GERMAN} "D-Fend Reborn jetzt ausfьhren"
 
-LangString LANGNAME_WelcomeText ${LANG_ITALIAN} "This wizard will guide you through the installation.\r\n\r\nPlease close D-Fend Reloaded before continuing.\r\n\r\nClick Next to continue."
+LangString LANGNAME_WelcomeText ${LANG_ITALIAN} "This wizard will guide you through the installation.\r\n\r\nPlease close D-Fend Reborn before continuing.\r\n\r\nClick Next to continue."
 LangString LANGNAME_InstallError ${LANG_ITALIAN} "$INSTDIR\DFend.dat not found."
-LangString LANGNAME_RunDFend ${LANG_ITALIAN} "Run D-Fend Reloaded now"
+LangString LANGNAME_RunDFend ${LANG_ITALIAN} "Run D-Fend Reborn now"
 
-LangString LANGNAME_WelcomeText ${LANG_POLISH} "Ten kreator poprowadzi cie przez proces instalacji.\r\n\r\nZamknij D-Fend Reloaded zanim kontynuujesz.\r\n\r\nKliknij Dalej, aby kontynuowac."
+LangString LANGNAME_WelcomeText ${LANG_POLISH} "Ten kreator poprowadzi cie przez proces instalacji.\r\n\r\nZamknij D-Fend Reborn zanim kontynuujesz.\r\n\r\nKliknij Dalej, aby kontynuowac."
 LangString LANGNAME_InstallError ${LANG_POLISH} "$INSTDIR\DFend.dat nie znaleziony."
-LangString LANGNAME_RunDFend ${LANG_POLISH} "Uruchom D-Fend Reloaded"
+LangString LANGNAME_RunDFend ${LANG_POLISH} "Uruchom D-Fend Reborn"
 
-LangString LANGNAME_WelcomeText ${LANG_RUSSIAN} "Этот мастер поможет вам выполнить установку.\r\n\r\nПожалуйста, закройте D-Fend Reloaded перед тем, как продолжить.\r\n\r\nНажмите кнопку 'Далее' для продолжения."
+LangString LANGNAME_WelcomeText ${LANG_RUSSIAN} "Этот мастер поможет вам выполнить установку.\r\n\r\nПожалуйста, закройте D-Fend Reborn перед тем, как продолжить.\r\n\r\nНажмите кнопку 'Далее' для продолжения."
 LangString LANGNAME_InstallError ${LANG_RUSSIAN} "$INSTDIR\DFend.dat не обнаружен."
-LangString LANGNAME_RunDFend ${LANG_RUSSIAN} "Запустить D-Fend Reloaded"
+LangString LANGNAME_RunDFend ${LANG_RUSSIAN} "Запустить D-Fend Reborn"
 
-LangString LANGNAME_WelcomeText ${LANG_SIMPCHINESE} "ХвёцПтµј»бФЪХыёц№эіМЦРТэµјДг°ІЧ°ЎЈ\r\n\r\nФЪјМРшЦ®З°Зл№Ш±Х D-Fend ReloadedЎЈ\r\n\r\nµг»чПВТ»ІЅјМРшЎЈ"
+LangString LANGNAME_WelcomeText ${LANG_SIMPCHINESE} "ХвёцПтµј»бФЪХыёц№эіМЦРТэµјДг°ІЧ°ЎЈ\r\n\r\nФЪјМРшЦ®З°Зл№Ш±Х D-Fend RebornЎЈ\r\n\r\nµг»чПВТ»ІЅјМРшЎЈ"
 LangString LANGNAME_InstallError ${LANG_SIMPCHINESE} "ХТІ»µЅ $INSTDIR\DFend.dat"
-LangString LANGNAME_RunDFend ${LANG_SIMPCHINESE} "ПЦФЪѕНЖф¶Ї D-Fend Reloaded"
+LangString LANGNAME_RunDFend ${LANG_SIMPCHINESE} "ПЦФЪѕНЖф¶Ї D-Fend Reborn"
 
-LangString LANGNAME_WelcomeText ${LANG_SPANISH} "Este asistente le guiarб a travйs del proceso de instalaciуn.\r\n\r\nPor favor, cierre D-Fend Reloaded antes de continuar.\r\n\r\nHaga clic en $\"Siguiente$\" para continuar."
+LangString LANGNAME_WelcomeText ${LANG_SPANISH} "Este asistente le guiarб a travйs del proceso de instalaciуn.\r\n\r\nPor favor, cierre D-Fend Reborn antes de continuar.\r\n\r\nHaga clic en $\"Siguiente$\" para continuar."
 LangString LANGNAME_InstallError ${LANG_SPANISH} "No se ha podido encontrar $INSTDIR\DFend.dat."
-LangString LANGNAME_RunDFend ${LANG_SPANISH} "Ejecutar D-Fend Reloaded ahora"
+LangString LANGNAME_RunDFend ${LANG_SPANISH} "Ejecutar D-Fend Reborn ahora"
 
-LangString LANGNAME_WelcomeText ${LANG_TRADCHINESE} "Я@‚Ђѕ«м`•юФЪХы‚ЂЯ^іМЦРТэЊ§Дг°ІСbЎЈ\r\n\r\nФЪА^АmЦ®З°Х€кPй] D-Fend ReloadedЎЈ\r\n\r\nьc“фПВТ»ІЅА^АmЎЈ"
+LangString LANGNAME_WelcomeText ${LANG_TRADCHINESE} "Я@‚Ђѕ«м`•юФЪХы‚ЂЯ^іМЦРТэЊ§Дг°ІСbЎЈ\r\n\r\nФЪА^АmЦ®З°Х€кPй] D-Fend RebornЎЈ\r\n\r\nьc“фПВТ»ІЅА^АmЎЈ"
 LangString LANGNAME_InstallError ${LANG_TRADCHINESE} "ХТІ»µЅ $INSTDIR\DFend.datЎЈ"
-LangString LANGNAME_RunDFend ${LANG_TRADCHINESE} "¬FФЪѕН†ў„У D-Fend Reloaded"
+LangString LANGNAME_RunDFend ${LANG_TRADCHINESE} "¬FФЪѕН†ў„У D-Fend Reborn"
 
 Function .onInit  
   !define MUI_LANGDLL_ALLLANGUAGES
@@ -134,7 +134,7 @@ Section "-SearchingDFendDataDir"
   StrCpy $DataInstDir  $INSTDIR  
   Goto ModeFinish
   Mode1:
-  StrCpy $DataInstDir "$PROFILE\D-Fend Reloaded"
+  StrCpy $DataInstDir "$PROFILE\D-Fend Reborn"
   ModeFinish:
 SectionEnd
 

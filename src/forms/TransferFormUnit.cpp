@@ -399,7 +399,7 @@ bool TTransferForm::GetDestPrgDataDir(TOperationMode OpMode, QString& DestPrgDat
     TOperationMode SaveOpMode;
 
     if (OpMode == omUserDir) {
-        S = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROFILE)) + "D-Fend Reloaded" + PathDelim;
+        S = UserDataDir();
     } else {
         S = IncludeTrailingPathDelimiter(Trim(ui.DestPrgDirEdit->text()));
     }

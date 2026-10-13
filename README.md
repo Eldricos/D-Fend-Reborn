@@ -50,6 +50,14 @@ package manager): `dosbox` (or `dosbox-staging`'s `dosbox`), `7z`/`7za`/`7zz`
 (p7zip or 7zip, for zip/7z archives), `mkfs.fat` (dosfstools, for creating
 disk images), `oggenc` (vorbis-tools) and optionally `lame` and `scummvm`.
 
+Without a `DFend.dat` file in the program folder D-Fend Reborn keeps all
+data next to the program. With `USERDIRMODE` in `DFend.dat` the user data
+is stored in `%USERPROFILE%\D-Fend Reborn\` on Windows and in
+`~/.local/share/D-Fend Reborn/` on Linux.
+
+The program update check asks GitHub for the latest release of this
+repository (Help > Search for updates) and offers to open its download page.
+
 Other folders taken over from the original sources: `Help` (HTML sources of
 the `.chm` help files), `Install` (original NSIS installer scripts; their
 paths still point to the old layout) and `tools` (sources of the NSIS helper

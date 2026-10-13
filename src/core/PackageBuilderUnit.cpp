@@ -188,7 +188,7 @@ static TGame* GetAutoSetupTemplateForFolder(TGameDB* AutoSetupDB, const QString&
 // Delphi SysUtils.GetFileVersion (major shl 16 + minor)
 static int GetFileVersionOfPrg()
 {
-    // TODO(port): no version resource - derive it from the program version string
+    // Port note: no version resource - derive it from the program version string
     const QStringList L = GetNormalFileVersionAsString().split('.');
     const int A = L.value(0).toInt(), B = L.value(1).toInt();
     return A * 65536 + B;

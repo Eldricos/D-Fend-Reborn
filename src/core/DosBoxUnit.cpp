@@ -108,7 +108,7 @@ static int SpeedTest = -1;
 
 static QString SpeedTestLogFile()
 {
-    return IncludeTrailingPathDelimiter(GetSpecialFolder(DFendReloadedMainForm ? DFendReloadedMainForm->winId() : WId(0), CSIDL_DESKTOPDIRECTORY)) + "D-Fend-Reloaded-DOSBoxStartLog.txt";
+    return IncludeTrailingPathDelimiter(GetSpecialFolder(DFendReloadedMainForm ? DFendReloadedMainForm->winId() : WId(0), CSIDL_DESKTOPDIRECTORY)) + "D-Fend-Reborn-DOSBoxStartLog.txt";
 }
 
 static bool IsSpeedTest()
@@ -194,7 +194,7 @@ QString ShortName(const QString& LongName)
         else
             return QString::fromWCharArray(Buffer, static_cast<int>(Len));
 #else
-        // TODO(port): no short (8.3) path names outside Windows
+        // Port note: no short (8.3) path names outside Windows
         return LongName;
 #endif
     } else {
@@ -216,7 +216,7 @@ QString LongPath(const QString& ShortPath)
     }
     return result;
 #else
-    // TODO(port): there are no short path names outside Windows (ShortName and
+    // Port note: there are no short path names outside Windows (ShortName and
     // MakePathShort return the path unchanged), so the long path is the path itself.
     if (ShortPath.isEmpty()) return ShortPath;
     return IncludeTrailingPathDelimiter(ShortPath);
@@ -332,7 +332,7 @@ static bool SpecialCDDriveMounting(QString& Folder, const QString& DriveLetter, 
     if (S == "NUMBER") {
         if (!TryStrToInt(T, I)) I = 1;
         I = Max(1, Min(Length(Drives), I));
-        // TODO(port): the Delphi code accesses Drives[1] even if there is no CD drive at all
+        // Port note: the Delphi code accesses Drives[1] even if there is no CD drive at all
         if (Length(Drives) == 0) { Folder = ""; return result; }
         SpecialMountedCDDrives = SpecialMountedCDDrives + Drives[I - 1];
         Folder = QString(Drives[I - 1]) + ":\\"; return result;
@@ -540,7 +540,7 @@ static QString MakePathShort(const QString& S)
         return S;
     }
 #else
-    // TODO(port): no short (8.3) path names outside Windows (GetShortPathName fails -> S)
+    // Port note: no short (8.3) path names outside Windows (GetShortPathName fails -> S)
     return S;
 #endif
 }
@@ -1523,30 +1523,6 @@ QString GetDOSBoxCommandLine(int DOSBoxNr, const QString& ConfFile, int ShowCons
     return "-CONF \"" + ConfFile + "\"" + Add;
 }
 
-// CreateProcess(PrgFile,'"'+PrgFile+'" '+Params,nil,nil,False,0,Env,WorkDir,...)
-// replacement.  EnvAdd: additional "NAME=VALUE" environment entry.  Returns the
-// process id or 0.
-static THandle CreateProcessCommandLine(const QString& PrgFile, const QString& Params, const QString& WorkDir, const QString& EnvAdd)
-{
-    QProcess P;
-    P.setProgram(ToNativePath(PrgFile));
-#ifdef Q_OS_WIN
-    P.setNativeArguments(Params);
-#else
-    P.setArguments(SplitCommandLine(Params));
-#endif
-    if (!WorkDir.isEmpty()) P.setWorkingDirectory(ToNativePath(WorkDir));
-    if (!EnvAdd.isEmpty()) {
-        QProcessEnvironment Env = QProcessEnvironment::systemEnvironment();
-        int I = EnvAdd.indexOf('=');
-        Env.insert(EnvAdd.left(I), EnvAdd.mid(I + 1));
-        P.setProcessEnvironment(Env);
-    }
-    qint64 Pid = 0;
-    if (!P.startDetached(&Pid)) return 0;
-    return Pid;
-}
-
 static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString& ConfFile, bool FullScreen, int ShowConsole, bool asAdmin, const QString& DosBoxCommandLine = QString())
 {
     QString PrgFile, Params, Env, S;
@@ -1599,7 +1575,7 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
         ShellOpen(PrgDir() + BinFolder + PathDelim + "AdminLauncher.exe", "/driver=" + Env + " /dir=" + S + " /run=\"" + PrgFile + "\" " + Params, S);
         return result;
 #else
-        // TODO(port): AdminLauncher.exe only exists on Windows - start DOSBox normally
+        // Port note: AdminLauncher.exe only exists on Windows - start DOSBox normally
 #endif
     }
 
@@ -1616,7 +1592,7 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
     SpeedTestInfo("Starting DOSBox");
     SpeedTestInfoOnly("Command: \"" + PrgFile + "\" " + Params);
 
-    result = CreateProcessCommandLine(PrgFile, Params, ExtractFilePath(PrgFile), Env);
+    result = StartProcessNative(PrgFile, Params, ExtractFilePath(PrgFile), Env);
     if (result == 0) {
         ApplicationRestore();
         MessageDlg(Format(LanguageSetup->MessageCouldNotStartProgram(), {PrgFile}), mtError, mbOK, 0);

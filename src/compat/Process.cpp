@@ -165,3 +165,24 @@ bool OpenFolder(const QString &Folder)
 {
     return QDesktopServices::openUrl(QUrl::fromLocalFile(ToNativePath(Folder)));
 }
+
+THandle StartProcessNative(const QString &PrgFile, const QString &Params, const QString &WorkDir, const QString &EnvAdd)
+{
+    QProcess P;
+    P.setProgram(ToNativePath(PrgFile));
+#ifdef Q_OS_WIN
+    P.setNativeArguments(Params);
+#else
+    P.setArguments(SplitCommandLine(Params));
+#endif
+    if (!WorkDir.isEmpty()) P.setWorkingDirectory(ToNativePath(WorkDir));
+    if (!EnvAdd.isEmpty()) {
+        QProcessEnvironment Env = QProcessEnvironment::systemEnvironment();
+        const int I = EnvAdd.indexOf('=');
+        Env.insert(EnvAdd.left(I), EnvAdd.mid(I + 1));
+        P.setProcessEnvironment(Env);
+    }
+    qint64 Pid = 0;
+    if (!P.startDetached(&Pid)) return 0;
+    return THandle(Pid);
+}

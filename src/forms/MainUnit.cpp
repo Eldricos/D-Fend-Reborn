@@ -342,7 +342,7 @@ TDFendReloadedMainForm::TDFendReloadedMainForm(QWidget *AOwner) : QMainWindow(AO
     ui.GameNotesUndoButton->setProperty("vclGameNotesImageIndex", 3);
 
     TrayIcon = new QSystemTrayIcon(this);
-    TrayIcon->setToolTip("D-Fend Reloaded");
+    TrayIcon->setToolTip("D-Fend Reborn");
     TrayIcon->setIcon(windowIcon().isNull() ? qApp->windowIcon() : windowIcon());
     TrayIcon->setContextMenu(ui.TrayIconPopupMenu);
     connect(TrayIcon, &QSystemTrayIcon::activated, this, [this](QSystemTrayIcon::ActivationReason R) {

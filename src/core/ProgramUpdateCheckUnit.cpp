@@ -1,123 +1,95 @@
 // C++ port of ProgramUpdateCheckUnit.pas (implementation section).
+//
+// D-Fend Reborn: the update check asks GitHub for the latest release of the
+// project (DFRebornLatestReleaseAPI). If there is a newer version, the user
+// is asked whether to open the release page in the browser. (The original
+// downloaded UpdateInfo.txt from its homepage and started the external
+// UpdateCheck.exe, which downloaded and ran the update installer.)
 #include "ProgramUpdateCheckUnit.h"
 #include "PrgSetupUnit.h"
 #include "CommonTools.h"
-#include "DownloadWaitFormUnit.h"
 #include "LanguageSetupUnit.h"
 #include "PrgConsts.h"
-#include "MainUnit.h"
 
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QEventLoop>
+#include <QTimer>
 #include <cmath>
 
-// INVALID_HANDLE_VALUE -> 0 (THandle is a process id in the port)
-static THandle UpdaterProcessHandleProcess = 0;
-
-static void RunExternalUpdateCheck(bool Quite)
+// URL of the update information; settings files of older versions may still
+// contain the address of the original D-Fend Reloaded update file.
+static QString UpdateCheckURL()
 {
-    QString FileName, Add, Prg;
+    QString URL = Trim(PrgSetup->UpdateCheckURL());
+    if (URL.isEmpty() || URL.contains("UpdateInfo.txt", Qt::CaseInsensitive)) URL = DFRebornLatestReleaseAPI;
+    return URL;
+}
 
-    if ((UpdaterProcessHandleProcess != 0) && (!IsProcessRunning(UpdaterProcessHandleProcess))) {
-        UpdaterProcessHandleProcess = 0;
-    }
-    if (UpdaterProcessHandleProcess != 0) {
-        MessageDlg(LanguageSetup->UpdateSingleInstanceMessage(), mtError, mbOK, 0);
-        return;
-    }
-
-    FileName = TempDir() + "UpdateCheckSetup.txt";
-
-    {
-        TStringList St;
-        St.Add(GetNormalFileVersionAsString());
-        if (PrgSetup->VersionSpecificUpdateCheck()) Add = "?Version=" + GetNormalFileVersionAsString(); else Add = "";
-        St.Add(PrgSetup->UpdateCheckURL() + Add);
-        St.Add("DFendReloadedUpdate.exe");
-        St.Add(PrgDir());
-        if (Quite) St.Add("silent"); else St.Add("normal");
-        St.Add(LanguageSetup->UpdateCannotFindFile());
-        St.Add(LanguageSetup->UpdateDownloadFailed());
-        St.Add(LanguageSetup->UpdateDownloadFailedBeforeURL());
-        St.Add(LanguageSetup->UpdateDownloadFailedAfterURL());
-        St.Add(LanguageSetup->UpdateURL());
-        St.Add(LanguageSetup->UpdateDownloading());
-        St.Add(LanguageSetup->UpdateConnecting());
-        St.Add(LanguageSetup->UpdateFileName());
-        St.Add(LanguageSetup->UpdateTransfered());
-        St.Add(LanguageSetup->UpdateFileSize());
-        St.Add(LanguageSetup->UpdateRamainingTime());
-        St.Add(LanguageSetup->UpdateTotalTime());
-        St.Add(LanguageSetup->UpdateCannotReadFile());
-        St.Add(LanguageSetup->UpdateNoUpdates());
-        St.Add(LanguageSetup->UpdateNewVersionPart1());
-        St.Add(LanguageSetup->UpdateNewVersionPart2());
-        St.Add(LanguageSetup->OK());
-        St.Add(LanguageSetup->Yes());
-        St.Add(LanguageSetup->No());
-
-        St.SaveToFile(FileName);
-    }
-
-    Prg = "";
-    if (FileExists(PrgDir() + "UpdateCheck.exe")) Prg = PrgDir() + "UpdateCheck.exe"; else {
-        if (FileExists(PrgDir() + BinFolder + PathDelim + "UpdateCheck.exe")) Prg = PrgDir() + BinFolder + PathDelim + "UpdateCheck.exe";
-    }
-    if (Prg == "") {
-        if (Quite) return;
-        ShellOpen(LanguageSetup->MenuHelpUpdatesURL());
-        MessageDlg(Format(LanguageSetup->MessageFileNotFound(), {PrgDir() + BinFolder + PathDelim + "UpdateCheck.exe"}), mtError, mbOK, 0);
-        return;
-    }
-
-    // CreateProcess(PChar(Prg),PChar('"'+Prg+'" '+FileName),...,PChar(PrgDir),...)
-    THandle Pid = StartProcess(Prg, QStringList() << FileName, PrgDir());
-    if (Pid != 0) {
-        UpdaterProcessHandleProcess = Pid;
-    }
-
-    if (DFendReloadedMainForm != nullptr && DFendReloadedMainForm->DeleteOnExit != nullptr) {
-        if (DFendReloadedMainForm->DeleteOnExit->IndexOf(FileName) < 0) DFendReloadedMainForm->DeleteOnExit->Add(FileName);
-    }
-
-    PrgSetup->SetLastUpdateCheck(Round(std::trunc(Date())));
+// Synchronous HTTP GET (the dialog/event loop stays responsive).
+// Returns the HTTP status code (0 = no connection / timeout).
+static int HttpGet(const QString& URL, QByteArray& Data)
+{
+    QNetworkAccessManager Manager;
+    QNetworkRequest Request{QUrl(URL)};
+    Request.setRawHeader("User-Agent", "D-Fend Reborn");
+    Request.setRawHeader("Accept", "application/vnd.github+json");
+    Request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+    QNetworkReply *Reply = Manager.get(Request);
+    QEventLoop Loop;
+    QTimer Timeout;
+    Timeout.setSingleShot(true);
+    QObject::connect(&Timeout, &QTimer::timeout, Reply, &QNetworkReply::abort);
+    QObject::connect(Reply, &QNetworkReply::finished, &Loop, &QEventLoop::quit);
+    Timeout.start(20000);
+    Loop.exec();
+    const int Status = Reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    Data = Reply->readAll();
+    Reply->deleteLater();
+    return Status;
 }
 
 TUpdateResult RunUpdateCheck(QWidget *AOwner, bool Quite, bool QuiteOnError)
 {
-    QString URL, FileName;
-    bool B;
-    TUpdateResult result = urUpdateInstallCanceled;
+    Q_UNUSED(AOwner);
+    const QString URL = UpdateCheckURL();
+    QByteArray Data;
+    int Status;
 
-    FileName = TempDir() + "UpdateCheckSetup.txt";
-    URL = PrgSetup->UpdateCheckURL(); if (PrgSetup->VersionSpecificUpdateCheck()) URL = URL + "?Version=" + GetNormalFileVersionAsString();
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    Status = HttpGet(URL, Data);
+    QApplication::restoreOverrideCursor();
 
-    if (Quite) {
-        B = (DownloadFileWithOutDialog(AOwner, -1, "", URL, "", FileName) == drSuccess);
-    } else {
-        B = (DownloadFileWithDialog(AOwner, -1, "", URL, "", FileName) == drSuccess);
+    // 404: the project has no published release yet
+    if (Status == 404) {
+        PrgSetup->SetLastUpdateCheck(Round(std::trunc(Date())));
+        if (!Quite) MessageDlg(LanguageSetup->UpdateNoUpdates(), mtInformation, mbOK, 0);
+        return urNoUpdatesAvailable;
     }
-
-    if (!B) {
+    const QJsonObject Release = QJsonDocument::fromJson(Data).object();
+    if (Status != 200 || Release.isEmpty()) {
         if (!QuiteOnError) MessageDlg(Format(LanguageSetup->PackageManagerDownloadFailed(), {URL}), mtError, mbOK, 0);
-        return result;
+        return urUpdateInstallCanceled;
     }
-
-    TStringList St;
-    if (!St.LoadFromFile(FileName)) {
-        MessageDlg(Format(LanguageSetup->MessageCouldNotOpenFile(), {FileName}), mtError, mbOK, 0); return result;
-    }
-    ExtDeleteFile(FileName, ftTemp);
 
     PrgSetup->SetLastUpdateCheck(Round(std::trunc(Date())));
 
-    if ((St.Count() > 1) && (VersionToInt(St[0]) > VersionToInt(GetNormalFileVersionAsString()))) {
-        result = urUpdateAvailable;
-        RunExternalUpdateCheck(Quite);
-    } else {
-        result = urNoUpdatesAvailable;
-        if (Quite) return result;
-        MessageDlg(LanguageSetup->UpdateNoUpdates(), mtInformation, mbOK, 0);
+    // tag names like "v1.5.0" or "1.5.0"
+    QString Version = Trim(Release.value("tag_name").toString());
+    if (Version.startsWith('v', Qt::CaseInsensitive)) Version = Version.mid(1);
+    const QString Page = Release.value("html_url").toString(DFRebornHomepage + "/releases");
+
+    if (!Version.isEmpty() && VersionToInt(Version) > VersionToInt(GetNormalFileVersionAsString())) {
+        // "New version" X "on server. Do you want to update now ?"
+        if (MessageDlg(LanguageSetup->UpdateNewVersionPart1() + " " + Version + " " + LanguageSetup->UpdateNewVersionPart2(), mtConfirmation, mbYesNo, 0) == mrYes)
+            ShellOpen(Page);
+        return urUpdateAvailable;
     }
-    return result;
+
+    if (!Quite) MessageDlg(LanguageSetup->UpdateNoUpdates(), mtInformation, mbOK, 0);
+    return urNoUpdatesAvailable;
 }
 
 void RunUpdateCheckIfSetup(QWidget *AOwner)
@@ -132,9 +104,7 @@ void RunUpdateCheckIfSetup(QWidget *AOwner)
 
 void RunUpdateCheckIdleCloseHandle()
 {
-    if ((UpdaterProcessHandleProcess != 0) && (!IsProcessRunning(UpdaterProcessHandleProcess))) {
-        UpdaterProcessHandleProcess = 0;
-    }
+    // (the original watched the external UpdateCheck.exe process here)
 }
 
 void ProgramUpdateCheckUnit_Initialization()
@@ -143,6 +113,4 @@ void ProgramUpdateCheckUnit_Initialization()
 
 void ProgramUpdateCheckUnit_Finalization()
 {
-    // CloseHandle(UpdaterProcessHandleProcess) - nothing to release for a process id
-    UpdaterProcessHandleProcess = 0;
 }

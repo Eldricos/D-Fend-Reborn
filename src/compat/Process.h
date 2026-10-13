@@ -14,6 +14,12 @@ THandle StartProcess(const QString &Program, const QStringList &Arguments, const
 // Starts a command line ("prog.exe" -a -b) - the Delphi code builds those.
 THandle StartProcessCommandLine(const QString &CommandLine, const QString &WorkingDir = QString(),
                                 TShowWindowMode Show = swNormal);
+// CreateProcess(PrgFile,'"'+PrgFile+'" '+Params,...,WorkDir,...) replacement:
+// Params is a command line parameter string as built by the Delphi code
+// (passed unchanged on Windows, split on other systems). EnvAdd: additional
+// "NAME=VALUE" environment entry. Returns the process id or 0.
+THandle StartProcessNative(const QString &PrgFile, const QString &Params, const QString &WorkDir = QString(),
+                           const QString &EnvAdd = QString());
 // Runs a program and waits until it terminates (RunAndWait).  Returns the exit code.
 int RunProcessAndWait(const QString &Program, const QStringList &Arguments, const QString &WorkingDir = QString(),
                       bool HideWindow = false, bool ProcessEventsWhileWaiting = true);

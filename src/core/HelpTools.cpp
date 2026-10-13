@@ -64,7 +64,7 @@ static bool WinHelp(THandle HelpHandle, const QString &HelpFile, int Command, qi
 #else
 static bool WinHelp(THandle HelpHandle, const QString &HelpFile, int Command, qintptr Data)
 {
-    // TODO(port): WinHelp (.hlp files) does not exist on this platform
+    // Port note: WinHelp (.hlp files) does not exist on this platform
     Q_UNUSED(HelpHandle); Q_UNUSED(HelpFile); Q_UNUSED(Command); Q_UNUSED(Data);
     return false;
 }

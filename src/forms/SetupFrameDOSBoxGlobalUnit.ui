@@ -19,7 +19,7 @@
       <widget class="QCheckBox" name="MinimizeDFendCheckBox">
         <property name="geometry"><rect><x>8</x><y>20</y><width>631</width><height>17</height></rect></property>
         <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="text"><string>D-Fend Reloaded minimieren, wenn DOSBox gestartet wird</string></property>
+        <property name="text"><string>D-Fend Reborn minimieren, wenn DOSBox gestartet wird</string></property>
       </widget>
       <widget class="QCheckBox" name="RestoreWindowCheckBox">
         <property name="geometry"><rect><x>29</x><y>40</y><width>610</width><height>17</height></rect></property>

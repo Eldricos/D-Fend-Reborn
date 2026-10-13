@@ -44,29 +44,12 @@ static bool MainFormIsMinimized()
     return (DFendReloadedMainForm != nullptr) && DFendReloadedMainForm->isMinimized();
 }
 
-// CreateProcess(PrgFile,'"'+PrgFile+'" '+Params,...,WorkDir,...) replacement.
-// Returns the process id or 0.
-static THandle CreateProcessCommandLine(const QString& PrgFile, const QString& Params, const QString& WorkDir)
-{
-    QProcess P;
-    P.setProgram(ToNativePath(PrgFile));
-#ifdef Q_OS_WIN
-    P.setNativeArguments(Params);
-#else
-    P.setArguments(SplitCommandLine(Params));
-#endif
-    if (!WorkDir.isEmpty()) P.setWorkingDirectory(ToNativePath(WorkDir));
-    qint64 Pid = 0;
-    if (!P.startDetached(&Pid)) return 0;
-    return Pid;
-}
-
 [[maybe_unused]] static THandle RunFile(const QString& FileName, const QString& Parameters)
 {
     THandle result;
     // {ShellExecute(Application.MainForm.Handle,'open',PChar(FileName),PChar(Parameters),PChar(IncludeTrailingPathDelimiter((ExtractFilePath(FileName)))),SW_SHOW);}
 
-    result = CreateProcessCommandLine(FileName, Parameters, ExtractFilePath(FileName));
+    result = StartProcessNative(FileName, Parameters, ExtractFilePath(FileName));
     if (result == 0) {
         // if (GetLastError=740) {ERROR_ELEVATION_REQUIRED} then ShellExecute(...)
         if (!ShellOpen(FileName, Parameters, IncludeTrailingPathDelimiter(ExtractFilePath(FileName)))) {
@@ -97,7 +80,7 @@ static THandle RunFile2(const QString& FileName, const QString& Parameters, bool
         ShellOpen(PrgDir() + BinFolder + PathDelim + "AdminLauncher.exe", "/dir=" + S + " /run=\"" + FileName + "\" " + Parameters, S);
         return result;
 #else
-        // TODO(port): AdminLauncher.exe only exists on Windows - start the program normally
+        // Port note: AdminLauncher.exe only exists on Windows - start the program normally
 #endif
     }
 

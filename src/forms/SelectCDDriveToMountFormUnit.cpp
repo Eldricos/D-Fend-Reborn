@@ -92,7 +92,7 @@ bool GetDriveLabel(const QString& DriveLetter, QString& DriveLabel)
     result = GetVolumeInformationW(reinterpret_cast<LPCWSTR>(Root.utf16()), S1, 510, &C1, &C2, &C3, S2, 510) != 0;
     if (result) DriveLabel = QString::fromWCharArray(S1);
 #else
-    // TODO(port): no drive letters outside Windows; DriveLetter may be a mount point of an
+    // Port note: no drive letters outside Windows; DriveLetter may be a mount point of an
     // optical drive (see CheckDriveData) - use the volume label of that file system.
     QStorageInfo Info(DriveLetter);
     result = (Length(DriveLetter) > 1) && Info.isValid() && Info.isReady();

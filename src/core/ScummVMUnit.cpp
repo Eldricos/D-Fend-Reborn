@@ -52,23 +52,6 @@ static bool MainFormIsMinimized()
     return (DFendReloadedMainForm != nullptr) && DFendReloadedMainForm->isMinimized();
 }
 
-// CreateProcess(PrgFile,'"'+PrgFile+'" '+Params,...,WorkDir,...) replacement.
-// Returns the process id or 0.
-static THandle CreateProcessCommandLine(const QString& PrgFile, const QString& Params, const QString& WorkDir)
-{
-    QProcess P;
-    P.setProgram(ToNativePath(PrgFile));
-#ifdef Q_OS_WIN
-    P.setNativeArguments(Params);
-#else
-    P.setArguments(SplitCommandLine(Params));
-#endif
-    if (!WorkDir.isEmpty()) P.setWorkingDirectory(ToNativePath(WorkDir));
-    qint64 Pid = 0;
-    if (!P.startDetached(&Pid)) return 0;
-    return Pid;
-}
-
 QString FindScummVMIni(bool UseSecondOne)
 {
     QString S;
@@ -86,7 +69,7 @@ QString FindScummVMIni(bool UseSecondOne)
         S = IncludeTrailingPathDelimiter(QString::fromWCharArray(Buf, static_cast<int>(Len)));
         if (FileExists(S + ScummVMConfFileName)) { return S + ScummVMConfFileName; }
 #else
-        // TODO(port): default location of the ScummVM configuration on non Windows systems
+        // Port note: default location of the ScummVM configuration on non Windows systems
         S = IncludeTrailingPathDelimiter(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation)) + "scummvm" + PathDelim;
         if (FileExists(S + ScummVMConfFileName)) { return S + ScummVMConfFileName; }
 #endif
@@ -294,7 +277,7 @@ static THandle RunScummVM(const QString& INIFile, const QString& GameName, const
 
     PrgFile = IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + ScummPrgFile;
 #ifndef Q_OS_WIN
-    // TODO(port): on non Windows systems the ScummVM binary has no ".exe" extension
+    // Linux/macOS: ScummVM installed in the search path (no folder configured)
     if (!FileExists(PrgFile)) {
         QString T = IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + "scummvm";
         if (Trim(PrgSetup->ScummVMPath()).isEmpty()) T = QStandardPaths::findExecutable("scummvm");
@@ -314,14 +297,14 @@ static THandle RunScummVM(const QString& INIFile, const QString& GameName, const
         ShellOpen(PrgDir() + BinFolder + PathDelim + "AdminLauncher.exe", "/dir=" + ScreenshotDir + " /run=\"" + PrgFile + "\" " + Params, ScreenshotDir);
         return result;
 #else
-        // TODO(port): AdminLauncher.exe only exists on Windows - start ScummVM normally
+        // Port note: AdminLauncher.exe only exists on Windows - start ScummVM normally
 #endif
     }
 
     if (!ScreenshotDir.isEmpty()) {
-        result = CreateProcessCommandLine(PrgFile, Params, ScreenshotDir);
+        result = StartProcessNative(PrgFile, Params, ScreenshotDir);
     } else {
-        result = CreateProcessCommandLine(PrgFile, Params, ExtractFilePath(PrgFile));
+        result = StartProcessNative(PrgFile, Params, ExtractFilePath(PrgFile));
         if (result == 0) {
             ApplicationRestore();
             MessageDlg(Format(LanguageSetup->MessageCouldNotStartProgram(), {PrgFile}), mtError, mbOK, 0);

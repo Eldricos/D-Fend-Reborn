@@ -1,5 +1,6 @@
 // C++ port of QuickStartFormUnit.pas (implementation section).
 #include "QuickStartFormUnit.h"
+#include "VirtualKeys.h"
 
 #include "CommonTools.h"
 #include "LanguageSetupUnit.h"
@@ -111,35 +112,6 @@ const TFileTypeInfo FileTypes[55] = {
     {"" /*unknown extension*/, 0, 8, otOpen, ftAddEditItem}   // must be last element in array
 };
 constexpr int FileTypesHigh = 54;
-
-// Delphi virtual key codes
-#ifndef VK_RETURN
-constexpr quint16 VK_RETURN = 0x0D;
-#endif
-#ifndef VK_DELETE
-constexpr quint16 VK_DELETE = 0x2E;
-#endif
-#ifndef VK_F1
-constexpr quint16 VK_F1 = 0x70;
-#endif
-#ifndef VK_F2
-constexpr quint16 VK_F2 = 0x71;
-#endif
-#ifndef VK_F5
-constexpr quint16 VK_F5 = 0x74;
-#endif
-
-quint16 QtKeyToVK(int Key)
-{
-    switch (Key) {
-    case Qt::Key_Return: case Qt::Key_Enter: return VK_RETURN;
-    case Qt::Key_Delete: return VK_DELETE;
-    case Qt::Key_F1: return VK_F1;
-    case Qt::Key_F2: return VK_F2;
-    case Qt::Key_F5: return VK_F5;
-    default: return 0;
-    }
-}
 
 // TTreeNode.ImageIndex / SelectedIndex / HasChildren
 constexpr int RoleImageIndex = Qt::UserRole + 1;
@@ -621,7 +593,7 @@ void TQuickStartForm::BuildTree()
                 if (N != nullptr) SelNode = N;
             }
 #else
-            // TODO(port): no drive letters outside Windows - the file system root is the only top level node
+            // Port note: no drive letters outside Windows - the file system root is the only top level node
             N = NewRootNode("/", 7);
             BackupSelNode = N;
             if (Copy(SaveCurrentPath, 1, 1) == "/") S = Copy(SaveCurrentPath, 1, MaxInt); else S.clear();

@@ -34,8 +34,8 @@
 int main(int argc, char *argv[])
 {
     QApplication App(argc, argv);
-    App.setApplicationName("D-Fend Reloaded");
-    App.setApplicationDisplayName("D-Fend Reloaded");
+    App.setApplicationName("D-Fend Reborn");
+    App.setApplicationDisplayName("D-Fend Reborn");
     App.setOrganizationName("D-Fend Reborn");
     App.setWindowIcon(QIcon(":/icons/MainUnit_DFendReloadedMainForm.ico"));
 

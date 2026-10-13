@@ -1,5 +1,6 @@
 // C++ port of PackageCreationFormUnit.pas (implementation section).
 #include "PackageCreationFormUnit.h"
+#include "VirtualKeys.h"
 
 #include "CommonTools.h"
 #include "LanguageSetupUnit.h"
@@ -15,22 +16,6 @@
 #include "MainUnit.h"
 
 TPackageCreationForm *PackageCreationForm = nullptr;
-
-// Delphi virtual key codes
-#ifndef VK_RETURN_Code
-static constexpr quint16 VK_RETURN_Code = 0x0D, VK_INSERT_Code = 0x2D, VK_DELETE_Code = 0x2E, VK_F1_Code = 0x70;
-#endif
-
-static quint16 QtKeyToVK(int Key)
-{
-    switch (Key) {
-        case Qt::Key_Return: case Qt::Key_Enter: return VK_RETURN_Code;
-        case Qt::Key_Insert: return VK_INSERT_Code;
-        case Qt::Key_Delete: return VK_DELETE_Code;
-        case Qt::Key_F1: return VK_F1_Code;
-        default: return quint16(Key & 0xFFFF);
-    }
-}
 
 // TCheckListBox helpers
 static void CheckListAddStrings(QListWidget *L, const TStringList &St)
@@ -371,9 +356,9 @@ void TPackageCreationForm::PackagesListBoxDblClick(QObject * /*Sender*/)
 void TPackageCreationForm::PackagesListBoxKeyDown(QObject * /*Sender*/, quint16 &Key, TShiftState /*Shift*/)
 {
     switch (Key) {
-        case VK_INSERT_Code: ButtonWork(ui.PackagesAddButton); break;
-        case VK_RETURN_Code: ButtonWork(ui.PackagesEditButton); break;
-        case VK_DELETE_Code: ButtonWork(ui.PackagesDelButton); break;
+        case VK_INSERT: ButtonWork(ui.PackagesAddButton); break;
+        case VK_RETURN: ButtonWork(ui.PackagesEditButton); break;
+        case VK_DELETE: ButtonWork(ui.PackagesDelButton); break;
         default: return;
     }
     Key = 0;
@@ -568,7 +553,7 @@ void TPackageCreationForm::ToolsCheckBoxClick(QObject * /*Sender*/)
 
 void TPackageCreationForm::FormKeyDown(QObject *Sender, quint16 &Key, TShiftState Shift)
 {
-    if ((Key == VK_F1_Code) && (Shift == Qt::NoModifier)) HelpButtonClick(Sender);
+    if ((Key == VK_F1) && (Shift == Qt::NoModifier)) HelpButtonClick(Sender);
 }
 
 // global

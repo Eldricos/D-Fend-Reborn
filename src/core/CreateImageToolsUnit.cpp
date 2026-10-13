@@ -56,7 +56,7 @@ static void CompressFile(const QString& FileName)
     DeviceIoControl(hFile, FSCTL_SET_COMPRESSION_, &Mode, sizeof(Mode), nullptr, 0, &C, nullptr);
     CloseHandle(hFile);
 #else
-    // TODO(port): NTFS file compression has no equivalent on other systems.
+    // Port note: NTFS file compression has no equivalent on other systems.
     Q_UNUSED(FileName);
 #endif
 }

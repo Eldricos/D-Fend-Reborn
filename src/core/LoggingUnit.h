@@ -31,5 +31,5 @@ private:
     qint64 FStart;
 };
 
-// initialization section (looks for D-Fend-Reloaded-Log.txt on the desktop)
+// initialization section (looks for D-Fend-Reborn-Log.txt on the desktop)
 void LoggingUnit_Initialization();

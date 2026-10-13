@@ -76,7 +76,7 @@
         <widget class="QLabel" name="DoSearchLabel">
           <property name="geometry"><rect><x>16</x><y>8</y><width>521</width><height>82</height></rect></property>
           <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          <property name="text"><string>You can search for a known value or even for a value you do not know exactly. In the second case you will have to do multiple searches and tell D-Fend Reloaded each time if the value has increased or decreased. When searching for an exactly known value you may also need more than one search if the value is been found at more than one addresses in the file.</string></property>
+          <property name="text"><string>You can search for a known value or even for a value you do not know exactly. In the second case you will have to do multiple searches and tell D-Fend Reborn each time if the value has increased or decreased. When searching for an exactly known value you may also need more than one search if the value is been found at more than one addresses in the file.</string></property>
           <property name="textFormat"><enum>Qt::PlainText</enum></property>
           <property name="wordWrap"><bool>true</bool></property>
           <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>

@@ -11,7 +11,7 @@
     <property name="vclDesignHeight" stdset="0"><number>412</number></property>
     <widget class="QLabel" name="InfoLabel">
       <property name="geometry"><rect><x>16</x><y>16</y><width>393</width><height>105</height></rect></property>
-      <property name="text"><string>The listed profiles have changed on disk. This changes will be overwritten with the version in memory when D-Fend Reloaded closes. If you want to keep the manual made changes to the files on the disk, you have to reload this files now. please select which profiles should be reloaded from disk now.</string></property>
+      <property name="text"><string>The listed profiles have changed on disk. This changes will be overwritten with the version in memory when D-Fend Reborn closes. If you want to keep the manual made changes to the files on the disk, you have to reload this files now. please select which profiles should be reloaded from disk now.</string></property>
       <property name="textFormat"><enum>Qt::PlainText</enum></property>
       <property name="wordWrap"><bool>true</bool></property>
       <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>

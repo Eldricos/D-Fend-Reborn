@@ -22,6 +22,7 @@ inline QString PrgConstsSubPath(const char *S)
 
 // Note: the Delphi arrays ProgramExts, IgnoreGameExeFilesIgnore, SetupExeFilesLevel1..4 and
 // ProgramExeFiles are 1-based (Array[1..N]); the QStringList versions below are 0-based.
+// (All users iterate over the whole list - Low()..High() in Delphi.)
 
 #ifdef Q_OS_WIN
 inline const QString DosBoxFileName = QStringLiteral("DOSBOX.EXE");
@@ -53,12 +54,18 @@ inline const QString AutoSetupSubDir = QStringLiteral("AutoSetup");
 inline const QString NewUserDataSubDir = QStringLiteral("NewUserData");
 inline const QString PhysFSDefaultWriteDir = QStringLiteral("PhysWrite");
 inline const QString ZipTempDir = QStringLiteral("ZipTemp");
-inline const QString TempSubFolder = QStringLiteral("D-Fend Reloaded zip package");
+inline const QString TempSubFolder = QStringLiteral("D-Fend Reborn zip package");
 inline const QString BinFolder = QStringLiteral("Bin");
 inline const QString SettingsFolder = QStringLiteral("Settings");
 inline const QString IconSetsFolder = QStringLiteral("IconSets");
-inline const QString NSIInstallerHelpFile = QStringLiteral("D-Fend Reloaded DataInstaller.nsi");
+inline const QString NSIInstallerHelpFile = QStringLiteral("D-Fend Reborn DataInstaller.nsi");
+// Homepage of the original D-Fend Reloaded: still hosts the online services
+// used by the program (package lists, data reader configuration, cheats
+// database, document type definitions)
 inline const QString DFRHomepage = QStringLiteral("http:/") + QStringLiteral("/dfendreloaded.sourceforge.net/");
+// D-Fend Reborn project page (homepage, releases / update check)
+inline const QString DFRebornHomepage = QStringLiteral("https://github.com/Eldricos/D-Fend-Reborn");
+inline const QString DFRebornLatestReleaseAPI = QStringLiteral("https://api.github.com/repos/Eldricos/D-Fend-Reborn/releases/latest");
 #ifdef Q_OS_WIN
 inline const QString OggEncPrgFile = QStringLiteral("oggenc2.exe");
 inline const QString LamePrgFile = QStringLiteral("lame.exe");
@@ -81,7 +88,7 @@ inline const QString PackageDBMainFile = QStringLiteral("DFR.xml");
 inline const QString PackageDBUserFile = QStringLiteral("User.xml");
 inline const QString PackageDBCacheFile = QStringLiteral("Cache.xml");
 inline const QString CacheVersionString = QStringLiteral("DFRCacheFile-FileVersion=005");
-inline const QString CacheInfoString = QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("This is just a cache file for the profiles in the current directory. You can") + QStringLiteral("\r") + QStringLiteral("ignore or delete this file. D-Fend Reloaded will only load data from this file") + QStringLiteral("\r") + QStringLiteral("if the .prof file on disk has not changed. If you delete or change one of the") + QStringLiteral("\r") + QStringLiteral(".prof files manually the cache will not be used for this profile. So just") + QStringLiteral("\r") + QStringLiteral("ignore this file, you can still do what ever you want in this folder. This") + QStringLiteral("\r") + QStringLiteral("cache will never mess up your database.") + QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("You can turn off the creation of this cache files by setting \"BinaryCache=0\" in") + QStringLiteral("\r") + QStringLiteral("the [ProgramSets] section of the DFend.ini.") + QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("===Start of binary cache===") + QStringLiteral("\r");
+inline const QString CacheInfoString = QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("This is just a cache file for the profiles in the current directory. You can") + QStringLiteral("\r") + QStringLiteral("ignore or delete this file. D-Fend Reborn will only load data from this file") + QStringLiteral("\r") + QStringLiteral("if the .prof file on disk has not changed. If you delete or change one of the") + QStringLiteral("\r") + QStringLiteral(".prof files manually the cache will not be used for this profile. So just") + QStringLiteral("\r") + QStringLiteral("ignore this file, you can still do what ever you want in this folder. This") + QStringLiteral("\r") + QStringLiteral("cache will never mess up your database.") + QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("You can turn off the creation of this cache files by setting \"BinaryCache=0\" in") + QStringLiteral("\r") + QStringLiteral("the [ProgramSets] section of the DFend.ini.") + QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("===Start of binary cache===") + QStringLiteral("\r");
 inline const QString CacheFile = QStringLiteral("Cache.dfr");
 inline const QString DataReaderUpdateURL = DFRHomepage + QStringLiteral("DataReader/DataReader.xml");
 inline const QString DataReaderConfigFile = QStringLiteral("DataReader.xml");

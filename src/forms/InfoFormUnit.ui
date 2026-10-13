@@ -49,7 +49,7 @@
               <bold>true</bold>
             </font>
           </property>
-          <property name="text"><string>D-Fend Reloaded</string></property>
+          <property name="text"><string>D-Fend Reborn</string></property>
           <property name="textFormat"><enum>Qt::PlainText</enum></property>
           <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
           <property name="vclAutoSize" stdset="0"><bool>true</bool></property>

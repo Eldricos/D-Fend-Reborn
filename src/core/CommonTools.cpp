@@ -549,7 +549,7 @@ QString GetSpecialFolder(WId hWindow, int Folder)
 
 quint32 GetFileVersionEx(const QString& AFileName)
 {
-    // TODO(port): the original read the VERSIONINFO resource of any file; the port
+    // Port note: the original read the VERSIONINFO resource of any file; the port
     // only knows the version of the program itself (the only file it was used for).
     Q_UNUSED(AFileName);
     quint32 MS, LS;
@@ -744,11 +744,11 @@ QString CheckDOSBoxVersionDirect(int Nr, const QString& Path)
 
     if (!DirectoryExists(DOSBoxPath)) return QString();
 
-    QString TempTxt = TempDir() + QStringLiteral("D-Fend-Reloaded-DOSBoxVer.txt");
+    QString TempTxt = TempDir() + QStringLiteral("D-Fend-Reborn-DOSBoxVer.txt");
 #ifdef Q_OS_WIN
-    QString TempBat = TempDir() + QStringLiteral("D-Fend-Reloaded-DOSBoxVer.bat");
+    QString TempBat = TempDir() + QStringLiteral("D-Fend-Reborn-DOSBoxVer.bat");
 #else
-    QString TempBat = TempDir() + QStringLiteral("D-Fend-Reloaded-DOSBoxVer.sh");
+    QString TempBat = TempDir() + QStringLiteral("D-Fend-Reborn-DOSBoxVer.sh");
 #endif
 
     // Create batch file to run
@@ -950,17 +950,17 @@ void SetStartWithWindows(bool Enabled)
 #ifdef Q_OS_WIN
     QSettings Reg(QStringLiteral("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"), QSettings::NativeFormat);
     if (Enabled) {
-        Reg.setValue(QStringLiteral("D-Fend Reloaded"), ExeFileName());
+        Reg.setValue(QStringLiteral("D-Fend Reborn"), ExeFileName());
     } else {
-        Reg.remove(QStringLiteral("D-Fend Reloaded"));
+        Reg.remove(QStringLiteral("D-Fend Reborn"));
     }
 #else
     // Freedesktop autostart entry
     QString Dir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QStringLiteral("/autostart");
-    QString FileName = Dir + QStringLiteral("/D-Fend Reloaded.desktop");
+    QString FileName = Dir + QStringLiteral("/D-Fend Reborn.desktop");
     if (Enabled) {
         ForceDirectories(Dir);
-        QString Text = QStringLiteral("[Desktop Entry]\nType=Application\nName=D-Fend Reloaded\nExec=\"") + ExeFileName() +
+        QString Text = QStringLiteral("[Desktop Entry]\nType=Application\nName=D-Fend Reborn\nExec=\"") + ExeFileName() +
                        QStringLiteral("\"\nTerminal=false\n");
         WriteTextFile(FileName, Text, true, false);
     } else {

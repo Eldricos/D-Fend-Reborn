@@ -101,7 +101,7 @@ QString CheckDriveData(TMountByData MountByDataType, const QString& Data)
         if (GetDriveTypeW(reinterpret_cast<LPCWSTR>(Root.utf16())) != DRIVE_CDROM) continue;
         const QString Drive = QString(QChar(C));
 #else
-    // TODO(port): there are no drive letters outside Windows.  Check all mounted optical
+    // Port note: there are no drive letters outside Windows.  Check all mounted optical
     // media (ISO 9660 / UDF file systems) instead; the result is the mount point.
     const QList<QStorageInfo> Volumes = QStorageInfo::mountedVolumes();
     for (const QStorageInfo& V : Volumes) {

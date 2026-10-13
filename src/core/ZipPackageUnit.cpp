@@ -216,24 +216,24 @@ static bool CopyFolderWithMsg(QString Source, QString Dest, bool ProcessMessages
 static bool CreateInfoFile(TGame* Game, const QString& Dir)
 {
     TStringList St;
-    St.Add("This is a D-Fend Reloaded game package for the game");
+    St.Add("This is a D-Fend Reborn game package for the game");
     St.Add("\"" + Game->CacheName + "\".");
     St.Add("");
-    St.Add("If you are using D-Fend Reloaded, you can just install this package via");
+    St.Add("If you are using D-Fend Reborn, you can just install this package via");
     St.Add("File|Import|Import zip-file or by just dragging the zip file to the");
-    St.Add("D-Fend Reloaded program window.");
+    St.Add("D-Fend Reborn program window.");
     St.Add("");
-    St.Add("If you do not have a D-Fend Reloaded installation on your system, you can");
+    St.Add("If you do not have a D-Fend Reborn installation on your system, you can");
     St.Add("download it here for free:");
     St.Add(DFRHomepage + "Download.html");
     St.Add("");
     if (ScummVMMode(Game)) {
-        St.Add("You can also run the game from this package without having D-Fend Reloaded");
+        St.Add("You can also run the game from this package without having D-Fend Reborn");
         St.Add("installed. All you need is ScummVM (http:/" "/www.scummvm.org/). You can just use");
         St.Add("the ini file from this folder to run the game inside ScummVM.");
     }
     if (DOSBoxMode(Game)) {
-        St.Add("You can also run the game from this package without having D-Fend Reloaded");
+        St.Add("You can also run the game from this package without having D-Fend Reborn");
         St.Add("installed. All you need is DOSBox (http:/" "/www.dosbox.com). You can just use");
         St.Add("the conf file from this folder to run the game inside DOSBox.");
     }

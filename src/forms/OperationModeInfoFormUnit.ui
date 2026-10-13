@@ -80,7 +80,7 @@
       <property name="geometry"><rect><x>16</x><y>157</y><width>597</width><height>17</height></rect></property>
       <property name="enabled"><bool>false</bool></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>DOSBox and games directories are stored relative to D-Fend Reloaded folder (for portable use)</string></property>
+      <property name="text"><string>DOSBox and games directories are stored relative to D-Fend Reborn folder (for portable use)</string></property>
     </widget>
     <widget class="QCheckBox" name="CheckBox2">
       <property name="geometry"><rect><x>16</x><y>87</y><width>597</width><height>17</height></rect></property>

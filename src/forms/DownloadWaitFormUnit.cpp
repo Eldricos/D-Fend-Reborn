@@ -432,7 +432,7 @@ void THTTPThread::WorkEvent2(QObject *ASender, int AWorkMode)
     DownloadWaitForm->DoWorkEvent(ASender, AWorkMode, FWorkEvent1WorkCount);
 }
 
-// TODO(port): Qt 6 has no FTP support (QNetworkAccessManager / TIdFTP); the
+// Port note: Qt 6 has no FTP support (QNetworkAccessManager / TIdFTP); the
 // external "curl" program is used for FTP transfers.
 static QString CurlProgram()
 {
@@ -664,7 +664,7 @@ static TDownloadResult GetSingleLocalFile(QWidget *AOwner, const QString &URL, c
         if (MessageDlg(Format(LanguageSetup->PackageManagerMenuUpdateListsLocal(), {ExtractFileName(URL)}), mtInformation, mbOK | mbCancel, 0) != mrOk) return result;
     }
 #else
-    // TODO(port): no drive letters outside of Windows - the file is searched at the given
+    // Port note: no drive letters outside of Windows - the file is searched at the given
     // path and (for "X:\..." paths) on all mounted volumes.
     while (true) {
         QStringList Candidates;

@@ -1,5 +1,6 @@
 // C++ port of SelectTemplateForZipImportFormUnit.pas (implementation section).
 #include "SelectTemplateForZipImportFormUnit.h"
+#include "VirtualKeys.h"
 
 #include "CommonTools.h"
 #include "LanguageSetupUnit.h"
@@ -10,10 +11,6 @@
 #include "PrgConsts.h"
 
 TSelectTemplateForZipImportForm *SelectTemplateForZipImportForm = nullptr;
-
-#ifndef VK_F1_Code
-static constexpr quint16 VK_F1_Code = 0x70;
-#endif   // VK_F1
 
 // TComboBox.Items.Objects[I] (stored as Qt::UserRole data)
 static int ComboObject(QComboBox *C, int I) { return (I >= 0 && I < C->count()) ? C->itemData(I).toInt() : 0; }
@@ -36,7 +33,7 @@ TSelectTemplateForZipImportForm::TSelectTemplateForZipImportForm(QWidget *AOwner
     ui.ProgramFileComboBox->installEventFilter(this);
     ui.SetupFileComboBox->installEventFilter(this);
     VclLayout::installKeyPreview(this, [this](int Key, Qt::KeyboardModifiers Mods) {
-        quint16 K = (Key == Qt::Key_F1) ? VK_F1_Code : quint16(Key & 0xFFFF);
+        quint16 K = QtKeyToVK(Key);
         FormKeyDown(this, K, Mods);
         return (Key == Qt::Key_F1) && (Mods == Qt::NoModifier);
     });
@@ -399,7 +396,7 @@ void TSelectTemplateForZipImportForm::HelpButtonClick(QObject * /*Sender*/)
 
 void TSelectTemplateForZipImportForm::FormKeyDown(QObject *Sender, quint16 &Key, TShiftState Shift)
 {
-    if ((Key == VK_F1_Code) && (Shift == Qt::NoModifier)) HelpButtonClick(Sender);
+    if ((Key == VK_F1) && (Shift == Qt::NoModifier)) HelpButtonClick(Sender);
 }
 
 // global

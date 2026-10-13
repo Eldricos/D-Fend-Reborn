@@ -15,7 +15,7 @@ static int EventSignalCount = 0;
 
 static QString EventServerName()
 {
-    const QString EventName = "DFR-running";
+    const QString EventName = "D-Fend-Reborn-running";
     // Win32 events live in the session namespace, local sockets are global on
     // Unix systems: make the name user specific.
     QString User = qEnvironmentVariable("USER");

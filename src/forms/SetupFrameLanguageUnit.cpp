@@ -312,7 +312,7 @@ void TSetupFrameLanguage::ReadCurrentInstallerLanguage()
     InstallerLang = -1;
 #ifdef Q_OS_WIN
     {
-        QSettings Reg("HKEY_LOCAL_MACHINE\\Software\\D-Fend Reloaded", QSettings::NativeFormat);
+        QSettings Reg("HKEY_LOCAL_MACHINE\\Software\\D-Fend Reborn", QSettings::NativeFormat);
         if (Reg.contains("Installer Language")) {
             try { InstallerLang = StrToInt(Reg.value("Installer Language").toString()); } catch (...) {}
         }

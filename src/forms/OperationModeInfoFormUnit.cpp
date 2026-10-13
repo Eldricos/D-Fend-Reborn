@@ -1,5 +1,6 @@
 // C++ port of OperationModeInfoFormUnit.pas (implementation section).
 #include "OperationModeInfoFormUnit.h"
+#include "VirtualKeys.h"
 
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
@@ -11,10 +12,6 @@
 TOperationModeInfoForm* OperationModeInfoForm = nullptr;
 
 namespace {
-
-#ifndef VK_F1
-constexpr quint16 VK_F1 = 0x70;
-#endif
 
 // Edit.Color:=clBtnFace
 void SetEditColorBtnFace(QLineEdit *E)

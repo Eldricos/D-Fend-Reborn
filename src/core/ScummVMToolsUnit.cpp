@@ -78,11 +78,6 @@ bool TScummVMGamesList::LoadListFromScummVM(bool WarnIfScummVMNotFound, const QS
         S = IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + ScummPrgFile;
     }
 #ifndef Q_OS_WIN
-    // TODO(port): on non Windows systems the ScummVM binary has no ".exe" extension
-    if (!FileExists(S)) {
-        QString T = ExtractFilePath(S) + "scummvm";
-        if (FileExists(T)) S = T;
-    }
 #endif
     if (!FileExists(S)) {
         if (WarnIfScummVMNotFound) MessageDlg(Format(LanguageSetup->MessageFileNotFound(), {S}), mtError, mbOK, 0);
@@ -114,7 +109,7 @@ bool TScummVMGamesList::LoadListFromScummVMStringList(TStringList* St)
                 K = Pos(":\\", (*St)[I]);
                 if (K > 0) FScummVMIniFile = Copy((*St)[I], K - 1, MaxInt);
 #ifndef Q_OS_WIN
-                // TODO(port): absolute paths on non Windows systems start with '/'
+                // Port note: absolute paths on non Windows systems start with '/'
                 if (K == 0) {
                     K = Pos(": /", (*St)[I]);
                     if (K > 0) FScummVMIniFile = Trim(Copy((*St)[I], K + 2, MaxInt));

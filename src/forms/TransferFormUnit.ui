@@ -75,7 +75,7 @@
     </widget>
     <widget class="QCheckBox" name="CopyDFRCheckBox">
       <property name="geometry"><rect><x>8</x><y>387</y><width>455</width><height>17</height></rect></property>
-      <property name="text"><string>Create portable D-Fend Reloaded installation in destination folder</string></property>
+      <property name="text"><string>Create portable D-Fend Reborn installation in destination folder</string></property>
     </widget>
     <widget class="QPushButton" name="HelpButton">
       <property name="geometry"><rect><x>234</x><y>432</y><width>97</width><height>25</height></rect></property>

@@ -25,7 +25,7 @@ static void WriteProfilesToDOGXML(TStringList* St, TList* GamesList)
   St->Add("<Export>");
   St->Add("<Version>1.0</Version>");
   St->Add("<Generator>D.O.G.</Generator>");
-  St->Add("<RealGenerator>D-Fend Reloaded " + GetNormalFileVersionAsString() + "</RealGenerator>");
+  St->Add("<RealGenerator>D-Fend Reborn " + GetNormalFileVersionAsString() + "</RealGenerator>");
   St->Add("</Export>");
 
   for (int I = 0; I < GamesList->size(); I++) {
@@ -230,7 +230,7 @@ static void WriteProfilesToDBGLXML(TStringList* St, TList* GamesList)
     St->Add("<notes><![CDATA[" + S + "]]></notes>");
     St->Add("<generator-title>DOSBox Game Launcher</generator-title>");
     St->Add("<generator-version>0.62</generator-version>");
-    St->Add("<RealGenerator>D-Fend Reloaded " + GetNormalFileVersionAsString() + "</RealGenerator>");
+    St->Add("<RealGenerator>D-Fend Reborn " + GetNormalFileVersionAsString() + "</RealGenerator>");
     St->Add("<captures-available>false</captures-available>");
     St->Add("<gamedata-available>false</gamedata-available>");
     St->Add("</export>");

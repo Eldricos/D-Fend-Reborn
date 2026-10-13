@@ -2226,10 +2226,10 @@ static void ExportGamesListHTMLFile(TGameDB *GameDB, const TGamesListExportColum
     St->Add(QStringLiteral("<!DOCTYPE HTML PUBLIC \"-/") + "/W3C/" + "/DTD HTML 4.01 Transitional/" + "/EN\">");
     St->Add("<html>");
     St->Add("  <head>");
-    St->Add("    <title>D-Fend Reloaded</title>");
+    St->Add("    <title>D-Fend Reborn</title>");
     St->Add("    <meta http-equiv=\"content-type\" content=\"text/html; charset=" + LanguageSetup->CharsetHTMLCharset() + "\">");
-    St->Add("    <meta name=\"description\" content=\"D-Fend Reloaded games list\">");
-    St->Add("    <meta name=\"DC.creator\" content=\"D-Fend Reloaded " + GetNormalFileVersionAsString() + "\">");
+    St->Add("    <meta name=\"description\" content=\"D-Fend Reborn games list\">");
+    St->Add("    <meta name=\"DC.creator\" content=\"D-Fend Reborn " + GetNormalFileVersionAsString() + "\">");
     St->Add("    <style type=\"text/css\">");
     St->Add("    <!--");
     St->Add("      body {font-family: Arial, Helvetica, sans-serif;}");
@@ -3139,9 +3139,9 @@ void OpenConfigurationFile(TGame *Game, TStringList *DeleteOnExit)
         St = BuildConfFile(Game, false, false, -1, nullptr, false);
         if (St == nullptr) return;
     }
-    St->Insert(0, "# This " + T + " configuration file was automatically created by D-Fend Reloaded.");
-    St->Insert(1, "# Changes made to this file will NOT be transfered to D-Rend Reloaded profiles list.");
-    St->Insert(2, "# D-Fend Reloaded will delete this file from temp directory on program close.");
+    St->Insert(0, "# This " + T + " configuration file was automatically created by D-Fend Reborn.");
+    St->Insert(1, "# Changes made to this file will NOT be transfered to D-Fend Reborn profiles list.");
+    St->Insert(2, "# D-Fend Reborn will delete this file from temp directory on program close.");
     St->Insert(3, "");
     St->Insert(4, "# Command line used when starting " + T + ":");
 

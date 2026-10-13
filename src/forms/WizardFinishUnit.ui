@@ -8,7 +8,7 @@
     <widget class="QLabel" name="InfoLabel">
       <property name="geometry"><rect><x>8</x><y>16</y><width>569</width><height>65</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Bitte überprüfen Sie, ob die von D-Fend Reloaded erstellten Laufwerksverknüpfungen Ihren Wünschen entsprechen und bestätigen Sie dann die Erstellung des neuen Profils mit "OK".</string></property>
+      <property name="text"><string>Bitte überprüfen Sie, ob die von D-Fend Reborn erstellten Laufwerksverknüpfungen Ihren Wünschen entsprechen und bestätigen Sie dann die Erstellung des neuen Profils mit "OK".</string></property>
       <property name="textFormat"><enum>Qt::PlainText</enum></property>
       <property name="wordWrap"><bool>true</bool></property>
       <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>

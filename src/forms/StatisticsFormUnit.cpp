@@ -85,7 +85,7 @@ static void BuildStatistics(TGameDB* GameDB, TStringList* St)
     int C;
     QString S;
 
-    St->Add("D-Fend Reloaded " + GetFileVersionAsString());
+    St->Add("D-Fend Reborn " + GetFileVersionAsString());
     St->Add("");
 
     St->Add(LanguageSetup->StatisticsNumberProfiles() + ": " + IntToStr(GameDB->Count()));

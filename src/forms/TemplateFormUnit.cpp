@@ -1,5 +1,6 @@
 // C++ port of TemplateFormUnit.pas (implementation section).
 #include "TemplateFormUnit.h"
+#include "VirtualKeys.h"
 
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
@@ -19,35 +20,6 @@
 TTemplateForm* TemplateForm = nullptr;
 
 namespace {
-
-// Delphi virtual key codes
-#ifndef VK_RETURN
-constexpr quint16 VK_RETURN = 0x0D;
-#endif
-#ifndef VK_INSERT
-constexpr quint16 VK_INSERT = 0x2D;
-#endif
-#ifndef VK_DELETE
-constexpr quint16 VK_DELETE = 0x2E;
-#endif
-#ifndef VK_F1
-constexpr quint16 VK_F1 = 0x70;
-#endif
-#ifndef VK_F2
-constexpr quint16 VK_F2 = 0x71;
-#endif
-
-quint16 QtKeyToVK(int Key)
-{
-    switch (Key) {
-    case Qt::Key_Return: case Qt::Key_Enter: return VK_RETURN;
-    case Qt::Key_Insert: return VK_INSERT;
-    case Qt::Key_Delete: return VK_DELETE;
-    case Qt::Key_F1: return VK_F1;
-    case Qt::Key_F2: return VK_F2;
-    default: return 0;
-    }
-}
 
 TGame *ItemGame(TListItem *Item) { return Item ? static_cast<TGame *>(Item->Data()) : nullptr; }
 

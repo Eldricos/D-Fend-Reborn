@@ -32,7 +32,7 @@ static const TVolumeHandle InvalidVolume = INVALID_HANDLE_VALUE;
 using TVolumeHandle = int;
 static const TVolumeHandle InvalidVolume = -1;
 
-// TODO(port): drive letters do not exist outside Windows.  The device is taken
+// Port note: drive letters do not exist outside Windows.  The device is taken
 // from the Linux remap setting of the drive letter (a /dev/... path or the
 // mount point of the medium); without a setting A:/B: map to /dev/fd0 and
 // /dev/fd1 and every other letter to /dev/cdrom.
