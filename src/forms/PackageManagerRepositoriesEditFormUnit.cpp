@@ -19,7 +19,9 @@ TPackageManagerRepositoriesEditForm *PackageManagerRepositoriesEditForm = nullpt
 // TItemChange
 static constexpr int ctState = 2;   // ctText = 0, ctImage = 1
 // Delphi virtual key codes
+#ifndef VK_RETURN_Code
 static constexpr quint16 VK_RETURN_Code = 0x0D, VK_INSERT_Code = 0x2D, VK_DELETE_Code = 0x2E, VK_F1_Code = 0x70;
+#endif
 
 static quint16 QtKeyToVK(int Key)
 {

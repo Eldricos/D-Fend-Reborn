@@ -12,7 +12,9 @@
 
 TBuildZipPackagesForm *BuildZipPackagesForm = nullptr;
 
-static constexpr quint16 VK_F1_Code = 0x70;   // VK_F1
+#ifndef VK_F1_Code
+static constexpr quint16 VK_F1_Code = 0x70;
+#endif   // VK_F1
 
 TBuildZipPackagesForm::TBuildZipPackagesForm(QWidget *AOwner) : TVclForm(AOwner)
 {

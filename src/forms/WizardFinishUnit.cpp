@@ -14,9 +14,15 @@
 namespace {
 
 // Delphi virtual key codes used by the OnKeyDown handlers
+#ifndef VK_RETURN
 constexpr quint16 VK_RETURN = 0x0D;
+#endif
+#ifndef VK_INSERT
 constexpr quint16 VK_INSERT = 0x2D;
+#endif
+#ifndef VK_DELETE
 constexpr quint16 VK_DELETE = 0x2E;
+#endif
 
 quint16 QtKeyToVK(int Key)
 {

@@ -15,7 +15,9 @@ TWizardForm* WizardForm = nullptr;
 
 namespace {
 
+#ifndef VK_F1
 constexpr quint16 VK_F1 = 0x70;
+#endif
 
 void RedrawFrameIfVisible(QWidget *F)
 {

@@ -11,7 +11,9 @@
 
 TSelectTemplateForZipImportForm *SelectTemplateForZipImportForm = nullptr;
 
-static constexpr quint16 VK_F1_Code = 0x70;   // VK_F1
+#ifndef VK_F1_Code
+static constexpr quint16 VK_F1_Code = 0x70;
+#endif   // VK_F1
 
 // TComboBox.Items.Objects[I] (stored as Qt::UserRole data)
 static int ComboObject(QComboBox *C, int I) { return (I >= 0 && I < C->count()) ? C->itemData(I).toInt() : 0; }
