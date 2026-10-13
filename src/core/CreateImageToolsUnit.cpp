@@ -445,7 +445,7 @@ static bool DiskImageCreatorRunDOSBoxCommandsOnFloppyImage(const QString& ImageF
 
     TempGame->Game()->SetCycles("max");
     TempGame->Game()->StoreAllValues();
-    RunCommandAndWait(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    RunCommandAndWait(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     delete TempGame;
     result = true;
     return result;
@@ -476,7 +476,7 @@ static bool DiskImageCreatorRunDOSBoxCommandsOnHDImage(const QString& ImageFileN
 
     TempGame->Game()->SetCycles("max");
     TempGame->Game()->StoreAllValues();
-    RunCommandAndWait(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    RunCommandAndWait(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     delete TempGame;
     result = true;
     return result;
@@ -641,7 +641,7 @@ static bool DiskImageCreatorRunBootdiskOnHD(const QString& ImageFileName, const 
 
     TempGame->Game()->SetCycles("max");
     TempGame->Game()->StoreAllValues();
-    RunCommandAndWait(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    RunCommandAndWait(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     delete TempGame;
     return true;
 }

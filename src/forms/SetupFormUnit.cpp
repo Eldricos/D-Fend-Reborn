@@ -50,9 +50,9 @@
 
 TSetupForm* SetupForm = nullptr;
 
-// DFendReloadedMainForm (MainUnit.h is not included to keep this unit
+// DFendRebornMainForm (MainUnit.h is not included to keep this unit
 // independent of the main form header): the application's QMainWindow.
-static QWidget* DFendReloadedMainFormWidget()
+static QWidget* DFendRebornMainFormWidget()
 {
     for (QWidget *W : QApplication::topLevelWidgets()) if (qobject_cast<QMainWindow*>(W) != nullptr) return W;
     return nullptr;
@@ -508,8 +508,8 @@ static void OpenLanguageEditor(QWidget* AOwner, int LanguageEditorMode)
 bool ShowSetupDialogSpecial(QWidget* AOwner, TGameDB* AGameDB, TLinkFile* ASearchLinkFile, TOpenMode OpenMode)
 {
     bool result;
-    QWidget *DFendReloadedMainForm = DFendReloadedMainFormWidget();
-    if (DFendReloadedMainForm != nullptr) DFendReloadedMainForm->setEnabled(false);
+    QWidget *DFendRebornMainForm = DFendRebornMainFormWidget();
+    if (DFendRebornMainForm != nullptr) DFendRebornMainForm->setEnabled(false);
     SetupForm = new TSetupForm(AOwner);
     SetupForm->setEnabled(true);
     SetupForm->GameDB = AGameDB;
@@ -522,7 +522,7 @@ bool ShowSetupDialogSpecial(QWidget* AOwner, TGameDB* AGameDB, TLinkFile* ASearc
     if (result && (SetupForm->LanguageEditorMode > 0)) OpenLanguageEditor(AOwner, SetupForm->LanguageEditorMode);
     { TTraceScope T("SetupForm: delete form"); delete SetupForm; }
     SetupForm = nullptr;
-    if (DFendReloadedMainForm != nullptr) DFendReloadedMainForm->setEnabled(true);
+    if (DFendRebornMainForm != nullptr) DFendRebornMainForm->setEnabled(true);
     return result;
 }
 

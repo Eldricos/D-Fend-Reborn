@@ -61,7 +61,7 @@ void SetRichEditPopup(QTextEdit* Edit)
         });
     }
 
-    // PopupImageList.Assign(DFendReloadedMainForm.GameNotesImageList)
+    // PopupImageList.Assign(DFendRebornMainForm.GameNotesImageList)
     TImageList *GameNotesImageList = TImageList::FromResource(QStringLiteral("MainUnit"), QStringLiteral("GameNotesImageList"));
     PopupImageList->Assign(*GameNotesImageList);
     delete GameNotesImageList;

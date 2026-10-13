@@ -154,6 +154,6 @@ void TModernProfileEditorNetworkFrame::ListNICButtonClick(QObject* Sender)
     TempGame->Game()->SetNE2000RealInterface("list");
     TempGame->Game()->SetShowConsoleWindow(2);
     TempGame->Game()->SetCustomDOSBoxDir(*ProfileDOSBoxInstallation);
-    RunCommand(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    RunCommand(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     delete TempGame;
 }

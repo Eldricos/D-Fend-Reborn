@@ -41,7 +41,7 @@ static bool GroupMatch(const QString &GameGroupUpper, const QString &SelectedGro
 // Application.MainForm
 static QWidget *MainFormWidget()
 {
-    return DFendReloadedMainForm;
+    return DFendRebornMainForm;
 }
 
 // Case O[I+1] of '1'..'9' : ...; 'A'..'Z' : ...; 'a'..'z' : ... end;

@@ -435,7 +435,7 @@ void TInstallationRunForm::RunInstaller()
         TempGame->Game()->SetAutoexec(StringListToString(St));
     }
     TempGame->Game()->StoreAllValues();
-    DOSBoxHandle = RunCommandAndGetHandle(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    DOSBoxHandle = RunCommandAndGetHandle(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     // While not (WaitForSingleObject(DOSBoxHandle,0)=WAIT_OBJECT_0) do ...
     while ((DOSBoxHandle != 0) && IsProcessRunning(DOSBoxHandle)) {
         Sleep(100);

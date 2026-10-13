@@ -232,9 +232,9 @@ void TQuickStartForm::FormCreate(QObject* Sender)
         if ((PrgSetup->QuickStarterWidth() > 0) && (L + PrgSetup->QuickStarterWidth() <= Screen.width())) W = PrgSetup->QuickStarterWidth();
         if ((PrgSetup->QuickStarterHeight() > 0) && (T + PrgSetup->QuickStarterHeight() <= Screen.height())) H = PrgSetup->QuickStarterHeight();
 
-        if ((PrgSetup->QuickStarterLeft() < 0) && (PrgSetup->QuickStarterTop() < 0) && (PrgSetup->QuickStarterWidth() < 0) && (PrgSetup->QuickStarterHeight() < 0) && DFendReloadedMainForm != nullptr) {
-            L = DFendReloadedMainForm->x() + DFendReloadedMainForm->width() / 2 - (W / 2);
-            T = DFendReloadedMainForm->y() + DFendReloadedMainForm->y() / 2 - (T / 2);
+        if ((PrgSetup->QuickStarterLeft() < 0) && (PrgSetup->QuickStarterTop() < 0) && (PrgSetup->QuickStarterWidth() < 0) && (PrgSetup->QuickStarterHeight() < 0) && DFendRebornMainForm != nullptr) {
+            L = DFendRebornMainForm->x() + DFendRebornMainForm->width() / 2 - (W / 2);
+            T = DFendRebornMainForm->y() + DFendRebornMainForm->y() / 2 - (T / 2);
         }
 
         resize(W, H);
@@ -1116,7 +1116,7 @@ void TQuickStartForm::OpenDOSBox(const QString& Path, const QString& FileName, c
 
     TempGame->Game()->SetGameExe(FileName);
 
-    RunGame(TempGame->Game(), DFendReloadedMainForm != nullptr ? DFendReloadedMainForm->DeleteOnExit : nullptr);
+    RunGame(TempGame->Game(), DFendRebornMainForm != nullptr ? DFendRebornMainForm->DeleteOnExit : nullptr);
 
     Sleep(100);
     delete TempGame;

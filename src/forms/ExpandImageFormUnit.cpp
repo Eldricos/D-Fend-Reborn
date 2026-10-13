@@ -168,7 +168,7 @@ bool TExpandImageForm::ExpandImage(const QString& FileName, const QString& Dir, 
     }
 
     TempGame->Game()->StoreAllValues();
-    RunCommand(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    RunCommand(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     // The Delphi code only freed TempGame.Game (not TempGame itself); deleting
     // the TTempGame frees the game and removes the temporary profile file.
     delete TempGame;

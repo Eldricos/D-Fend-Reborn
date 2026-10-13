@@ -255,7 +255,7 @@ void TPackageCreationForm::LoadGamesList()
 {
     TList CheckedGames;
     for (int I = 0; I < ui.GamesListView->Items()->Count(); I++) if (ui.GamesListView->Items()->Item(I)->Checked()) CheckedGames.append(ui.GamesListView->Items()->Item(I)->Data());
-    AddGamesToList(ui.GamesListView, DummyImageList1, DummyImageList2, DFendReloadedMainForm->ImageList, GameDB, "", "", "", true, ListSortGames, ListSortGamesReverse, false, true, true, false);
+    AddGamesToList(ui.GamesListView, DummyImageList1, DummyImageList2, DFendRebornMainForm->ImageList, GameDB, "", "", "", true, ListSortGames, ListSortGamesReverse, false, true, true, false);
     for (int I = 0; I < ui.GamesListView->Items()->Count(); I++) ui.GamesListView->Items()->Item(I)->SetChecked(CheckedGames.indexOf(ui.GamesListView->Items()->Item(I)->Data()) >= 0);
 }
 
@@ -263,7 +263,7 @@ void TPackageCreationForm::LoadAutoSetupsList()
 {
     TList CheckedGames;
     for (int I = 0; I < ui.AutoSetupListView->Items()->Count(); I++) if (ui.AutoSetupListView->Items()->Item(I)->Checked()) CheckedGames.append(ui.AutoSetupListView->Items()->Item(I)->Data());
-    AddGamesToList(ui.AutoSetupListView, DummyImageList1, DummyImageList2, DFendReloadedMainForm->ImageList, AutoSetupDB, "", "", "", true, ListSortAutoSetups, ListSortAutoSetupsReverse, false, true, false, false);
+    AddGamesToList(ui.AutoSetupListView, DummyImageList1, DummyImageList2, DFendRebornMainForm->ImageList, AutoSetupDB, "", "", "", true, ListSortAutoSetups, ListSortAutoSetupsReverse, false, true, false, false);
     for (int I = 0; I < ui.AutoSetupListView->Items()->Count(); I++) ui.AutoSetupListView->Items()->Item(I)->SetChecked(CheckedGames.indexOf(ui.AutoSetupListView->Items()->Item(I)->Data()) >= 0);
 }
 

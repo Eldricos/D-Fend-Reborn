@@ -36,7 +36,7 @@ TStringList* GetMIDIDevices()
     TempGame->Game()->SetAutoexec(StringListToString(St));
     delete St;
     TempGame->Game()->StoreAllValues();
-    RunCommandAndWait(TempGame->Game(), DFendReloadedMainForm ? DFendReloadedMainForm->DeleteOnExit : nullptr, "", true);
+    RunCommandAndWait(TempGame->Game(), DFendRebornMainForm ? DFendRebornMainForm->DeleteOnExit : nullptr, "", true);
     St = new TStringList();
     St->LoadFromFile(TempDir() + MIDIListFile);
     for (I = 0; I < St->Count(); I++) {

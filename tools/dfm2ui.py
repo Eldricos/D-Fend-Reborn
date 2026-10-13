@@ -184,7 +184,7 @@ class ResourceStore:
         return None
 
     def icon(self, unit, name, data):
-        return self._save(f'icons/{unit}_{name}.ico', lambda p: open(p, 'wb').write(data))
+        return self._save(reborn_name(f'icons/{unit}_{name}.ico'), lambda p: open(p, 'wb').write(data))
 
     def write_qrc(self, path):
         # all files below the resource directory (generated ones and hand made ones)
@@ -1558,6 +1558,12 @@ def detect_base_kind(pas_path, root):
     return 'form'
 
 
+# D-Fend Reborn: names derived from the Delphi sources that contain the old
+# program name (main form class, widget names, icon file names)
+def reborn_name(s):
+    return s.replace('DFendReloaded', 'DFendReborn')
+
+
 def main():
     src, out_forms, out_res = sys.argv[1:4]
     os.makedirs(out_forms, exist_ok=True)
@@ -1573,9 +1579,9 @@ def main():
         unit = fn[:-4]
         root = parse_dfm(os.path.join(src, fn))
         kind = detect_base_kind(os.path.join(src, unit + '.pas'), root)
-        ui_name = root.cls[1:] if root.cls.startswith('T') else root.cls
+        ui_name = reborn_name(root.cls[1:] if root.cls.startswith('T') else root.cls)
         conv = Converter(unit, root, kind, res, ui_name)
-        xml = conv.convert()
+        xml = reborn_name(conv.convert())
         with open(os.path.join(out_forms, unit + '.ui'), 'w', encoding='utf-8') as f:
             f.write(xml)
         index.append(f'{unit}\t{root.cls}\t{kind}\tUi::{ui_name}')

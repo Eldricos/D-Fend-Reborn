@@ -29,19 +29,19 @@ static const THandle InvalidHandle = 0;
 
 static void ApplicationRestore()
 {
-    if (DFendReloadedMainForm == nullptr) return;
-    if (DFendReloadedMainForm->isMinimized()) DFendReloadedMainForm->showNormal();
-    DFendReloadedMainForm->activateWindow();
+    if (DFendRebornMainForm == nullptr) return;
+    if (DFendRebornMainForm->isMinimized()) DFendRebornMainForm->showNormal();
+    DFendRebornMainForm->activateWindow();
 }
 
 static void ApplicationMinimize()
 {
-    if (DFendReloadedMainForm != nullptr) DFendReloadedMainForm->showMinimized();
+    if (DFendRebornMainForm != nullptr) DFendRebornMainForm->showMinimized();
 }
 
 static bool MainFormIsMinimized()
 {
-    return (DFendReloadedMainForm != nullptr) && DFendReloadedMainForm->isMinimized();
+    return (DFendRebornMainForm != nullptr) && DFendRebornMainForm->isMinimized();
 }
 
 [[maybe_unused]] static THandle RunFile(const QString& FileName, const QString& Parameters)
@@ -92,7 +92,7 @@ static THandle RunFile2(const QString& FileName, const QString& Parameters, bool
     std::wstring WDir = ToNativePath(IncludeTrailingPathDelimiter(ExtractFilePath(FileName))).toStdWString();
     ShellExecInfo.cbSize = sizeof(ShellExecInfo);
     ShellExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
-    ShellExecInfo.hwnd = DFendReloadedMainForm ? reinterpret_cast<HWND>(DFendReloadedMainForm->winId()) : nullptr;
+    ShellExecInfo.hwnd = DFendRebornMainForm ? reinterpret_cast<HWND>(DFendRebornMainForm->winId()) : nullptr;
     ShellExecInfo.lpVerb = L"open";
     ShellExecInfo.lpFile = WFile.c_str();
     ShellExecInfo.lpParameters = WParams.c_str();

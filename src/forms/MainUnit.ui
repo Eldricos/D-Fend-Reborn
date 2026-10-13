@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-  <class>DFendReloadedMainForm</class>
-  <widget class="QMainWindow" name="DFendReloadedMainForm">
+  <class>DFendRebornMainForm</class>
+  <widget class="QMainWindow" name="DFendRebornMainForm">
     <property name="geometry"><rect><x>0</x><y>0</y><width>774</width><height>1039</height></rect></property>
     <property name="windowTitle"><string>D-Fend Reborn</string></property>
     <property name="vclPosition" stdset="0"><string notr="true">poScreenCenter</string></property>
     <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
-    <property name="windowIcon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/icons/MainUnit_DFendReloadedMainForm.ico</normaloff></iconset></property>
+    <property name="windowIcon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/icons/MainUnit_DFendRebornMainForm.ico</normaloff></iconset></property>
     <property name="vclDesignWidth" stdset="0"><number>774</number></property>
     <property name="vclDesignHeight" stdset="0"><number>1018</number></property>
     <widget class="QWidget" name="centralwidget">
@@ -543,7 +543,7 @@
         <widget class="QMenu" name="MenuExtrasTranslation">
           <property name="title"><string>&amp;Translation editor</string></property>
           <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/43.png</normaloff></iconset></property>
-          <addaction name="MenuExtrasTranslationDFendReloaded"/>
+          <addaction name="MenuExtrasTranslationDFendReborn"/>
           <addaction name="MenuExtrasTranslationDOSBox"/>
         </widget>
         <addaction name="MenuExtrasIconManager"/>
@@ -1691,7 +1691,7 @@
       <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/19.png</normaloff></iconset></property>
       <property name="tag" stdset="0"><number>5019</number></property>
     </action>
-    <action name="MenuExtrasTranslationDFendReloaded">
+    <action name="MenuExtrasTranslationDFendReborn">
       <property name="text"><string>D-Fend Reborn translation editor...</string></property>
       <property name="tag" stdset="0"><number>5020</number></property>
     </action>

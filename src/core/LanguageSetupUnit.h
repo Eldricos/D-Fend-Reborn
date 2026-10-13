@@ -342,7 +342,7 @@ constexpr int NR_MenuExtrasChangeProfiles = 34034;
 constexpr int NR_MenuExtrasCreateShortcuts = 34035;
 constexpr int NR_MenuExtrasCheckProfiles = 34036;
 constexpr int NR_MenuExtrasTranslationEditor = 34037;
-constexpr int NR_MenuExtrasTranslationEditorDFendReloaded = 34038;
+constexpr int NR_MenuExtrasTranslationEditorDFendReborn = 34038;
 constexpr int NR_MenuExtrasTranslationEditorDOSBox = 34039;
 constexpr int NR_MenuHelp = 35001;
 constexpr int NR_MenuHelpDOSBox = 35002;
@@ -1291,8 +1291,8 @@ constexpr int NR_StatisticsNumberProfilesByGenres = 54006;
 constexpr int NR_TransferForm = 55001;
 constexpr int NR_TransferFormInfo = 55002;
 constexpr int NR_TransferFormDestPrgDir = 55003;
-constexpr int NR_TransferFormCopyDFendReloadedPrgFiles = 55004;
-constexpr int NR_TransferFormCopyDFendReloadedPrgFilesWait = 55005;
+constexpr int NR_TransferFormCopyDFendRebornPrgFiles = 55004;
+constexpr int NR_TransferFormCopyDFendRebornPrgFilesWait = 55005;
 constexpr int NR_BuildInstaller = 56001;
 constexpr int NR_BuildInstallerTypeCompleteGames = 56002;
 constexpr int NR_BuildInstallerTypeAutoSetupProfiles = 56003;
@@ -2771,8 +2771,8 @@ public:
     void SetMenuExtrasCheckProfiles(const QString& Value) { SetString(NR_MenuExtrasCheckProfiles, Value); }
     QString MenuExtrasTranslationEditor() { return GetString(NR_MenuExtrasTranslationEditor); }
     void SetMenuExtrasTranslationEditor(const QString& Value) { SetString(NR_MenuExtrasTranslationEditor, Value); }
-    QString MenuExtrasTranslationEditorDFendReloaded() { return GetString(NR_MenuExtrasTranslationEditorDFendReloaded); }
-    void SetMenuExtrasTranslationEditorDFendReloaded(const QString& Value) { SetString(NR_MenuExtrasTranslationEditorDFendReloaded, Value); }
+    QString MenuExtrasTranslationEditorDFendReborn() { return GetString(NR_MenuExtrasTranslationEditorDFendReborn); }
+    void SetMenuExtrasTranslationEditorDFendReborn(const QString& Value) { SetString(NR_MenuExtrasTranslationEditorDFendReborn, Value); }
     QString MenuExtrasTranslationEditorDOSBox() { return GetString(NR_MenuExtrasTranslationEditorDOSBox); }
     void SetMenuExtrasTranslationEditorDOSBox(const QString& Value) { SetString(NR_MenuExtrasTranslationEditorDOSBox, Value); }
     QString MenuHelp() { return GetString(NR_MenuHelp); }
@@ -4669,10 +4669,10 @@ public:
     void SetTransferFormInfo(const QString& Value) { SetString(NR_TransferFormInfo, Value); }
     QString TransferFormDestPrgDir() { return GetString(NR_TransferFormDestPrgDir); }
     void SetTransferFormDestPrgDir(const QString& Value) { SetString(NR_TransferFormDestPrgDir, Value); }
-    QString TransferFormCopyDFendReloadedPrgFiles() { return GetString(NR_TransferFormCopyDFendReloadedPrgFiles); }
-    void SetTransferFormCopyDFendReloadedPrgFiles(const QString& Value) { SetString(NR_TransferFormCopyDFendReloadedPrgFiles, Value); }
-    QString TransferFormCopyDFendReloadedPrgFilesWait() { return GetString(NR_TransferFormCopyDFendReloadedPrgFilesWait); }
-    void SetTransferFormCopyDFendReloadedPrgFilesWait(const QString& Value) { SetString(NR_TransferFormCopyDFendReloadedPrgFilesWait, Value); }
+    QString TransferFormCopyDFendRebornPrgFiles() { return GetString(NR_TransferFormCopyDFendRebornPrgFiles); }
+    void SetTransferFormCopyDFendRebornPrgFiles(const QString& Value) { SetString(NR_TransferFormCopyDFendRebornPrgFiles, Value); }
+    QString TransferFormCopyDFendRebornPrgFilesWait() { return GetString(NR_TransferFormCopyDFendRebornPrgFilesWait); }
+    void SetTransferFormCopyDFendRebornPrgFilesWait(const QString& Value) { SetString(NR_TransferFormCopyDFendRebornPrgFilesWait, Value); }
     QString BuildInstaller() { return GetString(NR_BuildInstaller); }
     void SetBuildInstaller(const QString& Value) { SetString(NR_BuildInstaller, Value); }
     QString BuildInstallerTypeCompleteGames() { return GetString(NR_BuildInstallerTypeCompleteGames); }

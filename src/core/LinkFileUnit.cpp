@@ -41,7 +41,7 @@ static QIcon MenuImage(QMenu *Menu, int ImageIndex)
         const QString N = O->objectName();
         if (N.isEmpty()) continue;
         QStringList Units;
-        if (N == "DFendReloadedMainForm") Units << "MainUnit";
+        if (N == "DFendRebornMainForm") Units << "MainUnit";
         Units << N + "Unit";
         for (const QString &U : Units) {
             QIcon I = VclLayout::imageListIcon(U, Images.isEmpty() ? QStringLiteral("ImageList") : Images, ImageIndex);

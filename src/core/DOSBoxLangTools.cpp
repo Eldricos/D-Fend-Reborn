@@ -272,7 +272,7 @@ QString GetTempDOSBoxEnglishLangFile()
     TempGame->Game()->SetCloseDosBoxAfterGameExit(true);
     TempGame->Game()->SetCustomDOSBoxLanguage("ENGLISH");
     TempGame->Game()->StoreAllValues();
-    RunCommandAndWait(TempGame->Game(), DFendReloadedMainForm ? DFendReloadedMainForm->DeleteOnExit : nullptr, "CONFIG -writelang \"" + result + "\"" + "\r" + "exit", true);
+    RunCommandAndWait(TempGame->Game(), DFendRebornMainForm ? DFendRebornMainForm->DeleteOnExit : nullptr, "CONFIG -writelang \"" + result + "\"" + "\r" + "exit", true);
     delete TempGame;
     return result;
 }

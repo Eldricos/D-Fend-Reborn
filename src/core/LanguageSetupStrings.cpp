@@ -330,7 +330,7 @@ void TLanguageSetup::SetupLanguageStrings1()
     AddStringRec(NR_MenuExtrasCreateShortcuts, QStringLiteral("Menu"), QStringLiteral("Extras.CreateShortcuts"), QStringLiteral("Create shortcuts for multiple games..."));
     AddStringRec(NR_MenuExtrasCheckProfiles, QStringLiteral("Menu"), QStringLiteral("Extras.CheckProfiles"), QStringLiteral("Check profiles for not existing files..."));
     AddStringRec(NR_MenuExtrasTranslationEditor, QStringLiteral("Menu"), QStringLiteral("Extras.TranslationEditor"), QStringLiteral("Translation editor"));
-    AddStringRec(NR_MenuExtrasTranslationEditorDFendReloaded, QStringLiteral("Menu"), QStringLiteral("Extras.TranslationEditor.DFendReloaded"), QStringLiteral("D-Fend Reborn translation editor..."));
+    AddStringRec(NR_MenuExtrasTranslationEditorDFendReborn, QStringLiteral("Menu"), QStringLiteral("Extras.TranslationEditor.DFendReloaded"), QStringLiteral("D-Fend Reborn translation editor..."));
     AddStringRec(NR_MenuExtrasTranslationEditorDOSBox, QStringLiteral("Menu"), QStringLiteral("Extras.TranslationEditor.DOSBox"), QStringLiteral("DOSBox translation editor..."));
     AddStringRec(NR_MenuHelp, QStringLiteral("Menu"), QStringLiteral("Help"), QStringLiteral("&Help"));
     AddStringRec(NR_MenuHelpDOSBox, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox"), QStringLiteral("&DOSBox"));
@@ -354,7 +354,7 @@ void TLanguageSetup::SetupLanguageStrings1()
     AddStringRec(NR_MenuHelpAbandonwareInfo, QStringLiteral("Menu"), QStringLiteral("Help.AbandonwareInfo"), QStringLiteral("The website you want to open does not belong to the D-Fend Reborn project. All linked abandonded ware sites say from themselves they offer only games for download when this is permitted. ") + QStringLiteral("But because sites can change, D-Fend Reborn can not guarantee this for these links for the future."));
     AddStringRec(NR_MenuHelpHomepage, QStringLiteral("Menu"), QStringLiteral("Help.Homepage"), QStringLiteral("D-Fend Reborn homepage"));
     AddStringRec(NR_MenuHelpHomepageURL, QStringLiteral("Menu"), QStringLiteral("Help.HomepageURL"), DFRebornHomepage);
-    AddStringRec(NR_MenuHelpForum, QStringLiteral("Menu"), QStringLiteral("Help.Forum"), QStringLiteral("Forum"));
+    AddStringRec(NR_MenuHelpForum, QStringLiteral("Menu"), QStringLiteral("Help.Forum"), QStringLiteral("GitHub issues"));
     AddStringRec(NR_MenuHelpUpdates, QStringLiteral("Menu"), QStringLiteral("Help.SearchForUpdates"), QStringLiteral("Search for updates"));
     AddStringRec(NR_MenuHelpUpdatesURL, QStringLiteral("Menu"), QStringLiteral("Help.SearchForUpdatesURL"), DFRebornHomepage + QStringLiteral("/releases"));
     AddStringRec(NR_MenuHelpFAQs, QStringLiteral("Menu"), QStringLiteral("Help.FAQs"), QStringLiteral("FAQs"));
@@ -1287,8 +1287,8 @@ void TLanguageSetup::SetupLanguageStrings3()
     AddStringRec(NR_TransferForm, QStringLiteral("TransferForm"), QStringLiteral("Caption"), QStringLiteral("Transfer programs to another D-Fend Reborn installation"));
     AddStringRec(NR_TransferFormInfo, QStringLiteral("TransferForm"), QStringLiteral("Info"), QStringLiteral("Please select the programs to transfer:"));
     AddStringRec(NR_TransferFormDestPrgDir, QStringLiteral("TransferForm"), QStringLiteral("DestPrgDir"), QStringLiteral("Program folder of the destination installation"));
-    AddStringRec(NR_TransferFormCopyDFendReloadedPrgFiles, QStringLiteral("TransferForm"), QStringLiteral("CopyDFendReloadedPrgFiles"), QStringLiteral("Create portable D-Fend Reborn installation in destination folder"));
-    AddStringRec(NR_TransferFormCopyDFendReloadedPrgFilesWait, QStringLiteral("TransferForm"), QStringLiteral("CopyDFendReloadedPrgFiles.Wait"), QStringLiteral("Transfering D-Fend Reborn..."));
+    AddStringRec(NR_TransferFormCopyDFendRebornPrgFiles, QStringLiteral("TransferForm"), QStringLiteral("CopyDFendReloadedPrgFiles"), QStringLiteral("Create portable D-Fend Reborn installation in destination folder"));
+    AddStringRec(NR_TransferFormCopyDFendRebornPrgFilesWait, QStringLiteral("TransferForm"), QStringLiteral("CopyDFendReloadedPrgFiles.Wait"), QStringLiteral("Transfering D-Fend Reborn..."));
     AddStringRec(NR_BuildInstaller, QStringLiteral("BuildInstaller"), QStringLiteral("Caption"), QStringLiteral("Build installer packages"));
     AddStringRec(NR_BuildInstallerTypeCompleteGames, QStringLiteral("BuildInstaller"), QStringLiteral("Type.CompleteGames"), QStringLiteral("Complete games"));
     AddStringRec(NR_BuildInstallerTypeAutoSetupProfiles, QStringLiteral("BuildInstaller"), QStringLiteral("Type.AutoSetupTemplates"), QStringLiteral("Auto setup templates"));

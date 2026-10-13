@@ -135,7 +135,7 @@ void TMiniRunForm::OKButtonClick(QObject* Sender)
         if (WindowsExeMode(G))
             RunWindowsGame(G);
         else
-            RunGame(G, DFendReloadedMainForm->DeleteOnExit);
+            RunGame(G, DFendRebornMainForm->DeleteOnExit);
     }
 }
 

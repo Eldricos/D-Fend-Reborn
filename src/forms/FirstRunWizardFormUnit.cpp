@@ -266,7 +266,7 @@ void TFirstRunWizardForm::ProgramLanguageComboBoxChange(QObject* Sender)
     if (JustLoadingLanguage) return;
 
     LoadLanguage(ShortLanguageName(ui.ProgramLanguageComboBox->currentText()) + ".ini");
-    if (DFendReloadedMainForm != nullptr) DFendReloadedMainForm->SelectHelpFile();
+    if (DFendRebornMainForm != nullptr) DFendRebornMainForm->SelectHelpFile();
     LoadGUILanguage();
 
     ui.ProgramLanguageWarningButton->setVisible(false);

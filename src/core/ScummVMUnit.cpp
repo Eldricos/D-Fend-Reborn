@@ -37,19 +37,19 @@ static const THandle InvalidHandle = 0;
 
 static void ApplicationRestore()
 {
-    if (DFendReloadedMainForm == nullptr) return;
-    if (DFendReloadedMainForm->isMinimized()) DFendReloadedMainForm->showNormal();
-    DFendReloadedMainForm->activateWindow();
+    if (DFendRebornMainForm == nullptr) return;
+    if (DFendRebornMainForm->isMinimized()) DFendRebornMainForm->showNormal();
+    DFendRebornMainForm->activateWindow();
 }
 
 static void ApplicationMinimize()
 {
-    if (DFendReloadedMainForm != nullptr) DFendReloadedMainForm->showMinimized();
+    if (DFendRebornMainForm != nullptr) DFendRebornMainForm->showMinimized();
 }
 
 static bool MainFormIsMinimized()
 {
-    return (DFendReloadedMainForm != nullptr) && DFendReloadedMainForm->isMinimized();
+    return (DFendRebornMainForm != nullptr) && DFendRebornMainForm->isMinimized();
 }
 
 QString FindScummVMIni(bool UseSecondOne)

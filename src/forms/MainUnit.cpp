@@ -98,7 +98,7 @@
 #include "WinApi.h"
 #endif
 
-TDFendReloadedMainForm* DFendReloadedMainForm = nullptr;
+TDFendRebornMainForm* DFendRebornMainForm = nullptr;
 bool MainWindowShowComplete = false;
 
 // ---------------------------------------------------------------------------
@@ -250,9 +250,9 @@ static int LastDOSBoxCount = 0;
 static int LastLeft = -1;
 static int LastTop = -1;
 
-TDFendReloadedMainForm::TDFendReloadedMainForm(QWidget *AOwner) : QMainWindow(AOwner)
+TDFendRebornMainForm::TDFendRebornMainForm(QWidget *AOwner) : QMainWindow(AOwner)
 {
-    DFendReloadedMainForm = this;
+    DFendRebornMainForm = this;
     ui.setupUi(this);
     VclLayout::setupForm(this);
 
@@ -417,7 +417,7 @@ TDFendReloadedMainForm::TDFendReloadedMainForm(QWidget *AOwner) : QMainWindow(AO
         ui.MenuExtrasCreateISOImage, ui.MenuExtrasImageFromProfile, ui.MenuExtrasScanGamesFolder,
         ui.MenuExtrasCheckProfiles, ui.MenuExtrasChangeProfiles, ui.MenuExtrasDeinstallMultipleGames,
         ui.MenuExtrasTransferProfiles, ui.MenuExtrasCreateShortcuts,
-        ui.MenuExtrasTranslationDFendReloaded, ui.MenuExtrasTranslationDOSBox,
+        ui.MenuExtrasTranslationDFendReborn, ui.MenuExtrasTranslationDOSBox,
         ui.MenuHelpHelp, ui.MenuHelpHelpContent, ui.MenuHelpIntroduction, ui.MenuHelpGetGames, ui.MenuHelpAddingGames,
         ui.MenuHelpHomepage, ui.MenuHelpForum, ui.MenuHelpDosBoxFAQ, ui.MenuHelpDosBoxIntro, ui.MenuHelpDosBoxIntroDosBox,
         ui.MenuHelpDosBoxHotkeys, ui.MenuHelpDosBoxHotkeysDosbox, ui.MenuHelpDosBoxHomepage,
@@ -528,7 +528,7 @@ TDFendReloadedMainForm::TDFendReloadedMainForm(QWidget *AOwner) : QMainWindow(AO
     FormCreate(this);
 }
 
-TDFendReloadedMainForm::~TDFendReloadedMainForm()
+TDFendRebornMainForm::~TDFendRebornMainForm()
 {
     if (!FFormCreateAborted) FormDestroy(this);
     if (QuickStartForm) { delete QuickStartForm; QuickStartForm = nullptr; }
@@ -548,14 +548,14 @@ TDFendReloadedMainForm::~TDFendReloadedMainForm()
     delete OpenDialog;
     delete SaveDialog;
     delete ScreenshotSaveDialog;
-    if (DFendReloadedMainForm == this) DFendReloadedMainForm = nullptr;
+    if (DFendRebornMainForm == this) DFendRebornMainForm = nullptr;
 }
 
 // ---------------------------------------------------------------------------
 // Qt event mapping
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::showEvent(QShowEvent *E)
+void TDFendRebornMainForm::showEvent(QShowEvent *E)
 {
     QMainWindow::showEvent(E);
     if (FDesignedPosition) {
@@ -566,7 +566,7 @@ void TDFendReloadedMainForm::showEvent(QShowEvent *E)
     FormShow(this);
 }
 
-void TDFendReloadedMainForm::closeEvent(QCloseEvent *E)
+void TDFendRebornMainForm::closeEvent(QCloseEvent *E)
 {
     bool CanClose = true;
     FormCloseQuery(this, CanClose);
@@ -580,19 +580,19 @@ void TDFendReloadedMainForm::closeEvent(QCloseEvent *E)
     QTimer::singleShot(0, qApp, &QCoreApplication::quit);
 }
 
-void TDFendReloadedMainForm::resizeEvent(QResizeEvent *E)
+void TDFendRebornMainForm::resizeEvent(QResizeEvent *E)
 {
     QMainWindow::resizeEvent(E);
     FormResize(this);
 }
 
-void TDFendReloadedMainForm::moveEvent(QMoveEvent *E)
+void TDFendRebornMainForm::moveEvent(QMoveEvent *E)
 {
     QMainWindow::moveEvent(E);
     WMMove();
 }
 
-void TDFendReloadedMainForm::changeEvent(QEvent *E)
+void TDFendRebornMainForm::changeEvent(QEvent *E)
 {
     QMainWindow::changeEvent(E);
     if (E->type() == QEvent::WindowStateChange) {
@@ -602,7 +602,7 @@ void TDFendReloadedMainForm::changeEvent(QEvent *E)
     }
 }
 
-bool TDFendReloadedMainForm::eventFilter(QObject *O, QEvent *E)
+bool TDFendRebornMainForm::eventFilter(QObject *O, QEvent *E)
 {
     if (O == ui.SearchEdit && E->type() == QEvent::MouseButtonPress) {
         SearchEditChange(ui.SearchEdit);   // SearchEdit.OnClick
@@ -624,7 +624,7 @@ static int KeyStateOf(QDropEvent *E)
     return 0;
 }
 
-void TDFendReloadedMainForm::dragEnterEvent(QDragEnterEvent *E)
+void TDFendRebornMainForm::dragEnterEvent(QDragEnterEvent *E)
 {
     int Effect = cDROPEFFECT_NONE;
     if (DragEnter(E->mimeData(), KeyStateOf(E), E->position().toPoint(), Effect) == cS_OK) {
@@ -635,20 +635,20 @@ void TDFendReloadedMainForm::dragEnterEvent(QDragEnterEvent *E)
     }
 }
 
-void TDFendReloadedMainForm::dragMoveEvent(QDragMoveEvent *E)
+void TDFendRebornMainForm::dragMoveEvent(QDragMoveEvent *E)
 {
     int Effect = cDROPEFFECT_NONE;
     DragOver(KeyStateOf(E), E->position().toPoint(), Effect);
     if (Effect != cDROPEFFECT_NONE) { E->setDropAction(Qt::CopyAction); E->accept(); } else E->ignore();
 }
 
-void TDFendReloadedMainForm::dragLeaveEvent(QDragLeaveEvent *E)
+void TDFendRebornMainForm::dragLeaveEvent(QDragLeaveEvent *E)
 {
     DragLeave();
     E->accept();
 }
 
-void TDFendReloadedMainForm::dropEvent(QDropEvent *E)
+void TDFendRebornMainForm::dropEvent(QDropEvent *E)
 {
     int Effect = cDROPEFFECT_NONE;
     QPoint P = E->position().toPoint();
@@ -678,7 +678,7 @@ void TDFendReloadedMainForm::dropEvent(QDropEvent *E)
 // Port helpers (members)
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::SetFormEnabled(bool Enabled)
+void TDFendRebornMainForm::SetFormEnabled(bool Enabled)
 {
     // Form.Enabled:=False; disabling the QMainWindow itself would also disable
     // the dialogs that use it as parent, so only the contents are disabled.
@@ -686,7 +686,7 @@ void TDFendReloadedMainForm::SetFormEnabled(bool Enabled)
     menuBar()->setEnabled(Enabled);
 }
 
-void TDFendReloadedMainForm::SetSearchEditText(const QString &S)
+void TDFendRebornMainForm::SetSearchEditText(const QString &S)
 {
     bool Old = FSearchEditOnChange;
     FSearchEditOnChange = false;
@@ -694,7 +694,7 @@ void TDFendReloadedMainForm::SetSearchEditText(const QString &S)
     FSearchEditOnChange = Old;
 }
 
-void TDFendReloadedMainForm::SetSearchEditGray(bool Gray)
+void TDFendRebornMainForm::SetSearchEditGray(bool Gray)
 {
     FSearchEditGray = Gray;
     QPalette P = ui.SearchEdit->palette();
@@ -702,7 +702,7 @@ void TDFendReloadedMainForm::SetSearchEditGray(bool Gray)
     ui.SearchEdit->setPalette(P);
 }
 
-void TDFendReloadedMainForm::SetListViewShowHint(bool B)
+void TDFendRebornMainForm::SetListViewShowHint(bool B)
 {
     if (B) {
         ui.ListView->OnInfoTip = [this](TListItem *Item) {
@@ -715,7 +715,7 @@ void TDFendReloadedMainForm::SetListViewShowHint(bool B)
     }
 }
 
-void TDFendReloadedMainForm::SetListViewCustomDraw(bool B)
+void TDFendRebornMainForm::SetListViewCustomDraw(bool B)
 {
     if (B) {
         ui.ListView->OnCustomDrawItem = [this](TListItem *Item) {
@@ -727,7 +727,7 @@ void TDFendReloadedMainForm::SetListViewCustomDraw(bool B)
     }
 }
 
-void TDFendReloadedMainForm::UpdateImageListIcons()
+void TDFendRebornMainForm::UpdateImageListIcons()
 {
     // VCL menu items / tool buttons reference the image list by ImageIndex,
     // Qt actions hold a copy of the icon: copy the (changed) images again.
@@ -757,7 +757,7 @@ void TDFendReloadedMainForm::UpdateImageListIcons()
     }
 }
 
-void TDFendReloadedMainForm::ApplicationRestore()
+void TDFendRebornMainForm::ApplicationRestore()
 {
     // Application.Restore
     Qt::WindowStates S = windowState() & ~Qt::WindowMinimized;
@@ -771,7 +771,7 @@ void TDFendReloadedMainForm::ApplicationRestore()
 // FormCreate / FormShow / FormDestroy
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::FormCreate(QObject *Sender)
+void TDFendRebornMainForm::FormCreate(QObject *Sender)
 {
     Q_UNUSED(Sender);
     QString S;
@@ -866,7 +866,7 @@ void TDFendReloadedMainForm::FormCreate(QObject *Sender)
     LogInfo("### End of CreateForm ###\r");
 }
 
-void TDFendReloadedMainForm::FormShow(QObject *Sender)
+void TDFendRebornMainForm::FormShow(QObject *Sender)
 {
     Q_UNUSED(Sender);
     TGame *G;
@@ -967,7 +967,7 @@ void TDFendReloadedMainForm::FormShow(QObject *Sender)
     LogInfo("### End of ShowForm ###\r");
 }
 
-void TDFendReloadedMainForm::FormDestroy(QObject *Sender)
+void TDFendRebornMainForm::FormDestroy(QObject *Sender)
 {
     Q_UNUSED(Sender);
     QString S1, S2;
@@ -1029,7 +1029,7 @@ void TDFendReloadedMainForm::FormDestroy(QObject *Sender)
 // Language
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::LoadMenuLanguage()
+void TDFendRebornMainForm::LoadMenuLanguage()
 {
     LogInfo("### Start of LoadMenuLanguage ###");
     // Font.Charset:=CharsetNameToFontCharSet(LanguageSetup.CharsetName) - Qt is Unicode, no charset needed
@@ -1151,7 +1151,7 @@ void TDFendReloadedMainForm::LoadMenuLanguage()
     ui.MenuExtrasCreateShortcuts->setText(LanguageSetup->MenuExtrasCreateShortcuts());
     ui.MenuExtrasCheckProfiles->setText(LanguageSetup->MenuExtrasCheckProfiles());
     ui.MenuExtrasTranslation->setTitle(LanguageSetup->MenuExtrasTranslationEditor());
-    ui.MenuExtrasTranslationDFendReloaded->setText(LanguageSetup->MenuExtrasTranslationEditorDFendReloaded());
+    ui.MenuExtrasTranslationDFendReborn->setText(LanguageSetup->MenuExtrasTranslationEditorDFendReborn());
     ui.MenuExtrasTranslationDOSBox->setText(LanguageSetup->MenuExtrasTranslationEditorDOSBox());
     ui.MenuHelp->setTitle(LanguageSetup->MenuHelp());
     ui.MenuHelpDosBox->setTitle(LanguageSetup->MenuHelpDOSBox());
@@ -1372,7 +1372,7 @@ void TDFendReloadedMainForm::LoadMenuLanguage()
     LogInfo("### End of LoadMenuLanguage ###");
 }
 
-void TDFendReloadedMainForm::SelectHelpFile()
+void TDFendRebornMainForm::SelectHelpFile()
 {
     QString HelpFileName;
     bool B;
@@ -1392,7 +1392,7 @@ void TDFendReloadedMainForm::SelectHelpFile()
 // GUI initialization
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::InitGUI(bool FirstInit)
+void TDFendRebornMainForm::InitGUI(bool FirstInit)
 {
     QTreeWidgetItem *TN;
     QString S;
@@ -1518,7 +1518,7 @@ void TDFendReloadedMainForm::InitGUI(bool FirstInit)
     LogInfo("### End of InitGUI ###");
 }
 
-void TDFendReloadedMainForm::InitViewStyle()
+void TDFendRebornMainForm::InitViewStyle()
 {
     QString S;
     int I;
@@ -1597,12 +1597,12 @@ void TDFendReloadedMainForm::InitViewStyle()
     if (LV->ViewStyle() == vsSmallIcon) LV->Arrange();
 }
 
-void TDFendReloadedMainForm::LoadAbandonLinks()
+void TDFendRebornMainForm::LoadAbandonLinks()
 {
     HelpMenuLinkFile->AddLinksToMenu(ui.MenuHelpAbandonware, 6102, 6103, [this](QObject *Sender) { MenuWork(Sender); }, 4);
 }
 
-void TDFendReloadedMainForm::LoadHelpLinks()
+void TDFendRebornMainForm::LoadHelpLinks()
 {
     TSearchRec Rec;
     int I;
@@ -1624,13 +1624,13 @@ void TDFendReloadedMainForm::LoadHelpLinks()
     FindClose(Rec);
 }
 
-void TDFendReloadedMainForm::LoadSearchLinks()
+void TDFendRebornMainForm::LoadSearchLinks()
 {
     SearchLinkFile->AddLinksToMenu(ui.MenuProfileSearchGame, 4015, 4016, [this](QObject *Sender) { MenuWork(Sender); }, 4);
     SearchLinkFile->AddLinksToMenu(ui.PopupSearchGame, 4015, 4016, [this](QObject *Sender) { MenuWork(Sender); }, 4);
 }
 
-void TDFendReloadedMainForm::PostShow()
+void TDFendRebornMainForm::PostShow()
 {
     LogInfo("### Start of PostShow ###");
 
@@ -1716,7 +1716,7 @@ void TDFendReloadedMainForm::PostShow()
     LogInfo("*** Turning log off ***\r", false);
 }
 
-void TDFendReloadedMainForm::ProcessParams()
+void TDFendRebornMainForm::ProcessParams()
 {
     QString S, T;
     bool CloseOK;
@@ -1766,7 +1766,7 @@ void TDFendReloadedMainForm::ProcessParams()
 // Change notification (FindFirstChangeNotification -> QFileSystemWatcher)
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::StartCaptureChangeNotify()
+void TDFendRebornMainForm::StartCaptureChangeNotify()
 {
     StopCaptureChangeNotify();
 
@@ -1797,7 +1797,7 @@ void TDFendReloadedMainForm::StartCaptureChangeNotify()
     }
 }
 
-void TDFendReloadedMainForm::StopCaptureChangeNotify()
+void TDFendRebornMainForm::StopCaptureChangeNotify()
 {
     if (hScreenshotsChangeNotification != cINVALID_HANDLE_VALUE && ScreenshotsWatcher) delete ScreenshotsWatcher;
     ScreenshotsWatcher = nullptr;
@@ -1812,7 +1812,7 @@ void TDFendReloadedMainForm::StopCaptureChangeNotify()
 // Search / selection / games list
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::SearchEditChange(QObject *Sender)
+void TDFendRebornMainForm::SearchEditChange(QObject *Sender)
 {
     Q_UNUSED(Sender);
     SearchEditTimer->stop();
@@ -1827,13 +1827,13 @@ void TDFendReloadedMainForm::SearchEditChange(QObject *Sender)
     }
 }
 
-void TDFendReloadedMainForm::SearchEditTimerTimer(QObject *Sender)
+void TDFendRebornMainForm::SearchEditTimerTimer(QObject *Sender)
 {
     SearchEditTimer->stop();
     TreeViewChange(Sender, ui.TreeView->currentItem());
 }
 
-void TDFendReloadedMainForm::SelectGame(TGame *AGame)
+void TDFendRebornMainForm::SelectGame(TGame *AGame)
 {
     if (AGame == nullptr) return;
     for (int I = 0; I < ui.ListView->Items()->Count(); I++) if (GameOf(ui.ListView->Items()->Item(I)) == AGame) {
@@ -1844,7 +1844,7 @@ void TDFendReloadedMainForm::SelectGame(TGame *AGame)
     ListViewSelectItem(this, ui.ListView->Selected(), ui.ListView->Selected() != nullptr);
 }
 
-void TDFendReloadedMainForm::SelectGame(const QString &AGameName)
+void TDFendRebornMainForm::SelectGame(const QString &AGameName)
 {
     QString S;
 
@@ -1862,7 +1862,7 @@ void TDFendReloadedMainForm::SelectGame(const QString &AGameName)
 static bool TreeUpdateNeededAgain = false;
 static bool TreeUpdateInProgress = false;
 
-void TDFendReloadedMainForm::TreeViewChange(QObject *Sender, QTreeWidgetItem *Node)
+void TDFendRebornMainForm::TreeViewChange(QObject *Sender, QTreeWidgetItem *Node)
 {
     Q_UNUSED(Sender);
     Q_UNUSED(Node);
@@ -1932,7 +1932,7 @@ void TDFendReloadedMainForm::TreeViewChange(QObject *Sender, QTreeWidgetItem *No
     LogInfo("### End of TreeViewChange ###");
 }
 
-void TDFendReloadedMainForm::ListViewAdvancedCustomDrawItem(TListView *Sender, TListItem *Item, int State, int Stage, bool &DefaultDraw)
+void TDFendRebornMainForm::ListViewAdvancedCustomDrawItem(TListView *Sender, TListItem *Item, int State, int Stage, bool &DefaultDraw)
 {
     Q_UNUSED(State);
     Q_UNUSED(Stage);
@@ -1959,27 +1959,27 @@ void TDFendReloadedMainForm::ListViewAdvancedCustomDrawItem(TListView *Sender, T
     if (!Item->HasFont() || Item->Font() != F) Item->SetFont(F);
 }
 
-void TDFendReloadedMainForm::ListViewColumnClick(QObject *Sender, TListColumn *Column)
+void TDFendRebornMainForm::ListViewColumnClick(QObject *Sender, TListColumn *Column)
 {
     if (Column == nullptr) return;
     SetSortTypeByListViewCol(Column->Index(), ListSort, ListSortReverse);
     TreeViewChange(Sender, ui.TreeView->currentItem());
 }
 
-void TDFendReloadedMainForm::FormKeyDown(QObject *Sender, int &Key, TShiftState Shift)
+void TDFendRebornMainForm::FormKeyDown(QObject *Sender, int &Key, TShiftState Shift)
 {
     Q_UNUSED(Sender);
     if (Key == Qt::Key_F2 && Shift == Qt::NoModifier) MenuWork(ui.MenuProfileEdit);
     if (Key == Qt::Key_F5 && Shift == Qt::NoModifier) { EditDefaultProfile(this, GameDB, SearchLinkFile, DeleteOnExit); LoadSearchLinks(); }
 }
 
-void TDFendReloadedMainForm::ListViewDblClick(QObject *Sender)
+void TDFendRebornMainForm::ListViewDblClick(QObject *Sender)
 {
     Q_UNUSED(Sender);
     if (ui.ListView->Selected() != nullptr) MenuWork(ui.ButtonRun);
 }
 
-void TDFendReloadedMainForm::ListViewInfoTip(QObject *Sender, TListItem *Item, QString &InfoTip)
+void TDFendRebornMainForm::ListViewInfoTip(QObject *Sender, TListItem *Item, QString &InfoTip)
 {
     Q_UNUSED(Sender);
     TGame *G;
@@ -2015,7 +2015,7 @@ void TDFendReloadedMainForm::ListViewInfoTip(QObject *Sender, TListItem *Item, Q
     if (Trim(G->DataDir()) != "") InfoTip = InfoTip + "\n\n" + LanguageSetup->GameDataDirInfo();
 }
 
-void TDFendReloadedMainForm::ListViewSelectItem(QObject *Sender, TListItem *Item, bool Selected)
+void TDFendRebornMainForm::ListViewSelectItem(QObject *Sender, TListItem *Item, bool Selected)
 {
     Q_UNUSED(Sender);
     bool B, B2, B3, CaptureFolder;
@@ -2199,7 +2199,7 @@ void TDFendReloadedMainForm::ListViewSelectItem(QObject *Sender, TListItem *Item
     }
 }
 
-void TDFendReloadedMainForm::UpdateScreenshotList()
+void TDFendRebornMainForm::UpdateScreenshotList()
 {
     QString S, SelItem;
     TListItem *Sel = ui.ListView->Selected();
@@ -2279,7 +2279,7 @@ void TDFendReloadedMainForm::UpdateScreenshotList()
     VideoListViewSelectItem(this, ui.VideoListView->Selected(), true);
 }
 
-void TDFendReloadedMainForm::UpdateGameNotes()
+void TDFendRebornMainForm::UpdateGameNotes()
 {
     QString S;
     TListItem *Sel = ui.ListView->Selected();
@@ -2304,7 +2304,7 @@ void TDFendReloadedMainForm::UpdateGameNotes()
     delete St;
 }
 
-void TDFendReloadedMainForm::UpdateOpenFileInDataFolderMenu()
+void TDFendRebornMainForm::UpdateOpenFileInDataFolderMenu()
 {
     bool B, B2, FilesAdded;
     QString Dir;
@@ -2350,7 +2350,7 @@ void TDFendReloadedMainForm::UpdateOpenFileInDataFolderMenu()
     }
 }
 
-bool TDFendReloadedMainForm::AddDirToMenu(const QString &Dir, bool DataFolder, QAction *Menu1, QAction *Menu2, int Level)
+bool TDFendRebornMainForm::AddDirToMenu(const QString &Dir, bool DataFolder, QAction *Menu1, QAction *Menu2, int Level)
 {
     static const QStringList DataFiles = {".TXT", ".DIZ", ".1ST", ".NFO", ".PDF", ".INI", ".HTM", ".HTML", ".BMP", ".JPG", ".JPEG", ".PNG", ".GIF", ".TIF", ".TIFF"};
     TSearchRec Rec;
@@ -2425,7 +2425,7 @@ bool TDFendReloadedMainForm::AddDirToMenu(const QString &Dir, bool DataFolder, Q
     return result;
 }
 
-void TDFendReloadedMainForm::RunFile(const QString &FileName)
+void TDFendRebornMainForm::RunFile(const QString &FileName)
 {
     QString T;
 
@@ -2456,7 +2456,7 @@ void TDFendReloadedMainForm::RunFile(const QString &FileName)
     ShellOpen(FileName, QString(), ExtractFilePath(FileName));
 }
 
-void TDFendReloadedMainForm::OpenFileInDataFolderMenuWork(QObject *Sender)
+void TDFendRebornMainForm::OpenFileInDataFolderMenuWork(QObject *Sender)
 {
     int I;
     QString Dir, S;
@@ -2485,7 +2485,7 @@ void TDFendReloadedMainForm::OpenFileInDataFolderMenuWork(QObject *Sender)
         RunFile(Dir + S);
 }
 
-void TDFendReloadedMainForm::OpenFileInDataProgramFolderMenuWork(QObject *Sender)
+void TDFendRebornMainForm::OpenFileInDataProgramFolderMenuWork(QObject *Sender)
 {
     int I;
     QString Dir, S;
@@ -2522,7 +2522,7 @@ void TDFendReloadedMainForm::OpenFileInDataProgramFolderMenuWork(QObject *Sender
         RunFile(Dir + S);
 }
 
-void TDFendReloadedMainForm::UpdateAddFromTemplateMenu()
+void TDFendRebornMainForm::UpdateAddFromTemplateMenu()
 {
     TGameDB *TemplateDB;
 
@@ -2548,7 +2548,7 @@ void TDFendReloadedMainForm::UpdateAddFromTemplateMenu()
     if (QuickStartForm) QuickStartForm->LoadTemplateList();
 }
 
-void TDFendReloadedMainForm::UpdateGamesListByViewFilesFrame(QObject *Sender)
+void TDFendRebornMainForm::UpdateGamesListByViewFilesFrame(QObject *Sender)
 {
     TreeViewChange(Sender, ui.TreeView->currentItem());
 }
@@ -2557,7 +2557,7 @@ void TDFendReloadedMainForm::UpdateGamesListByViewFilesFrame(QObject *Sender)
 // Appearance
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::LoadListViewGUISetup(TListView *ListView, const QString &Background, const QString &FontColor, int FontSize)
+void TDFendRebornMainForm::LoadListViewGUISetup(TListView *ListView, const QString &Background, const QString &FontColor, int FontSize)
 {
     QString S;
     bool IsColor;
@@ -2579,7 +2579,7 @@ void TDFendReloadedMainForm::LoadListViewGUISetup(TListView *ListView, const QSt
     SetFontSize(ListView, FontSize);
 }
 
-void TDFendReloadedMainForm::LoadLabelGUISetup(QFrame *L, const QString &Background, const QString &FontColor, int FontSize)
+void TDFendRebornMainForm::LoadLabelGUISetup(QFrame *L, const QString &Background, const QString &FontColor, int FontSize)
 {
     bool IsColor;
     QPalette P = L->palette();
@@ -2592,7 +2592,7 @@ void TDFendReloadedMainForm::LoadLabelGUISetup(QFrame *L, const QString &Backgro
     SetFontSize(L, FontSize);
 }
 
-void TDFendReloadedMainForm::LoadRichEditGUISetup(QTextEdit *R, const QString &Background, const QString &FontColor, int FontSize)
+void TDFendRebornMainForm::LoadRichEditGUISetup(QTextEdit *R, const QString &Background, const QString &FontColor, int FontSize)
 {
     bool IsColor;
     QPalette P = R->palette();
@@ -2603,7 +2603,7 @@ void TDFendReloadedMainForm::LoadRichEditGUISetup(QTextEdit *R, const QString &B
     SetFontSize(R, FontSize);
 }
 
-void TDFendReloadedMainForm::LoadTreeViewGUISetup(QTreeWidget *TreeView, const QString &Background, const QString &FontColor, int FontSize)
+void TDFendRebornMainForm::LoadTreeViewGUISetup(QTreeWidget *TreeView, const QString &Background, const QString &FontColor, int FontSize)
 {
     bool IsColor;
     QPalette P = TreeView->palette();
@@ -2614,7 +2614,7 @@ void TDFendReloadedMainForm::LoadTreeViewGUISetup(QTreeWidget *TreeView, const Q
     SetFontSize(TreeView, FontSize);
 }
 
-void TDFendReloadedMainForm::LoadCoolBarGUISetup(QFrame *CoolBar, const QString &Background, int FontSize)
+void TDFendRebornMainForm::LoadCoolBarGUISetup(QFrame *CoolBar, const QString &Background, int FontSize)
 {
     QString S;
     QPixmap P;
@@ -2643,7 +2643,7 @@ void TDFendReloadedMainForm::LoadCoolBarGUISetup(QFrame *CoolBar, const QString 
     SetFontSize(CoolBar, FontSize);
 }
 
-void TDFendReloadedMainForm::SetupToolbarHints()
+void TDFendRebornMainForm::SetupToolbarHints()
 {
     bool ShowCaptions = PrgSetup->ShowToolbarTexts();
     ui.ToolBar->setToolButtonStyle(ShowCaptions ? Qt::ToolButtonTextBesideIcon : Qt::ToolButtonIconOnly);
@@ -2700,7 +2700,7 @@ void TDFendReloadedMainForm::SetupToolbarHints()
     }
 }
 
-void TDFendReloadedMainForm::LoadGUISetup(bool PrgStart)
+void TDFendRebornMainForm::LoadGUISetup(bool PrgStart)
 {
     QString S;
 
@@ -2826,7 +2826,7 @@ void TDFendReloadedMainForm::LoadGUISetup(bool PrgStart)
 // Adding profiles
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::StartWizard(const QString &ExeFile, bool WindowsExeFile)
+void TDFendRebornMainForm::StartWizard(const QString &ExeFile, bool WindowsExeFile)
 {
     TGame *G;
     bool Ok, B1 = false, B2 = false;
@@ -2849,7 +2849,7 @@ void TDFendReloadedMainForm::StartWizard(const QString &ExeFile, bool WindowsExe
     }
 }
 
-void TDFendReloadedMainForm::AddProfile(const QString &ExeFile, const QString &Mode, int TemplateNr)
+void TDFendRebornMainForm::AddProfile(const QString &ExeFile, const QString &Mode, int TemplateNr)
 {
     TGame *G, *DefaultGame;
     TGameDB *TemplateDB;
@@ -2892,7 +2892,7 @@ void TDFendReloadedMainForm::AddProfile(const QString &ExeFile, const QString &M
     SelectGame(G);
 }
 
-void TDFendReloadedMainForm::AddProfileForWindowsEmulator(int Nr)
+void TDFendRebornMainForm::AddProfileForWindowsEmulator(int Nr)
 {
     QString S;
     TGame *G, *DefaultGame;
@@ -2923,7 +2923,7 @@ void TDFendReloadedMainForm::AddProfileForWindowsEmulator(int Nr)
     SelectGame(G);
 }
 
-void TDFendReloadedMainForm::AfterSetupDialog(const QString &ColWidthsParam, const QString &UserCols)
+void TDFendRebornMainForm::AfterSetupDialog(const QString &ColWidthsParam, const QString &UserCols)
 {
     TGame *G;
     QString ColWidths = ColWidthsParam;
@@ -2954,7 +2954,7 @@ void TDFendReloadedMainForm::AfterSetupDialog(const QString &ColWidthsParam, con
 // MenuWork
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::MenuWork(QObject *Sender)
+void TDFendRebornMainForm::MenuWork(QObject *Sender)
 {
     TGame *G, *G2, *DefaultGame;
     QString S, T;
@@ -2984,7 +2984,7 @@ void TDFendReloadedMainForm::MenuWork(QObject *Sender)
 
     StopCaptureChangeNotify();
     struct RestartNotify {
-        TDFendReloadedMainForm *F;
+        TDFendRebornMainForm *F;
         ~RestartNotify() { F->StartCaptureChangeNotify(); }
     } Finally{this};
 
@@ -3602,8 +3602,8 @@ void TDFendReloadedMainForm::MenuWork(QObject *Sender)
             }
             break;
         case 6008: ShellOpen(LanguageSetup->MenuHelpHomepageURL()); break;
-        case 6009: /*ShellExecute(Handle,'open',PChar('http:/'+'/vogons.zetafleet.com/viewtopic.php?t=17415'),nil,nil,SW_SHOW);*/
-            ApplicationHelpCommand(HELP_CONTEXT, ID_HelpForum);
+        case 6009: // D-Fend Reborn: issue tracker of the project (the original opened its forum help page)
+            ShellOpen(DFRebornHomepage + "/issues");
             break;
         case 6010: ShowUpdateCheckDialog(this, GameDB, SearchLinkFile); break;
         case 6014: ShowStatisticsDialog(this, GameDB); break;
@@ -3656,7 +3656,7 @@ void TDFendReloadedMainForm::MenuWork(QObject *Sender)
     }
 }
 
-void TDFendReloadedMainForm::RunDOSBoxWithDefaultConfFile()
+void TDFendRebornMainForm::RunDOSBoxWithDefaultConfFile()
 {
     double D;
     QString VerString, S, DOSBoxFile;
@@ -3697,7 +3697,7 @@ void TDFendReloadedMainForm::RunDOSBoxWithDefaultConfFile()
     StartProcess(DOSBoxFile, QStringList() << "-userconf");
 }
 
-void TDFendReloadedMainForm::OpenDOSBoxDefaultConfFile()
+void TDFendRebornMainForm::OpenDOSBoxDefaultConfFile()
 {
     double D;
     QString VerString, S;
@@ -3738,7 +3738,7 @@ void TDFendReloadedMainForm::OpenDOSBoxDefaultConfFile()
 // Tray icon
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::TrayIconPopupClick(QObject *Sender)
+void TDFendRebornMainForm::TrayIconPopupClick(QObject *Sender)
 {
     TGame *G;
     int T = Tag(Sender);
@@ -3772,7 +3772,7 @@ void TDFendReloadedMainForm::TrayIconPopupClick(QObject *Sender)
     }
 }
 
-void TDFendReloadedMainForm::TrayIconPopupMenuPopup(QObject *Sender)
+void TDFendRebornMainForm::TrayIconPopupMenuPopup(QObject *Sender)
 {
     Q_UNUSED(Sender);
     TStringList *St;
@@ -3793,7 +3793,7 @@ void TDFendReloadedMainForm::TrayIconPopupMenuPopup(QObject *Sender)
     }
 }
 
-void TDFendReloadedMainForm::AddFromTemplateClick(QObject *Sender)
+void TDFendRebornMainForm::AddFromTemplateClick(QObject *Sender)
 {
     auto *A = qobject_cast<QAction *>(Sender);
     if (A && ParentItem(A) == ui.TrayIconPopupAddFromTemplate) TrayIconDblClick(Sender);
@@ -3804,7 +3804,7 @@ void TDFendReloadedMainForm::AddFromTemplateClick(QObject *Sender)
 // Capture lists (screenshots, sounds, videos)
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::ScreenshotListViewSelectItem(QObject *Sender, TListItem *Item, bool Selected)
+void TDFendRebornMainForm::ScreenshotListViewSelectItem(QObject *Sender, TListItem *Item, bool Selected)
 {
     Q_UNUSED(Sender);
     Q_UNUSED(Selected);
@@ -3852,7 +3852,7 @@ void TDFendReloadedMainForm::ScreenshotListViewSelectItem(QObject *Sender, TList
     }
 }
 
-void TDFendReloadedMainForm::SoundListViewSelectItem(QObject *Sender, TListItem *Item, bool Selected)
+void TDFendRebornMainForm::SoundListViewSelectItem(QObject *Sender, TListItem *Item, bool Selected)
 {
     Q_UNUSED(Sender);
     Q_UNUSED(Selected);
@@ -3880,7 +3880,7 @@ void TDFendReloadedMainForm::SoundListViewSelectItem(QObject *Sender, TListItem 
     ui.SoundPopupOpenExternal->setVisible(S == "" || S == "INTERNAL");
 }
 
-void TDFendReloadedMainForm::VideoListViewSelectItem(QObject *Sender, TListItem *Item, bool Selected)
+void TDFendRebornMainForm::VideoListViewSelectItem(QObject *Sender, TListItem *Item, bool Selected)
 {
     Q_UNUSED(Sender);
     Q_UNUSED(Selected);
@@ -3899,25 +3899,25 @@ void TDFendReloadedMainForm::VideoListViewSelectItem(QObject *Sender, TListItem 
     ui.VideoPopupOpenExternal->setVisible(S == "" || S == "INTERNAL");
 }
 
-void TDFendReloadedMainForm::ScreenshotListViewDblClick(QObject *Sender)
+void TDFendRebornMainForm::ScreenshotListViewDblClick(QObject *Sender)
 {
     Q_UNUSED(Sender);
     ScreenshotMenuWork(ui.ScreenshotPopupOpen);
 }
 
-void TDFendReloadedMainForm::SoundListViewDblClick(QObject *Sender)
+void TDFendRebornMainForm::SoundListViewDblClick(QObject *Sender)
 {
     Q_UNUSED(Sender);
     SoundMenuWork(ui.SoundPopupOpen);
 }
 
-void TDFendReloadedMainForm::VideoListViewDblClick(QObject *Sender)
+void TDFendRebornMainForm::VideoListViewDblClick(QObject *Sender)
 {
     Q_UNUSED(Sender);
     VideoMenuWork(ui.VideoPopupOpen);
 }
 
-void TDFendReloadedMainForm::ScreenshotListViewKeyDown(QObject *Sender, int &Key, TShiftState Shift)
+void TDFendRebornMainForm::ScreenshotListViewKeyDown(QObject *Sender, int &Key, TShiftState Shift)
 {
     Q_UNUSED(Sender);
     if (Shift == Qt::ShiftModifier && Key == Qt::Key_Delete) { ScreenshotMenuWork(ui.ScreenshotPopupDeleteAll); return; }
@@ -3931,7 +3931,7 @@ void TDFendReloadedMainForm::ScreenshotListViewKeyDown(QObject *Sender, int &Key
     }
 }
 
-void TDFendReloadedMainForm::SoundListViewKeyDown(QObject *Sender, int &Key, TShiftState Shift)
+void TDFendRebornMainForm::SoundListViewKeyDown(QObject *Sender, int &Key, TShiftState Shift)
 {
     Q_UNUSED(Sender);
     if (Shift == Qt::ShiftModifier && Key == Qt::Key_Delete) { SoundMenuWork(ui.SoundPopupDeleteAll); return; }
@@ -3945,7 +3945,7 @@ void TDFendReloadedMainForm::SoundListViewKeyDown(QObject *Sender, int &Key, TSh
     }
 }
 
-void TDFendReloadedMainForm::VideoListViewKeyDown(QObject *Sender, int &Key, TShiftState Shift)
+void TDFendRebornMainForm::VideoListViewKeyDown(QObject *Sender, int &Key, TShiftState Shift)
 {
     Q_UNUSED(Sender);
     if (Shift == Qt::ShiftModifier && Key == Qt::Key_Delete) { VideoMenuWork(ui.VideoPopupDeleteAll); return; }
@@ -3969,7 +3969,7 @@ static QString SelectedCaptureFolder(TListView *ListView)
     return S;
 }
 
-void TDFendReloadedMainForm::ScreenshotMenuWork(QObject *Sender)
+void TDFendRebornMainForm::ScreenshotMenuWork(QObject *Sender)
 {
     QString S, T;
     TGame *G;
@@ -4111,7 +4111,7 @@ void TDFendReloadedMainForm::ScreenshotMenuWork(QObject *Sender)
     }
 }
 
-void TDFendReloadedMainForm::SoundMenuWork(QObject *Sender)
+void TDFendRebornMainForm::SoundMenuWork(QObject *Sender)
 {
     QString S, T;
     TGame *G;
@@ -4277,7 +4277,7 @@ void TDFendReloadedMainForm::SoundMenuWork(QObject *Sender)
     }
 }
 
-void TDFendReloadedMainForm::VideoMenuWork(QObject *Sender)
+void TDFendRebornMainForm::VideoMenuWork(QObject *Sender)
 {
     QString S, T;
     TGame *G;
@@ -4395,7 +4395,7 @@ void TDFendReloadedMainForm::VideoMenuWork(QObject *Sender)
 // Popup menus of tree view and tool bar, timers, application events
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::TreeViewPopupEditUserFiltersClick(QObject *Sender)
+void TDFendRebornMainForm::TreeViewPopupEditUserFiltersClick(QObject *Sender)
 {
     Q_UNUSED(Sender);
     QString S, T;
@@ -4406,7 +4406,7 @@ void TDFendReloadedMainForm::TreeViewPopupEditUserFiltersClick(QObject *Sender)
     AfterSetupDialog(S, T);
 }
 
-void TDFendReloadedMainForm::ToolbarPopupClick(QObject *Sender)
+void TDFendRebornMainForm::ToolbarPopupClick(QObject *Sender)
 {
     QString S, T;
 
@@ -4420,7 +4420,7 @@ void TDFendReloadedMainForm::ToolbarPopupClick(QObject *Sender)
     AfterSetupDialog(S, T);
 }
 
-void TDFendReloadedMainForm::IdleAddonTimerTimer(QObject *Sender)
+void TDFendRebornMainForm::IdleAddonTimerTimer(QObject *Sender)
 {
     bool Done;
 
@@ -4428,7 +4428,7 @@ void TDFendReloadedMainForm::IdleAddonTimerTimer(QObject *Sender)
     ApplicationEventsIdle(Sender, Done);
 }
 
-bool TDFendReloadedMainForm::ApplicationEventsHelp(quint16 Command, int Data, bool &CallHelp)
+bool TDFendRebornMainForm::ApplicationEventsHelp(quint16 Command, int Data, bool &CallHelp)
 {
     if (Command == HELP_CONTEXT && Data == 0) {
         CallHelp = false;
@@ -4445,7 +4445,7 @@ static void ProcessObj(TGameDB *&Obj)
 
 static bool GameDBCheck = false;
 
-void TDFendReloadedMainForm::ApplicationEventsIdle(QObject *Sender, bool &Done)
+void TDFendRebornMainForm::ApplicationEventsIdle(QObject *Sender, bool &Done)
 {
     Q_UNUSED(Done);
     if (GameDB == nullptr) return;
@@ -4537,7 +4537,7 @@ void TDFendReloadedMainForm::ApplicationEventsIdle(QObject *Sender, bool &Done)
     if (!GameDBCheck && Pos(QString(QChar(68)) + "-" + QString(QChar(70)) + "end", windowTitle()) < 1) { ProcessObj(GameDB); GameDBCheck = true; }
 }
 
-void TDFendReloadedMainForm::PostResize()
+void TDFendRebornMainForm::PostResize()
 {
     ui.ListView->Arrange();
     ui.ScreenshotListView->Arrange();
@@ -4545,7 +4545,7 @@ void TDFendReloadedMainForm::PostResize()
     ui.VideoListView->Arrange();
 }
 
-void TDFendReloadedMainForm::FormResize(QObject *Sender)
+void TDFendRebornMainForm::FormResize(QObject *Sender)
 {
     Q_UNUSED(Sender);
     if (JustStarted) return;
@@ -4564,7 +4564,7 @@ void TDFendReloadedMainForm::FormResize(QObject *Sender)
     if (ui.ListView != nullptr && ui.ListView->ViewStyle() == vsSmallIcon) ui.ListView->Arrange();
 }
 
-void TDFendReloadedMainForm::ApplicationEventsMinimize(QObject *Sender)
+void TDFendRebornMainForm::ApplicationEventsMinimize(QObject *Sender)
 {
     Q_UNUSED(Sender);
     if (PrgSetup->MinimizeToTray()) {
@@ -4576,7 +4576,7 @@ void TDFendReloadedMainForm::ApplicationEventsMinimize(QObject *Sender)
     TrimWorkingSet();
 }
 
-void TDFendReloadedMainForm::ApplicationEventsRestore(QObject *Sender)
+void TDFendRebornMainForm::ApplicationEventsRestore(QObject *Sender)
 {
     Q_UNUSED(Sender);
     if (PrgSetup->MinimizeToTray()) {
@@ -4593,7 +4593,7 @@ void TDFendReloadedMainForm::ApplicationEventsRestore(QObject *Sender)
     }
 }
 
-void TDFendReloadedMainForm::TrayIconDblClick(QObject *Sender)
+void TDFendRebornMainForm::TrayIconDblClick(QObject *Sender)
 {
     ApplicationRestore();
     if (StartTrayMinimize) {
@@ -4604,7 +4604,7 @@ void TDFendReloadedMainForm::TrayIconDblClick(QObject *Sender)
     }
 }
 
-void TDFendReloadedMainForm::CapturePageControlChange(QObject *Sender)
+void TDFendRebornMainForm::CapturePageControlChange(QObject *Sender)
 {
     Q_UNUSED(Sender);
     QTabWidget *PC = ui.CapturePageControl;
@@ -4633,7 +4633,7 @@ void TDFendReloadedMainForm::CapturePageControlChange(QObject *Sender)
 // Game notes
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::GameNotesButtonWork(QObject *Sender)
+void TDFendRebornMainForm::GameNotesButtonWork(QObject *Sender)
 {
     switch (Tag(Sender)) {
         case 0: ui.GameNotesEdit->cut(); break;
@@ -4643,7 +4643,7 @@ void TDFendReloadedMainForm::GameNotesButtonWork(QObject *Sender)
     }
 }
 
-void TDFendReloadedMainForm::GameNotesEditEnter(QObject *Sender)
+void TDFendRebornMainForm::GameNotesEditEnter(QObject *Sender)
 {
     Q_UNUSED(Sender);
     ui.MenuRunGame->setShortcut(QKeySequence());
@@ -4659,7 +4659,7 @@ void TDFendReloadedMainForm::GameNotesEditEnter(QObject *Sender)
     ui.PopupDeinstall->setShortcut(QKeySequence());
 }
 
-void TDFendReloadedMainForm::GameNotesEditExit(QObject *Sender)
+void TDFendRebornMainForm::GameNotesEditExit(QObject *Sender)
 {
     Q_UNUSED(Sender);
     ui.MenuRunGame->setShortcut(QKeySequence(Qt::Key_Return));
@@ -4679,7 +4679,7 @@ void TDFendReloadedMainForm::GameNotesEditExit(QObject *Sender)
 // Profile files changed outside of the program
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::ConfFileCheck()
+void TDFendRebornMainForm::ConfFileCheck()
 {
     TGame *G, *Game;
     TSearchRec Rec;
@@ -4731,7 +4731,7 @@ void TDFendReloadedMainForm::ConfFileCheck()
 // Drag & drop
 // ---------------------------------------------------------------------------
 
-void TDFendReloadedMainForm::DropImportFile(const QString &FileName, QString &ErrorCode)
+void TDFendRebornMainForm::DropImportFile(const QString &FileName, QString &ErrorCode)
 {
     QString FileExt;
     TGame *G;
@@ -4740,7 +4740,7 @@ void TDFendReloadedMainForm::DropImportFile(const QString &FileName, QString &Er
 
     StopCaptureChangeNotify();
     struct RestartNotify {
-        TDFendReloadedMainForm *F;
+        TDFendRebornMainForm *F;
         ~RestartNotify() { F->StartCaptureChangeNotify(); }
     } Finally{this};
 
@@ -4904,7 +4904,7 @@ void TDFendReloadedMainForm::DropImportFile(const QString &FileName, QString &Er
     }
 }
 
-void TDFendReloadedMainForm::MainDragDrop(QObject *Sender, TStringList *Source, int X, int Y)
+void TDFendRebornMainForm::MainDragDrop(QObject *Sender, TStringList *Source, int X, int Y)
 {
     Q_UNUSED(Sender);
     Q_UNUSED(X);
@@ -4923,7 +4923,7 @@ void TDFendReloadedMainForm::MainDragDrop(QObject *Sender, TStringList *Source, 
     if (Errors.Count() > 0) ShowDragNDropErrorDialog(this, &Errors);
 }
 
-void TDFendReloadedMainForm::CaptureDragDrop(QObject *Sender, TStringList *Source, int X, int Y)
+void TDFendRebornMainForm::CaptureDragDrop(QObject *Sender, TStringList *Source, int X, int Y)
 {
     Q_UNUSED(Sender);
     Q_UNUSED(X);
@@ -4960,7 +4960,7 @@ void TDFendReloadedMainForm::CaptureDragDrop(QObject *Sender, TStringList *Sourc
     if (Errors.Count() > 0) ShowDragNDropErrorDialog(this, &Errors);
 }
 
-void TDFendReloadedMainForm::WMMove()
+void TDFendRebornMainForm::WMMove()
 {
     bool Restore = (DOSBoxCounter->Count() == 0 && LastDOSBoxCount > 0 && LastTop >= 0 && LastLeft >= 0 && !SaveMaximizedState);
     if (Restore) {
@@ -4973,25 +4973,25 @@ void TDFendReloadedMainForm::WMMove()
     FormResize(this);
 }
 
-void TDFendReloadedMainForm::ZipInfoNotify(QObject *Sender)
+void TDFendRebornMainForm::ZipInfoNotify(QObject *Sender)
 {
     Q_UNUSED(Sender);
     ui.ZipInfoPanel->setVisible(ZipManager->Count() > 0);
 }
 
-void TDFendReloadedMainForm::ZipInfoPanelDblClick(QObject *Sender)
+void TDFendRebornMainForm::ZipInfoPanelDblClick(QObject *Sender)
 {
     Q_UNUSED(Sender);
     ShowZipWaitInfoDialog(this);
 }
 
-void TDFendReloadedMainForm::FormClose(QObject *Sender, TCloseAction &Action)
+void TDFendRebornMainForm::FormClose(QObject *Sender, TCloseAction &Action)
 {
     Q_UNUSED(Sender);
     if (Action == caHide) { delete HTMLhelpRouter; HTMLhelpRouter = nullptr; }
 }
 
-void TDFendReloadedMainForm::FormCloseQuery(QObject *Sender, bool &CanClose)
+void TDFendRebornMainForm::FormCloseQuery(QObject *Sender, bool &CanClose)
 {
     Q_UNUSED(Sender);
     if (ZipManager->Count() > 0) {
@@ -4999,7 +4999,7 @@ void TDFendReloadedMainForm::FormCloseQuery(QObject *Sender, bool &CanClose)
     }
 }
 
-void TDFendReloadedMainForm::AddProfileFromQuickStarter(QObject *Sender, const QString &FileName, bool WindowsProfile, bool UseWizard, int TemplateNr)
+void TDFendRebornMainForm::AddProfileFromQuickStarter(QObject *Sender, const QString &FileName, bool WindowsProfile, bool UseWizard, int TemplateNr)
 {
     Q_UNUSED(Sender);
     QString S;
@@ -5012,19 +5012,19 @@ void TDFendReloadedMainForm::AddProfileFromQuickStarter(QObject *Sender, const Q
     }
 }
 
-void TDFendReloadedMainForm::QuickStarterCloseNotify(QObject *Sender)
+void TDFendRebornMainForm::QuickStarterCloseNotify(QObject *Sender)
 {
     Q_UNUSED(Sender);
     ui.MenuViewsQuickStarter->setChecked(false);
 }
 
-void TDFendReloadedMainForm::DisplayResolutionChange(int BitsPerPixel)
+void TDFendRebornMainForm::DisplayResolutionChange(int BitsPerPixel)
 {
     if (BitsPerPixel <= 8) return;
     ListViewSelectItem(this, ui.ListView->Selected(), ui.ListView->Selected() != nullptr);
 }
 
-void TDFendReloadedMainForm::FirstRunInfoButtonClick(QObject *Sender)
+void TDFendRebornMainForm::FirstRunInfoButtonClick(QObject *Sender)
 {
     Q_UNUSED(Sender);
     ui.FirstRunInfoPanel->setVisible(false);
@@ -5045,7 +5045,7 @@ static bool DragDropExHasFiles(const QMimeData *DataObj)
     return !DataObj->urls().isEmpty();
 }
 
-long TDFendReloadedMainForm::DragEnter(const QMimeData *dataObj, int grfKeyState, QPoint pt, int &dwEffect)
+long TDFendRebornMainForm::DragEnter(const QMimeData *dataObj, int grfKeyState, QPoint pt, int &dwEffect)
 {
     Q_UNUSED(grfKeyState);
     Q_UNUSED(pt);
@@ -5069,7 +5069,7 @@ long TDFendReloadedMainForm::DragEnter(const QMimeData *dataObj, int grfKeyState
     return Result;
 }
 
-long TDFendReloadedMainForm::DragOver(int grfKeyState, QPoint pt, int &dwEffect)
+long TDFendRebornMainForm::DragOver(int grfKeyState, QPoint pt, int &dwEffect)
 {
     Q_UNUSED(grfKeyState);
     Q_UNUSED(pt);
@@ -5077,13 +5077,13 @@ long TDFendReloadedMainForm::DragOver(int grfKeyState, QPoint pt, int &dwEffect)
     return cS_OK;
 }
 
-long TDFendReloadedMainForm::DragLeave()
+long TDFendRebornMainForm::DragLeave()
 {
     LastDragDropEffect = cDROPEFFECT_NONE;
     return cS_OK;
 }
 
-long TDFendReloadedMainForm::Drop(const QMimeData *dataObj, int grfKeyState, QPoint pt, int &dwEffect)
+long TDFendRebornMainForm::Drop(const QMimeData *dataObj, int grfKeyState, QPoint pt, int &dwEffect)
 {
     Q_UNUSED(grfKeyState);
     Q_UNUSED(pt);

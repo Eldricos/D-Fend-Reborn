@@ -19,13 +19,13 @@
 #include "LinkFileUnit.h"
 #include "HelpTools.h"
 
-class TDFendReloadedMainForm : public QMainWindow
+class TDFendRebornMainForm : public QMainWindow
 {
     Q_OBJECT
 public:
-    Ui::DFendReloadedMainForm ui;
-    explicit TDFendReloadedMainForm(QWidget *AOwner = nullptr);
-    ~TDFendReloadedMainForm() override;
+    Ui::DFendRebornMainForm ui;
+    explicit TDFendRebornMainForm(QWidget *AOwner = nullptr);
+    ~TDFendRebornMainForm() override;
     TGameDB* GameDB = nullptr;
     TStringList* DeleteOnExit = nullptr;
     void SelectHelpFile();
@@ -34,13 +34,13 @@ public:
     bool FormCreateAborted() const { return FFormCreateAborted; }
     // VCL event handlers (connected in the constructor)
     // DFM wiring:
-    //   DFendReloadedMainForm.OnClose = FormClose
-    //   DFendReloadedMainForm.OnCloseQuery = FormCloseQuery
-    //   DFendReloadedMainForm.OnCreate = FormCreate
-    //   DFendReloadedMainForm.OnDestroy = FormDestroy
-    //   DFendReloadedMainForm.OnKeyDown = FormKeyDown
-    //   DFendReloadedMainForm.OnResize = FormResize
-    //   DFendReloadedMainForm.OnShow = FormShow
+    //   DFendRebornMainForm.OnClose = FormClose
+    //   DFendRebornMainForm.OnCloseQuery = FormCloseQuery
+    //   DFendRebornMainForm.OnCreate = FormCreate
+    //   DFendRebornMainForm.OnDestroy = FormDestroy
+    //   DFendRebornMainForm.OnKeyDown = FormKeyDown
+    //   DFendRebornMainForm.OnResize = FormResize
+    //   DFendRebornMainForm.OnShow = FormShow
     //   Splitter.OnMoved = FormResize
     //   TreeView.OnChange = TreeViewChange
     //   TreeView.OnDragDrop = MainDragDrop
@@ -169,7 +169,7 @@ public:
     //   MenuExtrasTransferProfiles.OnClick = MenuWork
     //   MenuExtrasCreateShortcuts.OnClick = MenuWork
     //   MenuExtrasTranslation.OnClick = MenuWork
-    //   MenuExtrasTranslationDFendReloaded.OnClick = MenuWork
+    //   MenuExtrasTranslationDFendReborn.OnClick = MenuWork
     //   MenuExtrasTranslationDOSBox.OnClick = MenuWork
     //   MenuHelpHelp.OnClick = MenuWork
     //   MenuHelpHelpContent.OnClick = MenuWork
@@ -452,5 +452,5 @@ private:
     void UpdateImageListIcons();                 // re-applies ImageIndex icons after icon set changes
     void ApplicationRestore();                   // Application.Restore
 };
-extern TDFendReloadedMainForm* DFendReloadedMainForm;
+extern TDFendRebornMainForm* DFendRebornMainForm;
 extern bool MainWindowShowComplete;  // initial value: false

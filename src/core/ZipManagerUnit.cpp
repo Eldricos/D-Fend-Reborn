@@ -25,7 +25,7 @@ static const THandle InvalidHandle = 0;         // INVALID_HANDLE_VALUE (returne
 
 static QWidget* ApplicationMainForm()
 {
-    return DFendReloadedMainForm;
+    return DFendRebornMainForm;
 }
 
 // { TZipManager }
