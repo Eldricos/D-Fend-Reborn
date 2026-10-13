@@ -48,6 +48,10 @@ QString StringListToString(const QString& S);
 QString Replace(const QString& S, const QString& FromSub, const QString& ToSub);
 bool FindStringInFile(const QString& FileName, const QString& SearchString);
 QString PrgDir();
+// Helper program (oggenc, mkdosfs, ...): looks in the program folder and its
+// Bin folder; on Linux/macOS also in the search path and in /usr/sbin, /sbin
+// (system programs like mkfs.fat). Returns an empty string if not found.
+QString FindHelperProgram(const QString& FileName);
 QString TempDir();
 QString MakeRelPath(const QString& Path, const QString& Rel, bool NoEmptyRelPath = false);
 QString MakeAbsPath(const QString& Path, const QString& Rel);

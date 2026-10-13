@@ -8,6 +8,7 @@
 #include "DosBoxUnit.h"
 #include "ImageTools.h"
 #include "DOSBoxTempUnit.h"
+#include "LoggingUnit.h"
 #include "MainUnit.h"
 #ifdef Q_OS_WIN
 #include "WinApi.h"
@@ -17,9 +18,20 @@
 
 /* Creating plain and fat disk images */
 
-static bool DiskImageCreatorFATAvailable()
+// Program used to create FAT file systems: the bundled mkdosfs.exe on
+// Windows, mkfs.fat (dosfstools) on Linux/macOS.
+QString MakeDOSFilesystemProgram()
 {
-    return FileExists(PrgDir() + MakeDOSFilesystemFileName) || FileExists(PrgDir() + BinFolder + PathDelim + MakeDOSFilesystemFileName);
+    QString S = FindHelperProgram(MakeDOSFilesystemFileName);
+#ifndef Q_OS_WIN
+    if (S.isEmpty()) S = FindHelperProgram(QStringLiteral("mkdosfs"));
+#endif
+    return S;
+}
+
+bool DiskImageCreatorFATAvailable()
+{
+    return !MakeDOSFilesystemProgram().isEmpty();
 }
 
 #ifdef Q_OS_WIN
@@ -100,15 +112,81 @@ static bool DiskImageCreatorPlain(int HDSize, const QString& ImageFileName, bool
     return result;
 }
 
+#ifdef Q_OS_WIN
 static void DiskImageCreatorFATInt(TStringList* Data, const QString& ImageFileName, bool CompressImage)
 {
-    if (FileExists(PrgDir() + MakeDOSFilesystemFileName)) {
-        if (!RunWithInput(PrgDir() + MakeDOSFilesystemFileName, "", false, Data)) return;
-    } else {
-        if (!RunWithInput(PrgDir() + BinFolder + PathDelim + MakeDOSFilesystemFileName, "", false, Data)) return;
-    }
+    // mkdosfs.exe (Bochs tool) reads its answers from stdin
+    if (!RunWithInput(MakeDOSFilesystemProgram(), "", false, Data)) return;
     if (CompressImage) CompressFile(ImageFileName);
 }
+#else
+// mkfs.fat (dosfstools) takes command line parameters; the images are made
+// like mkdosfs.exe does (same geometry, hard disk images with a MBR and one
+// partition starting at sector 63).
+static bool RunMkfsFat(const QStringList& Args)
+{
+    QProcess P;
+    P.setProcessChannelMode(QProcess::MergedChannels);
+    P.start(MakeDOSFilesystemProgram(), Args);
+    if (!P.waitForStarted() || !P.waitForFinished(120000)) return false;
+    if (P.exitStatus() != QProcess::NormalExit || P.exitCode() != 0) {
+        LogInfo("mkfs.fat " + Args.join(' ') + " failed: " + QString::fromLocal8Bit(P.readAll()));
+        return false;
+    }
+    return true;
+}
+
+static bool DiskImageCreatorFATFloppy(int Cylinders, int Heads, int SPT, const QString& ImageFileName)
+{
+    const int Sectors = Cylinders * Heads * SPT;
+    if (FileExists(ImageFileName)) DeleteFile(ImageFileName);   // -C needs a new file
+    const QString SPC = ((SPT == 36) && (Heads == 2) && (Cylinders == 80)) ? "2" : "1";
+    return RunMkfsFat({"-C", "-F", "12", "-f", "2", "-s", SPC, "-g", IntToStr(Heads) + "/" + IntToStr(SPT), ImageFileName, IntToStr(Sectors / 2)});
+}
+
+static bool WriteMBR(const QString& ImageFileName, quint32 Sectors)
+{
+    // like mkdosfs.exe: one bootable partition at sector 63, 16 heads, 63 spt
+    const quint32 Heads = 16, SPT = 63;
+    unsigned char MBR[512];
+    memset(MBR, 0, sizeof(MBR));
+    unsigned char *E = MBR + 446;
+    E[0] = 0x80;                                   // bootable
+    E[1] = 1; E[2] = 1; E[3] = 0;                   // start: head 1, sector 1, cylinder 0
+    E[4] = (Sectors < 65536) ? 0x04 : 0x06;          // FAT16 <32MB / FAT16
+    const quint32 Last = Sectors - 1 + 63;
+    if (Last <= 16450560) {
+        const quint32 Sect = ((Last % SPT) + 1) & 0x3F;
+        const quint32 Cyl = (Last / SPT) / Heads;
+        E[5] = (unsigned char)((Last / SPT) % Heads);
+        E[6] = (unsigned char)(((Cyl & 0x300) >> 2) | Sect);
+        E[7] = (unsigned char)(Cyl & 0xFF);
+    } else {
+        E[5] = E[6] = E[7] = 0xFF;
+    }
+    const quint32 Start = 63;
+    for (int I = 0; I < 4; I++) { E[8 + I] = (unsigned char)(Start >> (8 * I)); E[12 + I] = (unsigned char)(Sectors >> (8 * I)); }
+    MBR[510] = 0x55; MBR[511] = 0xAA;
+
+    QFile F(ImageFileName);
+    if (!F.open(QIODevice::ReadWrite)) return false;
+    const bool Ok = (F.write(reinterpret_cast<const char *>(MBR), sizeof(MBR)) == qint64(sizeof(MBR)));
+    F.close();
+    return Ok;
+}
+
+static bool DiskImageCreatorFATHD(int MB, int SPC, const QString& ImageFileName)
+{
+    const quint32 Sectors = quint32(MB) * 2 * 16 * 63;   // cylinders = 2 * MB, 16 heads, 63 spt
+    if (!DiskImageCreatorPlainInt(int(Sectors + 63), ImageFileName, false)) return false;
+    if (!WriteMBR(ImageFileName, Sectors)) return false;
+    QStringList Args = {"--offset=63", "-h", "63", "-g", "16/63", "-M", "0xF8", "-f", "2", "-s", IntToStr(SPC)};
+    // FAT16 needs at least 4085 clusters; mkfs.fat refuses smaller FAT16
+    // file systems, so let it choose the FAT type for very small images
+    if (RunMkfsFat(QStringList(Args) << "-F" << "16" << ImageFileName << IntToStr(Sectors / 2))) return true;
+    return RunMkfsFat(QStringList(Args) << ImageFileName << IntToStr(Sectors / 2));
+}
+#endif
 
 static bool DiskImageCreatorFAT(int Cylinders, int Heads, int SPT, const QString& ImageFileName, bool CompressImage)
 {
@@ -121,8 +199,17 @@ static bool DiskImageCreatorFAT(int Cylinders, int Heads, int SPT, const QString
     /* sectors/cluster */ if ((SPT == 36) && (Heads == 2) && (Cylinders == 80)) St.Add("2"); else St.Add("1");
     /* number of fats */ St.Add("2");
     /* fat size */ St.Add("12");
+#ifdef Q_OS_WIN
     DiskImageCreatorFATInt(&St, ImageFileName, CompressImage);
     return true;
+#else
+    Q_UNUSED(CompressImage);
+    if (!DiskImageCreatorFATFloppy(Cylinders, Heads, SPT, ImageFileName)) {
+        MessageDlg(Format(LanguageSetup->MessageCouldNotSaveFile(), {ImageFileName}), mtError, mbOK, 0);
+        return false;
+    }
+    return true;
+#endif
 }
 
 static bool DiskImageCreatorFAT(int HDSize, const QString& ImageFileName, bool CompressImage)
@@ -149,8 +236,14 @@ static bool DiskImageCreatorFAT(int HDSize, const QString& ImageFileName, bool C
     else St.Add("32");
     /* number of fats */ St.Add("2");
     /* fat size */ St.Add("16");
+#ifdef Q_OS_WIN
     DiskImageCreatorFATInt(&St, ImageFileName, CompressImage);
     result = true;
+#else
+    Q_UNUSED(CompressImage);
+    result = DiskImageCreatorFATHD(I, St[4].toInt(), ImageFileName);
+    if (!result) MessageDlg(Format(LanguageSetup->MessageCouldNotSaveFile(), {ImageFileName}), mtError, mbOK, 0);
+#endif
     return result;
 }
 

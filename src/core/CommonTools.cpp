@@ -473,6 +473,20 @@ CSIDL_SENDTO               "Send to" in context menu
 CSIDL_STARTMENU            Start menu
 CSIDL_STARTUP              Auto start
 */
+QString FindHelperProgram(const QString& FileName)
+{
+    if (FileName.isEmpty()) return QString();
+    if (FileExists(PrgDir() + FileName)) return PrgDir() + FileName;
+    if (FileExists(PrgDir() + BinFolder + PathDelim + FileName)) return PrgDir() + BinFolder + PathDelim + FileName;
+#ifndef Q_OS_WIN
+    QString S = QStandardPaths::findExecutable(FileName);
+    if (S.isEmpty()) S = QStandardPaths::findExecutable(FileName, {QStringLiteral("/usr/local/sbin"), QStringLiteral("/usr/sbin"), QStringLiteral("/sbin")});
+    return S;
+#else
+    return QString();
+#endif
+}
+
 QString GetSpecialFolder(WId hWindow, int Folder)
 {
 #ifdef Q_OS_WIN
@@ -483,9 +497,22 @@ QString GetSpecialFolder(WId hWindow, int Folder)
     if (S.isEmpty()) return QString();
     return IncludeTrailingPathDelimiter(S);
 #else
+    // Linux/macOS equivalents of the Windows shell folders:
+    // - user folders: the XDG user directories (Desktop, Documents, ...)
+    // - application data: XDG config/data folders (~/.config, ~/.local/share)
+    // - start menu: the folder for .desktop launchers, autostart folder
+    // - program files: /usr/bin (where installed programs live; used as start
+    //   folder when selecting DOSBox, ScummVM, editors, ...)
+    // - Windows/System folder: the Wine prefix (Windows programs are run
+    //   with Wine), $WINEPREFIX or ~/.wine
     Q_UNUSED(hWindow);
     QString S;
     auto Loc = [](QStandardPaths::StandardLocation L) { return QStandardPaths::writableLocation(L); };
+    auto WinePrefix = []() {
+        QString P = qEnvironmentVariable("WINEPREFIX");
+        if (P.isEmpty()) P = QDir::homePath() + QStringLiteral("/.wine");
+        return IncludeTrailingPathDelimiter(P) + QStringLiteral("drive_c/");
+    };
     switch (Folder) {
         case CSIDL_DESKTOP:
         case CSIDL_DESKTOPDIRECTORY: S = Loc(QStandardPaths::DesktopLocation); break;
@@ -493,26 +520,26 @@ QString GetSpecialFolder(WId hWindow, int Folder)
         case CSIDL_MYPICTURES: S = Loc(QStandardPaths::PicturesLocation); break;
         case CSIDL_MYMUSIC: S = Loc(QStandardPaths::MusicLocation); break;
         case CSIDL_MYVIDEO: S = Loc(QStandardPaths::MoviesLocation); break;
-        case CSIDL_APPDATA:
-        case CSIDL_LOCAL_APPDATA: S = Loc(QStandardPaths::GenericDataLocation); break;
+        case CSIDL_PROFILE: S = Loc(QStandardPaths::HomeLocation); break;
+        case CSIDL_APPDATA: S = Loc(QStandardPaths::GenericConfigLocation); break;        // ~/.config
+        case CSIDL_LOCAL_APPDATA: S = Loc(QStandardPaths::GenericDataLocation); break;    // ~/.local/share
         case CSIDL_COMMON_APPDATA: {
             QStringList L = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
             S = L.isEmpty() ? QStringLiteral("/usr/share") : L.last();
             break;
         }
-        case CSIDL_PROFILE:
-        case CSIDL_FAVORITES:
-        case CSIDL_RECENT:
-        case CSIDL_SENDTO: S = Loc(QStandardPaths::HomeLocation); break;
         case CSIDL_PROGRAMS:
-        case CSIDL_STARTMENU: S = Loc(QStandardPaths::ApplicationsLocation); break;
+        case CSIDL_STARTMENU: S = Loc(QStandardPaths::ApplicationsLocation); break;       // ~/.local/share/applications
         case CSIDL_STARTUP: S = Loc(QStandardPaths::GenericConfigLocation) + QStringLiteral("/autostart"); break;
+        case CSIDL_RECENT: S = Loc(QStandardPaths::GenericDataLocation); break;          // (recently-used.xbel)
+        case CSIDL_FAVORITES:
+        case CSIDL_SENDTO: S = Loc(QStandardPaths::HomeLocation); break;
         case CSIDL_INTERNET_CACHE:
         case CSIDL_COOKIES:
         case CSIDL_HISTORY: S = Loc(QStandardPaths::GenericCacheLocation); break;
-        case CSIDL_PROGRAM_FILES: S = QStringLiteral("/usr"); break;
-        case CSIDL_WINDOWS: S = QStringLiteral("/usr"); break;
-        case CSIDL_SYSTEM: S = QStringLiteral("/usr/bin"); break;
+        case CSIDL_PROGRAM_FILES: S = QStringLiteral("/usr/bin"); break;
+        case CSIDL_WINDOWS: S = WinePrefix() + QStringLiteral("windows"); break;
+        case CSIDL_SYSTEM: S = WinePrefix() + QStringLiteral("windows/system32"); break;
         default: S = Loc(QStandardPaths::HomeLocation); break;
     }
     if (S.isEmpty()) return QString();

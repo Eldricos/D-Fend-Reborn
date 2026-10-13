@@ -21,7 +21,7 @@ TModernProfileEditorDrivesFrame::TModernProfileEditorDrivesFrame(QWidget* AOwner
     ui.setupUi(this);
     VclLayout::setupForm(this);
 
-    ImageList = new TImageList(16, 16);
+    ImageList = TImageList::FromResource("ModernProfileEditorDrivesFrameUnit", "ImageList");
 
     connect(ui.MountingListView, &TListView::dblClick, this, [this]() { MountingListViewDblClick(ui.MountingListView); });
     connect(ui.MountingListView, &TListView::keyDown, this, [this](int Key, Qt::KeyboardModifiers Mods) {

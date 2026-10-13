@@ -16,7 +16,15 @@ if(NOT SRC OR NOT DST)
 endif()
 
 # --- program files -----------------------------------------------------------
-file(COPY "${SRC}/Bin" "${SRC}/Lang" "${SRC}/IconSets" "${SRC}/NewUserData" DESTINATION "${DST}")
+file(COPY "${SRC}/Lang" "${SRC}/IconSets" "${SRC}/NewUserData" DESTINATION "${DST}")
+if(WINDOWS)
+    file(COPY "${SRC}/Bin" DESTINATION "${DST}")
+else()
+    # The helper programs in Bin (mkdosfs, oggenc2, 7za, ...) are Windows
+    # programs; Linux/macOS use the installed system programs instead.
+    file(COPY "${SRC}/Bin" DESTINATION "${DST}"
+         PATTERN "*.exe" EXCLUDE PATTERN "*.dll" EXCLUDE)
+endif()
 
 if(WINDOWS)
     # bundled DOSBox (Windows build) + DOSBox language files + FreeDOS

@@ -38,10 +38,17 @@ so a build can be run directly:
 
 * `Bin`, `Lang`, `IconSets`, `NewUserData` (and on Windows `DOSBox` plus the
   DOSBox language and FreeDOS code page files) are refreshed on each build.
+  On Linux/macOS the Windows programs in `Bin` (`*.exe`, `*.dll`) are left
+  out; the installed system programs are used instead (see below).
 * The user data the original installer created (`Templates`, `AutoSetup`,
   `IconLibrary`, `Capture`, `VirtualHD`, `Settings/Icons.ini`,
   `Settings/DataReader.xml`, `Settings/Cheats.xml`) is copied only once per
   build folder. Delete `Settings/.DataDeployed` to copy it again.
+
+On Linux the program uses these system programs (install them with the
+package manager): `dosbox` (or `dosbox-staging`'s `dosbox`), `7z`/`7za`/`7zz`
+(p7zip or 7zip, for zip/7z archives), `mkfs.fat` (dosfstools, for creating
+disk images), `oggenc` (vorbis-tools) and optionally `lame` and `scummvm`.
 
 Other folders taken over from the original sources: `Help` (HTML sources of
 the `.chm` help files), `Install` (original NSIS installer scripts; their

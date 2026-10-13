@@ -73,7 +73,7 @@ TModernProfileEditorGameInfoFrame::TModernProfileEditorGameInfoFrame(QWidget* AO
     ui.setupUi(this);
     VclLayout::setupForm(this);
 
-    ImageList = new TImageList(16, 16);
+    ImageList = TImageList::FromResource("ModernProfileEditorGameInfoFrameUnit", "ImageList");
 
     connect(ui.DelButton, &QToolButton::clicked, this, [this]() { DelButtonClick(ui.DelButton); });
     connect(ui.AddButton, &QToolButton::clicked, this, [this]() { AddButtonClick(ui.AddButton); });

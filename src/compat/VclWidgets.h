@@ -119,12 +119,22 @@ public:
     void setKeyReadOnly(int Row, bool ReadOnly);
     // ItemProps[].EditStyle=esEllipsis / esPickList
     void setPickList(int Row, const QStringList &Items, bool ReadOnlyList = false);
+    QStringList pickList(int Row) const;
     void setEllipsis(int Row, bool On);
+    // ItemProps[].ReadOnly: the value can not be typed in; a pick list can
+    // still be used to select a value, an ellipsis button can still be clicked
+    void setReadOnly(int Row, bool ReadOnly);
+    bool isReadOnly(int Row) const;
+    // ItemProps[].EditMask (Delphi edit mask, e.g. '900' = 2 or 3 digits);
+    // values not matching the mask are not accepted
+    void setEditMask(int Row, const QString &Mask);
 signals:
     void editButtonClicked(int Row);   // OnEditButtonClick
 private:
     bool FKeyEdit = false;
     QStringList FTitles{"Key", "Value"};
+    QTableWidgetItem *valueItem(int Row);
+    void updateValueFlags(int Row);
     friend class ValueListDelegate;
 };
 

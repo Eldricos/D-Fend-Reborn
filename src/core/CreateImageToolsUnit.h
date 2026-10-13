@@ -11,6 +11,10 @@
 #include <functional>
 #include "GameDBUnit.h"
 
+// Program for creating FAT file systems (mkdosfs.exe on Windows, mkfs.fat on
+// Linux/macOS); empty if not available.
+QString MakeDOSFilesystemProgram();
+bool DiskImageCreatorFATAvailable();
 bool DiskImageCreator(int Cylinders, int Heads, int SPT, const QString& ImageFileName, bool CompressImage, bool FAT);
 bool DiskImageCreator(const QString& ImageFileName);
 bool DiskImageCreator(int HDSize, const QString& ImageFileName, bool CompressImage, bool FAT);
