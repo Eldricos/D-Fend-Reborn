@@ -12,5 +12,24 @@
 
 void LogInfo(const QString& Info, bool ContinueLogging = true);
 
+// Diagnostic trace (D-Fend Reborn addition): enabled by setting the
+// environment variable DFEND_TRACE=1. Messages go to the debug output
+// (Qt Creator: "Application Output") with milliseconds since program start.
+// LogInfo messages are traced as well.
+bool TraceEnabled();
+void Trace(const QString& Info);
+// Measures the time until the end of the scope and traces it if it took at
+// least MinMs milliseconds.
+class TTraceScope
+{
+public:
+    explicit TTraceScope(const QString &What, int MinMs = 0);
+    ~TTraceScope();
+private:
+    QString FWhat;
+    int FMinMs;
+    qint64 FStart;
+};
+
 // initialization section (looks for D-Fend-Reloaded-Log.txt on the desktop)
 void LoggingUnit_Initialization();

@@ -355,12 +355,12 @@ TDFendReloadedMainForm::TDFendReloadedMainForm(QWidget *AOwner) : QMainWindow(AO
 
     IdleAddonTimer = new QTimer(this);
     IdleAddonTimer->setInterval(500);
-    connect(IdleAddonTimer, &QTimer::timeout, this, [this]() { IdleAddonTimerTimer(IdleAddonTimer); });
+    connect(IdleAddonTimer, &QTimer::timeout, this, [this]() { TTraceScope T("IdleAddonTimer", 50); IdleAddonTimerTimer(IdleAddonTimer); });
     IdleAddonTimer->start();
 
     SearchEditTimer = new QTimer(this);
     SearchEditTimer->setInterval(1500);
-    connect(SearchEditTimer, &QTimer::timeout, this, [this]() { SearchEditTimerTimer(SearchEditTimer); });
+    connect(SearchEditTimer, &QTimer::timeout, this, [this]() { TTraceScope T("SearchEditTimer", 50); SearchEditTimerTimer(SearchEditTimer); });
 
     // TApplicationEvents.OnIdle: called regularly while the application is idle
     ApplicationEventsIdleTimer = new QTimer(this);
@@ -369,6 +369,7 @@ TDFendReloadedMainForm::TDFendReloadedMainForm(QWidget *AOwner) : QMainWindow(AO
         if (!FApplicationEventsOnIdle) return;
         if (QApplication::activePopupWidget()) return;
         bool Done = true;
+        TTraceScope T("ApplicationEventsIdle", 50);
         ApplicationEventsIdle(ApplicationEventsIdleTimer, Done);
     });
     ApplicationEventsIdleTimer->start();
@@ -2924,15 +2925,16 @@ void TDFendReloadedMainForm::AfterSetupDialog(const QString &ColWidthsParam, con
     TGame *G;
     QString ColWidths = ColWidthsParam;
 
+    TTraceScope TAll("AfterSetupDialog");
     G = nullptr;
     if (ui.ListView->Selected() != nullptr) G = GameOf(ui.ListView->Selected());
-    LoadLanguage(PrgSetup->Language());
+    { TTraceScope T("AfterSetupDialog: LoadLanguage"); LoadLanguage(PrgSetup->Language()); }
     if (QuickStartForm) QuickStartForm->BuildTree();
-    LoadMenuLanguage();
+    { TTraceScope T("AfterSetupDialog: LoadMenuLanguage"); LoadMenuLanguage(); }
     if (FSearchEditGray) {
         SetSearchEditText(LanguageSetup->Search());
     }
-    LoadGUISetup(false);
+    { TTraceScope T("AfterSetupDialog: LoadGUISetup"); LoadGUISetup(false); }
     if (ColWidths != "") {
         TStringList *St1 = ValueToList(UserCols), *St2 = ValueToList(GetUserCols()), *St = ValueToList(ColWidths);
         for (int I = 0; I < Min(St1->Count(), St2->Count()); I++) if (ExtUpperCase((*St1)[I]) != ExtUpperCase((*St2)[I])) {

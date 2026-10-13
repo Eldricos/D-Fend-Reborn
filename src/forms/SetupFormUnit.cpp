@@ -1,5 +1,6 @@
 // C++ port of SetupFormUnit.pas (implementation section).
 #include "SetupFormUnit.h"
+#include "LoggingUnit.h"
 
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
@@ -462,7 +463,12 @@ void TSetupForm::OKButtonClick(QObject* Sender)
     }
 
     if (!SetAdvanced) PrgSetup->SetEasySetupMode(ui.ModeComboBox->currentIndex() == 0);
-    for (I = 0; I < Frames.count(); I++) Frames[I].IFrame->SaveSetup();
+    Trace("SetupForm: OK clicked, saving frames");
+    for (I = 0; I < Frames.count(); I++) {
+        TTraceScope T("SetupForm: SaveSetup " + Frames[I].IFrame->GetName(), 20);
+        Frames[I].IFrame->SaveSetup();
+    }
+    Trace("SetupForm: all frames saved");
 }
 
 void TSetupForm::HelpButtonClick(QObject* Sender)
@@ -511,9 +517,10 @@ bool ShowSetupDialogSpecial(QWidget* AOwner, TGameDB* AGameDB, TLinkFile* ASearc
     if (OpenMode != omNormal) SetupForm->OpenMode = OpenMode;
     if ((OpenMode != omNormal) && (OpenMode != omLanguage) && (OpenMode != omIconSet) && (OpenMode != omUpdate)) SetupForm->SetAdvanced = true;
     result = (SetupForm->ShowModal() == mrOk);
+    Trace("SetupForm: dialog closed");
     if (!result) LoadLanguage(PrgSetup->Language());
     if (result && (SetupForm->LanguageEditorMode > 0)) OpenLanguageEditor(AOwner, SetupForm->LanguageEditorMode);
-    delete SetupForm;
+    { TTraceScope T("SetupForm: delete form"); delete SetupForm; }
     SetupForm = nullptr;
     if (DFendReloadedMainForm != nullptr) DFendReloadedMainForm->setEnabled(true);
     return result;

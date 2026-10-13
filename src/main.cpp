@@ -7,6 +7,8 @@
 #include <QFont>
 #include <QIcon>
 #include <QStyleFactory>
+#include <QTimer>
+#include <QElapsedTimer>
 
 #include "PrgConsts.h"
 #include "PrgSetupUnit.h"
@@ -75,6 +77,17 @@ int main(int argc, char *argv[])
         if (MainForm->FormCreateAborted()) {
             Result = 0;
         } else {
+            if (TraceEnabled()) {
+                // Reports when the event loop was blocked ("Not responding")
+                auto *Watchdog = new QTimer(MainForm);
+                auto *Clock = new QElapsedTimer();
+                Clock->start();
+                QObject::connect(Watchdog, &QTimer::timeout, [Clock]() {
+                    qint64 D = Clock->restart();
+                    if (D > 400) Trace(QString("EVENT LOOP BLOCKED for about %1 ms").arg(D - 100));
+                });
+                Watchdog->start(100);
+            }
             MainForm->show();
             Result = App.exec();
         }
