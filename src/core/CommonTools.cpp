@@ -713,6 +713,10 @@ QString CheckDOSBoxVersionDirect(int Nr, const QString& Path)
 {
     QString DOSBoxPath;
     if (Trim(Path).isEmpty()) DOSBoxPath = PrgSetup->DOSBoxSettings(Nr)->DosBoxDir(); else DOSBoxPath = Path;
+    // No DOSBox folder -> no version. (The Delphi code went on and searched
+    // the root of the current drive for readme files here; that is slow if
+    // the drive has to wake up and can never find a DOSBox version.)
+    if (Trim(DOSBoxPath).isEmpty()) return QString();
     DOSBoxPath = IncludeTrailingPathDelimiter(MakeAbsPath(DOSBoxPath, PrgSetup->BaseDir()));
 
     if (!DirectoryExists(DOSBoxPath)) return QString();

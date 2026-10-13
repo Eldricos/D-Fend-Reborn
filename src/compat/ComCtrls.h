@@ -94,6 +94,7 @@ public:
 
 private:
     TListView *FOwner;
+    int FResetDepth = 0;
     QString FCaption;
     TSubItems FSubItems;
     int FImageIndex = -1;
@@ -325,15 +326,20 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
-    void reset() { beginResetModel(); endResetModel(); }
+    // Model resets may nest (e.g. Items.BeginUpdate followed by a view style
+    // change); only the outermost begin/end pair is passed to Qt.
+    void reset() { if (FResetDepth == 0) { beginResetModel(); endResetModel(); } }
     void rowChanged(int Row);
     void headersChanged() { emit headerDataChanged(Qt::Horizontal, 0, qMax(0, columnCount() - 1)); }
-    void beginReset() { beginResetModel(); }
-    void endReset() { endResetModel(); }
-    void insertRowNotify(int Row) { beginInsertRows(QModelIndex(), Row, Row); }
-    void insertRowDone() { endInsertRows(); }
-    void removeRowNotify(int Row) { beginRemoveRows(QModelIndex(), Row, Row); }
-    void removeRowDone() { endRemoveRows(); }
+    void beginReset() { if (FResetDepth++ == 0) beginResetModel(); }
+    void endReset() { if (FResetDepth > 0 && --FResetDepth == 0) endResetModel(); }
+    bool resetting() const { return FResetDepth > 0; }
+    // Row notifications are not needed (and not allowed) inside a reset.
+    void insertRowNotify(int Row) { if (!resetting()) beginInsertRows(QModelIndex(), Row, Row); }
+    void insertRowDone() { if (!resetting()) endInsertRows(); }
+    void removeRowNotify(int Row) { if (!resetting()) beginRemoveRows(QModelIndex(), Row, Row); }
+    void removeRowDone() { if (!resetting()) endRemoveRows(); }
 private:
     TListView *FOwner;
+    int FResetDepth = 0;
 };
