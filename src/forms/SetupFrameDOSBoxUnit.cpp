@@ -1,5 +1,6 @@
 // C++ port of SetupFrameDOSBoxUnit.pas (implementation section).
 #include "SetupFrameDOSBoxUnit.h"
+#include "LoggingUnit.h"
 
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
@@ -176,7 +177,8 @@ void TSetupFrameDOSBox::SaveSetup()
     int I;
 
     ui.DOSBoxInstallationComboBox->setCurrentIndex(-1);
-    DOSBoxInstallationComboBoxChange(this);
+    { TTraceScope T("SetupFrameDOSBox: store current installation", 20); DOSBoxInstallationComboBoxChange(this); }
+    TTraceScope T("SetupFrameDOSBox: copy settings", 20);
     while (PrgSetup->DOSBoxSettingsCount() > DOSBoxData.count()) PrgSetup->DeleteDOSBoxSettings(PrgSetup->DOSBoxSettingsCount() - 1);
     while (PrgSetup->DOSBoxSettingsCount() < DOSBoxData.count()) PrgSetup->AddDOSBoxSettings("");
     DOSBoxData[0].DosBoxLanguage = *PDOSBoxLang;
@@ -214,10 +216,14 @@ void TSetupFrameDOSBox::DosBoxDirEditChange(QObject* Sender)
     Q_UNUSED(Sender);
     if ((*PDosBoxDir != ui.DosBoxDirEdit->text()) && (ui.DOSBoxInstallationComboBox->currentIndex() == 0)) {
         *PDosBoxDir = ui.DosBoxDirEdit->text();
+        TTraceScope T("SetupFrameDOSBox: DosBoxDirChange", 20);
         DosBoxDirChange();
     }
 
-    ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())));
+    {
+        TTraceScope T("SetupFrameDOSBox: CheckDOSBoxVersion(" + ui.DosBoxDirEdit->text() + ")", 20);
+        ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())));
+    }
     QRect G = ui.DosBoxDirEdit->geometry();
     QRect WB = ui.WarningButton->geometry();
     int W = (ui.WarningButton->isVisibleTo(this) ? WB.x() - 4 : WB.x() + WB.width()) - G.x();
