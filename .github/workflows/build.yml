@@ -1,0 +1,72 @@
+# Build check: compiles D-Fend Reborn on Linux (GCC, distribution Qt) and on
+# Windows (MSVC, official Qt) for every push and pull request.
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    name: Linux (GCC, Qt 6.4)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt and build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            cmake ninja-build g++ \
+            qt6-base-dev qt6-multimedia-dev libqt6dbus6 libgl-dev
+
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Check data files
+        run: |
+          test -x build/DFend
+          test -f build/Lang/English.ini
+          test -f build/Help/English/Index.html
+          # the Linux build must not contain the Windows helper programs
+          if ls build/Bin/*.exe build/Bin/*.dll 2>/dev/null; then echo "Windows programs in Linux build"; exit 1; fi
+
+  windows:
+    name: Windows (MSVC, Qt 6.8)
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          arch: win64_msvc2022_64
+          modules: qtmultimedia
+          cache: true
+
+      - name: Set up MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Check data files
+        shell: bash
+        run: |
+          test -f build/DFend.exe
+          test -f build/Lang/English.ini
+          test -f build/Help/English/Index.html
+          test -f build/Bin/7za.exe
