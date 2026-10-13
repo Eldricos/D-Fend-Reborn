@@ -1200,6 +1200,12 @@ class Converter:
         p = o.props
         ui = self.ui
         self.used_custom.add('TSplitterWidget')
+        # TSplitter defaults (not stored in the DFM): Width = 3, Align = alLeft;
+        # alTop/alBottom splitters store Height but default Width is unused
+        if 'Width' not in p and p.get('Align', Ident('alLeft')) in (Ident('alLeft'), Ident('alRight')):
+            p['Width'] = 3
+        if 'Height' not in p and p.get('Align') in (Ident('alTop'), Ident('alBottom')):
+            p['Height'] = 3
         ui.open(f'<widget class="TSplitterWidget" name="{o.name}">')
         self.common_props(o, 'TSplitterWidget', offset=offset)
         if 'Align' not in p:

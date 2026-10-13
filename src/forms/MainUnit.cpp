@@ -841,7 +841,7 @@ void TDFendReloadedMainForm::FormCreate(QObject *Sender)
 
     if (PrgSetup->FirstRun()) {
         LogInfo("First run: Searching DOSBox");
-        if (SearchDosBox(this, S)) PrgSetup->DOSBoxSettings(0)->SetDosBoxDir(S);
+        if (SearchDosBox(this, S, !PrgSetup->DOSBoxFullSearchDone())) PrgSetup->DOSBoxSettings(0)->SetDosBoxDir(S);
         LogInfo("First run: Initializating templates");
         ReBuildTemplates(true);
         LogInfo("First run: Showing first run wizard");
@@ -894,7 +894,9 @@ void TDFendReloadedMainForm::FormShow(QObject *Sender)
 
     LogInfo("Loading links and quick searching DOSBox");
     S = PrgSetup->DOSBoxSettings(0)->DosBoxDir();
-    if (SearchDosBox(this, S)) PrgSetup->DOSBoxSettings(0)->SetDosBoxDir(S);
+    // (the full search of all drives is only done once - it can be started
+    // again from the program options)
+    if (SearchDosBox(this, S, !PrgSetup->DOSBoxFullSearchDone())) PrgSetup->DOSBoxSettings(0)->SetDosBoxDir(S);
     LogInfo("DOSBox folder: " + PrgSetup->DOSBoxSettings(0)->DosBoxDir());
     LoadHelpLinks();
     LoadAbandonLinks();

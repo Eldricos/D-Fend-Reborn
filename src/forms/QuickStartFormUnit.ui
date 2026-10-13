@@ -66,7 +66,7 @@
       <property name="frameShadow"><enum>QFrame::Plain</enum></property>
       <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
       <widget class="TSplitterWidget" name="Splitter">
-        <property name="geometry"><rect><x>185</x><y>0</y><width>0</width><height>429</height></rect></property>
+        <property name="geometry"><rect><x>185</x><y>0</y><width>3</width><height>429</height></rect></property>
         <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
       </widget>
       <widget class="QFrame" name="LeftPanel">

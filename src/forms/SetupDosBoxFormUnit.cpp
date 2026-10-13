@@ -155,7 +155,7 @@ void TSetupDosBoxForm::AbortButtonClick(QObject* Sender)
 
 /* global */
 
-bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir)
+bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir, bool AllowFullSearch)
 {
     QString S;
     TStringList St;
@@ -210,6 +210,9 @@ bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir)
         if (FI.isFile() && FI.isExecutable()) { ADOSBoxDir = St[I]; return true; }
     }
 #endif
+
+    if (!AllowFullSearch) return false;
+    PrgSetup->SetDOSBoxFullSearchDone(true);
 
     SetupDosBoxForm = new TSetupDosBoxForm(AOwner);
     SetupDosBoxForm->SearchType = stDOSBox;

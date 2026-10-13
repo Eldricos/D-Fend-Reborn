@@ -13,7 +13,7 @@
       <property name="vclDesignWidth" stdset="0"><number>774</number></property>
       <property name="vclDesignHeight" stdset="0"><number>1018</number></property>
       <widget class="TSplitterWidget" name="Splitter">
-        <property name="geometry"><rect><x>169</x><y>24</y><width>0</width><height>872</height></rect></property>
+        <property name="geometry"><rect><x>169</x><y>24</y><width>3</width><height>872</height></rect></property>
         <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
       </widget>
       <widget class="QTreeWidget" name="TreeView">

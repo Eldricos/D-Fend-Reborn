@@ -419,6 +419,9 @@ public:
     void SetDataReaderDownloadCompleteMediaLibrary(bool Value) { SetBoolean(89, Value); }
     bool OfferRunAsAdmin() { return GetBoolean(90); }
     void SetOfferRunAsAdmin(bool Value) { SetBoolean(90, Value); }
+    // D-Fend Reborn: the full disk search for DOSBox at startup is only done once
+    bool DOSBoxFullSearchDone() { return GetBoolean(92); }
+    void SetDOSBoxFullSearchDone(bool Value) { SetBoolean(92, Value); }
     int MainLeft() { return GetInteger(0); }
     void SetMainLeft(int Value) { SetInteger(0, Value); }
     int MainTop() { return GetInteger(1); }
