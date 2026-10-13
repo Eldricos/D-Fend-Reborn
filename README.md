@@ -71,6 +71,17 @@ systems: the help buttons and menu items open the matching page in the
 default web browser. (The original program compiled these pages into `.chm`
 files.) The language files name their help folder (`HelpFile=English`).
 
+The package manager installs data packages (several games in one archive)
+by itself on all systems: `.7z` / `.zip` archives with the data folder layout
+(`Confs`, `VirtualHD`, `Capture`, `IconLibrary`, ...) are extracted with 7-Zip
+and copied into the data folder; files that already exist (profiles, saved
+games) are kept. The original packages are NSIS installers; on Linux they
+are extracted the same way (needs `7z` from the `7zip` / `p7zip-full`
+package), on Windows they are still run. `tools/PackageServer/ConvertExePackages.py`
+converts the installers of a package list into `.7z` packages; the
+"Data packages" workflow (Actions tab, started by hand) runs it and publishes
+the packages and the updated package list as the `data-packages` release.
+
 Every push and pull request is built on Linux and Windows by GitHub Actions
 (`.github/workflows/build.yml`).
 

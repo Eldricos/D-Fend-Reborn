@@ -1,0 +1,41 @@
+# Converts the data packages of the original package list (NSIS installers)
+# into .7z data packages and publishes them, together with the updated
+# package list, as assets of the "data-packages" release.
+# Started by hand: Actions > Data packages > Run workflow.
+name: Data packages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install 7-Zip
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends 7zip
+
+      - name: Convert packages
+        run: |
+          python3 tools/PackageServer/ConvertExePackages.py \
+            tools/PackageServer/DFRFreewareShareware.xml out \
+            --cache cache \
+            --url-base "https://github.com/${{ github.repository }}/releases/download/data-packages/"
+
+      - name: Publish release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # (a pre-release, so the update check, which asks for the latest
+          # release, does not see it)
+          gh release view data-packages > /dev/null 2>&1 || \
+            gh release create data-packages --prerelease --latest=false \
+              --title "Data packages" \
+              --notes "Game packages for the package manager (File > Import > Download packages). Created by the Data packages workflow."
+          gh release upload data-packages out/*.7z out/DFRFreewareShareware.xml --clobber

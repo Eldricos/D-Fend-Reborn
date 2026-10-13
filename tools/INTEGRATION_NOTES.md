@@ -20,10 +20,12 @@ for a device file it is opened via udisks2 (Block.OpenDevice, older udisks:
 OpenForBackup/OpenForRestore), inserted but unmounted discs/floppies are
 mounted via udisks2 (Filesystem.Mount)), HTML help (data/Help) on all
 systems with context id -> page mapping (HelpTools.cpp), GitHub Actions build
-checks (Linux + Windows), resample filters for image scaling (ImageStretch.cpp).
+checks (Linux + Windows), resample filters for image scaling (ImageStretch.cpp), data packages of the
+package manager as .7z archives installed on all systems (DataPackageUnit;
+conversion: tools/PackageServer/ConvertExePackages.py and the "Data packages"
+workflow).
 
 Still open:
-- Platform gaps marked with `TODO(port)` in the sources (Windows installer packages in the
-  package manager, recursive folder watching in the quick start window,
+- Platform gaps marked with `TODO(port)` in the sources (recursive folder watching in the quick start window,
   search animation, color box names).
   Notes that only explain a deliberate difference are marked `Port note:`.

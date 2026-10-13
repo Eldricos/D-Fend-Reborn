@@ -20,6 +20,7 @@
 #include "ProviderFormUnit.h"
 #include "HashCalc.h"
 #include "Process.h"
+#include "DataPackageUnit.h"
 
 TPackageManagerForm *PackageManagerForm = nullptr;
 
@@ -747,8 +748,7 @@ void TPackageManagerForm::ExePackagesButtonClick(QObject * /*Sender*/)
     void *O = ListBoxObject(ui.ExePackagesListBox, ItemIndex);
     if (IsCachedPackage(PackageDBCache, O)) {
         CachedPackage = static_cast<TCachedPackage *>(O);
-        ShellOpen(CachedPackage->Filename(), "/D=" + PrgDir());
-        Close();
+        InstallExePackage(CachedPackage->Filename());
         return;
     }
 
@@ -773,15 +773,31 @@ void TPackageManagerForm::ExePackagesButtonClick(QObject * /*Sender*/)
             } else {
                 if (MessageDlg(LanguageSetup->PackageManagerDownloadFailedUseOldVersion(), mtConfirmation, mbYes | mbNo, 0) != mrYes) return;
                 CachedPackage = PackageDBCache->FindPackage(DownloadExeData->Name()); if (CachedPackage == nullptr) return;
-                ShellOpen(CachedPackage->Filename(), "/D=" + PrgDir());
-                Close();
+                InstallExePackage(CachedPackage->Filename());
                 return;
             }
         }
     }
 
-    // TODO(port): the packages are Windows installers (NSIS, "/D=" = destination folder)
-    ShellOpen(PackageDBCache->DBDir() + FileName, "/D=" + PrgDir());
+    InstallExePackage(PackageDBCache->DBDir() + FileName);
+}
+
+// Port note: the original program ran the downloaded package, an NSIS
+// installer, with the program folder as destination ("/D="). Data packages
+// in archive files (.7z / .zip) are extracted into the data folder by
+// D-Fend Reborn itself on all systems (DataPackageUnit); the original NSIS
+// installers are still run on Windows and extracted by 7-Zip on other
+// systems.
+void TPackageManagerForm::InstallExePackage(const QString &FileName)
+{
+    if (IsInstallableDataPackage(FileName)) {
+        setEnabled(false);
+        const int Count = InstallDataPackage(this, FileName, GameDB);
+        setEnabled(true);
+        if (Count >= 0) Close();
+        return;
+    }
+    ShellOpen(FileName, "/D=" + PrgDir());
     Close();
 }
 
