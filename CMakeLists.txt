@@ -36,6 +36,17 @@ target_link_libraries(DFendReborn PRIVATE
 target_precompile_headers(DFendReborn PRIVATE
     <QtWidgets> <QtXml> <QtNetwork> <functional>)
 
+# Linux/BSD desktops: D-Bus is used to inhibit the screensaver while games
+# run and to set the KDE Plasma wallpaper (optional - without Qt D-Bus these
+# features are left out)
+if(UNIX AND NOT APPLE)
+    find_package(Qt6 QUIET COMPONENTS DBus)
+    if(Qt6DBus_FOUND)
+        target_link_libraries(DFendReborn PRIVATE Qt6::DBus)
+        target_compile_definitions(DFendReborn PRIVATE DFR_HAVE_DBUS)
+    endif()
+endif()
+
 if(WIN32)
     target_link_libraries(DFendReborn PRIVATE shell32 ole32 oleaut32 user32 advapi32 winmm uuid)
     target_compile_definitions(DFendReborn PRIVATE UNICODE _UNICODE NOMINMAX WIN32_LEAN_AND_MEAN)

@@ -441,7 +441,7 @@ static QString CurlProgram()
 #else
     QString P = QStandardPaths::findExecutable("curl");
 #endif
-    return P.isEmpty() ? QString("curl") : P;
+    return P;   // empty if curl is not installed
 }
 
 static QString FTPURL(const QString &Host, int Port, const QString &Path)
@@ -489,6 +489,11 @@ void THTTPThread::RedirectEvent(QObject * /*Sender*/, QString &dest, int & /*Num
 
     if (ExtUpperCase(Copy(dest, 1, 6)) != QString("FTP:/") + "/") return;
 
+    if (CurlProgram().isEmpty()) {
+        // FTP transfers need curl (Linux: install the "curl" package)
+        MessageDlg(Format(LanguageSetup->MessageFileNotFound(), {QString("curl")}), mtError, mbOK, 0);
+        return;
+    }
     auto *FTPMarker = new QNetworkAccessManager();
     FTP = FTPMarker;
     if (DownloadWaitForm != nullptr) DownloadWaitForm->FTP = FTP;

@@ -29,6 +29,8 @@
 #include "FullscreenInfoFormUnit.h"
 #include "DOSBoxCountUnit.h"
 #include "DOSBoxShortNameUnit.h"
+#include "DosCodePage.h"
+#include <QRegularExpression>
 #include "RunPrgManagerUnit.h"
 #include "SelectCDDriveToMountFormUnit.h"
 #include "SelectCDDriveToMountByDataFormUnit.h"
@@ -1508,15 +1510,55 @@ static void FindAlternativeDOSBoxFile(QString& PrgFile)
 }
 #endif
 
+#ifndef Q_OS_WIN
+// Linux/macOS: writes a DOSBox conf file. Host file names are UTF-8, so the
+// settings and the mount / imgmount / boot commands (host paths) are written
+// in UTF-8; the other autoexec lines (echo texts etc.) are shown by DOS and
+// are written in the DOS code page of the "keyb" command (437 or 850).
+static bool WriteDOSBoxConfFile(TStringList* St, const QString& FileName)
+{
+    static const QRegularExpression KeybRx(QStringLiteral("^\\s*@?keyb\\s+\\S+\\s+(\\d+)"), QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression HostPathRx(QStringLiteral("^\\s*@?(mount|imgmount|boot)\\b"), QRegularExpression::CaseInsensitiveOption);
+    int CodePage = 437;
+    bool InAutoexec = false;
+    for (int I = 0; I < St->Count(); I++) {
+        const QString L = Trim((*St)[I]);
+        if (L.startsWith('[')) InAutoexec = (L.compare(QStringLiteral("[autoexec]"), Qt::CaseInsensitive) == 0);
+        else if (InAutoexec) {
+            const QRegularExpressionMatch M = KeybRx.match(L);
+            if (M.hasMatch() && DosCodePageSupported(M.captured(1).toInt())) CodePage = M.captured(1).toInt();
+        }
+    }
+    QByteArray Data;
+    InAutoexec = false;
+    for (int I = 0; I < St->Count(); I++) {
+        const QString& L = (*St)[I];
+        const QString T = Trim(L);
+        if (T.startsWith('[')) InAutoexec = (T.compare(QStringLiteral("[autoexec]"), Qt::CaseInsensitive) == 0);
+        if (InAutoexec && !T.startsWith('[') && !HostPathRx.match(L).hasMatch()) Data += EncodeDosCodePage(L, CodePage);
+        else Data += L.toUtf8();
+        Data += '\n';
+    }
+    QFile F(FileName);
+    if (!F.open(QIODevice::WriteOnly | QIODevice::Truncate)) return false;
+    return F.write(Data) == Data.size();
+}
+#endif
+
 QString GetDOSBoxCommandLine(int DOSBoxNr, const QString& ConfFile, int ShowConsole, const QString& DosBoxCommandLine)
 {
     QString Add;
     Add = "";
+#ifdef Q_OS_WIN
+    // (-NOCONSOLE: DOSBox only has a console window on Windows)
     switch (ShowConsole) {
         case 0: Add = " -NOCONSOLE"; break;
         case 2: break; // {always show console}
         default: /* {1 :} */ if (PrgSetup->DOSBoxSettings(Max(0, DOSBoxNr))->HideDosBoxConsole()) Add = " -NOCONSOLE"; break;
     }
+#else
+    Q_UNUSED(ShowConsole);
+#endif
     // (the Delphi code uses DOSBoxSettings[DOSBoxNr] for the value - Max(0,...) avoids an invalid index)
     if (!Trim(PrgSetup->DOSBoxSettings(Max(0, DOSBoxNr))->CommandLineParameters()).isEmpty()) Add = Add + " " + Trim(PrgSetup->DOSBoxSettings(Max(0, DOSBoxNr))->CommandLineParameters());
     if (!DosBoxCommandLine.isEmpty()) Add = Add + " " + DosBoxCommandLine;
@@ -1581,8 +1623,11 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
 
     S = Trim(ExtUpperCase(PrgSetup->DOSBoxSettings(DOSBoxNr)->SDLVideodriver()));
     Env = "";
+#ifdef Q_OS_WIN
+    // (the SDL video drivers "windib" / "directx" only exist on Windows)
     if (S == "WINDIB") Env = "windib";
     if (S == "DIRECTX") Env = "directx";
+#endif
     if (!Env.isEmpty()) {
         SpeedTestInfo("Setting up environment variables for DOSBox");
         Env = "SDL_VIDEODRIVER=" + Env;
@@ -1592,7 +1637,14 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
     SpeedTestInfo("Starting DOSBox");
     SpeedTestInfoOnly("Command: \"" + PrgFile + "\" " + Params);
 
-    result = StartProcessNative(PrgFile, Params, ExtractFilePath(PrgFile), Env);
+    QStringList EnvList;
+    if (!Env.isEmpty()) EnvList << Env;
+#ifndef Q_OS_WIN
+    // Linux/macOS: windows of other programs can not be moved (Wayland), so
+    // DOSBox is asked to center its window itself (SDL 1.2 based builds)
+    if (PrgSetup->DOSBoxSettings(DOSBoxNr)->CenterDOSBoxWindow() && (!FullScreen)) EnvList << "SDL_VIDEO_CENTERED=1" << "SDL_VIDEO_WINDOW_POS=center";
+#endif
+    result = StartProcessNative(PrgFile, Params, ExtractFilePath(PrgFile), EnvList);
     if (result == 0) {
         ApplicationRestore();
         MessageDlg(Format(LanguageSetup->MessageCouldNotStartProgram(), {PrgFile}), mtError, mbOK, 0);
@@ -1604,7 +1656,11 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
 
     // {ShellExecute(Application.MainForm.Handle,'open',PChar(IncludeTrailingPathDelimiter(PrgSetup.DosBoxDir)+DosBoxFileName),PChar('-CONF "'+ConfFile+'"'+Add),PChar(IncludeTrailingPathDelimiter((ExtractFilePath(ConfFile)))),SW_SHOW);}
 
+#ifdef Q_OS_WIN
     if (PrgSetup->DOSBoxSettings(DOSBoxNr)->CenterDOSBoxWindow() && (!FullScreen)) {
+#else
+    if (false) {   // (centered via SDL environment variables, see above)
+#endif
         SpeedTestInfo("Center DOSBox window");
         Sleep(1000); Waited = true;
         CenterWindowFromProcessID(result);
@@ -1662,7 +1718,12 @@ static THandle RunGameInt(TGame* Game, bool RunSetup, const QString& DosBoxComma
 
     SpeedTestInfo("Storing conf file");
     SpeedTestInfoOnly("Conf filename:" + TempDir() + DosBoxConfFileName);
-    if (!St->SaveToFile(TempDir() + DosBoxConfFileName)) {
+#ifdef Q_OS_WIN
+    const bool Saved = St->SaveToFile(TempDir() + DosBoxConfFileName);
+#else
+    const bool Saved = WriteDOSBoxConfFile(St, TempDir() + DosBoxConfFileName);
+#endif
+    if (!Saved) {
         ApplicationRestore();
         MessageDlg(Format(LanguageSetup->MessageCouldNotSaveFile(), {TempDir() + DosBoxConfFileName}), mtError, mbOK, 0);
         return result;

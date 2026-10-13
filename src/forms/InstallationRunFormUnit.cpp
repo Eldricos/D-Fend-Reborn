@@ -1,5 +1,6 @@
 // C++ port of InstallationRunFormUnit.pas (implementation section).
 #include "InstallationRunFormUnit.h"
+#include "DosCodePage.h"
 
 #include "CommonTools.h"
 #include "LanguageSetupUnit.h"
@@ -348,8 +349,13 @@ static void SplitText(TStringList* St, const QString& Lines)
     QString S;
 
     // CharToOEM(PChar(Lines),PChar(S));
-    // TODO(port): no conversion to the OEM code page - the text is passed unchanged
+#ifdef Q_OS_WIN
+    S = CharToOemAnsi(Lines);
+#else
+    // (Linux/macOS: the DOSBox conf writer converts the autoexec lines to the
+    // DOS code page, see WriteDOSBoxConfFile)
     S = Lines;
+#endif
 
     while (Length(S) > 75) {
         I = 75;

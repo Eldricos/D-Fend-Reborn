@@ -301,10 +301,15 @@ static THandle RunScummVM(const QString& INIFile, const QString& GameName, const
 #endif
     }
 
+    QStringList EnvList;
+#ifndef Q_OS_WIN
+    // Linux/macOS: ScummVM is asked to center its window itself (see RunDOSBox)
+    if (PrgSetup->CenterScummVMWindow() && (!FullScreen)) EnvList << "SDL_VIDEO_CENTERED=1" << "SDL_VIDEO_WINDOW_POS=center";
+#endif
     if (!ScreenshotDir.isEmpty()) {
-        result = StartProcessNative(PrgFile, Params, ScreenshotDir);
+        result = StartProcessNative(PrgFile, Params, ScreenshotDir, EnvList);
     } else {
-        result = StartProcessNative(PrgFile, Params, ExtractFilePath(PrgFile));
+        result = StartProcessNative(PrgFile, Params, ExtractFilePath(PrgFile), EnvList);
         if (result == 0) {
             ApplicationRestore();
             MessageDlg(Format(LanguageSetup->MessageCouldNotStartProgram(), {PrgFile}), mtError, mbOK, 0);
@@ -312,7 +317,11 @@ static THandle RunScummVM(const QString& INIFile, const QString& GameName, const
         }
     }
 
+#ifdef Q_OS_WIN
     if (PrgSetup->CenterScummVMWindow() && (!FullScreen)) {
+#else
+    if (false) {   // (centered via SDL environment variables, see above)
+#endif
         Sleep(1000); Waited = true;
         CenterWindowFromProcessID(result);
     } else {
@@ -324,7 +333,11 @@ static THandle RunScummVM(const QString& INIFile, const QString& GameName, const
         // {MinimizedAtScummVMStart:=True; -> RunScummVMGame}
     }
 
+#ifdef Q_OS_WIN
     if (PrgSetup->HideScummVMConsole()) {
+#else
+    if (false) {   // (no console window on Linux/macOS)
+#endif
         if (!Waited) Sleep(1000);
         HideWindowFromProcessIDAndTitle(result, "\\scummvm.exe");
     }
@@ -350,7 +363,12 @@ void RunScummVMGame(TGame* Game)
 
     St = BuildScummVMIniFile(Game, true);
     do {
-        if (!St->SaveToFile(TempDir() + ScummVMConfFileName)) {
+#ifdef Q_OS_WIN
+        const bool Saved = St->SaveToFile(TempDir() + ScummVMConfFileName);
+#else
+        const bool Saved = St->SaveToFileUtf8(TempDir() + ScummVMConfFileName, false);   // (UTF-8 paths, see RunDOSBox)
+#endif
+        if (!Saved) {
             ApplicationRestore();
             MessageDlg(Format(LanguageSetup->MessageCouldNotSaveFile(), {TempDir() + ScummVMConfFileName}), mtError, mbOK, 0);
             break;

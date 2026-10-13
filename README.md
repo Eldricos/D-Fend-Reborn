@@ -48,7 +48,8 @@ so a build can be run directly:
 On Linux the program uses these system programs (install them with the
 package manager): `dosbox` (or `dosbox-staging`'s `dosbox`), `7z`/`7za`/`7zz`
 (p7zip or 7zip, for zip/7z archives), `mkfs.fat` (dosfstools, for creating
-disk images), `oggenc` (vorbis-tools) and optionally `lame` and `scummvm`.
+disk images), `oggenc` (vorbis-tools), `curl` (FTP downloads in the package
+manager) and optionally `lame` and `scummvm`.
 
 Without a `DFend.dat` file in the program folder D-Fend Reborn keeps all
 data next to the program. With `USERDIRMODE` in `DFend.dat` the user data
