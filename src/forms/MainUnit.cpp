@@ -3676,7 +3676,12 @@ void TDFendReloadedMainForm::RunDOSBoxWithDefaultConfFile()
 #ifdef Q_OS_WIN
     S = IncludeTrailingPathDelimiter(GetSpecialFolder(winId(), CSIDL_LOCAL_APPDATA)) + "DOSBox\\dosbox-" + VerString + ".conf";
 #else
+    // DOSBox 0.74: ~/.dosbox, newer versions (and forks): ~/.config/dosbox
     S = IncludeTrailingPathDelimiter(QDir::homePath()) + ".dosbox/dosbox-" + VerString + ".conf";
+    if (!FileExists(S)) {
+        QString T = IncludeTrailingPathDelimiter(GetSpecialFolder(winId(), CSIDL_APPDATA)) + "dosbox/dosbox-" + VerString + ".conf";
+        if (FileExists(T)) S = T;
+    }
 #endif
 
     if (!FileExists(S) || D <= 0.72) {
@@ -3715,7 +3720,12 @@ void TDFendReloadedMainForm::OpenDOSBoxDefaultConfFile()
 #ifdef Q_OS_WIN
     S = IncludeTrailingPathDelimiter(GetSpecialFolder(winId(), CSIDL_LOCAL_APPDATA)) + "DOSBox\\dosbox-" + VerString + ".conf";
 #else
+    // DOSBox 0.74: ~/.dosbox, newer versions (and forks): ~/.config/dosbox
     S = IncludeTrailingPathDelimiter(QDir::homePath()) + ".dosbox/dosbox-" + VerString + ".conf";
+    if (!FileExists(S)) {
+        QString T = IncludeTrailingPathDelimiter(GetSpecialFolder(winId(), CSIDL_APPDATA)) + "dosbox/dosbox-" + VerString + ".conf";
+        if (FileExists(T)) S = T;
+    }
 #endif
     if (FileExists(S)) { OpenFileInEditor(S); return; }
     if (FileExists(ConfFile))

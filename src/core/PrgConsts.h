@@ -30,7 +30,12 @@ inline const QString DosBoxFileName = QStringLiteral("DOSBOX.EXE");
 inline const QString DosBoxFileName = QStringLiteral("dosbox");
 #endif
 inline const QString DosBoxConfFileName = QStringLiteral("DOSBOX.CONF");
+#ifdef Q_OS_WIN
 inline const QString MakeDOSFilesystemFileName = QStringLiteral("mkdosfs.exe");
+#else
+// Linux/macOS: mkfs.fat from dosfstools (also installed as mkdosfs)
+inline const QString MakeDOSFilesystemFileName = QStringLiteral("mkfs.fat");
+#endif
 inline const QString ConfOptFile = QStringLiteral("ConfOpt.dat");
 inline const QString ScummVMConfOptFile = QStringLiteral("ScummVM.dat");
 inline const QString HistoryFileName = QStringLiteral("History.dat");
@@ -54,9 +59,16 @@ inline const QString SettingsFolder = QStringLiteral("Settings");
 inline const QString IconSetsFolder = QStringLiteral("IconSets");
 inline const QString NSIInstallerHelpFile = QStringLiteral("D-Fend Reloaded DataInstaller.nsi");
 inline const QString DFRHomepage = QStringLiteral("http:/") + QStringLiteral("/dfendreloaded.sourceforge.net/");
+#ifdef Q_OS_WIN
 inline const QString OggEncPrgFile = QStringLiteral("oggenc2.exe");
 inline const QString LamePrgFile = QStringLiteral("lame.exe");
 inline const QString ScummPrgFile = QStringLiteral("scummvm.exe");
+#else
+// Linux/macOS: the programs installed by the package manager
+inline const QString OggEncPrgFile = QStringLiteral("oggenc");
+inline const QString LamePrgFile = QStringLiteral("lame");
+inline const QString ScummPrgFile = QStringLiteral("scummvm");
+#endif
 inline const QString ScummVMConfFileName = QStringLiteral("scummvm.ini");
 inline const QString QBasicPrgFile = QStringLiteral("QBasic.exe");
 inline const QString QB45PrgFile = QStringLiteral("QB.exe");

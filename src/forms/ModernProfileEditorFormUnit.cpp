@@ -67,8 +67,9 @@ TModernProfileEditorForm::TModernProfileEditorForm(QWidget *AOwner) : TVclForm(A
     VclLayout::setupForm(this);
 
     // Non visual DFM components
-    ImageList = new TImageList(16, 16);
-    ToolsImageList = new TImageList(16, 16);
+    // (images from the DFM; the icon set replaces some of them in FormShow)
+    ImageList = TImageList::FromResource("ModernProfileEditorFormUnit", "ImageList");
+    ToolsImageList = TImageList::FromResource("ModernProfileEditorFormUnit", "ToolsImageList");
 
     // Frames are aligned alClient inside RightPanel (below TopPanel)
     ui.RightPanel->installEventFilter(this);

@@ -9,6 +9,8 @@
 #include <QLineEdit>
 #include <QToolButton>
 #include <QHBoxLayout>
+#include <QRegularExpressionValidator>
+#include <QComboBox>
 #include <QPainter>
 
 // ---------------------------------------------------------------------------
@@ -262,6 +264,36 @@ namespace {
 const int RolePickList = Qt::UserRole + 1;
 const int RolePickListReadOnly = Qt::UserRole + 2;
 const int RoleEllipsis = Qt::UserRole + 3;
+const int RoleReadOnly = Qt::UserRole + 4;
+const int RoleEditMask = Qt::UserRole + 5;
+
+// Delphi edit mask -> regular expression. The masks used by the program
+// ('90', '900', '9000', '90000') stand for "a number with up to N digits":
+// Delphi masks are positional and unfilled positions end up as trimmed
+// blanks, so shorter values are accepted (e.g. the default cycles step 10 in
+// a '90000' field). Each mask position therefore is optional; the value must
+// not be empty. 0/9 = digit, L/l = letter, A/a = letter or digit, C/c = any
+// character, # = digit or sign; other characters are literals. Only the mask
+// part before the first ';' is used.
+QRegularExpression EditMaskToRegex(const QString &Mask)
+{
+    QString M = Mask.section(';', 0, 0), R;
+    bool Literal = false;
+    for (QChar C : M) {
+        if (Literal) { R += QRegularExpression::escape(QString(C)) + "?"; Literal = false; continue; }
+        switch (C.unicode()) {
+            case '\\': Literal = true; break;
+            case '0': case '9': R += "[0-9]?"; break;
+            case 'L': case 'l': R += "[A-Za-z]?"; break;
+            case 'A': case 'a': R += "[A-Za-z0-9]?"; break;
+            case 'C': case 'c': R += ".?"; break;
+            case '#': R += "[0-9+\\- ]?"; break;
+            case '>': case '<': case '!': break;   // case conversion / alignment
+            default: R += QRegularExpression::escape(QString(C)) + "?"; break;
+        }
+    }
+    return QRegularExpression("^(?=.)" + R + "$");
+}
 }
 
 class ValueListDelegate : public QStyledItemDelegate
@@ -271,10 +303,13 @@ public:
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {
         QStringList Pick = index.data(RolePickList).toStringList();
+        const bool ReadOnly = index.data(RoleReadOnly).toBool();
+        const QString Mask = index.data(RoleEditMask).toString();
         if (index.column() == 1 && !Pick.isEmpty()) {
             auto *C = new QComboBox(parent);
             C->addItems(Pick);
-            C->setEditable(!index.data(RolePickListReadOnly).toBool());
+            C->setEditable(!ReadOnly && !index.data(RolePickListReadOnly).toBool());
+            if (C->isEditable() && !Mask.isEmpty()) C->setValidator(new QRegularExpressionValidator(EditMaskToRegex(Mask), C));
             return C;
         }
         if (index.column() == 1 && index.data(RoleEllipsis).toBool()) {
@@ -284,6 +319,8 @@ public:
             L->setSpacing(0);
             auto *E = new QLineEdit(W);
             E->setObjectName("edit");
+            E->setReadOnly(ReadOnly);
+            if (!Mask.isEmpty()) E->setValidator(new QRegularExpressionValidator(EditMaskToRegex(Mask), E));
             auto *B = new QToolButton(W);
             B->setText("...");
             L->addWidget(E);
@@ -294,7 +331,10 @@ public:
             QObject::connect(B, &QToolButton::clicked, O, [O, Row]() { emit O->editButtonClicked(Row); });
             return W;
         }
-        return QStyledItemDelegate::createEditor(parent, option, index);
+        QWidget *Ed = QStyledItemDelegate::createEditor(parent, option, index);
+        if (index.column() == 1 && !Mask.isEmpty())
+            if (auto *E = qobject_cast<QLineEdit *>(Ed)) E->setValidator(new QRegularExpressionValidator(EditMaskToRegex(Mask), E));
+        return Ed;
     }
     void setEditorData(QWidget *editor, const QModelIndex &index) const override
     {
@@ -304,8 +344,12 @@ public:
     }
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override
     {
-        if (auto *C = qobject_cast<QComboBox *>(editor)) { model->setData(index, C->currentText()); return; }
-        if (auto *E = editor->findChild<QLineEdit *>("edit")) { model->setData(index, E->text()); return; }
+        // values not matching the edit mask are rejected (the old value stays)
+        const QString Mask = index.data(RoleEditMask).toString();
+        auto Accept = [&Mask](const QString &S) { return Mask.isEmpty() || EditMaskToRegex(Mask).match(S).hasMatch(); };
+        if (auto *C = qobject_cast<QComboBox *>(editor)) { if (Accept(C->currentText())) model->setData(index, C->currentText()); return; }
+        if (auto *E = editor->findChild<QLineEdit *>("edit")) { if (E->isReadOnly() || Accept(E->text())) model->setData(index, E->text()); return; }
+        if (auto *E = qobject_cast<QLineEdit *>(editor)) { if (Accept(E->text())) model->setData(index, E->text()); return; }
         QStyledItemDelegate::setModelData(editor, model, index);
     }
 private:
@@ -418,17 +462,59 @@ void TValueListEditorWidget::setKeyReadOnly(int Row, bool ReadOnly)
     else I->setBackground(QBrush());
 }
 
-void TValueListEditorWidget::setPickList(int Row, const QStringList &Items, bool ReadOnlyList)
+QTableWidgetItem *TValueListEditorWidget::valueItem(int Row)
 {
     if (!item(Row, 1)) setItem(Row, 1, new QTableWidgetItem());
-    item(Row, 1)->setData(RolePickList, Items);
-    item(Row, 1)->setData(RolePickListReadOnly, ReadOnlyList);
+    return item(Row, 1);
+}
+
+// A read only value cell can only be edited (= the editor opened) if it has a
+// pick list or an ellipsis button.
+void TValueListEditorWidget::updateValueFlags(int Row)
+{
+    QTableWidgetItem *I = valueItem(Row);
+    const bool Editor = !I->data(RoleReadOnly).toBool() || !I->data(RolePickList).toStringList().isEmpty() || I->data(RoleEllipsis).toBool();
+    I->setFlags(Editor ? (I->flags() | Qt::ItemIsEditable) : (I->flags() & ~Qt::ItemIsEditable));
+}
+
+void TValueListEditorWidget::setPickList(int Row, const QStringList &Items, bool ReadOnlyList)
+{
+    if (Row < 0 || Row >= rowCount()) return;
+    valueItem(Row)->setData(RolePickList, Items);
+    valueItem(Row)->setData(RolePickListReadOnly, ReadOnlyList);
+    updateValueFlags(Row);
+}
+
+QStringList TValueListEditorWidget::pickList(int Row) const
+{
+    QTableWidgetItem *I = item(Row, 1);
+    return I ? I->data(RolePickList).toStringList() : QStringList();
 }
 
 void TValueListEditorWidget::setEllipsis(int Row, bool On)
 {
-    if (!item(Row, 1)) setItem(Row, 1, new QTableWidgetItem());
-    item(Row, 1)->setData(RoleEllipsis, On);
+    if (Row < 0 || Row >= rowCount()) return;
+    valueItem(Row)->setData(RoleEllipsis, On);
+    updateValueFlags(Row);
+}
+
+void TValueListEditorWidget::setReadOnly(int Row, bool ReadOnly)
+{
+    if (Row < 0 || Row >= rowCount()) return;
+    valueItem(Row)->setData(RoleReadOnly, ReadOnly);
+    updateValueFlags(Row);
+}
+
+bool TValueListEditorWidget::isReadOnly(int Row) const
+{
+    QTableWidgetItem *I = item(Row, 1);
+    return I && I->data(RoleReadOnly).toBool();
+}
+
+void TValueListEditorWidget::setEditMask(int Row, const QString &Mask)
+{
+    if (Row < 0 || Row >= rowCount()) return;
+    valueItem(Row)->setData(RoleEditMask, Mask);
 }
 
 // ---------------------------------------------------------------------------

@@ -246,6 +246,11 @@ bool SearchOggEnc(QWidget* AOwner)
         return true;
     }
 
+#ifndef Q_OS_WIN
+    // oggenc (vorbis-tools) installed by the package manager
+    if (!FindHelperProgram(OggEncPrgFile).isEmpty()) { PrgSetup->SetWaveEncOgg(FindHelperProgram(OggEncPrgFile)); return true; }
+#endif
+
     SetupDosBoxForm = new TSetupDosBoxForm(AOwner);
     SetupDosBoxForm->SearchType = stOggEnc;
     result = (SetupDosBoxForm->ShowModal() != mrAbort);
@@ -269,6 +274,11 @@ bool SearchLame(QWidget* AOwner)
     S = PrgDir() + BinFolder + PathDelim;
     if (FileExists(S)) { PrgSetup->SetWaveEncMp3(S); return true; }
 
+#ifndef Q_OS_WIN
+    S = FindHelperProgram(LamePrgFile);
+    if (!S.isEmpty()) { PrgSetup->SetWaveEncMp3(S); return true; }
+#endif
+
     SetupDosBoxForm = new TSetupDosBoxForm(AOwner);
     SetupDosBoxForm->SearchType = stLame;
     result = (SetupDosBoxForm->ShowModal() != mrAbort);
@@ -288,6 +298,11 @@ bool SearchScummVM(QWidget* AOwner)
 
     S = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROGRAM_FILES_)) + "ScummVM" + PathDelim;
     if (FileExists(S + ScummPrgFile)) { PrgSetup->SetScummVMPath(S); return true; }
+
+#ifndef Q_OS_WIN
+    S = FindHelperProgram(ScummPrgFile);
+    if (!S.isEmpty()) { PrgSetup->SetScummVMPath(ExtractFilePath(S)); return true; }
+#endif
 
     SetupDosBoxForm = new TSetupDosBoxForm(AOwner);
     SetupDosBoxForm->SearchType = stScummVM;
@@ -323,6 +338,13 @@ bool SearchQBasicVM(QWidget* AOwner)
 void FastSearchAllTools()
 {
     QString S;
+
+#ifndef Q_OS_WIN
+    // programs installed by the package manager (oggenc, lame, scummvm)
+    if (!FileExists(PrgSetup->WaveEncOgg()) && !FindHelperProgram(OggEncPrgFile).isEmpty()) PrgSetup->SetWaveEncOgg(FindHelperProgram(OggEncPrgFile));
+    if (!FileExists(PrgSetup->WaveEncMp3()) && !FindHelperProgram(LamePrgFile).isEmpty()) PrgSetup->SetWaveEncMp3(FindHelperProgram(LamePrgFile));
+    if (!DirectoryExists(PrgSetup->ScummVMPath()) && !FindHelperProgram(ScummPrgFile).isEmpty()) PrgSetup->SetScummVMPath(ExtractFilePath(FindHelperProgram(ScummPrgFile)));
+#endif
 
     if (!FileExists(PrgSetup->WaveEncOgg())) {
         if (FileExists(PrgDir() + OggEncPrgFile)) PrgSetup->SetWaveEncOgg(PrgDir() + OggEncPrgFile); else {

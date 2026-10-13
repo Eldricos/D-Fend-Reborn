@@ -50,6 +50,11 @@ void TMakeBootImageFromProfileForm::FormCreate(QObject* Sender)
     ui.FreeSizeLabel->setText(LanguageSetup->ImageFromProfileFreeSize());
     ui.FreeSizeMBLabel->setText(LanguageSetup->MBytes());
     ui.CompressedCheckBox->setText(LanguageSetup->CreateImageFormCompression());
+#ifndef Q_OS_WIN
+    // NTFS compression only exists on Windows
+    ui.CompressedCheckBox->setChecked(false);
+    ui.CompressedCheckBox->setVisible(false);
+#endif
     ui.MemoryManagerCheckBox->setText(LanguageSetup->CreateImageFormMakeFloppyBootableWithMemoryManager());
     ui.OKButton->setText(LanguageSetup->OK());
     ui.CancelButton->setText(LanguageSetup->Cancel());
@@ -282,8 +287,12 @@ TGame* ShowMakeBootImageFromProfileDialog(QWidget* AOwner, TGameDB* AGameDB, TGa
         MessageDlg(LanguageSetup->ProfileEditorNeedFreeDOS(), mtError, mbOK, 0);
         return result;
     }
-    if ((!FileExists(PrgDir() + MakeDOSFilesystemFileName)) && (!FileExists(PrgDir() + BinFolder + PathDelim + MakeDOSFilesystemFileName))) {
+    if (!DiskImageCreatorFATAvailable()) {
+#ifdef Q_OS_WIN
         MessageDlg(Format(LanguageSetup->ImageFromProfileMKDOSFSNeeded(), {PrgDir() + BinFolder + PathDelim + MakeDOSFilesystemFileName}), mtError, mbOK, 0);
+#else
+        MessageDlg(Format(LanguageSetup->ImageFromProfileMKDOSFSNeeded(), {MakeDOSFilesystemFileName + " (dosfstools)"}), mtError, mbOK, 0);
+#endif
         return result;
     }
 

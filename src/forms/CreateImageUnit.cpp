@@ -126,6 +126,11 @@ void TCreateImageForm::FormCreate(QObject* Sender)
     ui.ImageFileEdit_EditLabel->setText(LanguageSetup->CreateImageFormFilename());
     ui.ImageFileButton->setToolTip(LanguageSetup->ChooseFile());
     ui.CompressedCheckBox->setText(LanguageSetup->CreateImageFormCompression());
+#ifndef Q_OS_WIN
+    // NTFS compression only exists on Windows
+    ui.CompressedCheckBox->setChecked(false);
+    ui.CompressedCheckBox->setVisible(false);
+#endif
     ui.MakeBootableCheckBox->setText(LanguageSetup->CreateImageFormMakeFloppyBootable());
     ui.NeedFreeDOSLabel->setText(LanguageSetup->ProfileEditorNeedFreeDOS());
     ui.AddKeyboardDriverCheckBox->setText(LanguageSetup->CreateImageFormMakeFloppyBootableWithKeyboardDriver());
@@ -160,7 +165,7 @@ void TCreateImageForm::FormCreate(QObject* Sender)
         SetLabelFontColor(ui.NeedFreeDOSLabel, clRed);
     }
 
-    if (FileExists(PrgDir() + MakeDOSFilesystemFileName) || FileExists(PrgDir() + BinFolder + PathDelim + MakeDOSFilesystemFileName)) {
+    if (DiskImageCreatorFATAvailable()) {
         ui.FloppyCylindersComboBox->addItem("40");
         ui.FloppyCylindersComboBox->addItem("80");
         ui.FloppySPTComboBox->addItem("8");

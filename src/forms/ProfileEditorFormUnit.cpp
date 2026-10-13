@@ -37,43 +37,15 @@ private:
     std::function<bool(QEvent *)> FHandler;
 };
 
-// TValueListEditor.ItemProps[] state (ReadOnly + PickList) stored at the value cell
-const int RoleVclReadOnly = Qt::UserRole + 50;
-const int RoleVclPickList = Qt::UserRole + 51;
-
-QTableWidgetItem *ValueItem(TValueListEditorWidget *E, int Row)
-{
-    if (!E->item(Row, 1)) E->setItem(Row, 1, new QTableWidgetItem());
-    return E->item(Row, 1);
-}
-
-void ApplyItemProps(TValueListEditorWidget *E, int Row)
-{
-    QTableWidgetItem *I = ValueItem(E, Row);
-    bool RO = I->data(RoleVclReadOnly).toBool();
-    QStringList PL = I->data(RoleVclPickList).toStringList();
-    if (!PL.isEmpty()) {
-        // esPickList: ReadOnly means "only values from the list"
-        E->setPickList(Row, PL, RO);
-        I->setFlags(I->flags() | Qt::ItemIsEditable);
-    } else {
-        E->setPickList(Row, QStringList(), false);
-        I->setFlags(RO ? (I->flags() & ~Qt::ItemIsEditable) : (I->flags() | Qt::ItemIsEditable));
-    }
-}
-
 // ItemProps[Row].ReadOnly
 void SetItemReadOnly(TValueListEditorWidget *E, int Row, bool B)
 {
-    if (Row < 0 || Row >= E->rowCount()) return;
-    ValueItem(E, Row)->setData(RoleVclReadOnly, B);
-    ApplyItemProps(E, Row);
+    E->setReadOnly(Row, B);
 }
 
 bool ItemReadOnly(TValueListEditorWidget *E, int Row)
 {
-    if (Row < 0 || Row >= E->rowCount()) return false;
-    return ValueItem(E, Row)->data(RoleVclReadOnly).toBool();
+    return E->isReadOnly(Row);
 }
 
 // Strings.ValueFromIndex[I]
@@ -116,22 +88,18 @@ struct TVLE {
     // ItemProps[Strings.Count-1].EditStyle:=esPickList (a pick list is shown as soon as it has items)
     void PickListStyle() {}
     // ItemProps[Strings.Count-1].EditMask:=...
-    void EditMask(const QString &) { /* TODO(port): EditMask is not supported by TValueListEditorWidget; values are checked in CheckProfile */ }
+    void EditMask(const QString &Mask) { E->setEditMask(Last(), Mask); }
     // ItemProps[Strings.Count-1].PickList.Add(S)
     void Pick(const QString &S)
     {
-        QTableWidgetItem *I = ValueItem(E, Last());
-        QStringList PL = I->data(RoleVclPickList).toStringList();
+        QStringList PL = E->pickList(Last());
         PL << S;
-        I->setData(RoleVclPickList, PL);
-        ApplyItemProps(E, Last());
+        E->setPickList(Last(), PL);
     }
     // St:=...; try ItemProps[Strings.Count-1].PickList.Assign(St); finally St.Free; end;
     void PickAssign(TStringList *St)
     {
-        QTableWidgetItem *I = ValueItem(E, Last());
-        I->setData(RoleVclPickList, St->ToQStringList());
-        ApplyItemProps(E, Last());
+        E->setPickList(Last(), St->ToQStringList());
         delete St;
     }
 };

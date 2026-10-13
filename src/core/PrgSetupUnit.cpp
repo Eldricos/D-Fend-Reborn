@@ -526,9 +526,9 @@ void TPrgSetup::InitDirs()
     }
 
     if (!FileExists(WaveEncOgg())) {
-        if (FileExists(PrgDir() + OggEncPrgFile)) SetWaveEncOgg(PrgDir() + OggEncPrgFile); else {
-            if (FileExists(PrgDir() + BinFolder + PathDelim + OggEncPrgFile)) SetWaveEncOgg(PrgDir() + BinFolder + PathDelim + OggEncPrgFile);
-        }
+        // program folder, Bin folder (and on Linux/macOS the installed oggenc)
+        QString S = FindHelperProgram(OggEncPrgFile);
+        if (!S.isEmpty()) SetWaveEncOgg(S);
     }
 }
 
