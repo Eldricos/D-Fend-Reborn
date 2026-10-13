@@ -46,6 +46,17 @@ QString NormalizedDriveRoot(const QString& Root);
 // BlockName: "sr0", "fd0", "sdb", ...; returns false for non removable devices.
 bool LinuxBlockDeviceType(const QString& SysBlockDir, const QString& BlockName, TPhysicalDriveType& Type);
 
+// Raw access to a drive (reading / writing disk images): opens the device
+// file ("/dev/fd0", "/dev/sr0"). Without permission for the device (the user
+// is not in the "floppy" / "disk" group) udisks2 is asked to open it - the
+// desktop may ask for a password. Returns a file descriptor or -1.
+int OpenDriveDevice(const QString& Device, bool Write);
+int OpenDriveDeviceViaUDisks(const QString& Device, bool Write);   // (udisks2 part only)
+
+// Mounts the medium in a drive via udisks2 (for desktops that do not mount
+// inserted discs automatically). Returns the mount point or an empty string.
+QString MountDriveMedium(const QString& Device);
+
 // Linux: the drive list built from a /sys/block style folder and a list of
 // mounted file systems (PhysicalDrives() uses /sys/block and the real mounts;
 // separate for tests).

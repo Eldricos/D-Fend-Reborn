@@ -6,6 +6,18 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QStorageInfo>
+#ifndef Q_OS_WIN
+#include <fcntl.h>
+#include <unistd.h>
+#include <cerrno>
+#endif
+#ifdef DFR_HAVE_DBUS
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusReply>
+#include <QDBusUnixFileDescriptor>
+#include <QDBusVariant>
+#endif
 
 #include <algorithm>
 
@@ -146,11 +158,90 @@ QList<TPhysicalDrive> PhysicalDrives()
     return PhysicalDrivesFrom(QStringLiteral("/sys/block"), Mounts);
 }
 
+// udisks2 object path of a block device ("/dev/sr0" -> .../block_devices/sr0;
+// characters other than A-Z, a-z, 0-9 are escaped as _XX like udisks does)
+#ifdef DFR_HAVE_DBUS
+static QString UDisksBlockObjectPath(const QString& Device)
+{
+    const QString Name = QFileInfo(Device).fileName();
+    QString Escaped;
+    for (QChar C : Name) {
+        if ((C >= 'A' && C <= 'Z') || (C >= 'a' && C <= 'z') || (C >= '0' && C <= '9')) Escaped += C;
+        else Escaped += QString::asprintf("_%02x", C.unicode() & 0xFF);
+    }
+    return QStringLiteral("/org/freedesktop/UDisks2/block_devices/") + Escaped;
+}
+
+static QDBusMessage UDisksCall(const QString& Device, const QString& Interface, const QString& Method, const QVariantList& Args)
+{
+    QDBusMessage M = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.UDisks2"), UDisksBlockObjectPath(Device), Interface, Method);
+    M.setArguments(Args);
+    M.setInteractiveAuthorizationAllowed(true);   // polkit may ask for a password
+    return QDBusConnection::systemBus().call(M, QDBus::Block, 120000);
+}
+#endif
+
+int OpenDriveDeviceViaUDisks(const QString& Device, bool Write)
+{
+#ifdef DFR_HAVE_DBUS
+    if (!QDBusConnection::systemBus().isConnected()) return -1;
+    const QVariantMap NoOptions;
+    // udisks >= 2.7.3: Block.OpenDevice; older versions: OpenForBackup / OpenForRestore
+    QDBusMessage Reply = UDisksCall(Device, QStringLiteral("org.freedesktop.UDisks2.Block"), QStringLiteral("OpenDevice"),
+                                    {Write ? QStringLiteral("rw") : QStringLiteral("r"), NoOptions});
+    if (Reply.type() == QDBusMessage::ErrorMessage && Reply.errorName() == QStringLiteral("org.freedesktop.DBus.Error.UnknownMethod"))
+        Reply = UDisksCall(Device, QStringLiteral("org.freedesktop.UDisks2.Block"), Write ? QStringLiteral("OpenForRestore") : QStringLiteral("OpenForBackup"), {NoOptions});
+    if (Reply.type() != QDBusMessage::ReplyMessage || Reply.arguments().isEmpty()) return -1;
+    const QDBusUnixFileDescriptor FD = qvariant_cast<QDBusUnixFileDescriptor>(Reply.arguments().constFirst());
+    if (!FD.isValid()) return -1;
+    return ::dup(FD.fileDescriptor());   // (the QDBusUnixFileDescriptor closes its own copy)
+#else
+    Q_UNUSED(Device); Q_UNUSED(Write);
+    return -1;
+#endif
+}
+
+int OpenDriveDevice(const QString& Device, bool Write)
+{
+    const QByteArray Dev = QFile::encodeName(Device);
+    const int FD = ::open(Dev.constData(), Write ? O_RDWR : O_RDONLY);
+    if (FD >= 0) return FD;
+    if (errno != EACCES && errno != EPERM) return -1;
+    return OpenDriveDeviceViaUDisks(Device, Write);
+}
+
+QString MountDriveMedium(const QString& Device)
+{
+#ifdef DFR_HAVE_DBUS
+    if (!QDBusConnection::systemBus().isConnected()) return QString();
+    const QDBusMessage Reply = UDisksCall(Device, QStringLiteral("org.freedesktop.UDisks2.Filesystem"), QStringLiteral("Mount"), {QVariantMap()});
+    if (Reply.type() != QDBusMessage::ReplyMessage || Reply.arguments().isEmpty()) return QString();
+    const QString Path = Reply.arguments().constFirst().toString();
+    return Path.isEmpty() ? QString() : IncludeTrailingPathDelimiter(Path);
+#else
+    Q_UNUSED(Device);
+    return QString();
+#endif
+}
+
+// Is there a medium in the drive? (/sys/block/<name>/size is 0 without one)
+static bool MediumInserted(const QString& Device)
+{
+    bool OK;
+    const qint64 Size = ReadSysFile("/sys/block/" + QFileInfo(Device).fileName() + "/size").toLongLong(&OK);
+    return OK && Size > 0;
+}
+
 QStringList CDDriveRoots()
 {
-    // DOSBox mounts folders: only drives with a mounted medium can be used
+    // DOSBox mounts folders: only drives with a mounted medium can be used.
+    // Inserted discs that are not mounted yet are mounted via udisks2.
     QStringList Result;
-    for (const TPhysicalDrive& D : PhysicalDrives(pdtOptical)) if (!D.Root.isEmpty()) Result << D.Root;
+    for (const TPhysicalDrive& D : PhysicalDrives(pdtOptical)) {
+        QString Root = D.Root;
+        if (Root.isEmpty() && MediumInserted(D.Device)) Root = MountDriveMedium(D.Device);
+        if (!Root.isEmpty()) Result << Root;
+    }
     return Result;
 }
 

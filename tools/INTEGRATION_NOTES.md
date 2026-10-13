@@ -15,11 +15,12 @@ OEM conversion of the installation support texts, physical drives
 (PhysicalDrivesUnit: CD/DVD, floppy and removable drives from /sys/block and
 the mounted file systems; CD mounting incl. ASK/NUMBER/LABEL/FILE/FOLDER and
 auto mounting, installation support from floppy/CD, quick start drive nodes,
-reading/writing CD/floppy images via the device files).
+reading/writing CD/floppy images via the device files; without permission
+for a device file it is opened via udisks2 (Block.OpenDevice, older udisks:
+OpenForBackup/OpenForRestore), inserted but unmounted discs/floppies are
+mounted via udisks2 (Filesystem.Mount)).
 
 Still open:
-- Physical drives stage 2 (Linux): raw floppy/CD access without "floppy" /
-  "disk" group membership via udisks2.
 - Platform gaps marked with `TODO(port)` in the sources (help
   topics in CHM viewers, resample filters, Windows installer packages in the
   package manager, recursive folder watching in the quick start window,

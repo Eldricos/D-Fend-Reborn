@@ -51,6 +51,13 @@ package manager): `dosbox` (or `dosbox-staging`'s `dosbox`), `7z`/`7za`/`7zz`
 disk images), `oggenc` (vorbis-tools), `curl` (FTP downloads in the package
 manager) and optionally `lame` and `scummvm`.
 
+Physical drives on Linux: CD/DVD, floppy and USB drives are found
+automatically. Discs that the desktop did not mount are mounted via udisks2,
+and reading / writing disk images from / to real media uses udisks2 when the
+user has no direct permission for the device (not in the `floppy` / `disk`
+group) - the desktop may ask for a password then. (udisks2 is installed on
+all common desktops; it needs the Qt D-Bus module at build time.)
+
 Without a `DFend.dat` file in the program folder D-Fend Reborn keeps all
 data next to the program. With `USERDIRMODE` in `DFend.dat` the user data
 is stored in `%USERPROFILE%\D-Fend Reborn\` on Windows and in

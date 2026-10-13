@@ -223,6 +223,11 @@ static QString FloppyDriveRoot()
     return QString(result) + ":\\";
 #else
     for (const TPhysicalDrive& D : PhysicalDrives(pdtFloppy)) if (!D.Root.isEmpty()) return D.Root;
+    // inserted floppy disk that is not mounted yet: mount it via udisks2
+    for (const TPhysicalDrive& D : PhysicalDrives(pdtFloppy)) {
+        const QString Root = MountDriveMedium(D.Device);
+        if (!Root.isEmpty()) return Root;
+    }
     return QString();
 #endif
 }

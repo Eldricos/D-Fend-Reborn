@@ -66,8 +66,8 @@ static TVolumeHandle OpenVolume(QChar Drive, bool WriteMode = false)
     else
         return CreateFileW(reinterpret_cast<LPCWSTR>(VolumeName.utf16()), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, 0, nullptr);
 #else
-    const QByteArray Dev = QFile::encodeName(DevicePath(Drive));
-    return ::open(Dev.constData(), WriteMode ? O_RDWR : O_RDONLY);
+    // (without permission for the device file udisks2 is asked to open it)
+    return OpenDriveDevice(DevicePath(Drive), WriteMode);
 #endif
 }
 
