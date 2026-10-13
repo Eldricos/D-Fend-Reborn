@@ -1491,6 +1491,7 @@ TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, 
     return result;
 }
 
+#ifdef Q_OS_WIN
 static void FindAlternativeDOSBoxFile(QString& PrgFile)
 {
     TSearchRec Rec;
@@ -1505,6 +1506,7 @@ static void FindAlternativeDOSBoxFile(QString& PrgFile)
     }
     FindClose(Rec);
 }
+#endif
 
 QString GetDOSBoxCommandLine(int DOSBoxNr, const QString& ConfFile, int ShowConsole, const QString& DosBoxCommandLine)
 {
@@ -1557,21 +1559,21 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
     SpeedTestInfo("Searching DOSBox program file");
     PrgFile = Trim(DOSBoxPath);
     if ((PrgFile.isEmpty()) || (ExtUpperCase(PrgFile) == "DEFAULT")) PrgFile = IncludeTrailingPathDelimiter(PrgSetup->DOSBoxSettings(DOSBoxNr)->DosBoxDir()) + DosBoxFileName; else {
+#ifdef Q_OS_WIN
         if (ExtUpperCase(Copy(PrgFile, Length(PrgFile) - 3, 4)) != ".EXE") PrgFile = IncludeTrailingPathDelimiter(MakeAbsPath(PrgFile, PrgSetup->BaseDir())) + DosBoxFileName;
+#else
+        // no ".exe" to tell program files from folders
+        if (DirectoryExists(MakeAbsPath(PrgFile, PrgSetup->BaseDir()))) PrgFile = IncludeTrailingPathDelimiter(MakeAbsPath(PrgFile, PrgSetup->BaseDir())) + DosBoxFileName;
+        else PrgFile = MakeAbsPath(PrgFile, PrgSetup->BaseDir());
+#endif
     }
+#ifdef Q_OS_WIN
     if (!FileExists(PrgFile)) FindAlternativeDOSBoxFile(PrgFile);
-#ifndef Q_OS_WIN
-    // TODO(port): on non Windows systems the DOSBox binary is called "dosbox"
-    // (without extension) and is usually installed in the search path.
+#else
+    // fall back to a DOSBox in the search path
     if (!FileExists(PrgFile)) {
-        QString T = ExtractFilePath(PrgFile) + "dosbox";
-        if (FileExists(T)) PrgFile = T; else {
-            T = MakeAbsPath(Trim(DOSBoxPath), PrgSetup->BaseDir());
-            if ((!Trim(DOSBoxPath).isEmpty()) && FileExists(T) && QFileInfo(T).isExecutable()) PrgFile = T; else {
-                T = QStandardPaths::findExecutable("dosbox");
-                if (!T.isEmpty()) PrgFile = T;
-            }
-        }
+        QString T = QStandardPaths::findExecutable(DosBoxFileName);
+        if (!T.isEmpty()) PrgFile = T;
     }
 #endif
     if (!FileExists(PrgFile)) {

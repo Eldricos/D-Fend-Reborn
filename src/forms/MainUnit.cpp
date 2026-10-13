@@ -895,6 +895,7 @@ void TDFendReloadedMainForm::FormShow(QObject *Sender)
     LogInfo("Loading links and quick searching DOSBox");
     S = PrgSetup->DOSBoxSettings(0)->DosBoxDir();
     if (SearchDosBox(this, S)) PrgSetup->DOSBoxSettings(0)->SetDosBoxDir(S);
+    LogInfo("DOSBox folder: " + PrgSetup->DOSBoxSettings(0)->DosBoxDir());
     LoadHelpLinks();
     LoadAbandonLinks();
     LoadSearchLinks();

@@ -484,6 +484,18 @@ static void setupToolBars(QWidget *Top)
 {
     const QList<QToolBar *> Bars = Top->findChildren<QToolBar *>();
     for (QToolBar *TB : Bars) {
+        // Separators: setupActions marks them via setSeparator() only after
+        // uic added them, and QToolBar keeps the (empty) tool button it
+        // created for them - re-add them so they become real separators.
+        {
+            const QList<QAction *> Acts = TB->actions();
+            for (int I = 0; I < Acts.size(); I++) {
+                QAction *A = Acts[I];
+                if (!A->isSeparator() || qobject_cast<QToolButton *>(TB->widgetForAction(A)) == nullptr) continue;
+                TB->removeAction(A);
+                if (I + 1 < Acts.size()) TB->insertAction(Acts[I + 1], A); else TB->addAction(A);
+            }
+        }
         // embedded controls (TEdit inside TToolBar ...)
         QList<QWidget *> Embedded;
         for (QObject *O : TB->children()) {
@@ -495,7 +507,10 @@ static void setupToolBars(QWidget *Top)
         });
         for (QWidget *W : Embedded) {
             int Pos = W->property("vclToolbarPos").toInt();
-            QList<QAction *> Acts = TB->actions();
+            // count only the form's own tool buttons (Qt may have added
+            // unnamed internal actions)
+            QList<QAction *> Acts;
+            for (QAction *A : TB->actions()) if (!A->objectName().isEmpty()) Acts << A;
             QSize S = W->size();
             QAction *WA;
             if (Pos < Acts.size()) WA = TB->insertWidget(Acts[Pos], W);
