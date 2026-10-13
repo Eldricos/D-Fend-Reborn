@@ -1,14 +1,18 @@
 // C++ port of HelpTools.pas (implementation section).
 //
-// THTMLhelpRouter routes the application help requests to the HTML help
-// (CHM) viewer.  On Windows HtmlHelpW from HHCTRL.OCX is loaded dynamically
-// exactly like the Delphi code did (HtmlHelpA).  On other systems a portable
-// emulation of HtmlHelp is installed which opens the .chm file with the
-// associated viewer (topics / context ids cannot be addressed there).
+// THTMLhelpRouter routes the application help requests to the help viewer.
+// Port note: the help is a folder of HTML pages (Help/<Language>/) on all
+// systems, opened in the default web browser, instead of the compiled .chm
+// file shown by HHCTRL.OCX. Context ids (Application.HelpCommand(HELP_CONTEXT,
+// ID)) and topic jumps open the matching page.
 #include "HelpTools.h"
+#include "HelpConsts.h"
 
 #include <QApplication>
-#include <QLibrary>
+#include <QDesktopServices>
+#include <QDir>
+#include <QHash>
+#include <QUrl>
 #include <QMainWindow>
 #include <QToolTip>
 #include <QWidget>
@@ -20,59 +24,183 @@ THTMLhelpRouter *GLOBAL_HELPROUTER = nullptr;
 THelpEvent ApplicationOnHelp;
 QString ApplicationHelpFile;
 
-static QLibrary *HHCTRLLibrary = nullptr;
-
 /* {$HINTS off} {$WARNINGS off} */
 
-#ifdef Q_OS_WIN
-// Native structures (htmlhelp.h, unicode versions)
-struct NATIVE_HH_POPUP {
-    int cbStruct;
-    HINSTANCE hinst;
-    UINT idString;
-    LPCWSTR pszText;
-    POINT pt;
-    COLORREF clrForeground;
-    COLORREF clrBackground;
-    RECT rcMargins;
-    LPCWSTR pszFont;
-};
-struct NATIVE_HH_AKLINK {
-    int cbStruct;
-    BOOL fReserved;
-    LPCWSTR pszKeywords;
-    LPCWSTR pszUrl;
-    LPCWSTR pszMsgText;
-    LPCWSTR pszMsgTitle;
-    LPCWSTR pszWindow;
-    BOOL fIndexOnFail;
-};
-typedef HWND(WINAPI *THtmlHelpWProc)(HWND hwndCaller, LPCWSTR pszFile, UINT uCommand, DWORD_PTR dwData);
-typedef BOOL(WINAPI *TWinHelpWProc)(HWND hWndMain, LPCWSTR lpszHelp, UINT uCommand, ULONG_PTR dwData);
-
-static THtmlHelpWProc HtmlHelpWProc = nullptr;
-
 static bool WinHelp(THandle HelpHandle, const QString &HelpFile, int Command, qintptr Data)
 {
-    // WinHelp is resolved at run time (not available on newer Windows versions anyway)
-    HMODULE User32 = GetModuleHandleW(L"user32.dll");
-    if (User32 == nullptr) return false;
-    TWinHelpWProc Proc = reinterpret_cast<TWinHelpWProc>(reinterpret_cast<void *>(GetProcAddress(User32, "WinHelpW")));
-    if (Proc == nullptr) return false;
-    return Proc(reinterpret_cast<HWND>(HelpHandle), reinterpret_cast<LPCWSTR>(HelpFile.utf16()), static_cast<UINT>(Command), static_cast<ULONG_PTR>(Data)) != FALSE;
-}
-#else
-static bool WinHelp(THandle HelpHandle, const QString &HelpFile, int Command, qintptr Data)
-{
-    // Port note: WinHelp (.hlp files) does not exist on this platform
+    // Port note: WinHelp (.hlp files) is not supported (it does not exist on
+    // newer Windows versions and on other systems anyway)
     Q_UNUSED(HelpHandle); Q_UNUSED(HelpFile); Q_UNUSED(Command); Q_UNUSED(Data);
     return false;
 }
 
-// Portable HtmlHelp emulation
-static THandle PortableHtmlHelp(THandle hwndCaller, const QString &pszFile, quint32 uCommand, qintptr dwData)
+// Help context ids (HelpConsts.h) -> help pages
+// (the [MAP] section of the original English.hhp / German.hhp)
+static QString HelpContextPage(qintptr ID)
+{
+    static const QHash<qintptr, QString> Pages = {
+        {ID_Index, "Index"},
+        {ID_Introduction, "Introduction"},
+        {ID_FAQs, "FAQ"},
+        {ID_FirstRunWizard, "FirstRunWizard"},
+        {ID_Introduction2, "Introduction2"},
+        {ID_Menu, "Menu"},
+        {ID_FileExportConf, "FileExportConf"},
+        {ID_FileExportProf, "FileExportProf"},
+        {ID_FileExportList, "FileExportList"},
+        {ID_FileImportZip, "FileImportZip"},
+        {ID_FileExportBuildInstallers, "FileExportBuildInstallers"},
+        {ID_FileExportBuildZipPackages, "FileExportBuildZipPackages"},
+        {ID_FileImportDownload, "FileImportPackage"},
+        {ID_FileExportPackageListCreator, "FileExportPackageList"},
+        {ID_FileOptions, "FileOptions"},
+        {ID_FileOptionsGeneral, "FileOptionsGeneral"},
+        {ID_FileOptionsDirectories, "FileOptionsDirectories"},
+        {ID_FileOptionsSecurity, "FileOptionsSecurity"},
+        {ID_FileOptionsCompressionSettings, "FileOptionsCompressionSettings"},
+        {ID_FileOptionsWineSupport, "FileOptionsWineSupport"},
+        {ID_FileOptionsUserInterface, "FileOptionsUserInterface"},
+        {ID_FileOptionsLanguage, "FileOptionsLanguage"},
+        {ID_FileOptionsToolbar, "FileOptionsToolbar"},
+        {ID_FileOptionsColumnsInTheGamesList, "FileOptionsColumnsInTheGamesList"},
+        {ID_FileOptionsAppearanceList, "FileOptionsAppearanceList"},
+        {ID_FileOptionsListInScreenshotMode, "FileOptionsListInScreenshotMode"},
+        {ID_FileOptionsAppearanceTree, "FileOptionsAppearanceTree"},
+        {ID_FileOptionsAppearanceScreenshots, "FileOptionsAppearanceScreenshots"},
+        {ID_FileOptionsProfileEditor, "FileOptionsProfileEditor"},
+        {ID_FileOptionsDefaultValues, "FileOptionsDefaultValues"},
+        {ID_FileOptionsDOSBox, "FileOptionsDOSBox"},
+        {ID_FileOptionsDOSBoxCVSFeatures, "FileOptionsDOSBoxCVSFeatures"},
+        {ID_FileOptionsFreeDOS, "FileOptionsFreeDOS"},
+        {ID_FileOptionsScummVM, "FileOptionsScummVM"},
+        {ID_FileOptionsQBasic, "FileOptionsQBasic"},
+        {ID_FileOptionsWaveEncoder, "FileOptionsWaveEncoder"},
+        {ID_FileOptionsTextEditor, "FileOptionsTextEditor"},
+        {ID_FileOptionsMediaViewers, "FileOptionsMediaViewers"},
+        {ID_FileOptionsService, "FileOptionsService"},
+        {ID_FileOptionsSearchForUpdates, "FileOptionsSearchForUpdates"},
+        {ID_FileOptionsWindows, "FileOptionsWindowsGames"},
+        {ID_FileOptionsZipPackers, "FileOptionsZipPackers"},
+        {ID_FileOptionsGamesListTranslations, "FileOptionsGamesListTranslations"},
+        {ID_FileOptionsGameListInIconMode, "FileOptionsListInIconsMode"},
+        {ID_FileOptionsMenubar, "FileOptionsMenubar"},
+        {ID_FileOptionsUserInterpreters, "FileOptionsUserInterpreters"},
+        {ID_FileOptionsImageScaling, "FileOptionsImageScaling"},
+        {ID_FileOptionsMoreEmulator, "FileOptionsOtherEmulators"},
+        {ID_FileOptionsAutomaticConfiguration, "FileOptionsAutomaticConfiguration"},
+        {ID_FileOptionsDOSBoxGlobal, "FileOptionsDOSBoxGeneral"},
+        {ID_FileOptionsDataPrivacy, "FileOptionsDataPrivacy"},
+        {ID_FileOptionsResetProfiles, "FileOptionsResetProfiles"},
+        {ID_ViewQuickStarter, "ViewQuickStarter"},
+        {ID_RunDOSBoxOutputTest, "RunDOSBoxOutputTest"},
+        {ID_ProfileWithWizard, "ProfileWithWizard"},
+        {ID_ProfileEditClassic, "ProfileEditClassic"},
+        {ID_ProfileCopy, "ProfileCopy"},
+        {ID_ProfileUninstall, "ProfileUninstall"},
+        {ID_ProfileMakeInstallerPackage, "ProfileMakeInstallerPackage"},
+        {ID_ProfileMakeZipPackage, "ProfileMakeZipPackage"},
+        {ID_ProfileViewDOSBoxConfFile, "ProfileViewDOSBoxConfFile"},
+        {ID_ProfileViewScummVMIniFile, "ProfileViewScummVMIniFile"},
+        {ID_ProfileOpenProgramFolder, "ProfileOpenProgramFolder"},
+        {ID_ProfileOpenDataFolder, "ProfileOpenDataFolder"},
+        {ID_ProfileOpenFileInDataFolder, "ProfileOpenFileInDataFolder"},
+        {ID_ProfileInternetAddress, "ProfileInternetAddress"},
+        {ID_ProfileMarkAsFavorite, "ProfileMarkAsFavorite"},
+        {ID_ProfileCreateShortCut, "ProfileCreateShortCut"},
+        {ID_ProfileSearchGame, "ProfileSearchGame"},
+        {ID_ProfileInstallationSupport, "ProfileAddFromMedia"},
+        {ID_ProfileCheating, "ProfileCheating"},
+        {ID_FileEdit, "ProfileEdit"},
+        {ID_ProfileEditProfile, "ProfileEditProfile"},
+        {ID_ProfileEditProgramInformation, "ProfileEditProgramInformation"},
+        {ID_ProfileEditProgramDirectories, "ProfileEditProgramDirectories"},
+        {ID_ProfileEditDOSBox, "ProfileEditDOSBox"},
+        {ID_ProfileEditScummVM, "ProfileEditScummVM"},
+        {ID_ProfileEditScummVMGame, "ProfileEditScummVMGame"},
+        {ID_ProfileEditCPU, "ProfileEditCPU"},
+        {ID_ProfileEditMemory, "ProfileEditMemory"},
+        {ID_ProfileEditGraphics, "ProfileEditGraphics"},
+        {ID_ProfileEditKeyboard, "ProfileEditKeyboard"},
+        {ID_ProfileEditMouse, "ProfileEditMouse"},
+        {ID_ProfileEditSound, "ProfileEditSound"},
+        {ID_ProfileEditSoundVolume, "ProfileEditSoundVolume"},
+        {ID_ProfileEditSoundSoundBlaster, "ProfileEditSoundSoundBlaster"},
+        {ID_ProfileEditSoundGUS, "ProfileEditSoundGUS"},
+        {ID_ProfileEditSoundMIDI, "ProfileEditSoundMIDI"},
+        {ID_ProfileEditJoystick, "ProfileEditJoystick"},
+        {ID_ProfileEditDrives, "ProfileEditDrives"},
+        {ID_ProfileEditSerialPorts, "ProfileEditSerialPorts"},
+        {ID_ProfileEditNetwork, "ProfileEditNetwork"},
+        {ID_ProfileEditPrinter, "ProfileEditPrinter"},
+        {ID_ProfileEditDOSEnvironment, "ProfileEditDOSEnvironment"},
+        {ID_ProfileEditStarting, "ProfileEditStarting"},
+        {ID_ProfileEditHelperPrograms, "ProfileEditHelperPrograms"},
+        {ID_ProfileEditHardware, "ProfileEditHardware"},
+        {ID_ProfileEditAdditionalChecksums, "ProfileEditAdditionalChecksums"},
+        {ID_ProfileEditSoundInnova, "ProfileEditSoundInnova"},
+        {ID_ExtrasManageIcons, "ExtrasManageIcons"},
+        {ID_ExtrasViewHistory, "ExtrasViewHistory"},
+        {ID_ExtrasOpenGamesFolder, "ExtrasOpenGamesFolder"},
+        {ID_ExtrasTemplates, "ExtrasTemplates"},
+        {ID_ExtrasImagesCreateImageFromFloppy, "ExtrasImagesCreateImageFromFloppy"},
+        {ID_ExtrasImagesWriteImageToFloppy, "ExtrasImagesWriteImageToFloppy"},
+        {ID_ExtrasImagesCreateImage, "ExtrasImagesCreateImage"},
+        {ID_ExtrasImagesCreateImageFromCD, "ExtrasImagesCreateImageFromCD"},
+        {ID_ExtrasImagesExtractToFolder, "ExtrasImagesExtractToFolder"},
+        {ID_ExtrasImagesCreateFromFolder, "ExtrasImagesCreateFromFolder"},
+        {ID_ExtrasScanGamesFolder, "ExtrasScanGamesFolder"},
+        {ID_ExtrasEditMultipleProfiles, "ExtrasEditMultipleProfiles"},
+        {ID_ExtrasUninstallMultipleGames, "ExtrasUninstallMultipleGames"},
+        {ID_ExtrasTransferProfiles, "ExtrasTransferProfiles"},
+        {ID_ExtrasCheckProfiles, "ExtrasCheckProfiles"},
+        {ID_ExtrasCreateShortcuts, "ExtrasCreateShortcuts"},
+        {ID_ExtrasLanguageEditor, "ExtrasLanguageEditor"},
+        {ID_ExtrasImageFromProfile, "ExtrasImagesCreateFromProfile"},
+        {ID_ExtrasEditCheatDB, "ExtrasEditCheatDB"},
+        {ID_ExtrasSearchAddress, "ExtrasSearchAddress"},
+        {ID_ExtrasDOSBoxLanguageEditor, "ExtrasLanguageEditorDOSBox"},
+        {ID_HelpForum, "HelpForum"},
+        {ID_HelpStatistics, "HelpStatistics"},
+        {ID_HelpOperationMode, "HelpOperationMode"},
+        {ID_HelpSearchForUpdates, "HelpSearchForUpdates"},
+        {ID_HelpOldGames, "HelpOldGames"},
+        {ID_HelpGetGames, "HelpGetGames"},
+    };
+    return Pages.value(ID);
+}
+
+// Opens a page of the help folder in the web browser.
+// Page: "FAQ", "FAQ.htm", "FAQ.html" or "FAQ.html#Anchor" (empty: contents page)
+static THandle OpenHelpPage(const QString &HelpFolder, const QString &Page)
+{
+    if (HelpFolder.isEmpty() || !DirectoryExists(HelpFolder)) return 0;
+    const QString Folder = IncludeTrailingPathDelimiter(HelpFolder);
+    QString Name = Page;
+    while (Name.startsWith('/') || Name.startsWith('\\')) Name = Name.mid(1);
+    QString Anchor;
+    const int P = Name.indexOf('#');
+    if (P >= 0) { Anchor = Name.mid(P + 1); Name = Name.left(P); }
+    if (!Name.isEmpty() && ExtractFileExt(Name).isEmpty()) Name += ".html";
+    if (!Name.isEmpty() && !FileExists(Folder + Name) && FileExists(Folder + ChangeFileExt(Name, ".html"))) Name = ChangeFileExt(Name, ".html");
+    if (Name.isEmpty() || !FileExists(Folder + Name)) Name = "Index.html";
+    if (!FileExists(Folder + Name)) return 0;
+    QUrl URL = QUrl::fromLocalFile(QDir::fromNativeSeparators(Folder + Name));
+    if (!Anchor.isEmpty()) URL.setFragment(Anchor);
+    return QDesktopServices::openUrl(URL) ? 1 : 0;
+}
+
+// HtmlHelp emulation for the HTML help folders (Help/<Language>/*.html),
+// used on all systems.
+// Port note: the original program used compiled HTML help files (.chm) and
+// HtmlHelpA from HHCTRL.OCX (Windows only). D-Fend Reborn ships the help as
+// plain HTML pages which are opened in the default web browser; pszFile is
+// the help folder, "<folder>::/<page>" addresses a page.
+static THandle HtmlFolderHelp(THandle hwndCaller, const QString &pszFile, quint32 uCommand, qintptr dwData)
 {
     Q_UNUSED(hwndCaller);
+    QString Folder = pszFile, Page;
+    const int P = Folder.indexOf("::");
+    if (P >= 0) { Page = Folder.mid(P + 2); Folder = Folder.left(P); }
     switch (uCommand) {
         case HH_CLOSE_ALL:
             return 1;
@@ -84,41 +212,24 @@ static THandle PortableHtmlHelp(THandle hwndCaller, const QString &pszFile, quin
         }
         case HH_KEYWORD_LOOKUP:
         case HH_ALINK_LOOKUP:
-            // The help file has already been opened by the preceding HH_DISPLAY_TOPIC call
+            // there is no keyword index; the preceding HH_DISPLAY_TOPIC call
+            // has already opened the contents page
             return 1;
-        default: {
-            QString F = pszFile;
-            int P = F.indexOf("::");
-            if (P >= 0) F = F.left(P);
-            if (F == "" || !FileExists(F)) return 0;
-            // TODO(port): a generic CHM viewer cannot be told to show a topic / context id
-            return ShellOpen(F) ? 1 : 0;
-        }
+        case HH_HELP_CONTEXT:
+            return OpenHelpPage(Folder, HelpContextPage(dwData));
+        case HH_DISPLAY_TOPIC:
+            return OpenHelpPage(Folder, Page);
+        default:
+            // HH_DISPLAY_TOC, HH_DISPLAY_INDEX, HH_DISPLAY_SEARCH: contents page
+            return OpenHelpPage(Folder, QString());
     }
 }
-#endif
 
 bool LoadHHCTRL()
 {
     if (HHCTRL == 0) {
-        HtmlHelpA = nullptr;
-#ifdef Q_OS_WIN
-        if (HHCTRLLibrary == nullptr) HHCTRLLibrary = new QLibrary("HHCTRL.OCX");
-        if (HHCTRLLibrary->load()) {
-            HHCTRL = 1;
-            HtmlHelpWProc = reinterpret_cast<THtmlHelpWProc>(HHCTRLLibrary->resolve("HtmlHelpW"));
-            if (HtmlHelpWProc != nullptr) {
-                HtmlHelpA = [](THandle hwndCaller, const QString &pszFile, quint32 uCommand, qintptr dwData) -> THandle {
-                    LPCWSTR F = pszFile.isEmpty() ? nullptr : reinterpret_cast<LPCWSTR>(pszFile.utf16());
-                    HWND H = HtmlHelpWProc(reinterpret_cast<HWND>(hwndCaller), F, static_cast<UINT>(uCommand), static_cast<DWORD_PTR>(dwData));
-                    return static_cast<THandle>(reinterpret_cast<qintptr>(H));
-                };
-            }
-        }
-#else
         HHCTRL = 1;
-        HtmlHelpA = PortableHtmlHelp;
-#endif
+        HtmlHelpA = HtmlFolderHelp;
     }
     return HHCTRL != 0;
 }
@@ -222,7 +333,6 @@ bool THTMLhelpRouter::OnRouteHelp(quint16 Command, qintptr Data, bool &CallHelp)
     if (showHTML && HtmlHelpA) {
         THandle H = static_cast<THandle>(HelpHandle);
         rHandle = 0;
-        HFile = ChangeFileExt(HFile, ".chm");
         switch (Command) {
             case HELP_FINDER: case HELP_CONTENTS: rHandle = HtmlHelpA(H, HFile, HH_DISPLAY_TOC, 0); break;  /* show table of contents */
             case HELP_KEY: rHandle = HtmlHelpA(H, HFile, HH_DISPLAY_INDEX, Data); break;  /* display keywordshow table of contens */
@@ -268,9 +378,9 @@ bool THTMLhelpRouter::HelpJump(const QString &hfile, const QString &topicid)
     if (showHTML && !HtmlHelpA) LoadHHCTRL();
     if (showHTML && HtmlHelpA) {
         /* rHandle := 0; */
-        HFileLocal = ChangeFileExt(HF, ".chm");
+        HFileLocal = HF;   // (the help folder)
         HID = topicid;
-        if (Copy(LowerCase(ExtractFileExt(HID)), 1, 4) != ".htm") HID = HID + ".htm";
+        if (Copy(LowerCase(ExtractFileExt(HID)), 1, 4) != ".htm") HID = HID + ".html";
         rHandle = HtmlHelpA(static_cast<THandle>(HelpHandle), HFileLocal + "::/" + HID, HH_DISPLAY_TOPIC, 0);  /* show table of contents */
         result = rHandle != 0;
     }
@@ -289,24 +399,6 @@ bool THTMLhelpRouter::HelpPopup(int X, int Y, const QString &text)
         QWidget *CForm = CurrentForm();
         QPoint pt(X, Y);
         if (CForm != nullptr) pt = CForm->mapToGlobal(pt);   // ClientToScreen(CForm.handle, pt)
-#ifdef Q_OS_WIN
-        const QString Font = "MS Sans Serif, 10";
-        NATIVE_HH_POPUP HP;
-        HP.cbStruct = sizeof(HP);
-        HP.hinst = nullptr;
-        HP.idString = 0;
-        HP.pszText = reinterpret_cast<LPCWSTR>(text.utf16());
-        HP.pt.x = pt.x();
-        HP.pt.y = pt.y();
-        HP.clrForeground = static_cast<COLORREF>(-1);
-        HP.clrBackground = static_cast<COLORREF>(-1);
-        HP.rcMargins.left = -1;
-        HP.rcMargins.right = -1;
-        HP.rcMargins.top = -1;
-        HP.rcMargins.bottom = -1;
-        HP.pszFont = reinterpret_cast<LPCWSTR>(Font.utf16());
-        return HtmlHelpA(WidgetHandle(CForm), QString(), HH_DISPLAY_TEXT_POPUP, reinterpret_cast<qintptr>(&HP)) != 0;
-#else
         THH_POPUP HP;
         HP.cbStruct = sizeof(HP);
         HP.hinst = 0;
@@ -318,7 +410,6 @@ bool THTMLhelpRouter::HelpPopup(int X, int Y, const QString &text)
         HP.rcMargins = QRect(QPoint(-1, -1), QPoint(-1, -1));
         HP.pszFont = "MS Sans Serif, 10";
         return HtmlHelpA(WidgetHandle(CForm), QString(), HH_DISPLAY_TEXT_POPUP, reinterpret_cast<qintptr>(&HP)) != 0;
-#endif
     } else {
         return false;
     }
@@ -342,20 +433,8 @@ static bool HelpAKLink(THTMLhelpRouter *Router, bool showHTML, WId HelpHandle, c
     if (showHTML && !HtmlHelpA) LoadHHCTRL();
     if (showHTML && HtmlHelpA) {
         /* rHandle := 0; */
-        Hfile = ChangeFileExt(HF, ".chm");
+        Hfile = HF;   // (the help folder)
 
-#ifdef Q_OS_WIN
-        const QString Empty = "";
-        NATIVE_HH_AKLINK HA;
-        HA.cbStruct = sizeof(HA);
-        HA.fReserved = FALSE;
-        HA.pszKeywords = reinterpret_cast<LPCWSTR>(keyword.utf16());
-        HA.pszUrl = reinterpret_cast<LPCWSTR>(Empty.utf16());
-        HA.pszMsgText = reinterpret_cast<LPCWSTR>(Empty.utf16());
-        HA.pszMsgTitle = reinterpret_cast<LPCWSTR>(Empty.utf16());
-        HA.pszWindow = reinterpret_cast<LPCWSTR>(Empty.utf16());
-        HA.fIndexOnFail = TRUE;
-#else
         THH_AKLINK HA;
         HA.cbStruct = sizeof(HA);
         HA.fReserved = false;
@@ -365,7 +444,6 @@ static bool HelpAKLink(THTMLhelpRouter *Router, bool showHTML, WId HelpHandle, c
         HA.pszMsgTitle = "";
         HA.pszMsgWindow = "";
         HA.fIndexOnFail = true;
-#endif
         rHandle = HtmlHelpA(static_cast<THandle>(HelpHandle), Hfile, HH_DISPLAY_TOPIC, 0);  /* create window */
         if (rHandle != 0) rHandle = HtmlHelpA(static_cast<THandle>(HelpHandle), Hfile, LookupCommand, reinterpret_cast<qintptr>(&HA));
         result = rHandle != 0;
@@ -452,12 +530,6 @@ void HelpTools_Finalization()
 {
     if (HHCTRL != 0) {
         HtmlHelpA = nullptr;
-#ifdef Q_OS_WIN
-        HtmlHelpWProc = nullptr;
-        if (HHCTRLLibrary != nullptr) HHCTRLLibrary->unload();
-#endif
         HHCTRL = 0;
     }
-    delete HHCTRLLibrary;
-    HHCTRLLibrary = nullptr;
 }

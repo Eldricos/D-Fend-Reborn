@@ -1374,14 +1374,22 @@ void TDFendRebornMainForm::LoadMenuLanguage()
 
 void TDFendRebornMainForm::SelectHelpFile()
 {
+    // Port note: the help is a folder of HTML pages (Help/<Language>/) instead
+    // of a .chm file in the language folder. The "HelpFile" setting of the
+    // language file names the folder ("English"; the extension of the old
+    // "English.chm" values is ignored).
     QString HelpFileName;
     bool B;
 
+    const QString HelpName = ChangeFileExt(Trim(LanguageSetup->HelpFile()), "");
+    auto HelpFolder = [](const QString &Dir, const QString &Name) { return Dir + "Help" + PathDelim + Name; };
+    auto Exists = [](const QString &Folder) { return FileExists(IncludeTrailingPathDelimiter(Folder) + "Index.html"); };
+
     B = false;
-    HelpFileName = PrgDataDir() + LanguageSubDir + PathDelim + LanguageSetup->HelpFile(); if (FileExists(HelpFileName)) B = true;
-    if (!B) { HelpFileName = PrgDir() + LanguageSubDir + PathDelim + LanguageSetup->HelpFile(); if (FileExists(HelpFileName)) B = true; }
-    if (!B) { HelpFileName = PrgDataDir() + LanguageSubDir + PathDelim + "English.chm"; if (FileExists(HelpFileName)) B = true; }
-    if (!B) { HelpFileName = PrgDir() + LanguageSubDir + PathDelim + "English.chm"; if (FileExists(HelpFileName)) B = true; }
+    HelpFileName = HelpFolder(PrgDataDir(), HelpName); if (!HelpName.isEmpty() && Exists(HelpFileName)) B = true;
+    if (!B) { HelpFileName = HelpFolder(PrgDir(), HelpName); if (!HelpName.isEmpty() && Exists(HelpFileName)) B = true; }
+    if (!B) { HelpFileName = HelpFolder(PrgDataDir(), "English"); if (Exists(HelpFileName)) B = true; }
+    if (!B) { HelpFileName = HelpFolder(PrgDir(), "English"); if (Exists(HelpFileName)) B = true; }
 
     if (B) {
         if (HTMLhelpRouter == nullptr) HTMLhelpRouter = InitHTMLHelp(HelpFileName); else HTMLhelpRouter->SetHelpfile(HelpFileName);

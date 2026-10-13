@@ -4,7 +4,7 @@
 #
 #   cmake -DSRC=<source>/data -DDST=<folder of the executable> -DWINDOWS=ON|OFF -P DeployData.cmake
 #
-# Program files (Bin, Lang, IconSets, NewUserData, DOSBox) are refreshed on
+# Program files (Bin, Lang, Help, IconSets, NewUserData, DOSBox) are refreshed on
 # every build; file(COPY) only copies files that changed.
 #
 # The user data the installer created (templates, AutoSetup profiles, icon
@@ -16,7 +16,7 @@ if(NOT SRC OR NOT DST)
 endif()
 
 # --- program files -----------------------------------------------------------
-file(COPY "${SRC}/Lang" "${SRC}/IconSets" "${SRC}/NewUserData" DESTINATION "${DST}")
+file(COPY "${SRC}/Lang" "${SRC}/Help" "${SRC}/IconSets" "${SRC}/NewUserData" DESTINATION "${DST}")
 if(WINDOWS)
     file(COPY "${SRC}/Bin" DESTINATION "${DST}")
 else()
