@@ -495,8 +495,9 @@ static void SplitLargeFile(const QString& AFileName)
         if (Input.open(QIODevice::ReadOnly)) {
             Nr = 1;
             QFile* Output = new QFile(AFileName + ".part" + IntToStr(Nr));
-            Output->open(QIODevice::WriteOnly | QIODevice::Truncate);
-            while (Input.pos() < Input.size()) {
+            // TFileStream.Create raises an exception if the file can not be created
+            bool OutputOK = Output->open(QIODevice::WriteOnly | QIODevice::Truncate);
+            while (OutputOK && Input.pos() < Input.size()) {
                 qint64 Count = qMin<qint64>(PackageMaxFileSize - Output->size(), qMin<qint64>(Input.size() - Input.pos(), BufferSize));
                 if (Count > 0) {
                     P = Input.read(Count);
@@ -507,8 +508,16 @@ static void SplitLargeFile(const QString& AFileName)
                 if (Output->size() == PackageMaxFileSize) {
                     delete Output;
                     Nr++; Output = new QFile(AFileName + ".part" + IntToStr(Nr));
-                    Output->open(QIODevice::WriteOnly | QIODevice::Truncate);
+                    OutputOK = Output->open(QIODevice::WriteOnly | QIODevice::Truncate);
                 }
+            }
+            if (!OutputOK) {
+                QString FailedFile = Output->fileName();
+                delete Output;
+                Input.close();
+                FreeSmallWaitForm();
+                MessageDlg(Format(LanguageSetup->MessageCouldNotSaveFile(), {FailedFile}), mtError, mbOK);
+                return;   // keep the original file, it was not split completely
             }
             delete Output;
             Input.close();

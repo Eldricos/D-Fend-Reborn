@@ -345,8 +345,12 @@ void THTTPThread::Execute()
                     delete FSt; FSt = nullptr; DeleteFile(FDestFile);
                     FixSourceForgeDownload(&MSt);
                     FSt = new QFile(FDestFile);
-                    FSt->open(QIODevice::ReadWrite | QIODevice::Truncate);
-                    FSt->write(MSt.data());
+                    if (FSt->open(QIODevice::ReadWrite | QIODevice::Truncate)) {
+                        FSt->write(MSt.data());
+                    } else {
+                        // TFileStream.Create raises - treat as failed download
+                        delete FSt; FSt = nullptr;
+                    }
                 }
             } catch (const EDownloadError &) {
                 if (!FTPDownloadHandled) { DeletePartialFile = true; Exit = true; }
