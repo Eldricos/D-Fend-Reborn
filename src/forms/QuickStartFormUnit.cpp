@@ -113,11 +113,21 @@ const TFileTypeInfo FileTypes[55] = {
 constexpr int FileTypesHigh = 54;
 
 // Delphi virtual key codes
+#ifndef VK_RETURN
 constexpr quint16 VK_RETURN = 0x0D;
+#endif
+#ifndef VK_DELETE
 constexpr quint16 VK_DELETE = 0x2E;
+#endif
+#ifndef VK_F1
 constexpr quint16 VK_F1 = 0x70;
+#endif
+#ifndef VK_F2
 constexpr quint16 VK_F2 = 0x71;
+#endif
+#ifndef VK_F5
 constexpr quint16 VK_F5 = 0x74;
+#endif
 
 quint16 QtKeyToVK(int Key)
 {

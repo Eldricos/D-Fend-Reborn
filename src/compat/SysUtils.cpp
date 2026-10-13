@@ -813,12 +813,14 @@ int DateTimeToFileDate(TDateTime DT)
 
 int DaysBetween(TDateTime A, TDateTime B) { return static_cast<int>(std::fabs(A - B) + 1e-9); }
 
+#ifndef _WIN32
 quint32 GetTickCount()
 {
     static QElapsedTimer t;
     if (!t.isValid()) t.start();
     return static_cast<quint32>(t.elapsed());
 }
+#endif
 
 // ---------------------------------------------------------------------------
 // Process / environment

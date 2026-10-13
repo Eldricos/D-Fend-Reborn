@@ -7,6 +7,13 @@
 // like in Pascal (Copy, Pos, Delete, Insert).
 #pragma once
 
+#ifdef _WIN32
+// Include <windows.h> before anything else, so that WinApi.h can remove the
+// Win32 macros that clash with Delphi names once and for all (a later
+// #include <windows.h> from Qt or system headers is then a no-op).
+#include "WinApi.h"
+#endif
+
 #include <QString>
 #include <QStringList>
 #include <QVariant>
@@ -260,7 +267,13 @@ QString FormatDateTime(const QString &Format, TDateTime DT);
 TDateTime FileDateToDateTime(int FileDate);
 int DateTimeToFileDate(TDateTime DT);
 int DaysBetween(TDateTime A, TDateTime B);
+#ifdef _WIN32
+// Use the Win32 function (DWORD GetTickCount(void)) - declaring our own
+// version would clash with <windows.h>.
+extern "C" __declspec(dllimport) unsigned long __stdcall GetTickCount(void);
+#else
 quint32 GetTickCount();
+#endif
 
 // ---------------------------------------------------------------------------
 // Process / environment

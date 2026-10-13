@@ -23,7 +23,9 @@
 TPackageManagerForm *PackageManagerForm = nullptr;
 
 // Delphi virtual key codes
+#ifndef VK_F1_Code
 static constexpr quint16 VK_F1_Code = 0x70;
+#endif
 
 // GetKeyState(VK_LSHIFT) / GetKeyState(VK_RSHIFT)
 static bool ShiftPressed()
