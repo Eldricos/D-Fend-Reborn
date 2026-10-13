@@ -46,3 +46,13 @@ if(MSVC)
 endif()
 
 set_target_properties(DFendReborn PROPERTIES OUTPUT_NAME "DFend")
+
+# Copy the run-time data files (data/) next to the executable, so a build
+# can be run directly (program folder operation mode, like the original
+# installer set it up).
+add_custom_target(DeployData ALL
+    COMMAND ${CMAKE_COMMAND} -DSRC=${CMAKE_SOURCE_DIR}/data -DDST=$<TARGET_FILE_DIR:DFendReborn>
+            -DWINDOWS=$<BOOL:${WIN32}> -P ${CMAKE_SOURCE_DIR}/cmake/DeployData.cmake
+    COMMENT "Copying data files"
+    VERBATIM)
+add_dependencies(DeployData DFendReborn)

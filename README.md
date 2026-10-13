@@ -24,3 +24,27 @@ cmake --build build
 ```
 
 or open `CMakeLists.txt` in Qt Creator.
+
+## Data files
+
+`data/` holds the run-time files of the original program in the layout of an
+installed copy: `Bin` (helper programs, links, cheats database, 7-Zip),
+`DOSBox` (bundled Windows DOSBox 0.74), `DOSBoxLang` (DOSBox language
+files), `Lang` (program translations and help files), `IconSets` and
+`NewUserData` (templates, AutoSetup profiles, FreeDOS, Doszip, ...).
+
+Every build copies them next to the executable (`cmake/DeployData.cmake`),
+so a build can be run directly:
+
+* `Bin`, `Lang`, `IconSets`, `NewUserData` (and on Windows `DOSBox` plus the
+  DOSBox language and FreeDOS code page files) are refreshed on each build.
+* The user data the original installer created (`Templates`, `AutoSetup`,
+  `IconLibrary`, `Capture`, `VirtualHD`, `Settings/Icons.ini`,
+  `Settings/DataReader.xml`, `Settings/Cheats.xml`) is copied only once per
+  build folder. Delete `Settings/.DataDeployed` to copy it again.
+
+Other folders taken over from the original sources: `Help` (HTML sources of
+the `.chm` help files), `Install` (original NSIS installer scripts; their
+paths still point to the old layout) and `tools` (sources of the NSIS helper
+programs, server side data of the package/data reader/cheat services,
+PortableApps.com package, source of `mkdosfs.exe`).
