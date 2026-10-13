@@ -30,7 +30,7 @@ or open `CMakeLists.txt` in Qt Creator.
 `data/` holds the run-time files of the original program in the layout of an
 installed copy: `Bin` (helper programs, links, cheats database, 7-Zip),
 `DOSBox` (bundled Windows DOSBox 0.74), `DOSBoxLang` (DOSBox language
-files), `Lang` (program translations and help files), `IconSets` and
+files), `Lang` (program translations), `Help` (the help pages), `IconSets` and
 `NewUserData` (templates, AutoSetup profiles, FreeDOS, Doszip, ...).
 
 Every build copies them next to the executable (`cmake/DeployData.cmake`),
@@ -66,8 +66,15 @@ is stored in `%USERPROFILE%\D-Fend Reborn\` on Windows and in
 The program update check asks GitHub for the latest release of this
 repository (Help > Search for updates) and offers to open its download page.
 
-Other folders taken over from the original sources: `Help` (HTML sources of
-the `.chm` help files), `Install` (original NSIS installer scripts; their
+The help (`data/Help/<Language>/`) is a set of plain HTML pages, used on all
+systems: the help buttons and menu items open the matching page in the
+default web browser. (The original program compiled these pages into `.chm`
+files.) The language files name their help folder (`HelpFile=English`).
+
+Every push and pull request is built on Linux and Windows by GitHub Actions
+(`.github/workflows/build.yml`).
+
+Other folders taken over from the original sources: `Install` (original NSIS installer scripts; their
 paths still point to the old layout) and `tools` (sources of the NSIS helper
 programs, server side data of the package/data reader/cheat services,
 PortableApps.com package, source of `mkdosfs.exe`).

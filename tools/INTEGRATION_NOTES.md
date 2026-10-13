@@ -18,11 +18,12 @@ auto mounting, installation support from floppy/CD, quick start drive nodes,
 reading/writing CD/floppy images via the device files; without permission
 for a device file it is opened via udisks2 (Block.OpenDevice, older udisks:
 OpenForBackup/OpenForRestore), inserted but unmounted discs/floppies are
-mounted via udisks2 (Filesystem.Mount)).
+mounted via udisks2 (Filesystem.Mount)), HTML help (data/Help) on all
+systems with context id -> page mapping (HelpTools.cpp), GitHub Actions build
+checks (Linux + Windows), resample filters for image scaling (ImageStretch.cpp).
 
 Still open:
-- Platform gaps marked with `TODO(port)` in the sources (help
-  topics in CHM viewers, resample filters, Windows installer packages in the
+- Platform gaps marked with `TODO(port)` in the sources (Windows installer packages in the
   package manager, recursive folder watching in the quick start window,
   search animation, color box names).
   Notes that only explain a deliberate difference are marked `Port note:`.
