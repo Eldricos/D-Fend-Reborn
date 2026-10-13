@@ -384,6 +384,7 @@ Qt::ItemFlags TListViewModel::flags(const QModelIndex &index) const
 
 void TListViewModel::rowChanged(int Row)
 {
+    if (resetting()) return;
     emit dataChanged(index(Row, 0), index(Row, columnCount() - 1));
 }
 
