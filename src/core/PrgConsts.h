@@ -23,7 +23,12 @@ inline QString PrgConstsSubPath(const char *S)
 // Note: the Delphi arrays ProgramExts, IgnoreGameExeFilesIgnore, SetupExeFilesLevel1..4 and
 // ProgramExeFiles are 1-based (Array[1..N]); the QStringList versions below are 0-based.
 
+#ifdef Q_OS_WIN
 inline const QString DosBoxFileName = QStringLiteral("DOSBOX.EXE");
+#else
+// Linux/macOS: the DOSBox binary has no extension and the file system is case sensitive
+inline const QString DosBoxFileName = QStringLiteral("dosbox");
+#endif
 inline const QString DosBoxConfFileName = QStringLiteral("DOSBOX.CONF");
 inline const QString MakeDOSFilesystemFileName = QStringLiteral("mkdosfs.exe");
 inline const QString ConfOptFile = QStringLiteral("ConfOpt.dat");

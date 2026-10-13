@@ -6,6 +6,8 @@
 #include "PrgConsts.h"
 #include "CommonTools.h"
 #include "IconLoaderUnit.h"
+#include <QStandardPaths>
+#include <QFileInfo>
 
 #ifdef Q_OS_WIN
 #include "WinApi.h"
@@ -90,7 +92,10 @@ void TSetupDosBoxForm::StartSearch()
         }
     }
 #else
-    // No drive letters: search the file system root
+    // No drive letters: search the home folder first, then the whole file
+    // system (SearchDir skips the virtual file systems)
+    if (SearchDir(IncludeTrailingPathDelimiter(QDir::homePath()))) { setModalResult(mrOk); return; }
+    if (Aborted) { setModalResult(mrAbort); return; }
     if (SearchDir("/")) { setModalResult(mrOk); return; }
     if (Aborted) { setModalResult(mrAbort); return; }
 #endif
@@ -105,7 +110,7 @@ bool TSetupDosBoxForm::SearchDir(const QString& Dir)
     bool result = false;
 
     switch (SearchType) {
-        case stDOSBox: result = FileExists(Dir + DosBoxFileName); if (result) { DOSBoxDir = Dir; return result; } break;
+        case stDOSBox: result = FileExists(Dir + DosBoxFileName) && !DirectoryExists(Dir + DosBoxFileName); if (result) { DOSBoxDir = Dir; return result; } break;
         case stOggEnc: result = FileExists(Dir + OggEncPrgFile); if (result) { PrgSetup->SetWaveEncOgg(Dir + OggEncPrgFile); return result; } break;
         case stLame: result = FileExists(Dir + LamePrgFile); if (result) { PrgSetup->SetWaveEncMp3(Dir + LamePrgFile); return result; } break;
         case stScummVM: result = FileExists(Dir + ScummPrgFile); if (result) { PrgSetup->SetScummVMPath(Dir); return result; } break;
@@ -129,6 +134,9 @@ bool TSetupDosBoxForm::SearchDir(const QString& Dir)
 #ifndef Q_OS_WIN
             // do not follow symbolic links (endless recursion / other file systems)
             if (QFileInfo(Dir + Rec.Name).isSymLink()) { I = FindNext(Rec); continue; }
+            // skip virtual file systems and folders already searched
+            if ((Dir == "/") && ((Rec.Name == "proc") || (Rec.Name == "sys") || (Rec.Name == "dev") || (Rec.Name == "run"))) { I = FindNext(Rec); continue; }
+            if (Dir + Rec.Name == QDir::homePath()) { I = FindNext(Rec); continue; }
 #endif
             result = SearchDir(Dir + Rec.Name + PathDelim);
             if (result || Aborted) { FindClose(Rec); return result; }
@@ -147,7 +155,7 @@ void TSetupDosBoxForm::AbortButtonClick(QObject* Sender)
 
 /* global */
 
-bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir)
+bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir, bool AllowFullSearch)
 {
     QString S;
     TStringList St;
@@ -168,6 +176,7 @@ bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir)
     S = PrgDataDir() + "DOSBox" + PathDelim;
     if (FileExists(S + DosBoxFileName)) { ADOSBoxDir = S; return true; }
 
+#ifdef Q_OS_WIN
     S = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROGRAM_FILES_));
     I = FindFirst(S + "*.*", faDirectory, Rec);
     while (I == 0) {
@@ -179,6 +188,31 @@ bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir)
 
     S = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROGRAM_FILES_)) + "DOSBox" + PathDelim;
     if (FileExists(S + DosBoxFileName)) { ADOSBoxDir = S; return true; }
+#else
+    // Linux/macOS: DOSBox installed by the package manager (or by the user)
+    // is found via the search path; then check the usual install locations.
+    Q_UNUSED(Rec);
+    S = QStandardPaths::findExecutable(DosBoxFileName);
+    if (!S.isEmpty()) { ADOSBoxDir = IncludeTrailingPathDelimiter(ExtractFilePath(S)); return true; }
+    St.Add(IncludeTrailingPathDelimiter(QDir::homePath()) + ".local/bin/");
+    St.Add("/usr/local/bin/");
+    St.Add("/usr/bin/");
+    St.Add("/usr/games/");
+    St.Add("/snap/bin/");
+    St.Add("/opt/dosbox/");
+    St.Add("/opt/dosbox/bin/");
+#ifdef Q_OS_MACOS
+    St.Add("/opt/homebrew/bin/");
+    St.Add("/Applications/DOSBox.app/Contents/MacOS/");
+#endif
+    for (I = 0; I < St.Count(); I++) {
+        QFileInfo FI(St[I] + DosBoxFileName);
+        if (FI.isFile() && FI.isExecutable()) { ADOSBoxDir = St[I]; return true; }
+    }
+#endif
+
+    if (!AllowFullSearch) return false;
+    PrgSetup->SetDOSBoxFullSearchDone(true);
 
     SetupDosBoxForm = new TSetupDosBoxForm(AOwner);
     SetupDosBoxForm->SearchType = stDOSBox;

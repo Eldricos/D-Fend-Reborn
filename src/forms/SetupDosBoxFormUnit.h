@@ -37,14 +37,15 @@ public slots:
 protected:
     void showEvent(QShowEvent* Event) override;   // OnShow
 private:
-    friend bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir);
+    friend bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir, bool AllowFullSearch);
     bool FirstShowDone = false;
     bool Aborted = false;
     int Count = 0;
     bool SearchDir(const QString& Dir);
 };
 extern TSetupDosBoxForm* SetupDosBoxForm;
-bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir);
+// AllowFullSearch: false = only check the usual places, no search of all drives
+bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir, bool AllowFullSearch = true);
 bool SearchOggEnc(QWidget* AOwner);
 bool SearchLame(QWidget* AOwner);
 bool SearchScummVM(QWidget* AOwner);

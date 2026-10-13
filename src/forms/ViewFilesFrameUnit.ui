@@ -6,7 +6,7 @@
     <property name="vclDesignWidth" stdset="0"><number>451</number></property>
     <property name="vclDesignHeight" stdset="0"><number>304</number></property>
     <widget class="TSplitterWidget" name="Splitter">
-      <property name="geometry"><rect><x>121</x><y>22</y><width>0</width><height>282</height></rect></property>
+      <property name="geometry"><rect><x>121</x><y>22</y><width>3</width><height>282</height></rect></property>
       <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
     </widget>
     <widget class="QLabel" name="InfoLabel">

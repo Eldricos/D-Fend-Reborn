@@ -239,7 +239,7 @@
         <property name="vclDesignWidth" stdset="0"><number>701</number></property>
         <property name="vclDesignHeight" stdset="0"><number>369</number></property>
         <widget class="TSplitterWidget" name="Splitter1">
-          <property name="geometry"><rect><x>241</x><y>0</y><width>0</width><height>368</height></rect></property>
+          <property name="geometry"><rect><x>241</x><y>0</y><width>3</width><height>368</height></rect></property>
           <property name="vclAlign" stdset="0"><string notr="true">alLeft</string></property>
         </widget>
         <widget class="QListWidget" name="ExePackagesListBox">

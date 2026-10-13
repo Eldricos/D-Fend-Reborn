@@ -461,6 +461,7 @@ void TPrgSetup::ReadSettings()
     AddBooleanRec(89, "ProgramSets", "DataReaderDownloadCompleteMediaLibrary", true);
     AddBooleanRec(90, "ProgramSets", "OfferRunAsAdmin", false);
     /* AddBooleanRec(91,'ProgramSets','ActivateIncompleteFeatures',False); */
+    AddBooleanRec(92, "ProgramSets", "DOSBoxFullSearchDone", false);   // D-Fend Reborn
 
     AddIntegerRec(0, "ProgramSets", "MainLeft", -1);
     AddIntegerRec(1, "ProgramSets", "MainTop", -1);
