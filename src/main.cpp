@@ -34,10 +34,10 @@
 int main(int argc, char *argv[])
 {
     QApplication App(argc, argv);
-    App.setApplicationName("D-Fend Reloaded");
-    App.setApplicationDisplayName("D-Fend Reloaded");
+    App.setApplicationName("D-Fend Reborn");
+    App.setApplicationDisplayName("D-Fend Reborn");
     App.setOrganizationName("D-Fend Reborn");
-    App.setWindowIcon(QIcon(":/icons/MainUnit_DFendReloadedMainForm.ico"));
+    App.setWindowIcon(QIcon(":/icons/MainUnit_DFendRebornMainForm.ico"));
 
     // VCL default font: Tahoma 8pt (Font.Height=-11 at 96 dpi)
     QFont F;
@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
 
     int Result;
     {
-        auto *MainForm = new TDFendReloadedMainForm();
+        auto *MainForm = new TDFendRebornMainForm();
         if (MainForm->FormCreateAborted()) {
             Result = 0;
         } else {

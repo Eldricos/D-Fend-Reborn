@@ -29,36 +29,19 @@ static const THandle InvalidHandle = 0;
 
 static void ApplicationRestore()
 {
-    if (DFendReloadedMainForm == nullptr) return;
-    if (DFendReloadedMainForm->isMinimized()) DFendReloadedMainForm->showNormal();
-    DFendReloadedMainForm->activateWindow();
+    if (DFendRebornMainForm == nullptr) return;
+    if (DFendRebornMainForm->isMinimized()) DFendRebornMainForm->showNormal();
+    DFendRebornMainForm->activateWindow();
 }
 
 static void ApplicationMinimize()
 {
-    if (DFendReloadedMainForm != nullptr) DFendReloadedMainForm->showMinimized();
+    if (DFendRebornMainForm != nullptr) DFendRebornMainForm->showMinimized();
 }
 
 static bool MainFormIsMinimized()
 {
-    return (DFendReloadedMainForm != nullptr) && DFendReloadedMainForm->isMinimized();
-}
-
-// CreateProcess(PrgFile,'"'+PrgFile+'" '+Params,...,WorkDir,...) replacement.
-// Returns the process id or 0.
-static THandle CreateProcessCommandLine(const QString& PrgFile, const QString& Params, const QString& WorkDir)
-{
-    QProcess P;
-    P.setProgram(ToNativePath(PrgFile));
-#ifdef Q_OS_WIN
-    P.setNativeArguments(Params);
-#else
-    P.setArguments(SplitCommandLine(Params));
-#endif
-    if (!WorkDir.isEmpty()) P.setWorkingDirectory(ToNativePath(WorkDir));
-    qint64 Pid = 0;
-    if (!P.startDetached(&Pid)) return 0;
-    return Pid;
+    return (DFendRebornMainForm != nullptr) && DFendRebornMainForm->isMinimized();
 }
 
 [[maybe_unused]] static THandle RunFile(const QString& FileName, const QString& Parameters)
@@ -66,7 +49,7 @@ static THandle CreateProcessCommandLine(const QString& PrgFile, const QString& P
     THandle result;
     // {ShellExecute(Application.MainForm.Handle,'open',PChar(FileName),PChar(Parameters),PChar(IncludeTrailingPathDelimiter((ExtractFilePath(FileName)))),SW_SHOW);}
 
-    result = CreateProcessCommandLine(FileName, Parameters, ExtractFilePath(FileName));
+    result = StartProcessNative(FileName, Parameters, ExtractFilePath(FileName));
     if (result == 0) {
         // if (GetLastError=740) {ERROR_ELEVATION_REQUIRED} then ShellExecute(...)
         if (!ShellOpen(FileName, Parameters, IncludeTrailingPathDelimiter(ExtractFilePath(FileName)))) {
@@ -97,7 +80,7 @@ static THandle RunFile2(const QString& FileName, const QString& Parameters, bool
         ShellOpen(PrgDir() + BinFolder + PathDelim + "AdminLauncher.exe", "/dir=" + S + " /run=\"" + FileName + "\" " + Parameters, S);
         return result;
 #else
-        // TODO(port): AdminLauncher.exe only exists on Windows - start the program normally
+        // Port note: AdminLauncher.exe only exists on Windows - start the program normally
 #endif
     }
 
@@ -109,7 +92,7 @@ static THandle RunFile2(const QString& FileName, const QString& Parameters, bool
     std::wstring WDir = ToNativePath(IncludeTrailingPathDelimiter(ExtractFilePath(FileName))).toStdWString();
     ShellExecInfo.cbSize = sizeof(ShellExecInfo);
     ShellExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
-    ShellExecInfo.hwnd = DFendReloadedMainForm ? reinterpret_cast<HWND>(DFendReloadedMainForm->winId()) : nullptr;
+    ShellExecInfo.hwnd = DFendRebornMainForm ? reinterpret_cast<HWND>(DFendRebornMainForm->winId()) : nullptr;
     ShellExecInfo.lpVerb = L"open";
     ShellExecInfo.lpFile = WFile.c_str();
     ShellExecInfo.lpParameters = WParams.c_str();

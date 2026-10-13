@@ -1,5 +1,6 @@
 // C++ port of BuildZipPackagesFormUnit.pas (implementation section).
 #include "BuildZipPackagesFormUnit.h"
+#include "VirtualKeys.h"
 
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
@@ -11,10 +12,6 @@
 #include "IconLoaderUnit.h"
 
 TBuildZipPackagesForm *BuildZipPackagesForm = nullptr;
-
-#ifndef VK_F1_Code
-static constexpr quint16 VK_F1_Code = 0x70;
-#endif   // VK_F1
 
 TBuildZipPackagesForm::TBuildZipPackagesForm(QWidget *AOwner) : TVclForm(AOwner)
 {
@@ -28,7 +25,7 @@ TBuildZipPackagesForm::TBuildZipPackagesForm(QWidget *AOwner) : TVclForm(AOwner)
     connect(ui.HelpButton, &QPushButton::clicked, this, [this]() { HelpButtonClick(ui.HelpButton); });
     VclLayout::installKeyPreview(this, [this](int Key, Qt::KeyboardModifiers Mods) {
         // Delphi virtual key codes (only VK_F1 is evaluated)
-        quint16 K = (Key == Qt::Key_F1) ? VK_F1_Code : quint16(Key & 0xFFFF);
+        quint16 K = QtKeyToVK(Key);
         FormKeyDown(this, K, Mods);
         return (Key == Qt::Key_F1) && (Mods == Qt::NoModifier);
     });
@@ -123,7 +120,7 @@ void TBuildZipPackagesForm::HelpButtonClick(QObject * /*Sender*/)
 
 void TBuildZipPackagesForm::FormKeyDown(QObject *Sender, quint16 &Key, TShiftState Shift)
 {
-    if ((Key == VK_F1_Code) && (Shift == Qt::NoModifier)) HelpButtonClick(Sender);
+    if ((Key == VK_F1) && (Shift == Qt::NoModifier)) HelpButtonClick(Sender);
 }
 
 // global

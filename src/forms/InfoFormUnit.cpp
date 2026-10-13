@@ -149,7 +149,7 @@ void TInfoForm::FormShow(QObject* Sender)
 
     {
         const QSignalBlocker Block(ui.LicenseComboBox);
-        ui.LicenseComboBox->addItem("D-Fend Reloaded", 0);
+        ui.LicenseComboBox->addItem("D-Fend Reborn", 0);
         ui.LicenseComboBox->addItem("DOSBox", 1);
         if ((Trim(PrgSetup->ScummVMPath()) != "") && DirectoryExists(PrgSetup->ScummVMPath())) ui.LicenseComboBox->addItem("ScummVM", 2);
         ui.LicenseComboBox->setCurrentIndex(0);

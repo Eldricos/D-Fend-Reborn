@@ -61,9 +61,9 @@ void LogInfo(const QString &Info, bool ContinueLogging)
 void LoggingUnit_Initialization()
 {
 #ifdef Q_OS_WIN
-    StartupLogFile = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_DESKTOPDIRECTORY)) + "D-Fend-Reloaded-Log.txt";
+    StartupLogFile = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_DESKTOPDIRECTORY)) + "D-Fend-Reborn-Log.txt";
 #else
-    StartupLogFile = IncludeTrailingPathDelimiter(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)) + "D-Fend-Reloaded-Log.txt";
+    StartupLogFile = IncludeTrailingPathDelimiter(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)) + "D-Fend-Reborn-Log.txt";
 #endif
     if (!FileExists(StartupLogFile)) StartupLogFile = "";
 }

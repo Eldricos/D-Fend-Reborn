@@ -22,7 +22,7 @@ public:
     explicit TSelectCDDriveToMountForm(QWidget *AOwner = nullptr);
     ~TSelectCDDriveToMountForm() override;
     QString ProfileName;
-    QString AvailableDrives;
+    QStringList AvailableDrives;   // root folders of the CD drives (see PhysicalDrivesUnit)
     QString LetterToMountAt;
     QString ChosenDrive;
     // VCL event handlers (connected in the constructor)
@@ -36,5 +36,7 @@ public slots:
     void OKButtonClick(QObject* Sender);
 };
 extern TSelectCDDriveToMountForm* SelectCDDriveToMountForm;
-bool ShowSelectCDDriveToMountDialog(QWidget* AOwner, const QString& AvailableDrives, const QString& LetterToMountAt, const QString& ProfileName, QString& ChosenDrive);
-bool GetDriveLabel(const QString& DriveLetter, QString& DriveLabel);
+// AvailableDrives / ChosenDrive: root folders of CD drives ("D:\\", "/media/user/CD/")
+bool ShowSelectCDDriveToMountDialog(QWidget* AOwner, const QStringList& AvailableDrives, const QString& LetterToMountAt, const QString& ProfileName, QString& ChosenDrive);
+// Drive: drive letter or root folder
+bool GetDriveLabel(const QString& Drive, QString& DriveLabel);

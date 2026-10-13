@@ -1,5 +1,7 @@
 // C++ port of InstallationRunFormUnit.pas (implementation section).
 #include "InstallationRunFormUnit.h"
+#include "PhysicalDrivesUnit.h"
+#include "DosCodePage.h"
 
 #include "CommonTools.h"
 #include "LanguageSetupUnit.h"
@@ -207,24 +209,33 @@ QString TInstallationRunForm::FindFileToStart(const QString& Dir)
     return "";
 }
 
-static QChar FloppyDriveLetter()
+// Root folder of the floppy drive ("A:\\"; Linux/BSD: mount point of the
+// inserted floppy disk, empty if none is mounted)
+static QString FloppyDriveRoot()
 {
+#ifdef Q_OS_WIN
     QChar result = 'A';
     if (PrgSetup->DefaultFloppyDrive() != "") result = PrgSetup->DefaultFloppyDrive()[0];
-#ifdef Q_OS_WIN
     for (char C = 'A'; C <= 'Z'; C++) {
         const QString Root = QString(QChar(C)) + ":\\";
-        if (GetDriveTypeW(reinterpret_cast<LPCWSTR>(Root.utf16())) == DRIVE_REMOVABLE) return QChar(C);
+        if (GetDriveTypeW(reinterpret_cast<LPCWSTR>(Root.utf16())) == DRIVE_REMOVABLE) return Root;
     }
+    return QString(result) + ":\\";
 #else
-    // TODO(port): no drive letters outside of Windows - the default floppy drive setting is used
+    for (const TPhysicalDrive& D : PhysicalDrives(pdtFloppy)) if (!D.Root.isEmpty()) return D.Root;
+    // inserted floppy disk that is not mounted yet: mount it via udisks2
+    for (const TPhysicalDrive& D : PhysicalDrives(pdtFloppy)) {
+        const QString Root = MountDriveMedium(D.Device);
+        if (!Root.isEmpty()) return Root;
+    }
+    return QString();
 #endif
-    return result;
 }
 
-static QChar GetCDDriveWithMedia()
+// Root folder of a CD drive, preferably one with a medium ("D:\\"; Linux/BSD:
+// mount point of the inserted disc, empty if none is mounted)
+static QString CDDriveRootWithMedia()
 {
-    QChar result = 'D';
 #ifdef Q_OS_WIN
     int I;
     TSearchRec Rec;
@@ -233,18 +244,19 @@ static QChar GetCDDriveWithMedia()
         const QString Root = QString(QChar(C)) + ":\\";
         if (GetDriveTypeW(reinterpret_cast<LPCWSTR>(Root.utf16())) == DRIVE_CDROM) {
             I = FindFirst(Root + "*.*", faAnyFile, Rec); FindClose(Rec);
-            if (I == 0) return QChar(C);
+            if (I == 0) return Root;
         }
     }
 
     for (char C = 'A'; C <= 'Z'; C++) {
         const QString Root = QString(QChar(C)) + ":\\";
-        if (GetDriveTypeW(reinterpret_cast<LPCWSTR>(Root.utf16())) == DRIVE_CDROM) return QChar(C);
+        if (GetDriveTypeW(reinterpret_cast<LPCWSTR>(Root.utf16())) == DRIVE_CDROM) return Root;
     }
+    return QString("D:\\");
 #else
-    // TODO(port): no drive letters outside of Windows
+    const QStringList Roots = CDDriveRoots();
+    return Roots.isEmpty() ? QString() : Roots[0];
 #endif
-    return result;
 }
 
 void TInstallationRunForm::BuildMountCommand(TGame* Game, QString& FileToStart, TStringList* StartUpCmds)
@@ -257,8 +269,10 @@ void TInstallationRunForm::BuildMountCommand(TGame* Game, QString& FileToStart, 
 
     switch (InstallType) {
         case itFloppy:
-            Game->SetMount1(QString(FloppyDriveLetter()) + ":\\;FLOPPY;A;False;;");
-            if (SecondTry) FileToStart = ""; else FileToStart = FindFileToStart(QString(FloppyDriveLetter()) + ":\\");
+            S = FloppyDriveRoot();
+            if (S.isEmpty()) { MessageDlg(LanguageSetup->MessageNoFloppyDrive(), mtError, mbOK, 0); AbortSetup = true; return; }
+            Game->SetMount1(S + ";FLOPPY;A;False;;");
+            if (SecondTry) FileToStart = ""; else FileToStart = FindFileToStart(S);
             if (FileToStart == "") StartUpCmds->Add("A:");
             HideSourceSection();
             break;
@@ -326,7 +340,8 @@ void TInstallationRunForm::BuildMountCommand(TGame* Game, QString& FileToStart, 
             }
             break;
         case itCD:
-            S = QString(GetCDDriveWithMedia()) + ":\\";
+            S = CDDriveRootWithMedia();
+            if (S.isEmpty()) { MessageDlg(LanguageSetup->MessageNoCDDrive(), mtError, mbOK, 0); AbortSetup = true; return; }
             Game->SetMount1(S + ";CDROM;D;false;;");
             if (SecondTry) FileToStart = ""; else FileToStart = FindFileToStart(S);
             if (FileToStart == "") StartUpCmds->Add("D:");
@@ -348,8 +363,13 @@ static void SplitText(TStringList* St, const QString& Lines)
     QString S;
 
     // CharToOEM(PChar(Lines),PChar(S));
-    // TODO(port): no conversion to the OEM code page - the text is passed unchanged
+#ifdef Q_OS_WIN
+    S = CharToOemAnsi(Lines);
+#else
+    // (Linux/macOS: the DOSBox conf writer converts the autoexec lines to the
+    // DOS code page, see WriteDOSBoxConfFile)
     S = Lines;
+#endif
 
     while (Length(S) > 75) {
         I = 75;
@@ -435,7 +455,7 @@ void TInstallationRunForm::RunInstaller()
         TempGame->Game()->SetAutoexec(StringListToString(St));
     }
     TempGame->Game()->StoreAllValues();
-    DOSBoxHandle = RunCommandAndGetHandle(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    DOSBoxHandle = RunCommandAndGetHandle(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     // While not (WaitForSingleObject(DOSBoxHandle,0)=WAIT_OBJECT_0) do ...
     while ((DOSBoxHandle != 0) && IsProcessRunning(DOSBoxHandle)) {
         Sleep(100);

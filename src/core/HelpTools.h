@@ -127,8 +127,9 @@ private:
     bool OnRouteHelp(quint16 Command, qintptr Data, bool& CallHelp);
 };
 // HtmlHelp(hwndCaller, pszFile, uCommand, dwData).  An empty pszFile means nil.
-// On Windows this calls HtmlHelpW from HHCTRL.OCX; elsewhere a portable
-// emulation is installed (opens the .chm file with the associated viewer).
+// Port note: on all systems an emulation for the HTML help folders is
+// installed: pszFile is the help folder (Help/<Language>/), the pages are
+// opened in the default web browser.
 using THtmlHelpA = std::function<THandle(THandle hwndCaller, const QString& pszFile, quint32 uCommand, qintptr dwData)>;
 extern THtmlHelpA HtmlHelpA;
 extern THandle HHCTRL;

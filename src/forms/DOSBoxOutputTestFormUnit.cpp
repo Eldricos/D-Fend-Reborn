@@ -148,7 +148,7 @@ bool TDOSBoxOutputTestForm::SingleCheck(const QString& Renderer, bool Fullscreen
     TempGame->Game()->SetGameExe("");
     TempGame->Game()->SetCloseDosBoxAfterGameExit(false);
     TempGame->Game()->StoreAllValues();
-    Handle = RunCommandAndGetHandle(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", false);
+    Handle = RunCommandAndGetHandle(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", false);
     // WaitForSingleObject(Handle,10000); result:=(WaitForSingleObject(Handle,0)=WAIT_OBJECT_0);
     if (Handle != 0) WaitForProcess(Handle, 10000, true);
     result = (Handle != 0) && !IsProcessRunning(Handle);

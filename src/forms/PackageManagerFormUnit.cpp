@@ -1,5 +1,6 @@
 // C++ port of PackageManagerFormUnit.pas (implementation section).
 #include "PackageManagerFormUnit.h"
+#include "VirtualKeys.h"
 
 #include <QGuiApplication>
 
@@ -21,11 +22,6 @@
 #include "Process.h"
 
 TPackageManagerForm *PackageManagerForm = nullptr;
-
-// Delphi virtual key codes
-#ifndef VK_F1_Code
-static constexpr quint16 VK_F1_Code = 0x70;
-#endif
 
 // GetKeyState(VK_LSHIFT) / GetKeyState(VK_RSHIFT)
 static bool ShiftPressed()
@@ -76,7 +72,7 @@ TPackageManagerForm::TPackageManagerForm(QWidget *AOwner) : TVclForm(AOwner)
     connect(ui.ExePackagesDelButton, &QPushButton::clicked, this, [this]() { ExePackagesDelButtonClick(ui.ExePackagesDelButton); });
     connect(ui.ListViewPopupMenuDelete, &QAction::triggered, this, [this]() { ListViewPopupMenuDeleteClick(ui.ListViewPopupMenuDelete); });
     VclLayout::installKeyPreview(this, [this](int Key, Qt::KeyboardModifiers Mods) {
-        quint16 K = (Key == Qt::Key_F1) ? VK_F1_Code : quint16(Key & 0xFFFF);
+        quint16 K = QtKeyToVK(Key);
         FormKeyDown(this, K, Mods);
         return (Key == Qt::Key_F1) && (Mods == Qt::NoModifier);
     });
@@ -806,7 +802,7 @@ void TPackageManagerForm::ExePackagesDelButtonClick(QObject * /*Sender*/)
 
 void TPackageManagerForm::FormKeyDown(QObject * /*Sender*/, quint16 &Key, TShiftState Shift)
 {
-    if ((Key == VK_F1_Code) && (Shift == Qt::NoModifier)) ButtonWork(ui.HelpButton);
+    if ((Key == VK_F1) && (Shift == Qt::NoModifier)) ButtonWork(ui.HelpButton);
 }
 
 // global

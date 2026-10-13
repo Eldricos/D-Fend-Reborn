@@ -1,5 +1,6 @@
 // C++ port of CreateImageUnit.pas (implementation section).
 #include "CreateImageUnit.h"
+#include "PhysicalDrivesUnit.h"
 #include "LanguageSetupUnit.h"
 #include "PrgSetupUnit.h"
 #include "CommonTools.h"
@@ -22,9 +23,10 @@ static bool IsRemovableDrive(QChar C)
     const QString S = QString(C) + ":\\";
     return GetDriveTypeW(reinterpret_cast<LPCWSTR>(S.utf16())) == DRIVE_REMOVABLE;
 #else
-    // TODO(port): drive letters (raw floppy access) only exist on Windows.
-    Q_UNUSED(C);
-    return false;
+    // Linux/BSD: letters assigned to the floppy drives (A, B) - raw access via
+    // the device file needs write permission (e.g. "floppy" group)
+    TPhysicalDrive D;
+    return PhysicalDriveByLetter(C, D) && (D.Type == pdtFloppy);
 #endif
 }
 

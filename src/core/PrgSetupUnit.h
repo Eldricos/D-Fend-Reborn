@@ -533,6 +533,9 @@ private:
 };
 extern TPrgSetup* PrgSetup;
 QString PrgDataDir();
+// Folder for the user data in the "user directory" operation mode
+// (Windows: %USERPROFILE%\D-Fend Reborn\, Linux: ~/.local/share/D-Fend Reborn/)
+QString UserDataDir();
 bool WineSupportEnabled();
 void DOSBoxSettingToDOSBoxData(TDOSBoxSetting* DOSBoxSetting, TDOSBoxData& DOSBoxData);
 void DOSBoxDataToDOSBoxSetting(const TDOSBoxData& DOSBoxData, TDOSBoxSetting* DOSBoxSetting);

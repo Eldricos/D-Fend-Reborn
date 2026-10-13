@@ -295,7 +295,7 @@ void TModernProfileEditorForm::RunGameWithCurrentConfig()
         if (WindowsExeMode(TempGame->Game())) {
             RunWindowsGame(TempGame->Game());
         } else {
-            RunGame(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit);
+            RunGame(TempGame->Game(), DFendRebornMainForm->DeleteOnExit);
         }
     }
     Sleep(100);

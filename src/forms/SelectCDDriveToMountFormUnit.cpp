@@ -45,12 +45,11 @@ void TSelectCDDriveToMountForm::FormShow(QObject* Sender)
     UserIconLoader->DialogImage(DI_Cancel, ui.CancelButton);
 
     ui.DriveComboBox->clear();
-    for (int I = 1; I <= Length(AvailableDrives); I++) {
-        const QString D = QString(AvailableDrives[I - 1]);
-        if (GetDriveLabel(D, S)) {
-            ui.DriveComboBox->addItem(D + ":\\ (" + S + ")");
+    for (const QString& D : AvailableDrives) {
+        if (GetDriveLabel(D, S) && !S.isEmpty()) {
+            ui.DriveComboBox->addItem(D + " (" + S + ")", D);
         } else {
-            ui.DriveComboBox->addItem(D + ":\\");
+            ui.DriveComboBox->addItem(D, D);
         }
     }
     ui.DriveComboBox->setCurrentIndex(0);
@@ -59,12 +58,12 @@ void TSelectCDDriveToMountForm::FormShow(QObject* Sender)
 void TSelectCDDriveToMountForm::OKButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ChosenDrive = Copy(ui.DriveComboBox->itemText(ui.DriveComboBox->currentIndex()), 1, 3);
+    ChosenDrive = ui.DriveComboBox->itemData(ui.DriveComboBox->currentIndex()).toString();
 }
 
 // { global }
 
-bool ShowSelectCDDriveToMountDialog(QWidget* AOwner, const QString& AvailableDrives, const QString& LetterToMountAt, const QString& ProfileName, QString& ChosenDrive)
+bool ShowSelectCDDriveToMountDialog(QWidget* AOwner, const QStringList& AvailableDrives, const QString& LetterToMountAt, const QString& ProfileName, QString& ChosenDrive)
 {
     TSelectCDDriveToMountForm* LocalSelectCDDriveToMountForm = new TSelectCDDriveToMountForm(AOwner);
     LocalSelectCDDriveToMountForm->ProfileName = ProfileName;
@@ -87,13 +86,13 @@ bool GetDriveLabel(const QString& DriveLetter, QString& DriveLabel)
 #ifdef Q_OS_WIN
     wchar_t S1[512], S2[512];
     DWORD C1 = 0, C2 = 0, C3 = 0;
-    const QString Root = DriveLetter + ":\\";
+    const QString Root = Copy(DriveLetter, 1, 1) + ":\\";
     S1[0] = 0; S2[0] = 0;
     result = GetVolumeInformationW(reinterpret_cast<LPCWSTR>(Root.utf16()), S1, 510, &C1, &C2, &C3, S2, 510) != 0;
     if (result) DriveLabel = QString::fromWCharArray(S1);
 #else
-    // TODO(port): no drive letters outside Windows; DriveLetter may be a mount point of an
-    // optical drive (see CheckDriveData) - use the volume label of that file system.
+    // Port note: no drive letters outside Windows; DriveLetter is the mount point of
+    // the medium (see PhysicalDrivesUnit) - use the volume label of that file system.
     QStorageInfo Info(DriveLetter);
     result = (Length(DriveLetter) > 1) && Info.isValid() && Info.isReady();
     if (result) DriveLabel = Info.name();

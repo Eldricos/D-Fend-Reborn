@@ -12,6 +12,11 @@
 #include <QImageWriter>
 #include <QDesktopServices>
 #include <QThread>
+#ifdef DFR_HAVE_DBUS
+#include <QDBusInterface>
+#include <QDBusMessage>
+#include <QDBusReply>
+#endif
 #include <cmath>
 
 #ifdef Q_OS_WIN
@@ -549,7 +554,7 @@ QString GetSpecialFolder(WId hWindow, int Folder)
 
 quint32 GetFileVersionEx(const QString& AFileName)
 {
-    // TODO(port): the original read the VERSIONINFO resource of any file; the port
+    // Port note: the original read the VERSIONINFO resource of any file; the port
     // only knows the version of the program itself (the only file it was used for).
     Q_UNUSED(AFileName);
     quint32 MS, LS;
@@ -700,7 +705,9 @@ void CenterWindowFromProcessID(THandle ProcessID)
 #ifdef Q_OS_WIN
     EnumWindows(EnumWindowsFunc, LPARAM(ProcessID));
 #else
-    // TODO(port): windows of other processes cannot be moved portably (X11/Wayland)
+    // Port note: windows of other programs can not be moved on Linux (Wayland);
+    // DOSBox / ScummVM are asked to center their windows via SDL environment
+    // variables when they are started instead (RunDOSBox / RunScummVM).
     Q_UNUSED(ProcessID);
 #endif
 }
@@ -731,7 +738,8 @@ void HideWindowFromProcessIDAndTitle(THandle ProcessID, const QString& Title)
 #ifdef Q_OS_WIN
     EnumWindows(EnumWindowsFunc2, LPARAM(ProcessID));
 #else
-    // TODO(port): windows of other processes cannot be hidden portably (X11/Wayland)
+    // Port note: only used for the ScummVM console window, which does not
+    // exist on Linux/macOS
     Q_UNUSED(ProcessID);
 #endif
 }
@@ -744,11 +752,11 @@ QString CheckDOSBoxVersionDirect(int Nr, const QString& Path)
 
     if (!DirectoryExists(DOSBoxPath)) return QString();
 
-    QString TempTxt = TempDir() + QStringLiteral("D-Fend-Reloaded-DOSBoxVer.txt");
+    QString TempTxt = TempDir() + QStringLiteral("D-Fend-Reborn-DOSBoxVer.txt");
 #ifdef Q_OS_WIN
-    QString TempBat = TempDir() + QStringLiteral("D-Fend-Reloaded-DOSBoxVer.bat");
+    QString TempBat = TempDir() + QStringLiteral("D-Fend-Reborn-DOSBoxVer.bat");
 #else
-    QString TempBat = TempDir() + QStringLiteral("D-Fend-Reloaded-DOSBoxVer.sh");
+    QString TempBat = TempDir() + QStringLiteral("D-Fend-Reborn-DOSBoxVer.sh");
 #endif
 
     // Create batch file to run
@@ -950,17 +958,17 @@ void SetStartWithWindows(bool Enabled)
 #ifdef Q_OS_WIN
     QSettings Reg(QStringLiteral("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"), QSettings::NativeFormat);
     if (Enabled) {
-        Reg.setValue(QStringLiteral("D-Fend Reloaded"), ExeFileName());
+        Reg.setValue(QStringLiteral("D-Fend Reborn"), ExeFileName());
     } else {
-        Reg.remove(QStringLiteral("D-Fend Reloaded"));
+        Reg.remove(QStringLiteral("D-Fend Reborn"));
     }
 #else
     // Freedesktop autostart entry
     QString Dir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QStringLiteral("/autostart");
-    QString FileName = Dir + QStringLiteral("/D-Fend Reloaded.desktop");
+    QString FileName = Dir + QStringLiteral("/D-Fend Reborn.desktop");
     if (Enabled) {
         ForceDirectories(Dir);
-        QString Text = QStringLiteral("[Desktop Entry]\nType=Application\nName=D-Fend Reloaded\nExec=\"") + ExeFileName() +
+        QString Text = QStringLiteral("[Desktop Entry]\nType=Application\nName=D-Fend Reborn\nExec=\"") + ExeFileName() +
                        QStringLiteral("\"\nTerminal=false\n");
         WriteTextFile(FileName, Text, true, false);
     } else {
@@ -1183,8 +1191,82 @@ QIcon LoadImageAsIconFromFile(const QString& FileName)
     return QIcon(QPixmap::fromImage(B));
 }
 
+#ifndef Q_OS_WIN
+static bool RunTool(const QString& Name, const QStringList& Args)
+{
+    const QString P = QStandardPaths::findExecutable(Name);
+    if (P.isEmpty()) return false;
+    return RunProcessAndWait(P, Args, QString(), true, false) == 0;
+}
+
+static void SetLinuxDesktopWallpaper(const QString& File, TWallpaperStyle WPStyle)
+{
+    const QString Desktop = qEnvironmentVariable("XDG_CURRENT_DESKTOP").toUpper();   // e.g. "ubuntu:GNOME", "KDE", "XFCE"
+    const QString Uri = QUrl::fromLocalFile(File).toString(QUrl::FullyEncoded);   // spaces etc. as %20
+    auto Is = [&Desktop](const char* Name) { return Desktop.split(':').contains(QString::fromLatin1(Name)); };
+
+    if (Is("KDE")) {
+        // Plasma image wallpaper fill modes: 0 = stretch, 3 = tile, 6 = centered
+        const int Mode = (WPStyle == WSTile) ? 3 : ((WPStyle == WSStretch) ? 0 : 6);
+#ifdef DFR_HAVE_DBUS
+        QString Script = QStringLiteral(
+            "var d = desktops(); for (var i = 0; i < d.length; i++) {"
+            " d[i].wallpaperPlugin = 'org.kde.image';"
+            " d[i].currentConfigGroup = ['Wallpaper', 'org.kde.image', 'General'];"
+            " d[i].writeConfig('Image', '%1'); d[i].writeConfig('FillMode', %2); }").arg(Uri, QString::number(Mode));
+        QDBusInterface Shell(QStringLiteral("org.kde.plasmashell"), QStringLiteral("/PlasmaShell"), QStringLiteral("org.kde.PlasmaShell"));
+        if (Shell.isValid() && Shell.call(QStringLiteral("evaluateScript"), Script).type() != QDBusMessage::ErrorMessage) return;
+#endif
+        Q_UNUSED(Mode);
+        RunTool(QStringLiteral("plasma-apply-wallpaperimage"), {File});
+        return;
+    }
+
+    if (Is("XFCE")) {
+        // Xfce 4.12+: one "last-image" / "image-style" property per monitor and workspace
+        // (image-style: 1 = centered, 2 = tiled, 3 = stretched)
+        const QString Style = QString::number((WPStyle == WSTile) ? 2 : ((WPStyle == WSStretch) ? 3 : 1));
+        const QString Xfconf = QStandardPaths::findExecutable(QStringLiteral("xfconf-query"));
+        if (Xfconf.isEmpty()) return;
+        const QStringList Props = RunProcessAndGetOutput(Xfconf, {QStringLiteral("-c"), QStringLiteral("xfce4-desktop"), QStringLiteral("-l")}).split('\n');
+        for (const QString& P : Props) {
+            const QString Prop = P.trimmed();
+            if (Prop.endsWith(QStringLiteral("/last-image")))
+                RunProcessAndWait(Xfconf, {QStringLiteral("-c"), QStringLiteral("xfce4-desktop"), QStringLiteral("-p"), Prop, QStringLiteral("-s"), File}, QString(), true, false);
+            else if (Prop.endsWith(QStringLiteral("/image-style")))
+                RunProcessAndWait(Xfconf, {QStringLiteral("-c"), QStringLiteral("xfce4-desktop"), QStringLiteral("-p"), Prop, QStringLiteral("-s"), Style}, QString(), true, false);
+        }
+        return;
+    }
+
+    if (Is("LXQT")) {
+        RunTool(QStringLiteral("pcmanfm-qt"), {QStringLiteral("--set-wallpaper=") + File,
+            QStringLiteral("--wallpaper-mode=") + ((WPStyle == WSTile) ? QStringLiteral("tile") : ((WPStyle == WSStretch) ? QStringLiteral("stretch") : QStringLiteral("center")))});
+        return;
+    }
+
+    // GNOME style desktops (gsettings): picture-options wallpaper / stretched / centered
+    const QString Options = (WPStyle == WSTile) ? QStringLiteral("wallpaper") : ((WPStyle == WSStretch) ? QStringLiteral("stretched") : QStringLiteral("centered"));
+    if (Is("MATE")) {
+        RunTool(QStringLiteral("gsettings"), {QStringLiteral("set"), QStringLiteral("org.mate.background"), QStringLiteral("picture-filename"), File});
+        RunTool(QStringLiteral("gsettings"), {QStringLiteral("set"), QStringLiteral("org.mate.background"), QStringLiteral("picture-options"), Options});
+        return;
+    }
+    if (Is("X-CINNAMON") || Is("CINNAMON")) {
+        RunTool(QStringLiteral("gsettings"), {QStringLiteral("set"), QStringLiteral("org.cinnamon.desktop.background"), QStringLiteral("picture-uri"), Uri});
+        RunTool(QStringLiteral("gsettings"), {QStringLiteral("set"), QStringLiteral("org.cinnamon.desktop.background"), QStringLiteral("picture-options"), Options});
+        return;
+    }
+    // GNOME, Unity, Budgie, Pantheon, ... (and the fallback for unknown desktops)
+    RunTool(QStringLiteral("gsettings"), {QStringLiteral("set"), QStringLiteral("org.gnome.desktop.background"), QStringLiteral("picture-uri"), Uri});
+    RunTool(QStringLiteral("gsettings"), {QStringLiteral("set"), QStringLiteral("org.gnome.desktop.background"), QStringLiteral("picture-uri-dark"), Uri});
+    RunTool(QStringLiteral("gsettings"), {QStringLiteral("set"), QStringLiteral("org.gnome.desktop.background"), QStringLiteral("picture-options"), Options});
+}
+#endif
+
 void SetDesktopWallpaper(const QString& FileName, TWallpaperStyle WPStyle)
 {
+#ifdef Q_OS_WIN
     QString S = FileName;
 
     if (ExtUpperCase(ExtractFileExt(S)) == QLatin1String(".PNG")) {
@@ -1197,7 +1279,6 @@ void SetDesktopWallpaper(const QString& FileName, TWallpaperStyle WPStyle)
         SaveImageToFile(P, S);
     }
 
-#ifdef Q_OS_WIN
     // IActiveDesktop replaced by the registry settings + SystemParametersInfo
     QSettings Reg(QStringLiteral("HKEY_CURRENT_USER\\Control Panel\\Desktop"), QSettings::NativeFormat);
     switch (WPStyle) {
@@ -1210,20 +1291,10 @@ void SetDesktopWallpaper(const QString& FileName, TWallpaperStyle WPStyle)
     std::wstring WS = QDir::toNativeSeparators(S).toStdWString();
     SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, const_cast<wchar_t *>(WS.c_str()), SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
 #else
-    // TODO(port): there is no portable way to set the wallpaper; GNOME based desktops are supported via gsettings
-    QString GSettings = QStandardPaths::findExecutable(QStringLiteral("gsettings"));
-    if (GSettings.isEmpty()) return;
-    QString Uri = QUrl::fromLocalFile(QFileInfo(S).absoluteFilePath()).toString();
-    QString Style;
-    switch (WPStyle) {
-        case WSTile: Style = QStringLiteral("wallpaper"); break;
-        case WSStretch: Style = QStringLiteral("stretched"); break;
-        case WSCenter:
-        default: Style = QStringLiteral("centered"); break;
-    }
-    RunProcessAndWait(GSettings, {QStringLiteral("set"), QStringLiteral("org.gnome.desktop.background"), QStringLiteral("picture-uri"), Uri}, QString(), true, false);
-    RunProcessAndWait(GSettings, {QStringLiteral("set"), QStringLiteral("org.gnome.desktop.background"), QStringLiteral("picture-uri-dark"), Uri}, QString(), true, false);
-    RunProcessAndWait(GSettings, {QStringLiteral("set"), QStringLiteral("org.gnome.desktop.background"), QStringLiteral("picture-options"), Style}, QString(), true, false);
+    // Linux / BSD: there is no common API - set the wallpaper with the tools
+    // of the running desktop environment. The desktops reference the file, so
+    // the original image is used (not the temporary BMP copy).
+    SetLinuxDesktopWallpaper(QFileInfo(FileName).absoluteFilePath(), WPStyle);
 #endif
 }
 
@@ -1299,7 +1370,8 @@ bool GetScreensaverAllowStatus()
     SystemParametersInfoW(SPI_GETSCREENSAVEACTIVE, 0, &I, 0);
     return (I != 0);
 #else
-    // TODO(port): no portable screensaver API; the status is only remembered
+    // Linux/BSD: the screensaver is inhibited by D-Fend Reborn itself (see
+    // SetScreensaverAllowStatus), the status is the one set last
     return ScreensaverAllowStatus;
 #endif
 }
@@ -1309,8 +1381,23 @@ void SetScreensaverAllowStatus(bool Enable)
 #ifdef Q_OS_WIN
     SystemParametersInfoW(SPI_SETSCREENSAVEACTIVE, UINT(Enable), nullptr, 0);
 #else
-    // TODO(port): no portable screensaver API; the status is only remembered
+    // Linux/BSD: inhibit the screensaver via the freedesktop.org D-Bus
+    // interface (KDE, GNOME, Xfce, LXQt, Cinnamon, MATE, ...). The inhibition
+    // lasts until it is released or D-Fend Reborn quits.
+    if (Enable == ScreensaverAllowStatus) return;
     ScreensaverAllowStatus = Enable;
+#ifdef DFR_HAVE_DBUS
+    static uint Cookie = 0;
+    QDBusInterface ScreenSaver(QStringLiteral("org.freedesktop.ScreenSaver"), QStringLiteral("/org/freedesktop/ScreenSaver"), QStringLiteral("org.freedesktop.ScreenSaver"));
+    if (!ScreenSaver.isValid()) return;
+    if (!Enable) {
+        QDBusReply<uint> Reply = ScreenSaver.call(QStringLiteral("Inhibit"), QStringLiteral("D-Fend Reborn"), QStringLiteral("A DOSBox / ScummVM game is running"));
+        if (Reply.isValid()) Cookie = Reply.value();
+    } else if (Cookie != 0) {
+        ScreenSaver.call(QStringLiteral("UnInhibit"), Cookie);
+        Cookie = 0;
+    }
+#endif
 #endif
 }
 

@@ -15,7 +15,7 @@
     <widget class="QLabel" name="InfoLabel">
       <property name="geometry"><rect><x>8</x><y>16</y><width>569</width><height>65</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Bitte geben Sie an, wo sich das zu startende Spiel oder Programm befindet. Wenn Sie die Spieldateien jeweils in den Unterverzeichnissen der angegebenen Verzeichnisse ablegen, kann D-Fend Reloaded mit relativen Pfaden arbeiten.</string></property>
+      <property name="text"><string>Bitte geben Sie an, wo sich das zu startende Spiel oder Programm befindet. Wenn Sie die Spieldateien jeweils in den Unterverzeichnissen der angegebenen Verzeichnisse ablegen, kann D-Fend Reborn mit relativen Pfaden arbeiten.</string></property>
       <property name="textFormat"><enum>Qt::PlainText</enum></property>
       <property name="wordWrap"><bool>true</bool></property>
       <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>

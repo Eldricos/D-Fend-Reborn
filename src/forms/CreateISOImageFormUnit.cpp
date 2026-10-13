@@ -1,5 +1,6 @@
 // C++ port of CreateISOImageFormUnit.pas (implementation section).
 #include "CreateISOImageFormUnit.h"
+#include "PhysicalDrivesUnit.h"
 #include "LanguageSetupUnit.h"
 #include "PrgSetupUnit.h"
 #include "CommonTools.h"
@@ -23,8 +24,11 @@ static quint32 GetDriveTypeOf(QChar C)
     if (J == DRIVE_CDROM) return DRIVE_TYPE_CDROM;
     return DRIVE_TYPE_OTHER;
 #else
-    // TODO(port): drive letters (raw floppy / CD access) only exist on Windows.
-    Q_UNUSED(C);
+    // Linux/BSD: letters assigned to the floppy (A, B) and CD/DVD drives (D, ...)
+    TPhysicalDrive D;
+    if (!PhysicalDriveByLetter(C, D)) return DRIVE_TYPE_OTHER;
+    if (D.Type == pdtFloppy) return DRIVE_TYPE_REMOVABLE;
+    if (D.Type == pdtOptical) return DRIVE_TYPE_CDROM;
     return DRIVE_TYPE_OTHER;
 #endif
 }
@@ -113,10 +117,16 @@ void TCreateISOImageForm::FormShow(QObject* Sender)
 
     for (char C = 'A'; C <= 'Z'; C++) {
         J = GetDriveTypeOf(QChar(C));
+        QString Item = QString(QChar(C));
+#ifndef Q_OS_WIN
+        // (the letter is followed by the device file: "D: /dev/sr0")
+        TPhysicalDrive D;
+        if (PhysicalDriveByLetter(QChar(C), D)) Item += ": " + D.Device + (D.Label.isEmpty() ? QString() : " (" + D.Label + ")");
+#endif
         if (FloppyMode) {
-            if (J == DRIVE_TYPE_REMOVABLE) ui.DriveComboBox->addItem(QString(QChar(C)));
+            if (J == DRIVE_TYPE_REMOVABLE) ui.DriveComboBox->addItem(Item);
         } else {
-            if (J == DRIVE_TYPE_CDROM) ui.DriveComboBox->addItem(QString(QChar(C)));
+            if (J == DRIVE_TYPE_CDROM) ui.DriveComboBox->addItem(Item);
         }
     }
 

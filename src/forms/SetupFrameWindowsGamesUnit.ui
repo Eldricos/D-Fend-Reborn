@@ -34,7 +34,7 @@
     <widget class="QCheckBox" name="AllowWindowsPackagesCheckBox">
       <property name="geometry"><rect><x>16</x><y>184</y><width>633</width><height>17</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Allow D-Fend Reloaded to create archive files from Windows profiles and import Windows profile package files</string></property>
+      <property name="text"><string>Allow D-Fend Reborn to create archive files from Windows profiles and import Windows profile package files</string></property>
     </widget>
   </widget>
   <tabstops>

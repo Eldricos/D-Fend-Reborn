@@ -118,7 +118,7 @@ QString WinExtractShortPathName(const QString& ParentDir, const QString& LongNam
         result = ExtractFileName(S);
     }
 #else
-    // TODO(port): no system short names (8.3) outside Windows
+    // Port note: no system short names (8.3) outside Windows
     Q_UNUSED(Dir);
     result = LongName;
 #endif

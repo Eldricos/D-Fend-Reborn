@@ -131,14 +131,14 @@ TLanguageSetup::TLanguageSetup(const QString& FileName_, bool MinimalInit)
             AddStringRec(NR_DownloadChecksum, "LanguageFileInfo", "DownloadChecksum", "");
             AddStringRec(NR_NSISLanguageID, "LanguageFileInfo", "NSISLanguageID", "1033");
             AddStringRec(NR_LocalLanguageName, "LanguageFileInfo", "LocalLanguageName", "English");
-            AddStringRec(NR_HelpFile, "LanguageFileInfo", "HelpFile", "English.chm");
+            AddStringRec(NR_HelpFile, "LanguageFileInfo", "HelpFile", "English");
         } else {
             AddStringRec(NR_Author, "Author", "Name", "No Author defined");
             AddStringRec(NR_MaxVersion, "LanguageFileInfo", "MaxVersion", "0");
             AddStringRec(NR_DownloadChecksum, "LanguageFileInfo", "DownloadChecksum", "");
             AddStringRec(NR_NSISLanguageID, "LanguageFileInfo", "NSISLanguageID", "");
             AddStringRec(NR_LocalLanguageName, "LanguageFileInfo", "LocalLanguageName", "");
-            AddStringRec(NR_HelpFile, "LanguageFileInfo", "HelpFile", "English.chm");
+            AddStringRec(NR_HelpFile, "LanguageFileInfo", "HelpFile", "English");
         }
 
         if (!MinimalInit) {

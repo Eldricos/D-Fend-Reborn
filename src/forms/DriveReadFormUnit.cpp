@@ -1,5 +1,6 @@
 // C++ port of DriveReadFormUnit.pas (implementation section).
 #include "DriveReadFormUnit.h"
+#include "PhysicalDrivesUnit.h"
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
 #include "IconLoaderUnit.h"
@@ -16,9 +17,8 @@ static bool IsCDROMDrive(QChar Drive)
     const QString Root = QString(Drive) + ":\\";
     return GetDriveTypeW(reinterpret_cast<LPCWSTR>(Root.utf16())) == DRIVE_CDROM;
 #else
-    // TODO(port): drive letters only exist on Windows
-    Q_UNUSED(Drive);
-    return false;
+    TPhysicalDrive D;
+    return PhysicalDriveByLetter(Drive, D) && (D.Type == pdtOptical);
 #endif
 }
 

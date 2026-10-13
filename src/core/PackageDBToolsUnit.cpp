@@ -176,7 +176,7 @@ static QBuffer* GetFileFromAnyDrive(const QString& Path)
         SetErrorMode(SaveErrorMode);
     }
 #else
-    // TODO(port): there are no drive letters - just try the path itself
+    // Port note: there are no drive letters - just try the path itself
     // (and with native path delimiters).
     if (FileExists(Path)) return LoadFileToBuffer(Path);
     if (FileExists(ToNativePath(Path))) return LoadFileToBuffer(ToNativePath(Path));

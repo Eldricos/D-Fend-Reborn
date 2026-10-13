@@ -1,5 +1,7 @@
 // C++ port of QuickStartFormUnit.pas (implementation section).
 #include "QuickStartFormUnit.h"
+#include "PhysicalDrivesUnit.h"
+#include "VirtualKeys.h"
 
 #include "CommonTools.h"
 #include "LanguageSetupUnit.h"
@@ -112,39 +114,11 @@ const TFileTypeInfo FileTypes[55] = {
 };
 constexpr int FileTypesHigh = 54;
 
-// Delphi virtual key codes
-#ifndef VK_RETURN
-constexpr quint16 VK_RETURN = 0x0D;
-#endif
-#ifndef VK_DELETE
-constexpr quint16 VK_DELETE = 0x2E;
-#endif
-#ifndef VK_F1
-constexpr quint16 VK_F1 = 0x70;
-#endif
-#ifndef VK_F2
-constexpr quint16 VK_F2 = 0x71;
-#endif
-#ifndef VK_F5
-constexpr quint16 VK_F5 = 0x74;
-#endif
-
-quint16 QtKeyToVK(int Key)
-{
-    switch (Key) {
-    case Qt::Key_Return: case Qt::Key_Enter: return VK_RETURN;
-    case Qt::Key_Delete: return VK_DELETE;
-    case Qt::Key_F1: return VK_F1;
-    case Qt::Key_F2: return VK_F2;
-    case Qt::Key_F5: return VK_F5;
-    default: return 0;
-    }
-}
-
 // TTreeNode.ImageIndex / SelectedIndex / HasChildren
 constexpr int RoleImageIndex = Qt::UserRole + 1;
 constexpr int RoleSelectedIndex = Qt::UserRole + 2;
 constexpr int RoleHasChildren = Qt::UserRole + 3;
+constexpr int RoleRootPath = Qt::UserRole + 4;   // top level node of a mounted drive (Linux/BSD): its folder
 
 int ItemType(TListItem *Item) { return static_cast<int>(reinterpret_cast<intptr_t>(Item->Data())); }
 
@@ -260,9 +234,9 @@ void TQuickStartForm::FormCreate(QObject* Sender)
         if ((PrgSetup->QuickStarterWidth() > 0) && (L + PrgSetup->QuickStarterWidth() <= Screen.width())) W = PrgSetup->QuickStarterWidth();
         if ((PrgSetup->QuickStarterHeight() > 0) && (T + PrgSetup->QuickStarterHeight() <= Screen.height())) H = PrgSetup->QuickStarterHeight();
 
-        if ((PrgSetup->QuickStarterLeft() < 0) && (PrgSetup->QuickStarterTop() < 0) && (PrgSetup->QuickStarterWidth() < 0) && (PrgSetup->QuickStarterHeight() < 0) && DFendReloadedMainForm != nullptr) {
-            L = DFendReloadedMainForm->x() + DFendReloadedMainForm->width() / 2 - (W / 2);
-            T = DFendReloadedMainForm->y() + DFendReloadedMainForm->y() / 2 - (T / 2);
+        if ((PrgSetup->QuickStarterLeft() < 0) && (PrgSetup->QuickStarterTop() < 0) && (PrgSetup->QuickStarterWidth() < 0) && (PrgSetup->QuickStarterHeight() < 0) && DFendRebornMainForm != nullptr) {
+            L = DFendRebornMainForm->x() + DFendRebornMainForm->width() / 2 - (W / 2);
+            T = DFendRebornMainForm->y() + DFendRebornMainForm->y() / 2 - (T / 2);
         }
 
         resize(W, H);
@@ -621,12 +595,22 @@ void TQuickStartForm::BuildTree()
                 if (N != nullptr) SelNode = N;
             }
 #else
-            // TODO(port): no drive letters outside Windows - the file system root is the only top level node
+            // Port note: no drive letters outside Windows - the file system root
+            // and the mounted CDs / floppy disks / removable media are the top level nodes
             N = NewRootNode("/", 7);
             BackupSelNode = N;
             if (Copy(SaveCurrentPath, 1, 1) == "/") S = Copy(SaveCurrentPath, 1, MaxInt); else S.clear();
             N = AddSubfolders("/", N, S, false);
             if (N != nullptr) SelNode = N;
+            for (const TPhysicalDrive& Drive : PhysicalDrives()) {
+                if (Drive.Root.isEmpty() || !DirectoryExists(Drive.Root)) continue;
+                const QString RootNoDelim = ExcludeTrailingPathDelimiter(Drive.Root);
+                N = NewRootNode(Drive.Label.isEmpty() ? RootNoDelim : Drive.Label + " (" + RootNoDelim + ")", 7);
+                N->setData(0, RoleRootPath, RootNoDelim);
+                if (SaveCurrentPath.startsWith(Drive.Root) || SaveCurrentPath == RootNoDelim) S = Copy(SaveCurrentPath, Length(RootNoDelim) + 1, MaxInt); else S.clear();
+                N = AddSubfolders(Drive.Root, N, S, false);
+                if (N != nullptr) SelNode = N;
+            }
 #endif
             if (BackupSelNode == nullptr && ui.Tree->topLevelItemCount() > 0) BackupSelNode = ui.Tree->topLevelItem(0);
             break;
@@ -815,7 +799,9 @@ QString TQuickStartForm::PathFromNode(QTreeWidgetItem* Node)
     result = PathDelim;
     QTreeWidgetItem* N = Node;
     while (N->parent() != nullptr) { result = PathDelim + N->text(0) + result; N = N->parent(); }
-    if ((Length(N->text(0)) >= 2) && (N->text(0)[1] == ':')) {
+    if (!N->data(0, RoleRootPath).toString().isEmpty()) {
+        result = N->data(0, RoleRootPath).toString() + result;
+    } else if ((Length(N->text(0)) >= 2) && (N->text(0)[1] == ':')) {
         result = N->text(0) + result;
     } else if (N->text(0) == "/") {
         // file system root (non Windows "full" view)
@@ -1144,7 +1130,7 @@ void TQuickStartForm::OpenDOSBox(const QString& Path, const QString& FileName, c
 
     TempGame->Game()->SetGameExe(FileName);
 
-    RunGame(TempGame->Game(), DFendReloadedMainForm != nullptr ? DFendReloadedMainForm->DeleteOnExit : nullptr);
+    RunGame(TempGame->Game(), DFendRebornMainForm != nullptr ? DFendRebornMainForm->DeleteOnExit : nullptr);
 
     Sleep(100);
     delete TempGame;

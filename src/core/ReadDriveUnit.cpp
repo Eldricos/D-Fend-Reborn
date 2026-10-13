@@ -1,5 +1,6 @@
 // C++ port of ReadDriveUnit.pas (implementation section).
 #include "ReadDriveUnit.h"
+#include "PhysicalDrivesUnit.h"
 
 #include "LanguageSetupUnit.h"
 #include "PrgSetupUnit.h"
@@ -32,10 +33,11 @@ static const TVolumeHandle InvalidVolume = INVALID_HANDLE_VALUE;
 using TVolumeHandle = int;
 static const TVolumeHandle InvalidVolume = -1;
 
-// TODO(port): drive letters do not exist outside Windows.  The device is taken
+// Port note: drive letters do not exist outside Windows.  The device is taken
 // from the Linux remap setting of the drive letter (a /dev/... path or the
-// mount point of the medium); without a setting A:/B: map to /dev/fd0 and
-// /dev/fd1 and every other letter to /dev/cdrom.
+// mount point of the medium) or from the letter assigned to the drive by
+// PhysicalDrivesUnit (A/B = floppy drives, D.. = CD/DVD drives); otherwise
+// A:/B: map to /dev/fd0 and /dev/fd1 and every other letter to /dev/cdrom.
 static QString DevicePath(QChar Drive)
 {
     const QChar D = Drive.toUpper();
@@ -46,6 +48,8 @@ static QString DevicePath(QChar Drive)
         QStorageInfo Info(S);
         if (Info.isValid() && !Info.device().isEmpty()) return QString::fromLocal8Bit(Info.device());
     }
+    TPhysicalDrive Drv;
+    if (PhysicalDriveByLetter(D, Drv) && !Drv.Device.isEmpty()) return Drv.Device;
     if (D == 'A') return "/dev/fd0";
     if (D == 'B') return "/dev/fd1";
     return "/dev/cdrom";
@@ -62,8 +66,8 @@ static TVolumeHandle OpenVolume(QChar Drive, bool WriteMode = false)
     else
         return CreateFileW(reinterpret_cast<LPCWSTR>(VolumeName.utf16()), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, 0, nullptr);
 #else
-    const QByteArray Dev = QFile::encodeName(DevicePath(Drive));
-    return ::open(Dev.constData(), WriteMode ? O_RDWR : O_RDONLY);
+    // (without permission for the device file udisks2 is asked to open it)
+    return OpenDriveDevice(DevicePath(Drive), WriteMode);
 #endif
 }
 

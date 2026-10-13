@@ -21,7 +21,7 @@ static std::unique_ptr<QByteArray> DownloadFile(const QString& URL, const QStrin
     Request.setRawHeader("User-Agent", "User-Agent=Mozilla/5.0 (Windows; U; Windows NT 6.0)");
     Request.setRawHeader("Accept-Language", "en");
     if (!Referer.isEmpty()) Request.setRawHeader("Referer", Referer.toUtf8());
-    // TODO(port): Indy did not follow redirects by default; following them is
+    // Port note: Indy did not follow redirects by default; following them is
     // required for today's http → https redirects.
     Request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
     Request.setTransferTimeout(60000);
@@ -48,7 +48,7 @@ bool DownloadTextFile(const QString& URL, QString& Lines, const QString& Referer
 {
     std::unique_ptr<QByteArray> MSt = DownloadFile(URL, Referer);
     bool result = (MSt != nullptr); if (!result) return result;
-    // TODO(port): Delphi copied the raw bytes into an AnsiString.  Valid UTF-8
+    // Port note: Delphi copied the raw bytes into an AnsiString.  Valid UTF-8
     // (today's web pages) is decoded as UTF-8, everything else byte-wise with
     // the 8 bit codepage like before.
     QStringDecoder Decoder(QStringDecoder::Utf8);

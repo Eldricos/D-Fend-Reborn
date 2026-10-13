@@ -9,6 +9,7 @@
 #endif
 
 #include <QDir>
+#include <QStandardPaths>
 
 TOperationMode OperationMode = omPrgDir;
 TPrgSetup *PrgSetup = nullptr;
@@ -314,7 +315,7 @@ void TPrgSetup::ReadSettings()
     AddStringRec(5, "ProgramSets", "ColVisible", "11111100");
     AddStringRec(6, "ProgramSets", "ILVS", "List");
     AddStringRec(7, "ProgramSets", "PathToFREEDOS", "." + D + "VirtualHD" + D + "FREEDOS" + D);
-    AddStringRec(8, "ProgramSets", "UpdateCheckURL", DFRHomepage + "UpdateInfo.txt");
+    AddStringRec(8, "ProgramSets", "UpdateCheckURL", DFRebornLatestReleaseAPI);
     AddStringRec(9, "ProgramSets", "GamesListViewBackground", "");
     AddStringRec(10, "ProgramSets", "GamesListViewFontColor", "clWindowText");
     AddStringRec(11, "ProgramSets", "ScreenshotsListViewBackground", "");
@@ -656,17 +657,20 @@ static void ReadOperationMode()
     }
 }
 
+QString UserDataDir()
+{
+#ifdef Q_OS_WIN
+    return IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROFILE)) + "D-Fend Reborn" + PathDelim;
+#else
+    // ~/.local/share/D-Fend Reborn/ (macOS: ~/Library/Application Support/D-Fend Reborn/)
+    return IncludeTrailingPathDelimiter(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)) + "D-Fend Reborn" + PathDelim;
+#endif
+}
+
 QString PrgDataDir()
 {
-    if (OperationMode == omUserDir) {
-#ifdef Q_OS_WIN
-        return IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROFILE)) + "D-Fend Reloaded" + PathDelim;
-#else
-        return IncludeTrailingPathDelimiter(QDir::homePath()) + "D-Fend Reloaded" + PathDelim;
-#endif
-    } else {
-        return PrgDir();
-    }
+    if (OperationMode == omUserDir) return UserDataDir();
+    return PrgDir();
 }
 
 bool WineSupportEnabled()

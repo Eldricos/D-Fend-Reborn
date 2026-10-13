@@ -391,7 +391,7 @@ QWidget* NewWinControlType(QWidget* OldControl, TWinControlClass NewControlClass
 {
     if (OldControl == nullptr || !NewControlClass) return OldControl;
 
-    // TODO(port): ctcmStoreAndRestore / ctcmCopyProperties created a new control
+    // Port note: ctcmStoreAndRestore / ctcmCopyProperties created a new control
     // and copied the DFM properties to it.  A Qt widget created by uic is
     // referenced by the ui struct and by signal connections, so all three
     // methods attach the behaviour of the new class to the existing control

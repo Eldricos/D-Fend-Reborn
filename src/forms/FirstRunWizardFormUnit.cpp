@@ -1,5 +1,6 @@
 // C++ port of FirstRunWizardFormUnit.pas (implementation section).
 #include "FirstRunWizardFormUnit.h"
+#include "VirtualKeys.h"
 
 #include "CommonTools.h"
 #include "LanguageSetupUnit.h"
@@ -19,10 +20,6 @@ TFirstRunWizardForm* FirstRunWizardForm = nullptr;
 
 namespace {
 
-#ifndef VK_F1
-constexpr quint16 VK_F1 = 0x70;
-#endif
-
 void SetBold(QWidget *W)
 {
     QFont F = W->font(); F.setBold(true); W->setFont(F);
@@ -34,7 +31,7 @@ int SystemDefaultLangID()
 #ifdef Q_OS_WIN
     return GetSystemDefaultLangID();
 #else
-    // TODO(port): no LANGID outside Windows - map the most common system locales
+    // Port note: no LANGID outside Windows - map the most common system locales
     static const struct { const char *Name; int ID; } Map[] = {
         {"en_US", 1033}, {"en_GB", 2057}, {"de_DE", 1031}, {"de_AT", 3079}, {"de_CH", 2055}, {"fr_FR", 1036},
         {"es_ES", 3082}, {"it_IT", 1040}, {"nl_NL", 1043}, {"pl_PL", 1045}, {"ru_RU", 1049}, {"pt_BR", 1046},
@@ -234,7 +231,7 @@ void TFirstRunWizardForm::LoadAndSetupLanguageList()
     J = 1033; InstallerLanguageOK = false;
 #ifdef Q_OS_WIN
     {
-        QSettings Reg("HKEY_LOCAL_MACHINE\\Software\\D-Fend Reloaded", QSettings::NativeFormat);
+        QSettings Reg("HKEY_LOCAL_MACHINE\\Software\\D-Fend Reborn", QSettings::NativeFormat);
         if (Reg.contains("Installer Language")) {
             bool OK = false;
             int V = Reg.value("Installer Language").toString().toInt(&OK);
@@ -269,7 +266,7 @@ void TFirstRunWizardForm::ProgramLanguageComboBoxChange(QObject* Sender)
     if (JustLoadingLanguage) return;
 
     LoadLanguage(ShortLanguageName(ui.ProgramLanguageComboBox->currentText()) + ".ini");
-    if (DFendReloadedMainForm != nullptr) DFendReloadedMainForm->SelectHelpFile();
+    if (DFendRebornMainForm != nullptr) DFendRebornMainForm->SelectHelpFile();
     LoadGUILanguage();
 
     ui.ProgramLanguageWarningButton->setVisible(false);

@@ -30,7 +30,7 @@ or open `CMakeLists.txt` in Qt Creator.
 `data/` holds the run-time files of the original program in the layout of an
 installed copy: `Bin` (helper programs, links, cheats database, 7-Zip),
 `DOSBox` (bundled Windows DOSBox 0.74), `DOSBoxLang` (DOSBox language
-files), `Lang` (program translations and help files), `IconSets` and
+files), `Lang` (program translations), `Help` (the help pages), `IconSets` and
 `NewUserData` (templates, AutoSetup profiles, FreeDOS, Doszip, ...).
 
 Every build copies them next to the executable (`cmake/DeployData.cmake`),
@@ -48,10 +48,33 @@ so a build can be run directly:
 On Linux the program uses these system programs (install them with the
 package manager): `dosbox` (or `dosbox-staging`'s `dosbox`), `7z`/`7za`/`7zz`
 (p7zip or 7zip, for zip/7z archives), `mkfs.fat` (dosfstools, for creating
-disk images), `oggenc` (vorbis-tools) and optionally `lame` and `scummvm`.
+disk images), `oggenc` (vorbis-tools), `curl` (FTP downloads in the package
+manager) and optionally `lame` and `scummvm`.
 
-Other folders taken over from the original sources: `Help` (HTML sources of
-the `.chm` help files), `Install` (original NSIS installer scripts; their
+Physical drives on Linux: CD/DVD, floppy and USB drives are found
+automatically. Discs that the desktop did not mount are mounted via udisks2,
+and reading / writing disk images from / to real media uses udisks2 when the
+user has no direct permission for the device (not in the `floppy` / `disk`
+group) - the desktop may ask for a password then. (udisks2 is installed on
+all common desktops; it needs the Qt D-Bus module at build time.)
+
+Without a `DFend.dat` file in the program folder D-Fend Reborn keeps all
+data next to the program. With `USERDIRMODE` in `DFend.dat` the user data
+is stored in `%USERPROFILE%\D-Fend Reborn\` on Windows and in
+`~/.local/share/D-Fend Reborn/` on Linux.
+
+The program update check asks GitHub for the latest release of this
+repository (Help > Search for updates) and offers to open its download page.
+
+The help (`data/Help/<Language>/`) is a set of plain HTML pages, used on all
+systems: the help buttons and menu items open the matching page in the
+default web browser. (The original program compiled these pages into `.chm`
+files.) The language files name their help folder (`HelpFile=English`).
+
+Every push and pull request is built on Linux and Windows by GitHub Actions
+(`.github/workflows/build.yml`).
+
+Other folders taken over from the original sources: `Install` (original NSIS installer scripts; their
 paths still point to the old layout) and `tools` (sources of the NSIS helper
 programs, server side data of the package/data reader/cheat services,
 PortableApps.com package, source of `mkdosfs.exe`).

@@ -619,7 +619,7 @@ QString GetNSISPath()
         if (!FileExists(IncludeTrailingPathDelimiter(result) + "makensisw.exe")) result = "";
     }
 #else
-    // TODO(port): no registry - look for makensis in the search path instead
+    // Port note: no registry - look for makensis in the search path instead
     QString Exe = QStandardPaths::findExecutable(NSISCompilerName());
     if (Exe != "") result = ExtractFilePath(Exe);
 #endif
@@ -639,7 +639,7 @@ bool BuildEXEInstaller(THandle Handle, const QString& FileName)
         return false;
     }
 
-    /* Copy D-Fend Reloaded DataInstaller.nsi to PrgDataDir if missing */
+    /* Copy D-Fend Reborn DataInstaller.nsi to PrgDataDir if missing */
     if (!FileExists(PrgDataDir() + SettingsFolder + PathDelim + NSIInstallerHelpFile)) {
         if (FileExists(PrgDir() + NSIInstallerHelpFile)) {
             CopyFile(PrgDir() + NSIInstallerHelpFile, PrgDataDir() + SettingsFolder + PathDelim + NSIInstallerHelpFile, false);

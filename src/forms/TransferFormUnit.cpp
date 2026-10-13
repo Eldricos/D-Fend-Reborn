@@ -75,7 +75,7 @@ void TTransferForm::FormCreate(QObject* Sender)
     ui.SelectAllButton->setText(LanguageSetup->All());
     ui.SelectNoneButton->setText(LanguageSetup->None());
     ui.SelectGenreButton->setText(LanguageSetup->GameBy());
-    ui.CopyDFRCheckBox->setText(LanguageSetup->TransferFormCopyDFendReloadedPrgFiles());
+    ui.CopyDFRCheckBox->setText(LanguageSetup->TransferFormCopyDFendRebornPrgFiles());
 
     UserIconLoader->DialogImage(DI_SelectFolder, ui.DestPrgDirButton);
     UserIconLoader->DialogImage(DI_OK, ui.OKButton);
@@ -130,7 +130,7 @@ bool TTransferForm::CopyInstallation(const QString& DestPrgDir)
     TOperationMode OperationModeSave;
     TSearchRec Rec;
 
-    LoadAndShowSmallWaitForm(LanguageSetup->TransferFormCopyDFendReloadedPrgFilesWait());
+    LoadAndShowSmallWaitForm(LanguageSetup->TransferFormCopyDFendRebornPrgFilesWait());
     struct WaitGuard { ~WaitGuard() { FreeSmallWaitForm(); } } Guard;  // try/finally
 
     /* Create destination folder */
@@ -399,7 +399,7 @@ bool TTransferForm::GetDestPrgDataDir(TOperationMode OpMode, QString& DestPrgDat
     TOperationMode SaveOpMode;
 
     if (OpMode == omUserDir) {
-        S = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROFILE)) + "D-Fend Reloaded" + PathDelim;
+        S = UserDataDir();
     } else {
         S = IncludeTrailingPathDelimiter(Trim(ui.DestPrgDirEdit->text()));
     }

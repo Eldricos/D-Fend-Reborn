@@ -29,6 +29,9 @@
 #include "FullscreenInfoFormUnit.h"
 #include "DOSBoxCountUnit.h"
 #include "DOSBoxShortNameUnit.h"
+#include "DosCodePage.h"
+#include "PhysicalDrivesUnit.h"
+#include <QRegularExpression>
 #include "RunPrgManagerUnit.h"
 #include "SelectCDDriveToMountFormUnit.h"
 #include "SelectCDDriveToMountByDataFormUnit.h"
@@ -58,24 +61,24 @@ static const THandle InvalidHandle = 0;
 
 static QWidget* ApplicationMainForm()
 {
-    return DFendReloadedMainForm;
+    return DFendRebornMainForm;
 }
 
 static void ApplicationRestore()
 {
-    if (DFendReloadedMainForm == nullptr) return;
-    if (DFendReloadedMainForm->isMinimized()) DFendReloadedMainForm->showNormal();
-    DFendReloadedMainForm->activateWindow();
+    if (DFendRebornMainForm == nullptr) return;
+    if (DFendRebornMainForm->isMinimized()) DFendRebornMainForm->showNormal();
+    DFendRebornMainForm->activateWindow();
 }
 
 static void ApplicationMinimize()
 {
-    if (DFendReloadedMainForm != nullptr) DFendReloadedMainForm->showMinimized();
+    if (DFendRebornMainForm != nullptr) DFendRebornMainForm->showMinimized();
 }
 
 static bool MainFormIsMinimized()
 {
-    return (DFendReloadedMainForm != nullptr) && DFendReloadedMainForm->isMinimized();
+    return (DFendRebornMainForm != nullptr) && DFendRebornMainForm->isMinimized();
 }
 
 // try/finally replacement
@@ -108,7 +111,7 @@ static int SpeedTest = -1;
 
 static QString SpeedTestLogFile()
 {
-    return IncludeTrailingPathDelimiter(GetSpecialFolder(DFendReloadedMainForm ? DFendReloadedMainForm->winId() : WId(0), CSIDL_DESKTOPDIRECTORY)) + "D-Fend-Reloaded-DOSBoxStartLog.txt";
+    return IncludeTrailingPathDelimiter(GetSpecialFolder(DFendRebornMainForm ? DFendRebornMainForm->winId() : WId(0), CSIDL_DESKTOPDIRECTORY)) + "D-Fend-Reborn-DOSBoxStartLog.txt";
 }
 
 static bool IsSpeedTest()
@@ -194,7 +197,7 @@ QString ShortName(const QString& LongName)
         else
             return QString::fromWCharArray(Buffer, static_cast<int>(Len));
 #else
-        // TODO(port): no short (8.3) path names outside Windows
+        // Port note: no short (8.3) path names outside Windows
         return LongName;
 #endif
     } else {
@@ -216,7 +219,7 @@ QString LongPath(const QString& ShortPath)
     }
     return result;
 #else
-    // TODO(port): there are no short path names outside Windows (ShortName and
+    // Port note: there are no short path names outside Windows (ShortName and
     // MakePathShort return the path unchanged), so the long path is the path itself.
     if (ShortPath.isEmpty()) return ShortPath;
     return IncludeTrailingPathDelimiter(ShortPath);
@@ -278,23 +281,12 @@ static QString SpecialMultiImgMount(const QString& DriveLetter, TStringList* Img
         "mount -u " + TempDrive;
 }
 
-static QString GetCDDrives()
+// CD drives are identified by their root folders ("D:\" on Windows, the
+// mount point of the medium on Linux/BSD - see PhysicalDrivesUnit)
+static bool SpecialCDDriveMounting(QString& Folder, const QString& DriveLetter, const QString& ProfileName, bool SelectCD, QStringList& SpecialMountedCDDrives)
 {
-    QString result = "";
-#ifdef Q_OS_WIN
-    for (char C = 'A'; C <= 'Z'; C++) {
-        QString Root = QString(QChar(C)) + ":\\";
-        if (GetDriveTypeW(reinterpret_cast<LPCWSTR>(Root.utf16())) == DRIVE_CDROM) result = result + QChar(C);
-    }
-#else
-    // TODO(port): there are no drive letters outside Windows
-#endif
-    return result;
-}
-
-static bool SpecialCDDriveMounting(QString& Folder, const QString& DriveLetter, const QString& ProfileName, bool SelectCD, QString& SpecialMountedCDDrives)
-{
-    QString S, T, U, Drives;
+    QString S, T, U;
+    QStringList Drives;
     int I;
     bool result = true;
     S = Trim(ExtUpperCase(Folder));
@@ -302,26 +294,28 @@ static bool SpecialCDDriveMounting(QString& Folder, const QString& DriveLetter, 
     // {ASK /  NUMBER:x /  LABEL:x / FILE:x / FOLDER:x}
 
     if (S == "ASK") {
-        Drives = GetCDDrives();
-        if (Length(Drives) == 0) {
+        Drives = CDDriveRoots();
+        if (Drives.isEmpty()) {
             if (SelectCD) {
                 MessageDlg(Format(LanguageSetup->MessageNoCDDriveMount(), {DriveLetter}), mtError, mbOK, 0);
                 result = false;
             }
             Folder = ""; return result;
         }
-        if ((Length(Drives) == 1) || (!SelectCD)) { Folder = QString(Drives[0]) + ":\\"; SpecialMountedCDDrives = SpecialMountedCDDrives + Drives[0]; return result; }
+        if ((Drives.size() == 1) || (!SelectCD)) { Folder = Drives[0]; SpecialMountedCDDrives << NormalizedDriveRoot(Drives[0]); return result; }
         result = ShowSelectCDDriveToMountDialog(ApplicationMainForm(), Drives, DriveLetter, ProfileName, Folder);
-        if (result && !Folder.isEmpty()) SpecialMountedCDDrives = SpecialMountedCDDrives + Folder[0];
+        if (result && !Folder.isEmpty()) SpecialMountedCDDrives << NormalizedDriveRoot(Folder);
         return result;
     }
 
     if (Pos(":", S) == 0) return result;
-    T = Copy(S, Pos(":", S) + 1, MaxInt);
+    // (original case - file and folder names are case sensitive on Linux; the
+    // label is compared case insensitive)
+    T = Trim(Copy(Folder, Pos(":", S) + 1, MaxInt));
     S = Copy(S, 1, Pos(":", S) - 1);
 
-    Drives = GetCDDrives();
-    if (Length(Drives) == 0) {
+    Drives = CDDriveRoots();
+    if (Drives.isEmpty()) {
         if ((SelectCD && (S == "LABEL")) || (S == "FILE") || (S == "FOLDER")) {
             MessageDlg(Format(LanguageSetup->MessageNoCDDriveMount(), {DriveLetter}), mtError, mbOK, 0);
             result = false;
@@ -331,33 +325,23 @@ static bool SpecialCDDriveMounting(QString& Folder, const QString& DriveLetter, 
 
     if (S == "NUMBER") {
         if (!TryStrToInt(T, I)) I = 1;
-        I = Max(1, Min(Length(Drives), I));
-        // TODO(port): the Delphi code accesses Drives[1] even if there is no CD drive at all
-        if (Length(Drives) == 0) { Folder = ""; return result; }
-        SpecialMountedCDDrives = SpecialMountedCDDrives + Drives[I - 1];
-        Folder = QString(Drives[I - 1]) + ":\\"; return result;
+        // Port note: the Delphi code accesses Drives[1] even if there is no CD drive at all
+        if (Drives.isEmpty()) { Folder = ""; return result; }
+        I = Max(1, Min(int(Drives.size()), I));
+        SpecialMountedCDDrives << NormalizedDriveRoot(Drives[I - 1]);
+        Folder = Drives[I - 1]; return result;
     }
     if (SelectCD) {
-        if (S == "LABEL") {
-            result = ShowSelectCDDriveToMountByDataDialog(ApplicationMainForm(), mbLabel, T, DriveLetter, ProfileName, U);
-            if (result) { Folder = U + ":\\"; SpecialMountedCDDrives = SpecialMountedCDDrives + U; } else Folder = "";
-            return result;
-        }
-        if (S == "FILE") {
-            result = ShowSelectCDDriveToMountByDataDialog(ApplicationMainForm(), mbFile, T, DriveLetter, ProfileName, U);
-            if (result) { Folder = U + ":\\"; SpecialMountedCDDrives = SpecialMountedCDDrives + U; } else Folder = "";
-            return result;
-        }
-        if (S == "FOLDER") {
-            result = ShowSelectCDDriveToMountByDataDialog(ApplicationMainForm(), mbFolder, T, DriveLetter, ProfileName, U);
-            if (result) { Folder = U + ":\\"; SpecialMountedCDDrives = SpecialMountedCDDrives + U; } else Folder = "";
-            return result;
-        }
+        TMountByData MountBy;
+        if (S == "LABEL") MountBy = mbLabel; else if (S == "FILE") MountBy = mbFile; else if (S == "FOLDER") MountBy = mbFolder; else return result;
+        result = ShowSelectCDDriveToMountByDataDialog(ApplicationMainForm(), MountBy, T, DriveLetter, ProfileName, U);
+        if (result) { Folder = U; SpecialMountedCDDrives << NormalizedDriveRoot(U); } else Folder = "";
+        return result;
     }
     return result;
 }
 
-static QString BuildMountData(const QString& ProfString, double DOSBoxVersion, QString& FreeDriveLetters, const QString& ProfileName, bool SelectCD, bool& OK, QString& SpecialMountedCDDrives, bool BuildForArchivePackage)
+static QString BuildMountData(const QString& ProfString, double DOSBoxVersion, QString& FreeDriveLetters, const QString& ProfileName, bool SelectCD, bool& OK, QStringList& SpecialMountedCDDrives, bool BuildForArchivePackage)
 {
     auto MarkDriveUsed = [&FreeDriveLetters](QString S) {
         S = Trim(ExtUpperCase(S)); if (Length(S) != 1) return;
@@ -540,7 +524,7 @@ static QString MakePathShort(const QString& S)
         return S;
     }
 #else
-    // TODO(port): no short (8.3) path names outside Windows (GetShortPathName fails -> S)
+    // Port note: no short (8.3) path names outside Windows (GetShortPathName fails -> S)
     return S;
 #endif
 }
@@ -873,15 +857,16 @@ static void BuildFloppyBoot(TStringList* Autoexec, QString Images, const QString
     delete Imgs;
 }
 
-static void AutoMountCDs(TStringList* St, TGame* Game, double DOSBoxVersion, QString& FreeDriveLetters, QString& SpecialMountedCDDrives, bool BuildForArchivePackage)
+static void AutoMountCDs(TStringList* St, TGame* Game, double DOSBoxVersion, QString& FreeDriveLetters, QStringList& SpecialMountedCDDrives, bool BuildForArchivePackage)
 {
-    QString AlreadyMounted, S, T;
+    QString S, T;
     int I;
     TStringList* St2;
     bool OK;
+    QStringList TDummy;
 
     // {SpecialMountedCDDrives <- mounted by ASK, NUMBER, LABEL, FOLDER or FILE (not detectable my scanning the mount list)}
-    AlreadyMounted = SpecialMountedCDDrives;
+    QStringList AlreadyMounted = SpecialMountedCDDrives;
 
     // {Check which CD drives are mounted regularly}
     for (I = 0; I <= Game->NrOfMounts(); I++) {
@@ -890,37 +875,42 @@ static void AutoMountCDs(TStringList* St, TGame* Game, double DOSBoxVersion, QSt
         TFinally Cleanup{[St2]() { delete St2; }};
         if (St2->Count() < 2) continue;
         if (Trim(ExtUpperCase((*St2)[1])) != "CDROM") continue;
-        S = Trim(ExtUpperCase((*St2)[0]));
+        S = Trim((*St2)[0]);
         if (S.isEmpty()) continue;
+#ifdef Q_OS_WIN
+        S = ExtUpperCase(S);
         if ((S[0] < 'A') || (S[0] > 'Z')) continue;
         if (Length(S) > 3) continue;
         if ((Length(S) >= 2) && (S[1] != ':')) continue;
         if ((Length(S) >= 3) && (S[1] != '\\')) continue;
-        AlreadyMounted = AlreadyMounted + S[0];
+        S = QString(S[0]);
+#endif
+        AlreadyMounted << NormalizedDriveRoot(S);
     }
 
-#ifdef Q_OS_WIN
     // {Find CDs and autmount them}
-    for (char Cc = 'C'; Cc <= 'Z'; Cc++) {
-        QChar C(Cc);
-        QString Root = QString(C) + ":\\";
-        if (GetDriveTypeW(reinterpret_cast<LPCWSTR>(Root.utf16())) != DRIVE_CDROM) continue;
-        if (Pos(C, AlreadyMounted) != 0) continue;
+    for (const TPhysicalDrive& Drive : PhysicalDrives(pdtOptical)) {
+        if (Drive.Root.isEmpty()) continue;   // no medium (Linux: not mounted)
+        if (AlreadyMounted.contains(NormalizedDriveRoot(Drive.Root))) continue;
+#ifdef Q_OS_WIN
+        const QChar C = Drive.Letter;
         DWORD lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, lpTotalNumberOfClusters;
-        if (!GetDiskFreeSpaceW(reinterpret_cast<LPCWSTR>(Root.utf16()), &lpSectorsPerCluster, &lpBytesPerSector, &lpNumberOfFreeClusters, &lpTotalNumberOfClusters)) continue;
+        if (!GetDiskFreeSpaceW(reinterpret_cast<LPCWSTR>(Drive.Root.utf16()), &lpSectorsPerCluster, &lpBytesPerSector, &lpNumberOfFreeClusters, &lpTotalNumberOfClusters)) continue;
         if (lpTotalNumberOfClusters == 0) continue;
         if (Pos(C, FreeDriveLetters) > 0) S = C; else {
             S = "";
-            for (char D = Cc + 1; D <= 'Y'; D++) if (Pos(QChar(D), FreeDriveLetters) > 0) { S = QChar(D); break; }
-            if (S.isEmpty()) for (char D = 'A'; D <= Cc - 1; D++) if (Pos(QChar(D), FreeDriveLetters) > 0) { S = QChar(D); break; }
+            for (char D = char(C.unicode()) + 1; D <= 'Y'; D++) if (Pos(QChar(D), FreeDriveLetters) > 0) { S = QChar(D); break; }
+            if (S.isEmpty()) for (char D = 'A'; D <= char(C.unicode()) - 1; D++) if (Pos(QChar(D), FreeDriveLetters) > 0) { S = QChar(D); break; }
         }
-        S = QString(C) + ":\\;CDROM;" + S + ";TRUE;;";
-        St->Add(BuildMountData(S, DOSBoxVersion, FreeDriveLetters, "", true, OK, T, BuildForArchivePackage)); // {"''", "OK" and "T" can be ignored; only for user interactive mounting}
-    }
 #else
-    // TODO(port): automatic mounting of physical CD drives (drive letters) is Windows only
-    Q_UNUSED(DOSBoxVersion); Q_UNUSED(FreeDriveLetters); Q_UNUSED(BuildForArchivePackage); Q_UNUSED(St); Q_UNUSED(OK); Q_UNUSED(T);
+        // (the DOS drive letter: the first free letter from D on)
+        S = "";
+        for (char D = 'D'; D <= 'Y'; D++) if (Pos(QChar(D), FreeDriveLetters) > 0) { S = QChar(D); break; }
 #endif
+        if (S.isEmpty()) continue;
+        S = Drive.Root + ";CDROM;" + S + ";TRUE;;";
+        St->Add(BuildMountData(S, DOSBoxVersion, FreeDriveLetters, "", true, OK, TDummy, BuildForArchivePackage)); // {"''", "OK" and "T" can be ignored; only for user interactive mounting}
+    }
 }
 
 static double GetDOSBoxVersionOfGame(TGame* Game)
@@ -950,7 +940,7 @@ bool BuildAutoexec(TGame* Game, bool RunSetup, TStringList* St, bool WarnIfNotRe
     TStringList* St2;
     int DOSBoxNr;
     bool OK;
-    QString SpecialMountedCDDrives;
+    QStringList SpecialMountedCDDrives;
     double DOSBoxVersion;
 
     bool result = true;
@@ -1041,7 +1031,7 @@ bool BuildAutoexec(TGame* Game, bool RunSetup, TStringList* St, bool WarnIfNotRe
     SpeedTestInfo("Adding mount commands to [autoexec] section of DOSBox conf file");
 
     FreeDriveLetters = "---DEFGHIJKLMNOPQRSTUVWXY-";
-    SpecialMountedCDDrives = ""; // {CD drives mounted by ASK, NUMBER, LABEL, FOLDER or FILE -> for AutoMountCDs to avoid double mounting}
+    SpecialMountedCDDrives.clear(); // {CD drives mounted by ASK, NUMBER, LABEL, FOLDER or FILE -> for AutoMountCDs to avoid double mounting}
     if (!Game->AutoexecOverrideMount()) {
         for (I = 0; I <= 9; I++) {
             if (Game->NrOfMounts() >= I + 1) {
@@ -1508,43 +1498,59 @@ static void FindAlternativeDOSBoxFile(QString& PrgFile)
 }
 #endif
 
+#ifndef Q_OS_WIN
+// Linux/macOS: writes a DOSBox conf file. Host file names are UTF-8, so the
+// settings and the mount / imgmount / boot commands (host paths) are written
+// in UTF-8; the other autoexec lines (echo texts etc.) are shown by DOS and
+// are written in the DOS code page of the "keyb" command (437 or 850).
+static bool WriteDOSBoxConfFile(TStringList* St, const QString& FileName)
+{
+    static const QRegularExpression KeybRx(QStringLiteral("^\\s*@?keyb\\s+\\S+\\s+(\\d+)"), QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression HostPathRx(QStringLiteral("^\\s*@?(mount|imgmount|boot)\\b"), QRegularExpression::CaseInsensitiveOption);
+    int CodePage = 437;
+    bool InAutoexec = false;
+    for (int I = 0; I < St->Count(); I++) {
+        const QString L = Trim((*St)[I]);
+        if (L.startsWith('[')) InAutoexec = (L.compare(QStringLiteral("[autoexec]"), Qt::CaseInsensitive) == 0);
+        else if (InAutoexec) {
+            const QRegularExpressionMatch M = KeybRx.match(L);
+            if (M.hasMatch() && DosCodePageSupported(M.captured(1).toInt())) CodePage = M.captured(1).toInt();
+        }
+    }
+    QByteArray Data;
+    InAutoexec = false;
+    for (int I = 0; I < St->Count(); I++) {
+        const QString& L = (*St)[I];
+        const QString T = Trim(L);
+        if (T.startsWith('[')) InAutoexec = (T.compare(QStringLiteral("[autoexec]"), Qt::CaseInsensitive) == 0);
+        if (InAutoexec && !T.startsWith('[') && !HostPathRx.match(L).hasMatch()) Data += EncodeDosCodePage(L, CodePage);
+        else Data += L.toUtf8();
+        Data += '\n';
+    }
+    QFile F(FileName);
+    if (!F.open(QIODevice::WriteOnly | QIODevice::Truncate)) return false;
+    return F.write(Data) == Data.size();
+}
+#endif
+
 QString GetDOSBoxCommandLine(int DOSBoxNr, const QString& ConfFile, int ShowConsole, const QString& DosBoxCommandLine)
 {
     QString Add;
     Add = "";
+#ifdef Q_OS_WIN
+    // (-NOCONSOLE: DOSBox only has a console window on Windows)
     switch (ShowConsole) {
         case 0: Add = " -NOCONSOLE"; break;
         case 2: break; // {always show console}
         default: /* {1 :} */ if (PrgSetup->DOSBoxSettings(Max(0, DOSBoxNr))->HideDosBoxConsole()) Add = " -NOCONSOLE"; break;
     }
+#else
+    Q_UNUSED(ShowConsole);
+#endif
     // (the Delphi code uses DOSBoxSettings[DOSBoxNr] for the value - Max(0,...) avoids an invalid index)
     if (!Trim(PrgSetup->DOSBoxSettings(Max(0, DOSBoxNr))->CommandLineParameters()).isEmpty()) Add = Add + " " + Trim(PrgSetup->DOSBoxSettings(Max(0, DOSBoxNr))->CommandLineParameters());
     if (!DosBoxCommandLine.isEmpty()) Add = Add + " " + DosBoxCommandLine;
     return "-CONF \"" + ConfFile + "\"" + Add;
-}
-
-// CreateProcess(PrgFile,'"'+PrgFile+'" '+Params,nil,nil,False,0,Env,WorkDir,...)
-// replacement.  EnvAdd: additional "NAME=VALUE" environment entry.  Returns the
-// process id or 0.
-static THandle CreateProcessCommandLine(const QString& PrgFile, const QString& Params, const QString& WorkDir, const QString& EnvAdd)
-{
-    QProcess P;
-    P.setProgram(ToNativePath(PrgFile));
-#ifdef Q_OS_WIN
-    P.setNativeArguments(Params);
-#else
-    P.setArguments(SplitCommandLine(Params));
-#endif
-    if (!WorkDir.isEmpty()) P.setWorkingDirectory(ToNativePath(WorkDir));
-    if (!EnvAdd.isEmpty()) {
-        QProcessEnvironment Env = QProcessEnvironment::systemEnvironment();
-        int I = EnvAdd.indexOf('=');
-        Env.insert(EnvAdd.left(I), EnvAdd.mid(I + 1));
-        P.setProcessEnvironment(Env);
-    }
-    qint64 Pid = 0;
-    if (!P.startDetached(&Pid)) return 0;
-    return Pid;
 }
 
 static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString& ConfFile, bool FullScreen, int ShowConsole, bool asAdmin, const QString& DosBoxCommandLine = QString())
@@ -1599,14 +1605,17 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
         ShellOpen(PrgDir() + BinFolder + PathDelim + "AdminLauncher.exe", "/driver=" + Env + " /dir=" + S + " /run=\"" + PrgFile + "\" " + Params, S);
         return result;
 #else
-        // TODO(port): AdminLauncher.exe only exists on Windows - start DOSBox normally
+        // Port note: AdminLauncher.exe only exists on Windows - start DOSBox normally
 #endif
     }
 
     S = Trim(ExtUpperCase(PrgSetup->DOSBoxSettings(DOSBoxNr)->SDLVideodriver()));
     Env = "";
+#ifdef Q_OS_WIN
+    // (the SDL video drivers "windib" / "directx" only exist on Windows)
     if (S == "WINDIB") Env = "windib";
     if (S == "DIRECTX") Env = "directx";
+#endif
     if (!Env.isEmpty()) {
         SpeedTestInfo("Setting up environment variables for DOSBox");
         Env = "SDL_VIDEODRIVER=" + Env;
@@ -1616,7 +1625,14 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
     SpeedTestInfo("Starting DOSBox");
     SpeedTestInfoOnly("Command: \"" + PrgFile + "\" " + Params);
 
-    result = CreateProcessCommandLine(PrgFile, Params, ExtractFilePath(PrgFile), Env);
+    QStringList EnvList;
+    if (!Env.isEmpty()) EnvList << Env;
+#ifndef Q_OS_WIN
+    // Linux/macOS: windows of other programs can not be moved (Wayland), so
+    // DOSBox is asked to center its window itself (SDL 1.2 based builds)
+    if (PrgSetup->DOSBoxSettings(DOSBoxNr)->CenterDOSBoxWindow() && (!FullScreen)) EnvList << "SDL_VIDEO_CENTERED=1" << "SDL_VIDEO_WINDOW_POS=center";
+#endif
+    result = StartProcessNative(PrgFile, Params, ExtractFilePath(PrgFile), EnvList);
     if (result == 0) {
         ApplicationRestore();
         MessageDlg(Format(LanguageSetup->MessageCouldNotStartProgram(), {PrgFile}), mtError, mbOK, 0);
@@ -1628,7 +1644,11 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
 
     // {ShellExecute(Application.MainForm.Handle,'open',PChar(IncludeTrailingPathDelimiter(PrgSetup.DosBoxDir)+DosBoxFileName),PChar('-CONF "'+ConfFile+'"'+Add),PChar(IncludeTrailingPathDelimiter((ExtractFilePath(ConfFile)))),SW_SHOW);}
 
+#ifdef Q_OS_WIN
     if (PrgSetup->DOSBoxSettings(DOSBoxNr)->CenterDOSBoxWindow() && (!FullScreen)) {
+#else
+    if (false) {   // (centered via SDL environment variables, see above)
+#endif
         SpeedTestInfo("Center DOSBox window");
         Sleep(1000); Waited = true;
         CenterWindowFromProcessID(result);
@@ -1686,7 +1706,12 @@ static THandle RunGameInt(TGame* Game, bool RunSetup, const QString& DosBoxComma
 
     SpeedTestInfo("Storing conf file");
     SpeedTestInfoOnly("Conf filename:" + TempDir() + DosBoxConfFileName);
-    if (!St->SaveToFile(TempDir() + DosBoxConfFileName)) {
+#ifdef Q_OS_WIN
+    const bool Saved = St->SaveToFile(TempDir() + DosBoxConfFileName);
+#else
+    const bool Saved = WriteDOSBoxConfFile(St, TempDir() + DosBoxConfFileName);
+#endif
+    if (!Saved) {
         ApplicationRestore();
         MessageDlg(Format(LanguageSetup->MessageCouldNotSaveFile(), {TempDir() + DosBoxConfFileName}), mtError, mbOK, 0);
         return result;

@@ -56,7 +56,7 @@ static void CompressFile(const QString& FileName)
     DeviceIoControl(hFile, FSCTL_SET_COMPRESSION_, &Mode, sizeof(Mode), nullptr, 0, &C, nullptr);
     CloseHandle(hFile);
 #else
-    // TODO(port): NTFS file compression has no equivalent on other systems.
+    // Port note: NTFS file compression has no equivalent on other systems.
     Q_UNUSED(FileName);
 #endif
 }
@@ -445,7 +445,7 @@ static bool DiskImageCreatorRunDOSBoxCommandsOnFloppyImage(const QString& ImageF
 
     TempGame->Game()->SetCycles("max");
     TempGame->Game()->StoreAllValues();
-    RunCommandAndWait(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    RunCommandAndWait(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     delete TempGame;
     result = true;
     return result;
@@ -476,7 +476,7 @@ static bool DiskImageCreatorRunDOSBoxCommandsOnHDImage(const QString& ImageFileN
 
     TempGame->Game()->SetCycles("max");
     TempGame->Game()->StoreAllValues();
-    RunCommandAndWait(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    RunCommandAndWait(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     delete TempGame;
     result = true;
     return result;
@@ -641,7 +641,7 @@ static bool DiskImageCreatorRunBootdiskOnHD(const QString& ImageFileName, const 
 
     TempGame->Game()->SetCycles("max");
     TempGame->Game()->StoreAllValues();
-    RunCommandAndWait(TempGame->Game(), DFendReloadedMainForm->DeleteOnExit, "", true);
+    RunCommandAndWait(TempGame->Game(), DFendRebornMainForm->DeleteOnExit, "", true);
     delete TempGame;
     return true;
 }

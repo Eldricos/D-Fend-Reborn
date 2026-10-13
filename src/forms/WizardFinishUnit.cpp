@@ -1,5 +1,6 @@
 // C++ port of WizardFinishUnit.pas (implementation section).
 #include "WizardFinishUnit.h"
+#include "VirtualKeys.h"
 
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
@@ -12,27 +13,6 @@
 #endif
 
 namespace {
-
-// Delphi virtual key codes used by the OnKeyDown handlers
-#ifndef VK_RETURN
-constexpr quint16 VK_RETURN = 0x0D;
-#endif
-#ifndef VK_INSERT
-constexpr quint16 VK_INSERT = 0x2D;
-#endif
-#ifndef VK_DELETE
-constexpr quint16 VK_DELETE = 0x2E;
-#endif
-
-quint16 QtKeyToVK(int Key)
-{
-    switch (Key) {
-    case Qt::Key_Return: case Qt::Key_Enter: return VK_RETURN;
-    case Qt::Key_Insert: return VK_INSERT;
-    case Qt::Key_Delete: return VK_DELETE;
-    default: return 0;
-    }
-}
 
 void SetBold(QWidget *W)
 {

@@ -11,7 +11,7 @@
     <widget class="QLabel" name="InfoLabelProgram">
       <property name="geometry"><rect><x>32</x><y>34</y><width>535</width><height>47</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>If activated the update checker will search for new versions of D-Fend Reloaded. If there is a new version, it will ask you, if you want to update your installation.</string></property>
+      <property name="text"><string>If activated the update checker will search for new versions of D-Fend Reborn. If there is a new version, it will ask you, if you want to update your installation.</string></property>
       <property name="textFormat"><enum>Qt::PlainText</enum></property>
       <property name="wordWrap"><bool>true</bool></property>
       <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
@@ -35,14 +35,14 @@
     <widget class="QLabel" name="InfoLabelDatareader">
       <property name="geometry"><rect><x>32</x><y>332</y><width>535</width><height>47</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>If activated the update checker will update the data reader configuration from the server to ensure D-Fend Reloaded is able to interpret the MobyGames search results homepage.</string></property>
+      <property name="text"><string>If activated the update checker will update the data reader configuration from the server to ensure D-Fend Reborn is able to interpret the MobyGames search results homepage.</string></property>
       <property name="textFormat"><enum>Qt::PlainText</enum></property>
       <property name="wordWrap"><bool>true</bool></property>
       <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
     </widget>
     <widget class="QLabel" name="LabelDownload">
       <property name="geometry"><rect><x>16</x><y>418</y><width>409</width><height>13</height></rect></property>
-      <property name="text"><string>You can also open the D-Fend Reloaded homepage and search for updates manually:</string></property>
+      <property name="text"><string>You can also open the D-Fend Reborn homepage and search for updates manually:</string></property>
       <property name="textFormat"><enum>Qt::PlainText</enum></property>
       <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
       <property name="vclAutoSize" stdset="0"><bool>true</bool></property>

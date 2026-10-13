@@ -30,7 +30,7 @@
       <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
       <widget class="QLabel" name="InfoLabel">
         <property name="geometry"><rect><x>8</x><y>8</y><width>454</width><height>13</height></rect></property>
-        <property name="text"><string>D-Fend Reloaded is waiting for the following DOSBox instances for close to repack the zip files:</string></property>
+        <property name="text"><string>D-Fend Reborn is waiting for the following DOSBox instances for close to repack the zip files:</string></property>
         <property name="textFormat"><enum>Qt::PlainText</enum></property>
         <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
         <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
