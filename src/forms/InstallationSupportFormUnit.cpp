@@ -1,5 +1,6 @@
 // C++ port of InstallationSupportFormUnit.pas (implementation section).
 #include "InstallationSupportFormUnit.h"
+#include "PhysicalDrivesUnit.h"
 
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
@@ -28,8 +29,7 @@ static bool SystemHasFloppyDiskDrive()
     }
     return false;
 #else
-    // TODO(port): no drive letters / floppy drive detection outside of Windows
-    return false;
+    return !PhysicalDrives(pdtFloppy).isEmpty();
 #endif
 }
 

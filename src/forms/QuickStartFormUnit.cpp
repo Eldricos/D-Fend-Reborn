@@ -1,5 +1,6 @@
 // C++ port of QuickStartFormUnit.pas (implementation section).
 #include "QuickStartFormUnit.h"
+#include "PhysicalDrivesUnit.h"
 #include "VirtualKeys.h"
 
 #include "CommonTools.h"
@@ -117,6 +118,7 @@ constexpr int FileTypesHigh = 54;
 constexpr int RoleImageIndex = Qt::UserRole + 1;
 constexpr int RoleSelectedIndex = Qt::UserRole + 2;
 constexpr int RoleHasChildren = Qt::UserRole + 3;
+constexpr int RoleRootPath = Qt::UserRole + 4;   // top level node of a mounted drive (Linux/BSD): its folder
 
 int ItemType(TListItem *Item) { return static_cast<int>(reinterpret_cast<intptr_t>(Item->Data())); }
 
@@ -593,12 +595,22 @@ void TQuickStartForm::BuildTree()
                 if (N != nullptr) SelNode = N;
             }
 #else
-            // Port note: no drive letters outside Windows - the file system root is the only top level node
+            // Port note: no drive letters outside Windows - the file system root
+            // and the mounted CDs / floppy disks / removable media are the top level nodes
             N = NewRootNode("/", 7);
             BackupSelNode = N;
             if (Copy(SaveCurrentPath, 1, 1) == "/") S = Copy(SaveCurrentPath, 1, MaxInt); else S.clear();
             N = AddSubfolders("/", N, S, false);
             if (N != nullptr) SelNode = N;
+            for (const TPhysicalDrive& Drive : PhysicalDrives()) {
+                if (Drive.Root.isEmpty() || !DirectoryExists(Drive.Root)) continue;
+                const QString RootNoDelim = ExcludeTrailingPathDelimiter(Drive.Root);
+                N = NewRootNode(Drive.Label.isEmpty() ? RootNoDelim : Drive.Label + " (" + RootNoDelim + ")", 7);
+                N->setData(0, RoleRootPath, RootNoDelim);
+                if (SaveCurrentPath.startsWith(Drive.Root) || SaveCurrentPath == RootNoDelim) S = Copy(SaveCurrentPath, Length(RootNoDelim) + 1, MaxInt); else S.clear();
+                N = AddSubfolders(Drive.Root, N, S, false);
+                if (N != nullptr) SelNode = N;
+            }
 #endif
             if (BackupSelNode == nullptr && ui.Tree->topLevelItemCount() > 0) BackupSelNode = ui.Tree->topLevelItem(0);
             break;
@@ -787,7 +799,9 @@ QString TQuickStartForm::PathFromNode(QTreeWidgetItem* Node)
     result = PathDelim;
     QTreeWidgetItem* N = Node;
     while (N->parent() != nullptr) { result = PathDelim + N->text(0) + result; N = N->parent(); }
-    if ((Length(N->text(0)) >= 2) && (N->text(0)[1] == ':')) {
+    if (!N->data(0, RoleRootPath).toString().isEmpty()) {
+        result = N->data(0, RoleRootPath).toString() + result;
+    } else if ((Length(N->text(0)) >= 2) && (N->text(0)[1] == ':')) {
         result = N->text(0) + result;
     } else if (N->text(0) == "/") {
         // file system root (non Windows "full" view)

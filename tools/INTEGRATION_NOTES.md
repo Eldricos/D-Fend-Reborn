@@ -11,12 +11,17 @@ lists (all users loop over the whole list, as the Delphi code did),
 Linux: wallpaper (GNOME, KDE, Xfce, Cinnamon, MATE, LXQt), screensaver
 inhibition (D-Bus), DOSBox/ScummVM window centering (SDL variables), DOSBox
 conf files with UTF-8 host paths and DOS code page texts (DosCodePage.h),
-OEM conversion of the installation support texts.
+OEM conversion of the installation support texts, physical drives
+(PhysicalDrivesUnit: CD/DVD, floppy and removable drives from /sys/block and
+the mounted file systems; CD mounting incl. ASK/NUMBER/LABEL/FILE/FOLDER and
+auto mounting, installation support from floppy/CD, quick start drive nodes,
+reading/writing CD/floppy images via the device files).
 
 Still open:
-- Platform gaps marked with `TODO(port)` in the sources (physical floppy/CD
-  drive access and auto mounting without drive letters, help topics in CHM
-  viewers, resample filters, Windows installer packages in the package
-  manager, recursive folder watching in the quick start window, search
-  animation, color box names).
+- Physical drives stage 2 (Linux): raw floppy/CD access without "floppy" /
+  "disk" group membership via udisks2.
+- Platform gaps marked with `TODO(port)` in the sources (help
+  topics in CHM viewers, resample filters, Windows installer packages in the
+  package manager, recursive folder watching in the quick start window,
+  search animation, color box names).
   Notes that only explain a deliberate difference are marked `Port note:`.
