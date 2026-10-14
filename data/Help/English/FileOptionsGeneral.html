@@ -24,11 +24,15 @@ There are two checkboxes on this page:
     <b>Minimize to tray area</b><br>
     If this option is activated, the D-Fend Reborn program window will be visible in minimized state
     as an icon in the tray area (the area next to the clock on the right side of the taskbar)
-    instead of a normal taskbar record.<br />(Default value for this option: off)
+    instead of a normal taskbar record. (On Linux the icon is shown in the tray area of the desktop
+    environment. Some desktops, for example GNOME without a tray extension, have no tray area; there
+    the window is only minimized normally.)<br />(Default value for this option: off)
   </li>
   <li>
     <b>Start with Windows</b> <font color="red">(*)</font><br>
     If this checkbox is checked, D-Fend Reborn will be started together with Windows.
+    On Linux an autostart entry (<tt>~/.config/autostart/D-Fend Reborn.desktop</tt>) is created
+    instead, so D-Fend Reborn is started when you log in to the desktop.
     <br />(Default value for this option: off)
   </li>
   <li>

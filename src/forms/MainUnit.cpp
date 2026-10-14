@@ -4575,7 +4575,10 @@ void TDFendRebornMainForm::FormResize(QObject *Sender)
 void TDFendRebornMainForm::ApplicationEventsMinimize(QObject *Sender)
 {
     Q_UNUSED(Sender);
-    if (PrgSetup->MinimizeToTray()) {
+    // D-Fend Reborn: without a system tray (e.g. GNOME without a tray
+    // extension) the window is only minimized - a hidden window could not be
+    // restored then
+    if (PrgSetup->MinimizeToTray() && QSystemTrayIcon::isSystemTrayAvailable()) {
         TrayIcon->setVisible(true);
         if (QuickStartForm) QuickStartForm->setVisible(false);
         QTimer::singleShot(0, this, [this]() { if (isMinimized()) hide(); });   // Visible:=False

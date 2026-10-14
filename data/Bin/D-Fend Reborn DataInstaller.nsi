@@ -1,4 +1,4 @@
-; NSI SCRIPT FOR D-FEND RELOADED DATA PACKAGES
+; NSI SCRIPT FOR D-FEND REBORN DATA PACKAGES
 ; ============================================================
 
 ; This is an include file. Example of a installer script file:
@@ -143,10 +143,11 @@ SectionEnd
 Section "-CloseDFend"
   SectionIn RO
 
+  ; D-Fend Reborn (Qt) has no fixed window class: ask the program to close
   Push $0
-  FindWindow $0 'TDFendReloadedMainform' ''
-  IntCmp $0 0 DoneCloseDFend
-  SendMessage $0 ${WM_CLOSE} 0 0 /TIMEOUT=${TO_MS}
+  nsExec::Exec 'taskkill /IM DFend.exe'
+  Pop $0
+  IntCmp $0 0 0 DoneCloseDFend DoneCloseDFend
   Sleep 2000
   DoneCloseDFend:
   Pop $0

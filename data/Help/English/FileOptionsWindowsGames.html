@@ -43,6 +43,17 @@ game is started or is closed.
 	files is not recommended and can cause many problems.
     <br />(Default value for this option: off)
   </li>
+  <li>
+    <b>Start Windows programs with this program (e.g. Wine)</b> (only on Linux)<br />
+    Windows program files (<tt>.exe</tt>, <tt>.com</tt>, <tt>.bat</tt>, <tt>.cmd</tt>, <tt>.msi</tt>)
+    of Windows profiles are started with the program given here. The default is <tt>wine</tt> (found in
+    the search path). You can enter another program or a full command, for example the path of
+    another Wine version or <tt>flatpak run org.winehq.Wine</tt>. <tt>.bat</tt>, <tt>.cmd</tt> and
+    <tt>.msi</tt> files are opened via Wine's <tt>start</tt> command.<br />
+    If the option is off or the program is not installed, the files are started directly or opened
+    with the program the desktop has assigned to the file type.
+    <br />(Default value for this option: on, <tt>wine</tt>)
+  </li>
 </ul>
   
 <p>&nbsp;</p>

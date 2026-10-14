@@ -62,7 +62,7 @@ On this page you can setup the virtual graphic card DOSBox or ScummVM should emu
     <b>Render</b><br />
     From this dropdown box you can choose the output method DOSBox should use
     to display the content of its window (this means the way DOSBox will
-    communicate with the Windows device driver). The default value is "surface".
+    communicate with the video driver of the operating system). The default value is "surface".
     The best render method depends on your video driver and operating system.
   </li>
   <li>
@@ -77,6 +77,9 @@ On this page you can setup the virtual graphic card DOSBox or ScummVM should emu
 	From this dropdown box you can select the pixel shader program to use.
 	The pixel shader programs offered in this box are <tt>fx</tt> files in the
 	<tt>Shaders</tt> subdirectory of the directory of the chosen DOSBox installation.
+	(<tt>fx</tt> pixel shaders are Direct3D programs and only work with special DOSBox builds for Windows.
+	DOSBox versions for Linux, for example DOSBox Staging, use their own shader settings, which can be
+	entered as custom DOSBox settings on the <a href="ProfileEditDOSBox.html">DOSBox</a> page.)
   </li>
   <li>
     <b>Settings for video card type "vga" <font color="red">(*)</font></b><br />
@@ -108,8 +111,8 @@ On this page you can setup the virtual graphic card DOSBox or ScummVM should emu
 <p>
 The settings marked with <font color="red">(*)</font> are only visible if the corresponding
 DOSBox CVS features are enabled on the <a href="FileOptionsDOSBoxCVSFeatures.html">DOSBox CVS features</a>
-page of the <a href="FileOptionsDOSBox.html">program options</a> dialog. The official DOSBox 0.72 build
-delivered with D-Fend Reborn does not support these special settings.
+page of the <a href="FileOptionsDOSBox.html">program options</a> dialog. The official DOSBox 0.74 build
+included in the Windows version of D-Fend Reborn does not support these special settings.
 </p>
 
 <h2>For ScummVM profiles</h2>

@@ -26,8 +26,11 @@ For making exe installers D-Fend Reborn is using the open source installer maker
 <a href="http://nsis.sourceforge.net/Main_Page" target="_blank">Nullsoft scriptable install system (NSIS)</a>.
 D-Fend Reborn will create a <tt>nsi</tt> script from which NSIS will create the
 exe file. This means you will need to have NSIS installed on your system to use this
-feature. (There is no need to configurate the NSIS installation path in D-Fend Reborn
-because the path can be read from the registry.)
+feature. (There is no need to configurate the NSIS installation path in D-Fend Reborn:
+on Windows the path is read from the registry; on Linux the NSIS compiler <tt>makensis</tt>
+is searched in the program search path - install the package <tt>nsis</tt> via the package
+manager.) The created installers are Windows programs; to exchange games with a Linux
+system, <a href="FileExportZip.html">archive files</a> are better suited.
 </p>
 
 <h3>Complete games</h3>

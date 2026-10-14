@@ -12,6 +12,14 @@ TSetupFrameWindowsGames::TSetupFrameWindowsGames(QWidget *AOwner) : QWidget(AOwn
     VclLayout::setupForm(this);
     // DFM event wiring
     connect(ui.MinimizeDFendCheckBox, &QCheckBox::clicked, this, [this]() { MinimizeDFendCheckBoxClick(ui.MinimizeDFendCheckBox); });
+    // D-Fend Reborn: program for starting Windows programs (Wine), only on
+    // systems other than Windows
+    connect(ui.WineCheckBox, &QCheckBox::toggled, ui.WineEdit, &QWidget::setEnabled);
+#ifdef Q_OS_WIN
+    ui.WineCheckBox->setVisible(false);
+    ui.WineEdit->setVisible(false);
+    ui.WineInfoLabel->setVisible(false);
+#endif
 }
 
 TSetupFrameWindowsGames::~TSetupFrameWindowsGames() = default;
@@ -29,6 +37,9 @@ void TSetupFrameWindowsGames::InitGUIAndLoadSetup(TInitData &InitData)
     ui.MinimizeDFendCheckBox->setChecked(PrgSetup->MinimizeOnWindowsGameStart());
     ui.RestoreWindowCheckBox->setChecked(PrgSetup->RestoreWhenWindowsGameCloses());
     ui.AllowWindowsPackagesCheckBox->setChecked(PrgSetup->AllowPackingWindowsGames());
+    ui.WineCheckBox->setChecked(PrgSetup->UseWindowsProgramsRunner());
+    ui.WineEdit->setText(PrgSetup->WindowsProgramsRunner());
+    ui.WineEdit->setEnabled(ui.WineCheckBox->isChecked());
     MinimizeDFendCheckBoxClick(this);
 }
 
@@ -43,6 +54,8 @@ void TSetupFrameWindowsGames::LoadLanguage()
     ui.AutoRestoreInfoLabel->setText(LanguageSetup->SetupFormWindowsRestoreWhenWindowsGameClosesInfo());
     ui.AllowWindowsPackagesCheckBox->setText(LanguageSetup->SetupFormWindowsAllowPackages());
     ui.AllowWindowsPackagesLabel->setText(LanguageSetup->SetupFormWindowsAllowPackagesInfo());
+    ui.WineCheckBox->setText(LanguageSetup->SetupFormWindowsWine());
+    ui.WineInfoLabel->setText(LanguageSetup->SetupFormWindowsWineInfo());
     setProperty("HelpContext", ID_FileOptionsWindows);
 }
 
@@ -70,6 +83,8 @@ void TSetupFrameWindowsGames::RestoreDefaults()
     ui.MinimizeDFendCheckBox->setChecked(false);
     ui.RestoreWindowCheckBox->setChecked(false);
     ui.AllowWindowsPackagesCheckBox->setChecked(false);
+    ui.WineCheckBox->setChecked(true);
+    ui.WineEdit->setText("wine");
     MinimizeDFendCheckBoxClick(this);
 }
 
@@ -78,4 +93,6 @@ void TSetupFrameWindowsGames::SaveSetup()
     PrgSetup->SetMinimizeOnWindowsGameStart(ui.MinimizeDFendCheckBox->isChecked());
     PrgSetup->SetRestoreWhenWindowsGameCloses(ui.RestoreWindowCheckBox->isChecked());
     PrgSetup->SetAllowPackingWindowsGames(ui.AllowWindowsPackagesCheckBox->isChecked());
+    PrgSetup->SetUseWindowsProgramsRunner(ui.WineCheckBox->isChecked());
+    PrgSetup->SetWindowsProgramsRunner(Trim(ui.WineEdit->text()).isEmpty() ? QString("wine") : Trim(ui.WineEdit->text()));
 }

@@ -26,7 +26,7 @@ zur Verf&uuml;gung stellt, konfigurieren.
   <li>
     <b>Fenster-Aufl&ouml;sung</b><br />
     In diesem Auswahlfeld k&ouml;nnen Sie die Aufl&ouml;sung w&auml;hlen,
-    die DOSBox verwenden soll, wenn das Spiel als Fenster auf dem Windows
+    die DOSBox verwenden soll, wenn das Spiel als Fenster auf dem
     Desktop l&auml;uft. "Original" bedeutet dabei, dass DOSBox ohne jegliche
     Skalierung die Aufl&ouml;sung verwenden soll, die das Spiel vorgibt.
     In allen anderen F&auml;llen skaliert DOSBox die Ausgabe entsprechend.
@@ -40,18 +40,18 @@ zur Verf&uuml;gung stellt, konfigurieren.
     verwenden soll, die das Spiel vorgibt. In allen anderen F&auml;llen skaliert
     DOSBox die Ausgabe entsprechend. (Siehe dazu auch die Option "Skalierung" weiter unten.)
     Zur Darstellung der gew&uuml;nschten Aufl&ouml;sung im Vollbildmodus
-    wechselt DOSBox ggf. tempor&auml;r die Windows-Aufl&ouml;sung.    
+    wechselt DOSBox ggf. tempor&auml;r die Bildschirmaufl&ouml;sung.    
   </li>
   <li>
     <b>Vollbild beim Start</b><br />
     Wenn diese Option aktiviert ist, startet DOSBox im Vollbildmodus;
-    andernfalls startet es als normales Fenster auf dem Windows Desktop.
+    andernfalls startet es als normales Fenster auf dem Desktop.
   </li>  
   <li>
     <b>Doublebuffering verwenden</b><br />
     Durch das Aktivieren dieser Option k&ouml;nnen Sie DOSBox anweisen, im Vollbildmodus
     Doublebuffering zu verwenden. Die Verwendung von Doublebuffering kann diverse Grafikprobleme
-    l&ouml;sen aber auch neue verursachen, in Abh&auml;ngigkeit von Ihrem Windows-Grafiktreiber,
+    l&ouml;sen aber auch neue verursachen, in Abh&auml;ngigkeit von Ihrem Grafiktreiber,
     der verwendeten Betriebssystemversion und dem Spiel, das Sie ausf&uuml;hren m&ouml;chten.
   </li>
   <li>
@@ -75,7 +75,7 @@ zur Verf&uuml;gung stellt, konfigurieren.
     In dieser Aufwahlbox k&ouml;nnen Sie festlegen, wie DOSBox den Bildschirminhalt
     der virtuellen Grafikkarte an die reale Grafikkarte &uuml;bertragen soll.
     Die Einstellung "surface" ist zwar verh&auml;ltnism&auml;&szlig;ig langsam, sollte
-    aber mit praktisch allen Windows-Grafiktreibern funktionieren. Sollten bei einem
+    aber mit praktisch allen Grafiktreibern funktionieren. Sollten bei einem
     Spiel Grafikprobleme auftreten (inklusive der Tatsache dass Ein- und Ausblendeeffekte
     extrem langsam ablaufen), k&ouml;nnen Sie hier andere Einstellungen ausprobieren;
     so sollte z.B. "Overlay" mittlerweile von praktisch allen Grafikkarten unterst&uuml;tzt
@@ -96,6 +96,10 @@ zur Verf&uuml;gung stellt, konfigurieren.
 	festlegen. Die hier angezeigten Programme sind <tt>fx</tt>-Dateien im
 	<tt>Shaders</tt>-Unterverzeichnis des DOSBox-Verzeichnisses der gewählten
 	DOSBox-Installation.
+	(<tt>fx</tt>-Pixel-Shader sind Direct3D-Programme und funktionieren nur mit speziellen DOSBox-Versionen
+	f&uuml;r Windows. DOSBox-Versionen f&uuml;r Linux, z.B. DOSBox Staging, verwenden eigene Shader-Einstellungen,
+	die als benutzerdefinierte DOSBox-Einstellungen auf der Seite <a href="ProfileEditDOSBox.html">DOSBox</a>
+	eingetragen werden k&ouml;nnen.)
   </li>
   <li>
     <b>Einstellungen f&uuml;r Grafikkartentyp "VGA" <font color="red">(*)</font></b><br />
@@ -141,9 +145,9 @@ zur Verf&uuml;gung stellt, konfigurieren.
 <p>
 Die mit <font color="red">(*)</font> markierten Optionen sind nur sichtbar, wenn Sie das zugeh&ouml;rige
 DOSBox CVS-Feature auf der Dialogseite <a href="FileOptionsDOSBoxCVSFeatures.html">DOSBox CVS-Features</a>
-des <a href="FileOptionsDOSBox.html">Programmeinstellungen</a>-Dialogs aktiviert haben. Die offizelle
-DOSBox 0.72 Version, die mit D-Fend Reborn ausgeliefert wird, unterst&uuml;tzt diese zus&auml;tzlichen
-Optionen nicht.
+des <a href="FileOptionsDOSBox.html">Programmeinstellungen</a>-Dialogs aktiviert haben. Die offizielle
+DOSBox 0.74 Version, die in der Windows-Version von D-Fend Reborn enthalten ist, unterst&uuml;tzt diese
+zus&auml;tzlichen Optionen nicht.
 </p>
 
 <h2>Für ScummVM-Profile</h2>
@@ -162,7 +166,7 @@ Optionen nicht.
   <li>
     <b>Vollbild beim Start</b><br />
     Wenn diese Option aktiviert ist, startet ScummVM im Vollbildmodus;
-    andernfalls startet es als normales Fenster auf dem Windows Desktop.
+    andernfalls startet es als normales Fenster auf dem Desktop.
   </li>  
   <li>
     <b>Seitenverh&auml;ltnis korrigieren</b><br />

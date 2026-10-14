@@ -78,7 +78,7 @@ But by now D-Fend Reloaded has many new features D-Fend never had.
 </p>
 
 <p>
-D-Fend Reborn continues D-Fend Reloaded, which was written by Alexander Herzog. It is a port
+D-Fend Reborn continues D-Fend Reloaded, which was originally written by Alexander Herzog. It is a port
 of D-Fend Reloaded to C++ and Qt, so it runs on Windows and Linux, and it can use the settings,
 profiles and games of an existing D-Fend Reloaded installation. The project page of D-Fend Reborn is
 <a href="https://github.com/Eldricos/D-Fend-Reborn" target="_blank">https://github.com/Eldricos/D-Fend-Reborn</a>.
@@ -93,15 +93,17 @@ advantages (easier moving games from one installation to an other) if you keep s
 
 <p>
 The normal installation ("User mode") has two main directories for storing data: The program directory  and the
-data directory
+data directory. (On Linux there is no setup program: Without a <tt>DFend.dat</tt> file in the program directory
+all data is kept in the program directory. With <tt>USERDIRMODE</tt> in <tt>DFend.dat</tt> the data directory is
+<tt>~/.local/share/D-Fend Reborn</tt>. See <a href="HelpOperationMode.html">operation mode</a>.)
 </p>
 
 <h3>The program directory (usually <tt>C:\Program files\D-Fend Reborn</tt>)</h3>
 
 <p>
 In the program directory all program files needed to run D-Fend Reborn and DOSBox will be stored. D-Fend Reborn
-will not write to this directory after installation any more. (This means D-Fend Reborn is compatible to the Vista way
-of dividing program files and data files.)
+will not write to this directory after installation any more. (This means D-Fend Reborn keeps program files and
+data files apart, so it can be run without admin rights.)
 </p>
 
 <h3>The data directory (usually <tt>C:\Users\<i>YourName</i>\D-Fend Reborn</tt>)</h3>
@@ -116,7 +118,7 @@ directory and its subdirectores. The games files are stored in the subdirectorie
   <li><b>VirtualHD:</b> This folder will be mounted as drive "<tt>C:</tt>" inside DOSBox (as long as you do not change
   this behavior for a profile). If you place your games in subdirectories of this folder you will be able to access them
   inside DOSBox without having to setup anything special in D-Fend Reborn. Additionally you cannot damage your Windows
-  installation if you accidentally delete your whole virtual harddisk inside DOSBox as long as you have only mounted this
+  or Linux installation if you accidentally delete your whole virtual harddisk inside DOSBox as long as you have only mounted this
   folder as drive "<tt>C:</tt>" inside DOSBox and not your whole real harddisk.</tt></li>
   <li><b>Capture:</b> D-Fend Reborn will create a subfolder in this folder for each profile you create. (Of course
   you can also define some other capture folder.) The profile capture folder will be used by DOSBox to store captured
@@ -154,7 +156,7 @@ The easiest way of adding profiles while letting user influence the process
 is via the <a href="ProfileWithWizard.html">profile adding wizard</a> ("Add with wizard..."
 in the "Profile" menu or <span class="key">F3</span>-key). The profile wizard will only ask you the really nessessary
 things: The name for the new profile, the <tt>exe</tt> file to execute inside DOSBox and some game settings.
-D-Fend Reborn already knows over 350 games (the auto setup templates). If you add a known game it will offer you
+D-Fend Reborn already knows over 1600 games (the auto setup templates). If you add a known game it will offer you
 to completely automatically setup the game for you. If you want to add a game D-Fend Reborn does not know, it
 will offer you to choose a template (of the type "low CPU power", "normal", "3D graphics"). Additionally you can
 add some information like author, publisher, language, year etc. to the profile and that's it, your new profile
@@ -178,7 +180,7 @@ if you click on a captured sound or video file, D-Fend Reborn will play the file
 
 <p class="smallH">See also:</p>
 <p class="smallT">
-  <a href="Index.html">Content of this help file</a><br />
+  <a href="Index.html">Content of this help</a><br />
   <a href="ProfileWithWizard.html">Adding profiles with the profile wizard</a><br />
   Internet link: <a href="https://github.com/Eldricos/D-Fend-Reborn" target="_blank">D-Fend Reborn homepage</a><br />
   Internet link: <a href="http://www.dosbox.com/" target="_blank">DOSBox homepage</a>  

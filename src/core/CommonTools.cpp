@@ -5,6 +5,7 @@
 #include "PrgSetupUnit.h"
 #include "PrgConsts.h"
 #include "ImageStretch.h"
+#include "ExeIconReader.h"
 
 #include <QFileIconProvider>
 #include <QStandardPaths>
@@ -1105,6 +1106,12 @@ QIcon LoadIconFromExeFile(const QString& AFileName)
 
     if (ExtUpperCase(ExtractFileExt(AFileName)) == QLatin1String(".EXE")) {
         // SHGetFileInfo(..., SHGFI_ICON or SHGFI_LARGEICON)
+#ifndef Q_OS_WIN
+        // D-Fend Reborn: the desktop only knows a generic icon for Windows
+        // programs, so the icon is read from the program file
+        const QIcon ExeIcon = ReadExeFileIcon(AFileName);
+        if (!ExeIcon.isNull()) return ExeIcon;
+#endif
         QFileIconProvider Provider;
         return Provider.icon(QFileInfo(AFileName));
     }

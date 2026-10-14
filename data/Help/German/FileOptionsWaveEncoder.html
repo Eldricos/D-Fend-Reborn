@@ -18,10 +18,15 @@ Men&uuml;: &nbsp; <b>Datei</b> | <b>Programeinstellungen</b>  | <b>Wavedatei-Enc
 <p>
 D-Fend Reborn kann (mit Hilfe externer Programme) in DOSBox aufgezeichnete Wave-Dateien
 in die Formate mp3 und ogg umwandeln. Der Wave-zu-ogg-Encoder <tt>oggenc2.exe</tt> ist
-bereits im Lieferumgang von D-Fend Reborn enthalten (da es sich bei ihm ebenfalls um
+bereits im Lieferumfang der Windows-Version von D-Fend Reborn enthalten (da es sich bei ihm ebenfalls um
 ein Opensource-Programm handelt). Aufgrund ungekl&auml;rter Lizenzfragen kann jedoch der
 Lame-Encoder zur Erstellung von mp3-Dateien nicht direkt in das D-Fend Reborn
 Installationspaket aufgenommen werden und muss separat installiert werden.
+</p>
+
+<p>
+Unter Linux installieren Sie die Encoder &uuml;ber die Paketverwaltung: <tt>oggenc</tt> (Paket <tt>vorbis-tools</tt>)
+und optional <tt>lame</tt>. Ein installiertes <tt>oggenc</tt> wird automatisch gefunden.
 </p>
 
 <p>
@@ -39,7 +44,7 @@ Die Vorgabekommandozeilenparameter f&uuml;r den mp3-Encoder (z.B. Lame) lauten:<
 </p>
 
 <p>
-Die Vorgabekommandozeilenparameter f&uuml;r den ogg-Encoder (Oggenc2) lauten:<br />
+Die Vorgabekommandozeilenparameter f&uuml;r den ogg-Encoder (Oggenc2 bzw. oggenc) lauten:<br />
 <tt>"%1" --output="%2" --quality=10</tt>
 </p>
 

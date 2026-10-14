@@ -109,7 +109,7 @@ void TSetupFrameScummVM::RestoreDefaults()
     ui.MinimizeDFendScummVMCheckBox->setChecked(false);
     ui.RestoreWindowCheckBox->setChecked(false);
     ui.CenterScummVMCheckBox->setChecked(false);
-    ui.HideConsoleCheckBox->setChecked(false);
+    ui.HideConsoleCheckBox->setChecked(true);   // Port note: the original reset to False, but the default value of the setting is True
     MinimizeDFendScummVMCheckBoxClick(this);
     ui.CommandLineEdit->setText(QString());
 }

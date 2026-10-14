@@ -1054,6 +1054,9 @@ constexpr int NR_SetupFormWindowsRestoreWhenWindowsGameCloses = 44203;
 constexpr int NR_SetupFormWindowsRestoreWhenWindowsGameClosesInfo = 44204;
 constexpr int NR_SetupFormWindowsAllowPackages = 44205;
 constexpr int NR_SetupFormWindowsAllowPackagesInfo = 44206;
+// D-Fend Reborn: Windows programs on Linux
+constexpr int NR_SetupFormWindowsWine = 44207;
+constexpr int NR_SetupFormWindowsWineInfo = 44208;
 constexpr int NR_SetupFormExternalPackers = 44301;
 constexpr int NR_SetupFormExternalPackersSelect = 44302;
 constexpr int NR_SetupFormExternalPackersFileName = 44303;
@@ -2103,11 +2106,30 @@ constexpr int NR_ResetProfilesSettingsInfo = 97305;
 constexpr int NR_ResetProfilesTemplate = 97306;
 constexpr int NR_ResetProfilesTemplateTemplate = 97307;
 constexpr int NR_ResetProfilesTemplateAutoSetup = 97308;
+// D-Fend Reborn: texts used instead of the "Explorer" texts on systems other
+// than Windows (if the language file has them)
+constexpr int NR_MenuExtrasIconManagerToolsExplorerLinux = 97401;
+constexpr int NR_WizardFormExplorerLinux = 97402;
+constexpr int NR_ViewDataFilesOpenHintLinux = 97403;
+constexpr int NR_QuickStarterMenuExplorerLinux = 97404;
+constexpr int NR_AutoDetectGamesOpenFolderButtonHintLinux = 97405;
 class TLanguageSetup : public TBasePrgSetup
 {
 public:
     TLanguageSetup(const QString& FileName = QString(), bool MinimalInit = false);
     ~TLanguageSetup() override;
+    // D-Fend Reborn: "... in Explorer" texts; on other systems than Windows the
+    // ".Linux" variant (file manager) if the language file has one
+    QString FileManagerText(int WindowsNr, int OtherNr)
+    {
+#ifndef Q_OS_WIN
+        const QString S = GetString(OtherNr);
+        if (!S.trimmed().isEmpty()) return S;
+#else
+        Q_UNUSED(OtherNr);
+#endif
+        return GetString(WindowsNr);
+    }
     // properties
     QString Author() { return GetString(NR_Author); }
     void SetAuthor(const QString& Value) { SetString(NR_Author, Value); }
@@ -2723,7 +2745,7 @@ public:
     void SetMenuExtrasIconManagerAddAll(const QString& Value) { SetString(NR_MenuExtrasIconManagerAddAll, Value); }
     QString MenuExtrasIconManagerTools() { return GetString(NR_MenuExtrasIconManagerTools); }
     void SetMenuExtrasIconManagerTools(const QString& Value) { SetString(NR_MenuExtrasIconManagerTools, Value); }
-    QString MenuExtrasIconManagerToolsExplorer() { return GetString(NR_MenuExtrasIconManagerToolsExplorer); }
+    QString MenuExtrasIconManagerToolsExplorer() { return FileManagerText(NR_MenuExtrasIconManagerToolsExplorer, NR_MenuExtrasIconManagerToolsExplorerLinux); }
     void SetMenuExtrasIconManagerToolsExplorer(const QString& Value) { SetString(NR_MenuExtrasIconManagerToolsExplorer, Value); }
     QString MenuExtrasIconManagerToolsRenameUpper() { return GetString(NR_MenuExtrasIconManagerToolsRenameUpper); }
     void SetMenuExtrasIconManagerToolsRenameUpper(const QString& Value) { SetString(NR_MenuExtrasIconManagerToolsRenameUpper, Value); }
@@ -4195,6 +4217,10 @@ public:
     void SetSetupFormWindowsAllowPackages(const QString& Value) { SetString(NR_SetupFormWindowsAllowPackages, Value); }
     QString SetupFormWindowsAllowPackagesInfo() { return GetString(NR_SetupFormWindowsAllowPackagesInfo); }
     void SetSetupFormWindowsAllowPackagesInfo(const QString& Value) { SetString(NR_SetupFormWindowsAllowPackagesInfo, Value); }
+    QString SetupFormWindowsWine() { return GetString(NR_SetupFormWindowsWine); }
+    void SetSetupFormWindowsWine(const QString& Value) { SetString(NR_SetupFormWindowsWine, Value); }
+    QString SetupFormWindowsWineInfo() { return GetString(NR_SetupFormWindowsWineInfo); }
+    void SetSetupFormWindowsWineInfo(const QString& Value) { SetString(NR_SetupFormWindowsWineInfo, Value); }
     QString SetupFormExternalPackers() { return GetString(NR_SetupFormExternalPackers); }
     void SetSetupFormExternalPackers(const QString& Value) { SetString(NR_SetupFormExternalPackers, Value); }
     QString SetupFormExternalPackersSelect() { return GetString(NR_SetupFormExternalPackersSelect); }
@@ -4545,7 +4571,7 @@ public:
     void SetWizardFormOpenProfileEditorInfo(const QString& Value) { SetString(NR_WizardFormOpenProfileEditorInfo, Value); }
     QString WizardFormScummVMLanguageInfo() { return GetString(NR_WizardFormScummVMLanguageInfo); }
     void SetWizardFormScummVMLanguageInfo(const QString& Value) { SetString(NR_WizardFormScummVMLanguageInfo, Value); }
-    QString WizardFormExplorer() { return GetString(NR_WizardFormExplorer); }
+    QString WizardFormExplorer() { return FileManagerText(NR_WizardFormExplorer, NR_WizardFormExplorerLinux); }
     void SetWizardFormExplorer(const QString& Value) { SetString(NR_WizardFormExplorer, Value); }
     QString WizardFormOperationModeInfo() { return GetString(NR_WizardFormOperationModeInfo); }
     void SetWizardFormOperationModeInfo(const QString& Value) { SetString(NR_WizardFormOperationModeInfo, Value); }
@@ -5433,7 +5459,7 @@ public:
     void SetViewDataFilesCreateFolder(const QString& Value) { SetString(NR_ViewDataFilesCreateFolder, Value); }
     QString ViewDataFilesOpen() { return GetString(NR_ViewDataFilesOpen); }
     void SetViewDataFilesOpen(const QString& Value) { SetString(NR_ViewDataFilesOpen, Value); }
-    QString ViewDataFilesOpenHint() { return GetString(NR_ViewDataFilesOpenHint); }
+    QString ViewDataFilesOpenHint() { return FileManagerText(NR_ViewDataFilesOpenHint, NR_ViewDataFilesOpenHintLinux); }
     void SetViewDataFilesOpenHint(const QString& Value) { SetString(NR_ViewDataFilesOpenHint, Value); }
     QString ViewDataFilesOpenFile() { return GetString(NR_ViewDataFilesOpenFile); }
     void SetViewDataFilesOpenFile(const QString& Value) { SetString(NR_ViewDataFilesOpenFile, Value); }
@@ -5559,7 +5585,7 @@ public:
     void SetQuickStarterMenuViewModeData(const QString& Value) { SetString(NR_QuickStarterMenuViewModeData, Value); }
     QString QuickStarterMenuViewModeFull() { return GetString(NR_QuickStarterMenuViewModeFull); }
     void SetQuickStarterMenuViewModeFull(const QString& Value) { SetString(NR_QuickStarterMenuViewModeFull, Value); }
-    QString QuickStarterMenuExplorer() { return GetString(NR_QuickStarterMenuExplorer); }
+    QString QuickStarterMenuExplorer() { return FileManagerText(NR_QuickStarterMenuExplorer, NR_QuickStarterMenuExplorerLinux); }
     void SetQuickStarterMenuExplorer(const QString& Value) { SetString(NR_QuickStarterMenuExplorer, Value); }
     QString QuickStarterMenuDOSBox() { return GetString(NR_QuickStarterMenuDOSBox); }
     void SetQuickStarterMenuDOSBox(const QString& Value) { SetString(NR_QuickStarterMenuDOSBox, Value); }
@@ -5607,7 +5633,7 @@ public:
     void SetAutoDetectGames(const QString& Value) { SetString(NR_AutoDetectGames, Value); }
     QString AutoDetectGamesOpenFolderButton() { return GetString(NR_AutoDetectGamesOpenFolderButton); }
     void SetAutoDetectGamesOpenFolderButton(const QString& Value) { SetString(NR_AutoDetectGamesOpenFolderButton, Value); }
-    QString AutoDetectGamesOpenFolderButtonHint() { return GetString(NR_AutoDetectGamesOpenFolderButtonHint); }
+    QString AutoDetectGamesOpenFolderButtonHint() { return FileManagerText(NR_AutoDetectGamesOpenFolderButtonHint, NR_AutoDetectGamesOpenFolderButtonHintLinux); }
     void SetAutoDetectGamesOpenFolderButtonHint(const QString& Value) { SetString(NR_AutoDetectGamesOpenFolderButtonHint, Value); }
     QString AutoDetectGamesScanButton() { return GetString(NR_AutoDetectGamesScanButton); }
     void SetAutoDetectGamesScanButton(const QString& Value) { SetString(NR_AutoDetectGamesScanButton, Value); }

@@ -35,6 +35,10 @@ like the original (Delphi names, German names with the German language, system
 colours kept as such), Windows installer scripts (Install/: D-Fend Reborn
 name, program folder from "cmake --install", Unicode installer, HTML help
 shortcut; built by the Windows build check).
+Linux: Windows programs of Windows profiles are started with Wine (setting
+on the "Windows games" options page), program icons are read from Windows
+.exe files (ExeIconReader), "minimize to tray" falls back to a normal
+minimize on desktops without a system tray.
 
 Still open:
 - No `TODO(port)` items are left in the sources. Notes that only explain a

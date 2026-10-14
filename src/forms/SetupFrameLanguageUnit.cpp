@@ -8,6 +8,10 @@
 #include "HelpConsts.h"
 #include "Process.h"
 
+#ifdef Q_OS_WIN
+#include "WinApi.h"
+#endif
+
 namespace {
 
 // Emulates TComboBox.OnDropDown: called before the list of the combo box opens.
@@ -46,6 +50,13 @@ TSetupFrameLanguage::TSetupFrameLanguage(QWidget* AOwner) : QWidget(AOwner)
 {
     ui.setupUi(this);
     VclLayout::setupForm(this);
+#ifndef Q_OS_WIN
+    // D-Fend Reborn: the installer language is only used by the Windows
+    // installers (stored in the Windows registry)
+    ui.InstallerLangLabel->setVisible(false);
+    ui.InstallerLangEditComboBox->setVisible(false);
+    ui.InstallerLangInfoLabel->setVisible(false);
+#endif
 
     Timer = new QTimer(this);   // DFM: Enabled = False, Interval = 1000
     Timer->setInterval(1000);
@@ -133,11 +144,13 @@ void TSetupFrameLanguage::InstallerLangEditComboBoxChange(QObject* Sender)
     I = ui.InstallerLangEditComboBox->itemData(ui.InstallerLangEditComboBox->currentIndex()).toInt();
     if ((I == InstallerLang) || (I == -1)) return;
 
-    if (FileExists(PrgDir() + "SetInstallerLanguage.exe")) {
-        StartProcess(PrgDir() + "SetInstallerLanguage.exe", QStringList{IntToStr(I)});
-    } else {
-        StartProcess(PrgDir() + BinFolder + PathDelim + "SetInstallerLanguage.exe", QStringList{IntToStr(I)});
-    }
+#ifdef Q_OS_WIN
+    // ShellExecute (not CreateProcess): SetInstallerLanguage.exe needs admin
+    // rights (HKLM), so Windows has to show the UAC prompt
+    const QString Exe = FileExists(PrgDir() + "SetInstallerLanguage.exe") ? PrgDir() + "SetInstallerLanguage.exe" : PrgDir() + BinFolder + PathDelim + "SetInstallerLanguage.exe";
+    ShellExecuteW(reinterpret_cast<HWND>(window()->winId()), L"open", reinterpret_cast<LPCWSTR>(QDir::toNativeSeparators(Exe).utf16()),
+                  reinterpret_cast<LPCWSTR>(IntToStr(I).utf16()), nullptr, SW_SHOW);
+#endif
     SetComboHint(ui.InstallerLangEditComboBox);
     LangTimerCounter = 10;
     Timer->start();
@@ -312,7 +325,8 @@ void TSetupFrameLanguage::ReadCurrentInstallerLanguage()
     InstallerLang = -1;
 #ifdef Q_OS_WIN
     {
-        QSettings Reg("HKEY_LOCAL_MACHINE\\Software\\D-Fend Reborn", QSettings::NativeFormat);
+        // (written by the 32 bit NSIS installers: 32 bit registry view)
+        QSettings Reg("HKEY_LOCAL_MACHINE\\Software\\D-Fend Reborn", QSettings::Registry32Format);
         if (Reg.contains("Installer Language")) {
             try { InstallerLang = StrToInt(Reg.value("Installer Language").toString()); } catch (...) {}
         }

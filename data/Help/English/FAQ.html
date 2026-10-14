@@ -20,9 +20,8 @@
   6. <a href="#FAQ06">How can I create an other language for D-Fend Reborn ?</a><br />
   7. <a href="#FAQ07">Is there an easy way of spell checking my new language file ?</a><br />
   8. <a href="#FAQ08">Where has the "Edit default profile... (F5)" menu item gone ?</a><br />
-  9. <a href="#FAQ09">Can I use D-Fend Reborn in Wine under Linux ?</a><br />
-  10. <a href="#FAQ10">I have keyboard problems the DOSBox keymapper cannot fix.</a><br />
-  11. <a href="#FAQ11">I get an error message when I try to install the DOSBox movie codec.</a><br />
+  9. <a href="#FAQ09">Can I use D-Fend Reborn under Linux (or in Wine) ?</a><br />
+  10. <a href="#FAQ10">I get an error message when I try to install the DOSBox movie codec.</a><br />
 </p>
 
 <a onclick="return Work('FAQ01')" name="FAQ01" href="#"><h2>&raquo; How does the update checker operate ?</h2></a>
@@ -58,6 +57,8 @@ And you can manually start the update checker at any time by choosing
 The self made installer packages do not include D-Fend Reborn or DOSBox. This
 means you have to install D-Fend Reborn on the computer before you can use
 an installer package.
+(The installer packages are Windows programs. On Linux use
+<a href="FileExportZip.html">archive files</a> to exchange games instead.)
 </p>
 
 <p>
@@ -66,7 +67,7 @@ installation type), the target directory is still the D-Fend Reborn program
 folder ("<tt>C:\Program Files\D-Fend Reborn</tt>" for example) and not the data
 directory (something like "<tt>C:\Users\you\D-Fend Reborn</tt>"). The data package
 installer will only read from this directory and only copy files to the
-data directory, so it can run without admin rights under Vista.
+data directory, so it can run without admin rights.
 </p>
 
 <p>
@@ -132,6 +133,11 @@ names for mount commands" option in the "<a href="FileOptionsDOSBox.html">DOSBox
 category of the <a href="FileOptions.html">program options</a> dialog.
 (The option is only visible in advanced setup mode.)
 </p>
+
+<p>
+This only happens on Windows. Linux has no short (8.3) path names, so on Linux the
+path is always used as it is.
+</p>
 </div>
 
 <a onclick="return Work('FAQ06')" name="FAQ06" href="#"><h2>&raquo; How can I create an other language for D-Fend Reborn ?</h2></a>
@@ -153,8 +159,11 @@ handled just like the predefined languages).
 
 <p>
 If you want to have your language in the next official D-Fend Reborn release
-just mail the language file to me. (You can find the user defined language
-files in the folder "<tt>C:\Users\me\D-Fend Reborn\Lang</tt>".) And of course you will
+just send the language file to the D-Fend Reborn project, for example by opening an issue at
+<a href="https://github.com/Eldricos/D-Fend-Reborn/issues" target="_blank">https://github.com/Eldricos/D-Fend-Reborn/issues</a>.
+(You can find the user defined language files in the <tt>Lang</tt> subfolder of the data folder,
+for example "<tt>C:\Users\me\D-Fend Reborn\Lang</tt>" on Windows or
+"<tt>~/.local/share/D-Fend Reborn/Lang</tt>" on Linux.) And of course you will
 get mentioned in the language files section of the program info dialog.
 Therefor you should attend one thing: Your name and the name of the language
 file are shown in any D-Fend Reborn installation so make sure this two
@@ -164,21 +173,16 @@ not be used in the language name and in the author name.)
 </p>
 
 <p>
-If your language file uses a special charset (like cyrillic) and this is the
-default charset on your computer, everything will look fine for you (and other
-people having the same Windows charset). But on systems with another default
-charset your language will look broken. To avoid this, you can tell D-Fend
-Reborn to always use a special charset with your language file by setting
-the "Name=" key in the [CharsetSettings] section to one of the following
-values: ANSI_CHARSET, DEFAULT_CHARSET, SYMBOL_CHARSET, SHIFTJIS_CHARSET,
-HANGEUL_CHARSET, GB2312_CHARSET, CHINESEBIG5_CHARSET, OEM_CHARSET,
-JOHAB_CHARSET, HEBREW_CHARSET, ARABIC_CHARSET, GREEK_CHARSET, TURKISH_CHARSET,
-VIETNAMESE_CHARSET, THAI_CHARSET, EASTEUROPE_CHARSET, RUSSIAN_CHARSET.
-The default value "DEFAULT_CHARSET" tells D-Fend Reborn to use the Windows
-default charset. There is one more thing to mention: The charset setting
-applys to all D-Fend Reborn windows but sadly not to message boxes
-which are controled by Windows itself and will always use the Windows
-default charset.
+The easiest way is to save your language file in UTF-8 encoding: D-Fend Reborn reads UTF-8
+language files directly on all systems. If your language file uses an 8-bit charset (like
+cyrillic) instead, it will only look right if D-Fend Reborn knows this charset. To tell
+D-Fend Reborn which charset your language file uses, set the "Name=" key in the [CharsetSettings]
+section to one of the following values: ANSI_CHARSET, DEFAULT_CHARSET, EASTEUROPE_CHARSET,
+RUSSIAN_CHARSET, GREEK_CHARSET, TURKISH_CHARSET, HEBREW_CHARSET, ARABIC_CHARSET, BALTIC_CHARSET,
+VIETNAMESE_CHARSET, THAI_CHARSET, SHIFTJIS_CHARSET, HANGEUL_CHARSET, GB2312_CHARSET,
+CHINESEBIG5_CHARSET. D-Fend Reborn will then read the file using the matching code page.
+The default value "DEFAULT_CHARSET" tells D-Fend Reborn to use the default code page
+(on Windows the ANSI code page of the system, on Linux windows-1252).
 </p>
 </div>
 
@@ -187,10 +191,10 @@ default charset.
 Word processors usualy have quite good spell checkers but if you copy the whole
 language file to a word processor you will get a lot of false error messages
 because the word processor also trys to correct the "CouldNotDeleteFile=" parts
-of the records. To avoid this you can use the following trick: Open the Windows
-Notepad, press the tab key, mark the inserted tabulator (8 fields of space)
+of the records. To avoid this you can use the following trick: Open a text editor
+(for example the Windows Notepad), press the tab key, mark the inserted tabulator (8 fields of space)
 and copy it to the clipboard. Open the language file, open the replace dialog
-in notepad, write in the "search for" field "=" and paste in the tab in the
+in the text editor, write in the "search for" field "=" and paste in the tab in the
 "replace by" field. (This means replace all "=" by tabs.) Mark the whole file
 and copy it in an spread sheet. Mark the second column (only the values
 without the "CouldNotDeleteFile=" keys) and copy them to the word processor.
@@ -213,9 +217,16 @@ F5 key.
 </p>
 </div>
 
-<a onclick="return Work('FAQ09')" name="FAQ09" href="#"><h2>&raquo; Can I use D-Fend Reborn in Wine under Linux ?</h2></a>
-<div id="FAQ09"><p>	
-Running D-Fend Reborn in Wine is only half-official supported. In the
+<a onclick="return Work('FAQ09')" name="FAQ09" href="#"><h2>&raquo; Can I use D-Fend Reborn under Linux (or in Wine) ?</h2></a>
+<div id="FAQ09"><p>
+D-Fend Reborn runs natively on Linux, so there is no need to use Wine. The Linux version
+uses the Linux path names directly and creates <tt>.desktop</tt> files when creating
+shortcuts. The Wine support settings described below are only needed if you run the
+Windows version of D-Fend Reborn in Wine.
+</p>
+
+<p>
+Running the Windows version of D-Fend Reborn in Wine is only half-official supported. In the
 <a href="FileOptions.html">program options</a> dialog in the category
 "<a href="FileOptionsWineSupport.html">Wine support</a>" (only visible in advanced setup mode)
 you can configurate D-Fend Reborn to remap the Wine drive letters (<tt>C:</tt>, <tt>D:</tt>
@@ -243,43 +254,11 @@ will also be recognized).
 </p>
 </div>
 
-<a onclick="return Work('FAQ10')" name="FAQ10" href="#"><h2>&raquo; I have keyboard problems the DOSBox keymapper cannot fix.</h2></a>
+<a onclick="return Work('FAQ10')" name="FAQ10" href="#"><h2>&raquo; I get an error message when I try to install the DOSBox movie codec.</h2></a>
 <div id="FAQ10"><p>	
-First of all try setting the SDL video driver to "Win DIB" in the DOSBox
-section of the D-Fend Reborn setup dialog. If you still experience keyboard
-problems (in particular keys not recogniced by the keymapper, even more in
-particular the right shift key) and have pluged a Microsoft eHome receiver (the
-official remote control for the Microsoft media centre) to your system, please
-follow these steps:
-</p>
-
-<ol>
-  <li>Open the "Keyboards" section in the Device Manager.</li>
-  <li>Right-click "Microsoft eHome MCIR 109 Keyboard" and choose "Update Driver"
-   (called "Update Driver Software" on Vista).</li>
-  <li>Choose "Browse my computer for software" (XP users have to tell it not to
-   install automatically and say you will specify the location, then when it
-   asks you where you would like it to search for drivers choose the option to
-   choose from a list) then "Let me pick from a list of device drivers on my
-   computer".</li>
-  <li>Make sure "show compatible hardware" is checked, then select "HID-compliant
-   device" and click next. Click any remaining "OK" or "Finish" buttons after
-   Windows has installed the driver.</li>
-</ol>
-
-<p>
-The 109 keys driver is a Japanese keyboard driver. As long as you do not use a
-109 keys keyboard doing this will not influence the functionallity of your
-keyboard or your remote control. (See also <a href="http://forums.logitech.com/logitech/board/message?board.id=general&amp;message.id=6123" target="_blank">http://forums.logitech.com/logitech/board/message?board.id=general&amp;message.id=6123</a>)
-</p>
-</div>
-
-<a onclick="return Work('FAQ11')" name="FAQ11" href="#"><h2>&raquo; I get an error message when I try to install the DOSBox movie codec.</h2></a>
-<div id="FAQ11"><p>	
-To install a video codec you need admin rights on your system. On Windows XP
-most user always have admin rights and so can install the codec directly from
-the start menu. Under Windows Vista you need to give a program admin rights
-manually. Becuase the codec installer is a simple rundll call, it will not
+The DOSBox movie codec installer only exists in the Windows version of
+D-Fend Reborn. To install a video codec you need admin rights on your system.
+Windows does not give programs admin rights automatically. Becuase the codec installer is a simple rundll call, it will not
 ask for admin rights automatically (like normal installers do). So you need
 to click on the start menu item with the right mouse key and have to choose
 "Start as admin". 

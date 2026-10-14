@@ -356,6 +356,7 @@ void TPrgSetup::ReadSettings()
     AddStringRec(46, "ProgramSets", "LastSelectedProfile", "");
     AddStringRec(47, "ProgramSets", "DefaultTreeFilter", "11111111");
     AddStringRec(48, "ProgramSets", "DefaultFloppyDrive", "");
+    AddStringRec(49, "ProgramSets", "WindowsProgramsRunner", "wine");   // D-Fend Reborn
 
     for (int I = 0; I <= 25; I++) AddStringRec(450 + I, "WineSupport", QString(QChar('A' + I)), "");
 
@@ -463,6 +464,7 @@ void TPrgSetup::ReadSettings()
     AddBooleanRec(90, "ProgramSets", "OfferRunAsAdmin", false);
     /* AddBooleanRec(91,'ProgramSets','ActivateIncompleteFeatures',False); */
     AddBooleanRec(92, "ProgramSets", "DOSBoxFullSearchDone", false);   // D-Fend Reborn
+    AddBooleanRec(93, "ProgramSets", "UseWindowsProgramsRunner", true);   // D-Fend Reborn
 
     AddIntegerRec(0, "ProgramSets", "MainLeft", -1);
     AddIntegerRec(1, "ProgramSets", "MainTop", -1);

@@ -613,7 +613,7 @@ QString GetNSISPath()
 {
     QString result = "";
 #ifdef Q_OS_WIN
-    QSettings Reg("HKEY_LOCAL_MACHINE\\SOFTWARE\\NSIS", QSettings::NativeFormat);
+    QSettings Reg("HKEY_LOCAL_MACHINE\\SOFTWARE\\NSIS", QSettings::Registry32Format);   // NSIS is a 32 bit program
     if (Reg.contains(".")) {
         result = Reg.value(".").toString();
         if (!FileExists(IncludeTrailingPathDelimiter(result) + "makensisw.exe")) result = "";

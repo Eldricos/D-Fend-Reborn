@@ -46,6 +46,18 @@ beim Start und beim Beenden eines Windows-Spiels festlegen.
 	und wird daher nicht empfohlen.
     <br />(Voragebwert f&uuml;r diese Option: aus)
   </li>
+  <li>
+    <b>Windows-Programme mit diesem Programm starten (z.B. Wine)</b> (nur unter Linux)<br />
+    Windows-Programmdateien (<tt>.exe</tt>, <tt>.com</tt>, <tt>.bat</tt>, <tt>.cmd</tt>, <tt>.msi</tt>)
+    von Windows-Profilen werden mit dem hier angegebenen Programm gestartet. Vorgabe ist <tt>wine</tt>
+    (wird im Suchpfad gesucht). Es kann auch ein anderes Programm oder ein vollst&auml;ndiger Befehl
+    angegeben werden, z.B. der Pfad einer anderen Wine-Version oder <tt>flatpak run org.winehq.Wine</tt>.
+    <tt>.bat</tt>-, <tt>.cmd</tt>- und <tt>.msi</tt>-Dateien werden &uuml;ber den <tt>start</tt>-Befehl
+    von Wine ge&ouml;ffnet.<br />
+    Ist die Option deaktiviert oder das Programm nicht installiert, so werden die Dateien direkt gestartet
+    oder mit dem Programm ge&ouml;ffnet, das der Desktop dem Dateityp zugeordnet hat.
+    <br />(Vorgabewert f&uuml;r diese Option: an, <tt>wine</tt>)
+  </li>
 </ul>
  
 <p>&nbsp;</p>

@@ -18,7 +18,9 @@ Men&uuml;: &nbsp; <b>Datei</b> | <b>Programeinstellungen</b>  | <b>Packprogramme
 <p>
 Auf dieser Seite können externe Packprogramme angegeben werden, mit deren Hilfe D-Fend Reborn
 dann weitere Archivformate lesen und schreiben kann. (Eingebaut ist bereits eine Unterstützung
-für die Formate zip und 7z.)
+f&uuml;r die Formate zip und 7z. Dazu wird das 7-Zip-Kommandozeilenprogramm verwendet, das in der
+Windows-Version enthalten ist; unter Linux muss <tt>7z</tt>, <tt>7za</tt> oder <tt>7zz</tt> (Paket p7zip
+bzw. 7zip) &uuml;ber die Paketverwaltung installiert werden.)
 </p>
 
 <ul class="big">
@@ -56,6 +58,7 @@ für die Formate zip und 7z.)
   Gibt an, ob der Pfadname, der angeibt, wo sich die zu packenden Dateien befinden bzw. wohin
   das Archiv entpackt werden soll, mit einem abschießenden "\" versehen werden soll oder nicht.
   (Uha z.B. funktioniert nicht korrekt, wenn der Pfadname mit einem "\" abgeschlossen wird.)
+  Unter Linux wird statt "\" das Pfad-Trennzeichen "/" verwendet.
   </li>
   <li><b>Vorgabewerte setzen für ...</b><br />
   Für einige Packprogramme kennt D-Fend Reborn bereits die korrekten Parameter zum Packen und

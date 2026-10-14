@@ -228,6 +228,9 @@ public:
     void SetDefaultTreeFilter(const QString& Value) { SetString(47, Value); }
     QString DefaultFloppyDrive() { return GetString(48); }
     void SetDefaultFloppyDrive(const QString& Value) { SetString(48, Value); }
+    // D-Fend Reborn: program used to start Windows programs on Linux (Wine)
+    QString WindowsProgramsRunner() { return GetString(49); }
+    void SetWindowsProgramsRunner(const QString& Value) { SetString(49, Value); }
     QString LinuxRemap(QChar DriveLetter) { return GetDriveLetter(DriveLetter); }
     void SetLinuxRemap(QChar DriveLetter, const QString& Value) { SetDriveLetter(DriveLetter, Value); }
     TStringList* DOSBoxBasedUserInterpretersPrograms() const { return FDOSBoxBasedUserInterpretersPrograms; }
@@ -422,6 +425,9 @@ public:
     // D-Fend Reborn: the full disk search for DOSBox at startup is only done once
     bool DOSBoxFullSearchDone() { return GetBoolean(92); }
     void SetDOSBoxFullSearchDone(bool Value) { SetBoolean(92, Value); }
+    // D-Fend Reborn: start Windows programs on Linux with WindowsProgramsRunner
+    bool UseWindowsProgramsRunner() { return GetBoolean(93); }
+    void SetUseWindowsProgramsRunner(bool Value) { SetBoolean(93, Value); }
     int MainLeft() { return GetInteger(0); }
     void SetMainLeft(int Value) { SetInteger(0, Value); }
     int MainTop() { return GetInteger(1); }

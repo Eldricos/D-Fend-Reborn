@@ -22,12 +22,12 @@ D-Fend Reborn kann in insgesamt drei verschiedenen Betriebsarten installiert wer
 
 <ul class="big">
   <li><b>Benutzerverzeichnis-Modus</b><br />
-  Dies ist die Standard Betriebsart. Die Programmdateien von D-Fend Reborn und DOSBox werden in einem
+  Dies ist die Standard-Betriebsart des Windows-Installationsprogramms. Die Programmdateien von D-Fend Reborn und DOSBox werden in einem
   Unterverzeichnis des Programme-Verzeichnisses abgelegt. Beim Betrieb von D-Fend Reborn sind keinerlei
   Schreibzugriffe auf dieses Verzeichnis mehr n&ouml;tig, d.h. das Programm kann ohne Admin-Rechte ausgef&uuml;hrt
-  werden und verh&auml;lt sich Vista-komform. Profile, Einstellungen und Spiele werden in Unterverzeichnissen
+  werden. Profile, Einstellungen und Spiele werden in Unterverzeichnissen
   eines Verzeichnisses namens "D-Fend Reborn" abgelgt. Das Verzeichnis "D-Fend Reborn" befindet sich
-  direkt in Ihrem Benutzprofil-Verzeichnis.
+  direkt in Ihrem Benutzprofil-Verzeichnis (<tt>%USERPROFILE%\D-Fend Reborn</tt>).
   </li>
   <li><b>Programmverzeichnis-Modus</b><br />
   Dies Betriebsart wird nur aus Kompabilit&auml;t mit D-Fend (classic) angeboten. Sowohl die Programmdateien
@@ -44,6 +44,15 @@ D-Fend Reborn kann in insgesamt drei verschiedenen Betriebsarten installiert wer
   (Diese Betriebsart ist daf&uuml;r gedacht, D-Fend Reborn und DOSBox direkt von USB-Stick aus auszuf&uuml;hren.)
   </li>
 </ul>
+
+<p>
+Die Betriebsart wird in der Datei <tt>DFend.dat</tt> im Programmverzeichnis gespeichert
+(<tt>USERDIRMODE</tt>, <tt>PRGDIRMODE</tt> oder <tt>PORTABLEMODE</tt>).
+Unter Linux gibt es kein Installationsprogramm: Ohne eine <tt>DFend.dat</tt>-Datei arbeitet
+D-Fend Reborn im Programmverzeichnis-Modus und legt alle Daten neben dem Programm ab. Enth&auml;lt
+<tt>DFend.dat</tt> den Eintrag <tt>USERDIRMODE</tt>, so werden Profile, Einstellungen und Spiele in
+<tt>~/.local/share/D-Fend Reborn/</tt> gespeichert.
+</p>
 
 <p>
 Die Auswahlfelder und (nur lesbaren) Eingabefeld in diesem Dialog zeigen ebenfalls die obigen Informationen

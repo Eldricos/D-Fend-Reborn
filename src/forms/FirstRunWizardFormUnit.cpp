@@ -231,7 +231,8 @@ void TFirstRunWizardForm::LoadAndSetupLanguageList()
     J = 1033; InstallerLanguageOK = false;
 #ifdef Q_OS_WIN
     {
-        QSettings Reg("HKEY_LOCAL_MACHINE\\Software\\D-Fend Reborn", QSettings::NativeFormat);
+        // (written by the 32 bit NSIS installers: 32 bit registry view)
+        QSettings Reg("HKEY_LOCAL_MACHINE\\Software\\D-Fend Reborn", QSettings::Registry32Format);
         if (Reg.contains("Installer Language")) {
             bool OK = false;
             int V = Reg.value("Installer Language").toString().toInt(&OK);

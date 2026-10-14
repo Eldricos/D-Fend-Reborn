@@ -22,11 +22,11 @@ D-Fend Reborn can be installed in three different operation modes:
 
 <ul class="big">
   <li><b>User directory mode</b><br />
-  This is the default operation mode. The program files of D-Fend Reborn and DOSBox will be installed
+  This is the default operation mode of the Windows setup program. The program files of D-Fend Reborn and DOSBox will be installed
   to a subdirectory of your program files directory. When runnding D-Fend Reborn no write access
   to this directory is needed any more. (This means you can run the program without having admin rights.)
   The profiles, settings and games will be stored in the a subdirectory named "D-Fend Reborn" of your
-  user profile directory.
+  user profile directory (<tt>%USERPROFILE%\D-Fend Reborn</tt>).
   </li>
   <li><b>Program directroy mode</b><br />
   This mode is only offered for compability with D-Fend (classic). The program files of D-Fend Reborn
@@ -41,6 +41,15 @@ D-Fend Reborn can be installed in three different operation modes:
   DOSBox directly from USB sticks etc.)
   </li>
 </ul>
+
+<p>
+The operation mode is stored in the file <tt>DFend.dat</tt> in the program folder
+(<tt>USERDIRMODE</tt>, <tt>PRGDIRMODE</tt> or <tt>PORTABLEMODE</tt>).
+On Linux there is no setup program: Without a <tt>DFend.dat</tt> file D-Fend Reborn works
+in program directory mode and keeps all data next to the program. If <tt>DFend.dat</tt>
+contains <tt>USERDIRMODE</tt>, the profiles, settings and games are stored in
+<tt>~/.local/share/D-Fend Reborn/</tt>.
+</p>
 
 <p>
 The checkboxes and (read-only) edit fields in this dialog will show you the information described above,
