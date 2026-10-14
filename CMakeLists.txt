@@ -64,8 +64,12 @@ if(UNIX AND NOT APPLE)
 endif()
 
 # Program version (shown in the program, compared by the update check with
-# the latest GitHub release): the version of project() above
-target_compile_definitions(DFendCore PUBLIC DFR_VERSION="${PROJECT_VERSION}")
+# the latest GitHub release): the version of project() above.
+# Compatibility version: the D-Fend Reloaded version whose data files
+# (settings, profiles, package lists, language files) D-Fend Reborn uses;
+# package lists and language files are checked against it.
+set(DFR_COMPAT_VERSION 1.4.4)
+target_compile_definitions(DFendCore PUBLIC DFR_VERSION="${PROJECT_VERSION}" DFR_COMPAT_VERSION="${DFR_COMPAT_VERSION}")
 
 if(WIN32)
     target_link_libraries(DFendCore PUBLIC shell32 ole32 oleaut32 user32 advapi32 winmm uuid)

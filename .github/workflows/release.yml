@@ -1,5 +1,9 @@
-# Release: builds the downloads of a new version and creates a draft
-# GitHub release with them when a version tag ("v1.5.0") is pushed.
+# Release: builds the downloads of a new version and attaches them to its
+# GitHub release. Two ways to start it:
+#  - publish a release on GitHub (Releases > Draft a new release) with a new
+#    tag named like the version ("v0.5.0" or "0.5.0"): the files are added
+#    to that release when they are built (about 20 minutes),
+#  - or push such a tag with git: a draft release is created with the files.
 #
 #   Windows: D-Fend-Reborn-<version>-Setup.exe        (full installer)
 #            D-Fend-Reborn-<version>-UpdateSetup.exe  (update installer)
@@ -7,14 +11,22 @@
 #   Linux:   D-Fend-Reborn-<version>-x86_64.AppImage  (runs without installing Qt)
 #            D-Fend-Reborn-<version>-Linux-x86_64.tar.gz (needs Qt 6.4+ of the distribution)
 #
-# The release is created as a draft: check it on the releases page and click
-# "Publish release". (The update check of the program only sees published
-# releases.) See Install/README_HOW_TO_BUILD.txt, "Releases".
+# A draft release created by the workflow has to be published on the releases
+# page ("Publish release"); the update check of the program only sees
+# published releases that are not marked as pre-release.
+# See Install/README_HOW_TO_BUILD.txt, "Releases".
 name: Release
 
 on:
   push:
-    tags: ['v*']
+    tags: ['v[0-9]*', '[0-9]*']
+  release:
+    types: [published]
+
+# creating a release on GitHub can also push its tag: run once per tag
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -33,6 +45,10 @@ jobs:
         shell: bash
         run: |
           TAG="${GITHUB_REF_NAME#v}"
+          if ! echo "$TAG" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::The tag \"$GITHUB_REF_NAME\" is not a version number. Use a tag like v0.5.0 (the version of CMakeLists.txt)."
+            exit 1
+          fi
           CMAKE=$(sed -n 's/^project(DFendReborn VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
           NSIS=$(tr -d '\r' < Install/VersionSettings.nsi | awk '/!define VER_MAYOR/{a=$3} /!define VER_MINOR1/{b=$3} /!define VER_MINOR2/{c=$3} END{print a"."b"."c}')
           echo "Tag: $TAG, CMakeLists.txt: $CMAKE, VersionSettings.nsi: $NSIS"
@@ -250,7 +266,13 @@ jobs:
           On Linux install DOSBox (or DOSBox Staging) with your package manager; optional: 7-Zip (\`7z\`), \`mkfs.fat\`, \`oggenc\`, \`curl\`, ScummVM, Wine.
           EOF
           if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
+            # release created on GitHub: add the files and the download notes
             gh release upload "$GITHUB_REF_NAME" dist/* --clobber
+            gh release view "$GITHUB_REF_NAME" --json body --jq .body > body.md
+            if ! grep -q '^## Downloads' body.md; then
+              { cat body.md; printf '\n\n'; cat notes.md; } > new-body.md
+              gh release edit "$GITHUB_REF_NAME" --notes-file new-body.md
+            fi
           else
             gh release create "$GITHUB_REF_NAME" dist/* --draft --verify-tag \
               --title "D-Fend Reborn $VERSION" --notes-file notes.md --generate-notes
