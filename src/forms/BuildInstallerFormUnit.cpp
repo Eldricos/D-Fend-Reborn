@@ -613,10 +613,31 @@ QString GetNSISPath()
 {
     QString result = "";
 #ifdef Q_OS_WIN
-    QSettings Reg("HKEY_LOCAL_MACHINE\\SOFTWARE\\NSIS", QSettings::Registry32Format);   // NSIS is a 32 bit program
-    if (Reg.contains(".")) {
-        result = Reg.value(".").toString();
-        if (!FileExists(IncludeTrailingPathDelimiter(result) + "makensisw.exe")) result = "";
+    // Folder from the registry (default value of HKLM\SOFTWARE\NSIS, written
+    // by the NSIS setup; NSIS is a 32 bit program, so the 32 bit registry view
+    // is checked first). Port note: QSettings names the default value of a key
+    // "Default" (the original read Reg.ReadString('')). If NSIS is not
+    // registered (e.g. a portable copy), the usual installation folders and
+    // the search path are checked.
+    QStringList Candidates;
+    for (QSettings::Format Format : {QSettings::Registry32Format, QSettings::Registry64Format}) {
+        QSettings Reg("HKEY_LOCAL_MACHINE\\SOFTWARE\\NSIS", Format);
+        for (const char* Key : {"Default", "."}) {
+            const QString S = Reg.value(Key).toString();
+            if (!S.isEmpty()) Candidates << S;
+        }
+    }
+    for (const char* Env : {"ProgramFiles(x86)", "ProgramFiles", "ProgramW6432"}) {
+        const QString S = qEnvironmentVariable(Env);
+        if (!S.isEmpty()) Candidates << IncludeTrailingPathDelimiter(S) + "NSIS";
+    }
+    const QString InPath = QStandardPaths::findExecutable(NSISCompilerName());
+    if (!InPath.isEmpty()) Candidates << ExtractFilePath(QDir::toNativeSeparators(InPath));
+    for (const QString& C : Candidates) {
+        if (FileExists(IncludeTrailingPathDelimiter(C) + NSISCompilerName())) {
+            result = IncludeTrailingPathDelimiter(C);
+            break;
+        }
     }
 #else
     // Port note: no registry - look for makensis in the search path instead
