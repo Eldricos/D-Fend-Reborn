@@ -29,7 +29,11 @@ the repository (online/, DFRebornOnlineURL), as are the data reader configuratio
 cheats database (the cheats update now installs newer databases; the original
 never did).
 
+Also done: recursive folder watching in the quick start window (Linux),
+drawn search animation (InternetDataWaitForm), TColorBox colours and names
+like the original (Delphi names, German names with the German language, system
+colours kept as such).
+
 Still open:
-- Platform gaps marked with `TODO(port)` in the sources (recursive folder watching in the quick start window,
-  search animation, color box names).
-  Notes that only explain a deliberate difference are marked `Port note:`.
+- No `TODO(port)` items are left in the sources. Notes that only explain a
+  deliberate difference are marked `Port note:`.

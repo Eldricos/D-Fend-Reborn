@@ -7,10 +7,10 @@
 #include "TextEditPopupUnit.h"
 
 namespace {
-// TColorBox.Selected:=C (TColorToQColor also resolves system colours like clWindowText)
+// TColorBox.Selected:=C
 void SetColorBoxSelected(TColorBoxWidget *Box, TColor C)
 {
-    Box->setSelected(TColorToQColor(C));
+    Box->setSelectedTColor(C);
 }
 } // namespace
 
@@ -78,7 +78,8 @@ void TSetupFrameGamesListTreeAppearance::LoadLanguage()
     QListWidget *L = ui.TreeViewDefaultGroups;
     ui.ReselectFilterCheckBox->setText(LanguageSetup->SetupFormStartRestoreFilter());
     GermanColorNames = (ExtUpperCase(ExtractFileName(LanguageSetup->SetupFile())) == "DEUTSCH.INI") || (ExtUpperCase(ExtractFileName(LanguageSetup->SetupFile())) == "GERMAN.INI");
-    Q_UNUSED(GermanColorNames); // cbPrettyNames: TColorBoxWidget always shows pretty (English) colour names
+    ui.TreeViewBackgroundColorBox->setPrettyNames(GermanColorNames);
+    ui.TreeViewFontColorBox->setPrettyNames(GermanColorNames);
     ui.TreeViewBackgroundRadioButton1->setText(LanguageSetup->SetupFormBackgroundColorDefault());
     ui.TreeViewBackgroundRadioButton2->setText(LanguageSetup->SetupFormBackgroundColorColor());
     ui.TreeViewFontSizeLabel->setText(LanguageSetup->SetupFormFontSize());

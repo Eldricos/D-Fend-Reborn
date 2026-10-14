@@ -7,10 +7,10 @@
 #include "IconLoaderUnit.h"
 
 namespace {
-// TColorBox.Selected:=C (TColorToQColor also resolves system colours like clWindowText)
+// TColorBox.Selected:=C
 void SetColorBoxSelected(TColorBoxWidget *Box, TColor C)
 {
-    Box->setSelected(TColorToQColor(C));
+    Box->setSelectedTColor(C);
 }
 } // namespace
 
@@ -69,7 +69,8 @@ void TSetupFrameGamesListScreenshotAppearance::LoadLanguage()
     bool GermanColorNames;
     ui.ReselectCategoryCheckBox->setText(LanguageSetup->SetupFormStartRestorePreviewerCategory());
     GermanColorNames = (ExtUpperCase(ExtractFileName(LanguageSetup->SetupFile())) == "DEUTSCH.INI") || (ExtUpperCase(ExtractFileName(LanguageSetup->SetupFile())) == "GERMAN.INI");
-    Q_UNUSED(GermanColorNames); // cbPrettyNames: TColorBoxWidget always shows pretty (English) colour names
+    ui.ScreenshotsListBackgroundColorBox->setPrettyNames(GermanColorNames);
+    ui.ScreenshotsListFontColorBox->setPrettyNames(GermanColorNames);
     ui.ScreenshotsListBackgroundRadioButton1->setText(LanguageSetup->SetupFormBackgroundColorDefault());
     ui.ScreenshotsListBackgroundRadioButton2->setText(LanguageSetup->SetupFormBackgroundColorColor());
     ui.ScreenshotsListBackgroundRadioButton3->setText(LanguageSetup->SetupFormBackgroundColorFile());
