@@ -33,8 +33,8 @@
 ;== Basic Information.  Basic information about the portable app
 !define NAME "D-Fend Reborn Portable"
 !define SHORTNAME "D-FendRebornPortable"
-!define VERSION "1.4.4.0"
-!define FILENAME "D-Fend-Reborn-1.4.4-Portable"
+!define VERSION "0.5.0.0"
+!define FILENAME "D-Fend-Reborn-0.5.0-Portable"
 !define CHECKRUNNING "DFend.exe"
 !define CLOSENAME "D-Fend Reborn Portable "
 !define ADDONSDIRECTORYPRESERVE "NONE" ;use "NONE" for no plugins directory or relative to install directory: App\AppName\plugins

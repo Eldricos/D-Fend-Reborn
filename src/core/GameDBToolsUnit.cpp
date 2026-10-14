@@ -2229,7 +2229,7 @@ static void ExportGamesListHTMLFile(TGameDB *GameDB, const TGamesListExportColum
     St->Add("    <title>D-Fend Reborn</title>");
     St->Add("    <meta http-equiv=\"content-type\" content=\"text/html; charset=" + LanguageSetup->CharsetHTMLCharset() + "\">");
     St->Add("    <meta name=\"description\" content=\"D-Fend Reborn games list\">");
-    St->Add("    <meta name=\"DC.creator\" content=\"D-Fend Reborn " + GetNormalFileVersionAsString() + "\">");
+    St->Add("    <meta name=\"DC.creator\" content=\"D-Fend Reborn " + GetReleaseVersionAsString() + "\">");
     St->Add("    <style type=\"text/css\">");
     St->Add("    <!--");
     St->Add("      body {font-family: Arial, Helvetica, sans-serif;}");

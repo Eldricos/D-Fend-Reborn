@@ -43,11 +43,18 @@ static bool StartsWithDotDotDelim(const QString &P)
 // SysErrorMessage(GetLastError)
 static QString LastSysErrorMessage() { return qt_error_string(-1); }
 
+// D-Fend Reborn: two version numbers.
+// - GetNormalFileVersionAsString / GetShortFileVersionAsString / VersionToInt
+//   comparisons use the D-Fend Reloaded version whose data D-Fend Reborn
+//   reads and writes (DFR_COMPAT_VERSION): package lists (Min/MaxVersion),
+//   language files (MaxVersion), settings upgrades, package files.
+// - The version of D-Fend Reborn itself (DFR_VERSION, project() in
+//   CMakeLists.txt) is shown to the user and compared with the GitHub
+//   releases by the update check (GetFileVersionAsString,
+//   GetReleaseVersionAsString).
 static QString ProgramVersionString()
 {
-    QString S = QCoreApplication::applicationVersion();
-    if (Trim(S).isEmpty()) S = QStringLiteral(DFR_VERSION);
-    return S;
+    return QStringLiteral(DFR_COMPAT_VERSION);
 }
 
 // Program version as Windows file version: MS = major<<16 | minor, LS = release<<16 | build
@@ -565,10 +572,13 @@ quint32 GetFileVersionEx(const QString& AFileName)
 
 QString GetFileVersionAsString()
 {
-    quint32 I, J;
-    ProgramVersion(I, J);
-    // result:=Format('Version %d.%d.%d (Build %d)',[I div 65536,I mod 65536, J div 65536, J mod 65536]);
-    return Format(QStringLiteral("Version %d.%d.%d"), {int(I / 65536), int(I % 65536), int(J / 65536)});
+    // (version of D-Fend Reborn, see ProgramVersionString)
+    return QStringLiteral("Version ") + GetReleaseVersionAsString();
+}
+
+QString GetReleaseVersionAsString()
+{
+    return QStringLiteral(DFR_VERSION);
 }
 
 QString GetNormalFileVersionAsString()

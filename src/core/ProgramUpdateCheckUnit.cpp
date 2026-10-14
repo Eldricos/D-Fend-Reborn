@@ -81,7 +81,7 @@ TUpdateResult RunUpdateCheck(QWidget *AOwner, bool Quite, bool QuiteOnError)
     if (Version.startsWith('v', Qt::CaseInsensitive)) Version = Version.mid(1);
     const QString Page = Release.value("html_url").toString(DFRebornHomepage + "/releases");
 
-    if (!Version.isEmpty() && VersionToInt(Version) > VersionToInt(GetNormalFileVersionAsString())) {
+    if (!Version.isEmpty() && VersionToInt(Version) > VersionToInt(GetReleaseVersionAsString())) {
         // "New version" X "on server. Do you want to update now ?"
         if (MessageDlg(LanguageSetup->UpdateNewVersionPart1() + " " + Version + " " + LanguageSetup->UpdateNewVersionPart2(), mtConfirmation, mbYesNo, 0) == mrYes)
             ShellOpen(Page);

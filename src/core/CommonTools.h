@@ -64,6 +64,7 @@ bool SelectDirectory(THandle AOwner, const QString& Caption, QString& Directory)
 QString GetSpecialFolder(WId hWindow, int Folder);
 quint32 GetFileVersionEx(const QString& AFileName);
 QString GetFileVersionAsString();
+QString GetReleaseVersionAsString();   // D-Fend Reborn version (update check, display)
 QString GetNormalFileVersionAsString();
 QString GetShortFileVersionAsString();
 int VersionToInt(const QString& Version);
