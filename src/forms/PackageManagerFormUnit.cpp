@@ -186,9 +186,22 @@ void TPackageManagerForm::FormShow(QObject * /*Sender*/)
     const int Today = Round(double(qint64(Date())));
     switch (PrgSetup->PackageListsCheckForUpdates()) {
         case 0: DoUpdateCheck = false; break;
-        case 1: DoUpdateCheck = (Today >= PrgSetup->LastDataReaderUpdateCheck() + 7); break;
-        case 2: DoUpdateCheck = (Today >= PrgSetup->LastDataReaderUpdateCheck() + 1); break;
+        // Port note: the original compared with the date of the last data
+        // reader update check here
+        case 1: DoUpdateCheck = (Today >= PrgSetup->LastPackageListeUpdateCheck() + 7); break;
+        case 2: DoUpdateCheck = (Today >= PrgSetup->LastPackageListeUpdateCheck() + 1); break;
         case 3: DoUpdateCheck = true; break;
+    }
+    // D-Fend Reborn: the lists are downloaded automatically when there are none
+    // yet (first start of the package manager), so the user does not have to
+    // click "Update lists" first
+    if (!DoUpdateCheck) {
+        bool Empty = true;
+        for (int I = 0; I < PackageDB->Count() && Empty; I++) {
+            TPackageList *L = PackageDB->List(I);
+            if (L->GamesCount() + L->AutoSetupCount() + L->LanguageCount() + L->ExePackageCount() + L->IconCount() + L->IconSetCount() > 0) Empty = false;
+        }
+        DoUpdateCheck = Empty;
     }
     if (DoUpdateCheck) {
         PackageDB->UpdateRemoteFiles(true);
