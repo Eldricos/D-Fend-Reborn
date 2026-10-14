@@ -16,8 +16,11 @@ static QWidget *defaultParent(QWidget *Parent)
     return W;
 }
 
+TMessageDlgHook MessageDlgHook;
+
 int MessageDlgCaption(const QString &Caption, const QString &Msg, TMsgDlgType DlgType, TMsgDlgButtons Buttons, QWidget *Parent)
 {
+    if (MessageDlgHook) return MessageDlgHook(Caption, Msg, DlgType, Buttons);
     QMessageBox Box(defaultParent(Parent));
     Box.setWindowTitle(Caption);
     Box.setText(Msg);

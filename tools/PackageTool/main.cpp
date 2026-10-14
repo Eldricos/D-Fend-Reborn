@@ -44,6 +44,20 @@
 static void Print(const QString& S) { std::fprintf(stdout, "%s\n", qPrintable(S)); std::fflush(stdout); }
 static void Error(const QString& S) { std::fprintf(stderr, "DFRPackageTool: %s\n", qPrintable(S)); }
 
+static bool HadError = false;
+
+// Message boxes of the program code: printed, answered with "cancel"/"no"
+// (or "OK" if that is the only button); errors make the tool fail.
+static int ConsoleMessageDlg(const QString& Caption, const QString& Msg, TMsgDlgType DlgType, TMsgDlgButtons Buttons)
+{
+    std::fprintf(stderr, "[%s] %s\n", qPrintable(Caption), qPrintable(QString(Msg).replace('\n', ' ')));
+    if (DlgType == mtError) HadError = true;
+    if (Buttons & mbAbort) return mrAbort;
+    if (Buttons & mbCancel) return mrCancel;
+    if (Buttons & mbNo) return mrNo;
+    return mrOk;
+}
+
 static int Usage()
 {
     std::fprintf(stderr,
@@ -169,6 +183,7 @@ static void MessageHandler(QtMsgType Type, const QMessageLogContext&, const QStr
 int main(int argc, char* argv[])
 {
     qInstallMessageHandler(MessageHandler);
+    MessageDlgHook = ConsoleMessageDlg;
     // no windows (the program code shows progress dialogs)
     if (qEnvironmentVariableIsEmpty("QT_QPA_PLATFORM")) qputenv("QT_QPA_PLATFORM", "offscreen");
     QApplication App(argc, argv);
@@ -211,5 +226,6 @@ int main(int argc, char* argv[])
     LanguageSetupUnit_Finalization();
     PrgSetupUnit_Finalization();
     TempPrgDir = "";
+    if (Result == 0 && HadError) Result = 1;
     return Result;
 }
