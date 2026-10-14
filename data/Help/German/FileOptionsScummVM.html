@@ -21,6 +21,8 @@ dennoch Scumm-basierende Spiele mit Hilfe von ScummVM starten. Wenn Sie auf
 dieser Dialogseite den Pfad zu ScummVM angeben, k&ouml;nnen Sie &uuml;ber
 den Men&uuml;punkt <a href="ProfileAddScummVM.html">ScummVM-Profil hinzuf&uuml;gen</a>
 im "Profil"-Men&uuml; ScummVM-basierende Profile zur Spieleliste hinzuf&uuml;gen.
+Unter Linux wird ScummVM &uuml;ber die Paketverwaltung installiert (Paket <tt>scummvm</tt>); geben Sie in
+diesem Fall das Verzeichnis an, in dem sich das Programm <tt>scummvm</tt> befindet (normalerweise <tt>/usr/bin</tt>).
 </p>
 
 <ul class="big">
@@ -43,12 +45,14 @@ im "Profil"-Men&uuml; ScummVM-basierende Profile zur Spieleliste hinzuf&uuml;gen
     <b>ScummVM-Fenster zentrieren</b> <font color="red">(*)</font><br />
     Wenn diese Option aktiviert ist, wird das ScummVM-Fenster, wenn ScummVM nicht
     im Vollbildmodus gestartet wird, zentriert auf dem Bildschirm angezeigt.
+    (Unter Linux fordert D-Fend Reborn ScummVM &uuml;ber SDL-Umgebungsvariablen auf, sein Fenster selbst zu zentrieren.)
     <br />(Vorgabewert f&uuml;r diese Option: aus)
   </li>
   <li>
     <b>ScummVM-Console ausblenden</b> <font color="red">(*)</font><br />
     Wenn diese Option aktiviert ist, wird das ScummVM-Consolenfenster
     ausgeblendet, wenn ScummVM nicht im Vollbildmodus gestartet wird.
+    (Diese Option wird nur unter Windows verwendet. Unter Linux hat ScummVM kein Consolenfenster.)
     <br />(Vorgabewert f&uuml;r diese Option: aus)
   </li>
   <li>

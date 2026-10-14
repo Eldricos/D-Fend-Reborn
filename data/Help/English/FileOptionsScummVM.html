@@ -19,6 +19,8 @@ Menu: &nbsp; <b>File</b> | <b>Program options</b>  | <b>ScummVM</b>
 Also D-Fend Reborn is a DOSBox frontend it can also handle Scumm based games by
 using ScummVM. If you enter the path to ScummVM on this page, you will be able to
 <a href="ProfileAddScummVM.html">create ScummVM based profiles</a>.
+On Linux ScummVM is installed via the package manager (package <tt>scummvm</tt>); in this case enter
+the folder containing the <tt>scummvm</tt> program (usually <tt>/usr/bin</tt>).
 </p>
 
 <ul class="big">
@@ -39,12 +41,14 @@ using ScummVM. If you enter the path to ScummVM on this page, you will be able t
     <b>Center ScummVM window</b> <font color="red">(*)</font><br />
     If this option is activated, the ScummVM program window will be centered
     on the screen if ScummVM is not started in fullscreen mode.
+    (On Linux D-Fend Reborn asks ScummVM to center its window itself via SDL environment variables.)
     <br />(Default value for this option: off)
   </li>
   <li>
     <b>Hide ScummVM console</b> <font color="red">(*)</font><br />
     If this option is activated, the ScummVM console window will be
     made invisible if ScummVM is not started in fullscreen mode.
+    (This option is only used on Windows. On Linux ScummVM has no console window.)
     <br />(Default value for this option: off)
   </li>
   <li>

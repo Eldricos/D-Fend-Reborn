@@ -28,7 +28,8 @@ zu &ouml;ffnen.
 <ul class="big">
   <li><b>Standardeditor f&uuml;r den Dateityp verwenden</b><br />
   Wenn diese Option aktiviert ist, verwendet D-Fend Reborn jeweils  den in der Registry eingetragenen
-  Vorgabeeditor zum &ouml;ffnen der jeweiligen Textdateien.
+  Vorgabeeditor zum &ouml;ffnen der jeweiligen Textdateien. Unter Linux werden die Dateien mit dem
+  Standardprogramm der Desktopumgebung f&uuml;r den jeweiligen Dateityp ge&ouml;ffnet.
   <br />(Diese Option ist der Vorgabewert.)
   </li>
   <li><b>Wenn kein Editor f&uuml;r Dateityp registriert ist, Standardeditor f&uuml;r txt-Dateien verwenden</b><br />
@@ -36,11 +37,13 @@ zu &ouml;ffnen.
   registriert ist, wenn f&uuml;r Dateien des zu &ouml;ffnenden Typs kein Editor in der Registry definiert ist.
   Da f&uuml;r <tt>conf</tt>-Dateien in den meisten F&auml;llen kein Editor registriert ist, diese jedoch einfache
   Textdateien sind, ist Option in den meisten F&auml;llen sehr n&uuml;tzlich.
+  (Diese Option wird nur unter Windows verwendet.)
   <br />(Vorgabewert f&uuml;r diese Option: ein)
   </li>
   <li><b>Immer Notepad verwenden</b><br />
   Wenn diese Option aktiviert ist, wird D-Fend Reborn alle Textdateien unabh&auml;ngig von den Einstellungen in der Registry
-  stets mit Windows Notepad &ouml;ffnen.
+  stets mit Windows Notepad &ouml;ffnen. Unter Linux, wo es kein Notepad gibt, wird stattdessen
+  das Standardprogramm der Desktopumgebung verwendet.
   </li>
   <li><b>Benutzerdefinierten Texteditor verwenden</b><br />
   Wenn Sie diese Option aktivieren, k&ouml;nnen Sie einen beliebigen Texteditor vorgeben, mit dem D-Fend Reborn

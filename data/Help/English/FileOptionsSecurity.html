@@ -36,7 +36,7 @@ On this page you can setup the functions that will protect you agains deleting w
     <a href="FileOptionsDirectories.html">base folder</a> when uninstalling a game.
     With this option activated uninstalling misconfigurated games can not damage your regular
     software installation. If this option is turned off and in the profile you want to
-    uninstall <tt>C:\Windows\</tt> is defined as the game folder to delete, your operation
+    uninstall <tt>C:\Windows\</tt> (or <tt>/usr</tt> on Linux) is defined as the game folder to delete, your operation
     system can get damaged.
     <br />(Default value for this option: on)
   </li>
@@ -53,6 +53,7 @@ On this page you can setup the functions that will protect you agains deleting w
     <b>Move files to recycle bin when deleting</b><br>
 	  In this box you can select which files should be moved to the recycle bin when
   	deleting them and which files should be deleted irrevocable.
+	(On Linux the files are moved to the trash of the desktop.)
 	  <br />(Default value for this option: Move all non temprary files to recycle bin)
   </li>
   <li>
@@ -65,6 +66,8 @@ On this page you can setup the functions that will protect you agains deleting w
 	only the checkboxes in the profile editor will be invisible but also
 	profile for which running as admin was selected earlier will not be started
 	with admin rights anymore.
+	Running programs as admin is only supported on Windows; on Linux DOSBox, ScummVM and
+	the programs are always started with normal user rights.
 	<br />(Default value for this option: off)
   </li>
 </ul>

@@ -37,7 +37,11 @@ Auf dieser Seite können Sie einstellen, welche DOSBox-Installationen Sie in D-Fe
     relativ zum D-Fend Reborn Programmverzeichnis gespeichert. Wenn D-Fend Reborn neu gestartet wird,
     wird das DOSBox-Verzeichnis <b>wieder in einen absoluten Pfad umgewandelt</b>, d.h. in diesem Eingabefeld
     steht immer eine absolute Pfadangabe, auch wenn der Pfad in der portablen Betriebsart korrekt relativ
-    gespeichert wird.
+    gespeichert wird.<br /><br />
+    Unter Linux wird DOSBox &uuml;ber die Paketverwaltung installiert (Paket <tt>dosbox</tt> oder <tt>dosbox-staging</tt>).
+    In diesem Fall geben Sie hier das Verzeichnis an, in dem sich das Programm <tt>dosbox</tt> befindet
+    (normalerweise <tt>/usr/bin</tt>). Befindet sich in dem angegebenen Verzeichnis kein Programm <tt>dosbox</tt>,
+    so verwendet D-Fend Reborn das im Suchpfad gefundene Programm <tt>dosbox</tt>.
   </li>
 </ul>
 
@@ -101,22 +105,25 @@ Diese Schaltfläche ist nur sichtbar, wenn unten rechts im Programmeinstellungen-
     Die DOSBox-Console zeigt zus&auml;tzliche Status- und Fehler-Meldungen an.
     Beim Ausf&uuml;hren normaler Spiele gibt es eigentlich keinen Bedarf, die
     DOSBox-Console anzuzeigen und es sollte normalerweise also auch nicht notwendig sein,
-    diese Option zu deaktivieren.
+    diese Option zu deaktivieren. (Diese Option wird nur unter Windows verwendet. Unter Linux
+    &ouml;ffnet DOSBox kein Console-Fenster, daher hat die Option dort keine Wirkung.)
     <br />(Vorgabewert f&uuml;r diese Option: ein)
   </li>  
   <li>
     <b>DOSBox-Fenster zentrieren</b><br />
     Wenn diese Option aktiviert ist, wird das DOSBox-Fenster zentriert auf dem
     Desktop dargestellt (solange Sie keine Profile starten, die das DOSBox-Fenster
-    in den Vollbildmodus versetzen.)
+    in den Vollbildmodus versetzen.) Unter Linux fordert D-Fend Reborn DOSBox &uuml;ber
+    SDL-Umgebungsvariablen auf, sein Fenster selbst zu zentrieren.
     <br />(Vorgabewert f&uuml;r diese Option: aus)
   </li>
   <li>
     <b>Screensaver deaktivieren, wenn DOSBox l&auml;uft</b><br />
     Durch das Aktivieren dieser Option k&ouml;nnen Sie verhindern, dass sich der
-    Windows-Screensaver aktiviert so lange DOSBox l&auml;uft. Ist diese
+    Screensaver aktiviert so lange DOSBox l&auml;uft. Ist diese
     Option aktiviert, so wird der Screensaver auch dann nicht aktiviert,
-    wenn Sie keine Eingaben per Tastatur oder Maus vornehmen.
+    wenn Sie keine Eingaben per Tastatur oder Maus vornehmen. (Unter Linux wird der
+    Bildschirmschoner &uuml;ber die D-Bus-Bildschirmschoner-Schnittstelle des Desktops unterdr&uuml;ckt.)
     <br />(Vorgabewert f&uuml;r diese Option: aus)
   </li>
   <li>
@@ -130,6 +137,8 @@ Diese Schaltfläche ist nur sichtbar, wenn unten rechts im Programmeinstellungen-
     <b>SDL Videodriver</b><br />
     In diesem Auswahlfeld k&ouml;nnen Sie den SDL Videotreiber, den Sie verwenden wollen, ausw&auml;hlen.
     SDL stellt die Grafik-Basis von DOSBox dar.
+    Diese Einstellung wird nur unter Windows verwendet (die SDL-Videotreiber "DirectX" und "WinDIB"
+    gibt es nur dort). Unter Linux verwendet DOSBox stets seinen Standard-Videotreiber.
     <br />(Vorgabewert f&uuml;r diese Option: "DirectX")
   </li>
   <li>

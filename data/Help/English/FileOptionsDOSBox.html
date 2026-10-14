@@ -33,7 +33,11 @@ On this page you can configurate the DOSBox versions to use with D-Fend Reborn.
     In this edit field you can enter the path of the DOSBox installation you want to use.<br /><br />
     In portable mode this directory is stored relatively to the program folder <b>at program end</b>.
     When D-Fend Reborn is started again it <b>will make absolute paths for the three directories again</b>.
-    So this directory is shown here with absolute paths in any operation mode.
+    So this directory is shown here with absolute paths in any operation mode.<br /><br />
+    On Linux DOSBox is installed via the package manager (package <tt>dosbox</tt> or <tt>dosbox-staging</tt>).
+    In this case enter the folder containing the <tt>dosbox</tt> program (usually <tt>/usr/bin</tt>).
+    If there is no <tt>dosbox</tt> program in the given folder, D-Fend Reborn uses the <tt>dosbox</tt>
+    program found in the search path.
   </li>
 </ul>
 
@@ -91,18 +95,22 @@ This button will only be visible if the advanced setup mode is selected at the b
     <b>Hide DOSBox console</b><br />
     The DOSBox console will show additional status and error messages while DOSBox is running.
     When running a normal game the colsole is not needed and can be hidden by activating this checkbox.
+    (This option is only used on Windows. On Linux DOSBox does not open a console window,
+    so this option has no effect there.)
     <br />(Default value for this option: on)
   </li>  
   <li>
     <b>Center DOSBox window</b><br />
     If this option is turned on, the DOSBox window will be centered on the desktop
     if starting an non-fullscreen profile.
+    (On Linux D-Fend Reborn asks DOSBox to center its window itself via SDL environment variables.)
     <br />(Default value for this option: off)
   </li>
   <li>
     <b>Disable screensaver when DOSBox is running</b><br />
-    By activating the option you can avoid the starting of the Windows screensaver while
+    By activating the option you can avoid the starting of the screensaver while
     DOSBox is running even if you do no enter anything via mouse or keyboard.
+    (On Linux the screensaver is inhibited via the D-Bus screensaver interface of the desktop.)
     <br />(Default value for this option: off)
   </li>
   <li>
@@ -115,6 +123,8 @@ This button will only be visible if the advanced setup mode is selected at the b
     <b>SDL videodriver</b><br />
     In this dropdown box you can select the videodriver SDL should use.
     SDL is the system-backend of DOSBox.
+    This setting is only used on Windows (the SDL videodrivers "DirectX" and "WinDIB" only exist there).
+    On Linux DOSBox always uses its default videodriver.
     <br />(Default value for this option: "DirectX")
   </li>
   <li>
