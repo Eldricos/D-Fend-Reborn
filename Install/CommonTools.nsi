@@ -1,4 +1,7 @@
-; NSI SCRIPT TOOLS FOR D-FEND RELOADED
+; D-Fend Reborn: Unicode installer (file names and texts of all languages)
+Unicode true
+
+; NSI SCRIPT TOOLS FOR D-FEND REBORN
 ; ============================================================
 
 ; Define VER_MAYOR, VER_MINOR1, VER_MINOR2 and INST_FILENAME before including this file !
@@ -9,21 +12,19 @@
 ; Include used librarys
 ; ============================================================
 
-!addplugindir ".\Plugins"
 !include "MUI.nsh"
 !include "Sections.nsh"
 !include "WinMessages.nsh"
-!include "Plugins\GameExplorer.nsh"
 
 
 
 ; Define program name and version information
 ; ============================================================
 
-!define PrgName "D-Fend Reloaded ${VER_MAYOR}.${VER_MINOR1}.${VER_MINOR2}"
-OutFile "D-Fend-Reloaded-${VER_MAYOR}.${VER_MINOR1}.${VER_MINOR2}-${INST_FILENAME}"
+!define PrgName "D-Fend Reborn ${VER_MAYOR}.${VER_MINOR1}.${VER_MINOR2}"
+OutFile "D-Fend-Reborn-${VER_MAYOR}.${VER_MINOR1}.${VER_MINOR2}-${INST_FILENAME}"
 
-VIAddVersionKey "ProductName" "D-Fend Reloaded"
+VIAddVersionKey "ProductName" "D-Fend Reborn"
 VIAddVersionKey "ProductVersion" "${VER_MAYOR}.${VER_MINOR1}.${VER_MINOR2}"
 VIAddVersionKey "Comments" "${PrgName} is a Frontend for DOSBox"
 VIAddVersionKey "CompanyName" "Written by Alexander Herzog"
@@ -45,7 +46,6 @@ Var DataInstDir
 Var InstallDataType
 Var AdminOK
 Var PrgNameAddOn
-Var GEGUID
 
 
 
@@ -56,13 +56,15 @@ Name "${PrgName}"
 BrandingText "${PrgName} $PrgNameAddOn"
 
 SetCompressor /solid lzma
-!packhdr "$%TEMP%\exehead.tmp" 'Tools\upx.exe "$%TEMP%\exehead.tmp"'
+!if /FileExists "Tools\upx.exe"
+  !packhdr "$%TEMP%\exehead.tmp" 'Tools\upx.exe "$%TEMP%\exehead.tmp"'
+!endif
 
-RequestExecutionLevel user
+RequestExecutionLevel highest
 XPStyle on
 
-InstallDir "$PROGRAMFILES\D-Fend Reloaded\"
-InstallDirRegKey HKLM "Software\D-Fend Reloaded" "ProgramFolder"
+InstallDir "$PROGRAMFILES\D-Fend Reborn\"
+InstallDirRegKey HKLM "Software\D-Fend Reborn" "ProgramFolder"
 
 !insertmacro MUI_RESERVEFILE_LANGDLL
 
@@ -71,11 +73,6 @@ ShowUninstDetails nevershow
 
 
 
-; Pack program file
-; ============================================================
-
-!system '"Tools\upx.exe" "..\DFend.exe"'
-!system '"Tools\upx.exe" "..\Bin\oggenc2.exe"'
 
 
 
@@ -88,9 +85,9 @@ ShowUninstDetails nevershow
 !define MUI_HEADERIMAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Header\win.bmp"
 !define MUI_HEADERIMAGE_UNBITMAP "Images\1035.bmp"
 !ifdef Update
-  !define MUI_WELCOMEFINISHPAGE_BITMAP "Images\D-Fend Reloaded - Update Installer.bmp"
+  !define MUI_WELCOMEFINISHPAGE_BITMAP "Images\D-Fend Reborn - Update Installer.bmp"
 !else
-  !define MUI_WELCOMEFINISHPAGE_BITMAP "Images\D-Fend Reloaded - Installer.bmp"
+  !define MUI_WELCOMEFINISHPAGE_BITMAP "Images\D-Fend Reborn - Installer.bmp"
 !endif
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP "Images\27.bmp"
 
@@ -118,11 +115,12 @@ ShowUninstDetails nevershow
 
 Function ExecAppFile
   ; Execute DFend as normal user (unelevated), otherwise data package installers can't close DFend
-  UAC::Exec '' '"$INSTDIR\DFend.exe"' '' ''
+  ; (programs started by Explorer do not get the admin rights of the installer)
+  Exec '"$WINDIR\explorer.exe" "$INSTDIR\DFend.exe"'
 FunctionEnd
 
 !define MUI_LANGDLL_REGISTRY_ROOT "HKLM" 
-!define MUI_LANGDLL_REGISTRY_KEY "Software\D-Fend Reloaded" 
+!define MUI_LANGDLL_REGISTRY_KEY "Software\D-Fend Reborn" 
 !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
 
 !macro UninstallerPages
@@ -156,20 +154,20 @@ FunctionEnd
   !insertmacro MUI_LANGUAGE "TradChinese"
   !insertmacro MUI_LANGUAGE "Turkish"
 
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-BrazilianPortuguese.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Czech.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Danish.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Dutch.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-English.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-French.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-German.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Italian.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Polish.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Russian.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Simplified_Chinese.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Spanish.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Traditional_Chinese.nsi"
-  !include "Languages\D-Fend-Reloaded-Setup-Lang-Turkish.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-BrazilianPortuguese.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Czech.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Danish.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Dutch.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-English.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-French.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-German.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Italian.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Polish.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Russian.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Simplified_Chinese.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Spanish.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Traditional_Chinese.nsi"
+  !include "Languages\D-Fend-Reborn-Setup-Lang-Turkish.nsi"
 !macroend
 
 
@@ -177,57 +175,32 @@ FunctionEnd
 ; Definition of install sections
 ; ============================================================
 
-Function GameExplorerUninstall
-  ClearErrors
-  ReadRegStr $GEGUID HKLM "Software\D-Fend Reloaded" "GameExplorerGUID"	
-  IfErrors NoGameExplorerUninstall
 
-  ; Remove regular way
-  SetShellVarContext all
-  ${GameExplorer_RemoveGame} $GEGUID  
-  ClearErrors
 
-  ; Remove via deleting registry keys
-  StrCpy $0 0
-  CheckNextGameExplorerKey:
-  EnumRegKey $1 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\GameUX\Games\" $0
-  StrCmp $1 "" NoGameExplorerUninstall
-  ReadRegStr $2 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\GameUX\Games\$1" "Title"
-  StrCmp $2 "D-Fend Reloaded" 0 DoNotDeleteGameExplorerRegKey
-  DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\GameUX\Games\$1"
-  Goto CheckNextGameExplorerKey
-  DoNotDeleteGameExplorerRegKey:
-  IntOp $0 $0 + 1
-  Goto CheckNextGameExplorerKey
-	
-  NoGameExplorerUninstall:
-FunctionEnd
+; Program files (D-Fend Reborn)
+; ============================================================
+; ${STAGE} is the program folder created by "cmake --install" (see
+; README_HOW_TO_BUILD.txt): DFend.exe, the Qt libraries and plugins, Bin, Lang,
+; Help, IconSets, NewUserData, DOSBox and DOSBoxLang.
 
-Function un.GameExplorerUninstall
-  ClearErrors
-  ReadRegStr $GEGUID HKLM "Software\D-Fend Reloaded" "GameExplorerGUID"	
-  IfErrors unNoGameExplorerUninstall
-	
-  ; Remove regular way
-  SetShellVarContext all
-  ${GameExplorer_RemoveGame} $GEGUID  
-  ClearErrors
+!ifndef STAGE
+  !define STAGE "Stage"
+!endif
 
-  ; Remove via deleting registry keys
-  StrCpy $0 0
-  unCheckNextGameExplorerKey:
-  EnumRegKey $1 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\GameUX\Games\" $0
-  StrCmp $1 "" unNoGameExplorerUninstall
-  ReadRegStr $2 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\GameUX\Games\$1" "Title"
-  StrCmp $2 "D-Fend Reloaded" 0 unDoNotDeleteGameExplorerRegKey
-  DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\GameUX\Games\$1"
-  Goto unCheckNextGameExplorerKey
-  unDoNotDeleteGameExplorerRegKey:
-  IntOp $0 $0 + 1
-  Goto unCheckNextGameExplorerKey
-	
-  unNoGameExplorerUninstall:
-FunctionEnd
+!macro InstallProgramFiles
+  SetOutPath "$INSTDIR"
+  File /r /x NewUserData /x DOSBox /x DOSBoxLang /x Thumbs.db "${STAGE}\*.*"
+
+  SetOutPath "$DataInstDir\Settings"
+  File "${STAGE}\Bin\Cheats.xml"
+
+  ; Files of D-Fend Reborn that are not used any more
+  Delete "$INSTDIR\Bin\7za.dll"
+  Delete "$INSTDIR\Bin\DelZip179.dll"
+  Delete "$INSTDIR\Bin\mediaplr.dll"
+  Delete "$INSTDIR\Bin\DFendGameExplorerData.dll"
+  Delete "$INSTDIR\Lang\*.chm"
+!macroend
 
 !macro CommonSections
   !define TO_MS 2000
@@ -243,9 +216,9 @@ FunctionEnd
     SectionIn RO	
 
     Push $0
-    FindWindow $0 'TDFendReloadedMainform' ''
-    IntCmp $0 0 DoneCloseDFend
-    SendMessage $0 ${WM_CLOSE} 0 0 /TIMEOUT=${TO_MS}
+    nsExec::Exec 'taskkill /IM DFend.exe'
+    Pop $0
+    IntCmp $0 0 0 DoneCloseDFend DoneCloseDFend
     Sleep 2000
     DoneCloseDFend:
     Pop $0
@@ -255,9 +228,9 @@ FunctionEnd
     SetDetailsPrint none
   
     Push $0
-    FindWindow $0 'TDFendReloadedMainform' ''
-    IntCmp $0 0 DoneCloseDFendUninstall
-    SendMessage $0 ${WM_CLOSE} 0 0 /TIMEOUT=${TO_MS}
+    nsExec::Exec 'taskkill /IM DFend.exe'
+    Pop $0
+    IntCmp $0 0 0 DoneCloseDFendUninstall DoneCloseDFendUninstall
     Sleep 2000
     DoneCloseDFendUninstall:
     Pop $0  
@@ -271,7 +244,7 @@ FunctionEnd
     Goto UninstallUserDataEnd
   
     AskForUserDataDel:
-    ReadRegStr $DataInstDir HKLM "Software\D-Fend Reloaded" "DataFolder"
+    ReadRegStr $DataInstDir HKLM "Software\D-Fend Reborn" "DataFolder"
     StrCmp $DataInstDir "" UninstallUserDataEnd
 	
 	IfFileExists $DataInstDir 0 UninstallUserDataEnd
@@ -284,6 +257,19 @@ FunctionEnd
 	RmDir /r $INSTDIR\DOSBox
 	RmDir /r $INSTDIR\IconSets
 	RmDir /r $INSTDIR\Lang
+	RmDir /r $INSTDIR\Help
+	; Qt libraries and plugins
+	Delete $INSTDIR\*.dll
+	Delete $INSTDIR\vc_redist*.exe
+	RmDir /r $INSTDIR\platforms
+	RmDir /r $INSTDIR\styles
+	RmDir /r $INSTDIR\imageformats
+	RmDir /r $INSTDIR\iconengines
+	RmDir /r $INSTDIR\multimedia
+	RmDir /r $INSTDIR\networkinformation
+	RmDir /r $INSTDIR\tls
+	RmDir /r $INSTDIR\generic
+	RmDir /r $INSTDIR\translations
 	RmDir /r $INSTDIR\NewUserData
 	Delete $INSTDIR\DFend.dat
 	Delete $INSTDIR\DFend.exe
@@ -296,7 +282,7 @@ FunctionEnd
     Delete $INSTDIR\DFend.ini
     Delete $INSTDIR\Links.txt;
     Delete $INSTDIR\SearchLinks.txt
-    Delete "$INSTDIR\D-Fend Reloaded DataInstaller.nsi"
+    Delete "$INSTDIR\D-Fend Reborn DataInstaller.nsi"
 	
     Push "$INSTDIR"
     Call un.isEmptyDir
@@ -309,16 +295,15 @@ FunctionEnd
   
     StrCmp $1 "PORTABLEMODE" NoUninstallFromStartMenu
 	
-    Call un.GameExplorerUninstall
 
 	SetShellVarContext all
-    RmDir /r "$SMPROGRAMS\D-Fend Reloaded"
-    Delete "$DESKTOP\D-Fend Reloaded.lnk"
+    RmDir /r "$SMPROGRAMS\D-Fend Reborn"
+    Delete "$DESKTOP\D-Fend Reborn.lnk"
     SetShellVarContext current
-    RmDir /r "$SMPROGRAMS\D-Fend Reloaded"
-    Delete "$DESKTOP\D-Fend Reloaded.lnk"
+    RmDir /r "$SMPROGRAMS\D-Fend Reborn"
+    Delete "$DESKTOP\D-Fend Reborn.lnk"
     DeleteRegKey HKLM "${MUI_LANGDLL_REGISTRY_KEY}"
-    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded"
+    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn"
     
 	NoUninstallFromStartMenu:
 	
@@ -326,17 +311,7 @@ FunctionEnd
   
 !macroend
 
-!macro AddToGamesExplorer
-  SetShellVarContext all
-  IfFileExists "$APPDATA\Microsoft\Windows\GameExplorer\*.*" 0 AddToGamesExplorerDone
-  ClearErrors
-  Call GameExplorerUninstall ; Remove old D-Fend Reloaded Game Explorer records
-  StrCpy $GEGUID "{C4CC218B-7E0A-4616-9ECB-500221826266}"  
-  WriteRegStr HKLM "Software\D-Fend Reloaded" "GameExplorerGUID" "$GEGUID"
-  ClearErrors
-  ${GameExplorer_AddGame} all $INSTDIR\Bin\DFendGameExplorerData.dll $INSTDIR $INSTDIR\DFend.exe $GEGUID
-  AddToGamesExplorerDone:
-!macroend
+
 
 
 
@@ -344,6 +319,11 @@ FunctionEnd
 ; ============================================================
 
 !macro CommonUACCode
+  ; D-Fend Reborn: the UAC plugin of D-Fend Reloaded (ANSI only) is replaced by
+  ; the functions of NSIS (RequestExecutionLevel highest, UserInfo), so the
+  ; installer can be a Unicode installer. Administrators are asked for the
+  ; elevation when the installer starts; without admin rights only the
+  ; portable mode can be used (as before).
   Function .onInit
     !ifdef Update
       StrCpy $PrgNameAddOn "UPDATE"
@@ -351,71 +331,37 @@ FunctionEnd
       StrCpy $PrgNameAddOn ""
     !endif
 
-    UAC_Elevate:
-    UAC::RunElevated 
-    StrCmp 1223 $0 UAC_ElevationAborted
-    StrCmp 0 $0 0 UAC_Err
-    StrCmp 1 $1 0 UAC_Success
-    Quit
-    UAC_Err:
-    Abort
-    UAC_Success:
-    StrCmp 1 $3 UAC_OK
-    StrCmp 3 $1 0 UAC_ElevationAborted
-    UAC_ElevationAborted:
-    IntOp $AdminOK 0 + 0
-    Goto SelLang
-    UAC_OK:
+    UserInfo::GetAccountType
+    Pop $0
+    StrCmp $0 "Admin" 0 NoAdmin
     IntOp $AdminOK 1 + 0
     Goto SelLang
-  
+    NoAdmin:
+    IntOp $AdminOK 0 + 0
+
     SelLang:
     !define MUI_LANGDLL_ALLLANGUAGES
     !insertmacro MUI_LANGDLL_DISPLAY
 	!insertmacro ExtractInstallOptionFiles
-  
+
     IntCmp $AdminOK 1 InitReturn
 	!ifdef Update
-      MessageBox MB_YESNO "$(LANGNAME_NeedAdminRightsUpdate)" IDYES UAC_Elevate IDNO InitReturn
+      MessageBox MB_YESNO "$(LANGNAME_NeedAdminRightsUpdate)" IDYES RunAsAdmin IDNO InitReturn
 	!else
-	  MessageBox MB_YESNO "$(LANGNAME_NeedAdminRights)" IDYES UAC_Elevate IDNO InitReturn
-	!endif	
+	  MessageBox MB_YESNO "$(LANGNAME_NeedAdminRights)" IDYES RunAsAdmin IDNO InitReturn
+	!endif
+    RunAsAdmin:
+    ; start the installer again with admin rights
+    ExecShell "runas" "$EXEPATH"
+    Quit
 
     InitReturn:
 	!insertmacro BetaWarning
   FunctionEnd
 
-  Function un.onInit  
+  Function un.onInit
     StrCpy $PrgNameAddOn ""
-
-    UAC::RunElevated 
-    StrCmp 1223 $0 UAC_UnErr
-    StrCmp 0 $0 0 UAC_UnErr
-    StrCmp 1 $1 0 UAC_UnSuccess
-    Quit
-    UAC_UnErr:
-    Abort
-    UAC_UnSuccess:
-    StrCmp 1 $3 UAC_UnOK
-    StrCmp 3 $1 0 UAC_UnErr
-    UAC_UnOK:
     !insertmacro MUI_UNGETLANGUAGE
-  FunctionEnd
-  
-  Function .OnInstFailed
-      UAC::Unload
-  FunctionEnd
-
-  Function .OnInstSuccess
-      UAC::Unload
-  FunctionEnd
-
-  Function un.OnUnInstFailed
-      UAC::Unload
-  FunctionEnd
-
-  Function un.OnUnInstSuccess
-      UAC::Unload
   FunctionEnd
 !macroend
 

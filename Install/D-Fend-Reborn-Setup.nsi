@@ -1,4 +1,4 @@
-; NSI SCRIPT FOR D-FEND RELOADED
+; NSI SCRIPT FOR D-FEND REBORN
 ; ============================================================
 
 !include VersionSettings.nsi
@@ -78,11 +78,11 @@ Page custom InstallType
 
 !insertmacro CommonSections
 
-Section "$(LANGNAME_DFendReloaded)" ID_DFend
+Section "$(LANGNAME_DFendReborn)" ID_DFend
   SectionIn RO
   
   SetDetailsPrint both
-  DetailPrint "$(LANGNAME_InstallDFendReloaded)"
+  DetailPrint "$(LANGNAME_InstallDFendReborn)"
   SetDetailsPrint listonly
   SetOutPath "$INSTDIR"  
   SetDetailsPrint none
@@ -94,110 +94,59 @@ Section "$(LANGNAME_DFendReloaded)" ID_DFend
   strcpy $DataInstDir $INSTDIR
   Goto StartInstall
   UserDataDir:
-  strcpy $DataInstDir "$PROFILE\D-Fend Reloaded"
+  strcpy $DataInstDir "$PROFILE\D-Fend Reborn"
   StartInstall:
   
   ; Store installation folder in registry if not portable installation
   
   IntCmp $InstallDataType 2 NoRegistryWhenUSBStickInstall
-  WriteRegStr HKLM "Software\D-Fend Reloaded" "ProgramFolder" "$INSTDIR"
-  WriteRegStr HKLM "Software\D-Fend Reloaded" "DataFolder" "$DataInstDir"
+  WriteRegStr HKLM "Software\D-Fend Reborn" "ProgramFolder" "$INSTDIR"
+  WriteRegStr HKLM "Software\D-Fend Reborn" "DataFolder" "$DataInstDir"
   NoRegistryWhenUSBStickInstall:
   
   ; Install main files
 
-  SetOutPath "$INSTDIR"
-  File "..\DFend.exe"
-  
-  SetOutPath "$INSTDIR\Bin"
-  File "..\Bin\mkdosfs.exe"  
-  File "..\Bin\oggenc2.exe"
-  File "..\Bin\License.txt"
-  File "..\Bin\LicenseComponents.txt"
-  File "..\Bin\Links.txt"
-  File "..\Bin\SearchLinks.txt"
-  File "..\Bin\ChangeLog.txt"
-  File "..\Bin\D-Fend Reloaded DataInstaller.nsi"
-  File "..\Bin\UpdateCheck.exe"
-  File "..\Bin\SetInstallerLanguage.exe"  
-  File "..\Bin\7za.dll"
-  File "..\Bin\DelZip179.dll"
-  File "..\Bin\mediaplr.dll"
-  File "..\Bin\InstallVideoCodec.exe"
-  File "..\Bin\AdminLauncher.exe"
-  IntCmp $InstallDataType 2 +2
-  File "..\Bin\DFendGameExplorerData.dll"
+  !insertmacro InstallProgramFiles
 
-  SetOutPath "$INSTDIR\Lang"
-  File "..\Lang\*.ini"
-  File "..\Lang\*.chm"
-  File "..\Lang\Readme_OperationMode.txt"
-
-  SetOutPath "$INSTDIR\IconSets"
-  File /r /x Thumbs.db "..\IconSets\*.*"
-  Delete "$INSTDIR\IconSets\Modern\Thumbs.db"
-  
-  SetOutPath "$DataInstDir\Settings"
-  File "..\Bin\Cheats.xml"
-
-  ; Remove files in $INSTDIR for which the new position is $INSTDIR\Bin or $INSTDIR\Lang
-  
-  Delete "$INSTDIR\oggenc2.exe"
-  Delete "$INSTDIR\LicenseComponents.txt"
-  Delete "$INSTDIR\License.txt"
-  IntCmp $InstallDataType 0 KeepSettingsFilesIfPrgDirIsUserDir  
-  Delete "$INSTDIR\Links.txt"
-  Delete "$INSTDIR\SearchLinks.txt"
-  KeepSettingsFilesIfPrgDirIsUserDir:
-  Delete "$INSTDIR\ChangeLog.txt"
-  Delete "$INSTDIR\D-Fend Reloaded DataInstaller.nsi"
-  Delete "$INSTDIR\SetInstallerLanguage.exe"
-  Delete "$INSTDIR\UpdateCheck.exe"
-  Delete "$INSTDIR\7za.dll"
-  Delete "$INSTDIR\DelZip179.dll"
-  Delete "$INSTDIR\InstallVideoCodec.exe"
-  Delete "$INSTDIR\mkdosfs.exe"
-  Delete "$INSTDIR\mediaplr.dll"
-  Delete "$INSTDIR\Readme_OperationMode.txt"
 
   ; Install templates  
   
   IntCmp $InstallDataType 1 WriteNewUserDir
   
     SetOutPath "$DataInstDir\Capture\DOSBox DOS"
-    File "..\NewUserData\Capture\DOSBox DOS\*.*"
+    File "${STAGE}\NewUserData\Capture\DOSBox DOS\*.*"
 
     SetOutPath "$DataInstDir\Templates"
-    File "..\NewUserData\Templates\*.prof"
+    File "${STAGE}\NewUserData\Templates\*.prof"
 	
     SetOutPath "$DataInstDir\AutoSetup"
-    File "..\NewUserData\AutoSetup\*.prof"
+    File "${STAGE}\NewUserData\AutoSetup\*.prof"
 
     SetOutPath "$DataInstDir\IconLibrary"
-    File "..\NewUserData\IconLibrary\*.*"
+    File "${STAGE}\NewUserData\IconLibrary\*.*"
 	
     SetOutPath "$DataInstDir\Settings"
-    File "..\NewUserData\Icons.ini"
-	File "..\Tools\DataReaderServer\DataReader.xml"
+    File "${STAGE}\NewUserData\Icons.ini"
+	File "${STAGE}\NewUserData\DataReader.xml"
   
   Goto TemplateWritingFinish
   WriteNewUserDir:  
 
     SetOutPath "$INSTDIR\NewUserData\Capture\DOSBox DOS"
-    File "..\NewUserData\Capture\DOSBox DOS\*.*"
+    File "${STAGE}\NewUserData\Capture\DOSBox DOS\*.*"
 
     SetOutPath "$INSTDIR\NewUserData\Templates"
-    File "..\NewUserData\Templates\*.prof"
+    File "${STAGE}\NewUserData\Templates\*.prof"
 	
     SetOutPath "$INSTDIR\NewUserData\AutoSetup"
-    File "..\NewUserData\AutoSetup\*.prof"
+    File "${STAGE}\NewUserData\AutoSetup\*.prof"
 
     SetOutPath "$INSTDIR\NewUserData\IconLibrary"
-    File "..\NewUserData\IconLibrary\*.*"
+    File "${STAGE}\NewUserData\IconLibrary\*.*"
 	
     SetOutPath "$INSTDIR\NewUserData"
-    File "..\NewUserData\Icons.ini"
-	File "..\Tools\DataReaderServer\DataReader.xml"
+    File "${STAGE}\NewUserData\Icons.ini"
+	File "${STAGE}\NewUserData\DataReader.xml"
 
   TemplateWritingFinish:
   
@@ -234,26 +183,30 @@ Section "$(LANGNAME_DFendReloaded)" ID_DFend
   WriteUninstaller "Uninstall.exe"
   
   SetShellVarContext all
-  CreateDirectory "$SMPROGRAMS\D-Fend Reloaded"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\$(LANGNAME_DFendReloaded).lnk" "$INSTDIR\DFend.exe"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\$(LANGNAME_Uninstall).lnk" "$INSTDIR\Uninstall.exe"
+  CreateDirectory "$SMPROGRAMS\D-Fend Reborn"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\$(LANGNAME_DFendReborn).lnk" "$INSTDIR\DFend.exe"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\$(LANGNAME_Uninstall).lnk" "$INSTDIR\Uninstall.exe"
+  StrCpy $0 "English"
+  StrCmp $LANGUAGE ${LANG_GERMAN} 0 +2
+  StrCpy $0 "German"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\$(LANGNAME_Help).lnk" "$INSTDIR\Help\$0\Index.html"
   CreateDirectory $DataInstDir\VirtualHD ; Has to be created before the start menu link is created otherwise the link will never work
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\$(LANGNAME_GamesFolder).lnk" "$DataInstDir\VirtualHD\"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\$(LANGNAME_GamesFolder).lnk" "$DataInstDir\VirtualHD\"
   CreateDirectory $DataInstDir\GameData ; Has to be created before the start menu link is created otherwise the link will never work
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\$(LANGNAME_GameDataFolder).lnk" "$DataInstDir\GameData\"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\$(LANGNAME_GameDataFolder).lnk" "$DataInstDir\GameData\"
   CreateDirectory $DataInstDir\Capture ; Has to be created before the start menu link is created otherwise the link will never work
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\$(LANGNAME_CaptureFolder).lnk" "$DataInstDir\Capture\"  
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\$(LANGNAME_CaptureFolder).lnk" "$DataInstDir\Capture\"  
   
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded" "DisplayName" "${PrgName} ($(LANGNAME_Deinstall))"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded" "UninstallString" '"$INSTDIR\Uninstall.exe"'  
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded" "InstallLocation" "$INSTDIR"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded" "DisplayIcon" "$INSTDIR\DFend.exe"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded" "Publisher" "Alexander Herzog"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded" "DisplayVersion" "${VER_MAYOR}.${VER_MINOR1}.${VER_MINOR2}"
-  WriteRegDWord HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded" "NoModify" 1
-  WriteRegDWord HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded" "NoRepair" 1
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "DisplayName" "${PrgName} ($(LANGNAME_Deinstall))"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "UninstallString" '"$INSTDIR\Uninstall.exe"'  
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "InstallLocation" "$INSTDIR"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "DisplayIcon" "$INSTDIR\DFend.exe"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "Publisher" "D-Fend Reborn"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "DisplayVersion" "${VER_MAYOR}.${VER_MINOR1}.${VER_MINOR2}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "URLInfoAbout" "https://github.com/Eldricos/D-Fend-Reborn"
+  WriteRegDWord HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "NoModify" 1
+  WriteRegDWord HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "NoRepair" 1
   
-  !insertmacro AddToGamesExplorer
 
   NoDFendStartMenuLinks:
 SectionEnd
@@ -278,45 +231,45 @@ Section "$(LANGNAME_ProgramFiles)" ID_DosBoxProgramFiles
   Delete "$INSTDIR\DOSBox\INSTALL.txt"
   RmDir /r "$INSTDIR\DOSBox\zmbv"
   
-  File "..\DOSBox\DOSBox.exe"
-  File "..\DOSBox\dosbox.conf"
-  File "..\DOSBox\SDL.dll"
-  File "..\DOSBox\SDL_net.dll"
-  File "..\DOSBox\DOSBox 0.74 Manual.txt"
-  File "..\DOSBox\DOSBox 0.74 Options.bat"
-  File "..\DOSBox\Reset KeyMapper.bat"
-  File "..\DOSBox\Reset Options.bat"
-  File "..\DOSBox\Screenshots & Recordings.bat"
+  File "${STAGE}\DOSBox\DOSBox.exe"
+  File "${STAGE}\DOSBox\dosbox.conf"
+  File "${STAGE}\DOSBox\SDL.dll"
+  File "${STAGE}\DOSBox\SDL_net.dll"
+  File "${STAGE}\DOSBox\DOSBox 0.74 Manual.txt"
+  File "${STAGE}\DOSBox\DOSBox 0.74 Options.bat"
+  File "${STAGE}\DOSBox\Reset KeyMapper.bat"
+  File "${STAGE}\DOSBox\Reset Options.bat"
+  File "${STAGE}\DOSBox\Screenshots & Recordings.bat"
   
-  File "..\NewUserData\FREEDOS\CPI\*.*"
+  File "${STAGE}\NewUserData\FREEDOS\CPI\*.*"
   
   SetOutPath "$INSTDIR\DOSBox\Video Codec"
-  File "..\DOSBox\Video Codec\*.*"
+  File "${STAGE}\DOSBox\Video Codec\*.*"
   
   SetOutPath "$INSTDIR\DOSBox\Documentation"
-  File "..\DOSBox\Documentation\*.*"
+  File "${STAGE}\DOSBox\Documentation\*.*"
   
   IntCmp $InstallDataType 2 NoDosBoxStartMenuLinks
   SetShellVarContext all
-  CreateDirectory "$SMPROGRAMS\D-Fend Reloaded\DOSBox"
-  CreateDirectory "$SMPROGRAMS\D-Fend Reloaded\DOSBox\Video"
-  CreateDirectory "$SMPROGRAMS\D-Fend Reloaded\DOSBox\Configuration"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\DOSBox\DOSBox.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-conf $\"$INSTDIR\DosBox\dosbox.conf$\"" "$INSTDIR\DosBox\DOSBox.exe" 0
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\DOSBox\DOSBox (noconsole).lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-noconsole -conf $\"$INSTDIR\DosBox\dosbox.conf$\"" "$INSTDIR\DosBox\DOSBox.exe" 0
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\DOSBox\DOSBox manual.lnk" "$INSTDIR\DOSBox\DOSBox 0.74 Manual.txt"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\DOSBox\Capture folder.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-opencaptures explorer.exe"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\DOSBox\Video\Video instructions.lnk" "$INSTDIR\DOSBox\Video Codec\Video Instructions.txt"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\DOSBox\Configuration\Edit Configuration.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-editconf notepad.exe -editconf $\"%SystemRoot%\system32\notepad.exe$\" -editconf $\"%WINDIR%\notepad.exe$\""
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\DOSBox\Configuration\Reset Configuration.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-eraseconf"
+  CreateDirectory "$SMPROGRAMS\D-Fend Reborn\DOSBox"
+  CreateDirectory "$SMPROGRAMS\D-Fend Reborn\DOSBox\Video"
+  CreateDirectory "$SMPROGRAMS\D-Fend Reborn\DOSBox\Configuration"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-conf $\"$INSTDIR\DosBox\dosbox.conf$\"" "$INSTDIR\DosBox\DOSBox.exe" 0
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox (noconsole).lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-noconsole -conf $\"$INSTDIR\DosBox\dosbox.conf$\"" "$INSTDIR\DosBox\DOSBox.exe" 0
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox manual.lnk" "$INSTDIR\DOSBox\DOSBox 0.74 Manual.txt"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\Capture folder.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-opencaptures explorer.exe"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\Video\Video instructions.lnk" "$INSTDIR\DOSBox\Video Codec\Video Instructions.txt"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\Configuration\Edit Configuration.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-editconf notepad.exe -editconf $\"%SystemRoot%\system32\notepad.exe$\" -editconf $\"%WINDIR%\notepad.exe$\""
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\Configuration\Reset Configuration.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-eraseconf"
   
   ClearErrors
   ReadRegStr $R0 HKLM "SOFTWARE\Microsoft\Windows NT\CurrentVersion" CurrentVersion
   IfErrors we_9x we_nt
   we_nt:  
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\DosBox\Video\Install movie codec.lnk" "rundll32" "setupapi,InstallHinfSection DefaultInstall 128 $INSTDIR\DOSBox\Video Codec\zmbv.inf"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DosBox\Video\Install movie codec.lnk" "rundll32" "setupapi,InstallHinfSection DefaultInstall 128 $INSTDIR\DOSBox\Video Codec\zmbv.inf"
   goto end
   we_9x:
-  CreateShortCut "$SMPROGRAMS\D-Fend Reloaded\DosBox\Video\Install movie codec.lnk" "rundll" "setupx.dll,InstallHinfSection DefaultInstall 128 $INSTDIR\DOSBox\Video Codec\zmbv.inf"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DosBox\Video\Install movie codec.lnk" "rundll" "setupx.dll,InstallHinfSection DefaultInstall 128 $INSTDIR\DOSBox\Video Codec\zmbv.inf"
   end:
   NoDosBoxStartMenuLinks:
 SectionEnd
@@ -329,7 +282,7 @@ Section "$(LANGNAME_LanguageFiles)" ID_DosBoxLanguageFiles
   SetDetailsPrint none
 
   SetOutPath "$INSTDIR\DOSBox"
-  File "..\DosBoxLang\*.*"
+  File "${STAGE}\DOSBoxLang\*.*"
 SectionEnd
 
 Section "$(LANGNAME_VideoCodec)" ID_DosBoxVideoCodec
@@ -369,7 +322,7 @@ Section "$(LANGNAME_FreeDosTools)" ID_FreeDosTools
   FreeDOSWritingStart:
   
   SetDetailsPrint none
-  File /r "..\NewUserData\FREEDOS\*.*"
+  File /r "${STAGE}\NewUserData\FREEDOS\*.*"
 SectionEnd
 
 Section "$(LANGNAME_Doszip)" ID_Doszip
@@ -385,7 +338,7 @@ Section "$(LANGNAME_Doszip)" ID_Doszip
   DoszipWritingStart:
   
   SetDetailsPrint none
-  File /r "..\NewUserData\DOSZIP\*.*"
+  File /r "${STAGE}\NewUserData\DOSZIP\*.*"
 SectionEnd
 
 SectionGroupEnd
@@ -397,7 +350,7 @@ Section "$(LANGNAME_DesktopShortcut)" ID_DesktopShortcut
   DetailPrint "$(LANGNAME_InstallDesktopShortcut)"
   SetDetailsPrint listonly
   SetShellVarContext all
-  CreateShortCut "$DESKTOP\$(LANGNAME_DFendReloaded).lnk" "$INSTDIR\DFend.exe" 
+  CreateShortCut "$DESKTOP\$(LANGNAME_DFendReborn).lnk" "$INSTDIR\DFend.exe" 
 SectionEnd
 
 
@@ -489,7 +442,7 @@ Function InstallMode
   !insertmacro ActivateSection ${ID_Tools}
   !insertmacro ActivateSection ${ID_FreeDosTools}
   !insertmacro ActivateSection ${ID_Doszip}
-  StrCpy $INSTDIR "$PROGRAMFILES\D-Fend Reloaded\"
+  StrCpy $INSTDIR "$PROGRAMFILES\D-Fend Reborn\"
   IntOp $InstallDataType 1 + 0
   IntOp $FastInstallationMode 1 + 0
   InstallModePageFinish:
@@ -536,7 +489,7 @@ Function InstallType
   IntOp $R0 $R0 & 0xFFFFFFFE
   SectionSetFlags ${ID_DosBoxVideoCodec} $R0
 
-  StrCpy $INSTDIR "$DESKTOP\D-Fend Reloaded\"
+  StrCpy $INSTDIR "$DESKTOP\D-Fend Reborn\"
   
   EndSel:
 FunctionEnd

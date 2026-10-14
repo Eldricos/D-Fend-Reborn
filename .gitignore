@@ -6,3 +6,5 @@ CMakeLists.txt.user*
 __pycache__/
 *.pyc
 .qtc_clangd/
+Install/Stage/
+Install/*.exe

@@ -83,3 +83,24 @@ add_custom_target(DeployData ALL
     COMMENT "Copying data files"
     VERBATIM)
 add_dependencies(DeployData DFendReborn)
+
+# Installation ("cmake --install <build folder> --prefix <folder>"): the
+# program folder without user data, as the installer packages it
+# (Install/README_HOW_TO_BUILD.txt). The user data is created from
+# NewUserData by the installer / the program.
+install(TARGETS DFendReborn RUNTIME DESTINATION . BUNDLE DESTINATION .)
+install(DIRECTORY data/Lang data/Help data/IconSets data/NewUserData DESTINATION .)
+if(WIN32)
+    install(DIRECTORY data/Bin data/DOSBox data/DOSBoxLang DESTINATION .)
+    # Qt libraries and plugins next to DFend.exe
+    get_target_property(_QMAKE Qt6::qmake IMPORTED_LOCATION)
+    get_filename_component(_QT_BIN "${_QMAKE}" DIRECTORY)
+    find_program(WINDEPLOYQT windeployqt HINTS "${_QT_BIN}")
+    if(WINDEPLOYQT)
+        install(CODE "execute_process(COMMAND \"${WINDEPLOYQT}\" --no-translations --dir \"\${CMAKE_INSTALL_PREFIX}\" \"\${CMAKE_INSTALL_PREFIX}/DFend.exe\" COMMAND_ERROR_IS_FATAL ANY)")
+    else()
+        message(WARNING "windeployqt not found: \"cmake --install\" will not copy the Qt libraries")
+    endif()
+else()
+    install(DIRECTORY data/Bin DESTINATION . PATTERN "*.exe" EXCLUDE PATTERN "*.dll" EXCLUDE)
+endif()

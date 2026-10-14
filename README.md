@@ -87,7 +87,10 @@ files.
 Every push and pull request is built on Linux and Windows by GitHub Actions
 (`.github/workflows/build.yml`).
 
-Other folders taken over from the original sources: `Install` (original NSIS installer scripts; their
-paths still point to the old layout) and `tools` (sources of the NSIS helper
-programs, server side data of the package/data reader/cheat services,
-PortableApps.com package, source of `mkdosfs.exe`).
+`Install` holds the NSIS scripts of the Windows installers (full and update
+installer); they package the program folder that `cmake --install` creates
+(`Install/README_HOW_TO_BUILD.txt`). The Windows build check also builds the
+installers and offers them as a download of the workflow run.
+
+Other folders taken over from the original sources: `tools` (sources of the
+NSIS helper programs, PortableApps.com package, source of `mkdosfs.exe`).

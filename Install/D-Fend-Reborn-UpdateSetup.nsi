@@ -1,4 +1,4 @@
-; NSI SCRIPT FOR D-FEND RELOADED (UPDATE)
+; NSI SCRIPT FOR D-FEND REBORN (UPDATE)
 ; ============================================================
 
 !include VersionSettings.nsi
@@ -52,7 +52,7 @@ FunctionEnd
 
 !insertmacro CommonSections
 
-Section "$(LANGNAME_DFendReloaded)" ID_DFend
+Section "$(LANGNAME_DFendReborn)" ID_DFend
   SectionIn RO
   
   SetDetailsPrint none
@@ -75,80 +75,18 @@ Section "$(LANGNAME_DFendReloaded)" ID_DFend
   Goto ReadInstTypeEnd
   InstUserMode:
   IntOp $InstallDataType 0 + 1
-  strcpy $DataInstDir "$PROFILE\D-Fend Reloaded"
+  strcpy $DataInstDir "$PROFILE\D-Fend Reborn"
   ReadInstTypeEnd:
   
   ; Update main files
   
   SetDetailsPrint both
-  DetailPrint "$(LANGNAME_UpdateDFendReloaded)"
+  DetailPrint "$(LANGNAME_UpdateDFendReborn)"
 
   SetDetailsPrint listonly
-  SetOutPath "$INSTDIR"
-  SetDetailsPrint none  
-  File "..\DFend.exe"
+  !insertmacro InstallProgramFiles
   
-  SetDetailsPrint listonly
-  SetOutPath "$INSTDIR\Bin"  
-  SetDetailsPrint none  
-  File "..\Bin\oggenc2.exe"
-  File "..\Bin\mkdosfs.exe"
-  File "..\Bin\LicenseComponents.txt"
-  File "..\Bin\Links.txt"
-  File "..\Bin\SearchLinks.txt"
-  File "..\Bin\ChangeLog.txt"
-  File "..\Bin\D-Fend Reloaded DataInstaller.nsi"  
-  File "..\Bin\UpdateCheck.exe"
-  File "..\Bin\SetInstallerLanguage.exe"
-  File "..\Bin\7za.dll"
-  File "..\Bin\DelZip179.dll"
-  File "..\Bin\mediaplr.dll"
-  File "..\Bin\InstallVideoCodec.exe"
-  File "..\Bin\AdminLauncher.exe"
-  IntCmp $InstallDataType 2 +2
-  File "..\Bin\DFendGameExplorerData.dll"
-  
-  SetDetailsPrint listonly
-  SetOutPath "$INSTDIR\Lang"
-  SetDetailsPrint none  
-  File "..\Lang\*.ini"
-  File "..\Lang\*.chm"
-  File "..\Lang\Readme_OperationMode.txt"
 
-  SetDetailsPrint listonly
-  SetOutPath "$INSTDIR\IconSets"
-  SetDetailsPrint none  
-  File /r /x Thumbs.db "..\IconSets\*.*"
-  Delete "$INSTDIR\IconSets\Modern\Thumbs.db"
-  
-  SetDetailsPrint listonly
-  SetOutPath "$DataInstDir\Settings"
-  SetDetailsPrint none
-  File "..\Bin\Cheats.xml"
-  
-  ; Remove files in $INSTDIR for which the new position is $INSTDIR\Bin or $INSTDIR\Lang
-  
-  IfFileExists "$INSTDIR\License.txt" 0 +2
-    CopyFiles /SILENT "$INSTDIR\License.txt" "$INSTDIR\Bin\License.txt"
-   
-  Delete "$INSTDIR\oggenc2.exe"
-  Delete "$INSTDIR\LicenseComponents.txt"
-  Delete "$INSTDIR\License.txt"  
-  IntCmp $InstallDataType 0 KeepSettingsFilesIfPrgDirIsUserDir  
-  Delete "$INSTDIR\Links.txt"
-  Delete "$INSTDIR\SearchLinks.txt"
-  KeepSettingsFilesIfPrgDirIsUserDir:
-  Delete "$INSTDIR\ChangeLog.txt"
-  Delete "$INSTDIR\D-Fend Reloaded DataInstaller.nsi"
-  Delete "$INSTDIR\SetInstallerLanguage.exe"
-  Delete "$INSTDIR\UpdateCheck.exe"
-  Delete "$INSTDIR\7za.dll"
-  Delete "$INSTDIR\DelZip179.dll"
-  Delete "$INSTDIR\InstallVideoCodec.exe"
-  Delete "$INSTDIR\mkdosfs.exe"
-  Delete "$INSTDIR\mediaplr.dll"
-  Delete "$INSTDIR\Readme_OperationMode.txt"
-  
   ; Update templates
 
   IntCmp $InstallDataType 1 WriteNewUserDir
@@ -157,20 +95,20 @@ Section "$(LANGNAME_DFendReloaded)" ID_DFend
 	SetDetailsPrint listonly
     SetOutPath "$DataInstDir\AutoSetup"
 	SetDetailsPrint none
-    File "..\NewUserData\AutoSetup\*.prof"	
+    File "${STAGE}\NewUserData\AutoSetup\*.prof"	
 	
     SetOutPath "$DataInstDir\Capture\DOSBox DOS"
-    File "..\NewUserData\Capture\DOSBox DOS\*.*"
+    File "${STAGE}\NewUserData\Capture\DOSBox DOS\*.*"
 
     SetOutPath "$DataInstDir\Templates"
-    File "..\NewUserData\Templates\*.prof"
+    File "${STAGE}\NewUserData\Templates\*.prof"
 
     SetOutPath "$DataInstDir\IconLibrary"
-    File "..\NewUserData\IconLibrary\*.*"
+    File "${STAGE}\NewUserData\IconLibrary\*.*"
 	
     SetOutPath "$DataInstDir\Settings"
-    File "..\NewUserData\Icons.ini"
-	File "..\Tools\DataReaderServer\DataReader.xml"
+    File "${STAGE}\NewUserData\Icons.ini"
+	File "${STAGE}\NewUserData\DataReader.xml"
 
   Goto TemplateWritingFinish
   WriteNewUserDir:  
@@ -179,20 +117,20 @@ Section "$(LANGNAME_DFendReloaded)" ID_DFend
 	SetDetailsPrint listonly
     SetOutPath "$INSTDIR\NewUserData\AutoSetup"
 	SetDetailsPrint none
-    File "..\NewUserData\AutoSetup\*.prof"
+    File "${STAGE}\NewUserData\AutoSetup\*.prof"
 
     SetOutPath "$INSTDIR\NewUserData\Capture\DOSBox DOS"
-    File "..\NewUserData\Capture\DOSBox DOS\*.*"
+    File "${STAGE}\NewUserData\Capture\DOSBox DOS\*.*"
 
     SetOutPath "$INSTDIR\NewUserData\Templates"
-    File "..\NewUserData\Templates\*.prof"
+    File "${STAGE}\NewUserData\Templates\*.prof"
 
     SetOutPath "$INSTDIR\NewUserData\IconLibrary"
-    File "..\NewUserData\IconLibrary\*.*"
+    File "${STAGE}\NewUserData\IconLibrary\*.*"
 	
     SetOutPath "$INSTDIR\NewUserData"
-    File "..\NewUserData\Icons.ini"
-	File "..\Tools\DataReaderServer\DataReader.xml"
+    File "${STAGE}\NewUserData\Icons.ini"
+	File "${STAGE}\NewUserData\DataReader.xml"
 	
 	; Copy FreeDOS files to NewUserData directory
 	
@@ -218,7 +156,7 @@ Section "$(LANGNAME_DFendReloaded)" ID_DFend
   DoszipWritingStart:
   
   SetDetailsPrint none
-  File /r "..\NewUserData\DOSZIP\*.*"
+  File /r "${STAGE}\NewUserData\DOSZIP\*.*"
   
   IntCmp $InstallDataType 2 NoUninstallerUpdate
   
@@ -232,9 +170,8 @@ Section "$(LANGNAME_DFendReloaded)" ID_DFend
   
   WriteUninstaller "Uninstall.exe"
   SetShellVarContext all
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reloaded" "DisplayVersion" "${VER_MAYOR}.${VER_MINOR1}.${VER_MINOR2}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\D-Fend Reborn" "DisplayVersion" "${VER_MAYOR}.${VER_MINOR1}.${VER_MINOR2}"
   
-  !insertmacro AddToGamesExplorer
   
   NoUninstallerUpdate:
   
@@ -257,28 +194,28 @@ Section "$(LANGNAME_DFendReloaded)" ID_DFend
   Delete "$INSTDIR\DOSBox\INSTALL.txt"
   RmDir /r "$INSTDIR\DOSBox\zmbv"
   
-  File "..\DOSBox\DOSBox.exe"
-  File "..\DOSBox\dosbox.conf"
-  File "..\DOSBox\SDL.dll"
-  File "..\DOSBox\SDL_net.dll"
-  File "..\DOSBox\DOSBox 0.74 Manual.txt"
-  File "..\DOSBox\DOSBox 0.74 Options.bat"
-  File "..\DOSBox\Reset KeyMapper.bat"
-  File "..\DOSBox\Reset Options.bat"
-  File "..\DOSBox\Screenshots & Recordings.bat"
+  File "${STAGE}\DOSBox\DOSBox.exe"
+  File "${STAGE}\DOSBox\dosbox.conf"
+  File "${STAGE}\DOSBox\SDL.dll"
+  File "${STAGE}\DOSBox\SDL_net.dll"
+  File "${STAGE}\DOSBox\DOSBox 0.74 Manual.txt"
+  File "${STAGE}\DOSBox\DOSBox 0.74 Options.bat"
+  File "${STAGE}\DOSBox\Reset KeyMapper.bat"
+  File "${STAGE}\DOSBox\Reset Options.bat"
+  File "${STAGE}\DOSBox\Screenshots & Recordings.bat"
   
-  File "..\NewUserData\FREEDOS\CPI\*.*"
+  File "${STAGE}\NewUserData\FREEDOS\CPI\*.*"
   
   SetOutPath "$INSTDIR\DOSBox\Video Codec"
-  File "..\DOSBox\Video Codec\*.*"
+  File "${STAGE}\DOSBox\Video Codec\*.*"
   
   SetOutPath "$INSTDIR\DOSBox\Documentation"
-  File "..\DOSBox\Documentation\*.*"  
+  File "${STAGE}\DOSBox\Documentation\*.*"  
 
   SetOutPath "$INSTDIR\DOSBox"
-  File "..\DosBoxLang\*.*"
+  File "${STAGE}\DOSBoxLang\*.*"
   
-  File "..\NewUserData\FREEDOS\CPI\*.*"
+  File "${STAGE}\NewUserData\FREEDOS\CPI\*.*"
   
   NoDOSBoxUpdate:
 SectionEnd
