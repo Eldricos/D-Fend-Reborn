@@ -21,8 +21,7 @@
   7. <a href="#FAQ07">Is there an easy way of spell checking my new language file ?</a><br />
   8. <a href="#FAQ08">Where has the "Edit default profile... (F5)" menu item gone ?</a><br />
   9. <a href="#FAQ09">Can I use D-Fend Reborn under Linux (or in Wine) ?</a><br />
-  10. <a href="#FAQ10">I have keyboard problems the DOSBox keymapper cannot fix.</a><br />
-  11. <a href="#FAQ11">I get an error message when I try to install the DOSBox movie codec.</a><br />
+  10. <a href="#FAQ10">I get an error message when I try to install the DOSBox movie codec.</a><br />
 </p>
 
 <a onclick="return Work('FAQ01')" name="FAQ01" href="#"><h2>&raquo; How does the update checker operate ?</h2></a>
@@ -255,40 +254,8 @@ will also be recognized).
 </p>
 </div>
 
-<a onclick="return Work('FAQ10')" name="FAQ10" href="#"><h2>&raquo; I have keyboard problems the DOSBox keymapper cannot fix.</h2></a>
+<a onclick="return Work('FAQ10')" name="FAQ10" href="#"><h2>&raquo; I get an error message when I try to install the DOSBox movie codec.</h2></a>
 <div id="FAQ10"><p>	
-First of all try setting the SDL video driver to "Win DIB" in the DOSBox
-section of the D-Fend Reborn setup dialog. (This setting only exists for DOSBox on Windows;
-on Linux it has no effect.) If you still experience keyboard
-problems on Windows (in particular keys not recogniced by the keymapper, even more in
-particular the right shift key) and have pluged a Microsoft eHome receiver (the
-official remote control for the Microsoft media centre) to your system, please
-follow these steps:
-</p>
-
-<ol>
-  <li>Open the "Keyboards" section in the Device Manager.</li>
-  <li>Right-click "Microsoft eHome MCIR 109 Keyboard" and choose "Update Driver"
-   (called "Update Driver Software" on Vista).</li>
-  <li>Choose "Browse my computer for software" (XP users have to tell it not to
-   install automatically and say you will specify the location, then when it
-   asks you where you would like it to search for drivers choose the option to
-   choose from a list) then "Let me pick from a list of device drivers on my
-   computer".</li>
-  <li>Make sure "show compatible hardware" is checked, then select "HID-compliant
-   device" and click next. Click any remaining "OK" or "Finish" buttons after
-   Windows has installed the driver.</li>
-</ol>
-
-<p>
-The 109 keys driver is a Japanese keyboard driver. As long as you do not use a
-109 keys keyboard doing this will not influence the functionallity of your
-keyboard or your remote control. (See also <a href="http://forums.logitech.com/logitech/board/message?board.id=general&amp;message.id=6123" target="_blank">http://forums.logitech.com/logitech/board/message?board.id=general&amp;message.id=6123</a>)
-</p>
-</div>
-
-<a onclick="return Work('FAQ11')" name="FAQ11" href="#"><h2>&raquo; I get an error message when I try to install the DOSBox movie codec.</h2></a>
-<div id="FAQ11"><p>	
 The DOSBox movie codec installer only exists in the Windows version of
 D-Fend Reborn. To install a video codec you need admin rights on your system.
 Windows does not give programs admin rights automatically. Becuase the codec installer is a simple rundll call, it will not
