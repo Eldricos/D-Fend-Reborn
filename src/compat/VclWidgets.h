@@ -82,14 +82,24 @@ class TColorBoxWidget : public QComboBox
 {
     Q_OBJECT
 public:
+    // Colours of a Delphi TColorBox with the default style (standard,
+    // extended and system colours). The items hold Delphi TColor values, so
+    // system colours (clWindowText, ...) are kept as such.
     explicit TColorBoxWidget(QWidget *parent = nullptr);
     QColor selected() const;
     void setSelected(const QColor &C);
-    // Delphi TColor ($00BBGGRR) access
+    // Delphi TColor ($00BBGGRR or a system colour) access
     int selectedTColor() const;
     void setSelectedTColor(int C);
+    // TColorBox.Style cbPrettyNames: the original program used it for German
+    // only (the German Delphi version shows German colour names); without it
+    // the colours are shown with their Delphi names ("clBlack", "clWindow").
+    void setPrettyNames(bool German);
 private:
-    void addColor(const QString &Name, const QColor &C);
+    bool FPrettyNames = false;
+    void addColor(int C);
+    QString colorName(int C) const;
+    void updateNames();
 };
 
 // TValueListEditor: two column key/value grid.

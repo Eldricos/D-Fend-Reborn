@@ -1,5 +1,6 @@
 #include "VclWidgets.h"
 #include "VclLayout.h"
+#include "Graphics.h"
 
 #include <QRadioButton>
 #include <QButtonGroup>
@@ -209,51 +210,87 @@ void TSplitterWidget::mouseReleaseEvent(QMouseEvent *e)
 // TColorBoxWidget
 // ---------------------------------------------------------------------------
 
+namespace {
+// Colours of TColorBox (style cbStandardColors, cbExtendedColors,
+// cbSystemColors) in the order of the VCL, with the colour names of the
+// German Delphi version (cbPrettyNames)
+struct TColorBoxEntry { int Color; const char *GermanName; };
+const TColorBoxEntry ColorBoxColors[] = {
+    {clBlack, "Schwarz"}, {clMaroon, "Kastanienbraun"}, {clGreen, "Gr\u00fcn"}, {clOlive, "Olivgr\u00fcn"},
+    {clNavy, "Marineblau"}, {clPurple, "Purpur"}, {clTeal, "Petrol"}, {clGray, "Grau"},
+    {clSilver, "Silber"}, {clRed, "Rot"}, {clLime, "Hellgr\u00fcn"}, {clYellow, "Gelb"},
+    {clBlue, "Blau"}, {clFuchsia, "Fuchsie"}, {clAqua, "Aquamarin"}, {clWhite, "Wei\u00df"},
+    {clMoneyGreen, "Dollargr\u00fcn"}, {clSkyBlue, "Himmelblau"}, {clCream, "Creme"}, {clMedGray, "Mittelgrau"},
+    {clActiveBorder, "Aktiver Rahmen"}, {clActiveCaption, "Aktive Titelleiste"}, {clAppWorkSpace, "Arbeitsbereich"},
+    {clBackground, "Hintergrund"}, {clBtnFace, "Schaltfl\u00e4che"}, {clBtnHighlight, "Schaltfl\u00e4chen-Hervorhebung"},
+    {clBtnShadow, "Schaltfl\u00e4chenschatten"}, {clBtnText, "Schaltfl\u00e4chentext"}, {clCaptionText, "Titelleistentext"},
+    {clGrayText, "Grauer Text"}, {clHighlight, "Markierung"}, {clHighlightText, "Markierter Text"},
+    {clHotLight, "Hot-Light"}, {clInactiveBorder, "Inaktiver Rahmen"}, {clInactiveCaption, "Inaktive Titelleiste"},
+    {clInactiveCaptionText, "Inaktiver Titelleistentext"}, {clInfoBk, "Info-Hintergrund"}, {clInfoText, "Info-Text"},
+    {clMenu, "Men\u00fc"}, {clMenuText, "Men\u00fctext"}, {clScrollBar, "Bildlaufleiste"},
+    {cl3DDkShadow, "3D-Dunkelschatten"}, {cl3DLight, "3D-Licht"}, {clWindow, "Fenster"},
+    {clWindowFrame, "Fensterrahmen"}, {clWindowText, "Fenstertext"},
+};
+const int RoleTColor = Qt::UserRole;
+} // namespace
+
 TColorBoxWidget::TColorBoxWidget(QWidget *parent) : QComboBox(parent)
 {
     setEditable(false);
-    const struct { const char *N; unsigned RGB; } Std[] = {
-        {"Black", 0x000000}, {"Maroon", 0x800000}, {"Green", 0x008000}, {"Olive", 0x808000},
-        {"Navy", 0x000080}, {"Purple", 0x800080}, {"Teal", 0x008080}, {"Gray", 0x808080},
-        {"Silver", 0xC0C0C0}, {"Red", 0xFF0000}, {"Lime", 0x00FF00}, {"Yellow", 0xFFFF00},
-        {"Blue", 0x0000FF}, {"Fuchsia", 0xFF00FF}, {"Aqua", 0x00FFFF}, {"White", 0xFFFFFF},
-        {"Money Green", 0xC0DCC0}, {"Sky Blue", 0xA6CAF0}, {"Cream", 0xFFFBF0}, {"Medium Gray", 0xA4A0A0},
-    };
-    for (auto &C : Std) addColor(C.N, QColor::fromRgb(C.RGB));
+    for (const TColorBoxEntry &E : ColorBoxColors) addColor(E.Color);
 }
 
-void TColorBoxWidget::addColor(const QString &Name, const QColor &C)
+QString TColorBoxWidget::colorName(int C) const
+{
+    if (FPrettyNames) for (const TColorBoxEntry &E : ColorBoxColors) if (E.Color == C) return QString::fromUtf8(E.GermanName);
+    return ColorToString(C);   // "clBlack", "clWindow" or "$00RRGGBB" (custom colour)
+}
+
+void TColorBoxWidget::addColor(int C)
 {
     QPixmap P(16, 12);
-    P.fill(C);
+    P.fill(TColorToQColor(C));
     QPainter Pa(&P);
     Pa.setPen(Qt::black);
     Pa.drawRect(0, 0, 15, 11);
-    addItem(QIcon(P), Name, C);
+    Pa.end();
+    addItem(QIcon(P), colorName(C), C);
+}
+
+void TColorBoxWidget::updateNames()
+{
+    for (int I = 0; I < count(); I++) setItemText(I, colorName(itemData(I, RoleTColor).toInt()));
+}
+
+void TColorBoxWidget::setPrettyNames(bool German)
+{
+    if (FPrettyNames == German) return;
+    FPrettyNames = German;
+    updateNames();
 }
 
 QColor TColorBoxWidget::selected() const
 {
-    return currentData().value<QColor>();
+    return TColorToQColor(selectedTColor());
 }
 
 void TColorBoxWidget::setSelected(const QColor &C)
 {
-    for (int i = 0; i < count(); i++)
-        if (itemData(i).value<QColor>().rgb() == C.rgb()) { setCurrentIndex(i); return; }
-    addColor(C.name().toUpper(), C);
-    setCurrentIndex(count() - 1);
+    setSelectedTColor(QColorToTColor(C));
 }
 
 int TColorBoxWidget::selectedTColor() const
 {
-    QColor C = selected();
-    return C.red() | (C.green() << 8) | (C.blue() << 16);
+    if (currentIndex() < 0) return clBlack;
+    return itemData(currentIndex(), RoleTColor).toInt();
 }
 
 void TColorBoxWidget::setSelectedTColor(int C)
 {
-    setSelected(QColor(C & 0xFF, (C >> 8) & 0xFF, (C >> 16) & 0xFF));
+    for (int I = 0; I < count(); I++) if (itemData(I, RoleTColor).toInt() == C) { setCurrentIndex(I); return; }
+    // a colour that is not in the list (TColorBox adds it as a custom colour)
+    addColor(C);
+    setCurrentIndex(count() - 1);
 }
 
 // ---------------------------------------------------------------------------

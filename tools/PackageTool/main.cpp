@@ -18,6 +18,9 @@
 // The tool works in a temporary data folder (the data of the program folder
 // it is started from is not touched) and shows no windows.
 #include <QApplication>
+#include <QNetworkProxyFactory>
+#include <QSslConfiguration>
+#include <QFileInfo>
 #include <QDateTime>
 #include <QDir>
 #include <QDirIterator>
@@ -187,6 +190,23 @@ int main(int argc, char* argv[])
     // no windows (the program code shows progress dialogs)
     if (qEnvironmentVariableIsEmpty("QT_QPA_PLATFORM")) qputenv("QT_QPA_PLATFORM", "offscreen");
     QApplication App(argc, argv);
+
+    // D-Fend Reborn: all downloads (package lists and packages, update check,
+    // data reader, cheats database) use the proxy settings of the system
+    // (Windows: Internet options; Linux: http_proxy / https_proxy / no_proxy
+    // and, if Qt supports it, the desktop settings)
+    QNetworkProxyFactory::setUseSystemConfiguration(true);
+    // Certificates named by SSL_CERT_FILE (the OpenSSL convention, e.g. the
+    // certificate of a company proxy) are trusted in addition to the system
+    // certificates (Qt itself only reads the system certificate store)
+    {
+        const QString CertFile = qEnvironmentVariable("SSL_CERT_FILE");
+        if (!CertFile.isEmpty() && QFileInfo::exists(CertFile)) {
+            QSslConfiguration SSL = QSslConfiguration::defaultConfiguration();
+            SSL.addCaCertificates(CertFile);
+            QSslConfiguration::setDefaultConfiguration(SSL);
+        }
+    }
 
     QStringList Args = App.arguments().mid(1);
     if (Args.isEmpty()) return Usage();

@@ -110,8 +110,8 @@ void TSetupFrameGamesListAppearance::LoadLanguage()
     bool GermanColorNames;
 
     GermanColorNames = (ExtUpperCase(ExtractFileName(LanguageSetup->SetupFile())) == "DEUTSCH.INI") || (ExtUpperCase(ExtractFileName(LanguageSetup->SetupFile())) == "GERMAN.INI");
-    // TODO(port): TColorBox.Style cbPrettyNames (German color names) has no equivalent in TColorBoxWidget
-    Q_UNUSED(GermanColorNames);
+    ui.GamesListBackgroundColorBox->setPrettyNames(GermanColorNames);
+    ui.GamesListFontColorBox->setPrettyNames(GermanColorNames);
 
     ui.GamesListBackgroundRadioButton1->setText(LanguageSetup->SetupFormBackgroundColorDefault());
     ui.GamesListBackgroundRadioButton2->setText(LanguageSetup->SetupFormBackgroundColorColor());

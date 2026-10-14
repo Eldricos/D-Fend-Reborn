@@ -1,5 +1,7 @@
 // C++ port of QuickStartFormUnit.pas (implementation section).
 #include "QuickStartFormUnit.h"
+
+#include <QDirIterator>
 #include "PhysicalDrivesUnit.h"
 #include "VirtualKeys.h"
 
@@ -766,12 +768,25 @@ void TQuickStartForm::BuildList()
     );
     hChangeNotification = (H == INVALID_HANDLE_VALUE) ? -1 : reinterpret_cast<THandle>(H);
 #else
-    // TODO(port): FindFirstChangeNotification watches the whole sub tree; QFileSystemWatcher
-    // watches the base folder and the current folder only.
+    // FindFirstChangeNotification(..., TRUE, ...) watches the whole sub tree;
+    // QFileSystemWatcher watches single folders, so the folder and all its
+    // sub folders are added (at most MaxWatchedDirs, e.g. for the "full" view
+    // that starts at the file system root; symbolic links are not followed).
     ChangeWatcher = new QFileSystemWatcher(this);
     QStringList Dirs;
-    if (DirectoryExists(WatchDir)) Dirs << ExcludeTrailingPathDelimiter(WatchDir);
-    if (DirectoryExists(CurrentPath) && ExcludeTrailingPathDelimiter(CurrentPath) != ExcludeTrailingPathDelimiter(WatchDir)) Dirs << ExcludeTrailingPathDelimiter(CurrentPath);
+    const int MaxWatchedDirs = 2000;
+    auto AddTree = [&Dirs, MaxWatchedDirs](const QString &Dir) {
+        if (!DirectoryExists(Dir) || Dirs.size() >= MaxWatchedDirs) return;
+        const QString D = ExcludeTrailingPathDelimiter(Dir);
+        if (!Dirs.contains(D)) Dirs << D;
+        QDirIterator It(D, QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::NoSymLinks, QDirIterator::Subdirectories);
+        while (It.hasNext() && Dirs.size() < MaxWatchedDirs) {
+            const QString S = It.next();
+            if (!Dirs.contains(S)) Dirs << S;
+        }
+    };
+    AddTree(WatchDir);
+    AddTree(CurrentPath);
     if (!Dirs.isEmpty()) ChangeWatcher->addPaths(Dirs);
     connect(ChangeWatcher, &QFileSystemWatcher::directoryChanged, this, [this]() { ChangeDetected = true; });
     hChangeNotification = 0;

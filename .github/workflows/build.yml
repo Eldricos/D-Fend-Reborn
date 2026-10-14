@@ -70,3 +70,22 @@ jobs:
           test -f build/Lang/English.ini
           test -f build/Help/English/Index.html
           test -f build/Bin/7za.exe
+
+      - name: Build the installers
+        shell: bash
+        run: |
+          cmake --install build --prefix Install/Stage
+          test -f Install/Stage/DFend.exe
+          test -f Install/Stage/Qt6Core.dll
+          MAKENSIS="/c/Program Files (x86)/NSIS/makensis.exe"
+          if [ ! -f "$MAKENSIS" ]; then choco install nsis -y --no-progress; fi
+          cd Install
+          "$MAKENSIS" D-Fend-Reborn-Setup.nsi
+          "$MAKENSIS" D-Fend-Reborn-UpdateSetup.nsi
+
+      - name: Upload the installers
+        uses: actions/upload-artifact@v4
+        with:
+          name: D-Fend-Reborn-Windows-installers
+          path: Install/*.exe
+          retention-days: 14

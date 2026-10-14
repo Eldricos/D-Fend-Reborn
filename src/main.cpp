@@ -4,6 +4,9 @@
 // runs the unit initialization sections in the order Delphi would run them,
 // creates the main form and runs the event loop.
 #include <QApplication>
+#include <QNetworkProxyFactory>
+#include <QSslConfiguration>
+#include <QFileInfo>
 #include <QFont>
 #include <QIcon>
 #include <QStyleFactory>
@@ -49,6 +52,23 @@ int main(int argc, char *argv[])
 #else
     App.setStyle("Fusion");
 #endif
+
+    // D-Fend Reborn: all downloads (package lists and packages, update check,
+    // data reader, cheats database) use the proxy settings of the system
+    // (Windows: Internet options; Linux: http_proxy / https_proxy / no_proxy
+    // and, if Qt supports it, the desktop settings)
+    QNetworkProxyFactory::setUseSystemConfiguration(true);
+    // Certificates named by SSL_CERT_FILE (the OpenSSL convention, e.g. the
+    // certificate of a company proxy) are trusted in addition to the system
+    // certificates (Qt itself only reads the system certificate store)
+    {
+        const QString CertFile = qEnvironmentVariable("SSL_CERT_FILE");
+        if (!CertFile.isEmpty() && QFileInfo::exists(CertFile)) {
+            QSslConfiguration SSL = QSslConfiguration::defaultConfiguration();
+            SSL.addCaCertificates(CertFile);
+            QSslConfiguration::setDefaultConfiguration(SSL);
+        }
+    }
 
     // Delphi unit initialization sections (dependency order)
     PrgConsts_Initialization();

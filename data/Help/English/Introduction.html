@@ -1,11 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-  <title>Introduction to D-Fend Reloaded</title>
+  <title>Introduction to D-Fend Reborn</title>
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
   <link rel="stylesheet" type="text/css" href="Global.css">
   <script language="JavaScript" type="text/javascript" src="Global.js"></script>
-  <meta name="keywords" content="Introduction, DOSBox, D-Fend Reloaded, Directory structure">
+  <meta name="keywords" content="Introduction, DOSBox, D-Fend Reborn, Directory structure">
 </head>
 <body>
   
@@ -14,7 +14,7 @@ Content of this page:
 &nbsp;&nbsp;
 <a href="#DOSBox">DOSBox</a>
 &nbsp;&nbsp;
-<a href="#D-Fend-Reloaded">D-Fend Reloaded</a>
+<a href="#D-Fend-Reborn">D-Fend Reborn</a>
 &nbsp;&nbsp;
 <a href="#DirectoryStructure">Directory structure</a>
 &nbsp;&nbsp;
@@ -23,10 +23,10 @@ Content of this page:
 <a href="#RunningGames">Running games</a>
 </p>
  
-<h1>Introduction to D-Fend Reloaded</h1>
+<h1>Introduction to D-Fend Reborn</h1>
 
 <p>
-The information on this page will give you an overview about what D-Fend Reloaded is and how to handle it.
+The information on this page will give you an overview about what D-Fend Reborn is and how to handle it.
 </p>
 
 <a onclick="return Work('DOSBox')" name="DOSBox" href="#"><h2>&raquo; What is DOSBox ?</h2></a>
@@ -45,9 +45,9 @@ possible to run DOSBox directly from a USB stick. You can just mount any real fo
 DOSBox (this means there is no need to use harddisk image files, but of couse DOSBox can also handle harddisk images). 
 </p></div>
 
-<a onclick="return Work('D-Fend-Reloaded')" name="D-Fend-Reloaded" href="#"><h2>&raquo; What is D-Fend Reloaded ?</h2></a>
+<a onclick="return Work('D-Fend-Reborn')" name="D-Fend-Reborn" href="#"><h2>&raquo; What is D-Fend Reborn ?</h2></a>
 
-<div id="D-Fend-Reloaded"><p>
+<div id="D-Fend-Reborn"><p>
 Even so DOSBox is easy to handle compared to most of the other emulators, there is no graphical environment to
 setup the hardware used by the games and if you want to run different games needing different hardware setups
 you need to keep different versions of the DOSBox configuration file and always need to start DOSBox using the
@@ -61,11 +61,11 @@ captured screenshots).
 </p>
 
 <p>
-D-Fend Reloaded is a DOSBox frontend for the Windows plattform. Inside D-Fend Reloaded you can manage your games just like
+D-Fend Reborn is a DOSBox frontend for Windows and Linux. Inside D-Fend Reborn you can manage your games just like
 links in the start menu. Inside the <a href="ProfileEdit.html">profile editor</a> you can setup every option
 DOSBox is offering. To make things even easier there is a <a href="ProfileWithWizard.html">profile adding wizard</a>
 which will only ask you very few question and try to automatically setup all nessessary things for you. Addtionally
-D-Fend Reloaded can store additionally files (like manuals) together with each game and can manage and view/play captured
+D-Fend Reborn can store additionally files (like manuals) together with each game and can manage and view/play captured
 screenshots, sound and videos. You can even use your captured screenshots in the games list instead of plain
 text links.
 </p>
@@ -75,12 +75,19 @@ Long time ago there has been a freeware frontend called "D-Fend". But some day t
 stopped and it has been removed from the internet. D-Fend Reloaded is a complete rewrite of D-Fend. It is nearly 100%
 compatible with D-Fend (you can upate from D-Fend to D-Fend Reloaded by just replacing the program file if you want to).
 But by now D-Fend Reloaded has many new features D-Fend never had.
+</p>
+
+<p>
+D-Fend Reborn continues D-Fend Reloaded, which was written by Alexander Herzog. It is a port
+of D-Fend Reloaded to C++ and Qt, so it runs on Windows and Linux, and it can use the settings,
+profiles and games of an existing D-Fend Reloaded installation. The project page of D-Fend Reborn is
+<a href="https://github.com/Eldricos/D-Fend-Reborn" target="_blank">https://github.com/Eldricos/D-Fend-Reborn</a>.
 </p></div>
 
 <a onclick="return Work('DirectoryStructure')" name="DirectoryStructure" href="#"><h2>&raquo; Directory structure</h2></a>
 
-<div id="D-Fend-Reloaded"><p>
-You can place the games, you want to manage inside D-Fend Reloaded, in any directory you want to, but there will be some
+<div id="D-Fend-Reborn"><p>
+You can place the games, you want to manage inside D-Fend Reborn, in any directory you want to, but there will be some
 advantages (easier moving games from one installation to an other) if you keep some rules when storing games.
 </p>
 
@@ -89,15 +96,15 @@ The normal installation ("User mode") has two main directories for storing data:
 data directory
 </p>
 
-<h3>The program directory (usually <tt>C:\Program files\D-Fend Reloaded</tt>)</h3>
+<h3>The program directory (usually <tt>C:\Program files\D-Fend Reborn</tt>)</h3>
 
 <p>
-In the program directory all program files needed to run D-Fend Reloaded and DOSBox will be stored. D-Fend Reloaded
-will not write to this directory after installation any more. (This means D-Fend Reloaded is compatible to the Vista way
+In the program directory all program files needed to run D-Fend Reborn and DOSBox will be stored. D-Fend Reborn
+will not write to this directory after installation any more. (This means D-Fend Reborn is compatible to the Vista way
 of dividing program files and data files.)
 </p>
 
-<h3>The data directory (usually <tt>C:\Users\<i>YourName</i>\D-Fend Reloaded</tt>)</h3>
+<h3>The data directory (usually <tt>C:\Users\<i>YourName</i>\D-Fend Reborn</tt>)</h3>
 
 <p>
 All user files (programm configuration, game program files, manuals, captured files, etc.) should be stored in this
@@ -105,17 +112,17 @@ directory and its subdirectores. The games files are stored in the subdirectorie
 </p></div>
 
 <ul class="big">
-  <li><b>Settings:</b> This folder is used by D-Fend Reloaded to store its configuration files.</li>
+  <li><b>Settings:</b> This folder is used by D-Fend Reborn to store its configuration files.</li>
   <li><b>VirtualHD:</b> This folder will be mounted as drive "<tt>C:</tt>" inside DOSBox (as long as you do not change
   this behavior for a profile). If you place your games in subdirectories of this folder you will be able to access them
-  inside DOSBox without having to setup anything special in D-Fend Reloaded. Additionally you cannot damage your Windows
+  inside DOSBox without having to setup anything special in D-Fend Reborn. Additionally you cannot damage your Windows
   installation if you accidentally delete your whole virtual harddisk inside DOSBox as long as you have only mounted this
   folder as drive "<tt>C:</tt>" inside DOSBox and not your whole real harddisk.</tt></li>
-  <li><b>Capture:</b> D-Fend Reloaded will create a subfolder in this folder for each profile you create. (Of course
+  <li><b>Capture:</b> D-Fend Reborn will create a subfolder in this folder for each profile you create. (Of course
   you can also define some other capture folder.) The profile capture folder will be used by DOSBox to store captured
-  images, sounds and videos. D-Fend Reloaded will show the captured files for each profile just below the profiles
+  images, sounds and videos. D-Fend Reborn will show the captured files for each profile just below the profiles
   list. All you have to do is select a profile and you will see the corresponding screenshots etc.</li>
-  <li><b>GameData:</b> D-Fend Reloaded can create a subfolder of this folder for each profile you have (optionally and
+  <li><b>GameData:</b> D-Fend Reborn can create a subfolder of this folder for each profile you have (optionally and
   even of course also in any other folder). You can store addtional game files (like manuals etc.) here. You can access
   the content of this folder also via the information area below the profiles list or via the profile context menu.</li>
   <li><b>Confs:</b> This folder is used to store the <tt>prof</tt> files for the games. Each <tt>prof</tt> file contains
@@ -124,19 +131,19 @@ directory and its subdirectores. The games files are stored in the subdirectorie
   content of the D-Fend <tt>Confs</tt> folder (via the import function from the file menu) you will have each profile
   twice. It is recommended to only import the <tt>prof</tt> files (because they contain more information than the
   corresponding <tt>conf</tt> files).</li>
-  <li><b>AutoSetup, Lang, Templates:</b> This folders are used internally by D-Fend Reloaded to store the auto setup
+  <li><b>AutoSetup, Lang, Templates:</b> This folders are used internally by D-Fend Reborn to store the auto setup
   templates, the language files and the normal profile templates. Of couse you can manually add templates by copying
   them to this folders but are is also the much more easily operated <a href="ExtrasTemplates.html">template editor</a>
-  inside D-Fend Reloaded.</li>
+  inside D-Fend Reborn.</li>
 </ul>
 
 <a onclick="return Work('AddingProfiles')" name="AddingProfiles" href="#"><h2>&raquo; Adding new profiles</h2></a>
 
 <div id="AddingProfiles"><p>
 The absolute easiest way of adding games to the list (if the game is stored as a <tt>zip</tt> file) is draging the
-<tt>zip</tt> file to the D-Fend Reloaded program window. D-Fend Reloaded will copy the game files to a new created
+<tt>zip</tt> file to the D-Fend Reborn program window. D-Fend Reborn will copy the game files to a new created
 subdirectory of the games folder and will try to automatically setup the new game via an auto setup template. If
-there is no auto setup template matching to the new game, D-Fend Reloaded will aplly the default template to the
+there is no auto setup template matching to the new game, D-Fend Reborn will aplly the default template to the
 new profile. In most cases this will result in a correctly working new profile. But this way of adding new games
 does not allow the user to influence the process of profile creation. (Of couse you can edit the new profile later
 like any profile via the profile editor.)</p>
@@ -147,8 +154,8 @@ The easiest way of adding profiles while letting user influence the process
 is via the <a href="ProfileWithWizard.html">profile adding wizard</a> ("Add with wizard..."
 in the "Profile" menu or <span class="key">F3</span>-key). The profile wizard will only ask you the really nessessary
 things: The name for the new profile, the <tt>exe</tt> file to execute inside DOSBox and some game settings.
-D-Fend Reloaded already knows over 350 games (the auto setup templates). If you add a known game it will offer you
-to completely automatically setup the game for you. If you want to add a game D-Fend Reloaded does not know, it
+D-Fend Reborn already knows over 350 games (the auto setup templates). If you add a known game it will offer you
+to completely automatically setup the game for you. If you want to add a game D-Fend Reborn does not know, it
 will offer you to choose a template (of the type "low CPU power", "normal", "3D graphics"). Additionally you can
 add some information like author, publisher, language, year etc. to the profile and that's it, your new profile
 is ready.
@@ -159,12 +166,12 @@ is ready.
 <div id="RunningGames"><p>
 If you have defined a profile for your game, starting the game is very easy: Double click the profile name in the
 profile list on the right side of the program window. (Or select the profile and press <span class="key">Enter</span>
-or select the profile and click on the "Run" toolbar button.) D-Fend Reloaded will run the game inside DOSBox. If you
+or select the profile and click on the "Run" toolbar button.) D-Fend Reborn will run the game inside DOSBox. If you
 capture any images inside DOSBox (by pressing <span class="key">Ctrl</span>+<span class="key">F5</span>) or any sounds
 (by pressing <span class="key">Ctrl</span>+<span class="key">F6</span> to start/stop) or any videos (by pressing
-<span class="key">Ctrl</span>+<span class="key">Alt</span>+<span class="key">F5</span>) D-Fend Reloaded will show you
+<span class="key">Ctrl</span>+<span class="key">Alt</span>+<span class="key">F5</span>) D-Fend Reborn will show you
 this files in the bottom area of the program window. If you click on a screenshot, you will get a bigger preview and
-if you click on a captured sound or video file, D-Fend Reloaded will play the file.
+if you click on a captured sound or video file, D-Fend Reborn will play the file.
 </p></div>
 
 <p>&nbsp;</p>
@@ -173,7 +180,7 @@ if you click on a captured sound or video file, D-Fend Reloaded will play the fi
 <p class="smallT">
   <a href="Index.html">Content of this help file</a><br />
   <a href="ProfileWithWizard.html">Adding profiles with the profile wizard</a><br />
-  Internet link: <a href="http://dfendreloaded.sourceforge.net/" target="_blank">D-Fend Reloaded homepage</a><br />
+  Internet link: <a href="https://github.com/Eldricos/D-Fend-Reborn" target="_blank">D-Fend Reborn homepage</a><br />
   Internet link: <a href="http://www.dosbox.com/" target="_blank">DOSBox homepage</a>  
 </p>
 

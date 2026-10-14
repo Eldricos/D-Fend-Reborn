@@ -31,12 +31,12 @@
 !addplugindir "."
 
 ;== Basic Information.  Basic information about the portable app
-!define NAME "D-Fend Reloaded Portable"
-!define SHORTNAME "D-FendReloadedPortable"
+!define NAME "D-Fend Reborn Portable"
+!define SHORTNAME "D-FendRebornPortable"
 !define VERSION "1.4.4.0"
-!define FILENAME "D-Fend-Reloaded-1.4.4-Portable"
+!define FILENAME "D-Fend-Reborn-1.4.4-Portable"
 !define CHECKRUNNING "DFend.exe"
-!define CLOSENAME "D-Fend Reloaded Portable "
+!define CLOSENAME "D-Fend Reborn Portable "
 !define ADDONSDIRECTORYPRESERVE "NONE" ;use "NONE" for no plugins directory or relative to install directory: App\AppName\plugins
 !define INSTALLERCOMMENTS "For additional details, visit PortableApps.com"
 !define INSTALLERADDITIONALTRADEMARKS "" ;end this entry with a period and a space if used

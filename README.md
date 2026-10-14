@@ -63,6 +63,11 @@ data next to the program. With `USERDIRMODE` in `DFend.dat` the user data
 is stored in `%USERPROFILE%\D-Fend Reborn\` on Windows and in
 `~/.local/share/D-Fend Reborn/` on Linux.
 
+All downloads use the proxy settings of the system (Windows: Internet
+options; Linux: `http_proxy` / `https_proxy` / `no_proxy`). Certificates named
+by `SSL_CERT_FILE` (e.g. of a company proxy) are trusted in addition to the
+system certificates.
+
 The program update check asks GitHub for the latest release of this
 repository (Help > Search for updates) and offers to open its download page.
 
@@ -87,7 +92,10 @@ files.
 Every push and pull request is built on Linux and Windows by GitHub Actions
 (`.github/workflows/build.yml`).
 
-Other folders taken over from the original sources: `Install` (original NSIS installer scripts; their
-paths still point to the old layout) and `tools` (sources of the NSIS helper
-programs, server side data of the package/data reader/cheat services,
-PortableApps.com package, source of `mkdosfs.exe`).
+`Install` holds the NSIS scripts of the Windows installers (full and update
+installer); they package the program folder that `cmake --install` creates
+(`Install/README_HOW_TO_BUILD.txt`). The Windows build check also builds the
+installers and offers them as a download of the workflow run.
+
+Other folders taken over from the original sources: `tools` (sources of the
+NSIS helper programs, PortableApps.com package, source of `mkdosfs.exe`).
