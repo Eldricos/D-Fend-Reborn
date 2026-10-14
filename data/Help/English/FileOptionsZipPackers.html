@@ -18,7 +18,9 @@ Menu: &nbsp; <b>File</b> | <b>Program options</b>  | <b>Archiving programs</b>
 <p>
 On this page you can configurate external archiving programs. With the help of this programs
 D-Fend Reborn will be able to handle some other archive formats. (Support for the zip and 7z
-archiv files is already buildin.)
+archiv files is already buildin. It uses the 7-Zip command line program, which is included
+in the Windows version; on Linux install <tt>7z</tt>, <tt>7za</tt> or <tt>7zz</tt> (package p7zip
+or 7zip) with the package manager.)
 </p>
 
 <ul class="big">
@@ -55,7 +57,8 @@ archiv files is already buildin.)
   <li><b>Add trailing "\" to path names.</b><br />
   Defines whether the path names where the files to pack are located or where the archive
   file should be extracted to should include a trailing "\" or not. (Some external packers
-  like uha do not work correctly if the path name has a trailing "\".)
+  like uha do not work correctly if the path name has a trailing "\".) On Linux the path
+  delimiter "/" is used instead of "\".
   </li>
   <li><b>Set default values for ...</b><br />
   D-Fend Reborn already knows the right parameters for packing and extracting archive file

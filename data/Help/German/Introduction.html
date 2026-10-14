@@ -96,7 +96,7 @@ ver&ouml;ffentlichtes Opensource-Programm.
 </p>
 
 <p>
-D-Fend Reborn ist die Fortsetzung von D-Fend Reloaded, das von Alexander Herzog geschrieben wurde.
+D-Fend Reborn ist die Fortsetzung von D-Fend Reloaded, das urspr&uuml;nglich von Alexander Herzog geschrieben wurde.
 Es handelt sich um eine Portierung von D-Fend Reloaded nach C++ und Qt, so dass das Programm unter
 Windows und Linux l&auml;uft. D-Fend Reborn kann die Einstellungen, Profile und Spiele einer bestehenden
 D-Fend Reloaded Installation weiterverwenden. Die Projektseite von D-Fend Reborn ist
@@ -114,6 +114,9 @@ von einer Installation zu einer anderen), wenn Sie einige Regeln beim Ablegen de
 <p>
 Bei der Verwendung einer normalen D-Fend Reborn Installation (d.h. im "Benutzerverzeichnis-Modus") gibt
 es zwei Verzeichnisse, in denen Dateien abgelegt werden: Das Programmverzeichnis und das Datenverzeichnis.
+(Unter Linux gibt es kein Installationsprogramm: Ohne eine <tt>DFend.dat</tt>-Datei im Programmverzeichnis werden
+alle Daten im Programmverzeichnis abgelegt. Mit dem Eintrag <tt>USERDIRMODE</tt> in <tt>DFend.dat</tt> ist das
+Datenverzeichnis <tt>~/.local/share/D-Fend Reborn</tt>. Siehe <a href="HelpOperationMode.html">Betriebsart</a>.)
 </p>
 
 <h3>Das Programmverzeichnis (&uuml;blicherweise <tt>C:\Program files\D-Fend Reborn</tt>)</h3>
@@ -122,7 +125,7 @@ es zwei Verzeichnisse, in denen Dateien abgelegt werden: Das Programmverzeichnis
 In dem Programmverzeichnis werden w&auml;hrend der Installation alle Dateien, die f&uuml;r den Betrieb von
 D-Fend Reborn und DOSBox n&ouml;tig sind, abgelegt. Beim Betrieb von D-Fend Reborn wird dieses keinerlei
 Schreibzugriffe auf das Programmverzeichnis mehr aus&uuml;ben. (Dies bedeutet insbesondere, dass D-Fend Reborn
-sich an die Vista-Vorgaben zur Trennung von Programmdateien und Datendateien h&auml;lt.)
+Programmdateien und Datendateien trennt und daher ohne Admin-Rechte ausgef&uuml;hrt werden kann.)
 </p>
 
 <h3>Das Datenverzeichnise (&uuml;blicherweise <tt>C:\Users\<i>IhrName</i>\D-Fend Reborn</tt>)</h3>
@@ -140,7 +143,7 @@ abgelegt werden:
   (so lange Sie diese Standardeinstellung in den Profilen nicht &auml;ndern). wenn Sie die Spieledateien in 
   Unterverzeichnissen dieses Ordners ablegen, k&ouml;nnen Sie direkt in DOSBox darauf zugreifen, ohne irgendetwas
   in D-Fend Reborn daf&uuml;r konfigurieren zu m&uuml;ssen. So lange Sie nur dieses Verzeichnis als Laufwerk in
-  DOSBox eingebunden haben, k&ouml;nnen Sie auch ihre normale Windows-Installation nicht besch&auml;digen, selbst
+  DOSBox eingebunden haben, k&ouml;nnen Sie auch ihre normale Windows- bzw. Linux-Installation nicht besch&auml;digen, selbst
   wenn Sie in DOSBox versehentlich ihre komplette virtuelle Festplatte l&ouml;schen.</tt></li>
   <li><b>Capture:</b> In diesem Ordner bzw. in den Unterordnern dieses Ordners legt D-Fend Reborn standardm&auml;&szlig;ig
   die zu den einzelnen Spielen erfassten Screenshots, Sounds und Videos ab. (Selbstverst&auml;ndlich k&ouml;nnen
@@ -217,7 +220,7 @@ von aufgezeichneten Sounds und Videos werden diese abgespielt.
 
 <p class="smallH">Siehe auch:</p>
 <p class="smallT">
-  <a href="Index.html">Inhalt dieser Hilfedatei</a><br />
+  <a href="Index.html">Inhalt dieser Hilfe</a><br />
   <a href="ProfileWithWizard.html">Profile mit dem Assistenten hinzuf&uuml;gen</a><br />
   Internet link: <a href="https://github.com/Eldricos/D-Fend-Reborn" target="_blank">D-Fend Reborn Homepage</a><br />
   Internet link: <a href="http://www.dosbox.com/" target="_blank">DOSBox Homepage</a>  
