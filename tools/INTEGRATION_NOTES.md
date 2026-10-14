@@ -23,7 +23,9 @@ systems with context id -> page mapping (HelpTools.cpp), GitHub Actions build
 checks (Linux + Windows), resample filters for image scaling (ImageStretch.cpp), data packages of the
 package manager as .7z archives installed on all systems (DataPackageUnit),
 single game packages split from the original packages and published by the
-"Game packages" workflow (DFRPackageTool, tools/PackageTool/README.md).
+"Game packages" workflow (DFRPackageTool, tools/PackageTool/README.md); the
+main package list and the add-on / auto setup template lists are served from
+the repository (tools/PackageServer, DFRebornPackageListsURL).
 
 Still open:
 - Platform gaps marked with `TODO(port)` in the sources (recursive folder watching in the quick start window,

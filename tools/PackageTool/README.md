@@ -7,10 +7,9 @@ installed. More games can be added to a list at any time.
 
 D-Fend Reborn's game packages are the assets of the `game-packages` release
 of this repository, and the release's `GamePackages.xml` is the package list
-for them. To show them in the package manager, add the address of the list in
-the package manager's repositories list:
-
-    https://github.com/Eldricos/D-Fend-Reborn/releases/download/game-packages/GamePackages.xml
+for them. It is one of the lists of the program's main package list
+(`tools/PackageServer/DFR.xml`, downloaded from this repository), so it is
+shown in the package manager without any setup.
 
 ## Adding a game
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE DFRPackagesFile SYSTEM "http://dfendreloaded.sourceforge.net/Packages/DFRPackagesFile.dtd">
+<!DOCTYPE DFRPackagesFile SYSTEM "DFRPackagesFile.dtd">
 
-<DFRPackagesFile Name="Official addons (languages, icon sets etc.) for D-Fend Reloaded" LastUpdateDate="06/27/2015">
+<DFRPackagesFile Name="Official addons (languages, icon sets etc.) for D-Fend Reloaded" LastUpdateDate="10/14/2026">
 
   <Language
     Name="Czech"
@@ -34,7 +34,7 @@
     MaxVersion="0.9.0"
     Author="Cpt.Guapo (cpt.guapo@gmail.com)"
     PackageChecksum="5A919C0FBD834E735D3A671D386ACD80"
-    Size="100083">Portuguese-BR.ini</Language>
+    Size="104798">Portuguese-BR.ini</Language>
 	
   <Language
     Name="French"

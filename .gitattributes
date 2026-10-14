@@ -1,0 +1,5 @@
+# Files of the package lists (tools/PackageServer) are served as they are;
+# their checksums in the lists were made from the original Windows (CRLF)
+# files, so git must not change their line endings.
+tools/PackageServer/**/*.prof -text
+tools/PackageServer/**/*.ini -text
