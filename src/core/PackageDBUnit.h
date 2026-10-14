@@ -252,7 +252,7 @@ private:
     QString FDBDir;
     TDownloadEvent FOnDownload;
     bool InitDBDir();
-    bool InitPackageFiles(TPackageListFile* MainFile, TPackageListFile* UserFile, bool Update, bool UpdateAll, bool UpdateRemoteOnly, bool UpdateErrorQuite);
+    bool InitPackageFiles(TPackageListFile* MainFile, TPackageListFile* UserFile, bool Update, bool UpdateAll, bool UpdateRemoteOnly, bool UpdateErrorQuite, bool UpdateUser, bool UpdateAllUser);
     TPackageList* InitPackageFile(const QString& URL, bool Update, bool UpdateAll, bool UpdateRemoteOnly, bool UpdateErrorQuite);
     int GetCount();
     TPackageList* GetPackageList(int I);

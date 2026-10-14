@@ -2,6 +2,8 @@
 // ShowMessage, InputQuery, SelectDirectory, file dialogs.
 #pragma once
 
+#include <functional>
+
 #include "Classes.h"
 
 class QWidget;
@@ -35,6 +37,12 @@ struct TMsgDlgCaptions {
             Help = "&Help", Close = "&Close";
 };
 extern TMsgDlgCaptions MsgDlgCaptions;
+
+// D-Fend Reborn addition: programs without windows (DFRPackageTool) set this
+// hook to handle the message boxes of the program code themselves (print the
+// message, return the answer) instead of showing them.
+using TMessageDlgHook = std::function<int(const QString &Caption, const QString &Msg, TMsgDlgType DlgType, TMsgDlgButtons Buttons)>;
+extern TMessageDlgHook MessageDlgHook;
 
 // Parent window for message boxes (defaults to the active window)
 int MessageDlg(const QString &Msg, TMsgDlgType DlgType, TMsgDlgButtons Buttons, int HelpCtx = 0, QWidget *Parent = nullptr);

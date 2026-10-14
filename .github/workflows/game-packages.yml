@@ -1,0 +1,71 @@
+# Game packages for the package manager.
+#
+# The zip packages (one game each) are the assets of the "game-packages"
+# release; this workflow writes the package list for them (GamePackages.xml,
+# also a release asset). To add a game: build its zip package in D-Fend Reborn
+# (File > Export > Build zip packages), upload it to the release and run this
+# workflow again.
+#
+# "Import original packages" splits the game packages of the original
+# D-Fend Reloaded download list (NSIS installers with several games each)
+# into single game packages first.
+# Started by hand: Actions > Game packages > Run workflow.
+name: Game packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      import_original:
+        description: Import the games of the original D-Fend Reloaded packages
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+env:
+  TAG: game-packages
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  packages:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt, 7-Zip and build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            cmake ninja-build g++ qt6-base-dev qt6-multimedia-dev libgl-dev 7zip
+
+      - name: Build the package tool
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --target DFRPackageTool
+
+      - name: Create the release
+        run: |
+          # (a pre-release, so the update check, which asks for the latest
+          # release, does not see it)
+          gh release view "$TAG" > /dev/null 2>&1 || \
+            gh release create "$TAG" --prerelease --latest=false --title "Game packages" \
+              --notes "Game packages for the package manager of D-Fend Reborn (File > Import > Download packages). The package list is GamePackages.xml."
+
+      - name: Import the original packages
+        if: inputs.import_original
+        run: |
+          mapfile -t PACKAGES < <(python3 tools/PackageServer/FetchOriginalPackages.py \
+            tools/PackageServer/DFRFreewareShareware.xml original)
+          build/DFRPackageTool split --out new "${PACKAGES[@]}"
+          gh release upload "$TAG" new/*.zip --clobber
+
+      - name: Write the package list
+        run: |
+          gh release download "$TAG" --pattern '*.zip' --dir all || true
+          shopt -s nullglob
+          ZIPS=(all/*.zip)
+          if [ ${#ZIPS[@]} -eq 0 ]; then echo "The release has no game packages yet."; exit 0; fi
+          build/DFRPackageTool list --out GamePackages.xml --name "D-Fend Reborn game packages" \
+            --url-base "https://github.com/${{ github.repository }}/releases/download/$TAG/" "${ZIPS[@]}"
+          gh release upload "$TAG" GamePackages.xml --clobber

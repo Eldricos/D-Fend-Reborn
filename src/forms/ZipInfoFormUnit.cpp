@@ -177,6 +177,11 @@ void TZipInfoForm::PostShow()
         if (!Handled) {
             if (Ext == ".ZIP") { Handled = true; Ok = ZipWork(); }
             if (Ext == ".7Z") { Handled = true; Ok = SevenZipWork(); }
+#ifndef Q_OS_WIN
+            // D-Fend Reborn: data packages of the original program are NSIS
+            // installers; the 7-Zip program (7z / 7zz) can extract them
+            if (Ext == ".EXE" && Mode == zmExtract) { Handled = true; Ok = SevenZipWork(); }
+#endif
         }
 
         if (!Handled) {

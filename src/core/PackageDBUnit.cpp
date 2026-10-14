@@ -774,7 +774,7 @@ bool TPackageDB::FileInUse(const QString& FileName_)
     return false;
 }
 
-bool TPackageDB::InitPackageFiles(TPackageListFile* MainFile, TPackageListFile* UserFile, bool Update, bool UpdateAll, bool UpdateRemoteOnly, bool UpdateErrorQuite)
+bool TPackageDB::InitPackageFiles(TPackageListFile* MainFile, TPackageListFile* UserFile, bool Update, bool UpdateAll, bool UpdateRemoteOnly, bool UpdateErrorQuite, bool UpdateUser, bool UpdateAllUser)
 {
     int I, C1, C2;
     TPackageList* P;
@@ -799,7 +799,7 @@ bool TPackageDB::InitPackageFiles(TPackageListFile* MainFile, TPackageListFile* 
     if (ContinueDownload) for (I = 0; I < UserFile->Count(); I++) if (UserFile->Active(I)) {
         ContinueDownload = true;
         if (FOnDownload) FOnDownload(nullptr, C1 + I, C1 + C2, dsProgress, ContinueDownload);
-        P = InitPackageFile(UserFile->URL(I), Update, UpdateAll, UpdateRemoteOnly, UpdateErrorQuite);
+        P = InitPackageFile(UserFile->URL(I), UpdateUser, UpdateAllUser, UpdateRemoteOnly, UpdateErrorQuite);
         if (P != nullptr) FPackageList->append(P);
         if (!ContinueDownload) break;
     }
@@ -838,7 +838,11 @@ bool TPackageDB::LoadDB(bool Update, bool UpdateAll, bool UpdateErrorQuite)
         result = true;
     UserFile = new TPackageListFile(false);
     UserFile->LoadFromFile(DBDir() + PackageDBUserFile);
-    B = InitPackageFiles(MainFile, UserFile, result && Update, result && UpdateAll, false, UpdateErrorQuite);
+    // Port note: the lists of the repositories list (User.xml) are updated
+    // even if the main list could not be downloaded (the original program
+    // skipped them then, so no list could be updated without the original
+    // homepage)
+    B = InitPackageFiles(MainFile, UserFile, result && Update, result && UpdateAll, false, UpdateErrorQuite, Update, UpdateAll);
     result = result && B;
     delete UserFile;
     delete MainFile;
@@ -858,7 +862,7 @@ void TPackageDB::UpdateRemoteFiles(bool UpdateErrorQuite)
     MainFile->UpdateFromServer(Format(PackageDBMainFileURL, {GetNormalFileVersionAsString()}), DBDir() + PackageDBTempFile, false, UpdateErrorQuite);
     UserFile = new TPackageListFile(false);
     UserFile->LoadFromFile(DBDir() + PackageDBUserFile);
-    InitPackageFiles(MainFile, UserFile, true, false, true, UpdateErrorQuite);
+    InitPackageFiles(MainFile, UserFile, true, false, true, UpdateErrorQuite, true, false);
     delete UserFile;
     delete MainFile;
 }

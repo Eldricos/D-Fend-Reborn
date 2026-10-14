@@ -72,6 +72,7 @@ public slots:
     void FormDestroy(QObject* Sender);
     void ExePackagesListBoxClick(QObject* Sender);
     void ExePackagesButtonClick(QObject* Sender);
+    void InstallExePackage(const QString& FileName);
     void ExePackagesDelButtonClick(QObject* Sender);
     void LanguageButtonClick(QObject* Sender);
     void FormCreate(QObject* Sender);
