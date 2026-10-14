@@ -1,7 +1,9 @@
 // C++ port of WindowsProfileUnit.pas (implementation section).
 #include "WindowsProfileUnit.h"
 
+#include <QFileInfo>
 #include <QProcess>
+#include <QStandardPaths>
 
 #include "Process.h"
 #include "LanguageSetupUnit.h"
@@ -68,6 +70,36 @@ static bool MainFormIsMinimized()
     return result;
 }
 
+#ifndef Q_OS_WIN
+// D-Fend Reborn: Windows program files are started with the program set in
+// the options (default: Wine) if it is installed. Returns the program and its
+// arguments up to the file name; empty: start the file directly.
+static QStringList WindowsProgramsRunnerCommand(const QString& FileName)
+{
+    if (!PrgSetup->UseWindowsProgramsRunner()) return {};
+    const QString Ext = ExtUpperCase(ExtractFileExt(FileName));
+    const bool IsProgram = (Ext == ".EXE" || Ext == ".COM");
+    const bool IsOther = (Ext == ".BAT" || Ext == ".CMD" || Ext == ".MSI");
+    if (!IsProgram && !IsOther) return {};
+
+    QStringList Cmd = SplitCommandLine(Trim(PrgSetup->WindowsProgramsRunner()));
+    if (Cmd.isEmpty()) return {};
+    QString Program = Cmd[0];
+    if (QFileInfo(Program).isAbsolute()) {
+        if (!QFileInfo(Program).isExecutable()) return {};
+    } else {
+        Program = QStandardPaths::findExecutable(Program);
+        if (Program.isEmpty()) return {};
+    }
+    Cmd[0] = Program;
+    // batch files and installer packages are opened by Wine's "start"
+    // ("/wait": the process ends with the program, like for .exe files)
+    if (IsOther) Cmd << "start" << "/wait" << "/unix";
+    Cmd << FileName;
+    return Cmd;
+}
+#endif
+
 static THandle RunFile2(const QString& FileName, const QString& Parameters, bool asAdmin)
 {
     THandle result;
@@ -111,7 +143,14 @@ static THandle RunFile2(const QString& FileName, const QString& Parameters, bool
         return InvalidHandle;
     }
 #else
-    result = StartProcess(FileName, SplitCommandLine(Parameters), IncludeTrailingPathDelimiter(ExtractFilePath(FileName)));
+    const QString WorkDir = IncludeTrailingPathDelimiter(ExtractFilePath(FileName));
+    QStringList Runner = WindowsProgramsRunnerCommand(FileName);
+    if (!Runner.isEmpty()) {
+        const QString Program = Runner.takeFirst();
+        result = StartProcess(Program, Runner + SplitCommandLine(Parameters), WorkDir);
+    } else {
+        result = StartProcess(FileName, SplitCommandLine(Parameters), WorkDir);
+    }
     if (result == 0) {
         // ShellExecuteEx can also open documents
         if (!ShellOpen(FileName, Parameters, IncludeTrailingPathDelimiter(ExtractFilePath(FileName)))) {

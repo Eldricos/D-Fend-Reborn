@@ -1054,6 +1054,9 @@ constexpr int NR_SetupFormWindowsRestoreWhenWindowsGameCloses = 44203;
 constexpr int NR_SetupFormWindowsRestoreWhenWindowsGameClosesInfo = 44204;
 constexpr int NR_SetupFormWindowsAllowPackages = 44205;
 constexpr int NR_SetupFormWindowsAllowPackagesInfo = 44206;
+// D-Fend Reborn: Windows programs on Linux
+constexpr int NR_SetupFormWindowsWine = 44207;
+constexpr int NR_SetupFormWindowsWineInfo = 44208;
 constexpr int NR_SetupFormExternalPackers = 44301;
 constexpr int NR_SetupFormExternalPackersSelect = 44302;
 constexpr int NR_SetupFormExternalPackersFileName = 44303;
@@ -4195,6 +4198,10 @@ public:
     void SetSetupFormWindowsAllowPackages(const QString& Value) { SetString(NR_SetupFormWindowsAllowPackages, Value); }
     QString SetupFormWindowsAllowPackagesInfo() { return GetString(NR_SetupFormWindowsAllowPackagesInfo); }
     void SetSetupFormWindowsAllowPackagesInfo(const QString& Value) { SetString(NR_SetupFormWindowsAllowPackagesInfo, Value); }
+    QString SetupFormWindowsWine() { return GetString(NR_SetupFormWindowsWine); }
+    void SetSetupFormWindowsWine(const QString& Value) { SetString(NR_SetupFormWindowsWine, Value); }
+    QString SetupFormWindowsWineInfo() { return GetString(NR_SetupFormWindowsWineInfo); }
+    void SetSetupFormWindowsWineInfo(const QString& Value) { SetString(NR_SetupFormWindowsWineInfo, Value); }
     QString SetupFormExternalPackers() { return GetString(NR_SetupFormExternalPackers); }
     void SetSetupFormExternalPackers(const QString& Value) { SetString(NR_SetupFormExternalPackers, Value); }
     QString SetupFormExternalPackersSelect() { return GetString(NR_SetupFormExternalPackersSelect); }

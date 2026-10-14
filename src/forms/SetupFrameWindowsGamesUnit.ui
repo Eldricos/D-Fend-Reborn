@@ -36,11 +36,30 @@
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
       <property name="text"><string>Allow D-Fend Reborn to create archive files from Windows profiles and import Windows profile package files</string></property>
     </widget>
+    <widget class="QCheckBox" name="WineCheckBox">
+      <property name="geometry"><rect><x>16</x><y>280</y><width>633</width><height>17</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>Start Windows programs with this program (e.g. Wine):</string></property>
+    </widget>
+    <widget class="QLineEdit" name="WineEdit">
+      <property name="geometry"><rect><x>37</x><y>303</y><width>612</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QLabel" name="WineInfoLabel">
+      <property name="geometry"><rect><x>37</x><y>330</y><width>612</width><height>57</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+      <property name="text"><string>WineInfoLabel</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="wordWrap"><bool>true</bool></property>
+      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    </widget>
   </widget>
   <tabstops>
     <tabstop>MinimizeDFendCheckBox</tabstop>
     <tabstop>RestoreWindowCheckBox</tabstop>
     <tabstop>AllowWindowsPackagesCheckBox</tabstop>
+    <tabstop>WineCheckBox</tabstop>
+    <tabstop>WineEdit</tabstop>
   </tabstops>
   <resources><include location="../../resources/dfend.qrc"/></resources>
   <connections/>
