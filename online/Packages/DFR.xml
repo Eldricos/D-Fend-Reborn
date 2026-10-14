@@ -2,8 +2,8 @@
 
 <!-- Main package list of D-Fend Reborn (the package manager downloads it from
      the repository, see PackageDBMainFileURL in src/core/PrgConsts.h) -->
-<DFRPackagesList LastUpdateDate="10/14/2026">
+<DFRPackagesList LastUpdateDate="10/15/2026">
   <DFRPackagesFile URL="https://github.com/Eldricos/D-Fend-Reborn/releases/download/game-packages/GamePackages.xml" />
-  <DFRPackagesFile URL="https://raw.githubusercontent.com/Eldricos/D-Fend-Reborn/main/tools/PackageServer/DFRAddons.xml" />
-  <DFRPackagesFile URL="https://raw.githubusercontent.com/Eldricos/D-Fend-Reborn/main/tools/PackageServer/DFRAutoSetupTemplates.xml" />
+  <DFRPackagesFile URL="https://raw.githubusercontent.com/Eldricos/D-Fend-Reborn/main/online/Packages/DFRAddons.xml" />
+  <DFRPackagesFile URL="https://raw.githubusercontent.com/Eldricos/D-Fend-Reborn/main/online/Packages/DFRAutoSetupTemplates.xml" />
 </DFRPackagesList>

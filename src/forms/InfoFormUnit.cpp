@@ -74,6 +74,7 @@ TInfoForm::TInfoForm(QWidget *AOwner) : TVclForm(AOwner)
     ui.LanguageAuthorsTab->viewport()->setMouseTracking(true);
     ui.LanguageAuthorsTab->viewport()->installEventFilter(this);
     ui.Label1->installEventFilter(this);
+    ui.HomepageLabel->setText(DFRebornHomepage);   // (the original showed its sourceforge homepage)
     ui.HomepageLabel->installEventFilter(this);
     ui.HomepageLabel->setCursor(Qt::PointingHandCursor);
 

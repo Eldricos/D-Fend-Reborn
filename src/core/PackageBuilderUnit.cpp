@@ -269,5 +269,5 @@ QDomDocument* AddPackageDataHeader(QWidget* ParentForm, const QString& Descripti
 
 TStringList* AddPackageDataFooter(QDomDocument* Doc)
 {
-    return SaveXMLDoc(*Doc, {"<!DOCTYPE DFRPackagesFile SYSTEM \"" + DFRHomepage + "Packages/DFRPackagesFile.dtd\">"}, false);
+    return SaveXMLDoc(*Doc, {"<!DOCTYPE DFRPackagesFile SYSTEM \"" + DFRebornOnlineURL + "Packages/DFRPackagesFile.dtd\">"}, false);
 }

@@ -59,17 +59,14 @@ inline const QString BinFolder = QStringLiteral("Bin");
 inline const QString SettingsFolder = QStringLiteral("Settings");
 inline const QString IconSetsFolder = QStringLiteral("IconSets");
 inline const QString NSIInstallerHelpFile = QStringLiteral("D-Fend Reborn DataInstaller.nsi");
-// Homepage of the original D-Fend Reloaded: still hosts the online services
-// used by the program (package lists, data reader configuration, cheats
-// database, document type definitions)
-inline const QString DFRHomepage = QStringLiteral("http:/") + QStringLiteral("/dfendreloaded.sourceforge.net/");
 // D-Fend Reborn project page (homepage, releases / update check)
 inline const QString DFRebornHomepage = QStringLiteral("https://github.com/Eldricos/D-Fend-Reborn");
 inline const QString DFRebornLatestReleaseAPI = QStringLiteral("https://api.github.com/repos/Eldricos/D-Fend-Reborn/releases/latest");
-// Package lists of the package manager: the main list and the lists it names
-// are files of the repository (tools/PackageServer), the game packages are
-// the assets of the "game-packages" release
-inline const QString DFRebornPackageListsURL = QStringLiteral("https://raw.githubusercontent.com/Eldricos/D-Fend-Reborn/main/tools/PackageServer/");
+// Online services (package lists, data reader configuration, cheats database,
+// document type definitions): the files of the online/ folder of the
+// repository, in the folder layout of the original D-Fend Reloaded homepage.
+// (The game packages are the assets of the "game-packages" release.)
+inline const QString DFRebornOnlineURL = QStringLiteral("https://raw.githubusercontent.com/Eldricos/D-Fend-Reborn/main/online/");
 #ifdef Q_OS_WIN
 inline const QString OggEncPrgFile = QStringLiteral("oggenc2.exe");
 inline const QString LamePrgFile = QStringLiteral("lame.exe");
@@ -86,7 +83,7 @@ inline const QString QB45PrgFile = QStringLiteral("QB.exe");
 inline const QString QB71PrgFile = QStringLiteral("QBX.exe");
 inline const QString PackageDBSubFolder = PrgConstsSubPath("Settings\\Packages");
 inline const QString PackageDBCacheSubFolder = PrgConstsSubPath("Settings\\Packages\\Cache");
-inline const QString PackageDBMainFileURL = DFRebornPackageListsURL + QStringLiteral("DFR.xml?version=%s");
+inline const QString PackageDBMainFileURL = DFRebornOnlineURL + QStringLiteral("Packages/DFR.xml?version=%s");
 inline const QString PackageDBTempFile = QStringLiteral("DFRTemp.xml");
 inline const QString PackageDBMainFile = QStringLiteral("DFR.xml");
 inline const QString PackageDBUserFile = QStringLiteral("User.xml");
@@ -94,11 +91,11 @@ inline const QString PackageDBCacheFile = QStringLiteral("Cache.xml");
 inline const QString CacheVersionString = QStringLiteral("DFRCacheFile-FileVersion=005");
 inline const QString CacheInfoString = QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("This is just a cache file for the profiles in the current directory. You can") + QStringLiteral("\r") + QStringLiteral("ignore or delete this file. D-Fend Reborn will only load data from this file") + QStringLiteral("\r") + QStringLiteral("if the .prof file on disk has not changed. If you delete or change one of the") + QStringLiteral("\r") + QStringLiteral(".prof files manually the cache will not be used for this profile. So just") + QStringLiteral("\r") + QStringLiteral("ignore this file, you can still do what ever you want in this folder. This") + QStringLiteral("\r") + QStringLiteral("cache will never mess up your database.") + QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("You can turn off the creation of this cache files by setting \"BinaryCache=0\" in") + QStringLiteral("\r") + QStringLiteral("the [ProgramSets] section of the DFend.ini.") + QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("\r") + QStringLiteral("===Start of binary cache===") + QStringLiteral("\r");
 inline const QString CacheFile = QStringLiteral("Cache.dfr");
-inline const QString DataReaderUpdateURL = DFRHomepage + QStringLiteral("DataReader/DataReader.xml");
+inline const QString DataReaderUpdateURL = DFRebornOnlineURL + QStringLiteral("DataReader/DataReader.xml");
 inline const QString DataReaderConfigFile = QStringLiteral("DataReader.xml");
 inline const QString CheatDBFile = QStringLiteral("Cheats.xml");
 inline const QString CheatDBSearchSubFolder = PrgConstsSubPath("Settings\\AddressSearch");
-inline const QString CheatDBUpdateURL = DFRHomepage + QStringLiteral("Cheats/Cheats.xml");
+inline const QString CheatDBUpdateURL = DFRebornOnlineURL + QStringLiteral("Cheats/Cheats.xml");
 inline const QString DBGLPackageInfoFile = QStringLiteral("profiles.xml");
 constexpr double MinSupportedDOSBoxVersion = 0.73;
 constexpr int DefaultFreeHDSize = 250;

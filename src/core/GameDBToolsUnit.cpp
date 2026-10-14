@@ -2304,7 +2304,7 @@ static void ExportGamesListXMLFile(TGameDB *GameDB, const TGamesListExportColumn
     GetUserLists(GameDB, UserList, UserListUpper);
 
     St->Add("<?xml version=\"1.0\" encoding=\"" + LanguageSetup->CharsetHTMLCharset() + "\" standalone=\"no\"?>");
-    St->Add(QStringLiteral("<!DOCTYPE GamesList SYSTEM \"http:/") + "/dfendreloaded.sourceforge.net/GamesListExport/GamesListExport.dtd\">");
+    St->Add(QStringLiteral("<!DOCTYPE GamesList SYSTEM \"") + DFRebornOnlineURL + "GamesListExport/GamesListExport.dtd\">");
     St->Add("");
     DecodeDate(Date(), Year, Month, Day);
     St->Add("<GamesList DFRVersion=\"" + GetNormalFileVersionAsString() + "\" ExportDate=\"" + Format("%d-%.2d-%.2d", {Year, Month, Day}) + "\">");

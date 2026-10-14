@@ -25,7 +25,9 @@ package manager as .7z archives installed on all systems (DataPackageUnit),
 single game packages split from the original packages and published by the
 "Game packages" workflow (DFRPackageTool, tools/PackageTool/README.md); the
 main package list and the add-on / auto setup template lists are served from
-the repository (tools/PackageServer, DFRebornPackageListsURL).
+the repository (online/, DFRebornOnlineURL), as are the data reader configuration and the
+cheats database (the cheats update now installs newer databases; the original
+never did).
 
 Still open:
 - Platform gaps marked with `TODO(port)` in the sources (recursive folder watching in the quick start window,
