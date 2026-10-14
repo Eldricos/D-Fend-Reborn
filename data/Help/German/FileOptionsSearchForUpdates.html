@@ -16,39 +16,26 @@ Men&uuml;: &nbsp; <b>Datei</b> | <b>Programeinstellungen</b>  | <b>Nach Updates 
 <h1>Programmeinstellungen-Dialogseite "Nach Updates suchen"</h1>
 
 <p>
-Auf dieser Dialogseite k&ouml;nnen Sie einstellen ob und wie oft D-Fend Reloaded nach Updates suchen soll.
+Auf dieser Dialogseite k&ouml;nnen Sie einstellen ob und wie oft D-Fend Reborn nach Updates suchen soll.
 </p>
 
 <h2>Programm-Updates</h2>
 
 <p>
-Die Update&uuml;berpr&uuml;fung &uuml;bertr&auml;gt <b>keine</b> pers&ouml;nlichen
-Daten ins Internet. Bei der Update&uuml;berpr&uuml;fung wird lediglich der Inhalt
-einer auf der D-Fend Reloaded Homepage angebotenen Textdatei heruntergeladen und
-ausgewertet. Wenn die Versionsnummer, die in dieser Textdatei angegeben ist,
-gr&ouml;&szlig;er als die Versionsnummer der aktuellen Installation ist, bietet
-die Updatepr&uuml;fung an, den in der zweiten Zeile der Textdatei angegebenen
-Updateinstaller herunter zu laden und auszuf&uuml;hren.
-<br />(Vorgabewert f&uuml;r diese Option: "Nur manuell auf Updates prüfen")
+Die Update-&Uuml;berpr&uuml;fung fragt bei GitHub die neueste Version von D-Fend Reborn ab und
+bietet an, deren Download-Seite zu &ouml;ffnen, wenn es eine neuere Version gibt (siehe Details unten).
+<br />(Vorgabewert f&uuml;r diese Option: "Nur manuell")
 </p>
 
 <h3>Kennung der aktuellen Version in die Abfrage-URL integrieren</h3>
 <p>
-Wenn diese Option aktiviert ist, f&uuml;gt die Updatepr&uuml;fung die Nummer der
-aktuell verwendeten D-Fend Reloaded Version an die Abfrage-URL f&uuml;r die
-Update-Informationsdarei an. Dadurch wird des den Skripten auf der D-Fend Reloaded
-Homepage erm&ouml;glicht, je nach verwendeter Version verschiedene Update-Dateien
-(die dann ggf. kleiner ausfallen k&ouml;nnen) anzubieten. (Siehe dazu auch der
-Abschnitt &uuml;ber die Arbeitsweise der Updatefunktion weiter unten). Momentan
-wird diese Funktion jedoch nicht durch die D-Fend Reloaded Homepage ausgewertet,
-d.h. unabh&auml;ngig von dieser Einstellung f&uuml;r stets die selbe
-Update-Datei angeboten.
-<br />(Vorgabewert f&uuml;r diese Option: an)
+Diese Option wurde von der Update-&Uuml;berpr&uuml;fung von D-Fend Reborn verwendet; die
+Update-&Uuml;berpr&uuml;fung von D-Fend Reborn (GitHub) verwendet sie nicht.
 </p>
 
 <h2>Paketlisten aktualisieren</h2>
 <p>
-In diesem Feld kann gewählt werden, ob und wann D-Fend Reloaded die Listen der im
+In diesem Feld kann gewählt werden, ob und wann D-Fend Reborn die Listen der im
 <a href="FileImportPackage.html">Paketmanager</a> angeboten Pakete aktualisieren soll.
 Die Listen können auch jeder Zeit über die Funktion "Paketlisten aktualisieren" im
 Paketmanager manuell aktualisiert werden.
@@ -57,7 +44,7 @@ Paketmanager manuell aktualisiert werden.
 
 <h2>Cheats-Datenbank</h2>
 <p>
-In diesem Feld können Sie auswählen, ob D-Fend Reloaded automatisch nach Updates
+In diesem Feld können Sie auswählen, ob D-Fend Reborn automatisch nach Updates
 für die Cheats-Datenbank suchen soll.
 <br />(Vorgabewert f&uuml;r diese Option: "Nur manuell")
 </p>
@@ -65,9 +52,9 @@ für die Cheats-Datenbank suchen soll.
 <h2>Mobygames-Downloader Konfigurationsupdate</h2>
 <p>
 In diesem Feld kann gewählt werden, wann die Funktion zum Auslesen von Spieleinformationen von
-der Mobygames-Homepage die Konfiguration neu von der D-Fend Reloaded Homepage lesen soll.
+der Mobygames-Homepage die Konfiguration neu von der D-Fend Reborn Homepage lesen soll.
 Um auf Änderungen an der Mobygames-Homepage reagieren zu können, ist es notwendig, dass die
-Ausleseroutinen konfigurierbar sind. Auf der D-Fend Reloaded Homepage befindet sich eine
+Ausleseroutinen konfigurierbar sind. Auf der D-Fend Reborn Homepage befindet sich eine
 Datei, die der Auslesefunktion mitteilt, wie die Mobygames-Suchanfrage-Antwortseiten
 auszuwerten sind um an die Spieleinformationen zu gelangen.
 <br />(Vorgabewert f&uuml;r diese Option: "Täglich bei der ersten Benutzung")
@@ -81,21 +68,32 @@ im "Hilfe"-Men&uuml; erreichbar ist.
 
 <h3>Dateils zur Funktionsweise der Programmupdate-&Uuml;berpr&uuml;fung</h3>
 <p>
-Der Programmupdate-Checker l&auml;d folgende Datei von der D-Fend Reloaded Hompage auf Sourceforge herunter:
-"<a href="http://dfendreloaded.sourceforge.net/UpdateInfo.txt" target="_blank">http://dfendreloaded.sourceforge.net/UpdateInfo.txt</a>".
-Die Datei enth&auml;lt zwei Textzeilen; in der ersten Zeile steht die Versionsnummer der aktuellen D-Fend Reloaded Version 
- und in der zweiten Zeile die Download-Adresse f&uuml;r den Updateinstaller, der eine existierende
-D-Fend Reloaded Installation auf diese Version aktualisiert.
-Wenn die Versionsnummer in der <tt>UpdateInfo.txt</tt>-Datei gr&ouml;&szlig;er ist, als die Versionsnummer der momentan
-verwendeten D-Fend Reloaded Installation, wird Sie der Update-Checker fragen, ob Sie jetzt auf diese Version aktualisiern
-wollen.
+Die Update-&Uuml;berpr&uuml;fung fragt bei GitHub die neueste Version von D-Fend Reborn ab
+(<a href="https://github.com/Eldricos/D-Fend-Reborn/releases" target="_blank">https://github.com/Eldricos/D-Fend-Reborn/releases</a>).
+Wenn die Versionsnummer dieser Version gr&ouml;&szlig;er ist als die Versionsnummer der
+installierten D-Fend Reborn Version, fragt die Update-&Uuml;berpr&uuml;fung, ob Sie die neue
+Version herunterladen m&ouml;chten, und &ouml;ffnet die Download-Seite der Version in Ihrem
+Webbrowser. Die Update-&Uuml;berpr&uuml;fung selbst l&auml;dt keine Programme herunter und startet
+auch keine Programme.
 </p>
 
 <p>
-Die Update-Pr&uuml;fung verwendet die Windows-Verbindungseinstellung (die Sie
-&uuml;ber die Programmeinstellungen des Internet Explorers anpassen k&ouml;nnen).
-Dies bedeutet insbesondere, dass D-Fend Reloaded den m&ouml;glicherweise im
-Internet Explorer konfigurierten Proxy-Server verwenden wird.
+Die Update-&Uuml;berpr&uuml;fung &uuml;bertr&auml;gt <b>keine</b> pers&ouml;nlichen Daten ins Internet;
+sie liest lediglich die Informationen &uuml;ber die neueste Version (Versionsnummer und
+Adresse der Download-Seite) von GitHub.
+</p>
+
+<p>
+Der Update-Checker stellt also lediglich eine Automatisierung dessen dar, was Sie
+manuell unternehmen w&uuml;rden, wenn Sie auf der Homepage nach Updates suchen.
+Die Update-&Uuml;berpr&uuml;fung kann automatisch beim Programmstart von
+D-Fend Reborn durchgef&uuml;hrt werden. Da Programme, die ungefragt Internetverbindungen
+aufbauen, h&auml;ufig jedoch nicht gern gesehen werden, ist diese Option im
+Auslieferungszustand deaktiviert. (Sie k&ouml;nnen sie auf der
+<a href="FileOptionsSearchForUpdates.html">Nach Updates suchen</a>-Seite des
+<a href="FileOptions.html">Programmeinstellungen</a>-Dialogs aktivieren. Au&szlig;erdem
+k&ouml;nnen Sie die Update-&Uuml;berpr&uuml;fung jederzeit &uuml;ber den Men&uuml;punkt "Nach Updates suchen..."
+im Men&uuml; "Hilfe" starten.)
 </p>
 
 <p>&nbsp;</p>
