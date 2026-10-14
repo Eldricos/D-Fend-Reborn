@@ -91,10 +91,11 @@ public:
     // Delphi TColor ($00BBGGRR or a system colour) access
     int selectedTColor() const;
     void setSelectedTColor(int C);
-    // TColorBox.Style cbPrettyNames: the original program used it for German
-    // only (the German Delphi version shows German colour names); without it
-    // the colours are shown with their Delphi names ("clBlack", "clWindow").
-    void setPrettyNames(bool German);
+    // TColorBox.Style cbPrettyNames: the original program used it for the
+    // German language file only. With it the colours are shown with the
+    // "pretty" VCL names ("Black", "Money Green", "Window Text"), without it
+    // with their Delphi names ("clBlack", "clMoneyGreen", "clWindowText").
+    void setPrettyNames(bool Pretty);
 private:
     bool FPrettyNames = false;
     void addColor(int C);

@@ -8,6 +8,9 @@
 
 #include <QFile>
 #include <QStringDecoder>
+#ifdef Q_OS_WIN
+#include "WinApi.h"
+#endif
 
 TLanguageSetup* LanguageSetup = nullptr;
 QString LanguageSpecialLowerCase;
@@ -62,6 +65,22 @@ static QString CodecFromCharsetName(const QString &CharsetName)
     return QString();   // DEFAULT_CHARSET or unknown: keep the default decoding
 }
 
+#ifdef Q_OS_WIN
+// Windows code page of a codec name of CodecFromCharsetName / HTMLCharset
+static int WindowsCodePage(const QString& Codec)
+{
+    const QString C = Codec.toLower();
+    if (C.startsWith("windows-")) return C.mid(8).toInt();
+    if (C == "gbk" || C == "gb2312") return 936;
+    if (C == "big5") return 950;
+    if (C == "euc-kr") return 949;
+    if (C == "shift_jis") return 932;
+    if (C == "tis-620") return 874;
+    if (C == "koi8-r") return 20866;
+    return 0;
+}
+#endif
+
 static void ApplyLanguageFileCharset(TLanguageSetup *L)
 {
     TMemIniFile *Ini = L->MemIni();
@@ -84,9 +103,26 @@ static void ApplyLanguageFileCharset(TLanguageSetup *L)
     QStringDecoder Dec(Codec.toLatin1().constData());
     if (!Dec.isValid() && Codec == "windows-874") Dec = QStringDecoder("TIS-620");
     if (!Dec.isValid() && Codec == "windows-949") Dec = QStringDecoder("EUC-KR");
-    if (!Dec.isValid()) return;
-    const QString Text = Dec.decode(Data);
-    if (Dec.hasError()) return;
+    QString Text;
+    if (Dec.isValid()) {
+        Text = Dec.decode(Data);
+        if (Dec.hasError()) return;
+    } else {
+#ifdef Q_OS_WIN
+        // Qt builds without ICU only know UTF-8/16/32, Latin-1 and the
+        // system code page: decode with Windows itself (the language would
+        // otherwise only display correctly on a Windows with that code page)
+        const int CP = WindowsCodePage(Codec);
+        if (CP == 0 || Data.isEmpty()) return;
+        const int Len = MultiByteToWideChar(CP, MB_ERR_INVALID_CHARS, Data.constData(), Data.size(), nullptr, 0);
+        if (Len <= 0) return;
+        std::wstring W(Len, L'\0');
+        MultiByteToWideChar(CP, MB_ERR_INVALID_CHARS, Data.constData(), Data.size(), W.data(), Len);
+        Text = QString::fromStdWString(W);
+#else
+        return;
+#endif
+    }
     if (Text == DecodeAnsi(Data)) return;   // same result as the default decoding
 
     TStringList St;
