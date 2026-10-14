@@ -755,6 +755,15 @@ void TDFendRebornMainForm::UpdateImageListIcons()
         int I = V.toInt();
         if (I >= 0 && I < ImageList->Count()) ui.CapturePageControl->setTabIcon(T, ImageList->Icon(I));
     }
+    // The nodes of the games tree hold copies of the icons, too (image index
+    // in Qt::UserRole+1, see SetNodeImage in GameDBToolsUnit). The tree is
+    // built in FormCreate, before the icon set is loaded in FormShow.
+    for (QTreeWidgetItemIterator It(ui.TreeView); *It; ++It) {
+        const QVariant V = (*It)->data(0, Qt::UserRole + 1);
+        if (!V.isValid()) continue;
+        const int I = V.toInt();
+        if (I >= 0 && I < ImageList->Count()) (*It)->setIcon(0, ImageList->Icon(I));
+    }
 }
 
 void TDFendRebornMainForm::ApplicationRestore()
