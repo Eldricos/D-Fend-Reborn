@@ -17,10 +17,19 @@ Menu: &nbsp; <b>File</b> | <b>Import</b> | <b>Download packages</b>
 
 <p>
 The packages manager offers you many data packages (games, icons for the games list, D-Fend Reborn langauge files,
-icon sets fo the D-Fend Reborn toolbars etc.) for download and direct install from the D-Fend Reborn homepage
+icon sets fo the D-Fend Reborn toolbars etc.) for download and direct install from the D-Fend Reborn GitHub repository
+(<a href="https://github.com/Eldricos/D-Fend-Reborn" target="_blank">https://github.com/Eldricos/D-Fend-Reborn</a>)
 and other sources. In the program window the available data packages are listed by types on different pages. The
 install button at the bottom of the window allows you to download and automatically install the selected packages
 with a single click.
+</p>
+
+<p>
+Data packages in archive files (<tt>7z</tt>, <tt>zip</tt>) are extracted to the data folder by D-Fend Reborn
+itself. Data packages in the form of NSIS <tt>exe</tt> installers are run on Windows; on Linux they are
+extracted with the 7-Zip program (which has to be installed, see <a href="FileImportZip.html">Import archive file</a>).
+All downloads use the proxy settings of the system (Windows: Internet options; Linux: the environment
+variables <tt>http_proxy</tt>, <tt>https_proxy</tt> and <tt>no_proxy</tt>).
 </p>
 
 <h2>Update lists</h2>
@@ -36,10 +45,11 @@ the server indicates the lists have not been changed.
 
 <p>
 By clicking the "Repositories lists" button you can add additionally download sources besides the official
-D-Fend Reborn homepage as sources for data packages. If you have created data packages and a corresponding
+D-Fend Reborn package lists as sources for data packages. If you have created data packages and a corresponding
 list file via the <a href="FileExportPackageList.html">Create package list file</a> function and archived all
-of them on a CD, you can add the path to the list file on the CD here. (D-Fend Reborn will look on all installed
-CD drives for the data packages regardless of the selected drive letter.) You can also add Internet sources hier.
+of them on a CD, you can add the path to the list file on the CD here. (On Windows D-Fend Reborn will look on all installed
+CD drives for the data packages regardless of the selected drive letter. On Linux there are no drive
+letters; the path is used as entered, so enter the path below the mount point of the disc.) You can also add Internet sources hier.
 Please note the added a non trusted source might bring you besided legal problems security problems. Downloading
 data packages, containing program code, from a not trusted source can damage your system!
 </p>

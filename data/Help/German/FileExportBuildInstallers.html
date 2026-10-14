@@ -29,8 +29,11 @@ Installations-Ersteller System
 D-Fend Reborn selbst erstellt lediglich eine <tt>nsi</tt>-Skriptdatei, aus der
 dann NSIS die eigentliche <tt>exe</tt>-Datei erstellt. Dies bedeutet, dass Sie NSIS auf Ihrem
 System installiert haben m&uuml;ssen, um diese Funktion nutzen zu k&ouml;nnen. (Die NSIS-Installation
-muss in D-Fend Reborn nicht explizit eingetragen werden, da D-Fend Reborn den NSIS-Installationspfad
-aus der Registry auslesen kann.)
+muss in D-Fend Reborn nicht explizit eingetragen werden: Unter Windows liest D-Fend Reborn den
+NSIS-Installationspfad aus der Registry aus; unter Linux wird der NSIS-Compiler <tt>makensis</tt> im
+Programm-Suchpfad gesucht - installieren Sie dazu das Paket <tt>nsis</tt> &uuml;ber die Paketverwaltung.)
+Die erstellten Installer sind Windows-Programme; zum Austausch von Spielen mit einem Linux-System
+eignen sich <a href="FileExportZip.html">Archivdateien</a> besser.
 </p>
 
 <h3>Vollst&auml;ndige Spiele</h3>

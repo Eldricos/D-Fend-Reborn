@@ -17,10 +17,20 @@ Men&uuml;: &nbsp; <b>Datei</b> | <b>Import</b> | <b>Datenpakete herunterladen</b
 
 <p>
 Der Paketmanager ermöglicht es Ihnen, Datenpakete (Spiele, Icons für die Spieleliste, D-Fend Reborn Sprachdateien,
-Iconsets für die D-Fend Reborn Symbolleisten usw.) direkt von der D-Fend Reborn Homepage oder von anderen Quellen
+Iconsets für die D-Fend Reborn Symbolleisten usw.) direkt aus dem D-Fend Reborn GitHub-Repository
+(<a href="https://github.com/Eldricos/D-Fend-Reborn" target="_blank">https://github.com/Eldricos/D-Fend-Reborn</a>) oder von anderen Quellen
 herunter zu laden und zu installieren. In dem Programmfenster werden die verfügbaren Datendateien nach Typen sortiert
 angezeigt. Über die Installations-Schaltfläche am unteren Rand des Fensters können die ausgewählten Dateien aus dem
 Netz heruntergeladen und automatisch installiert werden.
+</p>
+
+<p>
+Datenpakete in Form von Archivdateien (<tt>7z</tt>, <tt>zip</tt>) entpackt D-Fend Reborn selbst in das
+Datenverzeichnis. Datenpakete in Form von NSIS-<tt>exe</tt>-Installern werden unter Windows ausgef&uuml;hrt;
+unter Linux werden sie mit dem 7-Zip-Programm entpackt (das installiert sein muss, siehe
+<a href="FileImportZip.html">Archivdatei importieren</a>). Alle Downloads verwenden die Proxy-Einstellungen
+des Systems (Windows: Internetoptionen; Linux: die Umgebungsvariablen <tt>http_proxy</tt>, <tt>https_proxy</tt>
+und <tt>no_proxy</tt>).
 </p>
 
 <h2>Listen aktualisieren</h2>
@@ -39,8 +49,10 @@ In dem über die Schaltfläche "Quellen" erreichbaren Quelleneditor können Sie neb
 Paketeliste weiter Quellen für Datenpakete hinzufügen. Wenn Sie z.B. über die Funktion
 <a href="FileExportPackageList.html">Datenpakete-Listendatei erstellen</a> eine eigene Sammlung von Spielepaketen
 erstellt haben und die Listendatei zusammen mit den Datenpaketen auf einer CD archiviert haben, so können Sie hier
-den Pfad zu dieser Listendatei angeben. (D-Fend Reborn sucht unabhängig vom angegebenen Luafwerksbuchstaben
-bei der Installation automatisch in allen verfügbaren CD-Laufwerken nach der angegebenen Datei.) Sie können hier
+den Pfad zu dieser Listendatei angeben. (Unter Windows sucht D-Fend Reborn unabh&auml;ngig vom angegebenen Laufwerksbuchstaben
+bei der Installation automatisch in allen verf&uuml;gbaren CD-Laufwerken nach der angegebenen Datei.
+Unter Linux gibt es keine Laufwerksbuchstaben; der Pfad wird so verwendet, wie er angegeben ist, d.h. geben
+Sie den Pfad unterhalb des Einh&auml;ngepunkts des Datentr&auml;gers an.) Sie können hier
 auch Quellen im Internet angeben; beachten Sie dabei aber, dass dies neben rechtlichen vor allem auch Sicherheitsprobleme
 mit sich bringt. Wenn Sie Datenpakete, die Programmcode enthalten, aus dem Netz aus einer nicht vertrauenswürdigen
 Quelle herunterladen, gefährden Sie damit Ihr System!
