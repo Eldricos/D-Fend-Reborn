@@ -2,6 +2,8 @@ How to build the D-Fend Reborn installers (Windows)
 ====================================================
 
 Requirements: Qt 6 for MSVC (with Qt Multimedia), CMake, NSIS 3 and 7-Zip.
+(The scripts have no parentheses in their names on purpose: names like
+"Build(x64).bat" break the "if (...)" blocks of batch files.)
 
 1. Build D-Fend Reborn as a release build (Qt Creator: build configuration
    "Release", or: cmake -S .. -B ..\build-release -DCMAKE_BUILD_TYPE=Release
@@ -13,17 +15,19 @@ Requirements: Qt 6 for MSVC (with Qt Multimedia), CMake, NSIS 3 and 7-Zip.
    ..\tools\PortableApps package\D-Fend Reborn Portable\App\AppInfo\appinfo.ini and
    ..\tools\PortableApps package\D-Fend Reborn Portable\Other\Installer Source\PortableApps.comInstallerConfig.nsh.
 
-4. Run BuildInstallers(x64).bat or BuildInstallers(x86).bat (depending on the
-   Windows version, for the NSIS folder) with the build folder as parameter,
-   e.g.  BuildInstallers(x64).bat "..\build-release"
-   This creates the program folder (Stage: "cmake --install", which also copies
-   the Qt libraries with windeployqt) and from it
-   D-Fend-Reborn-<version>-Setup.exe and D-Fend-Reborn-<version>-UpdateSetup.exe.
+4. Run BuildInstallers.bat. Either copy this Install folder into the build
+   folder and double-click BuildInstallers.bat there, or give the build folder
+   as parameter, e.g.  BuildInstallers.bat "..\build-release"
+   The script finds CMake (the one that configured the build folder, e.g. the
+   CMake of Qt Creator) and NSIS itself. It creates the program folder (Stage:
+   "cmake --install", which also copies the Qt libraries with windeployqt)
+   and from it D-Fend-Reborn-<version>-Setup.exe and
+   D-Fend-Reborn-<version>-UpdateSetup.exe.
 
 5. Use D-Fend-Reborn-<version>-Setup.exe to create a portable installation in its
    default folder (Desktop\D-Fend Reborn). (Do not run the installation!)
-6. Run BuildZips(x86).bat or BuildZips(x64).bat: zip packages (full and mini)
-   and the PortableApps.com package.
+6. Run BuildZips.bat: zip packages (full and mini) and the PortableApps.com
+   package.
 
 7. Rename the new files in this folder to have the right version information in
    their names.

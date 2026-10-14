@@ -3,3 +3,7 @@
 # files, so git must not change their line endings.
 online/Packages/**/*.prof -text
 online/Packages/**/*.ini -text
+
+# Batch files need CRLF line endings (with LF, cmd.exe can miss "goto" labels)
+*.bat text eol=crlf
+*.cmd text eol=crlf
