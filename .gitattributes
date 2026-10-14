@@ -3,3 +3,8 @@
 # files, so git must not change their line endings.
 online/Packages/**/*.prof -text
 online/Packages/**/*.ini -text
+
+# Batch files are stored with CRLF line endings (with LF, cmd.exe can miss
+# "goto" labels), also for raw downloads from GitHub
+*.bat -text
+*.cmd -text
