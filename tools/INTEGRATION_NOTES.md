@@ -21,9 +21,9 @@ OpenForBackup/OpenForRestore), inserted but unmounted discs/floppies are
 mounted via udisks2 (Filesystem.Mount)), HTML help (data/Help) on all
 systems with context id -> page mapping (HelpTools.cpp), GitHub Actions build
 checks (Linux + Windows), resample filters for image scaling (ImageStretch.cpp), data packages of the
-package manager as .7z archives installed on all systems (DataPackageUnit;
-conversion: tools/PackageServer/ConvertExePackages.py and the "Data packages"
-workflow).
+package manager as .7z archives installed on all systems (DataPackageUnit),
+single game packages split from the original packages and published by the
+"Game packages" workflow (DFRPackageTool, tools/PackageTool/README.md).
 
 Still open:
 - Platform gaps marked with `TODO(port)` in the sources (recursive folder watching in the quick start window,

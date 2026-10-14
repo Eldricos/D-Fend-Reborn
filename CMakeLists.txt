@@ -19,22 +19,38 @@ if(WIN32)
     set(APP_ICON_RC ${CMAKE_SOURCE_DIR}/resources/dfend.rc)
 endif()
 
-qt_add_executable(DFendReborn WIN32 MACOSX_BUNDLE
-    src/main.cpp
+# All program code is compiled once into an object library, which is used by
+# the program (DFend) and the package tool (DFRPackageTool).
+qt_add_library(DFendCore OBJECT
     ${COMPAT_SOURCES}
     ${CORE_SOURCES}
     ${FORM_SOURCES}
     resources/dfend.qrc
-    ${APP_ICON_RC}
 )
 
-target_include_directories(DFendReborn PRIVATE src src/compat src/core src/forms)
+# (the generated ui_*.h files are included by the form headers, so they are
+# part of the interface of the library)
+set(DFENDCORE_AUTOGEN ${CMAKE_CURRENT_BINARY_DIR}/DFendCore_autogen)
+set_target_properties(DFendCore PROPERTIES AUTOGEN_BUILD_DIR ${DFENDCORE_AUTOGEN})
+target_include_directories(DFendCore PUBLIC src src/compat src/core src/forms
+    ${DFENDCORE_AUTOGEN}/include ${DFENDCORE_AUTOGEN}/include_$<CONFIG>)
 
-target_link_libraries(DFendReborn PRIVATE
+target_link_libraries(DFendCore PUBLIC
     Qt6::Widgets Qt6::Network Qt6::Xml Qt6::Multimedia Qt6::MultimediaWidgets)
 
-target_precompile_headers(DFendReborn PRIVATE
+target_precompile_headers(DFendCore PRIVATE
     <QtWidgets> <QtXml> <QtNetwork> <functional>)
+
+qt_add_executable(DFendReborn WIN32 MACOSX_BUNDLE
+    src/main.cpp
+    ${APP_ICON_RC}
+)
+target_link_libraries(DFendReborn PRIVATE DFendCore)
+
+# Command line tool for building the game packages of the package manager
+# (tools/PackageTool/README.md)
+qt_add_executable(DFRPackageTool tools/PackageTool/main.cpp)
+target_link_libraries(DFRPackageTool PRIVATE DFendCore)
 
 # Linux/BSD desktops: D-Bus is used to inhibit the screensaver while games
 # run and to set the KDE Plasma wallpaper (optional - without Qt D-Bus these
@@ -42,18 +58,18 @@ target_precompile_headers(DFendReborn PRIVATE
 if(UNIX AND NOT APPLE)
     find_package(Qt6 QUIET COMPONENTS DBus)
     if(Qt6DBus_FOUND)
-        target_link_libraries(DFendReborn PRIVATE Qt6::DBus)
-        target_compile_definitions(DFendReborn PRIVATE DFR_HAVE_DBUS)
+        target_link_libraries(DFendCore PUBLIC Qt6::DBus)
+        target_compile_definitions(DFendCore PUBLIC DFR_HAVE_DBUS)
     endif()
 endif()
 
 if(WIN32)
-    target_link_libraries(DFendReborn PRIVATE shell32 ole32 oleaut32 user32 advapi32 winmm uuid)
-    target_compile_definitions(DFendReborn PRIVATE UNICODE _UNICODE NOMINMAX WIN32_LEAN_AND_MEAN)
+    target_link_libraries(DFendCore PUBLIC shell32 ole32 oleaut32 user32 advapi32 winmm uuid)
+    target_compile_definitions(DFendCore PUBLIC UNICODE _UNICODE NOMINMAX WIN32_LEAN_AND_MEAN)
 endif()
 
 if(MSVC)
-    target_compile_options(DFendReborn PRIVATE /utf-8 /bigobj)
+    target_compile_options(DFendCore PUBLIC /utf-8 /bigobj)
 endif()
 
 set_target_properties(DFendReborn PROPERTIES OUTPUT_NAME "DFend")
