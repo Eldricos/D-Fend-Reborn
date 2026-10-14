@@ -66,6 +66,10 @@ inline const QString DFRHomepage = QStringLiteral("http:/") + QStringLiteral("/d
 // D-Fend Reborn project page (homepage, releases / update check)
 inline const QString DFRebornHomepage = QStringLiteral("https://github.com/Eldricos/D-Fend-Reborn");
 inline const QString DFRebornLatestReleaseAPI = QStringLiteral("https://api.github.com/repos/Eldricos/D-Fend-Reborn/releases/latest");
+// Package lists of the package manager: the main list and the lists it names
+// are files of the repository (tools/PackageServer), the game packages are
+// the assets of the "game-packages" release
+inline const QString DFRebornPackageListsURL = QStringLiteral("https://raw.githubusercontent.com/Eldricos/D-Fend-Reborn/main/tools/PackageServer/");
 #ifdef Q_OS_WIN
 inline const QString OggEncPrgFile = QStringLiteral("oggenc2.exe");
 inline const QString LamePrgFile = QStringLiteral("lame.exe");
@@ -82,7 +86,7 @@ inline const QString QB45PrgFile = QStringLiteral("QB.exe");
 inline const QString QB71PrgFile = QStringLiteral("QBX.exe");
 inline const QString PackageDBSubFolder = PrgConstsSubPath("Settings\\Packages");
 inline const QString PackageDBCacheSubFolder = PrgConstsSubPath("Settings\\Packages\\Cache");
-inline const QString PackageDBMainFileURL = DFRHomepage + QStringLiteral("Packages/DFR.xml?version=%s");
+inline const QString PackageDBMainFileURL = DFRebornPackageListsURL + QStringLiteral("DFR.xml?version=%s");
 inline const QString PackageDBTempFile = QStringLiteral("DFRTemp.xml");
 inline const QString PackageDBMainFile = QStringLiteral("DFR.xml");
 inline const QString PackageDBUserFile = QStringLiteral("User.xml");

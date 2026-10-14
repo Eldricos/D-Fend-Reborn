@@ -50,9 +50,15 @@ void TChecksumScanner::ReScan()
     FFileNames->Clear();
     FChecksums->Clear();
 
+    // The file names are stored upper case (as in the original); the real
+    // spelling is kept for opening the files on case sensitive file systems.
+    QStringList RealNames;
     I = FindFirst(FDirectory + FFileMask, faAnyFile, Rec);
     while (I == 0) {
-        if ((Rec.Attr & faDirectory) == 0) FFileNames->AddObject(ExtUpperCase(Rec.Name), static_cast<intptr_t>(FFileNames->Count()));
+        if ((Rec.Attr & faDirectory) == 0) {
+            FFileNames->AddObject(ExtUpperCase(Rec.Name), static_cast<intptr_t>(FFileNames->Count()));
+            RealNames << Rec.Name;
+        }
         I = FindNext(Rec);
     }
     FindClose(Rec);
@@ -63,18 +69,7 @@ void TChecksumScanner::ReScan()
         WaitForm = nullptr;
     for (I = 0; I < FFileNames->Count(); I++) {
         if (WaitForm != nullptr && (I % 10 == 0)) WaitForm->Step(I);
-        // The file names are stored upper case (see above); on case sensitive
-        // file systems the original spelling is needed to open the file.
-        QString FileName = FDirectory + (*FFileNames)[I];
-        if (!FileExists(FileName)) {
-            TSearchRec R;
-            int J = FindFirst(FDirectory + FFileMask, faAnyFile, R);
-            while (J == 0) {
-                if (ExtUpperCase(R.Name) == (*FFileNames)[I]) { FileName = FDirectory + R.Name; break; }
-                J = FindNext(R);
-            }
-            FindClose(R);
-        }
+        const QString FileName = FDirectory + RealNames[I];
         FChecksums->Add(GetFileChecksum(FileName));
     }
     if (WaitForm != nullptr) { delete WaitForm; WaitForm = nullptr; }
