@@ -63,6 +63,11 @@ data next to the program. With `USERDIRMODE` in `DFend.dat` the user data
 is stored in `%USERPROFILE%\D-Fend Reborn\` on Windows and in
 `~/.local/share/D-Fend Reborn/` on Linux.
 
+All downloads use the proxy settings of the system (Windows: Internet
+options; Linux: `http_proxy` / `https_proxy` / `no_proxy`). Certificates named
+by `SSL_CERT_FILE` (e.g. of a company proxy) are trusted in addition to the
+system certificates.
+
 The program update check asks GitHub for the latest release of this
 repository (Help > Search for updates) and offers to open its download page.
 
