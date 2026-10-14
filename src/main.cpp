@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
     App.setApplicationName("D-Fend Reborn");
     App.setApplicationDisplayName("D-Fend Reborn");
     App.setOrganizationName("D-Fend Reborn");
+    App.setApplicationVersion(DFR_VERSION);
     App.setWindowIcon(QIcon(":/icons/MainUnit_DFendRebornMainForm.ico"));
 
     // VCL default font: Tahoma 8pt (Font.Height=-11 at 96 dpi)

@@ -1,0 +1,257 @@
+# Release: builds the downloads of a new version and creates a draft
+# GitHub release with them when a version tag ("v1.5.0") is pushed.
+#
+#   Windows: D-Fend-Reborn-<version>-Setup.exe        (full installer)
+#            D-Fend-Reborn-<version>-UpdateSetup.exe  (update installer)
+#            D-Fend-Reborn-<version>-Windows-Portable.zip
+#   Linux:   D-Fend-Reborn-<version>-x86_64.AppImage  (runs without installing Qt)
+#            D-Fend-Reborn-<version>-Linux-x86_64.tar.gz (needs Qt 6.4+ of the distribution)
+#
+# The release is created as a draft: check it on the releases page and click
+# "Publish release". (The update check of the program only sees published
+# releases.) See Install/README_HOW_TO_BUILD.txt, "Releases".
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  version:
+    name: Check version numbers
+    runs-on: ubuntu-24.04
+    outputs:
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compare tag, CMakeLists.txt and VersionSettings.nsi
+        id: check
+        shell: bash
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          CMAKE=$(sed -n 's/^project(DFendReborn VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
+          NSIS=$(tr -d '\r' < Install/VersionSettings.nsi | awk '/!define VER_MAYOR/{a=$3} /!define VER_MINOR1/{b=$3} /!define VER_MINOR2/{c=$3} END{print a"."b"."c}')
+          echo "Tag: $TAG, CMakeLists.txt: $CMAKE, VersionSettings.nsi: $NSIS"
+          if [ "$TAG" != "$CMAKE" ] || [ "$TAG" != "$NSIS" ]; then
+            echo "::error::The version numbers do not match. Set the version $TAG in CMakeLists.txt (project ... VERSION) and Install/VersionSettings.nsi, then tag again."
+            exit 1
+          fi
+          echo "version=$TAG" >> "$GITHUB_OUTPUT"
+
+  windows:
+    name: Windows installers and portable zip
+    needs: version
+    runs-on: windows-2022
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          arch: win64_msvc2022_64
+          modules: qtmultimedia
+          cache: true
+
+      - name: Set up MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Build
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build
+
+      - name: Program folder
+        shell: bash
+        run: |
+          cmake --install build --prefix Install/Stage
+          test -f Install/Stage/DFend.exe
+          test -f Install/Stage/Qt6Core.dll
+
+      - name: Installers
+        shell: bash
+        run: |
+          MAKENSIS="/c/Program Files (x86)/NSIS/makensis.exe"
+          if [ ! -f "$MAKENSIS" ]; then choco install nsis -y --no-progress; fi
+          cd Install
+          "$MAKENSIS" D-Fend-Reborn-Setup.nsi
+          "$MAKENSIS" D-Fend-Reborn-UpdateSetup.nsi
+          mkdir -p ../dist
+          mv "D-Fend-Reborn-$VERSION-Setup.exe" "D-Fend-Reborn-$VERSION-UpdateSetup.exe" ../dist/
+
+      - name: Portable zip
+        shell: pwsh
+        run: |
+          # portable mode: all data in the program folder, relative paths
+          Copy-Item -Recurse Install/Stage "D-Fend Reborn"
+          Set-Content -Path "D-Fend Reborn/DFend.dat" -Value "PORTABLEMODE" -NoNewline
+          Compress-Archive -Path "D-Fend Reborn" -DestinationPath "dist/D-Fend-Reborn-$env:VERSION-Windows-Portable.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: dist/*
+          retention-days: 7
+
+  appimage:
+    name: Linux AppImage
+    needs: version
+    # the oldest supported runner: the AppImage runs on systems with the same
+    # or a newer glibc
+    runs-on: ubuntu-22.04
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            cmake ninja-build g++ libgl-dev libxkbcommon-x11-0 libxcb-cursor0 \
+            libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 \
+            libxcb-shape0 libxcb-xinerama0 libxcb-xkb1 libegl1
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          arch: linux_gcc_64
+          modules: qtmultimedia
+          cache: true
+
+      - name: Build
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build
+
+      - name: AppDir
+        run: |
+          # program and data files next to each other in usr/bin (the program
+          # looks for its files in the folder of the executable)
+          cmake --install build --prefix AppDir/usr/bin
+          # the AppImage is read-only: user data in ~/.local/share/D-Fend Reborn
+          printf 'USERDIRMODE\n' > AppDir/usr/bin/DFend.dat
+
+      - name: AppImage
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: 1
+          ARCH: x86_64
+        run: |
+          curl -sSLO https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          curl -sSLO https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          curl -sSLO https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x *.AppImage
+          export QMAKE="$QT_ROOT_DIR/bin/qmake"
+          export LD_LIBRARY_PATH="$QT_ROOT_DIR/lib:$LD_LIBRARY_PATH"
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir \
+            --executable AppDir/usr/bin/DFend \
+            --desktop-file packaging/linux/dfend-reborn.desktop \
+            --icon-file packaging/linux/dfend-reborn.png \
+            --plugin qt
+          mkdir -p dist
+          ./appimagetool-x86_64.AppImage AppDir "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage"
+
+      - name: Test start
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: 1
+        run: |
+          # start the AppImage on a virtual display with an empty home folder:
+          # it must still run after 20 seconds and have created its data folder
+          sudo apt-get install -y --no-install-recommends xvfb
+          cat > test-start.sh <<'EOF'
+          export HOME="$RUNNER_TEMP/home"; mkdir -p "$HOME"
+          "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage" &
+          P=$!; sleep 20
+          kill -0 $P || exit 1
+          kill $P
+          test -d "$HOME/.local/share/D-Fend Reborn/Settings"
+          EOF
+          xvfb-run -a sh test-start.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: appimage
+          path: dist/*
+          retention-days: 7
+
+  linux:
+    name: Linux tar.gz
+    needs: version
+    runs-on: ubuntu-24.04
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt and build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            cmake ninja-build g++ \
+            qt6-base-dev qt6-multimedia-dev libqt6dbus6 libgl-dev
+
+      - name: Build
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build
+
+      - name: Archive
+        run: |
+          # program folder mode: all data next to the program (extract it to
+          # a folder in your home directory)
+          cmake --install build --prefix "D-Fend Reborn"
+          cp packaging/linux/dfend-reborn.desktop packaging/linux/dfend-reborn.png "D-Fend Reborn/"
+          mkdir -p dist
+          tar czf "dist/D-Fend-Reborn-$VERSION-Linux-x86_64.tar.gz" "D-Fend Reborn"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux
+          path: dist/*
+          retention-days: 7
+
+  release:
+    name: Draft release
+    needs: [version, windows, appimage, linux]
+    runs-on: ubuntu-24.04
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Create or update the draft release
+        run: |
+          ls -la dist
+          cat > notes.md <<EOF
+          ## Downloads
+
+          **Windows** (64 bit, Windows 10/11)
+          - \`D-Fend-Reborn-$VERSION-Setup.exe\`: installer (new installation)
+          - \`D-Fend-Reborn-$VERSION-UpdateSetup.exe\`: update of an existing installation (keeps your data)
+          - \`D-Fend-Reborn-$VERSION-Windows-Portable.zip\`: portable version (extract and start \`DFend.exe\`)
+
+          **Linux** (x86_64)
+          - \`D-Fend-Reborn-$VERSION-x86_64.AppImage\`: make it executable and start it (data in \`~/.local/share/D-Fend Reborn\`)
+          - \`D-Fend-Reborn-$VERSION-Linux-x86_64.tar.gz\`: program folder, needs Qt 6.4 or newer from your distribution
+
+          On Linux install DOSBox (or DOSBox Staging) with your package manager; optional: 7-Zip (\`7z\`), \`mkfs.fat\`, \`oggenc\`, \`curl\`, ScummVM, Wine.
+          EOF
+          if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" dist/* --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" dist/* --draft --verify-tag \
+              --title "D-Fend Reborn $VERSION" --notes-file notes.md --generate-notes
+          fi

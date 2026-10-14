@@ -36,3 +36,40 @@ The installers are Unicode installers. The language files (Languages\*.nsi) are
 UTF-8 files; Languages\ioFile*.ini (the custom installer pages) are UTF-16 files.
 The installers also compile with makensis on Linux (use a UTF-8 locale, e.g.
 LC_ALL=C.UTF-8, and makensis -DSTAGE=<program folder>).
+
+
+Releases (GitHub)
+=================
+
+The "Release" workflow (.github/workflows/release.yml) builds all downloads
+of a version on GitHub and creates a draft release with them:
+
+  D-Fend-Reborn-<version>-Setup.exe             Windows installer
+  D-Fend-Reborn-<version>-UpdateSetup.exe       Windows update installer
+  D-Fend-Reborn-<version>-Windows-Portable.zip  Windows portable version
+  D-Fend-Reborn-<version>-x86_64.AppImage       Linux (Qt included)
+  D-Fend-Reborn-<version>-Linux-x86_64.tar.gz   Linux (needs Qt 6.4+ of the distribution)
+
+1. Set the new version in ..\CMakeLists.txt (project(DFendReborn VERSION x.y.z))
+   and in VersionSettings.nsi (VER_MAYOR, VER_MINOR1, VER_MINOR2). The program
+   takes its version from CMakeLists.txt.
+2. Merge the changes into main.
+3. Create the tag "vx.y.z" on the merged main branch and push it:
+     git checkout main
+     git pull
+     git tag v1.5.0
+     git push origin v1.5.0
+   (GitHub Desktop: History > right-click the merge commit > Create Tag...,
+   then Push origin.) Do not create a release for the tag by hand - the
+   workflow creates it.
+4. The workflow checks that the tag and both version numbers are the same
+   (it stops with an error otherwise), builds everything and creates the
+   draft release "D-Fend Reborn x.y.z" (about 15-20 minutes; see the
+   Actions tab).
+5. Check the draft on the Releases page (files, release notes) and click
+   "Publish release". Only published releases are found by the update check
+   of the program.
+
+To redo a release: delete the draft release and the tag on GitHub, fix the
+problem and push the tag again. The PortableApps.com package is not built
+by the workflow (steps 5 and 6 above).

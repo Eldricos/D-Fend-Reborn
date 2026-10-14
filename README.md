@@ -90,7 +90,10 @@ cheats database (`Cheats`) and the document type definitions of the XML
 files.
 
 Every push and pull request is built on Linux and Windows by GitHub Actions
-(`.github/workflows/build.yml`).
+(`.github/workflows/build.yml`). Pushing a version tag (`v1.5.0`) starts the
+"Release" workflow (`.github/workflows/release.yml`): it builds the Windows
+installers, a portable Windows zip, a Linux AppImage and a Linux tar.gz and
+creates a draft GitHub release with them (see `Install/README_HOW_TO_BUILD.txt`).
 
 `Install` holds the NSIS scripts of the Windows installers (full and update
 installer); they package the program folder that `cmake --install` creates
