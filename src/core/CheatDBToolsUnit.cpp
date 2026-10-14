@@ -325,10 +325,11 @@ TUpdateResult CheatsDBUpdateCheck(QWidget* AForm, bool Quite)
 
         TempDB = new TCheatDB;
         if (TempDB->LoadFromXML(TempDBFile)) {
-            // Literal translation of "if not TempDB.Version>CheatDB.Version":
-            // in Delphi "not" binds stronger than ">", so this is a bitwise not
-            // of the version number.
-            if ((~TempDB->Version()) > CheatDB->Version()) {
+            // Port note: the original read "if not TempDB.Version>CheatDB.Version";
+            // in Delphi "not" binds stronger than ">" (a bitwise not of the
+            // version number), so a newer database was never installed. The
+            // update is installed when the downloaded database is newer.
+            if (TempDB->Version() > CheatDB->Version()) {
                 UpdateCheatsDB(CheatDB, TempDB);
                 SmartSaveCheatsDB(CheatDB, AForm);
                 result = urUpdateInstalled;

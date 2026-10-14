@@ -55,8 +55,8 @@ jobs:
       - name: Import the original packages
         if: inputs.import_original
         run: |
-          mapfile -t PACKAGES < <(python3 tools/PackageServer/FetchOriginalPackages.py \
-            tools/PackageServer/DFRFreewareShareware.xml original)
+          mapfile -t PACKAGES < <(python3 online/Packages/FetchOriginalPackages.py \
+            online/Packages/DFRFreewareShareware.xml original)
           build/DFRPackageTool split --out new "${PACKAGES[@]}"
           gh release upload "$TAG" new/*.zip --clobber
 

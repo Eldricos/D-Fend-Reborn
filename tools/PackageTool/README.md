@@ -8,7 +8,7 @@ installed. More games can be added to a list at any time.
 D-Fend Reborn's game packages are the assets of the `game-packages` release
 of this repository, and the release's `GamePackages.xml` is the package list
 for them. It is one of the lists of the program's main package list
-(`tools/PackageServer/DFR.xml`, downloaded from this repository), so it is
+(`online/Packages/DFR.xml`, downloaded from this repository), so it is
 shown in the package manager without any setup.
 
 ## Adding a game
@@ -29,7 +29,7 @@ The download list of D-Fend Reloaded offered its freeware and shareware games
 in seven packages (NSIS installers with several games each). Running the
 "Game packages" workflow with "Import the games of the original D-Fend
 Reloaded packages" checked downloads these installers
-(`tools/PackageServer/FetchOriginalPackages.py`), splits them into one zip
+(`online/Packages/FetchOriginalPackages.py`), splits them into one zip
 package per game and uploads them to the release.
 
 ## DFRPackageTool

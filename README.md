@@ -77,9 +77,12 @@ folder layout, extracted by D-Fend Reborn itself; on Linux also the original
 NSIS installers). D-Fend Reborn's own game packages are published as the
 `game-packages` release, built by the "Game packages" workflow and the
 `DFRPackageTool` command line tool - see `tools/PackageTool/README.md` for
-how to add games. The package lists themselves (main list, add-ons, auto
-setup templates) are the files in `tools/PackageServer`, which the program
-downloads from this repository.
+how to add games. The online services of the program are the files in `online/` (same
+layout as the old D-Fend Reloaded homepage), which the program downloads
+from this repository: the package lists (`Packages`: main list, add-ons,
+auto setup templates), the data reader configuration (`DataReader`), the
+cheats database (`Cheats`) and the document type definitions of the XML
+files.
 
 Every push and pull request is built on Linux and Windows by GitHub Actions
 (`.github/workflows/build.yml`).

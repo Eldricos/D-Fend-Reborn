@@ -225,7 +225,7 @@ static bool CreateInfoFile(TGame* Game, const QString& Dir)
     St.Add("");
     St.Add("If you do not have a D-Fend Reborn installation on your system, you can");
     St.Add("download it here for free:");
-    St.Add(DFRHomepage + "Download.html");
+    St.Add(DFRebornHomepage + "/releases");
     St.Add("");
     if (ScummVMMode(Game)) {
         St.Add("You can also run the game from this package without having D-Fend Reborn");

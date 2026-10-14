@@ -723,7 +723,7 @@ void TCheatDB::SaveToXML(const QString& FileName, QWidget* ParentForm)
     XMLDoc.appendChild(DocumentElement);
     if (FVersion >= 0) DocumentElement.setAttribute("Version", IntToStr(FVersion));
     for (int I = 0; I < FGameRecords->size(); I++) static_cast<TCheatGameRecord*>((*FGameRecords)[I])->SaveToXML(DocumentElement);
-    SaveXMLDoc(XMLDoc, {"<!DOCTYPE CheatDB SYSTEM \"" + DFRHomepage + "Packages/Cheats.dtd\">"}, FileName, false);
+    SaveXMLDoc(XMLDoc, {"<!DOCTYPE CheatDB SYSTEM \"" + DFRebornOnlineURL + "Cheats/Cheats.dtd\">"}, FileName, false);
     FChanged = false;
 }
 

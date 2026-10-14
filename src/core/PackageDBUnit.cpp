@@ -455,7 +455,7 @@ bool TPackageList::SaveToFile(QWidget* ParentForm)
         if (FReferer != "") Node.setAttribute("Referer", FReferer);
     }
 
-    SaveXMLDoc(Doc, {"<!DOCTYPE DFRPackagesFile SYSTEM \"" + DFRHomepage + "Packages/DFRPackagesFile.dtd\">"}, FFileName, false);
+    SaveXMLDoc(Doc, {"<!DOCTYPE DFRPackagesFile SYSTEM \"" + DFRebornOnlineURL + "Packages/DFRPackagesFile.dtd\">"}, FFileName, false);
     return true;
 }
 
@@ -625,7 +625,7 @@ void TPackageListFile::SaveToFile(QWidget* ParentForm)
         N.setAttribute("URL", (*FURL)[I]);
         if ((*FActive)[I] != nullptr) N.setAttribute("Active", "Yes"); else N.setAttribute("Active", "No");
     }
-    SaveXMLDoc(Doc, {"<!DOCTYPE DFRPackagesList SYSTEM \"" + DFRHomepage + "Packages/DFRPackagesList.dtd\">"}, FFileName, false);
+    SaveXMLDoc(Doc, {"<!DOCTYPE DFRPackagesList SYSTEM \"" + DFRebornOnlineURL + "Packages/DFRPackagesList.dtd\">"}, FFileName, false);
 
     if (FIsMasterList) SpecialSaveActiveState();
 }
