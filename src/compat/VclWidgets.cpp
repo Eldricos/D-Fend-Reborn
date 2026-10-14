@@ -212,38 +212,47 @@ void TSplitterWidget::mouseReleaseEvent(QMouseEvent *e)
 
 namespace {
 // Colours of TColorBox (style cbStandardColors, cbExtendedColors,
-// cbSystemColors) in the order of the VCL, with the colour names of the
-// German Delphi version (cbPrettyNames)
-struct TColorBoxEntry { int Color; const char *GermanName; };
-const TColorBoxEntry ColorBoxColors[] = {
-    {clBlack, "Schwarz"}, {clMaroon, "Kastanienbraun"}, {clGreen, "Gr\u00fcn"}, {clOlive, "Olivgr\u00fcn"},
-    {clNavy, "Marineblau"}, {clPurple, "Purpur"}, {clTeal, "Petrol"}, {clGray, "Grau"},
-    {clSilver, "Silber"}, {clRed, "Rot"}, {clLime, "Hellgr\u00fcn"}, {clYellow, "Gelb"},
-    {clBlue, "Blau"}, {clFuchsia, "Fuchsie"}, {clAqua, "Aquamarin"}, {clWhite, "Wei\u00df"},
-    {clMoneyGreen, "Dollargr\u00fcn"}, {clSkyBlue, "Himmelblau"}, {clCream, "Creme"}, {clMedGray, "Mittelgrau"},
-    {clActiveBorder, "Aktiver Rahmen"}, {clActiveCaption, "Aktive Titelleiste"}, {clAppWorkSpace, "Arbeitsbereich"},
-    {clBackground, "Hintergrund"}, {clBtnFace, "Schaltfl\u00e4che"}, {clBtnHighlight, "Schaltfl\u00e4chen-Hervorhebung"},
-    {clBtnShadow, "Schaltfl\u00e4chenschatten"}, {clBtnText, "Schaltfl\u00e4chentext"}, {clCaptionText, "Titelleistentext"},
-    {clGrayText, "Grauer Text"}, {clHighlight, "Markierung"}, {clHighlightText, "Markierter Text"},
-    {clHotLight, "Hot-Light"}, {clInactiveBorder, "Inaktiver Rahmen"}, {clInactiveCaption, "Inaktive Titelleiste"},
-    {clInactiveCaptionText, "Inaktiver Titelleistentext"}, {clInfoBk, "Info-Hintergrund"}, {clInfoText, "Info-Text"},
-    {clMenu, "Men\u00fc"}, {clMenuText, "Men\u00fctext"}, {clScrollBar, "Bildlaufleiste"},
-    {cl3DDkShadow, "3D-Dunkelschatten"}, {cl3DLight, "3D-Licht"}, {clWindow, "Fenster"},
-    {clWindowFrame, "Fensterrahmen"}, {clWindowText, "Fenstertext"},
+// cbSystemColors) in the order of the VCL
+const int ColorBoxColors[] = {
+    clBlack, clMaroon, clGreen, clOlive, clNavy, clPurple, clTeal, clGray,
+    clSilver, clRed, clLime, clYellow, clBlue, clFuchsia, clAqua, clWhite,
+    clMoneyGreen, clSkyBlue, clCream, clMedGray,
+    clActiveBorder, clActiveCaption, clAppWorkSpace, clBackground, clBtnFace, clBtnHighlight,
+    clBtnShadow, clBtnText, clCaptionText, clGrayText, clHighlight, clHighlightText,
+    clHotLight, clInactiveBorder, clInactiveCaption, clInactiveCaptionText, clInfoBk, clInfoText,
+    clMenu, clMenuText, clScrollBar, cl3DDkShadow, cl3DLight, clWindow,
+    clWindowFrame, clWindowText,
 };
+
+// TCustomColorBox.ColorCallBack with cbPrettyNames: the colour identifier
+// without "cl" and with a space before each capital letter ("clMoneyGreen"
+// -> "Money Green", "cl3DDkShadow" -> "3 D Dk Shadow"). The names are the
+// same in all Delphi language versions.
+QString PrettyColorName(const QString& Ident)
+{
+    const int Start = Ident.startsWith(QLatin1String("cl")) ? 2 : 0;
+    QString Name;
+    for (int I = Start; I < Ident.size(); I++) {
+        const QChar C = Ident[I];
+        if (C >= QLatin1Char('A') && C <= QLatin1Char('Z') && !Name.isEmpty()) Name += QLatin1Char(' ');
+        Name += C;
+    }
+    return Name;
+}
 const int RoleTColor = Qt::UserRole;
 } // namespace
 
 TColorBoxWidget::TColorBoxWidget(QWidget *parent) : QComboBox(parent)
 {
     setEditable(false);
-    for (const TColorBoxEntry &E : ColorBoxColors) addColor(E.Color);
+    for (const int C : ColorBoxColors) addColor(C);
 }
 
 QString TColorBoxWidget::colorName(int C) const
 {
-    if (FPrettyNames) for (const TColorBoxEntry &E : ColorBoxColors) if (E.Color == C) return QString::fromUtf8(E.GermanName);
-    return ColorToString(C);   // "clBlack", "clWindow" or "$00RRGGBB" (custom colour)
+    const QString Ident = ColorToString(C);   // "clBlack", "clWindow" or "$00RRGGBB" (custom colour)
+    if (FPrettyNames && Ident.startsWith(QLatin1String("cl"))) return PrettyColorName(Ident);
+    return Ident;
 }
 
 void TColorBoxWidget::addColor(int C)
@@ -262,10 +271,10 @@ void TColorBoxWidget::updateNames()
     for (int I = 0; I < count(); I++) setItemText(I, colorName(itemData(I, RoleTColor).toInt()));
 }
 
-void TColorBoxWidget::setPrettyNames(bool German)
+void TColorBoxWidget::setPrettyNames(bool Pretty)
 {
-    if (FPrettyNames == German) return;
-    FPrettyNames = German;
+    if (FPrettyNames == Pretty) return;
+    FPrettyNames = Pretty;
     updateNames();
 }
 

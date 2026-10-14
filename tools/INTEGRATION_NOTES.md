@@ -31,7 +31,7 @@ never did).
 
 Also done: recursive folder watching in the quick start window (Linux),
 drawn search animation (InternetDataWaitForm), TColorBox colours and names
-like the original (Delphi names, German names with the German language, system
+like the original (Delphi names, VCL "pretty" names with the German language, system
 colours kept as such), Windows installer scripts (Install/: D-Fend Reborn
 name, program folder from "cmake --install", Unicode installer, HTML help
 shortcut; built by the Windows build check).

@@ -190,6 +190,7 @@ int main(int argc, char* argv[])
     // no windows (the program code shows progress dialogs)
     if (qEnvironmentVariableIsEmpty("QT_QPA_PLATFORM")) qputenv("QT_QPA_PLATFORM", "offscreen");
     QApplication App(argc, argv);
+    App.setApplicationVersion(DFR_VERSION);
 
     // D-Fend Reborn: all downloads (package lists and packages, update check,
     // data reader, cheats database) use the proxy settings of the system

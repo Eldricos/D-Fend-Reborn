@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=D-Fend Reborn
+GenericName=DOSBox frontend
+GenericName[de]=DOSBox-Oberfläche
+Comment=Manage and start DOS games with DOSBox
+Comment[de]=DOS-Spiele mit DOSBox verwalten und starten
+Exec=DFend
+Icon=dfend-reborn
+Terminal=false
+Categories=Game;Emulator;
+Keywords=DOS;DOSBox;ScummVM;games;emulator;

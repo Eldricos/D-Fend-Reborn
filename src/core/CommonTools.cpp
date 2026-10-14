@@ -46,7 +46,7 @@ static QString LastSysErrorMessage() { return qt_error_string(-1); }
 static QString ProgramVersionString()
 {
     QString S = QCoreApplication::applicationVersion();
-    if (Trim(S).isEmpty()) S = QStringLiteral("1.4.4");
+    if (Trim(S).isEmpty()) S = QStringLiteral(DFR_VERSION);
     return S;
 }
 
