@@ -1,5 +1,8 @@
+; Stores the installer language that the D-Fend Reborn installers (setup,
+; update and game package installers) use and that the first run wizard
+; offers as program language. Started by D-Fend Reborn (Windows only).
+Unicode true
 OutFile "SetInstallerLanguage.exe"
-!packhdr "$%TEMP%\exehead.tmp" '..\..\Install\Tools\upx.exeupx.exe "$%TEMP%\exehead.tmp"'
 
 Name "SetInstallerLanguage"
 RequestExecutionLevel admin
@@ -54,5 +57,5 @@ Section "-Work"
   Push $0
   Call GetParameters
   pop $0
-  WriteRegStr HKLM "Software\D-Fend Reloaded" "Installer Language" "$0"
+  WriteRegStr HKLM "Software\D-Fend Reborn" "Installer Language" "$0"
 SectionEnd

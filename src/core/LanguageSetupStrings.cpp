@@ -306,6 +306,7 @@ void TLanguageSetup::SetupLanguageStrings1()
     AddStringRec(NR_MenuExtrasIconManagerAddAll, QStringLiteral("Menu"), QStringLiteral("Extras.IconManager.Add.All"), QStringLiteral("Scan games folder and add all icons"));
     AddStringRec(NR_MenuExtrasIconManagerTools, QStringLiteral("Menu"), QStringLiteral("Extras.Tools"), QStringLiteral("Tools"));
     AddStringRec(NR_MenuExtrasIconManagerToolsExplorer, QStringLiteral("Menu"), QStringLiteral("Extras.Tools.Explorer"), QStringLiteral("Open icons folder in Explorer"));
+    AddStringRec(NR_MenuExtrasIconManagerToolsExplorerLinux, QStringLiteral("Menu"), QStringLiteral("Extras.Tools.Explorer.Linux"), QString());
     AddStringRec(NR_MenuExtrasIconManagerToolsRenameUpper, QStringLiteral("Menu"), QStringLiteral("Extras.Tools.RenameUpper"), QStringLiteral("Rename all icons to have upper case ICO extensions"));
     AddStringRec(NR_MenuExtrasIconManagerToolsRenameLower, QStringLiteral("Menu"), QStringLiteral("Extras.Tools.RenameLower"), QStringLiteral("Rename all icons to have lower case ico extensions"));
     AddStringRec(NR_MenuExtrasViewLogs, QStringLiteral("Menu"), QStringLiteral("Extras.ViewLogs"), QStringLiteral("View &history..."));
@@ -1228,6 +1229,7 @@ void TLanguageSetup::SetupLanguageStrings3()
     AddStringRec(NR_WizardFormOpenProfileEditorInfo, QStringLiteral("WizardForm"), QStringLiteral("OpenProfileEditor.Info"), QStringLiteral("The chosen template for the new profile contains possible security risks (autoexec sections etc.). If you are not the creator of this template, you should check the following section for dangerous commands: ") + QStringLiteral("Autoexec, Finalization, Custom settings, Mounting of folders outside the D-Fend Reborn base data folder."));
     AddStringRec(NR_WizardFormScummVMLanguageInfo, QStringLiteral("WizardForm"), QStringLiteral("ScummVMLanguage"), QStringLiteral("If the chosen language does not match the game language, ScummVM meight not be able to start the game. If the game does not start, you can change the language in the profile editor at any time."));
     AddStringRec(NR_WizardFormExplorer, QStringLiteral("WizardForm"), QStringLiteral("Explorer"), QStringLiteral("Explorer"));
+    AddStringRec(NR_WizardFormExplorerLinux, QStringLiteral("WizardForm"), QStringLiteral("Explorer.Linux"), QString());
     AddStringRec(NR_WizardFormOperationModeInfo, QStringLiteral("WizardForm"), QStringLiteral("OperationModeInfo"), QStringLiteral("Operation mode info"));
     AddStringRec(NR_WizardFormWizardMode, QStringLiteral("WizardForm"), QStringLiteral("WizardMode"), QStringLiteral("Wizard mode"));
     AddStringRec(NR_WizardFormWizardModeAlwaysAutomatically, QStringLiteral("WizardForm"), QStringLiteral("WizardMode.Automatically"), QStringLiteral("Always setup game automatically"));
@@ -1676,6 +1678,7 @@ void TLanguageSetup::SetupLanguageStrings4()
     AddStringRec(NR_ViewDataFilesCreateFolder, QStringLiteral("ViewDataFiles"), QStringLiteral("CreateFolder"), QStringLiteral("Create folder..."));
     AddStringRec(NR_ViewDataFilesOpen, QStringLiteral("ViewDataFiles"), QStringLiteral("OpenFolder"), QStringLiteral("Open folder"));
     AddStringRec(NR_ViewDataFilesOpenHint, QStringLiteral("ViewDataFiles"), QStringLiteral("OpenFolder.Hint"), QStringLiteral("Open data folder in explorer"));
+    AddStringRec(NR_ViewDataFilesOpenHintLinux, QStringLiteral("ViewDataFiles"), QStringLiteral("OpenFolder.Hint.Linux"), QString());
     AddStringRec(NR_ViewDataFilesOpenFile, QStringLiteral("ViewDataFiles"), QStringLiteral("OpenFile"), QStringLiteral("Open file"));
     AddStringRec(NR_ViewDataFilesOpenFileHint, QStringLiteral("ViewDataFiles"), QStringLiteral("OpenFile.Hint"), QStringLiteral("Opens the selected data file"));
     AddStringRec(NR_ViewDataFilesOpenInDefaultViewer, QStringLiteral("ViewDataFiles"), QStringLiteral("OpenInDefaultViewer"), QStringLiteral("Open in default viewer"));
@@ -1739,6 +1742,7 @@ void TLanguageSetup::SetupLanguageStrings4()
     AddStringRec(NR_QuickStarterMenuViewModeData, QStringLiteral("QuickStarter"), QStringLiteral("Menu.ViewMode.Data"), QStringLiteral("Games data folder"));
     AddStringRec(NR_QuickStarterMenuViewModeFull, QStringLiteral("QuickStarter"), QStringLiteral("Menu.ViewModes.Full"), QStringLiteral("All folders"));
     AddStringRec(NR_QuickStarterMenuExplorer, QStringLiteral("QuickStarter"), QStringLiteral("Menu.OpenFolderInExplorer"), QStringLiteral("Open folder in Explorer"));
+    AddStringRec(NR_QuickStarterMenuExplorerLinux, QStringLiteral("QuickStarter"), QStringLiteral("Menu.OpenFolderInExplorer.Linux"), QString());
     AddStringRec(NR_QuickStarterMenuDOSBox, QStringLiteral("QuickStarter"), QStringLiteral("Menu.OpenFolderInDOSBox"), QStringLiteral("Open folder in DOSBox"));
     AddStringRec(NR_QuickStarterMenuMakeProfile, QStringLiteral("QuickStarter"), QStringLiteral("Menu.MakeProfile"), QStringLiteral("Make profile from file..."));
     AddStringRec(NR_QuickStarterMenuMakeProfileWizard, QStringLiteral("QuickStarter"), QStringLiteral("Menu.MakeProfileWizard"), QStringLiteral("Make profile from file (wizard)..."));
@@ -1763,6 +1767,7 @@ void TLanguageSetup::SetupLanguageStrings4()
     AddStringRec(NR_AutoDetectGames, QStringLiteral("AutoDetectGames"), QStringLiteral("Caption"), QStringLiteral("Automatically detect and setup games"));
     AddStringRec(NR_AutoDetectGamesOpenFolderButton, QStringLiteral("AutoDetectGames"), QStringLiteral("OpenFolderButton"), QStringLiteral("Open games folder"));
     AddStringRec(NR_AutoDetectGamesOpenFolderButtonHint, QStringLiteral("AutoDetectGames"), QStringLiteral("OpenFolderButton.Hint"), QStringLiteral("Opens the games folder in Explorer"));
+    AddStringRec(NR_AutoDetectGamesOpenFolderButtonHintLinux, QStringLiteral("AutoDetectGames"), QStringLiteral("OpenFolderButton.Hint.Linux"), QString());
     AddStringRec(NR_AutoDetectGamesScanButton, QStringLiteral("AutoDetectGames"), QStringLiteral("ScanButton"), QStringLiteral("Scan games folder"));
     AddStringRec(NR_AutoDetectGamesScanButtonHint, QStringLiteral("AutoDetectGames"), QStringLiteral("ScanButton.Hint"), QStringLiteral("Scans the games folder for new games."));
     AddStringRec(NR_AutoDetectGamesAddButton, QStringLiteral("AutoDetectGames"), QStringLiteral("AddButton"), QStringLiteral("Add selected games"));
