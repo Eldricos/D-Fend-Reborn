@@ -442,7 +442,7 @@ Function InstallMode
   !insertmacro ActivateSection ${ID_Tools}
   !insertmacro ActivateSection ${ID_FreeDosTools}
   !insertmacro ActivateSection ${ID_Doszip}
-  StrCpy $INSTDIR "$PROGRAMFILES\D-Fend Reborn\"
+  StrCpy $INSTDIR "$PROGRAMFILES64\D-Fend Reborn\"
   IntOp $InstallDataType 1 + 0
   IntOp $FastInstallationMode 1 + 0
   InstallModePageFinish:

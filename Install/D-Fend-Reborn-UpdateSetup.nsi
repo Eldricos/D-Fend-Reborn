@@ -58,7 +58,7 @@ Section "$(LANGNAME_DFendReborn)" ID_DFend
   SetDetailsPrint none
   
   ; Read installation type
-  ; ($InstallDataType=0 <=> Prg dir mode, $InstallDataType=1 <=> User dir mode; in user dir mode $DataInstDir will contain the data directory otherwise $INSTDIR)
+  ; ($InstallDataType=0 <=> Prg dir mode, $InstallDataType=1 <=> User dir mode, $InstallDataType=2 <=> Portable mode; in user dir mode $DataInstDir will contain the data directory otherwise $INSTDIR)
   
   IfFileExists "$INSTDIR\DFend.dat" StartCheck
   MessageBox MB_OK "$(LANGNAME_NoInstallationFound)"
@@ -71,7 +71,12 @@ Section "$(LANGNAME_DFendReborn)" ID_DFend
   FileRead $0 $1
   FileClose $0
   StrCmp $1 "USERDIRMODE" InstUserMode
+  StrCmp $1 "PORTABLEMODE" InstPortableMode
   IntOp $InstallDataType 0 + 0
+  Goto ReadInstTypeEnd
+  InstPortableMode:
+  ; portable copy: files are updated in place, no uninstaller / registry entries
+  IntOp $InstallDataType 0 + 2
   Goto ReadInstTypeEnd
   InstUserMode:
   IntOp $InstallDataType 0 + 1

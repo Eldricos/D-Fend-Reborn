@@ -63,7 +63,9 @@ SetCompressor /solid lzma
 RequestExecutionLevel highest
 XPStyle on
 
-InstallDir "$PROGRAMFILES\D-Fend Reborn\"
+; D-Fend Reborn is a 64 bit program: "C:\Program Files" (an existing
+; installation is found via the registry and keeps its folder)
+InstallDir "$PROGRAMFILES64\D-Fend Reborn\"
 InstallDirRegKey HKLM "Software\D-Fend Reborn" "ProgramFolder"
 
 !insertmacro MUI_RESERVEFILE_LANGDLL
@@ -200,6 +202,7 @@ FunctionEnd
   Delete "$INSTDIR\Bin\mediaplr.dll"
   Delete "$INSTDIR\Bin\DFendGameExplorerData.dll"
   Delete "$INSTDIR\Lang\*.chm"
+  Delete "$INSTDIR\Bin\UpdateCheck.exe"   ; (updates are installed by D-Fend Reborn itself)
 !macroend
 
 !macro CommonSections
@@ -374,6 +377,11 @@ Function .onVerifyInstDir
   GetFullPathName $0 $INSTDIR
   
   GetFullPathName $1 $PROGRAMFILES
+  StrCmp $0 $1 +1 DirCheck1
+  Abort
+
+  DirCheck1:
+  GetFullPathName $1 $PROGRAMFILES64
   StrCmp $0 $1 +1 DirCheck2
   Abort
   

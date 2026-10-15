@@ -2,27 +2,37 @@
 //
 // D-Fend Reborn: the update check asks GitHub for the latest release of the
 // project (DFRebornLatestReleaseAPI). If there is a newer version:
-// - Windows: like the original, the external Bin\UpdateCheck.exe is started
-//   (tools/UpdateCheck). It reads UpdateInfo.txt of the latest release
-//   (version and URL of the update installer), asks the user, downloads the
-//   update installer and runs it for the program folder.
-// - other systems (or without UpdateCheck.exe): the user is asked whether
-//   to open the release page in the browser.
+// - Windows: if the user wants to update, the update installer of the
+//   release (D-Fend-Reborn-x.y.z-UpdateSetup.exe) is downloaded and started
+//   in automatic mode (/A) for the program folder, and D-Fend Reborn closes;
+//   the update installer starts it again when it is finished. (The original
+//   used the external UpdateCheck.exe for this, an NSIS downloader that
+//   current virus scanners block.) Installed and portable copies are
+//   updated; without DFend.dat (e.g. a build folder) the release page is
+//   opened instead.
+// - other systems: the user is asked whether to open the release page.
 #include "ProgramUpdateCheckUnit.h"
 #include "PrgSetupUnit.h"
 #include "CommonTools.h"
 #include "LanguageSetupUnit.h"
 #include "PrgConsts.h"
-#include "Process.h"
 #include "MainUnit.h"
+#include "DownloadWaitFormUnit.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QEventLoop>
 #include <QTimer>
+#include <QDir>
+#include <QFile>
 #include <cmath>
+
+#ifdef Q_OS_WIN
+#include "WinApi.h"
+#endif
 
 // URL of the update information; settings files of older versions may still
 // contain the address of the original D-Fend Reloaded update file.
@@ -34,51 +44,50 @@ static QString UpdateCheckURL()
 }
 
 #ifdef Q_OS_WIN
-// URL of the update information of the latest release (asset of each
-// release, created by the release workflow)
-static const QString UpdateInfoURL = DFRebornHomepage + "/releases/latest/download/UpdateInfo.txt";
-
-// Starts UpdateCheck.exe (RunExternalUpdateCheck of the original). Returns
-// false if UpdateCheck.exe is missing.
-static bool RunExternalUpdateCheck(bool Quite)
+// Downloads the update installer of the release and starts it for the
+// program folder. Returns false if the program cannot be updated this way
+// (then the release page is offered).
+static bool InstallUpdate(QWidget *AOwner, const QJsonObject& Release)
 {
-    QString Prg;
-    if (FileExists(PrgDir() + "UpdateCheck.exe")) Prg = PrgDir() + "UpdateCheck.exe";
-    else if (FileExists(PrgDir() + BinFolder + PathDelim + "UpdateCheck.exe")) Prg = PrgDir() + BinFolder + PathDelim + "UpdateCheck.exe";
-    if (Prg.isEmpty()) return false;
+    // DFend.dat is written by the setup and is part of the portable zip; the
+    // update installer needs it to know the installation type
+    if (!FileExists(PrgDir() + OperationModeConfig)) return false;
 
-    const QString FileName = TempDir() + "UpdateCheckSetup.txt";
-    TStringList St;
-    St.Add(GetReleaseVersionAsString());
-    St.Add(UpdateInfoURL);
-    St.Add("DFendRebornUpdate.exe");
-    St.Add(PrgDir());
-    St.Add(Quite ? "silent" : "normal");
-    St.Add(LanguageSetup->UpdateCannotFindFile());
-    St.Add(LanguageSetup->UpdateDownloadFailed());
-    St.Add(LanguageSetup->UpdateDownloadFailedBeforeURL());
-    St.Add(LanguageSetup->UpdateDownloadFailedAfterURL());
-    St.Add(LanguageSetup->UpdateURL());
-    St.Add(LanguageSetup->UpdateDownloading());
-    St.Add(LanguageSetup->UpdateConnecting());
-    St.Add(LanguageSetup->UpdateFileName());
-    St.Add(LanguageSetup->UpdateTransfered());
-    St.Add(LanguageSetup->UpdateFileSize());
-    St.Add(LanguageSetup->UpdateRamainingTime());
-    St.Add(LanguageSetup->UpdateTotalTime());
-    St.Add(LanguageSetup->UpdateCannotReadFile());
-    St.Add(LanguageSetup->UpdateNoUpdates());
-    St.Add(LanguageSetup->UpdateNewVersionPart1());
-    St.Add(LanguageSetup->UpdateNewVersionPart2());
-    St.Add(LanguageSetup->OK());
-    St.Add(LanguageSetup->Yes());
-    St.Add(LanguageSetup->No());
-    // UpdateCheck.exe is an ANSI program: system code page
-    if (!St.SaveToFile(FileName)) return false;
+    QString URL;
+    qint64 Size = -1;
+    for (const QJsonValue V : Release.value("assets").toArray()) {
+        const QJsonObject Asset = V.toObject();
+        if (Asset.value("name").toString().endsWith("-UpdateSetup.exe", Qt::CaseInsensitive)) {
+            URL = Asset.value("browser_download_url").toString();
+            Size = Asset.value("size").toInteger(-1);
+            break;
+        }
+    }
+    if (URL.isEmpty()) return false;
 
-    if (StartProcess(Prg, {FileName}, PrgDir()) == 0) return false;
-    if (DFendRebornMainForm != nullptr && DFendRebornMainForm->DeleteOnExit != nullptr && DFendRebornMainForm->DeleteOnExit->IndexOf(FileName) < 0)
-        DFendRebornMainForm->DeleteOnExit->Add(FileName);
+    const QString FileName = TempDir() + "DFendRebornUpdate.exe";
+    if (FileExists(FileName)) QFile::remove(FileName);
+    switch (DownloadFileWithDialog(AOwner, Size, "", URL, "", FileName)) {
+        case drSuccess: break;
+        case drCancel: return true;
+        default:
+            MessageDlg(Format(LanguageSetup->PackageManagerDownloadFailed(), {URL}), mtError, mbOK, 0);
+            return true;
+    }
+
+    // ShellExecute: the update installer needs admin rights (UAC prompt);
+    // /D= must be the last parameter, without quotes and trailing backslash
+    const QString Params = "/A /D=" + QDir::toNativeSeparators(ExcludeTrailingPathDelimiter(PrgDir()));
+    const HINSTANCE R = ShellExecuteW(nullptr, L"open", reinterpret_cast<LPCWSTR>(QDir::toNativeSeparators(FileName).utf16()),
+                                      reinterpret_cast<LPCWSTR>(Params.utf16()), nullptr, SW_SHOWNORMAL);
+    if (reinterpret_cast<INT_PTR>(R) <= 32) {
+        // e.g. the UAC prompt was cancelled
+        MessageDlg(Format(LanguageSetup->MessageCouldNotStartProgram(), {FileName}), mtError, mbOK, 0);
+        return true;
+    }
+
+    // the update installer replaces the program files: close D-Fend Reborn
+    if (DFendRebornMainForm != nullptr) QTimer::singleShot(0, DFendRebornMainForm, []() { DFendRebornMainForm->close(); });
     return true;
 }
 #endif
@@ -108,7 +117,6 @@ static int HttpGet(const QString& URL, QByteArray& Data)
 
 TUpdateResult RunUpdateCheck(QWidget *AOwner, bool Quite, bool QuiteOnError)
 {
-    Q_UNUSED(AOwner);
     const QString URL = UpdateCheckURL();
     QByteArray Data;
     int Status;
@@ -137,13 +145,15 @@ TUpdateResult RunUpdateCheck(QWidget *AOwner, bool Quite, bool QuiteOnError)
     const QString Page = Release.value("html_url").toString(DFRebornHomepage + "/releases");
 
     if (!Version.isEmpty() && VersionToInt(Version) > VersionToInt(GetReleaseVersionAsString())) {
-#ifdef Q_OS_WIN
-        // UpdateCheck.exe asks the user and installs the update
-        if (RunExternalUpdateCheck(Quite)) return urUpdateAvailable;
-#endif
         // "New version" X "on server. Do you want to update now ?"
-        if (MessageDlg(LanguageSetup->UpdateNewVersionPart1() + " " + Version + " " + LanguageSetup->UpdateNewVersionPart2(), mtConfirmation, mbYesNo, 0) == mrYes)
+        if (MessageDlg(LanguageSetup->UpdateNewVersionPart1() + " " + Version + " " + LanguageSetup->UpdateNewVersionPart2(), mtConfirmation, mbYesNo, 0) == mrYes) {
+#ifdef Q_OS_WIN
+            if (InstallUpdate(AOwner, Release)) return urUpdateAvailable;
+#else
+            Q_UNUSED(AOwner);
+#endif
             ShellOpen(Page);
+        }
         return urUpdateAvailable;
     }
 
@@ -164,7 +174,7 @@ void RunUpdateCheckIfSetup(QWidget *AOwner)
 void RunUpdateCheckIdleCloseHandle()
 {
     // (the original closed the process handle of UpdateCheck.exe here; the
-    // port does not keep it)
+    // port installs updates itself)
 }
 
 void ProgramUpdateCheckUnit_Initialization()
