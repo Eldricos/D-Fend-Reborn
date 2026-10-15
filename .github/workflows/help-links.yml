@@ -1,0 +1,24 @@
+# Checks the links of the help pages (tools/check_help_links.py): broken
+# internal links fail the check, unreachable web sites are shown as
+# warnings. Runs when the help pages change and can be started by hand
+# (Actions > Help links > Run workflow).
+name: Help links
+
+on:
+  push:
+    paths:
+      - 'data/Help/**'
+      - 'tools/check_help_links.py'
+      - '.github/workflows/help-links.yml'
+  pull_request:
+    paths:
+      - 'data/Help/**'
+  workflow_dispatch:
+
+jobs:
+  links:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the help links
+        run: python3 tools/check_help_links.py

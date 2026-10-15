@@ -89,6 +89,7 @@ jobs:
           cmake --install build --prefix Install/Stage
           test -f Install/Stage/DFend.exe
           test -f Install/Stage/Qt6Core.dll
+          test -f Install/Stage/Qt/platforms/qwindows.dll
 
       - name: Installers
         shell: bash
@@ -104,8 +105,11 @@ jobs:
       - name: Portable zip
         shell: pwsh
         run: |
-          # portable mode: all data in the program folder, relative paths
+          # portable mode: all data in the program folder, relative paths;
+          # data folders laid out like the setup does it (no NewUserData)
           Copy-Item -Recurse Install/Stage "D-Fend Reborn"
+          bash packaging/portable-layout.sh "D-Fend Reborn"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
           Set-Content -Path "D-Fend Reborn/DFend.dat" -Value "PORTABLEMODE" -NoNewline
           Compress-Archive -Path "D-Fend Reborn" -DestinationPath "dist/D-Fend-Reborn-$env:VERSION-Windows-Portable.zip"
 
@@ -223,6 +227,7 @@ jobs:
           # program folder mode: all data next to the program (extract it to
           # a folder in your home directory)
           cmake --install build --prefix "D-Fend Reborn"
+          sh packaging/portable-layout.sh "D-Fend Reborn"
           cp packaging/linux/dfend-reborn.desktop packaging/linux/dfend-reborn.png "D-Fend Reborn/"
           mkdir -p dist
           tar czf "dist/D-Fend-Reborn-$VERSION-Linux-x86_64.tar.gz" "D-Fend Reborn"

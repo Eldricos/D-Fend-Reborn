@@ -100,12 +100,16 @@ install(TARGETS DFendReborn RUNTIME DESTINATION . BUNDLE DESTINATION .)
 install(DIRECTORY data/Lang data/Help data/IconSets data/NewUserData DESTINATION .)
 if(WIN32)
     install(DIRECTORY data/Bin data/DOSBox data/DOSBoxLang DESTINATION .)
-    # Qt libraries and plugins next to DFend.exe
+    # Qt libraries next to DFend.exe (Windows loads them from the program
+    # folder), all Qt plugins in the subfolder "Qt" (qt.conf). Not deployed:
+    # translations (not used), opengl32sw.dll (software OpenGL, not used) and
+    # d3dcompiler_47.dll (part of Windows 10/11).
     get_target_property(_QMAKE Qt6::qmake IMPORTED_LOCATION)
     get_filename_component(_QT_BIN "${_QMAKE}" DIRECTORY)
     find_program(WINDEPLOYQT windeployqt HINTS "${_QT_BIN}")
     if(WINDEPLOYQT)
-        install(CODE "execute_process(COMMAND \"${WINDEPLOYQT}\" --no-translations --dir \"\${CMAKE_INSTALL_PREFIX}\" \"\${CMAKE_INSTALL_PREFIX}/DFend.exe\" COMMAND_ERROR_IS_FATAL ANY)")
+        install(CODE "execute_process(COMMAND \"${WINDEPLOYQT}\" --no-translations --no-opengl-sw --no-system-d3d-compiler --plugindir \"\${CMAKE_INSTALL_PREFIX}/Qt\" --dir \"\${CMAKE_INSTALL_PREFIX}\" \"\${CMAKE_INSTALL_PREFIX}/DFend.exe\" COMMAND_ERROR_IS_FATAL ANY)")
+        install(CODE "file(WRITE \"\${CMAKE_INSTALL_PREFIX}/qt.conf\" \"[Paths]\\nPlugins = Qt\\n\")")
     else()
         message(WARNING "windeployqt not found: \"cmake --install\" will not copy the Qt libraries")
     endif()
