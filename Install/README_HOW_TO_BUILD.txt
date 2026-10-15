@@ -68,6 +68,9 @@ of a version on GitHub and attaches them to its release:
       files and generated release notes; check it and click "Publish release".
 3. The workflow first checks that the tag and both version numbers are the
    same and stops with an error otherwise (nothing is built then).
+   The tag is fixed to the commit it was created for: set the version numbers
+   on main before creating the release. If they were changed afterwards,
+   delete the release and the tag and create both again.
 
 Only published releases that are not marked as "pre-release" are found by the
 update check of the program.
