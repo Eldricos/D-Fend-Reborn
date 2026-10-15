@@ -77,6 +77,10 @@ jobs:
           cmake --install build --prefix Install/Stage
           test -f Install/Stage/DFend.exe
           test -f Install/Stage/Qt6Core.dll
+          # Qt plugins in the folder "Qt" (qt.conf)
+          test -f Install/Stage/qt.conf
+          test -f Install/Stage/Qt/platforms/qwindows.dll
+          test ! -d Install/Stage/platforms
           MAKENSIS="/c/Program Files (x86)/NSIS/makensis.exe"
           if [ ! -f "$MAKENSIS" ]; then choco install nsis -y --no-progress; fi
           cd Install

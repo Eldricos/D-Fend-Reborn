@@ -203,6 +203,18 @@ FunctionEnd
   Delete "$INSTDIR\Bin\DFendGameExplorerData.dll"
   Delete "$INSTDIR\Lang\*.chm"
   Delete "$INSTDIR\Bin\UpdateCheck.exe"   ; (updates are installed by D-Fend Reborn itself)
+  ; Qt plugins of versions before 0.5.2 (now all in the folder "Qt", see qt.conf)
+  RmDir /r "$INSTDIR\platforms"
+  RmDir /r "$INSTDIR\styles"
+  RmDir /r "$INSTDIR\imageformats"
+  RmDir /r "$INSTDIR\iconengines"
+  RmDir /r "$INSTDIR\multimedia"
+  RmDir /r "$INSTDIR\networkinformation"
+  RmDir /r "$INSTDIR\tls"
+  RmDir /r "$INSTDIR\generic"
+  RmDir /r "$INSTDIR\translations"
+  Delete "$INSTDIR\opengl32sw.dll"
+  Delete "$INSTDIR\d3dcompiler_47.dll"
 !macroend
 
 !macro CommonSections
@@ -264,6 +276,8 @@ FunctionEnd
 	; Qt libraries and plugins
 	Delete $INSTDIR\*.dll
 	Delete $INSTDIR\vc_redist*.exe
+	Delete $INSTDIR\qt.conf
+	RmDir /r $INSTDIR\Qt
 	RmDir /r $INSTDIR\platforms
 	RmDir /r $INSTDIR\styles
 	RmDir /r $INSTDIR\imageformats
