@@ -7,6 +7,17 @@
 ; of the update installer), asks the user, downloads the update installer and
 ; runs it in automatic mode (/A) for the program folder.
 ;
+;
+; UpdateInfo.txt (created for each release by .github/workflows/release.yml):
+;   line 1: version of the release, e.g. 0.5.1
+;   line 2: URL of its update installer, e.g. https://github.com/Eldricos/
+;           D-Fend-Reborn/releases/download/v0.5.1/D-Fend-Reborn-0.5.1-UpdateSetup.exe
+;
+; UpdateCheck.txt in this folder is an example of the settings file (used
+; when UpdateCheck.exe is started without a parameter, e.g. for a test: copy
+; it next to UpdateCheck.exe; line 1 is the "installed" version, line 4 the
+; program folder to update).
+;
 ; Build: makensis UpdateCheck.nsi (an ANSI installer - the plugins inetc.dll
 ; and messagebox.dll in this folder are ANSI plugins), then copy
 ; UpdateCheck.exe to data\Bin.

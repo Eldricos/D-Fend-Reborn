@@ -1,2 +1,0 @@
-0.5.0
-https://github.com/Eldricos/D-Fend-Reborn/releases/download/v0.5.0/D-Fend-Reborn-0.5.0-UpdateSetup.exe
