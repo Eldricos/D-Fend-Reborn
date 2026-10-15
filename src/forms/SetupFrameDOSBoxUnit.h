@@ -56,6 +56,7 @@ public slots:
     void PortableModeInfoButtonClick(QObject* Sender);
     void WarningButtonClick(QObject* Sender);
 private:
+    bool LastWasDOSBoxX = false;   // (DOSBox-X notice when a DOSBox-X folder is chosen)
     QList<TDOSBoxData> DOSBoxData;
     bool SelectedIsDOSBoxX();
     PString PDosBoxDir;

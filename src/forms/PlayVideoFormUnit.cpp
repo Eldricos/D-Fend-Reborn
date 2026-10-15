@@ -256,11 +256,10 @@ void TPlayVideoForm::FormShow(QObject* Sender)
     loadMediaFile(FileName);
     OK = MediaStreamAvailable() && VideoAvailable();
     ui.InfoLabel->setVisible(!OK);
-#ifdef Q_OS_WIN
-    ui.InstallButton->setVisible(!OK);
-#else
-    ui.InstallButton->setVisible(false);   // InstallVideoCodec.exe only exists on Windows
-#endif
+    // (D-Fend Reborn: videos are played with Qt Multimedia, which needs no
+    // extra codec for DOSBox recordings; the codec installer of DOSBox 0.74
+    // is not included any more)
+    ui.InstallButton->setVisible(false);
     ui.PlayPauseButton->setEnabled(OK);
     ui.Panel1->setVisible(OK);
     ui.ZoomButton->setEnabled(OK);

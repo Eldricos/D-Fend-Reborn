@@ -239,6 +239,18 @@ static bool AllSameDir(TStringList* St)
     return true;
 }
 
+// D-Fend Reborn: folder parameter of a mount command. DOSBox Staging (and
+// DOSBox-X) read \" as an escaped quote, so "C:\Games\" would not be
+// mounted: no path delimiter before the closing quote (all DOSBox versions
+// accept the folder without it); a drive root ("D:\") is written without
+// quotes.
+static QString MountPathArg(QString Path)
+{
+    if ((Path.length() == 3) && (Path[1] == ':') && ((Path[2] == '\\') || (Path[2] == '/'))) return Path;
+    while ((Path.length() > 1) && Path.endsWith('\\')) Path.chop(1);
+    return "\"" + Path + "\"";
+}
+
 static QString MakeDOSBoxPath(QString Part, QString Root)
 {
     QString S;
@@ -276,7 +288,7 @@ static QString SpecialMultiImgMount(const QString& DriveLetter, TStringList* Img
     for (I = 1; I < Imgs->Count(); I++) S = S + " \"" + TempDrive + ":\\" + DOSBoxShortName(ExtractFilePath((*Imgs)[I]), ExtractFileName((*Imgs)[I])) + "\"";
 
     return
-        QString("mount ") + TempDrive + " \"" + UnmapDrive(Path, ptMount) + "\"" + "\r" +
+        QString("mount ") + TempDrive + " " + MountPathArg(UnmapDrive(Path, ptMount)) + "\r" +
         "imgmount " + DriveLetter + " " + S + " " + MountCommandAdd + "\r" +
         "mount -u " + TempDrive;
 }
@@ -381,7 +393,7 @@ static QString BuildMountData(const QString& ProfString, double DOSBoxVersion, Q
         MarkDriveUsed((*St)[2]);
         U = UnmapDrive(ShortName(S), ptMount);
         if (BuildForArchivePackage) U = MakeRelPath(U, PrgDataDir());
-        result = "mount " + (*St)[2] + " \"" + U + "\"";
+        result = "mount " + (*St)[2] + " " + MountPathArg(U);
         if ((St->Count() >= 6) && (!(*St)[5].isEmpty())) result = result + " -freesize " + (*St)[5];
     }
 
@@ -390,7 +402,7 @@ static QString BuildMountData(const QString& ProfString, double DOSBoxVersion, Q
         MarkDriveUsed((*St)[2]);
         U = UnmapDrive(ShortName(S), ptMount);
         if (BuildForArchivePackage) U = MakeRelPath(U, PrgDataDir());
-        result = "mount " + (*St)[2] + " \"" + U + "\" -t floppy";
+        result = "mount " + (*St)[2] + " " + MountPathArg(U) + " -t floppy";
     }
 
     if (T == "CDROM") {
@@ -399,7 +411,7 @@ static QString BuildMountData(const QString& ProfString, double DOSBoxVersion, Q
         MarkDriveUsed((*St)[2]);
         U = UnmapDrive(ShortName(S), ptMount);
         if (BuildForArchivePackage) U = MakeRelPath(U, PrgDataDir());
-        result = "mount " + (*St)[2] + " \"" + U + "\" -t cdrom";
+        result = "mount " + (*St)[2] + " " + MountPathArg(U) + " -t cdrom";
         if (Trim(UpperCase((*St)[3])) == "TRUE") result = result + " -IOCTL";
         if (Trim(UpperCase((*St)[3])) == "NOIOCTL") result = result + " -NOIOCTL";
         if (Trim(UpperCase((*St)[3])) == "DX") result = result + " -IOCTL_DX";
@@ -468,7 +480,7 @@ static QString BuildMountData(const QString& ProfString, double DOSBoxVersion, Q
             MarkDriveUsed((*St)[2]);
             U = UnmapDrive(ShortName((*St2)[0]), ptMount);
             if (BuildForArchivePackage) U = MakeRelPath(U, PrgDataDir());
-            result = "mount " + (*St)[2] + " \"" + U + "\"";
+            result = "mount " + (*St)[2] + " " + MountPathArg(U);
             if ((St->Count() >= 6) && (!(*St)[5].isEmpty())) result = result + " -freesize " + (*St)[5];
         }
     }
@@ -506,7 +518,7 @@ static void TempMountFreeDOSDir(TGame* Game, const QString& FreeDriveLetters, QS
         for (I = Length(FreeDriveLetters); I >= 1; I--) if (FreeDriveLetters[I - 1] != '-') { TempDrive = FreeDriveLetters[I - 1]; break; }
         // {There must be free drive letters, because there are only 10 mounts}
 
-        Mount = QString("mount ") + TempDrive + ": \"" + UnmapDrive(ShortName(FreeDOSPath), ptMount) + "\"";
+        Mount = QString("mount ") + TempDrive + ": " + MountPathArg(UnmapDrive(ShortName(FreeDOSPath), ptMount));
         UseDir = QString("") + TempDrive + ":\\";
         UnMount = QString("mount -u ") + TempDrive;
     }
@@ -846,7 +858,7 @@ static void BuildFloppyBoot(TStringList* Autoexec, QString Images, const QString
 
         T = UnmapDrive(Path, ptMount);
         if (BuildForArchivePackage) T = MakeRelPath(T, PrgDataDir());
-        Autoexec->Add(QString("mount ") + TempDrive + " \"" + T + "\"");
+        Autoexec->Add(QString("mount ") + TempDrive + " " + MountPathArg(T));
         Autoexec->Add("boot " + S);
     } else {
 

@@ -341,6 +341,8 @@ void TModernProfileEditorDOSBoxFrame::DOSBoxInstallationTypeClick(QObject* Sende
 void TModernProfileEditorDOSBoxFrame::DOSBoxInstallationComboBoxChange(QObject* Sender)
 {
     Q_UNUSED(Sender);
+    // (selected by the user: notice for DOSBox-X installations)
+    if (DOSBoxKindOfInstallation(ui.DOSBoxInstallationComboBox->currentIndex()) == dkDOSBoxX) DOSBoxXWarning();
     ui.DefaultDOSBoxInstallationRadioButton->setChecked(true);
     UpdateLanguageList();
     if (!ui.UserLanguageCheckBox->isChecked()) SelectInLanguageList("");
@@ -353,6 +355,11 @@ void TModernProfileEditorDOSBoxFrame::CustomDOSBoxInstallationEditChange(QObject
     Q_UNUSED(Sender);
     if (!FOnProfileNameChange) return;  // OnChange before InitGUI
     ui.CustomDOSBoxInstallationRadioButton->setChecked(true);
+    {
+        const bool IsX = (DOSBoxKind(ui.CustomDOSBoxInstallationEdit->text()) == dkDOSBoxX);
+        if (IsX && (!LastCustomWasDOSBoxX) && isVisible()) DOSBoxXWarning();
+        LastCustomWasDOSBoxX = IsX;
+    }
     UpdateLanguageList();
     if (!ui.UserLanguageCheckBox->isChecked()) SelectInLanguageList("");
     UpdateDOSBoxInstallationString();

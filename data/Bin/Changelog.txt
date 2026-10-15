@@ -15,7 +15,17 @@ Version 0.5.4 (not released yet)
 - New setting "DOSBox program file" for DOSBox installations (for folders
   with several DOSBox versions).
 - DOSBox-X installations can be added; a notice explains that some profile
-  settings may not work with DOSBox-X.
+  settings may not work with DOSBox-X (shown when a DOSBox-X folder is chosen
+  or a profile is set to a DOSBox-X installation).
+- [Fix] Games did not start with DOSBox Staging and DOSBox-X: the folders in
+  the mount commands ended with a backslash before the closing quote, which
+  these DOSBox versions read as an escaped quote (the drive was not mounted).
+- "Download game information" (profile editor, profile wizard) is disabled
+  until it works again with the current game database sites.
+- The video codec installer of DOSBox 0.74 (InstallVideoCodec.exe) is not
+  included any more; videos are played with Qt Multimedia.
+- List of used components updated (Qt; components of the Delphi version
+  that are not used any more removed).
 - The PortableApps.com package (D-Fend-Reborn-<version>-Portable.paf.exe) is
   built with each release. Its launcher starts D-Fend Reborn independent of
   the current folder and passes on its parameters; the installer texts are

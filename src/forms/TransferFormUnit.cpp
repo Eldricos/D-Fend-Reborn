@@ -179,7 +179,6 @@ bool TTransferForm::CopyInstallation(const QString& DestPrgDir)
     St->Add("7za.dll");
     St->Add("DelZip179.dll");
     St->Add("mediaplr.dll");
-    St->Add("InstallVideoCodec.exe");
     for (I = 0; I < St->Count(); I++) {
         S = "";
         if (FileExists(PrgDir() + BinFolder + PathDelim + (*St)[I])) S = PrgDir() + BinFolder + PathDelim + (*St)[I];

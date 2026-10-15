@@ -213,7 +213,6 @@ void TSetupFrameDOSBox::DOSBoxInstallationComboBoxChange(QObject* Sender)
 
 void TSetupFrameDOSBox::DosBoxDirEditChange(QObject* Sender)
 {
-    Q_UNUSED(Sender);
     if ((*PDosBoxDir != ui.DosBoxDirEdit->text()) && (ui.DOSBoxInstallationComboBox->currentIndex() == 0)) {
         *PDosBoxDir = ui.DosBoxDirEdit->text();
         TTraceScope T("SetupFrameDOSBox: DosBoxDirChange", 20);
@@ -222,7 +221,12 @@ void TSetupFrameDOSBox::DosBoxDirEditChange(QObject* Sender)
 
     {
         TTraceScope T("SetupFrameDOSBox: CheckDOSBoxVersion(" + ui.DosBoxDirEdit->text() + ")", 20);
-        ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())) || SelectedIsDOSBoxX());
+        const bool IsX = SelectedIsDOSBoxX();
+        ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())) || IsX);
+        // notice when the user chooses a DOSBox-X folder (not when an
+        // installation is only selected in the list)
+        if (IsX && (!LastWasDOSBoxX) && (Sender != this) && isVisible()) DOSBoxXWarning();
+        LastWasDOSBoxX = IsX;
     }
     QRect G = ui.DosBoxDirEdit->geometry();
     QRect WB = ui.WarningButton->geometry();
