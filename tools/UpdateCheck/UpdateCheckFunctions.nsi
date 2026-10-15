@@ -19,6 +19,16 @@ Var MessageBoxNo
 
 Function CheckParameter ; Checks if string on top of stack is empty and replaces it with DefaultParameter if empty(no changes to stack)
   Exch $R0
+  Push $R1
+  ; remove quotes around the file name ("C:\Users\A B\...\UpdateCheckSetup.txt")
+  StrCpy $R1 $R0 1
+  StrCmp $R1 '"' 0 NoQuotes
+  StrCpy $R0 $R0 "" 1
+  StrCpy $R1 $R0 1 -1
+  StrCmp $R1 '"' 0 NoQuotes
+  StrCpy $R0 $R0 -1
+  NoQuotes:
+  Pop $R1
   StrCmp $R0 "" 0 CmdCheckOK
   StrCpy $R0 $DefaultParameter
   CmdCheckOK:
