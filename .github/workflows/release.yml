@@ -218,27 +218,32 @@ jobs:
           ./appimagetool-x86_64.AppImage AppDir "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage"
 
       - name: Test start
-        env:
-          APPIMAGE_EXTRACT_AND_RUN: 1
         run: |
           # start the AppImage on a virtual X11 display and on a headless
           # Wayland compositor (weston), each time with an empty home folder:
-          # it must still run after 20 seconds and have created its data folder
+          # it must still run after 20 seconds and have created its data
+          # folder. The extracted AppImage is started (AppRun), so that the
+          # test can stop the program itself.
           sudo apt-get install -y --no-install-recommends xvfb weston
+          "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage" --appimage-extract > /dev/null
           cat > test-start.sh <<'EOF'
           export HOME="$RUNNER_TEMP/home-$1"; mkdir -p "$HOME"
-          "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage" &
+          squashfs-root/AppRun > "start-$1.log" 2>&1 &
           P=$!; sleep 20
-          kill -0 $P || { echo "::error::The AppImage did not start ($1)"; exit 1; }
-          kill $P
+          if ! kill -0 $P 2> /dev/null; then
+            echo "::error::D-Fend Reborn did not start ($1)"; tail -n 40 "start-$1.log"; exit 1
+          fi
+          kill $P; wait $P
+          tail -n 20 "start-$1.log"
           test -d "$HOME/.local/share/D-Fend Reborn/Settings"
           EOF
           xvfb-run -a sh test-start.sh x11
           export XDG_RUNTIME_DIR="$RUNNER_TEMP/xdg"; mkdir -m 700 -p "$XDG_RUNTIME_DIR"
-          weston --backend=headless-backend.so --socket=wayland-test --idle-time=0 &
+          weston --backend=headless-backend.so --socket=wayland-test --idle-time=0 > weston.log 2>&1 &
           W=$!; sleep 3
           # QT_QPA_PLATFORM=wayland: no fallback to X11 (there is no X server here)
-          env -u DISPLAY WAYLAND_DISPLAY=wayland-test QT_QPA_PLATFORM=wayland sh test-start.sh wayland
+          env -u DISPLAY WAYLAND_DISPLAY=wayland-test QT_QPA_PLATFORM=wayland sh test-start.sh wayland \
+            || { tail -n 20 weston.log; exit 1; }
           kill $W
 
       - uses: actions/upload-artifact@v7
