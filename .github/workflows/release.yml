@@ -38,7 +38,7 @@ jobs:
     outputs:
       version: ${{ steps.check.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Compare tag, CMakeLists.txt and VersionSettings.nsi
         id: check
@@ -65,7 +65,7 @@ jobs:
     env:
       VERSION: ${{ needs.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -76,7 +76,25 @@ jobs:
           cache: true
 
       - name: Set up MSVC
-        uses: ilammy/msvc-dev-cmd@v1
+        # (vcvars64.bat of Visual Studio; replaces ilammy/msvc-dev-cmd, which
+        # still runs on the deprecated Node.js 20)
+        shell: pwsh
+        run: |
+          $VS = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $VS) { Write-Error "Visual Studio with C++ tools not found"; exit 1 }
+          cmd /c "`"$VS\VC\Auxiliary\Build\vcvars64.bat`" > nul && set" | ForEach-Object {
+            # only the variables vcvars64.bat set or changed; new PATH folders
+            # through GITHUB_PATH
+            if ($_ -match '^([^=]+)=(.*)$') {
+              $Name = $Matches[1]; $Value = $Matches[2]
+              if ($Name -eq 'Path') {
+                $Old = $env:Path -split ';'
+                $Value -split ';' | Where-Object { $_ -and $Old -notcontains $_ } | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+              } elseif ([Environment]::GetEnvironmentVariable($Name) -ne $Value) {
+                "$Name=$Value" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+              }
+            }
+          }
 
       - name: Build
         run: |
@@ -113,7 +131,7 @@ jobs:
           Set-Content -Path "D-Fend Reborn/DFend.dat" -Value "PORTABLEMODE" -NoNewline
           Compress-Archive -Path "D-Fend Reborn" -DestinationPath "dist/D-Fend-Reborn-$env:VERSION-Windows-Portable.zip"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: windows
           path: dist/*
@@ -128,7 +146,7 @@ jobs:
     env:
       VERSION: ${{ needs.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install build tools
         run: |
@@ -195,7 +213,7 @@ jobs:
           EOF
           xvfb-run -a sh test-start.sh
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: appimage
           path: dist/*
@@ -208,7 +226,7 @@ jobs:
     env:
       VERSION: ${{ needs.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Qt and build tools
         run: |
@@ -232,7 +250,7 @@ jobs:
           mkdir -p dist
           tar czf "dist/D-Fend-Reborn-$VERSION-Linux-x86_64.tar.gz" "D-Fend Reborn"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: linux
           path: dist/*
@@ -246,9 +264,9 @@ jobs:
       VERSION: ${{ needs.version.outputs.version }}
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           path: dist
           merge-multiple: true

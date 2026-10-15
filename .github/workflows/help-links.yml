@@ -19,6 +19,6 @@ jobs:
   links:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check the help links
         run: python3 tools/check_help_links.py

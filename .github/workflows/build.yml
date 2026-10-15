@@ -17,7 +17,7 @@ jobs:
     name: Linux (GCC, Qt 6.4)
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Qt and build tools
         run: |
@@ -44,7 +44,7 @@ jobs:
     name: Windows (MSVC, Qt 6.8)
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -55,7 +55,25 @@ jobs:
           cache: true
 
       - name: Set up MSVC
-        uses: ilammy/msvc-dev-cmd@v1
+        # (vcvars64.bat of Visual Studio; replaces ilammy/msvc-dev-cmd, which
+        # still runs on the deprecated Node.js 20)
+        shell: pwsh
+        run: |
+          $VS = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $VS) { Write-Error "Visual Studio with C++ tools not found"; exit 1 }
+          cmd /c "`"$VS\VC\Auxiliary\Build\vcvars64.bat`" > nul && set" | ForEach-Object {
+            # only the variables vcvars64.bat set or changed; new PATH folders
+            # through GITHUB_PATH
+            if ($_ -match '^([^=]+)=(.*)$') {
+              $Name = $Matches[1]; $Value = $Matches[2]
+              if ($Name -eq 'Path') {
+                $Old = $env:Path -split ';'
+                $Value -split ';' | Where-Object { $_ -and $Old -notcontains $_ } | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+              } elseif ([Environment]::GetEnvironmentVariable($Name) -ne $Value) {
+                "$Name=$Value" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+              }
+            }
+          }
 
       - name: Configure
         run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
@@ -88,7 +106,7 @@ jobs:
           "$MAKENSIS" D-Fend-Reborn-UpdateSetup.nsi
 
       - name: Upload the installers
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: D-Fend-Reborn-Windows-installers
           path: Install/*.exe
