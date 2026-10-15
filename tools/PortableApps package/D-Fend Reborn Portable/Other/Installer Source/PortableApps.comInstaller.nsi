@@ -1,4 +1,4 @@
-;Copyright 2007-2009 John T. Haller of PortableApps.com
+﻿;Copyright 2007-2009 John T. Haller of PortableApps.com
 
 ;Website: http://PortableApps.com/
 
@@ -102,7 +102,7 @@ RequestExecutionLevel user
 !endif
 
 ;=== Icon & Stye ===
-BrandingText "PortableApps.com - Your Digital Life, Anywhere�"
+BrandingText "PortableApps.com - Your Digital Life, Anywhere™"
 
 ;=== Pages
 !define MUI_WELCOMEFINISHPAGE_BITMAP "PortableApps.comInstaller.bmp"

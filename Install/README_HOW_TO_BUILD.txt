@@ -14,6 +14,8 @@ Requirements: Qt 6 for MSVC (with Qt Multimedia), CMake, NSIS 3 and 7-Zip.
 3. Set the version information in
    ..\tools\PortableApps package\D-Fend Reborn Portable\App\AppInfo\appinfo.ini and
    ..\tools\PortableApps package\D-Fend Reborn Portable\Other\Installer Source\PortableApps.comInstallerConfig.nsh.
+   (Only for BuildZips.bat: the Release workflow sets them itself, see
+   ..\packaging\portableapps.sh.)
 
 4. Run BuildInstallers.bat. Either copy this Install folder into the build
    folder and double-click BuildInstallers.bat there, or give the build folder
@@ -47,7 +49,8 @@ of a version on GitHub and attaches them to its release:
   D-Fend-Reborn-<version>-Setup.exe             Windows installer
   D-Fend-Reborn-<version>-UpdateSetup.exe       Windows update installer
   D-Fend-Reborn-<version>-Windows-Portable.zip  Windows portable version
-  D-Fend-Reborn-<version>-x86_64.AppImage       Linux (Qt included)
+  D-Fend-Reborn-<version>-Portable.paf.exe      PortableApps.com package
+  D-Fend-Reborn-<version>-x86_64.AppImage       Linux (Qt included; X11 and Wayland)
   D-Fend-Reborn-<version>-Linux-x86_64.tar.gz   Linux (needs Qt 6.4+ of the distribution)
 
 1. Set the new version in ..\CMakeLists.txt (project(DFendReborn VERSION x.y.z))
@@ -76,5 +79,8 @@ Only published releases that are not marked as "pre-release" are found by the
 update check of the program.
 
 To redo a release: delete the release and the tag on GitHub, fix the problem
-and create the release (tag) again. The PortableApps.com package is not built
-by the workflow (steps 5 and 6 above).
+and create the release (tag) again.
+
+Test build without a release: Actions > Release > Run workflow (choose the
+branch). It builds and tests all downloads of the version in CMakeLists.txt
+and keeps them as workflow artifacts (7 days) instead of creating a release.

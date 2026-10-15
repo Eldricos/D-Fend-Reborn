@@ -1,9 +1,9 @@
-;Courtesy of ptmb, lflcorreia, dedalusjmmr 
+Ôªø;Courtesy of ptmb, lflcorreia, dedalusjmmr 
 
-LangString welcome ${LANG_PORTUGUESE} "Este assistente ir· gui·-lo na instalaÁ„o da aplicaÁ„o ${NAME}.\r\n\r\nSe est· a actualizar uma instalaÁ„o existente de ${NAME}, por favor feche-a antes de continuar.\r\n\r\nClique em Seguinte para continuar."
+LangString welcome ${LANG_PORTUGUESE} "Este assistente ir√° gui√°-lo na instala√ß√£o da aplica√ß√£o ${NAME}.\r\n\r\nSe est√° a actualizar uma instala√ß√£o existente de ${NAME}, por favor feche-a antes de continuar.\r\n\r\nClique em Seguinte para continuar."
 LangString finish ${LANG_PORTUGUESE} "${NAME} foi instalado no seu dispositivo.\r\n\r\nClique em Terminar para fechar este assistente."
-LangString runwarning ${LANG_PORTUGUESE} "Por favor feche todas as inst‚ncias de ${CLOSENAME} e depois clique em OK. A aplicaÁ„o port·til n„o pode ser actualizada enquanto est· a ser executada."
-LangString invaliddirectory ${LANG_PORTUGUESE} "A pasta de destino que seleccionou È inv·lida. Por favor escolha uma pasta v·lida."
-LangString notenoughspace ${LANG_PORTUGUESE} "O dispositivo que seleccionou para a instalaÁ„o n„o tem espaÁo livre suficiente para esta aplicaÁ„o."
+LangString runwarning ${LANG_PORTUGUESE} "Por favor feche todas as inst√¢ncias de ${CLOSENAME} e depois clique em OK. A aplica√ß√£o port√°til n√£o pode ser actualizada enquanto est√° a ser executada."
+LangString invaliddirectory ${LANG_PORTUGUESE} "A pasta de destino que seleccionou √© inv√°lida. Por favor escolha uma pasta v√°lida."
+LangString notenoughspace ${LANG_PORTUGUESE} "O dispositivo que seleccionou para a instala√ß√£o n√£o tem espa√ßo livre suficiente para esta aplica√ß√£o."
 LangString checkforplatform ${LANG_PORTUGUESE} "A localizar a Plataforma PortableApps.com"
 LangString refreshmenu ${LANG_PORTUGUESE} "A recarregar o Menu PortableApps.com"

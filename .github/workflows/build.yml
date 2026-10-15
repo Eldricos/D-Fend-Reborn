@@ -105,6 +105,15 @@ jobs:
           "$MAKENSIS" D-Fend-Reborn-Setup.nsi
           "$MAKENSIS" D-Fend-Reborn-UpdateSetup.nsi
 
+      - name: Build the PortableApps.com package
+        shell: bash
+        run: |
+          cp -R Install/Stage "D-Fend Reborn"
+          sh packaging/portable-layout.sh "D-Fend Reborn"
+          printf 'PORTABLEMODE' > "D-Fend Reborn/DFend.dat"
+          VERSION=$(sed -n 's/^project(DFendReborn VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
+          sh packaging/portableapps.sh "D-Fend Reborn" "$VERSION" Install "/c/Program Files (x86)/NSIS/makensis.exe"
+
       - name: Upload the installers
         uses: actions/upload-artifact@v7
         with:

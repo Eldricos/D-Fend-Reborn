@@ -17,7 +17,9 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
 
 <p class="small">
   <b>D-Fend Reborn</b><br />
-  <a href="#reborn052">D-Fend Reborn 0.5.2 (not released yet)</a><br />
+  <a href="#reborn054">D-Fend Reborn 0.5.4 (not released yet)</a><br />
+  <a href="#reborn053">D-Fend Reborn 0.5.3 (10/15/2026)</a><br />
+  <a href="#reborn052">D-Fend Reborn 0.5.2 (10/15/2026)</a><br />
   <a href="#reborn051">D-Fend Reborn 0.5.1 (10/15/2026)</a><br />
   <a href="#reborn050">D-Fend Reborn 0.5.0 (10/14/2026)</a><br />
   <br />
@@ -63,7 +65,24 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
   <a href="#ver010">Version 0.1.0 (11/08/2007)</a>
 </p>
 
-<a onclick="return Work('reborn052')" name="reborn052" href="#"><h2>&raquo; D-Fend Reborn 0.5.2 (not released yet)</h2></a>
+<a onclick="return Work('reborn054')" name="reborn054" href="#"><h2>&raquo; D-Fend Reborn 0.5.4 (not released yet)</h2></a>
+<div id="reborn054">
+<ul>
+  <li>The PortableApps.com package (D-Fend-Reborn-&lt;version&gt;-Portable.paf.exe) is built with each release. Its launcher starts D-Fend Reborn independent of the current folder and passes on its parameters; the installer texts are shown correctly in all languages.</li>
+  <li>Linux AppImage: runs natively on Wayland desktops (<tt>QT_QPA_PLATFORM=xcb</tt> selects X11/XWayland).</li>
+</ul>
+</div>
+
+<a onclick="return Work('reborn053')" name="reborn053" href="#"><h2>&raquo; D-Fend Reborn 0.5.3 (10/15/2026)</h2></a>
+<div id="reborn053">
+<ul>
+  <li>Windows: the Qt plugins are in the subfolder "Qt" of the program folder (only the Qt libraries are next to DFend.exe); the update installer removes the old plugin folders.</li>
+  <li>The portable zip and the Linux tar.gz contain the data folders next to the program as an installation does (no NewUserData folder).</li>
+  <li>Help: current addresses of the external links.</li>
+</ul>
+</div>
+
+<a onclick="return Work('reborn052')" name="reborn052" href="#"><h2>&raquo; D-Fend Reborn 0.5.2 (10/15/2026)</h2></a>
 <div id="reborn052">
 <ul>
   <li>Windows: the update check downloads the update installer of a new version and installs it (installed and portable copies); D-Fend Reborn is restarted afterwards. The external UpdateCheck.exe is not used any more (virus scanners blocked it).</li>
