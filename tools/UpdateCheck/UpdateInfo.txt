@@ -1,2 +1,2 @@
-0.2.0
-http://downloads.sourceforge.net/dfendreloaded/D-Fend-Reloaded-0.2.0-UpdateSetup.exe
+0.5.0
+https://github.com/Eldricos/D-Fend-Reborn/releases/download/v0.5.0/D-Fend-Reborn-0.5.0-UpdateSetup.exe

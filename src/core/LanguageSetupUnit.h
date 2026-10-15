@@ -1285,6 +1285,7 @@ constexpr int NR_InfoFormLanguageFile = 53008;
 constexpr int NR_InfoFormLanguageAuthor = 53009;
 constexpr int NR_InfoFormLanguageVersion = 53010;
 constexpr int NR_InfoFormDFend = 53011;
+constexpr int NR_InfoFormBasedOn = 53012;   // D-Fend Reborn
 constexpr int NR_StatisticsCaption = 54001;
 constexpr int NR_StatisticsNumberProfiles = 54002;
 constexpr int NR_StatisticsNumberTemplates = 54003;
@@ -4677,6 +4678,8 @@ public:
     void SetInfoFormLanguageVersion(const QString& Value) { SetString(NR_InfoFormLanguageVersion, Value); }
     QString InfoFormDFend() { return GetString(NR_InfoFormDFend); }
     void SetInfoFormDFend(const QString& Value) { SetString(NR_InfoFormDFend, Value); }
+    QString InfoFormBasedOn() { return GetString(NR_InfoFormBasedOn); }
+    void SetInfoFormBasedOn(const QString& Value) { SetString(NR_InfoFormBasedOn, Value); }
     QString StatisticsCaption() { return GetString(NR_StatisticsCaption); }
     void SetStatisticsCaption(const QString& Value) { SetString(NR_StatisticsCaption, Value); }
     QString StatisticsNumberProfiles() { return GetString(NR_StatisticsNumberProfiles); }

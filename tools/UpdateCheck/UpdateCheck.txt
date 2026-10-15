@@ -1,7 +1,7 @@
-0.1.2
-http://home.tu-clausthal.de/~ifalh/UpdateInfo.txt
-DFendReloadedUpdate.exe
-C:\Program Files\D-Fend Reloaded
+0.5.0
+https://github.com/Eldricos/D-Fend-Reborn/releases/latest/download/UpdateInfo.txt
+DFendRebornUpdate.exe
+C:\Program Files\D-Fend Reborn
 normal
 Cannot find file
 Download failed

@@ -12,10 +12,14 @@
 <h1>Version history</h1>
 
 <p>
-D-Fend Reborn is based on D-Fend Reloaded. The version history on this page is the history of D-Fend Reloaded.
+D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first entries on this page are the versions of D-Fend Reborn, followed by the version history of D-Fend Reloaded (versions 0.1.0 to 1.4.4).
 </p>
 
 <p class="small">
+  <b>D-Fend Reborn</b><br />
+  <a href="#reborn050">D-Fend Reborn 0.5.0 (10/14/2026)</a><br />
+  <br />
+  <b>D-Fend Reloaded</b><br />
   <a href="#ver144">Version 1.4.4 (07/30/2015)</a><br />
   <a href="#ver143">Version 1.4.3 (06/27/2015)</a><br />
   <a href="#ver142">Version 1.4.2 (09/19/2014)</a><br />
@@ -56,6 +60,20 @@ D-Fend Reborn is based on D-Fend Reloaded. The version history on this page is t
   <a href="#ver011">Version 0.1.1 (12/18/2007)</a><br />
   <a href="#ver010">Version 0.1.0 (11/08/2007)</a>
 </p>
+
+<a onclick="return Work('reborn050')" name="reborn050" href="#"><h2>&raquo; D-Fend Reborn 0.5.0 (10/14/2026)</h2></a>
+<div id="reborn050">
+<ul>
+  <li>First release of D-Fend Reborn: D-Fend Reloaded 1.4.4 ported from Delphi to C++ and Qt 6. D-Fend Reborn runs on Windows (64 bit, Windows 10/11) and Linux and uses the profiles, settings, templates and language files of D-Fend Reloaded 1.4.4.</li>
+  <li>Linux: uses the DOSBox (or DOSBox Staging), ScummVM, 7-Zip, mkfs.fat, oggenc and curl programs of the system; Windows programs of Windows profiles are started with Wine (configurable on the "Windows games" options page); CD/DVD, floppy and USB drives are found automatically (udisks2); shortcuts as .desktop files; program icons are read from Windows .exe files; wallpaper and screensaver support for the common desktops; user data in <tt>~/.local/share/D-Fend Reborn</tt>.</li>
+  <li>The help is a set of HTML pages opened in the web browser on all systems.</li>
+  <li>Package manager: the package lists are served from the GitHub repository; single games can be installed from the "game-packages" release; data packages are .7z / .zip archives.</li>
+  <li>The update check uses the GitHub releases. On Windows UpdateCheck.exe downloads and installs the update installer.</li>
+  <li>All downloads use the proxy settings of the system.</li>
+  <li>The Czech, Polish, Turkish and Chinese language files are displayed correctly independent of the system code page.</li>
+  <li>Downloads of each release are built automatically: Windows installer, update installer and portable zip, Linux AppImage and tar.gz.</li>
+</ul>
+</div>
 
 <a onclick="return Work('ver144')" name="ver144" href="#"><h2>&raquo; Version 1.4.4 (07/30/2015)</h2></a>
 <div id="ver144">

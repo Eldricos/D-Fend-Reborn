@@ -56,3 +56,14 @@ Function TrimNewlines
    Pop $R1
    Exch $R0
  FunctionEnd
+
+; Removes a trailing backslash from the string on top of the stack
+Function TrimTrailingBackslash
+  Exch $R0
+  Push $R1
+  StrCpy $R1 $R0 1 -1
+  StrCmp $R1 "\" 0 +2
+  StrCpy $R0 $R0 -1
+  Pop $R1
+  Exch $R0
+FunctionEnd
