@@ -9,6 +9,8 @@ RequestExecutionLevel user
 SetCompressor /solid lzma
 Icon "..\..\App\AppInfo\appicon.ico"
 
+!include FileFunc.nsh
+
 Function .onInit
   SetSilent silent
 FunctionEnd
@@ -16,5 +18,9 @@ FunctionEnd
 Section "-Work"
   SectionIn RO
   
-  Exec ".\App\D-Fend Reborn\DFend.exe"
+  ; start D-Fend Reborn from the folder of the launcher (not from the current
+  ; folder) and pass on the parameters
+  ${GetParameters} $0
+  SetOutPath "$EXEDIR\App\D-Fend Reborn"
+  Exec '"$EXEDIR\App\D-Fend Reborn\DFend.exe" $0'
 SectionEnd

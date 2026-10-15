@@ -8,7 +8,8 @@
 #   Windows: D-Fend-Reborn-<version>-Setup.exe        (full installer)
 #            D-Fend-Reborn-<version>-UpdateSetup.exe  (update installer)
 #            D-Fend-Reborn-<version>-Windows-Portable.zip
-#   Linux:   D-Fend-Reborn-<version>-x86_64.AppImage  (runs without installing Qt)
+#            D-Fend-Reborn-<version>-Portable.paf.exe  (PortableApps.com package)
+#   Linux:   D-Fend-Reborn-<version>-x86_64.AppImage  (runs without installing Qt; X11 and Wayland)
 #            D-Fend-Reborn-<version>-Linux-x86_64.tar.gz (needs Qt 6.4+ of the distribution)
 #
 # A draft release created by the workflow has to be published on the releases
@@ -22,6 +23,10 @@ on:
     tags: ['v[0-9]*', '[0-9]*']
   release:
     types: [published]
+  # test build (Actions > Release > Run workflow): builds and tests all
+  # downloads of the version in CMakeLists.txt (as workflow artifacts),
+  # without a release
+  workflow_dispatch:
 
 # creating a release on GitHub can also push its tag: run once per tag
 concurrency:
@@ -45,6 +50,9 @@ jobs:
         shell: bash
         run: |
           TAG="${GITHUB_REF_NAME#v}"
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            TAG=$(sed -n 's/^project(DFendReborn VERSION \([0-9.]*\).*/\1/p' CMakeLists.txt)
+          fi
           if ! echo "$TAG" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
             echo "::error::The tag \"$GITHUB_REF_NAME\" is not a version number. Use a tag like v0.5.0 (the version of CMakeLists.txt)."
             exit 1
@@ -131,6 +139,10 @@ jobs:
           Set-Content -Path "D-Fend Reborn/DFend.dat" -Value "PORTABLEMODE" -NoNewline
           Compress-Archive -Path "D-Fend Reborn" -DestinationPath "dist/D-Fend-Reborn-$env:VERSION-Windows-Portable.zip"
 
+      - name: PortableApps.com package
+        shell: bash
+        run: sh packaging/portableapps.sh "D-Fend Reborn" "$VERSION" dist "/c/Program Files (x86)/NSIS/makensis.exe"
+
       - uses: actions/upload-artifact@v7
         with:
           name: windows
@@ -154,7 +166,8 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             cmake ninja-build g++ libgl-dev libxkbcommon-x11-0 libxcb-cursor0 \
             libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 \
-            libxcb-shape0 libxcb-xinerama0 libxcb-xkb1 libegl1
+            libxcb-shape0 libxcb-xinerama0 libxcb-xkb1 libegl1 \
+            libwayland-client0 libwayland-cursor0 libwayland-egl1
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -181,6 +194,10 @@ jobs:
         env:
           APPIMAGE_EXTRACT_AND_RUN: 1
           ARCH: x86_64
+          # X11 (xcb) and Wayland: on a Wayland desktop Qt uses the Wayland
+          # plugin, QT_QPA_PLATFORM=xcb selects XWayland
+          EXTRA_PLATFORM_PLUGINS: libqwayland-egl.so;libqwayland-generic.so
+          EXTRA_QT_MODULES: waylandcompositor
         run: |
           curl -sSLO https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
           curl -sSLO https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
@@ -193,25 +210,41 @@ jobs:
             --desktop-file packaging/linux/dfend-reborn.desktop \
             --icon-file packaging/linux/dfend-reborn.png \
             --plugin qt
+          for P in platforms/libqxcb.so platforms/libqwayland-generic.so platforms/libqwayland-egl.so \
+                   wayland-shell-integration wayland-decoration-client; do
+            test -e "AppDir/usr/plugins/$P" || { echo "::error::Qt plugin $P missing in the AppImage"; exit 1; }
+          done
           mkdir -p dist
           ./appimagetool-x86_64.AppImage AppDir "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage"
 
       - name: Test start
-        env:
-          APPIMAGE_EXTRACT_AND_RUN: 1
         run: |
-          # start the AppImage on a virtual display with an empty home folder:
-          # it must still run after 20 seconds and have created its data folder
-          sudo apt-get install -y --no-install-recommends xvfb
+          # start the AppImage on a virtual X11 display and on a headless
+          # Wayland compositor (weston), each time with an empty home folder:
+          # it must still run after 20 seconds and have created its data
+          # folder. The extracted AppImage is started (AppRun), so that the
+          # test can stop the program itself.
+          sudo apt-get install -y --no-install-recommends xvfb weston
+          "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage" --appimage-extract > /dev/null
           cat > test-start.sh <<'EOF'
-          export HOME="$RUNNER_TEMP/home"; mkdir -p "$HOME"
-          "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage" &
+          export HOME="$RUNNER_TEMP/home-$1"; mkdir -p "$HOME"
+          squashfs-root/AppRun > "start-$1.log" 2>&1 &
           P=$!; sleep 20
-          kill -0 $P || exit 1
-          kill $P
+          if ! kill -0 $P 2> /dev/null; then
+            echo "::error::D-Fend Reborn did not start ($1)"; tail -n 40 "start-$1.log"; exit 1
+          fi
+          kill $P; wait $P
+          tail -n 20 "start-$1.log"
           test -d "$HOME/.local/share/D-Fend Reborn/Settings"
           EOF
-          xvfb-run -a sh test-start.sh
+          xvfb-run -a sh test-start.sh x11
+          export XDG_RUNTIME_DIR="$RUNNER_TEMP/xdg"; mkdir -m 700 -p "$XDG_RUNTIME_DIR"
+          weston --backend=headless-backend.so --socket=wayland-test --idle-time=0 > weston.log 2>&1 &
+          W=$!; sleep 3
+          # QT_QPA_PLATFORM=wayland: no fallback to X11 (there is no X server here)
+          env -u DISPLAY WAYLAND_DISPLAY=wayland-test QT_QPA_PLATFORM=wayland sh test-start.sh wayland \
+            || { tail -n 20 weston.log; exit 1; }
+          kill $W
 
       - uses: actions/upload-artifact@v7
         with:
@@ -259,6 +292,7 @@ jobs:
   release:
     name: Draft release
     needs: [version, windows, appimage, linux]
+    if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-24.04
     env:
       VERSION: ${{ needs.version.outputs.version }}
@@ -281,6 +315,7 @@ jobs:
           - \`D-Fend-Reborn-$VERSION-Setup.exe\`: installer (new installation)
           - \`D-Fend-Reborn-$VERSION-UpdateSetup.exe\`: update of an existing installation (keeps your data)
           - \`D-Fend-Reborn-$VERSION-Windows-Portable.zip\`: portable version (extract and start \`DFend.exe\`)
+          - \`D-Fend-Reborn-$VERSION-Portable.paf.exe\`: [PortableApps.com](https://portableapps.com/) package (install it into the PortableApps.com Platform or any folder)
 
           **Linux** (x86_64)
           - \`D-Fend-Reborn-$VERSION-x86_64.AppImage\`: make it executable and start it (data in \`~/.local/share/D-Fend Reborn\`)

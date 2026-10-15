@@ -1,7 +1,27 @@
 D-Fend Reborn Changelog
 
 
-Version 0.5.2 (not released yet)
+Version 0.5.4 (not released yet)
+================================
+- The PortableApps.com package (D-Fend-Reborn-<version>-Portable.paf.exe) is
+  built with each release. Its launcher starts D-Fend Reborn independent of
+  the current folder and passes on its parameters; the installer texts are
+  shown correctly in all languages.
+- Linux AppImage: runs natively on Wayland desktops (QT_QPA_PLATFORM=xcb
+  selects X11/XWayland).
+
+
+Version 0.5.3 (10/15/2026)
+==========================
+- Windows: the Qt plugins are in the subfolder "Qt" of the program folder
+  (only the Qt libraries are next to DFend.exe); the update installer
+  removes the old plugin folders.
+- The portable zip and the Linux tar.gz contain the data folders next to the
+  program as an installation does (no NewUserData folder).
+- Help: current addresses of the external links.
+
+
+Version 0.5.2 (10/15/2026)
 ================================
 - Windows: the update check downloads the update installer of a new
   version and installs it (installed and portable copies); D-Fend Reborn
