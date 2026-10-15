@@ -235,6 +235,7 @@ FunctionEnd
   File "${STAGE}\Bin\Cheats.xml"
 
   ; Files of D-Fend Reborn that are not used any more
+  Delete "$INSTDIR\Bin\InstallVideoCodec.exe"
   Delete "$INSTDIR\Bin\7za.dll"
   Delete "$INSTDIR\Bin\DelZip179.dll"
   Delete "$INSTDIR\Bin\mediaplr.dll"

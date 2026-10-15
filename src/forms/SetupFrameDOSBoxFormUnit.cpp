@@ -231,7 +231,6 @@ QString TSetupFrameDOSBoxForm::ExtendLanguageName(const QString& ShortName)
 
 void TSetupFrameDOSBoxForm::DosBoxDirEditChange(QObject* Sender)
 {
-    Q_UNUSED(Sender);
     QString S, S2;
     int I, J;
 
@@ -254,7 +253,12 @@ void TSetupFrameDOSBoxForm::DosBoxDirEditChange(QObject* Sender)
     for (J = 0; J < St.Count(); J++) ui.DosBoxLangEditComboBox->addItem(ExtendLanguageName(St[J]));
     if (St.Count() > 0) ui.DosBoxLangEditComboBox->setCurrentIndex(qMax(0, I));
 
-    ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())) || (DOSBoxKind(ui.DosBoxDirEdit->text(), SelectedExecutable()) == dkDOSBoxX));
+    const bool IsX = (DOSBoxKind(ui.DosBoxDirEdit->text(), SelectedExecutable()) == dkDOSBoxX);
+    ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())) || IsX);
+    // notice when the user chooses a DOSBox-X folder or program file (not
+    // when the dialog is opened)
+    if (IsX && (!LastWasDOSBoxX) && (Sender != this) && isVisible()) DOSBoxXWarning();
+    LastWasDOSBoxX = IsX;
     QRect G = ui.DosBoxDirEdit->geometry();
     QRect WB = ui.WarningButton->geometry();
     int W = (ui.WarningButton->isVisibleTo(this) ? WB.x() - 4 : WB.x() + WB.width()) - G.x();

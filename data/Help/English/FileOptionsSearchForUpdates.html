@@ -57,6 +57,11 @@ In the D-Fend Reborn GitHub repository (folder <tt>online</tt>) there is always 
 the Mobygames search result page to get the game information.
 <br />(Default value for this option: "On first use each day")
 </p>
+<p>
+<b>Note:</b> The function for downloading game information ("Download game information" in the
+profile editor) is disabled in this version of D-Fend Reborn, because the game database sites it
+used have changed. This setting has no effect at the moment.
+</p>
 
 <h3>Search for updates now</h3>
 <p>
@@ -70,15 +75,17 @@ from the help menu.
 The update checker asks GitHub for the latest release of D-Fend Reborn
 (<a href="https://github.com/Eldricos/D-Fend-Reborn/releases" target="_blank">https://github.com/Eldricos/D-Fend-Reborn/releases</a>).
 If the version number of this release is bigger than the version number of the
-installed D-Fend Reborn, the update checker asks you if you want to download the
-new version and opens the download page of the release in your web browser.
-No program is downloaded or started by the update checker itself.
+installed D-Fend Reborn, the update checker asks you if you want to install the
+new version. On Windows it then downloads the update installer of the release from GitHub
+and starts it; D-Fend Reborn is closed and started again after the update. On Linux (and if
+the update installer can not be used) the download page of the release is opened in your
+web browser.
 </p>
 
 <p>
 The update checker does <b>not</b> transfer any of your private data to the internet;
-it only reads the information about the latest release (version number and address
-of the download page) from GitHub.
+it only reads the information about the latest release (version number and files
+of the release) from GitHub.
 </p>
 
 <p>

@@ -341,6 +341,7 @@ void TFirstRunWizardForm::DOSBoxEditChange(QObject* Sender)
             SetDOSBoxWarningLanguage();
         } else if (DOSBoxKind(S) == dkDOSBoxX) {
             ui.DOSBoxWarningButton->setVisible(true);
+            if ((DOSBoxWarningType != wtDOSBoxX) && isVisible()) DOSBoxXWarning();
             DOSBoxWarningType = wtDOSBoxX;
             SetDOSBoxWarningLanguage();
         } else {

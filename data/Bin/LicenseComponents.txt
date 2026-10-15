@@ -1,3 +1,18 @@
+D-Fend Reborn is based on D-Fend Reloaded by Alexander Herzog
+(GNU GPL, https://dfendreloaded.sourceforge.net/).
+
+
+Used by D-Fend Reborn:
+
+Qt 6 (application framework: user interface, file and network access,
+XML, images, video playback)
+(c) The Qt Company Ltd. and other contributors
+GNU LGPL version 3 (https://www.qt.io/licensing/open-source-lgpl-obligations)
+(https://www.qt.io/)
+The Windows version includes the Qt libraries (Qt6*.dll and the folder "Qt"),
+the Linux AppImage includes them as well.
+
+
 Included in the Windows version of D-Fend Reborn (folder "DOSBox"):
 
 DOSBox Staging (DOS emulator)
@@ -5,64 +20,47 @@ DOSBox Staging (DOS emulator)
 GNU GPL version 2 or later, see DOSBox\LICENSE.txt and DOSBox\SOURCE.txt
 (https://www.dosbox-staging.org/)
 
-Used as part of the D-Fend Reloaded source code:
+
+Used as part of the D-Fend Reborn source code:
 
 Parts of the DOSBox source code
-(for making short path names in D-Fend Reloaded the DOSBox way)
-written by the DOSBox Teams,
+(for making short path names the DOSBox way)
+written by the DOSBox Team,
 translation to D-Fend Reloaded by Alexander Katz (skatz@svitonline.com)
-(http://www.dosbox.com/)
+(https://www.dosbox.com/)
 
-Portable Network Graphics Delphi
-written by Gustavo Daud
-(http://pngdelphi.sourceforge.net/)
-
-GIF Graphics Object
-written by Anders Melander, Filip Larsen and Reinier Sterkenburg
-(http://www.torry.net/authorsmore.php?id=1034)
-
-SDeanComponents v2.60.00
-written by Sarah Dean (sdean12@sdean12.org)
-(http://www.SDean12.org/)
-
-TZipMaster 1.79
-written by Chris Vleghert and Eric W. Engler
-(http://www.delphizip.org)
-
-TSevenZip 0.7.4a
-written by Ivo Andonov and Rainer Geigenberger (SevenZipVCL@rg-software.de)
-(http://www.rg-software.de)
-
-Bitmap Resampler 01.02
+Bitmap Resampler 01.02 (image scaling filters)
 written by Anders Melander (anders@melander.dk)
 
 
-Used as binary program by D-Fend Reloaded:
-
-MTOOLs for Bochs and Win32 and/or DOS
-written by Benjamin David Lunt
-(http://www.frontiernet.net/~fys/mtools.htm)
+Used as binary programs by the Windows version of D-Fend Reborn
+(folder "Bin"; the Linux version uses the programs of the system):
 
 FreeDOS 1.0
 FreeDOS is a trademark of Jim Hall
-(http://www.freedos.org/)
+(https://www.freedos.org/)
 
 OggEnc v2.84 (libvorbis 1.2.0)
 (c) 2000-2005 Michael Smith & portions by John Edwards
-(http://www.vorbis.com/)
+(https://xiph.org/vorbis/)
 
 Doszip Commander 1.41
 (c) 1996-2010 Hjort Nidudsson
-(http://sourceforge.net/projects/doszip)
+(https://sourceforge.net/projects/doszip/)
 
 7-Zip 24.09 (7za.exe)
 (c) 1999-2024 Igor Pavlov
 GNU LGPL, see 7-Zip-License.txt
 (https://www.7-zip.org/)
 
-Dr.SAGURA Media Player
-(c) 2007 Dr. Andrei Sagura
-(http://www.sagura.com)
+mkdosfs (mkdosfs.exe, Win32 port of mkdosfs from the dosfstools)
+GNU GPL, source code in the D-Fend Reborn repository (tools/mkdosfs)
+
+
+Installers:
+
+The installers are created with NSIS (Nullsoft Scriptable Install System)
+zlib/libpng license (https://nsis.sourceforge.io/)
 
 
 Used artwork:
