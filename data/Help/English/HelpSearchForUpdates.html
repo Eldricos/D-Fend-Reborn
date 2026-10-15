@@ -26,15 +26,19 @@ at a chosen interval.
 The update checker asks GitHub for the latest release of D-Fend Reborn
 (<a href="https://github.com/Eldricos/D-Fend-Reborn/releases" target="_blank">https://github.com/Eldricos/D-Fend-Reborn/releases</a>).
 If the version number of this release is bigger than the version number of the
-installed D-Fend Reborn, the update checker asks you if you want to download the
-new version and opens the download page of the release in your web browser.
-No program is downloaded or started by the update checker itself.
+installed D-Fend Reborn, the update checker asks you if you want to update.
+On Windows D-Fend Reborn then downloads the update installer of the new version
+(<tt>D-Fend-Reborn-x.y.z-UpdateSetup.exe</tt>) and starts it for the program folder
+(Windows asks for admin rights); D-Fend Reborn closes and is started again when the
+update is installed. This works for installed and portable copies. On Linux (and for
+a program folder without <tt>DFend.dat</tt>) the download page of the release is opened
+in your web browser instead.
 </p>
 
 <p>
 The update checker does <b>not</b> transfer any of your private data to the internet;
-it only reads the information about the latest release (version number and address
-of the download page) from GitHub.
+it only reads the information about the latest release (version number and addresses
+of the download page and of the update installer) from GitHub.
 </p>
 
 <p>

@@ -69,10 +69,10 @@ by `SSL_CERT_FILE` (e.g. of a company proxy) are trusted in addition to the
 system certificates.
 
 The program update check asks GitHub for the latest release of this
-repository (Help > Search for updates). On Windows it then starts
-`Bin/UpdateCheck.exe` (source: `tools/UpdateCheck`), which reads
-`UpdateInfo.txt` of the latest release, downloads the update installer and
-installs it; on Linux it offers to open the download page.
+repository (Help > Search for updates). On Windows D-Fend Reborn then
+downloads the update installer of the release and installs the update
+(installed and portable copies); on Linux it offers to open the download
+page.
 
 The help (`data/Help/<Language>/`) is a set of plain HTML pages, used on all
 systems: the help buttons and menu items open the matching page in the

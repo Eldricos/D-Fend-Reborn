@@ -21,7 +21,7 @@ BrandingText "D-Fend Reborn data package"
 SetCompressor /solid lzma
 RequestExecutionLevel user
 XPStyle on
-InstallDir "$PROGRAMFILES\D-Fend Reborn\"
+InstallDir "$PROGRAMFILES64\D-Fend Reborn\"
 InstallDirRegKey HKLM "Software\D-Fend Reborn" "ProgramFolder"
 !insertmacro MUI_RESERVEFILE_LANGDLL
 

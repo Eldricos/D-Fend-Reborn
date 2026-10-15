@@ -17,6 +17,8 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
 
 <p class="small">
   <b>D-Fend Reborn</b><br />
+  <a href="#reborn052">D-Fend Reborn 0.5.2 (not released yet)</a><br />
+  <a href="#reborn051">D-Fend Reborn 0.5.1 (10/15/2026)</a><br />
   <a href="#reborn050">D-Fend Reborn 0.5.0 (10/14/2026)</a><br />
   <br />
   <b>D-Fend Reloaded</b><br />
@@ -61,6 +63,23 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
   <a href="#ver010">Version 0.1.0 (11/08/2007)</a>
 </p>
 
+<a onclick="return Work('reborn052')" name="reborn052" href="#"><h2>&raquo; D-Fend Reborn 0.5.2 (not released yet)</h2></a>
+<div id="reborn052">
+<ul>
+  <li>Windows: the update check downloads the update installer of a new version and installs it (installed and portable copies); D-Fend Reborn is restarted afterwards. The external UpdateCheck.exe is not used any more (virus scanners blocked it).</li>
+  <li>The update installer updates portable copies in place without creating an uninstaller or registry entries.</li>
+  <li>The installer uses "C:\Program Files" as default folder (D-Fend Reborn is a 64 bit program; existing installations keep their folder).</li>
+</ul>
+</div>
+
+<a onclick="return Work('reborn051')" name="reborn051" href="#"><h2>&raquo; D-Fend Reborn 0.5.1 (10/15/2026)</h2></a>
+<div id="reborn051">
+<ul>
+  <li>Program info dialog: D-Fend Reborn information (based on D-Fend Reloaded by Alexander Herzog), change log of D-Fend Reborn.</li>
+  <li>[Fix] The change log was not shown on Linux.</li>
+</ul>
+</div>
+
 <a onclick="return Work('reborn050')" name="reborn050" href="#"><h2>&raquo; D-Fend Reborn 0.5.0 (10/14/2026)</h2></a>
 <div id="reborn050">
 <ul>
@@ -68,7 +87,7 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
   <li>Linux: uses the DOSBox (or DOSBox Staging), ScummVM, 7-Zip, mkfs.fat, oggenc and curl programs of the system; Windows programs of Windows profiles are started with Wine (configurable on the "Windows games" options page); CD/DVD, floppy and USB drives are found automatically (udisks2); shortcuts as .desktop files; program icons are read from Windows .exe files; wallpaper and screensaver support for the common desktops; user data in <tt>~/.local/share/D-Fend Reborn</tt>.</li>
   <li>The help is a set of HTML pages opened in the web browser on all systems.</li>
   <li>Package manager: the package lists are served from the GitHub repository; single games can be installed from the "game-packages" release; data packages are .7z / .zip archives.</li>
-  <li>The update check uses the GitHub releases. On Windows UpdateCheck.exe downloads and installs the update installer.</li>
+  <li>The update check uses the GitHub releases.</li>
   <li>All downloads use the proxy settings of the system.</li>
   <li>The Czech, Polish, Turkish and Chinese language files are displayed correctly independent of the system code page.</li>
   <li>Downloads of each release are built automatically: Windows installer, update installer and portable zip, Linux AppImage and tar.gz.</li>

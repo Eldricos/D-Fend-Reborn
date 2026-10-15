@@ -1,6 +1,25 @@
 D-Fend Reborn Changelog
 
 
+Version 0.5.2 (not released yet)
+================================
+- Windows: the update check downloads the update installer of a new
+  version and installs it (installed and portable copies); D-Fend Reborn
+  is restarted afterwards. The external UpdateCheck.exe is not used any
+  more (virus scanners blocked it).
+- The update installer updates portable copies in place without creating
+  an uninstaller or registry entries.
+- The installer uses "C:\Program Files" as default folder (D-Fend Reborn is
+  a 64 bit program; existing installations keep their folder).
+
+
+Version 0.5.1 (10/15/2026)
+==========================
+- Program info dialog: D-Fend Reborn information (based on D-Fend Reloaded
+  by Alexander Herzog), change log of D-Fend Reborn.
+- [Fix] The change log was not shown on Linux.
+
+
 Version 0.5.0 (10/14/2026)
 ==========================
 First release of D-Fend Reborn.
@@ -18,8 +37,7 @@ First release of D-Fend Reborn.
 - Package manager: the package lists are served from the GitHub repository;
   single games can be installed from the "game-packages" release; data
   packages are .7z / .zip archives.
-- The update check uses the GitHub releases. On Windows UpdateCheck.exe
-  downloads and installs the update installer.
+- The update check uses the GitHub releases.
 - All downloads use the proxy settings of the system.
 - The Czech, Polish, Turkish and Chinese language files are displayed
   correctly independent of the system code page.

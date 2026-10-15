@@ -53,7 +53,7 @@ jobs:
           NSIS=$(tr -d '\r' < Install/VersionSettings.nsi | awk '/!define VER_MAYOR/{a=$3} /!define VER_MINOR1/{b=$3} /!define VER_MINOR2/{c=$3} END{print a"."b"."c}')
           echo "Tag: $TAG, CMakeLists.txt: $CMAKE, VersionSettings.nsi: $NSIS"
           if [ "$TAG" != "$CMAKE" ] || [ "$TAG" != "$NSIS" ]; then
-            echo "::error::The version numbers do not match. Set the version $TAG in CMakeLists.txt (project ... VERSION) and Install/VersionSettings.nsi, then tag again."
+            echo "::error::The version numbers at the commit of the tag $GITHUB_REF_NAME ($(git rev-parse --short HEAD)) do not match. Set the version $TAG in CMakeLists.txt (project ... VERSION) and Install/VersionSettings.nsi on main first. If you changed them after creating the tag: a tag stays on the commit it was created for - delete the release and the tag $GITHUB_REF_NAME on GitHub and create them again."
             exit 1
           fi
           echo "version=$TAG" >> "$GITHUB_OUTPUT"
@@ -247,16 +247,6 @@ jobs:
         with:
           path: dist
           merge-multiple: true
-
-      - name: Update information for UpdateCheck.exe
-        run: |
-          # read by Bin\UpdateCheck.exe of the Windows version via
-          # .../releases/latest/download/UpdateInfo.txt: version and URL of
-          # the update installer
-          printf '%s\r\n%s\r\n' "$VERSION" \
-            "https://github.com/${{ github.repository }}/releases/download/$GITHUB_REF_NAME/D-Fend-Reborn-$VERSION-UpdateSetup.exe" \
-            > dist/UpdateInfo.txt
-          cat dist/UpdateInfo.txt
 
       - name: Create or update the draft release
         run: |
