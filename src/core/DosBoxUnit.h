@@ -10,6 +10,7 @@
 #include <QtNetwork>
 #include <functional>
 #include "GameDBUnit.h"
+#include "CommonTools.h"
 
 void RunGame(TGame* Game, TStringList* DeleteOnExit, bool RunSetup = false, const QString& DosBoxCommandLine = QString(), bool Wait = false);
 THandle RunGameAndGetHandle(TGame* Game, TStringList* DeleteOnExit, bool RunSetup = false, const QString& DosBoxCommandLine = QString());
@@ -21,7 +22,7 @@ void RunWithCommandline(TGame* Game, TStringList* DeleteOnExit, const QString& C
 void RunWithCommandlineAndWait(TGame* Game, TStringList* DeleteOnExit, const QString& CommandLine, bool DisableFullscreen = false);
 TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, int RunExtraFile, TStringList* DeleteOnExit, bool BuildForArchivePackage);
 bool BuildAutoexec(TGame* Game, bool RunSetup, TStringList* St, bool WarnIfNotReachable, int RunExtraFile, bool WarnIfWindowsExe, bool SelectCD, bool BuildForArchivePackage);
-QString GetDOSBoxCommandLine(int DOSBoxNr, const QString& ConfFile, int ShowConsole, const QString& DosBoxCommandLine = QString());
+QString GetDOSBoxCommandLine(int DOSBoxNr, const QString& ConfFile, int ShowConsole, const QString& DosBoxCommandLine = QString(), TDOSBoxKind Kind = dkDOSBox);
 bool IsWindowsExe(const QString& FileName);
 bool IsDOSExe(const QString& FileName);
 extern bool MinimizedAtDOSBoxStart;  // initial value: false

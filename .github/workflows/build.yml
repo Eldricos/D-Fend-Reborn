@@ -88,6 +88,9 @@ jobs:
           test -f build/Lang/English.ini
           test -f build/Help/English/Index.html
           test -f build/Bin/7za.exe
+          # included DOSBox Staging (cmake/DOSBoxStaging.cmake)
+          test -f build/DOSBox/dosbox.exe
+          test -f build/DOSBox/SOURCE.txt
 
       - name: Build the installers
         shell: bash
@@ -99,6 +102,7 @@ jobs:
           test -f Install/Stage/qt.conf
           test -f Install/Stage/Qt/platforms/qwindows.dll
           test ! -d Install/Stage/platforms
+          test -f Install/Stage/DOSBox/dosbox.exe
           MAKENSIS="/c/Program Files (x86)/NSIS/makensis.exe"
           if [ ! -f "$MAKENSIS" ]; then choco install nsis -y --no-progress; fi
           cd Install

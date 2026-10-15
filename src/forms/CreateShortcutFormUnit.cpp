@@ -169,8 +169,8 @@ bool CreateLinuxShortCut(QWidget* AOwner, TGame* Game)
     if (Trim(PrgSetup->LinuxShellScriptPreamble()) != "") St.Add(PrgSetup->LinuxShellScriptPreamble());
 
     DOSBoxNr = GetDOSBoxNr(Game);
-    if (DOSBoxNr >= 0) S = MakeAbsPath(PrgSetup->DOSBoxSettings(DOSBoxNr)->DosBoxDir(), PrgSetup->BaseDir()); else S = Trim(Game->CustomDOSBoxDir());
-    St.Add(UnmapDrive(IncludeTrailingPathDelimiter(S) + DosBoxFileName, ptDOSBox) + " -conf \"" + UnmapDrive(ConfFile, ptDOSBox) + "\"");
+    if (DOSBoxNr >= 0) S = DOSBoxExeFileOfInstallation(DOSBoxNr); else S = DOSBoxExeFile(Trim(Game->CustomDOSBoxDir()));
+    St.Add(UnmapDrive(S, ptDOSBox) + " -conf \"" + UnmapDrive(ConfFile, ptDOSBox) + "\"");
     if (!St.SaveToFile(SaveDialog.FileName)) {
         MessageDlg(Format(LanguageSetup->MessageCouldNotSaveFile(), {SaveDialog.FileName}), mtError, mbOK, 0, AOwner);
     }

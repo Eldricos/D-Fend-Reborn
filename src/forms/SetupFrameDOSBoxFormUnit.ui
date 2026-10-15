@@ -115,8 +115,21 @@
       <property name="text"><string>Disable screensaver when DOSBox is running</string></property>
     </widget>
     <widget class="QLineEdit" name="CommandLineEdit">
-      <property name="geometry"><rect><x>14</x><y>160</y><width>639</width><height>21</height></rect></property>
+      <property name="geometry"><rect><x>14</x><y>160</y><width>409</width><height>21</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
+    </widget>
+    <widget class="QComboBox" name="DosBoxExecutableComboBox">
+      <property name="geometry"><rect><x>430</x><y>160</y><width>223</width><height>21</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="editable"><bool>true</bool></property>
+      <property name="maxVisibleItems"><number>8</number></property>
+    </widget>
+    <widget class="QLabel" name="DosBoxExecutableLabel">
+      <property name="geometry"><rect><x>430</x><y>144</y><width>223</width><height>13</height></rect></property>
+      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
+      <property name="text"><string>DosBoxExecutable</string></property>
+      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+      <property name="buddy"><cstring>DosBoxExecutableComboBox</cstring></property>
     </widget>
     <widget class="QLabel" name="CommandLineEdit_EditLabel">
       <property name="geometry"><rect><x>14</x><y>144</y><width>84</width><height>13</height></rect></property>

@@ -179,11 +179,49 @@ FunctionEnd
 
 
 
+; DOSBox (folder "DOSBox": DOSBox Staging)
+; ============================================================
+; Files of the DOSBox 0.74 that older versions included (DOSBox Staging
+; replaces it; its dosbox.exe replaces DOSBox.exe). User files in the folder
+; (key mapper files, own configuration files) are kept.
+
+!macro RemoveOldDOSBox
+  Delete "$INSTDIR\DOSBox\SDL.dll"
+  Delete "$INSTDIR\DOSBox\SDL_net.dll"
+  Delete "$INSTDIR\DOSBox\dosbox.conf"
+  Delete "$INSTDIR\DOSBox\DOSBox 0.74 Manual.txt"
+  Delete "$INSTDIR\DOSBox\DOSBox 0.74 Options.bat"
+  Delete "$INSTDIR\DOSBox\Reset KeyMapper.bat"
+  Delete "$INSTDIR\DOSBox\Reset Options.bat"
+  Delete "$INSTDIR\DOSBox\Screenshots & Recordings.bat"
+  Delete "$INSTDIR\DOSBox\*.lng"
+  Delete "$INSTDIR\DOSBox\*.dosbox.conf"
+  Delete "$INSTDIR\DOSBox\Readme-0.*.txt"
+  Delete "$INSTDIR\DOSBox\Readme-0.*.rtf"
+  Delete "$INSTDIR\DOSBox\EGA*.CPX"
+  RmDir /r "$INSTDIR\DOSBox\Documentation"
+  RmDir /r "$INSTDIR\DOSBox\Video Codec"
+  RmDir /r "$INSTDIR\DOSBox\zmbv"
+!macroend
+
+; DOSBox Staging uses its "portable layout" (settings, key mapper file and
+; captures in its own folder) if dosbox-staging.conf is next to dosbox.exe:
+; portable installations of D-Fend Reborn keep everything in their folder
+
+!macro DOSBoxPortableMode
+  IfFileExists "$INSTDIR\DOSBox\dosbox-staging.conf" DOSBoxPortableModeDone
+  FileOpen $0 "$INSTDIR\DOSBox\dosbox-staging.conf" w
+  FileWrite $0 "# DOSBox Staging settings (portable copy of D-Fend Reborn)$\r$\n"
+  FileClose $0
+  DOSBoxPortableModeDone:
+!macroend
+
+
 ; Program files (D-Fend Reborn)
 ; ============================================================
 ; ${STAGE} is the program folder created by "cmake --install" (see
 ; README_HOW_TO_BUILD.txt): DFend.exe, the Qt libraries and plugins, Bin, Lang,
-; Help, IconSets, NewUserData, DOSBox and DOSBoxLang.
+; Help, IconSets, NewUserData and DOSBox (DOSBox Staging).
 
 !ifndef STAGE
   !define STAGE "Stage"
@@ -191,7 +229,7 @@ FunctionEnd
 
 !macro InstallProgramFiles
   SetOutPath "$INSTDIR"
-  File /r /x NewUserData /x DOSBox /x DOSBoxLang /x Thumbs.db "${STAGE}\*.*"
+  File /r /x NewUserData /x DOSBox /x Thumbs.db "${STAGE}\*.*"
 
   SetOutPath "$DataInstDir\Settings"
   File "${STAGE}\Bin\Cheats.xml"

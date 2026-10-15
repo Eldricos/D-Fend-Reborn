@@ -222,7 +222,7 @@ void TSetupFrameDOSBox::DosBoxDirEditChange(QObject* Sender)
 
     {
         TTraceScope T("SetupFrameDOSBox: CheckDOSBoxVersion(" + ui.DosBoxDirEdit->text() + ")", 20);
-        ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())));
+        ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())) || SelectedIsDOSBoxX());
     }
     QRect G = ui.DosBoxDirEdit->geometry();
     QRect WB = ui.WarningButton->geometry();
@@ -327,8 +327,17 @@ void TSetupFrameDOSBox::DOSBoxDownloadURLClick(QObject* Sender)
     if (L != nullptr) ShellOpen(L->text());
 }
 
+// D-Fend Reborn: is the selected DOSBox installation DOSBox-X?
+bool TSetupFrameDOSBox::SelectedIsDOSBoxX()
+{
+    const int I = ui.DOSBoxInstallationComboBox->currentIndex();
+    const QString Executable = ((I >= 0) && (I < DOSBoxData.count())) ? DOSBoxData[I].DosBoxExecutable : QString();
+    return DOSBoxKind(ui.DosBoxDirEdit->text(), Executable) == dkDOSBoxX;
+}
+
 void TSetupFrameDOSBox::WarningButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    DOSBoxOutdatedWarning(ui.DosBoxDirEdit->text());
+    if (OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text()))) DOSBoxOutdatedWarning(ui.DosBoxDirEdit->text());
+    else if (SelectedIsDOSBoxX()) DOSBoxXWarning();
 }

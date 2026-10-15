@@ -2,7 +2,8 @@
 # executable, in the layout the original D-Fend Reloaded installer created
 # for the "program folder" operation mode. Run as a post build step:
 #
-#   cmake -DSRC=<source>/data -DDST=<folder of the executable> -DWINDOWS=ON|OFF -P DeployData.cmake
+#   cmake -DSRC=<source>/data -DDST=<folder of the executable> -DWINDOWS=ON|OFF
+#         [-DDOSBOX=<DOSBox Staging folder>] -P DeployData.cmake
 #
 # Program files (Bin, Lang, Help, IconSets, NewUserData, DOSBox) are refreshed on
 # every build; file(COPY) only copies files that changed.
@@ -26,16 +27,10 @@ else()
          PATTERN "*.exe" EXCLUDE PATTERN "*.dll" EXCLUDE)
 endif()
 
-if(WINDOWS)
-    # bundled DOSBox (Windows build) + DOSBox language files + FreeDOS
-    # keyboard/code page files, as the installer did
-    file(COPY "${SRC}/DOSBox" DESTINATION "${DST}")
-    file(GLOB _Files "${SRC}/DOSBoxLang/*")
-    file(COPY ${_Files} DESTINATION "${DST}/DOSBox")
-    file(GLOB _Files "${SRC}/NewUserData/FREEDOS/CPI/*")
-    if(_Files)
-        file(COPY ${_Files} DESTINATION "${DST}/DOSBox")
-    endif()
+if(DOSBOX)
+    # included DOSBox (DOSBox Staging, Windows build, see DOSBoxStaging.cmake;
+    # it has its own translations and keyboard / code page files)
+    file(COPY "${DOSBOX}/" DESTINATION "${DST}/DOSBox")
 endif()
 
 # --- user data (only once) ----------------------------------------------------

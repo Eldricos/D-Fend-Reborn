@@ -854,6 +854,68 @@ static QString GetVersionFromDOSBoxReadmeFile(const QString& FileName)
     return result;
 }
 
+QString DOSBoxExeFile(const QString& Dir, const QString& Executable)
+{
+    const QString D = IncludeTrailingPathDelimiter(MakeAbsPath(Dir, PrgSetup->BaseDir()));
+    if (!Trim(Executable).isEmpty()) return D + Trim(Executable);
+    for (const QString& Name : {DosBoxFileName, DosBoxStagingFileName, DosBoxXFileName}) {
+        if (FileExists(D + Name) && !DirectoryExists(D + Name)) return D + Name;
+    }
+    return D + DosBoxFileName;
+}
+
+bool DOSBoxExeExists(const QString& Dir, const QString& Executable)
+{
+    const QString F = DOSBoxExeFile(Dir, Executable);
+    return FileExists(F) && !DirectoryExists(F);
+}
+
+QString DOSBoxExeFileOfInstallation(int Nr)
+{
+    TDOSBoxSetting* S = PrgSetup->DOSBoxSettings(Max(0, Min(Nr, PrgSetup->DOSBoxSettingsCount() - 1)));
+    return DOSBoxExeFile(S->DosBoxDir(), S->DosBoxExecutable());
+}
+
+static bool ReadmeMentions(const QString& FileName, const QString& Text)
+{
+    TStringList St;
+    if (!St.LoadFromFile(FileName)) return false;
+    for (int I = 0; I < Min(St.Count(), 10); I++) if (St[I].contains(Text, Qt::CaseInsensitive)) return true;
+    return false;
+}
+
+TDOSBoxKind DOSBoxKindOfFile(const QString& PrgFile)
+{
+    QString Name = ExtractFileName(PrgFile).toLower();
+    if (Name.endsWith(QLatin1String(".exe"))) Name.chop(4);
+    if (Name.startsWith(QLatin1String("dosbox-x"))) return dkDOSBoxX;
+    if (Name.startsWith(QLatin1String("dosbox-staging"))) return dkStaging;
+    const QString Dir = IncludeTrailingPathDelimiter(ExtractFilePath(PrgFile));
+    // Windows / portable builds: "resources" folder and readme of DOSBox
+    // Staging; Linux packages: data in <prefix>/share/dosbox-staging
+    if (DirectoryExists(Dir + "resources" + PathDelim + "translations")) return dkStaging;
+    if (DirectoryExists(Dir + ".." + PathDelim + "share" + PathDelim + "dosbox-staging")) return dkStaging;
+    if (FileExists(Dir + "README.txt") && ReadmeMentions(Dir + "README.txt", QStringLiteral("DOSBox Staging"))) return dkStaging;
+    if (FileExists(Dir + "dosbox-x.reference.conf")) return dkDOSBoxX;
+    return dkDOSBox;
+}
+
+TDOSBoxKind DOSBoxKind(const QString& Dir, const QString& Executable)
+{
+    if (Trim(Dir).isEmpty()) return dkDOSBox;
+    return DOSBoxKindOfFile(DOSBoxExeFile(Dir, Executable));
+}
+
+TDOSBoxKind DOSBoxKindOfInstallation(int Nr)
+{
+    return DOSBoxKindOfFile(DOSBoxExeFileOfInstallation(Nr));
+}
+
+void DOSBoxXWarning()
+{
+    MessageDlg(LanguageSetup->MessageDOSBoxXWarning(), mtWarning, mbOK, 0);
+}
+
 QString CheckDOSBoxVersion(int Nr, const QString& Path)
 {
     QString result, DOSBoxPath;
@@ -864,6 +926,28 @@ QString CheckDOSBoxVersion(int Nr, const QString& Path)
     // the drive has to wake up and can never find a DOSBox version.)
     if (Trim(DOSBoxPath).isEmpty()) return QString();
     DOSBoxPath = IncludeTrailingPathDelimiter(MakeAbsPath(DOSBoxPath, PrgSetup->BaseDir()));
+
+    // D-Fend Reborn: DOSBox Staging and DOSBox-X have other version numbers
+    // and readme files. The version is only compared with the DOSBox
+    // versions 0.72 / 0.73 (configuration file syntax): DOSBox-X uses the
+    // syntax of DOSBox 0.74, DOSBox Staging that of 0.74 and newer.
+    const QString Executable = (Trim(Path).isEmpty() && (Nr >= 0)) ? PrgSetup->DOSBoxSettings(Nr)->DosBoxExecutable() : QString();
+    switch (DOSBoxKind(DOSBoxPath, Executable)) {
+        case dkDOSBoxX: return QStringLiteral("0.74");
+        case dkStaging: {
+            // README.txt: "This package contains release v0.83.0 of ..."
+            TStringList St;
+            if (St.LoadFromFile(DOSBoxPath + "README.txt")) {
+                static const QRegularExpression Re(QStringLiteral("release v?(\\d+\\.\\d+)"), QRegularExpression::CaseInsensitiveOption);
+                for (int I = 0; I < St.Count(); I++) {
+                    const QRegularExpressionMatch M = Re.match(St[I]);
+                    if (M.hasMatch()) return M.captured(1);
+                }
+            }
+            return QStringLiteral("0.80");
+        }
+        default: break;
+    }
 
     TStringList *FileNames = FindManual(DOSBoxPath);
     while (FileNames->Count() > 0) {

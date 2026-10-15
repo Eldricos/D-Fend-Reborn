@@ -210,6 +210,11 @@ void TFirstRunWizardForm::SetDOSBoxWarningLanguage()
         S.replace(',', '.');
         ui.DOSBoxWarningButton->setToolTip(Format(LanguageSetup->MessageDOSBoxOutdated(), {DOSBoxVersion, S}));
     }
+
+    if (DOSBoxWarningType == wtDOSBoxX) {
+        ui.DOSBoxWarningButton->setText(LanguageSetup->MessageDOSBoxXWarningShort());
+        ui.DOSBoxWarningButton->setToolTip(LanguageSetup->MessageDOSBoxXWarning());
+    }
 }
 
 void TFirstRunWizardForm::LoadAndSetupLanguageList()
@@ -324,7 +329,7 @@ void TFirstRunWizardForm::DOSBoxEditChange(QObject* Sender)
     ui.PortableOKButton->setVisible(false);
 
     S = IncludeTrailingPathDelimiter(MakeAbsPath(ui.DOSBoxEdit->text(), PrgSetup->BaseDir()));
-    if (!FileExists(S + DosBoxFileName)) {
+    if (!DOSBoxExeExists(S)) {
         ui.DOSBoxWarningButton->setVisible(true);
         DOSBoxWarningType = wtNoDir;
         SetDOSBoxWarningLanguage();
@@ -333,6 +338,10 @@ void TFirstRunWizardForm::DOSBoxEditChange(QObject* Sender)
         ui.DOSBoxWarningButton->setVisible(OldDOSBoxVersion(DOSBoxVersion));
         if (!ui.DOSBoxWarningButton->isHidden()) {
             DOSBoxWarningType = wtOld;   // (the Delphi code relies on the previous value here)
+            SetDOSBoxWarningLanguage();
+        } else if (DOSBoxKind(S) == dkDOSBoxX) {
+            ui.DOSBoxWarningButton->setVisible(true);
+            DOSBoxWarningType = wtDOSBoxX;
             SetDOSBoxWarningLanguage();
         } else {
             S = IncludeTrailingPathDelimiter(ExtUpperCase(MakeAbsPath(ui.DOSBoxEdit->text(), PrgSetup->BaseDir())));

@@ -34,12 +34,30 @@ On this page you can configurate the DOSBox versions to use with D-Fend Reborn.
     In portable mode this directory is stored relatively to the program folder <b>at program end</b>.
     When D-Fend Reborn is started again it <b>will make absolute paths for the three directories again</b>.
     So this directory is shown here with absolute paths in any operation mode.<br /><br />
-    On Linux DOSBox is installed via the package manager (package <tt>dosbox</tt> or <tt>dosbox-staging</tt>).
+    The Windows version of D-Fend Reborn includes <a href="https://www.dosbox-staging.org/">DOSBox Staging</a>
+    in the subfolder <tt>DOSBox</tt> of the program folder; this is the default installation.<br /><br />
+    On Linux DOSBox is installed via the package manager (package <tt>dosbox-staging</tt> or <tt>dosbox</tt>).
     In this case enter the folder containing the <tt>dosbox</tt> program (usually <tt>/usr/bin</tt>).
     If there is no <tt>dosbox</tt> program in the given folder, D-Fend Reborn uses the <tt>dosbox</tt>
     program found in the search path.
   </li>
 </ul>
+
+<h2>DOSBox-X and other DOSBox versions</h2>
+
+<p>
+You can add other DOSBox versions as additional DOSBox installations (button "Add") and select them for
+single profiles in the <a href="ProfileEdit.html">profile editor</a>. D-Fend Reborn recognizes the
+version in the chosen folder (the program <tt>dosbox</tt>, <tt>dosbox-staging</tt> or <tt>dosbox-x</tt>;
+the program file can also be selected in the "More settings" dialog).
+</p>
+<p>
+D-Fend Reborn writes its DOSBox configuration files for DOSBox and DOSBox Staging.
+<a href="https://dosbox-x.com/">DOSBox-X</a> reads most of these settings, but some profile settings
+(for example graphics output, sound or keyboard settings) may not work as expected. If a DOSBox-X
+installation is selected, a warning button is shown next to the DOSBox folder. If a game does not run
+correctly with DOSBox-X, select the default DOSBox installation (DOSBox Staging) for it.
+</p>
 
 <h2>"More settings for this DOSBox installation" dialog</h2>
 
@@ -57,8 +75,18 @@ This button will only be visible if the advanced setup mode is selected at the b
     So this directory is shown here with absolute paths in any operation mode. 
   </li>
   <li>
+    <b>DOSBox program file</b><br />
+    The program file of DOSBox in the DOSBox folder. "Automatic" uses the first one found of
+    <tt>dosbox</tt> (Windows: <tt>dosbox.exe</tt>), <tt>dosbox-staging</tt> and <tt>dosbox-x</tt>.
+    Select a program file if the folder contains several DOSBox versions (for example <tt>dosbox-x</tt>
+    in <tt>/usr/bin</tt> on Linux).
+    <br />(Default value for this option: "Automatic")
+  </li>
+  <li>
     <b>DOSBox language file</b><br />
     In this box you can select the language that should be used inside DOSBox for messages.
+    (DOSBox Staging has its own translations and uses the language of the system; this setting
+    is not used for it.)
     D-Fend Reborn will list all available <tt>*.lng</tt> files from your DOSBox directory.
     To add a new (downloaded) DOSBox language just copy the <tt>*.lng</tt> file to your
     DOSBox directory and reopen the program options dialog.

@@ -913,6 +913,17 @@ static void AutoMountCDs(TStringList* St, TGame* Game, double DOSBoxVersion, QSt
     }
 }
 
+// D-Fend Reborn: DOSBox variant (DOSBox, DOSBox Staging, DOSBox-X) used by a
+// profile: a DOSBox installation or a DOSBox folder / program file
+static TDOSBoxKind GetDOSBoxKindOfGame(TGame* Game)
+{
+    const int Nr = GetDOSBoxNr(Game);
+    if (Nr >= 0) return DOSBoxKindOfInstallation(Nr);
+    const QString S = MakeAbsPath(Trim(Game->CustomDOSBoxDir()), PrgSetup->BaseDir());
+    if (FileExists(S) && !DirectoryExists(S)) return DOSBoxKindOfFile(S);
+    return DOSBoxKind(S);
+}
+
 static double GetDOSBoxVersionOfGame(TGame* Game)
 {
     QString S;
@@ -1226,7 +1237,9 @@ TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, 
     result->Add("");
     result->Add("[dosbox]");
     S = Trim(ExtUpperCase(Game->CustomDOSBoxLanguage()));
-    if (S != "ENGLISH") {
+    // (DOSBox Staging has its own translations and selects the language of
+    // the system; it can not read DOSBox .lng language files)
+    if ((S != "ENGLISH") && (GetDOSBoxKindOfGame(Game) != dkStaging)) {
         if ((S.isEmpty()) || (S == "DEFAULT")) S = ""; else {
             T = Trim(ExtUpperCase(Game->CustomDOSBoxDir()));
             if ((T.isEmpty()) || (T == "DEFAULT")) T = PrgSetup->DOSBoxSettings(DOSBoxNr)->DosBoxDir();
@@ -1533,16 +1546,20 @@ static bool WriteDOSBoxConfFile(TStringList* St, const QString& FileName)
 }
 #endif
 
-QString GetDOSBoxCommandLine(int DOSBoxNr, const QString& ConfFile, int ShowConsole, const QString& DosBoxCommandLine)
+QString GetDOSBoxCommandLine(int DOSBoxNr, const QString& ConfFile, int ShowConsole, const QString& DosBoxCommandLine, TDOSBoxKind Kind)
 {
     QString Add;
     Add = "";
+    // DOSBox Staging: do not read a dosbox.conf in the working folder (it
+    // would change the settings of the profile)
+    if (Kind == dkStaging) Add = " -nolocalconf";
 #ifdef Q_OS_WIN
-    // (-NOCONSOLE: DOSBox only has a console window on Windows)
-    switch (ShowConsole) {
-        case 0: Add = " -NOCONSOLE"; break;
+    // (-NOCONSOLE: DOSBox only has a console window on Windows; DOSBox-X has
+    // no console window by default and no -noconsole parameter)
+    if (Kind != dkDOSBoxX) switch (ShowConsole) {
+        case 0: Add += " -NOCONSOLE"; break;
         case 2: break; // {always show console}
-        default: /* {1 :} */ if (PrgSetup->DOSBoxSettings(Max(0, DOSBoxNr))->HideDosBoxConsole()) Add = " -NOCONSOLE"; break;
+        default: /* {1 :} */ if (PrgSetup->DOSBoxSettings(Max(0, DOSBoxNr))->HideDosBoxConsole()) Add += " -NOCONSOLE"; break;
     }
 #else
     Q_UNUSED(ShowConsole);
@@ -1559,17 +1576,14 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
     bool Waited;
     THandle result;
 
-    SpeedTestInfo("Building DOSBox command line");
-    Params = GetDOSBoxCommandLine(DOSBoxNr, ConfFile, ShowConsole, DosBoxCommandLine);
-
     SpeedTestInfo("Searching DOSBox program file");
     PrgFile = Trim(DOSBoxPath);
-    if ((PrgFile.isEmpty()) || (ExtUpperCase(PrgFile) == "DEFAULT")) PrgFile = IncludeTrailingPathDelimiter(PrgSetup->DOSBoxSettings(DOSBoxNr)->DosBoxDir()) + DosBoxFileName; else {
+    if ((PrgFile.isEmpty()) || (ExtUpperCase(PrgFile) == "DEFAULT")) PrgFile = DOSBoxExeFileOfInstallation(DOSBoxNr); else {
 #ifdef Q_OS_WIN
-        if (ExtUpperCase(Copy(PrgFile, Length(PrgFile) - 3, 4)) != ".EXE") PrgFile = IncludeTrailingPathDelimiter(MakeAbsPath(PrgFile, PrgSetup->BaseDir())) + DosBoxFileName;
+        if (ExtUpperCase(Copy(PrgFile, Length(PrgFile) - 3, 4)) != ".EXE") PrgFile = DOSBoxExeFile(PrgFile);
 #else
         // no ".exe" to tell program files from folders
-        if (DirectoryExists(MakeAbsPath(PrgFile, PrgSetup->BaseDir()))) PrgFile = IncludeTrailingPathDelimiter(MakeAbsPath(PrgFile, PrgSetup->BaseDir())) + DosBoxFileName;
+        if (DirectoryExists(MakeAbsPath(PrgFile, PrgSetup->BaseDir()))) PrgFile = DOSBoxExeFile(PrgFile);
         else PrgFile = MakeAbsPath(PrgFile, PrgSetup->BaseDir());
 #endif
     }
@@ -1588,14 +1602,23 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
         result = InvalidHandle;
         return result;
     }
+    const TDOSBoxKind Kind = DOSBoxKindOfFile(PrgFile);
     PrgFile = UnmapDrive(PrgFile, ptDOSBox);
 
     SpeedTestInfoOnly("DOSBox program file: " + PrgFile);
 
+    SpeedTestInfo("Building DOSBox command line");
+    Params = GetDOSBoxCommandLine(DOSBoxNr, ConfFile, ShowConsole, DosBoxCommandLine, Kind);
+
     if (FullScreen) ShowFullscreenInfoDialog(ApplicationMainForm());
 
+    // The SDL video driver setting ("windib" / "directx") is for DOSBox
+    // builds with SDL 1.2 only; SDL 2 (DOSBox Staging, DOSBox-X) does not
+    // start with these values.
+    const bool SDL1VideoDriver = (Kind == dkDOSBox);
+
     if (asAdmin) {
-        S = Trim(ExtUpperCase(PrgSetup->DOSBoxSettings(DOSBoxNr)->SDLVideodriver()));
+        S = SDL1VideoDriver ? Trim(ExtUpperCase(PrgSetup->DOSBoxSettings(DOSBoxNr)->SDLVideodriver())) : QString();
         Env = "";
         if (S == "WINDIB") Env = "windib";
         if (S == "DIRECTX") Env = "directx";
@@ -1609,7 +1632,7 @@ static THandle RunDosBox(const QString& DOSBoxPath, int DOSBoxNr, const QString&
 #endif
     }
 
-    S = Trim(ExtUpperCase(PrgSetup->DOSBoxSettings(DOSBoxNr)->SDLVideodriver()));
+    S = SDL1VideoDriver ? Trim(ExtUpperCase(PrgSetup->DOSBoxSettings(DOSBoxNr)->SDLVideodriver())) : QString();
     Env = "";
 #ifdef Q_OS_WIN
     // (the SDL video drivers "windib" / "directx" only exist on Windows)

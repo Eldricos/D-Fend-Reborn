@@ -1,3 +1,10 @@
+Included in the Windows version of D-Fend Reborn (folder "DOSBox"):
+
+DOSBox Staging (DOS emulator)
+(c) the DOSBox Staging team and the DOSBox team
+GNU GPL version 2 or later, see DOSBox\LICENSE.txt and DOSBox\SOURCE.txt
+(https://www.dosbox-staging.org/)
+
 Used as part of the D-Fend Reloaded source code:
 
 Parts of the DOSBox source code

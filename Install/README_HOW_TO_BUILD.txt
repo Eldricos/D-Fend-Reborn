@@ -2,6 +2,9 @@ How to build the D-Fend Reborn installers (Windows)
 ====================================================
 
 Requirements: Qt 6 for MSVC (with Qt Multimedia), CMake, NSIS 3 and 7-Zip.
+The included DOSBox (DOSBox Staging) is downloaded by CMake when it
+configures the build folder (internet access needed once; the version is set
+in ..\cmake\DOSBoxStaging.cmake).
 (The scripts have no parentheses in their names on purpose: names like
 "Build(x64).bat" break the "if (...)" blocks of batch files.)
 

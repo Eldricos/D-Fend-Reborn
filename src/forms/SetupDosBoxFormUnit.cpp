@@ -110,7 +110,7 @@ bool TSetupDosBoxForm::SearchDir(const QString& Dir)
     bool result = false;
 
     switch (SearchType) {
-        case stDOSBox: result = FileExists(Dir + DosBoxFileName) && !DirectoryExists(Dir + DosBoxFileName); if (result) { DOSBoxDir = Dir; return result; } break;
+        case stDOSBox: result = DOSBoxExeExists(Dir); if (result) { DOSBoxDir = Dir; return result; } break;
         case stOggEnc: result = FileExists(Dir + OggEncPrgFile); if (result) { PrgSetup->SetWaveEncOgg(Dir + OggEncPrgFile); return result; } break;
         case stLame: result = FileExists(Dir + LamePrgFile); if (result) { PrgSetup->SetWaveEncMp3(Dir + LamePrgFile); return result; } break;
         case stScummVM: result = FileExists(Dir + ScummPrgFile); if (result) { PrgSetup->SetScummVMPath(Dir); return result; } break;
@@ -163,18 +163,18 @@ bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir, bool AllowFullSearch)
     int I;
     bool result;
 
-    if (FileExists(IncludeTrailingPathDelimiter(ADOSBoxDir) + DosBoxFileName)) {
+    if ((!Trim(ADOSBoxDir).isEmpty()) && DOSBoxExeExists(IncludeTrailingPathDelimiter(ADOSBoxDir))) {
         return true;
     }
 
     S = PrgDir() + "DOSBox" + PathDelim;
-    if (FileExists(S + DosBoxFileName)) { ADOSBoxDir = S; return true; }
+    if (DOSBoxExeExists(S)) { ADOSBoxDir = S; return true; }
 
     S = PrgDir() + BinFolder + PathDelim + "DOSBox" + PathDelim;
-    if (FileExists(S + DosBoxFileName)) { ADOSBoxDir = S; return true; }
+    if (DOSBoxExeExists(S)) { ADOSBoxDir = S; return true; }
 
     S = PrgDataDir() + "DOSBox" + PathDelim;
-    if (FileExists(S + DosBoxFileName)) { ADOSBoxDir = S; return true; }
+    if (DOSBoxExeExists(S)) { ADOSBoxDir = S; return true; }
 
 #ifdef Q_OS_WIN
     S = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROGRAM_FILES_));
@@ -184,16 +184,23 @@ bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir, bool AllowFullSearch)
         I = FindNext(Rec);
     }
     FindClose(Rec);
-    for (I = St.Count() - 1; I >= 0; I--) if (FileExists(St[I] + DosBoxFileName)) { ADOSBoxDir = St[I]; return true; }
+    for (I = St.Count() - 1; I >= 0; I--) if (DOSBoxExeExists(St[I])) { ADOSBoxDir = St[I]; return true; }
 
     S = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROGRAM_FILES_)) + "DOSBox" + PathDelim;
-    if (FileExists(S + DosBoxFileName)) { ADOSBoxDir = S; return true; }
+    if (DOSBoxExeExists(S)) { ADOSBoxDir = S; return true; }
+    // (installer of DOSBox Staging)
+    S = IncludeTrailingPathDelimiter(GetSpecialFolder(0, CSIDL_PROGRAM_FILES_)) + "DOSBox Staging" + PathDelim;
+    if (DOSBoxExeExists(S)) { ADOSBoxDir = S; return true; }
 #else
     // Linux/macOS: DOSBox installed by the package manager (or by the user)
     // is found via the search path; then check the usual install locations.
     Q_UNUSED(Rec);
-    S = QStandardPaths::findExecutable(DosBoxFileName);
-    if (!S.isEmpty()) { ADOSBoxDir = IncludeTrailingPathDelimiter(ExtractFilePath(S)); return true; }
+    // (DOSBox or DOSBox Staging; some packages install DOSBox Staging as
+    // "dosbox-staging")
+    for (const QString& Name : {DosBoxFileName, DosBoxStagingFileName}) {
+        S = QStandardPaths::findExecutable(Name);
+        if (!S.isEmpty()) { ADOSBoxDir = IncludeTrailingPathDelimiter(ExtractFilePath(S)); return true; }
+    }
     St.Add(IncludeTrailingPathDelimiter(QDir::homePath()) + ".local/bin/");
     St.Add("/usr/local/bin/");
     St.Add("/usr/bin/");
@@ -206,7 +213,7 @@ bool SearchDosBox(QWidget* AOwner, QString& ADOSBoxDir, bool AllowFullSearch)
     St.Add("/Applications/DOSBox.app/Contents/MacOS/");
 #endif
     for (I = 0; I < St.Count(); I++) {
-        QFileInfo FI(St[I] + DosBoxFileName);
+        QFileInfo FI(DOSBoxExeFile(St[I]));
         if (FI.isFile() && FI.isExecutable()) { ADOSBoxDir = St[I]; return true; }
     }
 #endif

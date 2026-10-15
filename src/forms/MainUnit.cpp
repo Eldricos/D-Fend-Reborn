@@ -2997,7 +2997,7 @@ void TDFendRebornMainForm::MenuWork(QObject *Sender)
         ui.ListView->Items()->Clear();
         ViewFilesFrame->SetGame(nullptr);
     };
-    QString DOSBoxExe = IncludeTrailingPathDelimiter(PrgSetup->DOSBoxSettings(0)->DosBoxDir()) + DosBoxFileName;
+    QString DOSBoxExe = DOSBoxExeFileOfInstallation(0);
 
     StopCaptureChangeNotify();
     struct RestartNotify {
@@ -3673,14 +3673,38 @@ void TDFendRebornMainForm::MenuWork(QObject *Sender)
     }
 }
 
+// D-Fend Reborn: primary configuration file of DOSBox Staging (portable
+// layout: dosbox-staging.conf next to the program file) and of DOSBox-X
+// (dosbox-x.conf in the program folder)
+static QString OtherDOSBoxUserConfFile(const QString& DOSBoxFile, TDOSBoxKind Kind, WId Window)
+{
+    const QString Dir = IncludeTrailingPathDelimiter(ExtractFilePath(DOSBoxFile));
+    if (Kind == dkDOSBoxX) return Dir + "dosbox-x.conf";
+    if (FileExists(Dir + "dosbox-staging.conf")) return Dir + "dosbox-staging.conf";
+#ifdef Q_OS_WIN
+    return IncludeTrailingPathDelimiter(GetSpecialFolder(Window, CSIDL_LOCAL_APPDATA)) + "DOSBox\\dosbox-staging.conf";
+#else
+    Q_UNUSED(Window);
+    QString Config = qEnvironmentVariable("XDG_CONFIG_HOME");
+    if (Config.isEmpty()) Config = IncludeTrailingPathDelimiter(QDir::homePath()) + ".config";
+    return IncludeTrailingPathDelimiter(Config) + "dosbox/dosbox-staging.conf";
+#endif
+}
+
 void TDFendRebornMainForm::RunDOSBoxWithDefaultConfFile()
 {
     double D;
     QString VerString, S, DOSBoxFile;
 
-    DOSBoxFile = IncludeTrailingPathDelimiter(PrgSetup->DOSBoxSettings(0)->DosBoxDir()) + DosBoxFileName;
+    DOSBoxFile = DOSBoxExeFileOfInstallation(0);
     if (!FileExists(DOSBoxFile)) {
         MessageDlg(Format(LanguageSetup->MessageCouldNotFindFile(), {DOSBoxFile}), mtError, mbOK, 0);
+        return;
+    }
+
+    // DOSBox Staging and DOSBox-X load their own configuration file
+    if (DOSBoxKindOfFile(DOSBoxFile) != dkDOSBox) {
+        StartProcess(DOSBoxFile, QStringList(), ExtractFilePath(DOSBoxFile));
         return;
     }
 
@@ -3719,6 +3743,14 @@ void TDFendRebornMainForm::OpenDOSBoxDefaultConfFile()
     double D;
     QString VerString, S;
     QString ConfFile = IncludeTrailingPathDelimiter(PrgSetup->DOSBoxSettings(0)->DosBoxDir()) + DosBoxConfFileName;
+
+    const QString DOSBoxFile = DOSBoxExeFileOfInstallation(0);
+    const TDOSBoxKind Kind = DOSBoxKindOfFile(DOSBoxFile);
+    if (Kind != dkDOSBox) {
+        S = OtherDOSBoxUserConfFile(DOSBoxFile, Kind, winId());
+        if (FileExists(S)) OpenFileInEditor(S); else MessageDlg(Format(LanguageSetup->MessageCouldNotFindFile(), {S}), mtError, mbOK, 0);
+        return;
+    }
 
     VerString = CheckDOSBoxVersion(0);
     S = VerString; S.replace(',', '.');

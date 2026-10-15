@@ -68,6 +68,10 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
 <a onclick="return Work('reborn054')" name="reborn054" href="#"><h2>&raquo; D-Fend Reborn 0.5.4 (not released yet)</h2></a>
 <div id="reborn054">
 <ul>
+  <li>Windows: DOSBox Staging 0.83.0 replaces DOSBox 0.74 as the DOSBox included with D-Fend Reborn. The update installer replaces the files of DOSBox 0.74; portable copies use the portable mode of DOSBox Staging (settings in the DOSBox folder). The source code of DOSBox Staging is attached to each release.</li>
+  <li>D-Fend Reborn recognizes DOSBox Staging and DOSBox-X installations (also the programs <tt>dosbox-staging</tt> and <tt>dosbox-x</tt> on Linux) and starts them with the right parameters (DOSBox Staging: no local dosbox.conf, own translations; no SDL 1.2 video driver setting for SDL 2 based versions).</li>
+  <li>New setting "DOSBox program file" for DOSBox installations (for folders with several DOSBox versions).</li>
+  <li>DOSBox-X installations can be added; a notice explains that some profile settings may not work with DOSBox-X.</li>
   <li>The PortableApps.com package (D-Fend-Reborn-&lt;version&gt;-Portable.paf.exe) is built with each release. Its launcher starts D-Fend Reborn independent of the current folder and passes on its parameters; the installer texts are shown correctly in all languages.</li>
   <li>Linux AppImage: runs natively on Wayland desktops (<tt>QT_QPA_PLATFORM=xcb</tt> selects X11/XWayland).</li>
 </ul>

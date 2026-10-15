@@ -16,6 +16,7 @@ extern TOperationMode OperationMode;
 struct TDOSBoxData {
     QString Name;
     QString DosBoxDir;
+    QString DosBoxExecutable;
     QString DosBoxMapperFile;
     QString DosBoxLanguage;
     QString SDLVideodriver;
@@ -40,6 +41,11 @@ public:
     void SetName(const QString& Value) { FName = Value; }
     QString DosBoxDir() const { return FDosBoxDir; }
     void SetDosBoxDir(const QString& Value) { FDosBoxDir = Value; }
+    // D-Fend Reborn: file name of the DOSBox program in DosBoxDir (empty:
+    // automatic, see DOSBoxExeFile), e.g. "dosbox-x" if a folder contains
+    // several DOSBox versions (/usr/bin)
+    QString DosBoxExecutable() const { return FDosBoxExecutable; }
+    void SetDosBoxExecutable(const QString& Value) { FDosBoxExecutable = Value; }
     QString DosBoxMapperFile() const { return FDosBoxMapperFile; }
     void SetDosBoxMapperFile(const QString& Value) { FDosBoxMapperFile = Value; }
     QString DosBoxLanguage() const { return FDosBoxLanguage; }
@@ -67,6 +73,7 @@ private:
     int FNr = 0;
     QString FName;
     QString FDosBoxDir;
+    QString FDosBoxExecutable;
     QString FDosBoxMapperFile;
     QString FDosBoxLanguage;
     QString FSDLVideodriver;

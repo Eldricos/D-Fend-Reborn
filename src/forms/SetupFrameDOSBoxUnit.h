@@ -57,6 +57,7 @@ public slots:
     void WarningButtonClick(QObject* Sender);
 private:
     QList<TDOSBoxData> DOSBoxData;
+    bool SelectedIsDOSBoxX();
     PString PDosBoxDir;
     PString PDOSBoxLang;
     TSimpleEvent DosBoxDirChange;

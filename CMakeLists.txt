@@ -82,12 +82,21 @@ endif()
 
 set_target_properties(DFendReborn PROPERTIES OUTPUT_NAME "DFend")
 
+# Windows: DOSBox Staging is included in the program folder (folder "DOSBox",
+# downloaded when the build is configured, see cmake/DOSBoxStaging.cmake).
+# Linux/macOS use the DOSBox of the system.
+option(DFR_BUNDLE_DOSBOX "Include DOSBox Staging in the program folder (Windows)" ${WIN32})
+set(DFR_DOSBOX_DIR "")
+if(WIN32 AND DFR_BUNDLE_DOSBOX)
+    include(cmake/DOSBoxStaging.cmake)
+endif()
+
 # Copy the run-time data files (data/) next to the executable, so a build
 # can be run directly (program folder operation mode, like the original
 # installer set it up).
 add_custom_target(DeployData ALL
     COMMAND ${CMAKE_COMMAND} -DSRC=${CMAKE_SOURCE_DIR}/data -DDST=$<TARGET_FILE_DIR:DFendReborn>
-            -DWINDOWS=$<BOOL:${WIN32}> -P ${CMAKE_SOURCE_DIR}/cmake/DeployData.cmake
+            -DWINDOWS=$<BOOL:${WIN32}> -DDOSBOX=${DFR_DOSBOX_DIR} -P ${CMAKE_SOURCE_DIR}/cmake/DeployData.cmake
     COMMENT "Copying data files"
     VERBATIM)
 add_dependencies(DeployData DFendReborn)
@@ -99,7 +108,10 @@ add_dependencies(DeployData DFendReborn)
 install(TARGETS DFendReborn RUNTIME DESTINATION . BUNDLE DESTINATION .)
 install(DIRECTORY data/Lang data/Help data/IconSets data/NewUserData DESTINATION .)
 if(WIN32)
-    install(DIRECTORY data/Bin data/DOSBox data/DOSBoxLang DESTINATION .)
+    install(DIRECTORY data/Bin DESTINATION .)
+    if(DFR_DOSBOX_DIR)
+        install(DIRECTORY "${DFR_DOSBOX_DIR}/" DESTINATION DOSBox)
+    endif()
     # Qt libraries next to DFend.exe (Windows loads them from the program
     # folder), all Qt plugins in the subfolder "Qt" (qt.conf). Not deployed:
     # translations (not used), opengl32sw.dll (software OpenGL, not used) and
