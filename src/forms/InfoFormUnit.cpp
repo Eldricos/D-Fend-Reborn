@@ -138,9 +138,10 @@ void TInfoForm::FormShow(QObject* Sender)
     UserIconLoader->DialogImage(DI_OK, ui.OKButton);
 
     ui.VersionLabel->setText(GetFileVersionAsString());
-    ui.WrittenByLabel->setText(LanguageSetup->InfoFormWrittenBy() + " Alexander Herzog");
-    S = "alexanderherzog"; T = "users.sourceforge.net";
-    ui.eMailLabel->setText(S + "@" + T);
+    // D-Fend Reborn: "based on D-Fend Reloaded by Alexander Herzog" instead of
+    // "written by Alexander Herzog" and his (old) e-mail address
+    ui.WrittenByLabel->setText(Format(LanguageSetup->InfoFormBasedOn(), {QStringLiteral("Alexander Herzog")}));
+    ui.eMailLabel->setVisible(false);
     SetCells(0, 0, LanguageSetup->InfoFormLanguageFile());
     SetCells(1, 0, LanguageSetup->InfoFormLanguageAuthor());
     SetCells(2, 0, LanguageSetup->InfoFormLanguageVersion());
@@ -166,7 +167,7 @@ void TInfoForm::FormShow(QObject* Sender)
 
     {
         const QSignalBlocker Block(ui.ChangeLogComboBox);
-        ui.ChangeLogComboBox->addItem("D-Fend Reloaded", 0);
+        ui.ChangeLogComboBox->addItem("D-Fend Reborn", 0);   // (includes the D-Fend Reloaded change log)
         ui.ChangeLogComboBox->addItem("DOSBox", 1);
         if ((Trim(PrgSetup->ScummVMPath()) != "") && DirectoryExists(PrgSetup->ScummVMPath())) ui.ChangeLogComboBox->addItem("ScummVM", 2);
         ui.ChangeLogComboBox->setCurrentIndex(0);
@@ -299,10 +300,11 @@ void TInfoForm::ChangeLogComboBoxChange(QObject* Sender)
     ui.ChangeLogMemo->clear();
     switch (ui.ChangeLogComboBox->itemData(ui.ChangeLogComboBox->currentIndex()).toInt()) {
         case 0:
-            if (FileExists(PrgDir() + BinFolder + PathDelim + "ChangeLog.txt"))
-                S = PrgDir() + BinFolder + PathDelim + "ChangeLog.txt";
-            else
-                S = PrgDir() + "ChangeLog.txt";
+            // (the file is named "Changelog.txt"; case matters on Linux)
+            for (const QString& Name : {QStringLiteral("Changelog.txt"), QStringLiteral("ChangeLog.txt")}) {
+                if (FileExists(PrgDir() + BinFolder + PathDelim + Name)) { S = PrgDir() + BinFolder + PathDelim + Name; break; }
+                if (FileExists(PrgDir() + Name)) { S = PrgDir() + Name; break; }
+            }
             break;
         case 1:
             if (FileExists(IncludeTrailingPathDelimiter(PrgSetup->DOSBoxSettings(0)->DosBoxDir()) + "Documentation" + PathDelim + "NEWS.txt"))

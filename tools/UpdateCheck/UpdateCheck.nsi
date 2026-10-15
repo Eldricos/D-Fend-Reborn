@@ -1,4 +1,15 @@
-; NSI SCRIPT FOR D-FEND RELOADED UPDATE-CHECK
+; NSI SCRIPT FOR THE D-FEND REBORN UPDATE CHECKER
+;
+; Started by D-Fend Reborn (Windows) when the update check has found a newer
+; release: reads the settings file written by the program (current version,
+; URL of the update information, program folder, texts), downloads the update
+; information (UpdateInfo.txt of the latest GitHub release: version and URL
+; of the update installer), asks the user, downloads the update installer and
+; runs it in automatic mode (/A) for the program folder.
+;
+; Build: makensis UpdateCheck.nsi (an ANSI installer - the plugins inetc.dll
+; and messagebox.dll in this folder are ANSI plugins), then copy
+; UpdateCheck.exe to data\Bin.
 ; ============================================================
 
 
@@ -6,13 +17,13 @@
 ; Initial settings
 ; ============================================================
 
+Unicode false
 !addplugindir "."
-!packhdr "$%TEMP%\exehead.tmp" '..\..\Install\Tools\upx.exe "$%TEMP%\exehead.tmp"'
 RequestExecutionLevel user
 SetCompressor /solid lzma
 
-Name "D-Fend Reloaded Update Checker"
-Caption "D-Fend Reloaded Update Checker"
+Name "D-Fend Reborn Update Checker"
+Caption "D-Fend Reborn Update Checker"
 OutFile "UpdateCheck.exe"
 Icon "${NSISDIR}\Contrib\Graphics\Icons\orange-install.ico"
 
@@ -118,7 +129,7 @@ Function ReadUpdateInfoFile
   IfErrors 0 UpdateInfoOpened
   ;MessageBox MB_OK "$MessageCannotRead $UpdateInfoFile"
   Pop $0 ; Otherwise the plugin will not work correctl
-  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON1|MB_TOPMOST "D-Fend Reloaded Update Checker" "" "$MessageCannotRead $UpdateInfoFile" $MessageBoxOK
+  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON1|MB_TOPMOST "D-Fend Reborn Update Checker" "" "$MessageCannotRead $UpdateInfoFile" $MessageBoxOK
   Quit
   UpdateInfoOpened:
   !insertmacro ReadLine $ServerVersion
@@ -173,13 +184,13 @@ Section "-Work"
   IntCmp $R0 1 UpdateAvail
   IntCmp $SilentOnNoUpdateAvail 1 QuitWithOutMessage
   ;MessageBox MB_OK "$MessageNoUpdates"
-  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON1|MB_TOPMOST "D-Fend Reloaded Update Checker" "" "$MessageNoUpdates" $MessageBoxOK
+  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON1|MB_TOPMOST "D-Fend Reborn Update Checker" "" "$MessageNoUpdates" $MessageBoxOK
   
   QuitWithOutMessage:  
   Quit
   UpdateAvail:
   ;MessageBox MB_YESNO "$MessageUpdate1 $ServerVersion $MessageUpdate2" IDYES DoUpdate
-  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON2|MB_TOPMOST "D-Fend Reloaded Update Checker" "" "$MessageUpdate1 $ServerVersion $MessageUpdate2" $MessageBoxYes $MessageBoxNo
+  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON2|MB_TOPMOST "D-Fend Reborn Update Checker" "" "$MessageUpdate1 $ServerVersion $MessageUpdate2" $MessageBoxYes $MessageBoxNo
   Pop $R0
   IntCmp $R0 1 DoUpdate
   Quit
@@ -192,8 +203,13 @@ Section "-Work"
   Push $UpdateFileURL
   Call DownloadFile  
 
-  ; Run update file
-  Exec '"$SetupTempFile" /A /D=$UpdateInstallDir'
+  ; Run update file (ShellExecute instead of CreateProcess: the update
+  ; installer needs admin rights, so Windows has to show the UAC prompt;
+  ; /D= must be the last parameter, without quotes and trailing backslash)
+  Push $UpdateInstallDir
+  Call TrimTrailingBackslash
+  Pop $UpdateInstallDir
+  ExecShell "open" "$SetupTempFile" "/A /D=$UpdateInstallDir"
   
   ; Delete update file
   Delete /REBOOTOK "$SetupTempFile"

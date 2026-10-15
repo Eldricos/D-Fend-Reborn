@@ -1,15 +1,20 @@
 // C++ port of ProgramUpdateCheckUnit.pas (implementation section).
 //
 // D-Fend Reborn: the update check asks GitHub for the latest release of the
-// project (DFRebornLatestReleaseAPI). If there is a newer version, the user
-// is asked whether to open the release page in the browser. (The original
-// downloaded UpdateInfo.txt from its homepage and started the external
-// UpdateCheck.exe, which downloaded and ran the update installer.)
+// project (DFRebornLatestReleaseAPI). If there is a newer version:
+// - Windows: like the original, the external Bin\UpdateCheck.exe is started
+//   (tools/UpdateCheck). It reads UpdateInfo.txt of the latest release
+//   (version and URL of the update installer), asks the user, downloads the
+//   update installer and runs it for the program folder.
+// - other systems (or without UpdateCheck.exe): the user is asked whether
+//   to open the release page in the browser.
 #include "ProgramUpdateCheckUnit.h"
 #include "PrgSetupUnit.h"
 #include "CommonTools.h"
 #include "LanguageSetupUnit.h"
 #include "PrgConsts.h"
+#include "Process.h"
+#include "MainUnit.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -27,6 +32,56 @@ static QString UpdateCheckURL()
     if (URL.isEmpty() || URL.contains("UpdateInfo.txt", Qt::CaseInsensitive)) URL = DFRebornLatestReleaseAPI;
     return URL;
 }
+
+#ifdef Q_OS_WIN
+// URL of the update information of the latest release (asset of each
+// release, created by the release workflow)
+static const QString UpdateInfoURL = DFRebornHomepage + "/releases/latest/download/UpdateInfo.txt";
+
+// Starts UpdateCheck.exe (RunExternalUpdateCheck of the original). Returns
+// false if UpdateCheck.exe is missing.
+static bool RunExternalUpdateCheck(bool Quite)
+{
+    QString Prg;
+    if (FileExists(PrgDir() + "UpdateCheck.exe")) Prg = PrgDir() + "UpdateCheck.exe";
+    else if (FileExists(PrgDir() + BinFolder + PathDelim + "UpdateCheck.exe")) Prg = PrgDir() + BinFolder + PathDelim + "UpdateCheck.exe";
+    if (Prg.isEmpty()) return false;
+
+    const QString FileName = TempDir() + "UpdateCheckSetup.txt";
+    TStringList St;
+    St.Add(GetReleaseVersionAsString());
+    St.Add(UpdateInfoURL);
+    St.Add("DFendRebornUpdate.exe");
+    St.Add(PrgDir());
+    St.Add(Quite ? "silent" : "normal");
+    St.Add(LanguageSetup->UpdateCannotFindFile());
+    St.Add(LanguageSetup->UpdateDownloadFailed());
+    St.Add(LanguageSetup->UpdateDownloadFailedBeforeURL());
+    St.Add(LanguageSetup->UpdateDownloadFailedAfterURL());
+    St.Add(LanguageSetup->UpdateURL());
+    St.Add(LanguageSetup->UpdateDownloading());
+    St.Add(LanguageSetup->UpdateConnecting());
+    St.Add(LanguageSetup->UpdateFileName());
+    St.Add(LanguageSetup->UpdateTransfered());
+    St.Add(LanguageSetup->UpdateFileSize());
+    St.Add(LanguageSetup->UpdateRamainingTime());
+    St.Add(LanguageSetup->UpdateTotalTime());
+    St.Add(LanguageSetup->UpdateCannotReadFile());
+    St.Add(LanguageSetup->UpdateNoUpdates());
+    St.Add(LanguageSetup->UpdateNewVersionPart1());
+    St.Add(LanguageSetup->UpdateNewVersionPart2());
+    St.Add(LanguageSetup->OK());
+    St.Add(LanguageSetup->Yes());
+    St.Add(LanguageSetup->No());
+    // UpdateCheck.exe is an ANSI program: system code page
+    if (!St.SaveToFile(FileName)) return false;
+
+    if (StartProcess(Prg, {FileName}, PrgDir()) == 0) return false;
+    if (DFendRebornMainForm != nullptr && DFendRebornMainForm->DeleteOnExit != nullptr && DFendRebornMainForm->DeleteOnExit->IndexOf(FileName) < 0)
+        DFendRebornMainForm->DeleteOnExit->Add(FileName);
+    return true;
+}
+#endif
 
 // Synchronous HTTP GET (the dialog/event loop stays responsive).
 // Returns the HTTP status code (0 = no connection / timeout).
@@ -82,6 +137,10 @@ TUpdateResult RunUpdateCheck(QWidget *AOwner, bool Quite, bool QuiteOnError)
     const QString Page = Release.value("html_url").toString(DFRebornHomepage + "/releases");
 
     if (!Version.isEmpty() && VersionToInt(Version) > VersionToInt(GetReleaseVersionAsString())) {
+#ifdef Q_OS_WIN
+        // UpdateCheck.exe asks the user and installs the update
+        if (RunExternalUpdateCheck(Quite)) return urUpdateAvailable;
+#endif
         // "New version" X "on server. Do you want to update now ?"
         if (MessageDlg(LanguageSetup->UpdateNewVersionPart1() + " " + Version + " " + LanguageSetup->UpdateNewVersionPart2(), mtConfirmation, mbYesNo, 0) == mrYes)
             ShellOpen(Page);
@@ -104,7 +163,8 @@ void RunUpdateCheckIfSetup(QWidget *AOwner)
 
 void RunUpdateCheckIdleCloseHandle()
 {
-    // (the original watched the external UpdateCheck.exe process here)
+    // (the original closed the process handle of UpdateCheck.exe here; the
+    // port does not keep it)
 }
 
 void ProgramUpdateCheckUnit_Initialization()

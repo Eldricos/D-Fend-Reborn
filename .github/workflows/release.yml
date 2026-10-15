@@ -248,6 +248,16 @@ jobs:
           path: dist
           merge-multiple: true
 
+      - name: Update information for UpdateCheck.exe
+        run: |
+          # read by Bin\UpdateCheck.exe of the Windows version via
+          # .../releases/latest/download/UpdateInfo.txt: version and URL of
+          # the update installer
+          printf '%s\r\n%s\r\n' "$VERSION" \
+            "https://github.com/${{ github.repository }}/releases/download/$GITHUB_REF_NAME/D-Fend-Reborn-$VERSION-UpdateSetup.exe" \
+            > dist/UpdateInfo.txt
+          cat dist/UpdateInfo.txt
+
       - name: Create or update the draft release
         run: |
           ls -la dist

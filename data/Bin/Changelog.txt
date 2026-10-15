@@ -1,5 +1,35 @@
-D-Fend Reloaded Changelog
+D-Fend Reborn Changelog
 
+
+Version 0.5.0 (10/14/2026)
+==========================
+First release of D-Fend Reborn.
+- D-Fend Reloaded 1.4.4 ported from Delphi to C++ and Qt 6. D-Fend Reborn
+  runs on Windows (64 bit, Windows 10/11) and Linux and uses the profiles,
+  settings, templates and language files of D-Fend Reloaded 1.4.4.
+- Linux: uses the DOSBox (or DOSBox Staging), ScummVM, 7-Zip, mkfs.fat,
+  oggenc and curl programs of the system; Windows programs of Windows
+  profiles are started with Wine (configurable on the "Windows games"
+  options page); CD/DVD, floppy and USB drives are found automatically
+  (udisks2); shortcuts as .desktop files; program icons are read from
+  Windows .exe files; wallpaper and screensaver support for the common
+  desktops; user data in ~/.local/share/D-Fend Reborn.
+- The help is a set of HTML pages opened in the web browser on all systems.
+- Package manager: the package lists are served from the GitHub repository;
+  single games can be installed from the "game-packages" release; data
+  packages are .7z / .zip archives.
+- The update check uses the GitHub releases. On Windows UpdateCheck.exe
+  downloads and installs the update installer.
+- All downloads use the proxy settings of the system.
+- The Czech, Polish, Turkish and Chinese language files are displayed
+  correctly independent of the system code page.
+- Downloads of each release are built automatically: Windows installer,
+  update installer and portable zip, Linux AppImage and tar.gz.
+
+
+
+D-Fend Reloaded Changelog
+(D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog)
 
 Version 1.4.4 (07/30/2015)
 ==========================

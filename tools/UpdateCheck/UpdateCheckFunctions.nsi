@@ -30,14 +30,14 @@ Function FileCheck ; Check if file on top of stack exists (no changes to stack)
   IfFileExists "$R0" FileExistsOK
   ;MessageBox MB_OK "$MessageCannotFindFile: $R0"
   Pop $0 ; Otherwise the plugin will not work correctl
-  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON4|MB_TOPMOST "D-Fend Reloaded Update Checker" "" "$MessageCannotFindFile: $R0" "$MessageBoxOK"
+  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON4|MB_TOPMOST "D-Fend Reborn Update Checker" "" "$MessageCannotFindFile: $R0" "$MessageBoxOK"
   Quit
   FileExistsOK:
   Exch $R0
 FunctionEnd
 
 Function DownloadFile ; Downloads from top of stack to second stack filename; third stack value =1 means "not silent" otherwise silend (removes all three from stack)
-  ; see http://nsis.sourceforge.net/Inetc_plug-in
+  ; see https://nsis.sourceforge.io/Inetc_plug-in
   
   Pop $R1
   Pop $R2
@@ -45,7 +45,7 @@ Function DownloadFile ; Downloads from top of stack to second stack filename; th
 
   StrCmp $R3 1 0 StartSilentDownload
   SetSilent normal
-  inetc::get /POPUP "$R1" /CAPTION "D-Fend Reloaded Update" /TRANSLATE "$MessageDownload1" "$MessageDownload2" "$MessageDownload3" "$MessageDownload4" "$MessageDownload5" "$MessageDownload6" "$MessageDownload7" "$MessageDownload8" "$R1" "$R2"
+  inetc::get /POPUP "$R1" /CAPTION "D-Fend Reborn Update" /TRANSLATE "$MessageDownload1" "$MessageDownload2" "$MessageDownload3" "$MessageDownload4" "$MessageDownload5" "$MessageDownload6" "$MessageDownload7" "$MessageDownload8" "$R1" "$R2"
   SetSilent silent
   Goto CheckDownload
   StartSilentDownload:
@@ -59,7 +59,7 @@ Function DownloadFile ; Downloads from top of stack to second stack filename; th
   StrCpy $R0 "$MessageDownloadFailedBeforeURL $R1 $MessageDownloadFailedAfterURL"
   ShowErrorMessage:
   ;MessageBox MB_OK "$MessageDownloadFailed: $R0"
-  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON1|MB_TOPMOST "D-Fend Reloaded Update Checker" "" "$MessageDownloadFailed: $R0" $MessageBoxOK
+  messagebox::show MB_SETFOREGROUND|MB_DEFBUTTON1|MB_TOPMOST "D-Fend Reborn Update Checker" "" "$MessageDownloadFailed: $R0" $MessageBoxOK
   Quit
   DownloadOK:
 
