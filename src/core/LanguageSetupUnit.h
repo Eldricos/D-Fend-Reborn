@@ -197,6 +197,8 @@ constexpr int NR_MessageCouldNotActivateXML = 20110;
 constexpr int NR_MessageZipImportDuplicateWarning = 20111;
 constexpr int NR_MessageNoFloppyDrive = 20112;
 constexpr int NR_MessageNoCDDrive = 20113;
+constexpr int NR_MessageDOSBoxXWarning = 20114;   // D-Fend Reborn
+constexpr int NR_MessageDOSBoxXWarningShort = 20115;   // D-Fend Reborn
 constexpr int NR_MenuFile = 30001;
 constexpr int NR_MenuFileImport = 30002;
 constexpr int NR_MenuFileImportConf = 30003;
@@ -910,6 +912,8 @@ constexpr int NR_SetupFormDOSBoxInstallationMoreSettingsCaption = 43421;
 constexpr int NR_SetupFormDOSBoxPortableModeInfo = 43422;
 constexpr int NR_SetupFormDOSBoxInstallationGlobal = 43423;
 constexpr int NR_SetupFormDOSBoxCommandLineParameters = 43424;
+constexpr int NR_SetupFormDOSBoxExecutable = 43425;   // D-Fend Reborn
+constexpr int NR_SetupFormDOSBoxExecutableAuto = 43426;   // D-Fend Reborn
 constexpr int NR_SetupFormAskBeforeDelete = 43501;
 constexpr int NR_SetupFormDeleteOnlyInBaseDir = 43502;
 constexpr int NR_SetupFormDeleteOnlyInBaseDirLabel = 43503;
@@ -2506,6 +2510,10 @@ public:
     void SetMessageNoFloppyDrive(const QString& Value) { SetString(NR_MessageNoFloppyDrive, Value); }
     QString MessageNoCDDrive() { return GetString(NR_MessageNoCDDrive); }
     void SetMessageNoCDDrive(const QString& Value) { SetString(NR_MessageNoCDDrive, Value); }
+    QString MessageDOSBoxXWarning() { return GetString(NR_MessageDOSBoxXWarning); }
+    void SetMessageDOSBoxXWarning(const QString& Value) { SetString(NR_MessageDOSBoxXWarning, Value); }
+    QString MessageDOSBoxXWarningShort() { return GetString(NR_MessageDOSBoxXWarningShort); }
+    void SetMessageDOSBoxXWarningShort(const QString& Value) { SetString(NR_MessageDOSBoxXWarningShort, Value); }
     QString MenuFile() { return GetString(NR_MenuFile); }
     void SetMenuFile(const QString& Value) { SetString(NR_MenuFile, Value); }
     QString MenuFileImport() { return GetString(NR_MenuFileImport); }
@@ -3930,6 +3938,10 @@ public:
     void SetSetupFormDOSBoxInstallationGlobal(const QString& Value) { SetString(NR_SetupFormDOSBoxInstallationGlobal, Value); }
     QString SetupFormDOSBoxCommandLineParameters() { return GetString(NR_SetupFormDOSBoxCommandLineParameters); }
     void SetSetupFormDOSBoxCommandLineParameters(const QString& Value) { SetString(NR_SetupFormDOSBoxCommandLineParameters, Value); }
+    QString SetupFormDOSBoxExecutable() { return GetString(NR_SetupFormDOSBoxExecutable); }
+    void SetSetupFormDOSBoxExecutable(const QString& Value) { SetString(NR_SetupFormDOSBoxExecutable, Value); }
+    QString SetupFormDOSBoxExecutableAuto() { return GetString(NR_SetupFormDOSBoxExecutableAuto); }
+    void SetSetupFormDOSBoxExecutableAuto(const QString& Value) { SetString(NR_SetupFormDOSBoxExecutableAuto, Value); }
     QString SetupFormAskBeforeDelete() { return GetString(NR_SetupFormAskBeforeDelete); }
     void SetSetupFormAskBeforeDelete(const QString& Value) { SetString(NR_SetupFormAskBeforeDelete, Value); }
     QString SetupFormDeleteOnlyInBaseDir() { return GetString(NR_SetupFormDeleteOnlyInBaseDir); }

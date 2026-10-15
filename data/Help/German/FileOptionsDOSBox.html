@@ -38,12 +38,32 @@ Auf dieser Seite können Sie einstellen, welche DOSBox-Installationen Sie in D-Fe
     wird das DOSBox-Verzeichnis <b>wieder in einen absoluten Pfad umgewandelt</b>, d.h. in diesem Eingabefeld
     steht immer eine absolute Pfadangabe, auch wenn der Pfad in der portablen Betriebsart korrekt relativ
     gespeichert wird.<br /><br />
-    Unter Linux wird DOSBox &uuml;ber die Paketverwaltung installiert (Paket <tt>dosbox</tt> oder <tt>dosbox-staging</tt>).
+    Die Windows-Version von D-Fend Reborn enth&auml;lt <a href="https://www.dosbox-staging.org/">DOSBox Staging</a>
+    im Unterverzeichnis <tt>DOSBox</tt> des Programmverzeichnisses; dies ist die Standard-Installation.<br /><br />
+    Unter Linux wird DOSBox &uuml;ber die Paketverwaltung installiert (Paket <tt>dosbox-staging</tt> oder <tt>dosbox</tt>).
     In diesem Fall geben Sie hier das Verzeichnis an, in dem sich das Programm <tt>dosbox</tt> befindet
     (normalerweise <tt>/usr/bin</tt>). Befindet sich in dem angegebenen Verzeichnis kein Programm <tt>dosbox</tt>,
     so verwendet D-Fend Reborn das im Suchpfad gefundene Programm <tt>dosbox</tt>.
   </li>
 </ul>
+
+<h2>DOSBox-X und andere DOSBox-Versionen</h2>
+
+<p>
+Andere DOSBox-Versionen k&ouml;nnen Sie als zus&auml;tzliche DOSBox-Installationen hinzuf&uuml;gen (Schaltfl&auml;che
+"Hinzuf&uuml;gen") und im <a href="ProfileEdit.html">Profileditor</a> f&uuml;r einzelne Profile ausw&auml;hlen.
+D-Fend Reborn erkennt die Version im gew&auml;hlten Verzeichnis (das Programm <tt>dosbox</tt>,
+<tt>dosbox-staging</tt> oder <tt>dosbox-x</tt>; die Programmdatei kann auch im Dialog "Weitere Einstellungen"
+gew&auml;hlt werden).
+</p>
+<p>
+D-Fend Reborn erstellt seine DOSBox-Konfigurationsdateien f&uuml;r DOSBox und DOSBox Staging.
+<a href="https://dosbox-x.com/">DOSBox-X</a> liest die meisten dieser Einstellungen, aber einige
+Profileinstellungen (zum Beispiel Grafikausgabe, Sound- oder Tastatureinstellungen) funktionieren
+m&ouml;glicherweise nicht wie erwartet. Ist eine DOSBox-X-Installation gew&auml;hlt, wird neben dem
+DOSBox-Verzeichnis eine Warnschaltfl&auml;che angezeigt. Wenn ein Spiel mit DOSBox-X nicht richtig l&auml;uft,
+w&auml;hlen Sie daf&uuml;r die Standard-DOSBox-Installation (DOSBox Staging) aus.
+</p>
 
 <h2>"Weitere Einstellungen f&uuml;r die DOSBox-Installation"-Dialog</h2>
 
@@ -64,7 +84,17 @@ Diese Schaltfläche ist nur sichtbar, wenn unten rechts im Programmeinstellungen-
     gespeichert wird.
   </li>
   <li>
+    <b>DOSBox-Programmdatei</b><br />
+    Die Programmdatei von DOSBox im DOSBox-Verzeichnis. "Automatisch" verwendet die erste gefundene von
+    <tt>dosbox</tt> (Windows: <tt>dosbox.exe</tt>), <tt>dosbox-staging</tt> und <tt>dosbox-x</tt>.
+    W&auml;hlen Sie eine Programmdatei aus, wenn das Verzeichnis mehrere DOSBox-Versionen enth&auml;lt
+    (zum Beispiel <tt>dosbox-x</tt> in <tt>/usr/bin</tt> unter Linux).
+    <br />(Vorgabewert f&uuml;r diese Option: "Automatisch")
+  </li>
+  <li>
     <b>DOSBox-Sprachdatei</b><br />
+    (DOSBox Staging hat eigene &Uuml;bersetzungen und verwendet die Sprache des Systems; diese Einstellung
+    wird daf&uuml;r nicht verwendet.)
     In dieser Box k&ouml;nnen Sie die Sprache ausw&auml;hlen, die DOSBox zur Anzeige von Meldungen
     verwenden soll. D-Fend Reborn zeigt in dieser Auswahlbox alle in dem DOSBox-Verzeichnis
     verf&uuml;gbaren <tt>*.lng</tt>-Dateien an. Um neue Sprachdateien zu dieser Auswahlliste hinzuzuf&uuml;gen,

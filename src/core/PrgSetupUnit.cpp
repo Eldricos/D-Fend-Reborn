@@ -40,6 +40,7 @@ void TDOSBoxSetting::ReadSettings()
     if (FNr == 0) FName = "Default"; else FName = Ini->ReadString(Section, "Name", "");
 
     FDosBoxDir = Ini->ReadString(Section, "Location", "");
+    FDosBoxExecutable = Ini->ReadString(Section, "Executable", "");
     FDosBoxMapperFile = Ini->ReadString(Section, "LocationMap", "." + PathDelim + "mapper.map");
     FDosBoxLanguage = Ini->ReadString(Section, "DosBoxLanguageFile", "");
     FSDLVideodriver = Ini->ReadString(Section, "SDLVideodriver", "DirectX");
@@ -66,6 +67,7 @@ void TDOSBoxSetting::WriteSettings()
     if (FNr != 0) ((PrgSetup != nullptr) ? PrgSetup->MemIni() : Ini)->WriteString(Section, "Name", FName);
 
     Ini->WriteString(Section, "Location", FDosBoxDir);
+    Ini->WriteString(Section, "Executable", FDosBoxExecutable);
     Ini->WriteString(Section, "LocationMap", FDosBoxMapperFile);
     Ini->WriteString(Section, "DosBoxLanguageFile", FDosBoxLanguage);
     Ini->WriteString(Section, "SDLVideodriver", FSDLVideodriver);
@@ -689,6 +691,7 @@ void DOSBoxSettingToDOSBoxData(TDOSBoxSetting *DOSBoxSetting, TDOSBoxData &DOSBo
 {
     DOSBoxData.Name = DOSBoxSetting->Name();
     DOSBoxData.DosBoxDir = DOSBoxSetting->DosBoxDir();
+    DOSBoxData.DosBoxExecutable = DOSBoxSetting->DosBoxExecutable();
     DOSBoxData.DosBoxMapperFile = DOSBoxSetting->DosBoxMapperFile();
     DOSBoxData.DosBoxLanguage = DOSBoxSetting->DosBoxLanguage();
     DOSBoxData.SDLVideodriver = DOSBoxSetting->SDLVideodriver();
@@ -706,6 +709,7 @@ void DOSBoxDataToDOSBoxSetting(const TDOSBoxData &DOSBoxData, TDOSBoxSetting *DO
 {
     DOSBoxSetting->SetName(DOSBoxData.Name);
     DOSBoxSetting->SetDosBoxDir(DOSBoxData.DosBoxDir);
+    DOSBoxSetting->SetDosBoxExecutable(DOSBoxData.DosBoxExecutable);
     DOSBoxSetting->SetDosBoxMapperFile(DOSBoxData.DosBoxMapperFile);
     DOSBoxSetting->SetDosBoxLanguage(DOSBoxData.DosBoxLanguage);
     DOSBoxSetting->SetSDLVideodriver(DOSBoxData.SDLVideodriver);
@@ -723,6 +727,7 @@ void InitDOSBoxData(TDOSBoxData &DOSBoxData)
 {
     DOSBoxData.Name = "";
     DOSBoxData.DosBoxDir = "";
+    DOSBoxData.DosBoxExecutable = "";
     DOSBoxData.DosBoxMapperFile = "." + PathDelim + "mapper.txt";
     DOSBoxData.DosBoxLanguage = "";
     DOSBoxData.SDLVideodriver = "DirectX";

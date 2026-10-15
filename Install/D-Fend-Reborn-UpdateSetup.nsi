@@ -190,37 +190,23 @@ Section "$(LANGNAME_DFendReborn)" ID_DFend
   SetOutPath "$INSTDIR\DOSBox"
   SetDetailsPrint none
   
+  ; DOSBox Staging replaces the DOSBox 0.74 of older versions
+  !insertmacro RemoveOldDOSBox
   SetOutPath "$INSTDIR\DOSBox"
-  Delete "$INSTDIR\DOSBox\README.txt"
-  Delete "$INSTDIR\DOSBox\COPYING.txt"
-  Delete "$INSTDIR\DOSBox\THANKS.txt"
-  Delete "$INSTDIR\DOSBox\NEWS.txt"
-  Delete "$INSTDIR\DOSBox\AUTHORS.txt"
-  Delete "$INSTDIR\DOSBox\INSTALL.txt"
-  RmDir /r "$INSTDIR\DOSBox\zmbv"
-  
-  File "${STAGE}\DOSBox\DOSBox.exe"
-  File "${STAGE}\DOSBox\dosbox.conf"
-  File "${STAGE}\DOSBox\SDL.dll"
-  File "${STAGE}\DOSBox\SDL_net.dll"
-  File "${STAGE}\DOSBox\DOSBox 0.74 Manual.txt"
-  File "${STAGE}\DOSBox\DOSBox 0.74 Options.bat"
-  File "${STAGE}\DOSBox\Reset KeyMapper.bat"
-  File "${STAGE}\DOSBox\Reset Options.bat"
-  File "${STAGE}\DOSBox\Screenshots & Recordings.bat"
-  
-  File "${STAGE}\NewUserData\FREEDOS\CPI\*.*"
-  
-  SetOutPath "$INSTDIR\DOSBox\Video Codec"
-  File "${STAGE}\DOSBox\Video Codec\*.*"
-  
-  SetOutPath "$INSTDIR\DOSBox\Documentation"
-  File "${STAGE}\DOSBox\Documentation\*.*"  
+  File /r "${STAGE}\DOSBox\*.*"
 
-  SetOutPath "$INSTDIR\DOSBox"
-  File "${STAGE}\DOSBoxLang\*.*"
-  
-  File "${STAGE}\NewUserData\FREEDOS\CPI\*.*"
+  IntCmp $InstallDataType 2 0 NoDOSBoxShortcutUpdate NoDOSBoxShortcutUpdate
+  !insertmacro DOSBoxPortableMode
+  Goto NoDOSBoxShortcutUpdate2
+  NoDOSBoxShortcutUpdate:
+  ; Start menu: shortcuts of DOSBox Staging instead of those of DOSBox 0.74
+  SetShellVarContext all
+  IfFileExists "$SMPROGRAMS\D-Fend Reborn\DOSBox\*.*" 0 NoDOSBoxShortcutUpdate2
+  RmDir /r "$SMPROGRAMS\D-Fend Reborn\DOSBox"
+  CreateDirectory "$SMPROGRAMS\D-Fend Reborn\DOSBox"
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox Staging.lnk" "$INSTDIR\DOSBox\dosbox.exe" "" "$INSTDIR\DOSBox\dosbox.exe" 0
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox Staging manual.lnk" "$INSTDIR\DOSBox\resources\docs\manual\index.html"
+  NoDOSBoxShortcutUpdate2:
   
   NoDOSBoxUpdate:
 SectionEnd

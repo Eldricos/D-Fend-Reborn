@@ -222,85 +222,22 @@ Section "$(LANGNAME_ProgramFiles)" ID_DosBoxProgramFiles
   SetOutPath "$INSTDIR\DOSBox"
   SetDetailsPrint none
 
+  ; DOSBox Staging (official Windows release, see ..\cmake\DOSBoxStaging.cmake)
+  !insertmacro RemoveOldDOSBox
   SetOutPath "$INSTDIR\DOSBox"
-  Delete "$INSTDIR\DOSBox\README.txt"
-  Delete "$INSTDIR\DOSBox\COPYING.txt"
-  Delete "$INSTDIR\DOSBox\THANKS.txt"
-  Delete "$INSTDIR\DOSBox\NEWS.txt"
-  Delete "$INSTDIR\DOSBox\AUTHORS.txt"
-  Delete "$INSTDIR\DOSBox\INSTALL.txt"
-  RmDir /r "$INSTDIR\DOSBox\zmbv"
-  
-  File "${STAGE}\DOSBox\DOSBox.exe"
-  File "${STAGE}\DOSBox\dosbox.conf"
-  File "${STAGE}\DOSBox\SDL.dll"
-  File "${STAGE}\DOSBox\SDL_net.dll"
-  File "${STAGE}\DOSBox\DOSBox 0.74 Manual.txt"
-  File "${STAGE}\DOSBox\DOSBox 0.74 Options.bat"
-  File "${STAGE}\DOSBox\Reset KeyMapper.bat"
-  File "${STAGE}\DOSBox\Reset Options.bat"
-  File "${STAGE}\DOSBox\Screenshots & Recordings.bat"
-  
-  File "${STAGE}\NewUserData\FREEDOS\CPI\*.*"
-  
-  SetOutPath "$INSTDIR\DOSBox\Video Codec"
-  File "${STAGE}\DOSBox\Video Codec\*.*"
-  
-  SetOutPath "$INSTDIR\DOSBox\Documentation"
-  File "${STAGE}\DOSBox\Documentation\*.*"
-  
+  File /r "${STAGE}\DOSBox\*.*"
+
+  IntCmp $InstallDataType 2 0 NoDosBoxPortableMode NoDosBoxPortableMode
+  !insertmacro DOSBoxPortableMode
+  NoDosBoxPortableMode:
+
   IntCmp $InstallDataType 2 NoDosBoxStartMenuLinks
   SetShellVarContext all
+  RmDir /r "$SMPROGRAMS\D-Fend Reborn\DOSBox"
   CreateDirectory "$SMPROGRAMS\D-Fend Reborn\DOSBox"
-  CreateDirectory "$SMPROGRAMS\D-Fend Reborn\DOSBox\Video"
-  CreateDirectory "$SMPROGRAMS\D-Fend Reborn\DOSBox\Configuration"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-conf $\"$INSTDIR\DosBox\dosbox.conf$\"" "$INSTDIR\DosBox\DOSBox.exe" 0
-  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox (noconsole).lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-noconsole -conf $\"$INSTDIR\DosBox\dosbox.conf$\"" "$INSTDIR\DosBox\DOSBox.exe" 0
-  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox manual.lnk" "$INSTDIR\DOSBox\DOSBox 0.74 Manual.txt"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\Capture folder.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-opencaptures explorer.exe"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\Video\Video instructions.lnk" "$INSTDIR\DOSBox\Video Codec\Video Instructions.txt"
-  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\Configuration\Edit Configuration.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-editconf notepad.exe -editconf $\"%SystemRoot%\system32\notepad.exe$\" -editconf $\"%WINDIR%\notepad.exe$\""
-  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\Configuration\Reset Configuration.lnk" "$INSTDIR\DOSBox\DOSBox.exe" "-eraseconf"
-  
-  ClearErrors
-  ReadRegStr $R0 HKLM "SOFTWARE\Microsoft\Windows NT\CurrentVersion" CurrentVersion
-  IfErrors we_9x we_nt
-  we_nt:  
-  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DosBox\Video\Install movie codec.lnk" "rundll32" "setupapi,InstallHinfSection DefaultInstall 128 $INSTDIR\DOSBox\Video Codec\zmbv.inf"
-  goto end
-  we_9x:
-  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DosBox\Video\Install movie codec.lnk" "rundll" "setupx.dll,InstallHinfSection DefaultInstall 128 $INSTDIR\DOSBox\Video Codec\zmbv.inf"
-  end:
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox Staging.lnk" "$INSTDIR\DOSBox\dosbox.exe" "" "$INSTDIR\DOSBox\dosbox.exe" 0
+  CreateShortCut "$SMPROGRAMS\D-Fend Reborn\DOSBox\DOSBox Staging manual.lnk" "$INSTDIR\DOSBox\resources\docs\manual\index.html"
   NoDosBoxStartMenuLinks:
-SectionEnd
-
-Section "$(LANGNAME_LanguageFiles)" ID_DosBoxLanguageFiles
-  SetDetailsPrint both
-  DetailPrint "$(LANGNAME_InstallDOSBoxLanguage)"
-  SetDetailsPrint listonly
-  SetOutPath "$INSTDIR\DOSBox"
-  SetDetailsPrint none
-
-  SetOutPath "$INSTDIR\DOSBox"
-  File "${STAGE}\DOSBoxLang\*.*"
-SectionEnd
-
-Section "$(LANGNAME_VideoCodec)" ID_DosBoxVideoCodec
-  SetDetailsPrint both
-  DetailPrint "$(LANGNAME_InstallDOSBoxCodec)"
-  SetDetailsPrint listonly
-
-  ClearErrors
-  ReadRegStr $R0 HKLM "SOFTWARE\Microsoft\Windows NT\CurrentVersion" CurrentVersion
-  IfErrors we_9x2 we_nt2
-  we_nt2:
-  Exec '"rundll32" setupapi,InstallHinfSection DefaultInstall 128 $INSTDIR\DOSBox\Video Codec\zmbv.inf'
-  goto end2
-  we_9x2:
-  Exec '"rundll32" setupx.dll,InstallHinfSection DefaultInstall 128 $INSTDIR\DOSBox\Video Codec\zmbv.inf'
-  end2:
-  
-  SetDetailsPrint none
 SectionEnd
  
 SectionGroupEnd
@@ -437,8 +374,6 @@ Function InstallMode
   FastMode:  
   !insertmacro ActivateSection ${ID_DosBox}
   !insertmacro ActivateSection ${ID_DosBoxProgramFiles}
-  !insertmacro ActivateSection ${ID_DosBoxLanguageFiles}
-  !insertmacro ActivateSection ${ID_DosBoxVideoCodec}
   !insertmacro ActivateSection ${ID_Tools}
   !insertmacro ActivateSection ${ID_FreeDosTools}
   !insertmacro ActivateSection ${ID_Doszip}
@@ -484,10 +419,6 @@ Function InstallType
   SectionGetFlags ${ID_DesktopShortcut} $R0
   IntOp $R0 $R0 & 0xFFFFFFFE
   SectionSetFlags ${ID_DesktopShortcut} $R0    
-  
-  SectionGetFlags ${ID_DosBoxVideoCodec} $R0
-  IntOp $R0 $R0 & 0xFFFFFFFE
-  SectionSetFlags ${ID_DosBoxVideoCodec} $R0
 
   StrCpy $INSTDIR "$DESKTOP\D-Fend Reborn\"
   
@@ -496,31 +427,13 @@ FunctionEnd
 
 Function .onSelChange
   IntCmp $InstallDataType 2 NoDesktopShortcut
-  Goto NextSelChangeCheck
+  Goto End
   
   NoDesktopShortcut:  
   
   SectionGetFlags ${ID_DesktopShortcut} $R0
   IntOp $R0 $R0 & 0xFFFFFFFE
   SectionSetFlags ${ID_DesktopShortcut} $R0
-  
-  SectionGetFlags ${ID_DosBoxVideoCodec} $R0
-  IntOp $R0 $R0 & 0xFFFFFFFE
-  SectionSetFlags ${ID_DosBoxVideoCodec} $R0  
-  
-  NextSelChangeCheck:
-
-  SectionGetFlags ${ID_DosBoxProgramFiles} $R0
-  IntOp $R0 $R0 & 1
-  IntCmp $R0 1 End
-  
-  SectionGetFlags ${ID_DosBoxLanguageFiles} $R0
-  IntOp $R0 $R0 & 0xFFFFFFFE
-  SectionSetFlags ${ID_DosBoxLanguageFiles} $R0
-    
-  SectionGetFlags ${ID_DosBoxVideoCodec} $R0
-  IntOp $R0 $R0 & 0xFFFFFFFE
-  SectionSetFlags ${ID_DosBoxVideoCodec} $R0
 	
   End:
 FunctionEnd
@@ -534,8 +447,6 @@ FunctionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${ID_DFend} $(DESC_DFend)
   !insertmacro MUI_DESCRIPTION_TEXT ${ID_DosBox} $(DESC_DosBox)
   !insertmacro MUI_DESCRIPTION_TEXT ${ID_DosBoxProgramFiles} $(DESC_DosBoxProgramFiles)
-  !insertmacro MUI_DESCRIPTION_TEXT ${ID_DosBoxLanguageFiles} $(DESC_DosBoxLanguageFiles)
-  !insertmacro MUI_DESCRIPTION_TEXT ${ID_DosBoxVideoCodec} $(DESC_VideoCodec)
   !insertmacro MUI_DESCRIPTION_TEXT ${ID_Tools} $(DESC_Tools)
   !insertmacro MUI_DESCRIPTION_TEXT ${ID_FreeDosTools} $(DESC_FreeDosTools)
   !insertmacro MUI_DESCRIPTION_TEXT ${ID_Doszip} $(DESC_Doszip)

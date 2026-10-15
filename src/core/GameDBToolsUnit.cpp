@@ -3153,7 +3153,7 @@ void OpenConfigurationFile(TGame *Game, TStringList *DeleteOnExit)
         }
         T = GetScummVMCommandLine(S, Game->ScummVMGame(), T, Game->ScummVMRenderMode(), Game->ScummVMPlatform());
     } else {
-        T = GetDOSBoxCommandLine(GetDOSBoxNr(Game), S, Game->ShowConsoleWindow(), "");
+        T = GetDOSBoxCommandLine(GetDOSBoxNr(Game), S, Game->ShowConsoleWindow(), "", DOSBoxKindOfInstallation(Max(0, GetDOSBoxNr(Game))));
     }
 
     St->Insert(5, "# " + T);

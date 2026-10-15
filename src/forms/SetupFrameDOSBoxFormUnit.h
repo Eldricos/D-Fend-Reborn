@@ -51,6 +51,7 @@ public slots:
     void DosBoxDirEditChange(QObject* Sender);
     void FormDestroy(QObject* Sender);
     void WarningButtonClick(QObject* Sender);
+    QString SelectedExecutable();
     void HelpButtonClick(QObject* Sender);
     void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);   // Key: Qt::Key_* (Delphi: var Key : Word)
 protected:

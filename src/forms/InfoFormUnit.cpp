@@ -282,10 +282,16 @@ void TInfoForm::LicenseComboBoxChange(QObject* Sender)
     ui.LicenseMemo->clear();
     switch (ui.LicenseComboBox->itemData(ui.LicenseComboBox->currentIndex()).toInt()) {
         case 0: if (FileExists(PrgDir() + BinFolder + PathDelim + "License.txt")) S = PrgDir() + BinFolder + PathDelim + "License.txt"; else S = PrgDir() + "License.txt"; break;
-        case 1:
-            S = IncludeTrailingPathDelimiter(PrgSetup->DOSBoxSettings(0)->DosBoxDir()) + "Documentation" + PathDelim + "COPYING.txt";
-            if (!FileExists(S)) S = IncludeTrailingPathDelimiter(PrgSetup->DOSBoxSettings(0)->DosBoxDir()) + "COPYING.txt";
+        case 1: {
+            // DOSBox: Documentation\COPYING.txt or COPYING.txt; DOSBox Staging:
+            // LICENSE.txt (and the GPL in doc\licenses)
+            const QString D = IncludeTrailingPathDelimiter(MakeAbsPath(PrgSetup->DOSBoxSettings(0)->DosBoxDir(), PrgSetup->BaseDir()));
+            for (const QString& Name : {QString("Documentation" + PathDelim + "COPYING.txt"), QString("COPYING.txt"), QString("LICENSE.txt"), QString("doc" + PathDelim + "licenses" + PathDelim + "GPL-2.0.txt")}) {
+                S = D + Name;
+                if (FileExists(S)) break;
+            }
             break;
+        }
         case 2: S = IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + "COPYING.txt"; break;
     }
     if (S != "") {

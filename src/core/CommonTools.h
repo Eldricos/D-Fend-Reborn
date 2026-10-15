@@ -76,6 +76,22 @@ void HideWindowFromProcessIDAndTitle(THandle ProcessID, const QString& Title);
 QString CheckDOSBoxVersionDirect(int Nr, const QString& Path);
 QString CheckDOSBoxVersionDirect2(int Nr, const QString& Path);
 QString CheckDOSBoxVersion(int Nr, const QString& Path = QString());
+// D-Fend Reborn: DOSBox variants. D-Fend Reborn writes DOSBox 0.74 style
+// configuration files; DOSBox Staging reads them (and has its own command
+// line and language files), DOSBox-X only partly.
+enum TDOSBoxKind { dkDOSBox, dkStaging, dkDOSBoxX };
+// DOSBox program file in Dir: Executable if set, otherwise the first one
+// of dosbox(.exe), dosbox-staging, dosbox-x that exists (Dir+dosbox(.exe) if
+// none exists)
+QString DOSBoxExeFile(const QString& Dir, const QString& Executable = QString());
+bool DOSBoxExeExists(const QString& Dir, const QString& Executable = QString());
+// Program file of DOSBox installation Nr
+QString DOSBoxExeFileOfInstallation(int Nr);
+TDOSBoxKind DOSBoxKindOfFile(const QString& PrgFile);
+TDOSBoxKind DOSBoxKind(const QString& Dir, const QString& Executable = QString());
+TDOSBoxKind DOSBoxKindOfInstallation(int Nr);
+// Notice that the configuration files may not work completely with DOSBox-X
+void DOSBoxXWarning();
 bool OldDOSBoxVersion(const QString& Version);
 void DOSBoxOutdatedWarning(const QString& DOSBoxPath);
 TDateTime GetFileDate(const QString& FileName);

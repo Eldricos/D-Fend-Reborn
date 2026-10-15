@@ -116,6 +116,7 @@ jobs:
           test -f Install/Stage/DFend.exe
           test -f Install/Stage/Qt6Core.dll
           test -f Install/Stage/Qt/platforms/qwindows.dll
+          test -f Install/Stage/DOSBox/dosbox.exe
 
       - name: Installers
         shell: bash
@@ -305,6 +306,16 @@ jobs:
           path: dist
           merge-multiple: true
 
+      - name: Source code of the included DOSBox Staging
+        run: |
+          # the Windows downloads include DOSBox Staging (GNU GPL): its source
+          # code is attached to the release
+          DOSBOX=$(sed -n 's/^set(DFR_DOSBOX_STAGING_VERSION \([0-9.]*\)).*/\1/p' cmake/DOSBoxStaging.cmake)
+          test -n "$DOSBOX"
+          echo "DOSBOX=$DOSBOX" >> "$GITHUB_ENV"
+          curl -sSfL -o "dist/dosbox-staging-$DOSBOX-source.tar.gz" \
+            "https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$DOSBOX.tar.gz"
+
       - name: Create or update the draft release
         run: |
           ls -la dist
@@ -321,7 +332,9 @@ jobs:
           - \`D-Fend-Reborn-$VERSION-x86_64.AppImage\`: make it executable and start it (data in \`~/.local/share/D-Fend Reborn\`)
           - \`D-Fend-Reborn-$VERSION-Linux-x86_64.tar.gz\`: program folder, needs Qt 6.4 or newer from your distribution
 
-          On Linux install DOSBox (or DOSBox Staging) with your package manager; optional: 7-Zip (\`7z\`), \`mkfs.fat\`, \`oggenc\`, \`curl\`, ScummVM, Wine.
+          On Linux install DOSBox Staging (or DOSBox) with your package manager; optional: 7-Zip (\`7z\`), \`mkfs.fat\`, \`oggenc\`, \`curl\`, ScummVM, Wine.
+
+          The Windows downloads include [DOSBox Staging](https://www.dosbox-staging.org/) $DOSBOX (GNU GPL); \`dosbox-staging-$DOSBOX-source.tar.gz\` is its source code.
           EOF
           if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
             # release created on GitHub: add the files and the download notes

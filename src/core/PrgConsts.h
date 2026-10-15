@@ -31,6 +31,16 @@ inline const QString DosBoxFileName = QStringLiteral("DOSBOX.EXE");
 inline const QString DosBoxFileName = QStringLiteral("dosbox");
 #endif
 inline const QString DosBoxConfFileName = QStringLiteral("DOSBOX.CONF");
+// D-Fend Reborn: program files of other DOSBox versions (DOSBox Staging uses
+// "dosbox" / "dosbox.exe" itself; some Linux packages install it as
+// "dosbox-staging"), see DOSBoxExeFile
+#ifdef Q_OS_WIN
+inline const QString DosBoxStagingFileName = QStringLiteral("dosbox-staging.exe");
+inline const QString DosBoxXFileName = QStringLiteral("dosbox-x.exe");
+#else
+inline const QString DosBoxStagingFileName = QStringLiteral("dosbox-staging");
+inline const QString DosBoxXFileName = QStringLiteral("dosbox-x");
+#endif
 #ifdef Q_OS_WIN
 inline const QString MakeDOSFilesystemFileName = QStringLiteral("mkdosfs.exe");
 #else

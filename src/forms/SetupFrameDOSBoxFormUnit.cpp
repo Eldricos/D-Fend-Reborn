@@ -44,6 +44,7 @@ TSetupFrameDOSBoxForm::TSetupFrameDOSBoxForm(QWidget *AOwner) : TVclForm(AOwner)
     connect(ui.OKButton, &QPushButton::clicked, this, [this]() { OKButtonClick(ui.OKButton); });
     connect(ui.RestoreDefaultValuesButton, &QPushButton::clicked, this, [this]() { RestoreDefaultValuesButtonClick(ui.RestoreDefaultValuesButton); });
     connect(ui.DosBoxDirEdit, &QLineEdit::textChanged, this, [this]() { DosBoxDirEditChange(ui.DosBoxDirEdit); });
+    connect(ui.DosBoxExecutableComboBox, &QComboBox::currentTextChanged, this, [this]() { DosBoxDirEditChange(ui.DosBoxExecutableComboBox); });
     connect(ui.CustomSetsClearButton, &QPushButton::clicked, this, [this]() { ButtonWork(ui.CustomSetsClearButton); });
     connect(ui.CustomSetsLoadButton, &QPushButton::clicked, this, [this]() { ButtonWork(ui.CustomSetsLoadButton); });
     connect(ui.CustomSetsSaveButton, &QPushButton::clicked, this, [this]() { ButtonWork(ui.CustomSetsSaveButton); });
@@ -93,6 +94,16 @@ void TSetupFrameDOSBoxForm::FormCreate(QObject* Sender)
     ui.DosBoxMapperEdit_EditLabel->setText(LanguageSetup->SetupFormDOSBoxMapperFile());
     ui.DosBoxMapperButton->setToolTip(LanguageSetup->ChooseFile());
     ui.CommandLineEdit_EditLabel->setText(LanguageSetup->SetupFormDOSBoxCommandLineParameters());
+    // D-Fend Reborn: DOSBox program file (automatic or a given name, e.g.
+    // dosbox-x if a folder contains several DOSBox versions)
+    ui.DosBoxExecutableLabel->setText(LanguageSetup->SetupFormDOSBoxExecutable());
+    {
+        const QSignalBlocker Blocker(ui.DosBoxExecutableComboBox);
+        ui.DosBoxExecutableComboBox->addItem(LanguageSetup->SetupFormDOSBoxExecutableAuto());
+        ui.DosBoxExecutableComboBox->addItem(DosBoxFileName.toLower());
+        ui.DosBoxExecutableComboBox->addItem(DosBoxStagingFileName);
+        ui.DosBoxExecutableComboBox->addItem(DosBoxXFileName);
+    }
     ui.HideDosBoxConsoleCheckBox->setText(LanguageSetup->SetupFormHideDOSBoxConsole());
     ui.CenterDOSBoxCheckBox->setText(LanguageSetup->SetupFormCenterDOSBoxWindow());
     ui.DisableScreensaverCheckBox->setText(LanguageSetup->SetupFormDOSBoxDisableScreensaver());
@@ -146,6 +157,9 @@ void TSetupFrameDOSBoxForm::FormShow(QObject* Sender)
         // TEdit.Text assignment fires OnChange only when the text changes
         const QSignalBlocker Blocker(ui.DosBoxDirEdit);
         ui.DosBoxDirEdit->setText(DOSBoxData.DosBoxDir);
+        const QSignalBlocker Blocker2(ui.DosBoxExecutableComboBox);
+        if (Trim(DOSBoxData.DosBoxExecutable).isEmpty()) ui.DosBoxExecutableComboBox->setCurrentIndex(0);
+        else ui.DosBoxExecutableComboBox->setCurrentText(Trim(DOSBoxData.DosBoxExecutable));
     }
     DosBoxDirEditChange(Sender);
 
@@ -240,7 +254,7 @@ void TSetupFrameDOSBoxForm::DosBoxDirEditChange(QObject* Sender)
     for (J = 0; J < St.Count(); J++) ui.DosBoxLangEditComboBox->addItem(ExtendLanguageName(St[J]));
     if (St.Count() > 0) ui.DosBoxLangEditComboBox->setCurrentIndex(qMax(0, I));
 
-    ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())));
+    ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())) || (DOSBoxKind(ui.DosBoxDirEdit->text(), SelectedExecutable()) == dkDOSBoxX));
     QRect G = ui.DosBoxDirEdit->geometry();
     QRect WB = ui.WarningButton->geometry();
     int W = (ui.WarningButton->isVisibleTo(this) ? WB.x() - 4 : WB.x() + WB.width()) - G.x();
@@ -316,6 +330,7 @@ void TSetupFrameDOSBoxForm::OKButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
     DOSBoxData.DosBoxDir = ui.DosBoxDirEdit->text();
+    DOSBoxData.DosBoxExecutable = SelectedExecutable();
     DOSBoxData.DosBoxLanguage = (*DosBoxLang)[ui.DosBoxLangEditComboBox->currentIndex()];
     DOSBoxData.KeyboardLayout = ui.DOSBoxKeyboardLayoutComboBox->itemText(ui.DOSBoxKeyboardLayoutComboBox->currentIndex());
     DOSBoxData.Codepage = ui.DOSBoxCodepageComboBox->itemText(ui.DOSBoxCodepageComboBox->currentIndex());
@@ -356,10 +371,18 @@ void TSetupFrameDOSBoxForm::RestoreDefaultValuesButtonClick(QObject* Sender)
     if (IsWindowsVista()) ui.SDLVideoDriverComboBox->setCurrentIndex(1); else ui.SDLVideoDriverComboBox->setCurrentIndex(0);
 }
 
+QString TSetupFrameDOSBoxForm::SelectedExecutable()
+{
+    const QString S = Trim(ui.DosBoxExecutableComboBox->currentText());
+    if (S.isEmpty() || (S == ui.DosBoxExecutableComboBox->itemText(0))) return QString();
+    return S;
+}
+
 void TSetupFrameDOSBoxForm::WarningButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    DOSBoxOutdatedWarning(ui.DosBoxDirEdit->text());
+    if (OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text()))) DOSBoxOutdatedWarning(ui.DosBoxDirEdit->text());
+    else if (DOSBoxKind(ui.DosBoxDirEdit->text(), SelectedExecutable()) == dkDOSBoxX) DOSBoxXWarning();
 }
 
 /* global */
