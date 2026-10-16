@@ -818,6 +818,7 @@ constexpr int NR_SetupFormStartRestoreFilter = 43118;
 constexpr int NR_SetupFormStartRestorePreviewerCategory = 43119;
 constexpr int NR_SetupFormMinimizeToTray = 43120;
 constexpr int NR_SetupFormStartWithWindows = 43121;
+constexpr int NR_SetupFormStartWithLogin = 43152;   // D-Fend Reborn (Linux)
 constexpr int NR_SetupFormSingleInstance = 43122;
 constexpr int NR_SetupFormAddButtonFunctionLabel = 43123;
 constexpr int NR_SetupFormAddButtonFunctionAdd = 43124;
@@ -3759,6 +3760,7 @@ public:
     QString SetupFormMinimizeToTray() { return GetString(NR_SetupFormMinimizeToTray); }
     void SetSetupFormMinimizeToTray(const QString& Value) { SetString(NR_SetupFormMinimizeToTray, Value); }
     QString SetupFormStartWithWindows() { return GetString(NR_SetupFormStartWithWindows); }
+    QString SetupFormStartWithLogin() { return GetString(NR_SetupFormStartWithLogin); }
     void SetSetupFormStartWithWindows(const QString& Value) { SetString(NR_SetupFormStartWithWindows, Value); }
     QString SetupFormSingleInstance() { return GetString(NR_SetupFormSingleInstance); }
     void SetSetupFormSingleInstance(const QString& Value) { SetString(NR_SetupFormSingleInstance, Value); }

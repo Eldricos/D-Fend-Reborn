@@ -30,6 +30,8 @@ Version 0.5.5 (not released yet)
   cga_mono / mda / pc98, CPU types 486 / pentium); the values of the new
   DOSBox Staging page can be edited there. Existing lists get the new
   values; values added or removed by the user stay as they are.
+- Linux: the option "Start with Windows" is called "Start when logging
+  in" (it creates an autostart entry of the desktop session).
 
 
 Version 0.5.4 (10/15/2026)

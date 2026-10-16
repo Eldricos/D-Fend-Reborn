@@ -826,6 +826,7 @@ void TLanguageSetup::SetupLanguageStrings2()
     AddStringRec(NR_SetupFormStartRestorePreviewerCategory, QStringLiteral("SetupForm"), QStringLiteral("RestoreSelectedPreviewerCategory"), QStringLiteral("Restore selected previewer category on restart"));
     AddStringRec(NR_SetupFormMinimizeToTray, QStringLiteral("SetupForm"), QStringLiteral("MinimizeToTray"), QStringLiteral("Minimize to tray area"));
     AddStringRec(NR_SetupFormStartWithWindows, QStringLiteral("SetupForm"), QStringLiteral("StartWithWindows"), QStringLiteral("Start with Windows"));
+    AddStringRec(NR_SetupFormStartWithLogin, QStringLiteral("SetupForm"), QStringLiteral("StartWithLogin"), QStringLiteral("Start when logging in"));
     AddStringRec(NR_SetupFormSingleInstance, QStringLiteral("SetupForm"), QStringLiteral("SingleInstanceOnly"), QStringLiteral("Allow only one running instance"));
     AddStringRec(NR_SetupFormAddButtonFunctionLabel, QStringLiteral("SetupForm"), QStringLiteral("AddButtonFunction"), QStringLiteral("Function of the add button:"));
     AddStringRec(NR_SetupFormAddButtonFunctionAdd, QStringLiteral("SetupForm"), QStringLiteral("AddButtonFunction.Add"), QStringLiteral("Add dialog"));
