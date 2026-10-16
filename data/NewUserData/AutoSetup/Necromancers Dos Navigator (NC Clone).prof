@@ -2,14 +2,14 @@
 Name=Necromancer's Dos Navigator (NC Clone)
 Favorite=0
 Icon=win_3in1.ico
-Genre=File manager
+Genre=File Manager
 Developer=NDN-Team
 Publisher=NDN-Team
 Year=2005
 Notes=
 WWW=http://ndn.muxe.com/
 Language=English
-UserInfo=License=Freeware[13]
+UserInfo=License=Freeware[13][10]
 
 [Extra]
 Loadhigh=0

@@ -51,13 +51,13 @@ SecureMode=1
 Favorite=0
 Name=Sensible Soccer
 Icon=
-Genre=Sport
+Genre=Sports
 Developer=Sensible Software
 Publisher=Renegade Software
 Year=1992
 Notes=
 WWW=
-Language=multilingual
+Language=Multilingual
 UserInfo=
 
 [sdl]

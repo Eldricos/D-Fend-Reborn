@@ -1,0 +1,41 @@
+# Checks the auto setup templates (data/NewUserData/AutoSetup) with
+# tools/autosetup.py (format: docs/AutoSetupTemplates.md).
+# "Run workflow" (Actions > AutoSetup templates) with a game name also tests
+# the Wikidata lookup.
+name: AutoSetup templates
+
+on:
+  push:
+    paths:
+      - 'data/NewUserData/AutoSetup/**'
+      - 'data/Bin/GameInfo.ini'
+      - 'tools/autosetup.py'
+      - '.github/workflows/autosetup.yml'
+  pull_request:
+    paths:
+      - 'data/NewUserData/AutoSetup/**'
+      - 'data/Bin/GameInfo.ini'
+      - 'tools/autosetup.py'
+  workflow_dispatch:
+    inputs:
+      lookup:
+        description: 'Game name to look up on Wikidata (optional)'
+        required: false
+        default: ''
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check all templates
+        run: python3 tools/autosetup.py check
+      - name: Wikidata lookup
+        # (a test of the lookup; Wikidata being unreachable does not fail the check)
+        continue-on-error: true
+        env:
+          NAME: ${{ inputs.lookup || 'Commander Keen' }}
+        run: |
+          python3 tools/autosetup.py lookup "$NAME" --dos
+          echo "----- all platforms"
+          python3 tools/autosetup.py lookup "$NAME"

@@ -1,12 +1,12 @@
 [Extra]
-NrOfMounts=2
+NrOfMounts=1
 Exe=TK2.BAT
 ExeMD5=B26D8EB5A31D3222C32ED949C46946F1
 SetupMD5=
 LastModification=40586-24043
 ScreenshotListScreenshot=
 0=.\VirtualHD\;Drive;C;false;
-1=F:\Spiele\telekommando2\;Drive;D;false;
+1=
 Environment=PATH[61]Z:\[13][10]
 Tab2=3
 Loadhigh=0
@@ -53,7 +53,7 @@ NoDOSBoxFailedDialog=0
 
 [ExtraInfo]
 Favorite=1
-Name=Das Telekommando kehrt zurück
+Name=Das Telekommando kehrt zurÃ¼ck
 Genre=Adventure
 Developer=The Art Department
 Publisher=Telekom

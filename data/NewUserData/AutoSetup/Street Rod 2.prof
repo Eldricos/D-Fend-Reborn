@@ -43,7 +43,7 @@ IgnoreWindowsFileWarnings=0
 NoDOSBoxFailedDialog=0
 
 [ExtraInfo]
-Genre=Racing / Driving;Simulation
+Genre=Race;Simulation
 Developer=Logical Design Works, Inc.;P.Z.Karen Co. Development Group
 Publisher=California Dreams
 Name=Street Rod 2: The Next Generation

@@ -43,7 +43,7 @@ IgnoreWindowsFileWarnings=0
 NoDOSBoxFailedDialog=0
 
 [ExtraInfo]
-Genre=Role-Playing (RPG);Strategy
+Genre=RPG;Strategy
 Developer=Strategic Simulations, Inc.
 Publisher=Strategic Simulations, Inc.
 Year=1989

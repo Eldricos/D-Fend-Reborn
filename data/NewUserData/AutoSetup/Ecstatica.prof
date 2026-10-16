@@ -51,13 +51,13 @@ SecureMode=1
 Favorite=0
 Name=Ecstatica
 Icon=
-Genre=3D Adventure
+Genre=Adventure
 Developer=Andrew Spencer Studios
 Publisher=Psygnosis Limited
 Year=1994
 Notes=
 WWW=
-Language=multilingual
+Language=Multilingual
 UserInfo=
 
 [sdl]

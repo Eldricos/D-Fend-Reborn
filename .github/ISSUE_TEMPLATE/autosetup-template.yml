@@ -1,0 +1,56 @@
+name: Auto setup template
+description: Submit a new or improved auto setup template (game profile with game information)
+title: "[Template] "
+labels: ["autosetup template"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you! Please read [docs/AutoSetupTemplates.md](https://github.com/Eldricos/D-Fend-Reborn/blob/main/docs/AutoSetupTemplates.md) first:
+        create the template with **File > Export > Create prof files...** and **Export profiles as auto setup templates**.
+        Attach only the `.prof` file (zipped) - no game files.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of submission
+      options:
+        - New template (game not covered yet)
+        - Improved template (better settings)
+        - Corrected game information (name, genre, year, ...)
+    validations:
+      required: true
+  - type: input
+    id: game
+    attributes:
+      label: Game name and version
+      placeholder: "Commander Keen 4: Secret of the Oracle 1.4"
+    validations:
+      required: true
+  - type: input
+    id: dosbox
+    attributes:
+      label: Tested with
+      description: DOSBox version (e.g. the DOSBox Staging included in D-Fend Reborn) and D-Fend Reborn version
+      placeholder: "D-Fend Reborn 0.5.4, DOSBox Staging 0.83.0"
+    validations:
+      required: true
+  - type: textarea
+    id: changes
+    attributes:
+      label: What was changed / why
+      description: For improved templates and corrections. Sources for the game information are welcome (e.g. Wikidata, MobyGames, the game manual).
+  - type: textarea
+    id: file
+    attributes:
+      label: Template file
+      description: Attach the zipped .prof file (drag and drop it here).
+    validations:
+      required: true
+  - type: checkboxes
+    id: check
+    attributes:
+      label: Checks
+      options:
+        - label: The game runs with the template in D-Fend Reborn
+          required: true
+        - label: "`python3 tools/autosetup.py check` reports no errors (if you could run it)"

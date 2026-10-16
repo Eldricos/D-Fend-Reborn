@@ -67,6 +67,13 @@ void TUpdateCheckForm::FormCreate(QObject * /*Sender*/)
         QFont F = C->font(); F.setBold(true); C->setFont(F);
     }
 
+    // D-Fend Reborn: the MobyGames reader is not used any more (game
+    // information comes from the auto setup templates and Wikidata)
+    ui.CheckBoxDatareader->setChecked(false);
+    ui.CheckBoxDatareader->setVisible(false);
+    ui.InfoLabelDatareader->setVisible(false);
+    ui.StatusLabelDatareader->setVisible(false);
+
     SetStatus(ui.StatusLabelProgram, LanguageSetup->UpdateCheckDialogStatusNotYetChecked(), clGrayText);
     SetStatus(ui.StatusLabelPackages, LanguageSetup->UpdateCheckDialogStatusNotYetChecked(), clGrayText);
     SetStatus(ui.StatusLabelCheats, LanguageSetup->UpdateCheckDialogStatusNotYetChecked(), clGrayText);

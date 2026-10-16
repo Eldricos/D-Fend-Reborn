@@ -51,14 +51,14 @@ ExtraExe9=
 Favorite=0
 Name=ScreamTracker 3.21
 Icon=
-Genre=Music player
+Genre=Music Player
 Developer=Future Crew
 Publisher=Future Crew
 Year=1994
 Notes=Some music files are in C:\ST3\MUSIC[13]
 WWW=http://en.wikipedia.org/wiki/Scream_Tracker
 Language=English
-UserInfo=License=Freeware[13]
+UserInfo=License=Freeware[13][10]
 
 [sdl]
 fullscreen=0

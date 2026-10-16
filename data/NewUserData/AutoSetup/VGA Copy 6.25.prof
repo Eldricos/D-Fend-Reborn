@@ -52,13 +52,13 @@ Favorite=0
 Name=VGA Copy 6.25
 Icon=vgacopy.ico
 Genre=Program
-Developer=Thomas Mönkemeier
+Developer=Thomas MÃ¶nkemeier
 Publisher=VGA-Software GmbH
 Year=2001
 Notes=
 WWW=http://www.moenk.de/pages/vgacopy.html
 Language=German
-UserInfo=License=Freeware[13]
+UserInfo=License=Freeware[13][10]
 
 [sdl]
 fullscreen=0

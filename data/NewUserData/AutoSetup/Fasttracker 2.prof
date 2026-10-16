@@ -51,14 +51,14 @@ ExtraExe9=
 Favorite=0
 Name=Fasttracker 2
 Icon=
-Genre=Music player
+Genre=Music Player
 Developer=Triton productions
 Publisher=Triton productions
 Year=1996
 Notes=
 WWW=http://en.wikipedia.org/wiki/FastTracker_2
 Language=English
-UserInfo=License=Freeware[13]
+UserInfo=License=Freeware[13][10]
 
 [sdl]
 fullscreen=0
