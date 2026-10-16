@@ -95,6 +95,7 @@ void TUpdateCheckForm::FormCreate(QObject * /*Sender*/)
 void TUpdateCheckForm::SetStatus(QLabel *ALabel, const QString &AText, TColor AColor)
 {
     ALabel->setText(AText);
+    ALabel->adjustSize();   // (AutoSize: the status texts are longer than "Not yet checked.")
     QPalette P = ALabel->palette();
     P.setColor(QPalette::WindowText, TColorToQColor(AColor));
     ALabel->setPalette(P);
