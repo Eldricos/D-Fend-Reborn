@@ -1,7 +1,7 @@
 D-Fend Reborn Changelog
 
 
-Version 0.5.5 (not released yet)
+Version 0.5.5 (10/16/2026)
 ================================
 - DOSBox Staging: the settings of the profiles are written with the names
   of DOSBox Staging (e.g. cpu_cycles, mouse_capture, keyboard_layout);
