@@ -13,6 +13,7 @@
 #include "GameDBToolsUnit.h"
 #include "ModernProfileEditorFormUnit.h"
 #include "DosBoxUnit.h"
+#include "DOSBoxConfUnit.h"
 #include "HelpConsts.h"
 #include "HelpTools.h"
 #include "TextEditPopupUnit.h"
@@ -234,6 +235,10 @@ TProfileEditorForm::TProfileEditorForm(QWidget *AOwner) : TVclForm(AOwner)
     connect(ui.GeneralValueListEditor, &TValueListEditorWidget::editButtonClicked, this, [this](int Row) {
         ui.GeneralValueListEditor->setCurrentCell(Row, 0);
         GeneralValueListEditorEditButtonClick(ui.GeneralValueListEditor);
+    });
+    // (DOSBox installation changed: grey out the settings it does not use)
+    connect(ui.GeneralValueListEditor, &QTableWidget::itemChanged, this, [this](QTableWidgetItem *I) {
+        if ((I != nullptr) && (I->column() == 1) && (I->row() == 15 + (PrgSetup->AllowTextModeLineChange() ? 1 : 0))) MarkIgnoredDOSBoxSettings();
     });
     connect(ui.EnvironmentValueListEditor, &TValueListEditorWidget::editButtonClicked, this, [this](int Row) {
         ui.EnvironmentValueListEditor->setCurrentCell(Row, 0);
@@ -1257,9 +1262,63 @@ void TProfileEditorForm::LoadData()
         ui.PageControl->setCurrentIndex(0);
     }
 
+    MarkIgnoredDOSBoxSettings();
+
     // Set profile name in caption
 
     ProfileSettingsValueListEditorSetEditText(ui.ProfileSettingsValueListEditor, ui.ProfileSettingsValueListEditor->currentColumn(), ui.ProfileSettingsValueListEditor->currentRow() + 1, "");
+}
+
+// Rows of settings the DOSBox version of the profile does not use (e.g. the
+// scaler for DOSBox Staging) are greyed out and read only; their values stay
+// in the profile for other DOSBox versions.
+static void SetRowIgnored(TValueListEditorWidget* E, int Row, bool Ignored, const QString& Hint)
+{
+    if ((Row < 0) || (Row >= E->rowCount())) return;
+    QTableWidgetItem* K = E->item(Row, 0);
+    if (K == nullptr) return;
+    constexpr int RoleIgnored = Qt::UserRole + 70, RoleWasReadOnly = Qt::UserRole + 71;
+    if (K->data(RoleIgnored).toBool() == Ignored) return;
+    const QSignalBlocker Blocker(E);
+    if (Ignored) K->setData(RoleWasReadOnly, E->isReadOnly(Row));
+    E->setReadOnly(Row, Ignored || K->data(RoleWasReadOnly).toBool());
+    for (int C = 0; C < 2; C++) {
+        QTableWidgetItem* I = E->item(Row, C);
+        if (I == nullptr) continue;
+        if (Ignored) {
+            I->setForeground(E->palette().brush(QPalette::Disabled, QPalette::Text));
+            I->setToolTip(Hint);
+        } else {
+            I->setData(Qt::ForegroundRole, QVariant());
+            I->setToolTip(QString());
+        }
+    }
+    K->setData(RoleIgnored, Ignored);
+}
+
+void TProfileEditorForm::MarkIgnoredDOSBoxSettings()
+{
+    const int ShiftNr = PrgSetup->AllowTextModeLineChange() ? 1 : 0;
+    QString Installation = Trim(ui.GeneralValueListEditor->value(15 + ShiftNr));
+    if (ExtUpperCase(Installation) == "DEFAULT") Installation.clear();
+    const TDOSBoxKind Kind = DOSBoxKindOfProfileInstallation(Installation);
+    const QString Hint = LanguageSetup->ProfileEditorDOSBoxSettingIgnored();
+    struct TRow { TValueListEditorWidget* E; int Row; const char* Section; const char* Key; };
+    const TRow Rows[] = {
+        {ui.GeneralValueListEditor, 5, "sdl", "fulldouble"},
+        {ui.GeneralValueListEditor, 7, "sdl", "usescancodes"},
+        {ui.GeneralValueListEditor, 9, "sdl", "output"},
+        {ui.GeneralValueListEditor, 11, "sdl", "fullresolution"},
+        {ui.GeneralValueListEditor, 12, "render", "scaler"},
+        {ui.GeneralValueListEditor, 13 + ShiftNr, "sdl", "priority"},
+        {ui.GeneralValueListEditor, 14 + ShiftNr, "sdl", "priority"},
+        {ui.EnvironmentValueListEditor, 9, "render", "frameskip"},
+        {ui.SoundSBValueListEditor, 6, "sblaster", "oplrate"},
+        {ui.SoundGUSValueListEditor, 4, "gus", "gusrate"},
+        {ui.SoundMiscValueListEditor, 1, "speaker", "pcrate"},
+        {ui.SoundMiscValueListEditor, 3, "speaker", "tandyrate"},
+    };
+    for (const TRow& R : Rows) SetRowIgnored(R.E, R.Row, DOSBoxSettingIgnored(Kind, QLatin1String(R.Section), QLatin1String(R.Key)), Hint);
 }
 
 void TProfileEditorForm::LoadIcon()

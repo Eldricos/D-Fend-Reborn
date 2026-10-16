@@ -125,6 +125,7 @@ private:
     void LoadIcon();
     void InitGUI();
     void LoadData();
+    void MarkIgnoredDOSBoxSettings();
     void LoadMountingList();
     QChar NextFreeDriveLetter();
     QString UsedDriveLetters(int AllowedNr = - 1);
