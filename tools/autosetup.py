@@ -9,6 +9,8 @@
                                      relative mounts); then run "check"
   autosetup.py lookup NAME [--dos]   search Wikidata for a game and show the
                                      values for the [ExtraInfo] section
+  autosetup.py report [FILE]         write the list of templates that need work
+                                     (default: docs/AutoSetupTemplatesTodo.txt)
 
 Run it from the repository root. The standard values are read from
 data/Bin/GameInfo.ini (the same file D-Fend Reborn uses).
@@ -387,11 +389,115 @@ def cmd_lookup(args):
     return 0
 
 
+# --- report --------------------------------------------------------------------
+
+REPORT = os.path.join(ROOT, "docs", "AutoSetupTemplatesTodo.txt")
+INFO_KEYS = ("Genre", "Developer", "Publisher", "Year", "Language", "License")
+
+
+def cmd_report(args):
+    out = args[0] if args else REPORT
+    files = sorted(glob.glob(os.path.join(TEMPLATES, "*.prof")), key=lambda p: os.path.basename(p).lower())
+    md5_index = build_md5_index()
+    missing, boot, errors, names = [], [], [], {}
+    count = dict((k, 0) for k in INFO_KEYS)
+    for p in files:
+        t = Template(p)
+        base = os.path.basename(p)
+        e, w = check_template(t, md5_index)
+        if e:
+            errors.append("%s: %s" % (base, "; ".join(e)))
+        keys = [k for k in INFO_KEYS if any(x.startswith(k + " is") for x in w)]
+        for k in keys:
+            count[k] += 1
+        if keys:
+            missing.append("%s: %s" % (base, ", ".join(keys)))
+        if any(x.startswith("boot image") for x in w):
+            boot.append(base)
+        name = t.get("ExtraInfo", "Name").strip()
+        if name:
+            ver = [v for k, v in user_info(t.get("ExtraInfo", "UserInfo")) if k == "Version"]
+            names.setdefault(name.lower(), []).append((name, base, ver[0].strip() if ver else ""))
+    same_md5 = sorted((sorted(v, key=str.lower) for v in md5_index.values() if len(v) > 1), key=lambda v: v[0].lower())
+    same_name = sorted((v for v in names.values() if len(v) > 1), key=lambda v: v[0][0].lower())
+    # groups in which the versions do not tell the templates apart
+    def unclear(g):
+        vers = [v for _, _, v in g]
+        return "" in vers or len(set(v.lower() for v in vers)) < len(vers)
+    same_name_check = [g for g in same_name if unclear(g)]
+    same_name_ok = [g for g in same_name if not unclear(g)]
+
+    L = []
+    def section(title, text):
+        L.extend(["", "=" * 79, title, "=" * 79, ""] + text.split("\n") + [""])
+    L += ["Auto setup templates: what needs work",
+          "",
+          "Templates of data/NewUserData/AutoSetup that are incomplete or need to be",
+          "checked. Pick an entry, fix the template and submit it (pull request or the",
+          "issue form \"Auto setup template\"); see docs/AutoSetupTemplates.md for the",
+          "format and the tools.",
+          "",
+          "This file is generated, do not edit it by hand. After changing templates run",
+          "    python3 tools/autosetup.py report",
+          "",
+          "Summary (%d templates):" % len(files),
+          "  templates with errors:                   %d" % len(errors),
+          "  templates sharing a program file:        %d (%d groups)" % (sum(map(len, same_md5)), len(same_md5)),
+          "  game names without clear versions:       %d (%d groups)" % (sum(map(len, same_name_check)), len(same_name_check)),
+          "  game names with several versions (ok):   %d (%d groups)" % (sum(map(len, same_name_ok)), len(same_name_ok)),
+          "  boot image templates:                    %d" % len(boot),
+          "  templates with missing information:      %d" % len(missing)]
+    L += ["      %-10s missing in %d" % (k + ":", count[k]) for k in INFO_KEYS]
+    if errors:
+        section("Templates with errors", "These templates are rejected by \"autosetup.py check\". Fix them first.")
+        L += errors + [""]
+    section("Templates sharing the same program file (ExeMD5)",
+            "D-Fend Reborn can not tell these templates apart: they have the same program\n"
+            "file with the same checksum. If they are the same game, keep the better one\n"
+            "and remove the others. If they are different games or versions, add the\n"
+            "checksums of up to five other files of the game in the section\n"
+            "[ExtraGameIdentify] (File1.Filename, File1.Checksum, ...).")
+    for g in same_md5:
+        L += ["* " + g[0]] + ["  " + x for x in g[1:]] + [""]
+    def name_groups(groups):
+        for g in groups:
+            L.append("* %s" % g[0][0])
+            L.extend("  %-60s %s" % (b, ("Version=" + v) if v else "(no version)") for _, b, v in g)
+            L.append("")
+    section("Templates sharing the same game name: versions unclear",
+            "Several templates use the same name in [ExtraInfo] Name, and at least one\n"
+            "of them has no version (UserInfo=Version=...) or two have the same\n"
+            "version. If they are different versions or editions (e.g. shareware and\n"
+            "full version), set the version so users can tell them apart. If they are\n"
+            "duplicates, keep the better one.")
+    name_groups(same_name_check)
+    section("Templates sharing the same game name: different versions",
+            "For information: these templates are different versions of the same game\n"
+            "(each has its own version). Nothing to do unless a version is wrong or a\n"
+            "template is not needed.")
+    name_groups(same_name_ok)
+    section("Boot image templates",
+            "These templates boot a disk image instead of starting a program. They are not\n"
+            "recognised automatically (only via \"Add from template\"). If the game can be\n"
+            "started from a program file, change the template to use Exe / ExeMD5.")
+    L += boot + [""]
+    section("Templates with missing information",
+            "The fields listed after each template are empty. Fill them in (see\n"
+            "docs/AutoSetupTemplates.md for the standard values; \"autosetup.py lookup\n"
+            "NAME --dos\" searches Wikidata). License means UserInfo=License=...")
+    L += missing
+    with open(out, "w", encoding="utf-8", newline="\n") as f:
+        f.write("\n".join(L).rstrip("\n") + "\n")
+    print("%s written: %d with missing information, %d same program file groups, %d same name groups (%d unclear)"
+          % (os.path.relpath(out, ROOT), len(missing), len(same_md5), len(same_name), len(same_name_check)))
+    return 0
+
+
 def main(argv):
-    if len(argv) < 2 or argv[1] not in ("check", "fix", "lookup"):
+    if len(argv) < 2 or argv[1] not in ("check", "fix", "lookup", "report"):
         print(__doc__)
         return 2
-    return {"check": cmd_check, "fix": cmd_fix, "lookup": cmd_lookup}[argv[1]](argv[2:])
+    return {"check": cmd_check, "fix": cmd_fix, "lookup": cmd_lookup, "report": cmd_report}[argv[1]](argv[2:])
 
 
 if __name__ == "__main__":

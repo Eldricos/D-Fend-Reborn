@@ -6,7 +6,9 @@
   [docs/AutoSetupTemplates.md](docs/AutoSetupTemplates.md) - create the
   template with *File > Export > Create prof files...*, check it with
   `tools/autosetup.py` and submit it as a pull request or with the issue form
-  "Auto setup template".
+  "Auto setup template". Templates that need work (missing information,
+  duplicates) are listed in
+  [docs/AutoSetupTemplatesTodo.txt](docs/AutoSetupTemplatesTodo.txt).
 * **Translations:** the language files are in `data/Lang` (see
   `data/Lang/Readme_OperationMode.txt` and the help page on translations).
 * **Code:** C++17 / Qt 6, see README.md for building. Pull requests are

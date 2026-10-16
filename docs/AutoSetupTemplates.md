@@ -13,6 +13,10 @@ Improved templates and templates for games that are not covered yet are
 welcome. This page describes the format, how to create a template, how to check
 it and how to submit it.
 
+[`AutoSetupTemplatesTodo.txt`](AutoSetupTemplatesTodo.txt) lists the existing
+templates that need work: templates with missing game information, templates
+sharing the same program file and templates sharing the same game name.
+
 ## Creating a template
 
 1. Put the game into a subfolder of the folder `VirtualHD` of D-Fend Reborn
@@ -108,6 +112,12 @@ python3 tools/autosetup.py lookup "Commander Keen" --dos
 ```
 
 Check the values - Wikidata is not always complete or exact for DOS games.
+
+After changing templates, update the to-do list:
+
+```
+python3 tools/autosetup.py report
+```
 
 ## Submitting
 
