@@ -35,7 +35,11 @@ On this page you can configurate the DOSBox versions to use with D-Fend Reborn.
     When D-Fend Reborn is started again it <b>will make absolute paths for the three directories again</b>.
     So this directory is shown here with absolute paths in any operation mode.<br /><br />
     The Windows version of D-Fend Reborn includes <a href="https://www.dosbox-staging.org/">DOSBox Staging</a>
-    in the subfolder <tt>DOSBox</tt> of the program folder; this is the default installation.<br /><br />
+    in the subfolder <tt>DOSBox</tt> of the program folder; this is the default installation.
+    For DOSBox Staging, D-Fend Reborn writes the profile settings with the setting names of DOSBox Staging
+    (e.g. <tt>cpu_cycles</tt> instead of <tt>cycles</tt>). Settings DOSBox Staging does not have any more
+    (scaler, output, pixel shader, printer, ...) are left out; DOSBox Staging uses its own defaults for them
+    (e.g. its CRT shaders instead of the scalers). Its key mapper file is <tt>mapper-sdl2.map</tt>.<br /><br />
     On Linux DOSBox is installed via the package manager (package <tt>dosbox-staging</tt> or <tt>dosbox</tt>).
     In this case enter the folder containing the <tt>dosbox</tt> program (usually <tt>/usr/bin</tt>).
     If there is no <tt>dosbox</tt> program in the given folder, D-Fend Reborn uses the <tt>dosbox</tt>

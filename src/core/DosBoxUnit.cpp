@@ -38,6 +38,7 @@
 #include "FileNameConvertor.h"
 #include "DOSBoxTempUnit.h"
 #include "WindowsFileWarningFormUnit.h"
+#include "DOSBoxStagingConfUnit.h"
 #include "MIDITools.h"
 #include "HistoryUnit.h"
 #include "MainUnit.h"
@@ -1502,6 +1503,13 @@ TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, 
     St = StringToStringList(PrgSetup->DOSBoxSettings(DOSBoxNr)->CustomSettings());
     if (result != nullptr) result->AddStrings(*St);
     delete St;
+
+    // DOSBox Staging: setting names of DOSBox Staging instead of DOSBox 0.74
+    if ((result != nullptr) && (GetDOSBoxKindOfGame(Game) == dkStaging)) {
+        const QStringList Lines = ConvertConfForDOSBoxStaging(result->ToQStringList());
+        result->Clear();
+        result->AddStrings(Lines);
+    }
 
     return result;
 }

@@ -39,7 +39,11 @@ Auf dieser Seite können Sie einstellen, welche DOSBox-Installationen Sie in D-Fe
     steht immer eine absolute Pfadangabe, auch wenn der Pfad in der portablen Betriebsart korrekt relativ
     gespeichert wird.<br /><br />
     Die Windows-Version von D-Fend Reborn enth&auml;lt <a href="https://www.dosbox-staging.org/">DOSBox Staging</a>
-    im Unterverzeichnis <tt>DOSBox</tt> des Programmverzeichnisses; dies ist die Standard-Installation.<br /><br />
+    im Unterverzeichnis <tt>DOSBox</tt> des Programmverzeichnisses; dies ist die Standard-Installation.
+    F&uuml;r DOSBox Staging schreibt D-Fend Reborn die Profileinstellungen mit den Einstellungsnamen von DOSBox Staging
+    (z.&nbsp;B. <tt>cpu_cycles</tt> statt <tt>cycles</tt>). Einstellungen, die DOSBox Staging nicht mehr kennt
+    (Scaler, Ausgabe, Pixel-Shader, Drucker, ...), werden weggelassen; DOSBox Staging verwendet daf&uuml;r seine eigenen
+    Standardwerte (z.&nbsp;B. seine CRT-Shader statt der Scaler). Seine Tastenbelegungsdatei ist <tt>mapper-sdl2.map</tt>.<br /><br />
     Unter Linux wird DOSBox &uuml;ber die Paketverwaltung installiert (Paket <tt>dosbox-staging</tt> oder <tt>dosbox</tt>).
     In diesem Fall geben Sie hier das Verzeichnis an, in dem sich das Programm <tt>dosbox</tt> befindet
     (normalerweise <tt>/usr/bin</tt>). Befindet sich in dem angegebenen Verzeichnis kein Programm <tt>dosbox</tt>,

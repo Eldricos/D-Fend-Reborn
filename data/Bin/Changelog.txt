@@ -8,6 +8,12 @@ Version 0.5.4 (not released yet)
   portable copies use the portable mode of DOSBox Staging (settings in the
   DOSBox folder). The source code of DOSBox Staging is attached to each
   release.
+- DOSBox Staging: the settings of the profiles are written with the names
+  of DOSBox Staging (e.g. cpu_cycles, mouse_capture, keyboard_layout);
+  settings DOSBox Staging does not have any more (scaler, output, pixel
+  shader, printer, ...) are left out, so DOSBox Staging uses its own defaults
+  and shows no warnings about outdated settings. The key mapper file of SDL 2
+  based DOSBox Staging is kept separate (mapper-sdl2.map).
 - D-Fend Reborn recognizes DOSBox Staging and DOSBox-X installations (also
   the programs dosbox-staging and dosbox-x on Linux) and starts them with the
   right parameters (DOSBox Staging: no local dosbox.conf, own translations;
