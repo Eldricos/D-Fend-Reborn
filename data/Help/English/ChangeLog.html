@@ -17,7 +17,8 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
 
 <p class="small">
   <b>D-Fend Reborn</b><br />
-  <a href="#reborn054">D-Fend Reborn 0.5.4 (not released yet)</a><br />
+  <a href="#reborn055">D-Fend Reborn 0.5.5 (not released yet)</a><br />
+  <a href="#reborn054">D-Fend Reborn 0.5.4 (10/15/2026)</a><br />
   <a href="#reborn053">D-Fend Reborn 0.5.3 (10/15/2026)</a><br />
   <a href="#reborn052">D-Fend Reborn 0.5.2 (10/15/2026)</a><br />
   <a href="#reborn051">D-Fend Reborn 0.5.1 (10/15/2026)</a><br />
@@ -65,11 +66,17 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
   <a href="#ver010">Version 0.1.0 (11/08/2007)</a>
 </p>
 
-<a onclick="return Work('reborn054')" name="reborn054" href="#"><h2>&raquo; D-Fend Reborn 0.5.4 (not released yet)</h2></a>
+<a onclick="return Work('reborn055')" name="reborn055" href="#"><h2>&raquo; D-Fend Reborn 0.5.5 (not released yet)</h2></a>
+<div id="reborn055">
+<ul>
+  <li>DOSBox Staging: the settings of the profiles are written with the names of DOSBox Staging (e.g. <tt>cpu_cycles</tt>, <tt>mouse_capture</tt>, <tt>keyboard_layout</tt>); settings DOSBox Staging does not have any more (scaler, output, pixel shader, printer, ...) are left out, so DOSBox Staging uses its own defaults and shows no warnings about outdated settings. The key mapper file of SDL 2 based DOSBox Staging is kept separate (<tt>mapper-sdl2.map</tt>).</li>
+</ul>
+</div>
+
+<a onclick="return Work('reborn054')" name="reborn054" href="#"><h2>&raquo; D-Fend Reborn 0.5.4 (10/15/2026)</h2></a>
 <div id="reborn054">
 <ul>
   <li>Windows: DOSBox Staging 0.83.0 replaces DOSBox 0.74 as the DOSBox included with D-Fend Reborn. The update installer replaces the files of DOSBox 0.74; portable copies use the portable mode of DOSBox Staging (settings in the DOSBox folder). The source code of DOSBox Staging is attached to each release.</li>
-  <li>DOSBox Staging: the settings of the profiles are written with the names of DOSBox Staging (e.g. <tt>cpu_cycles</tt>, <tt>mouse_capture</tt>, <tt>keyboard_layout</tt>); settings DOSBox Staging does not have any more (scaler, output, pixel shader, printer, ...) are left out, so DOSBox Staging uses its own defaults and shows no warnings about outdated settings. The key mapper file of SDL 2 based DOSBox Staging is kept separate (<tt>mapper-sdl2.map</tt>).</li>
   <li>D-Fend Reborn recognizes DOSBox Staging and DOSBox-X installations (also the programs <tt>dosbox-staging</tt> and <tt>dosbox-x</tt> on Linux) and starts them with the right parameters (DOSBox Staging: no local dosbox.conf, own translations; no SDL 1.2 video driver setting for SDL 2 based versions).</li>
   <li>New setting "DOSBox program file" for DOSBox installations (for folders with several DOSBox versions).</li>
   <li>DOSBox-X installations can be added; a notice explains that some profile settings may not work with DOSBox-X (shown when a DOSBox-X folder is chosen or a profile is set to a DOSBox-X installation).</li>
