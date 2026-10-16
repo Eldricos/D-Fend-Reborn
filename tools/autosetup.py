@@ -302,20 +302,23 @@ def wikidata_search(name, dos_only):
     ids = wikidata_entity_search(name)
     if not ids:
         return []
-    q = """SELECT ?item ?itemLabel (MIN(YEAR(?date)) AS ?year) (MAX(?isdos) AS ?dos) WHERE {
+    # DOS: a platform whose English name contains "DOS" (MS-DOS, DOS, PC DOS, ...)
+    q = """SELECT ?item ?itemLabel (MIN(YEAR(?date)) AS ?year) (GROUP_CONCAT(DISTINCT ?pfName; separator="|") AS ?platforms) WHERE {
   VALUES ?item { %s }
   { ?item wdt:P31/wdt:P279* wd:%s . } UNION { ?item wdt:P400 wd:%s . }
   OPTIONAL { ?item wdt:P577 ?date . }
-  BIND(EXISTS { ?item wdt:P400 wd:%s . } AS ?isdos)
+  OPTIONAL { ?item wdt:P400 ?pf . ?pf rdfs:label ?pfName . FILTER(LANG(?pfName) = "en") }
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
-} GROUP BY ?item ?itemLabel""" % (" ".join("wd:" + i for i in ids), VIDEO_GAME, MSDOS, MSDOS)
+} GROUP BY ?item ?itemLabel""" % (" ".join("wd:" + i for i in ids), VIDEO_GAME, MSDOS)
     rows = sparql(q)
     if os.environ.get("AUTOSETUP_DEBUG"):
-        print("search: %d items %s; query: %d rows %s" % (len(ids), ids[:8], len(rows), rows[:2]), file=sys.stderr)
+        print("search: %d items; query: %d rows" % (len(ids), len(rows)), file=sys.stderr)
+        for b in rows:
+            print("  %s %s: %s" % (b["item"]["value"].rsplit("/", 1)[1], b.get("itemLabel", {}).get("value", ""), b.get("platforms", {}).get("value", "")), file=sys.stderr)
     found = {}
     for b in rows:
         qid = b["item"]["value"].rsplit("/", 1)[1]
-        dos = b.get("dos", {}).get("value", "false") in ("true", "1")
+        dos = "DOS" in b.get("platforms", {}).get("value", "")
         if dos_only and not dos:
             continue
         found[qid] = (qid, b.get("itemLabel", {}).get("value", ""), b.get("year", {}).get("value", ""))
