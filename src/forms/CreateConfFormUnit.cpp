@@ -1,5 +1,6 @@
 // C++ port of CreateConfFormUnit.pas (implementation section).
 #include "CreateConfFormUnit.h"
+#include "GameInfoUnit.h"
 
 #include "LanguageSetupUnit.h"
 #include "DosBoxUnit.h"
@@ -243,6 +244,8 @@ void TCreateConfForm::OKButtonClick(QObject* Sender)
                 G2->LoadCache();
                 G2->StoreAllValues();
                 delete G2;
+                // D-Fend Reborn: UTF-8 and standard values (docs/AutoSetupTemplates.md)
+                NormaliseAutoSetupTemplateFile(Dir + ExtractFileName(G->SetupFile()));
             } else {
                 /* just copy profile file */
                 if (!CopyFile(G->SetupFile(), Dir + ExtractFileName(G->SetupFile()), true)) {

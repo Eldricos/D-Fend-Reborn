@@ -1907,6 +1907,8 @@ constexpr int NR_DataReaderDownloadCaption = 96409;
 constexpr int NR_DataReaderDownloadInfo = 96410;
 constexpr int NR_DataReaderDownloadError = 96411;
 constexpr int NR_DataReaderSource = 96412;
+constexpr int NR_DataReaderSourceTemplates = 96413;   // D-Fend Reborn
+constexpr int NR_DataReaderSourceWikidata = 96414;   // D-Fend Reborn
 constexpr int NR_InstallationSupport = 96501;
 constexpr int NR_InstallationSupportSourceFloppy = 96502;
 constexpr int NR_InstallationSupportSourceFolder = 96503;
@@ -5925,6 +5927,8 @@ public:
     QString DataReaderDownloadError() { return GetString(NR_DataReaderDownloadError); }
     void SetDataReaderDownloadError(const QString& Value) { SetString(NR_DataReaderDownloadError, Value); }
     QString DataReaderSource() { return GetString(NR_DataReaderSource); }
+    QString DataReaderSourceTemplates() { return GetString(NR_DataReaderSourceTemplates); }
+    QString DataReaderSourceWikidata() { return GetString(NR_DataReaderSourceWikidata); }
     void SetDataReaderSource(const QString& Value) { SetString(NR_DataReaderSource, Value); }
     QString InstallationSupport() { return GetString(NR_InstallationSupport); }
     void SetInstallationSupport(const QString& Value) { SetString(NR_InstallationSupport, Value); }

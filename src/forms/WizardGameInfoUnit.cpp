@@ -157,10 +157,6 @@ void TWizardGameInfoFrame::Init(TGameDB* AGameDB, TLinkFile* ALinkFile)
         St = ExtLicenseList(GetCustomLicenseName(AGameDB->GetLicenseList())); E->setPickList(R, St->ToQStringList()); delete St;
     }
     ui.DownloadDataButton->setText(LanguageSetup->DataReaderButton());
-    // D-Fend Reborn: "Download game information" is disabled until the data
-    // reader works again (the game database sites it used have changed)
-    ui.DownloadDataButton->setVisible(false);
-    ui.ToolButton1->setVisible(false);
     ui.FavouriteCheckBox->setText(LanguageSetup->GameFavorite());
     VclLayout::setBounds(ui.FavouriteCheckBox,
         ui.GameInfoValueListEditor->x() + ui.GameInfoValueListEditor->width() - ui.FavouriteCheckBox->fontMetrics().horizontalAdvance(ui.FavouriteCheckBox->text()) - 20,
