@@ -307,8 +307,8 @@ def wikidata_search(name, dos_only):
   VALUES ?item { %s }
   { ?item wdt:P31/wdt:P279* wd:%s . } UNION { ?item wdt:P400 wd:%s . }
   OPTIONAL { ?item wdt:P577 ?date . }
-  OPTIONAL { ?item wdt:P400 ?pf . ?pf rdfs:label ?pfName . FILTER(LANG(?pfName) = "en") }
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
+  OPTIONAL { ?item wdt:P400 ?pf . ?pf rdfs:label ?pfName . FILTER(LANG(?pfName) IN ("en", "mul")) }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en,mul" . }
 } GROUP BY ?item ?itemLabel""" % (" ".join("wd:" + i for i in ids), VIDEO_GAME, MSDOS)
     rows = sparql(q)
     if os.environ.get("AUTOSETUP_DEBUG"):
@@ -334,7 +334,7 @@ def wikidata_details(qid):
   OPTIONAL { ?item wdt:P577 ?date . }
   OPTIONAL { ?item wdt:P856 ?website . }
   OPTIONAL { ?article schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> . }
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en,mul" . }
 }""" % qid
     rows = sparql(q)
     def values(key):
