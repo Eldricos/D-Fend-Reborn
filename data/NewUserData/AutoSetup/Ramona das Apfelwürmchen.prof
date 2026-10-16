@@ -49,7 +49,7 @@ ExtraExe9=
 
 [ExtraInfo]
 Favorite=0
-Name=Ramona das Apfelwürmchen
+Name=Ramona das ApfelwÃ¼rmchen
 Icon=
 Genre=Puzzle
 Developer=Arno Damberger
@@ -58,7 +58,7 @@ Year=1989
 Notes=
 WWW=
 Language=German
-UserInfo=License=Shareware[13]
+UserInfo=License=Shareware[13][10]
 
 [sdl]
 fullscreen=1

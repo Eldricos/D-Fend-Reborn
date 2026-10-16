@@ -1,0 +1,1796 @@
+Auto setup templates: what needs work
+
+Templates of data/NewUserData/AutoSetup that are incomplete or need to be
+checked. Pick an entry, fix the template and submit it (pull request or the
+issue form "Auto setup template"); see docs/AutoSetupTemplates.md for the
+format and the tools.
+
+This file is generated, do not edit it by hand. After changing templates run
+    python3 tools/autosetup.py report
+
+Summary (1651 templates):
+  templates with errors:                   0
+  templates sharing a program file:        65 (31 groups)
+  game names without clear versions:       284 (100 groups)
+  game names with several versions (ok):   244 (70 groups)
+  boot image templates:                    2
+  templates with missing information:      757
+      Genre:     missing in 50
+      Developer: missing in 71
+      Publisher: missing in 68
+      Year:      missing in 60
+      Language:  missing in 338
+      License:   missing in 747
+
+===============================================================================
+Templates sharing the same program file (ExeMD5)
+===============================================================================
+
+D-Fend Reborn can not tell these templates apart: they have the same program
+file with the same checksum. If they are the same game, keep the better one
+and remove the others. If they are different games or versions, add the
+checksums of up to five other files of the game in the section
+[ExtraGameIdentify] (File1.Filename, File1.Checksum, ...).
+
+* Alone in the dark (Shareware).prof
+  Disneys Beauty and the Beast.prof
+
+* AstroFire 2.0.prof
+  Enemy Star.prof
+
+* Dangerous Dave in the Deserted Pirates Hideout.prof
+  DangerousDave.prof
+
+* Das Telekommando kehrt zurück.prof
+  Telekommando 2.prof
+
+* Game of Robot (Junior).prof
+  The game of Robot - Junior.prof
+
+* Game of Robot 1.prof
+  The game of Robot 1.prof
+
+* Game of Robot 2.prof
+  The game of Robot 2.prof
+
+* Game of Robot 3.prof
+  The game of Robot 3.prof
+
+* Game of Robot 4.prof
+  The game of Robot 4.prof
+
+* God of Thunder 1.0 (Shareware).prof
+  God of Thunder1.prof
+
+* Indiana Jones 4.prof
+  Indiana Jones and the Fate of Atlantis.prof
+
+* Jazz Jackrabbit - Holiday Hare 1994.prof
+  Jazz Jackrabbit Holiday Hare.prof
+
+* Jill goes underground (2).prof
+  Jill of the Jungle 2 - Jill goes underground.prof
+
+* Jill of the Jungle 3 - Jill saves the prince.prof
+  Jill saves the prince (3).prof
+
+* Larry 2.prof
+  Larry 3.prof
+  Laura Bow.prof
+
+* Lemmings Oh no more Lemmings.prof
+  Oh no more Lemmings.prof
+
+* Lemmings Xmas 1992.prof
+  XMas Lemmings 92 Demo.prof
+  XMas-Lemmings 1993.prof
+
+* Norton Commander 5.5 (deutsch).prof
+  Norton Commander 5.51 (english).prof
+
+* PinBall SilverBall 1.prof
+  Silverball.prof
+
+* PinBall SilverBall 1995.prof
+  PinBall SilverBall 2.prof
+
+* Pools of Darkness.prof
+  Treasures of the Savage Frontier.prof
+
+* Prince of Persia 4D.prof
+  Prince of Persia.prof
+
+* The Adventures of Maddog Williams.prof
+  The Adventures of Maddog Williams1.prof
+
+* Ultima 8 - Pagan (English).prof
+  Ultima 8 - Pagan (Francais).prof
+  Ultima 8 - Pagan.prof
+
+* Ultima Underworld 2  - Labyrinth of worlds.prof
+  Ultima Underworld 2.prof
+
+* Wing Commander 1.prof
+  Wing Commander.prof
+
+* Winter Games - Winter Challenge 1991.prof
+  Winter Games.prof
+
+* Wolfenstein 3D - Spear of Destiny Add-on I.prof
+  Wolfenstein 3D - Spear of Destiny Add-on II.prof
+
+* X-COM - Terror from the Deep.prof
+  X-Com 2.prof
+
+* XMas Lemmings 91 Demo.prof
+  XMas-Lemmings 1991.prof
+
+* Zak McKracken - And The Alien Mindbenders.prof
+  Zak McKracken.prof
+
+
+===============================================================================
+Templates sharing the same game name: versions unclear
+===============================================================================
+
+Several templates use the same name in [ExtraInfo] Name, and at least one
+of them has no version (UserInfo=Version=...) or two have the same
+version. If they are different versions or editions (e.g. shareware and
+full version), set the version so users can tell them apart. If they are
+duplicates, keep the better one.
+
+* Adventures of Robbo
+  Adventures of Robbo (Shareware).prof                         (no version)
+  Adventures of Robbo.prof                                     (no version)
+
+* Alien Carnage (Halloween Harry Special Edition)
+  Alien Carnage (Halloween Harry Special Edition) (Shareware).prof (no version)
+  Alien Carnage (Halloween Harry Special Edition).prof         (no version)
+
+* Alone in the dark
+  Alone in the dark (Shareware).prof                           (no version)
+  Alone in the dark.prof                                       (no version)
+
+* Ancients 1: Deathwatch
+  Ancients 1 Deathwatch 1.2.prof                               Version=1.2
+  Ancients 1 Deathwatch.prof                                   (no version)
+
+* Arctic Adventure
+  Arctic Adventure (Shareware).prof                            (no version)
+  Arctic Adventure.prof                                        (no version)
+
+* Beneath a Steel Sky
+  Beneath a Steel Sky (2).prof                                 (no version)
+  Beneath a Steel Sky.prof                                     (no version)
+
+* Beyond the Titanic
+  Beyond the Titanic (2).prof                                  (no version)
+  Beyond the Titanic.prof                                      (no version)
+
+* Bio Menace
+  Bio Menace (2).prof                                          (no version)
+  Bio Menace.prof                                              (no version)
+
+* Black Thorne
+  Black Thorne (Shareware).prof                                (no version)
+  Black Thorne.prof                                            (no version)
+
+* BlockOut
+  BlockOut (2).prof                                            (no version)
+  BlockOut.prof                                                (no version)
+
+* Blood
+  Blood 0.99.prof                                              Version=0.99
+  Blood 0.99b.prof                                             Version=0.99b
+  Blood 1.0.prof                                               Version=1.0
+  Blood 1.01.prof                                              Version=1.01
+  Blood 1.02.prof                                              Version=1.02
+  Blood 1.11.prof                                              Version=1.11
+  Blood.prof                                                   (no version)
+
+* Boppin'
+  Boppin 1.0 (Shareware).prof                                  Version=1.0
+  Boppin 1.0.prof                                              Version=1.0
+  Boppin 1.1 (Shareware).prof                                  Version=1.1
+  Boppin 1.1.prof                                              Version=1.1
+
+* Brix
+  Brix 1.0.prof                                                Version=1.0
+  Brix.prof                                                    (no version)
+
+* Captain Comic
+  Captain Comic (Shareware).prof                               (no version)
+  Captain Comic.prof                                           (no version)
+
+* Capture the Flag
+  Capture the Flag 1.01.prof                                   Version=1.01
+  Capture the Flag 1.2.prof                                    Version=1.2
+  Capture the Flag 1.3.prof                                    Version=1.3
+  Capture the Flag 1.4.prof                                    Version=1.4
+  Capture the Flag 3.0.prof                                    Version=3.0
+  Capture the Flag 3.1.prof                                    Version=3.1
+  Capture the Flag 3.2.prof                                    Version=3.2
+  Capture The Flag.prof                                        (no version)
+
+* Caves of Thor
+  Caves of Thor (2).prof                                       (no version)
+  Caves of Thor.prof                                           (no version)
+
+* Charlie the Duck
+  Charlie the Duck (2).prof                                    (no version)
+  Charlie the Duck.prof                                        (no version)
+
+* Command & Conquer
+  Command  Conquer (2).prof                                    (no version)
+  Command  Conquer.prof                                        (no version)
+
+* Commander Keen 1 (Marooned on Mars)
+  Commander Keen 1 (Marooned on Mars) (1.0).prof               (no version)
+  Commander Keen 1 (Marooned on Mars) 1.31.prof                Version=1.31
+  Commander Keen 1 (Marooned on Mars).prof                     (no version)
+
+* Commander Keen 6 (Aliens Ate my Babysitter)
+  Commander Keen 6 (Aliens Ate my Babysitter) (2).prof         (no version)
+  Commander Keen 6 (Aliens Ate my Babysitter) (Shareware).prof (no version)
+  Commander Keen 6 (Aliens Ate my Babysitter).prof             (no version)
+
+* Commander Keen 7 (Keen Dreams)
+  Commander Keen 7 (Keen Dreams) (1.15a, Shareware).prof       Version=1.15a
+  Commander Keen 7 (Keen Dreams).prof                          (no version)
+
+* Conquests of the Longbow: The Legend of Robin Hood
+  Conquests of the Longbow - The Adventures of Robin Hood.prof (no version)
+  Conquests of the Longbow EGA version.prof                    (no version)
+
+* Cosmo's Cosmic Adventure
+  Cosmos Cosmic Adventure 1.0.prof                             Version=1.0
+  Cosmos Cosmic Adventure.prof                                 (no version)
+
+* Crystal Caves
+  Crystal Caves 2.prof                                         (no version)
+  Crystal Caves.prof                                           (no version)
+
+* Cybersphere
+  Cybersphere (Shareware).prof                                 (no version)
+  Cybersphere.prof                                             (no version)
+
+* Cybersphere Plus
+  Cybersphere Plus (Shareware).prof                            (no version)
+  Cybersphere Plus.prof                                        (no version)
+
+* Dark Forces
+  Dark Forces Shareware.prof                                   (no version)
+  Dark Forces.prof                                             (no version)
+
+* Dark Sun: Shattered Lands
+  Dark Sun.prof                                                (no version)
+  Darksun - Shattered Lands.prof                               (no version)
+
+* Day of the Tentacle
+  Day of the Tentacle.prof                                     (no version)
+  Day of the Tentacle1.prof                                    (no version)
+
+* Doom
+  Doom 1.0.prof                                                Version=1.0
+  Doom 1.1.prof                                                Version=1.1
+  Doom 1.2.prof                                                Version=1.2
+  Doom 1.666.prof                                              Version=1.666
+  Doom 1.8.prof                                                Version=1.8
+  Doom.prof                                                    (no version)
+
+* Drum Blaster
+  Drum Blaster 1.0.prof                                        Version=1.0
+  Drum Blaster 1.1.prof                                        Version=1.1
+  Drum Blaster 1.2.prof                                        Version=1.2
+  Drum Blaster 2.0.prof                                        Version=2.0
+  Drum Blaster 3.0 (Freeware).prof                             Version=3.0
+  Drum Blaster 3.0.prof                                        Version=3.0
+
+* Duke Nukem 1
+  Duke Nukem 1 (2).prof                                        (no version)
+  Duke Nukem 1.prof                                            (no version)
+
+* Duke Nukem 3D
+  Duke Nukem 3D 1.0.prof                                       Version=1.0
+  Duke Nukem 3D 1.1.prof                                       Version=1.1
+  Duke Nukem 3D.prof                                           (no version)
+
+* Dungeon Master II: Skullkeep
+  Dungeon Master 2.prof                                        (no version)
+  Dungeon Master II.prof                                       (no version)
+
+* Electro Man
+  Electro Man (Shareware).prof                                 (no version)
+  Electro Man.prof                                             (no version)
+
+* Epic Pinball
+  Epic Pinball.prof                                            (no version)
+  Epic Pinball2.prof                                           (no version)
+
+* F29 Retaliator
+  F-29 Retaliator.prof                                         (no version)
+  F29 Retaliator.prof                                          (no version)
+
+* Fishtro
+  Fishtro(2).prof                                              (no version)
+  Fishtro.prof                                                 (no version)
+
+* Gargoyle Medieval Pack
+  Gargoyle Medieval Pack Shareware.prof                        (no version)
+  Gargoyle Medieval Pack.prof                                  (no version)
+
+* Gobliiins
+  Gobliiins (Shareware).prof                                   (no version)
+  Gobliiins.prof                                               (no version)
+  Gobliins.prof                                                (no version)
+
+* Gobliiins 2
+  Gobliiins 2 (Shareware).prof                                 (no version)
+  Gobliiins 2.prof                                             (no version)
+
+* Gobliiins 3
+  Gobliiins 3 (Demo, French).prof                              (no version)
+  Gobliiins 3.prof                                             (no version)
+
+* God of Thunder 1.0
+  God of Thunder 1.0 (Shareware).prof                          (no version)
+  God of Thunder1.prof                                         (no version)
+
+* Heartlight PC
+  Heartlight PC (Shareware).prof                               (no version)
+  Heartlight PC.prof                                           (no version)
+
+* Heretic
+  Heretic 1.0.prof                                             Version=1.0
+  Heretic 1.2.prof                                             Version=1.2
+  Heretic.prof                                                 (no version)
+
+* Hexxagon 1
+  Hexxagon 1 1.1.prof                                          Version=1.1
+  Hexxagon 1 1.2.prof                                          Version=1.2
+  Hexxagon 1 1.3.prof                                          Version=1.3
+  Hexxagon 1.prof                                              (no version)
+
+* Hocus Pocus
+  Hocus Pocus 2.prof                                           (no version)
+  Hocus Pocus 3.prof                                           (no version)
+  Hocus Pocus.prof                                             (no version)
+
+* Holiday Lemmings 1993
+  Holiday Lemmings 1993 (Shareware).prof                       (no version)
+  Holiday Lemmings 1993.prof                                   (no version)
+
+* Holiday Lemmings 1994
+  Holiday Lemmings 1994 (Shareware).prof                       Version=Shareware
+  Holiday Lemmings 1994.prof                                   (no version)
+
+* Indiana Jones and the Last Crusade
+  Indiana Jones and the Last Crusade.prof                      (no version)
+  Indiana Jones and the Last Crusade1.prof                     (no version)
+
+* Jazz Jackrabbit
+  Jazz Jackrabbit 2.prof                                       (no version)
+  Jazz Jackrabbit.prof                                         (no version)
+
+* Jill of the jungle
+  Jill of the jungle (1.1).prof                                Version=1.1
+  Jill of the Jungle.prof                                      (no version)
+
+* Jumpman Lives!
+  Jumpman Lives! (Shareware).prof                              (no version)
+  Jumpman Lives!.prof                                          (no version)
+
+* Ken's Labyrinth
+  Kens Labyrinth 1.0.prof                                      Version=1.0
+  Kens Labyrinth 1.1.prof                                      Version=1.1
+  Kens Labyrinth 2.0.prof                                      Version=2.0
+  Kens Labyrinth.prof                                          (no version)
+
+* Lure of the Temptress
+  Lure of the Temptress.prof                                   (no version)
+  Lure of the Temptress_fr.prof                                (no version)
+  Lure of the Temptress_gr.prof                                (no version)
+  Lure of the Temptress_it.prof                                (no version)
+
+* Mah Jongg -V-G-A-
+  Mah Jongg -V-G-A- 1.1.prof                                   Version=1.1
+  Mah Jongg -V-G-A- 2.0.prof                                   Version=2.0
+  Mah Jongg -V-G-A- 2.1.prof                                   Version=2.1
+  Mah Jongg -V-G-A- 2.1a.prof                                  Version=2.1
+  Mah Jongg -V-G-A- 2.2.prof                                   Version=2.2
+  Mah Jongg -V-G-A- 2.2a.prof                                  Version=2.2
+  Mah Jongg -V-G-A- 3.0.prof                                   Version=3.0
+  Mah Jongg -V-G-A- 3.0a.prof                                  Version=3.0
+  Mah Jongg -V-G-A- 3.1.prof                                   Version=3.1
+  Mah Jongg -V-G-A- 3.1a.prof                                  Version=3.1
+  Mah Jongg -V-G-A- 3.1b.prof                                  Version=3.1
+
+* Major Stryker
+  Major Stryker 1.0 (Shareware).prof                           Version=1.0
+  Major Stryker 1.3 (Shareware).prof                           Version=1.3
+  Major Stryker 1.4 (Shareware).prof                           Version=1.4
+  Major Stryker 1.4.prof                                       Version=1.4
+  Major Stryker.prof                                           (no version)
+
+* Math Rescue
+  Math Rescue 1.0.prof                                         Version=1.0
+  Math Rescue.prof                                             (no version)
+
+* Monkey Island 1
+  Monkey Island 1 (Demo).prof                                  (no version)
+  Monkey Island 1.prof                                         (no version)
+
+* Monster Bash
+  Monster Bash 1.0.prof                                        Version=1.0
+  Monster Bash 1.02.prof                                       Version=1.02
+  Monster Bash 1.1.prof                                        Version=1.1
+  Monster Bash 2.0.prof                                        Version=2.0
+  Monster Bash.prof                                            (no version)
+
+* Moraff's Super Blast I
+  Moraffs Super Blast I (2).prof                               (no version)
+  Moraffs Super Blast I.prof                                   (no version)
+
+* Mortal Combat 2
+  Mortal Combat 2 (Shareware).prof                             (no version)
+  Mortal Combat 2.prof                                         (no version)
+
+* Nascar Racing
+  Nascar Racing (Shareware).prof                               (no version)
+  Nascar Racing.prof                                           (no version)
+
+* One Must Fall 2097
+  One Must Fall 2097 1.1.prof                                  Version=1.1
+  One Must Fall 2097.prof                                      (no version)
+
+* Overkill
+  Overkill (Shareware).prof                                    (no version)
+  Overkill 1.0 (Shareware) (2).prof                            Version=1.0
+  Overkill 1.0 (Shareware).prof                                Version=1.0
+  Overkill.prof                                                (no version)
+
+* Pharaoh's Tomb
+  Pharaohs Tomb (Freeware).prof                                (no version)
+  Pharaohs Tomb 2.0.prof                                       Version=2.0
+  Pharaohs Tomb 2.2.prof                                       Version=2.2
+  Pharaohs Tomb 2.3.prof                                       Version=2.3
+  Pharaohs Tomb 2.7.prof                                       Version=2.7
+  Pharaohs Tomb 2.9.prof                                       Version=2.9
+  Pharaohs Tomb vol. 3.prof                                    (no version)
+  Pharaohs Tomb vol. 4.prof                                    (no version)
+
+* QBasic
+  QBasic.prof                                                  (no version)
+  Qbasic1.prof                                                 (no version)
+
+* Quake
+  Quake 0.91.prof                                              Version=0.91
+  Quake 1.0.prof                                               Version=1.0
+  Quake 1.01.prof                                              Version=1.01
+  Quake 1.06.prof                                              Version=1.06
+  Quake.prof                                                   (no version)
+
+* Radix: Beyond the Void
+  Radix Beyond the Void 1.0.prof                               Version=1.0
+  Radix Beyond the Void.prof                                   (no version)
+
+* Rayman
+  Rayman (Shareware).prof                                      (no version)
+  Rayman.prof                                                  (no version)
+
+* Rise of the Triad
+  Rise of the Triad 1.0.prof                                   Version=1.0
+  Rise of the Triad 1.2.prof                                   Version=1.2
+  Rise of the Triad.prof                                       (no version)
+
+* Sango Fighter
+  Sango Fighter 1.0.prof                                       Version=1.0
+  Sango Fighter 1.1.prof                                       Version=1.1
+  Sango Fighter.prof                                           (no version)
+
+* Scorched Earth
+  Scorched Earth 1.0.prof                                      Version=1.0
+  Scorched Earth 1.0b.prof                                     Version=1.0b
+  Scorched Earth 1.1.prof                                      Version=1.1
+  Scorched Earth 1.2.prof                                      Version=1.2
+  Scorched Earth 1.21.prof                                     Version=1.21
+  Scorched Earth 1.23.prof                                     Version=1.23
+  Scorched Earth 1.5.prof                                      Version=1.5
+  Scorched Earth.prof                                          (no version)
+
+* Second Reality
+  Second Reality(2).prof                                       (no version)
+  Second Reality.prof                                          (no version)
+
+* Secret Agent
+  Secret Agent (2).prof                                        Version=1.0
+  Secret Agent.prof                                            (no version)
+
+* Shadow Warrior
+  Shadow Warrior 1.0.prof                                      Version=1.0
+  Shadow Warrior 1.1.prof                                      Version=1.1
+  Shadow Warrior.prof                                          (no version)
+
+* Sim City
+  Sim City (Shareware).prof                                    (no version)
+  Sim City.prof                                                (no version)
+
+* Sim City 2000
+  Sim City 2000 (Shareware).prof                               (no version)
+  Sim City 2000.prof                                           (no version)
+
+* Sky Roads
+  Sky Roads.prof                                               (no version)
+  Sky Roads1.prof                                              (no version)
+
+* Solar Winds
+  Solar Winds 1.0.prof                                         Version=1.0
+  Solar Winds.prof                                             (no version)
+
+* Space Chase
+  Space Chase (2).prof                                         (no version)
+  Space Chase (3).prof                                         (no version)
+  Space Chase.prof                                             (no version)
+
+* Super Street Fighter 2 Turbo
+  Super Street Fighter 2 Turbo SW.prof                         Version=1.0
+  Super Street Fighter 2 Turbo.prof                            (no version)
+
+* Supernova
+  Supernova (Shareware).prof                                   (no version)
+  Supernova.prof                                               (no version)
+
+* Syndicate
+  Syndicate (Shareware).prof                                   (no version)
+  Syndicate.prof                                               (no version)
+
+* Taking Care of Business
+  Taking Care of Business (Freeware).prof                      (no version)
+  Taking Care of Business (Shareware).prof                     (no version)
+
+* Talking ABC's: A Day At The Beach
+  Talking ABCs A Day At The Beach 1.0.prof                     Version=1.0
+  Talking ABCs A Day At The Beach 4.0(2).prof                  Version=4.0
+  Talking ABCs A Day At The Beach 4.0.prof                     Version=4.0
+  Talking ABCs A Day At The Beach 4.1.prof                     Version=4.1
+
+* Terminal Velocity
+  Terminal Velocity 1.0.prof                                   Version=1.1
+  Terminal Velocity 1.1.prof                                   Version=1.1
+  Terminal Velocity.prof                                       (no version)
+
+* Tetris
+  Tetris.prof                                                  (no version)
+  Tetris1.prof                                                 (no version)
+
+* The Adventures of Maddog Williams
+  The Adventures of Maddog Williams(2).prof                    (no version)
+  The Adventures of Maddog Williams(3).prof                    (no version)
+  The Adventures of Maddog Williams.prof                       (no version)
+  The Adventures of Maddog Williams1.prof                      (no version)
+
+* The Incredible Machine
+  The Incredible Machine 1.0.prof                              (no version)
+  The Incredible Machine.prof                                  (no version)
+
+* Thor's Hammer
+  Thors Hammer 1.0 SW.prof                                     Version=1.0
+  Thors Hammer 1.0.prof                                        Version=1.0
+  Thors Hammer 1.1.prof                                        Version=1.1
+
+* Traffic Department 2192
+  Traffic Department 2192 (CC).prof                            (no version)
+  Traffic Department 2192 (Freeware).prof                      (no version)
+  Traffic Department 2192.prof                                 (no version)
+
+* Tube
+  Tube (PC Games Edition).prof                                 (no version)
+  Tube (PC Player).prof                                        (no version)
+
+* Wolfenstein 3D
+  Wolfenstein 3D 1.0.prof                                      Version=1.0
+  Wolfenstein 3D 1.1.prof                                      Version=1.1
+  Wolfenstein 3D 1.2.prof                                      Version=1.2
+  Wolfenstein 3D 1.4.prof                                      Version=1.4
+  Wolfenstein 3D.prof                                          (no version)
+
+* Word Rescue
+  Word Rescue 1.0.prof                                         Version=1.0
+  Word Rescue.prof                                             (no version)
+
+* World Empire
+  World Empire 1.0.prof                                        Version=1.0
+  World Empire 1.5.prof                                        Version=1.5
+  World Empire 2.0.prof                                        Version=2.0
+  World Empire 2.0a.prof                                       Version=2.0
+
+* Worms
+  Worms (Shareware).prof                                       (no version)
+  Worms.prof                                                   (no version)
+
+* Xenophage: Alien Bloodsport
+  Xenophage Alien Bloodsport 1.1.prof                          Version=1.1
+  Xenophage Alien Bloodsport.prof                              (no version)
+
+* Z
+  Z (English).prof                                             (no version)
+  Z (French).prof                                              (no version)
+  Z (German).prof                                              (no version)
+  Z (Italian).prof                                             (no version)
+  Z (Spanisch).prof                                            (no version)
+
+* Zone 66
+  Zone 66 1.0.prof                                             Version=1.0
+  Zone 66.prof                                                 (no version)
+
+
+===============================================================================
+Templates sharing the same game name: different versions
+===============================================================================
+
+For information: these templates are different versions of the same game
+(each has its own version). Nothing to do unless a version is wrong or a
+template is not needed.
+
+* Alpha Man
+  Alpha Man 1.0.prof                                           Version=1.0
+  Alpha Man 1.1.prof                                           Version=1.1
+
+* Animal Quest
+  Animal Quest 1.5.prof                                        Version=1.5
+  Animal Quest 2.0.prof                                        Version=2.0
+  Animal Quest 4.0.prof                                        Version=4.0
+  Animal Quest.prof                                            Version=1.0
+
+* Ant Run
+  Ant Run 1.0.prof                                             Version=1.0
+  Ant Run 2.0.prof                                             Version=2.0
+  Ant Run 2.1.prof                                             Version=2.1
+  Ant Run 2.3.prof                                             Version=2.3
+  Ant Run 3.0.prof                                             Version=3.0
+
+* AstroFire
+  AstroFire 1.0.prof                                           Version=1.0
+  AstroFire 1.1.prof                                           Version=1.1
+  AstroFire 2.0.prof                                           Version=2.0
+
+* Balloon Challenge
+  Balloon Challenge 1.0.prof                                   Version=1.0
+  Balloon Challenge 1.1.prof                                   Version=1.1
+  Balloon Challenge 2.0.prof                                   Version=2.0
+
+* Banyon Wars
+  Banyon Wars 1.0.prof                                         Version=1.0
+  Banyon Wars 2.0.prof                                         Version=2.0
+
+* Battle for Atlantis
+  Battle for Atlantis 1.0.prof                                 Version=1.0
+  Battle for Atlantis 2.0.prof                                 Version=2.0
+  Battle for Atlantis 2.2.prof                                 Version=2.2
+
+* Blind Wars
+  Blind Wars 1.0.prof                                          Version=1.0
+  Blind Wars 1.1.prof                                          Version=1.1
+
+* Bolo Ball
+  Bolo Ball 1.2.prof                                           Version=1.2
+  Bolo Ball 2.0.prof                                           Version=2.0
+  Bolo Ball 2.1.prof                                           Version=2.1
+  Bolo Ball 2.2.prof                                           Version=2.2
+
+* Chinese Checkers
+  Chinese Checkers 1.1.prof                                    Version=1.1
+  Chinese Checkers 1.2.prof                                    Version=1.2
+  Chinese Checkers 1.3.prof                                    Version=1.3
+  Chinese Checkers 1.3b.prof                                   Version=1.3b
+  Chinese Checkers 2.0.prof                                    Version=2.0
+  Chinese Checkers 2.1.prof                                    Version=2.1
+  Chinese Checkers 2.3.prof                                    Version=2.3
+
+* Chopper Commando
+  Chopper Commando 2.00.prof                                   Version=2.00
+  Chopper Commando 2.56.prof                                   Version=2.56
+
+* Cipher
+  Cipher 1.0.prof                                              Version=1.0
+  Cipher 1.2.prof                                              Version=1.2
+  Cipher 2.0.prof                                              Version=2.0
+  Cipher 2.1.prof                                              Version=2.1
+  Cipher 2.11.prof                                             Version=2.11
+  Cipher 2.2.prof                                              Version=2.2
+
+* Commander Keen 4 (Goodbye Galaxy)
+  Commander Keen 4 (Goodbye Galaxy) 1.0 special.prof           Version=1.0 - Special demo
+  Commander Keen 4 (Goodbye Galaxy) 1.0.prof                   Version=1.0
+  Commander Keen 4 (Goodbye Galaxy) 1.1.prof                   Version=1.1
+  Commander Keen 4 (Goodbye Galaxy).prof                       Version=1.2
+
+* Corncob 3D
+  Corncob 3D 3.4.prof                                          Version=3.4
+  Corncob 3D 3.42.prof                                         Version=3.42
+
+* Crates
+  Crates 1.4.prof                                              Version=1.4
+  Crates 1.5.prof                                              Version=1.5
+
+* Descent
+  Descent 1.1.prof                                             Version=1.1
+  Descent 1.2.prof                                             Version=1.2
+  Descent 1.3.prof                                             Version=1.3
+  Descent 1.4.prof                                             Version=1.4
+
+* Dinosaur Predators
+  Dinosaur Predators 1.0.prof                                  Version=1.0
+  Dinosaur Predators 4.0.prof                                  Version=4.0
+
+* DND
+  DND 1.0.prof                                                 Version=1.0
+  DND 1.1.prof                                                 Version=1.1
+  DND 1.12.prof                                                Version=1.12
+  DND 1.2.1.prof                                               Version=1.2.1
+  DND 1.2.prof                                                 Version=1.2
+
+* Dotso
+  Dotso 1.0.prof                                               Version=1.0
+  Dotso 1.1.prof                                               Version=1.1
+
+* Dragons Bane: Mah Jongg II
+  Dragons Bane Mah Jongg II 1.0.prof                           Version=1.0
+  Dragons Bane Mah Jongg II 1.1.prof                           Version=1.1
+  Dragons Bane Mah Jongg II 1.2.prof                           Version=1.2
+
+* Dungeons of the Necromancer's Domain
+  Dungeons of the Necromancers Domain 2.0.1.prof               Version=2.0.1
+  Dungeons of the Necromancers Domain 2.0.prof                 Version=2.0
+
+* EGA Trek
+  EGA Trek 1.0.prof                                            Version=1.0
+  EGA Trek 2.0.prof                                            Version=2.0
+  EGA Trek 2.1.prof                                            Version=2.1
+  EGA Trek 2.2.prof                                            Version=2.2
+  EGA Trek 2.3.prof                                            Version=2.3
+  EGA Trek 2.31.prof                                           Version=2.31
+  EGA Trek 3.0.prof                                            Version=3.0
+  EGA Trek 3.1.prof                                            Version=3.1
+
+* Galacta
+  Galacta 1.0.prof                                             Version=1.0
+  Galacta 1.1.prof                                             Version=1.1
+
+* GobMan
+  GobMan 1.0.prof                                              Version=1.0
+  GobMan 1.1.prof                                              Version=1.1
+
+* Googol Math Games
+  Googol Math Games 2.0.prof                                   Version=2.0
+  Googol Math Games 2.1.prof                                   Version=2.1
+  Googol Math Games 3.3.prof                                   Version=3.3
+  Googol Math Games 3.4.prof                                   Version=3.4
+  Googol Math Games 3.6.prof                                   Version=3.6
+
+* Googol Review
+  Googol Review 3.1.prof                                       Version=3.1
+  Googol Review 3.2.prof                                       Version=3.2
+  Googol Review 3.6.prof                                       Version=3.6
+
+* Hero's Heart
+  Heros Heart 1.1.prof                                         Version=1.10
+  Heros Heart 1.2.prof                                         Version=1.20
+  Heros Heart 1.3.prof                                         Version=1.30
+  Heros Heart 1.31.prof                                        Version=1.31
+
+* Hubie
+  Hubie 1.1.prof                                               Version=1.1
+  Hubie 1.2.prof                                               Version=1.2
+
+* In Search of Dr. Riptide
+  In Search of Dr. Riptide 1.0.prof                            Version=1.0
+  In Search of Dr. Riptide 1.1.prof                            Version=1.1
+
+* Invasion of the Mutant Space Bats of Doom
+  Invasion of the Mutant Space Bats of Doom 1.21.prof          Version=1.21
+  Invasion of the Mutant Space Bats of Doom 2.0.prof           Version=2.0
+  Invasion of the Mutant Space Bats of Doom 2.3.prof           Version=2.3
+  Invasion of the Mutant Space Bats of Doom 2.5.prof           Version=2.5
+  Invasion of the Mutant Space Bats of Doom 2.7.prof           Version=2.7
+  Invasion of the Mutant Space Bats of Doom 2.72.prof          Version=2.72
+  Invasion of the Mutant Space Bats of Doom 3.0.prof           Version=3.0
+
+* Island of Danger
+  Island of Danger 2.0.prof                                    Version=2.0
+  Island of Danger 2.1.prof                                    Version=2.1
+  Island of Danger 3.0.prof                                    Version=3.0
+  Island of Danger 3.2.prof                                    Version=3.2
+
+* Isle Wars
+  Isle Wars 2.0.prof                                           Version=2.0
+  Isle Wars 2.2.prof                                           Version=2.2
+  Isle Wars 3.0.prof                                           Version=3.0
+  Isle Wars 3.1.prof                                           Version=3.1
+
+* Jetpack
+  Jetpack 1.0.prof                                             Version=1.0
+  Jetpack 1.1.prof                                             Version=1.1
+  Jetpack 1.2.prof                                             Version=1.2
+  Jetpack 1.3.prof                                             Version=1.3
+  Jetpack 1.4.prof                                             Version=1.4
+  Jetpack.prof                                                 Version=1.5
+
+* Kentris
+  Kentris 4.1.prof                                             Version=4.1
+  Kentris 4.2.prof                                             Version=4.2
+  Kentris 4.3.prof                                             Version=4.3
+
+* Kosynka
+  Kosynka 1.1.prof                                             Version=1.1
+  Kosynka.prof                                                 Version=1.0
+
+* Mah Jongg
+  Mah Jongg 2.0.prof                                           Version=2.0
+  Mah Jongg 2.3.prof                                           Version=2.3
+  Mah Jongg 3.0.prof                                           Version=3.0
+  Mah Jongg 3.1.prof                                           Version=3.1
+  Mah Jongg 3.3.prof                                           Version=3.3
+  Mah Jongg 3.4.prof                                           Version=3.4
+  Mah Jongg 3.5.prof                                           Version=3.5
+  Mah Jongg 3.51.prof                                          Version=3.51
+  Mah Jongg 4.0.prof                                           Version=4.0
+  Mah Jongg 4.1.prof                                           Version=4.1
+  Mah Jongg 4.2.prof                                           Version=4.2
+
+* Moraff's Monster Bridge
+  Moraffs Monster Bridge 1.0.prof                              Version=1.0
+  Moraffs Monster Bridge 2.0.prof                              Version=2.0
+
+* Moraff's Morejongg
+  Moraffs Morejongg 1.0.prof                                   Version=1.0
+  Moraffs Morejongg 3.0.prof                                   Version=3.0
+
+* Moraff's Revenge
+  Moraffs Revenge 3.0.prof                                     Version=3.0
+  Moraffs Revenge 3.1.prof                                     Version=3.1
+  Moraffs Revenge 3.2.prof                                     Version=3.2
+
+* Moraff's Stones
+  Moraffs Stones 1.0.prof                                      Version=1.0
+  Moraffs Stones 2.1.prof                                      Version=2.1
+  Moraffs Stones 3.1.prof                                      Version=3.1
+
+* Moraff's Super Entrap
+  Moraffs Super Entrap 2.0.prof                                Version=2.0
+  Moraffs Super Entrap 4.1.prof                                Version=4.1
+
+* Moraff's World
+  Moraffs World 1.0.prof                                       Version=1.0
+  Moraffs World 4.0.prof                                       Version=4.0
+  Moraffs World 5.1.prof                                       Version=5.1
+  Moraffs World 6.0.prof                                       Version=6.0
+  Moraffs World 7.0.prof                                       Version=7.0
+
+* MVP Bridge
+  MVP Bridge 1.0.prof                                          Version=1.0
+  MVP Bridge 2.0.prof                                          Version=2.0
+  MVP Bridge 2.3.prof                                          Version=2.3
+  MVP Bridge 3.02.prof                                         Version=3.02
+  MVP Bridge 3.03.prof                                         Version=3.03
+
+* Nitemare-3D
+  Nitemare-3D 1.0.prof                                         Version=1.0
+  Nitemare-3D 1.9.prof                                         Version=1.9
+  Nitemare-3D 2.0.prof                                         Version=2.0
+
+* Raptor: Call of the Shadows
+  Raptor Call of the Shadows 1.0.prof                          Version=1.0
+  Raptor Call of the Shadows 1.1.prof                          Version=1.1
+  Raptor Call of the Shadows 1.2.prof                          Version=1.2
+
+* Rescue!
+  Rescue! 1.1.prof                                             Version=1.1
+  Rescue! 1.2.prof                                             Version=1.2
+
+* Scramble
+  Scramble (November 15 revision).prof                         Version=1.0 (November 15 revision)
+  Scramble 1.0.prof                                            Version=1.0
+  Scramble 1.2.prof                                            Version=1.2
+
+* Second Guess
+  Second Guess 1.0.prof                                        Version=1.0
+  Second Guess 1.1.prof                                        Version=1.1
+
+* Sherlock
+  Sherlock 1.1.prof                                            Version=1.1
+  Sherlock 1.2.prof                                            Version=1.2
+  Sherlock 1.42.prof                                           Version=1.42
+  Sherlock 1.5.prof                                            Version=1.5
+  Sherlock 2.0.prof                                            Version=2.0
+  Sherlock 2.07.prof                                           Version=2.07
+
+* Shooting Gallery
+  Shooting Gallery 1.0.prof                                    Version=1.0
+  Shooting Gallery 1.2.prof                                    Version=1.2
+  Shooting Gallery 2.0.prof                                    Version=2.0
+  Shooting Gallery 2.1.prof                                    Version=2.1
+  Shooting Gallery 2.2.prof                                    Version=2.2
+  Shooting Gallery 2.3.prof                                    Version=2.3
+  Shooting Gallery 3.0.prof                                    Version=3.0
+  Shooting Gallery 3.1.prof                                    Version=3.1
+  Shooting Gallery 3.2.prof                                    Version=3.2
+  Shooting Gallery 3.3.prof                                    Version=3.3
+
+* Skunny: Wild West
+  Skunny Wild West 2.0.prof                                    Version=2.0
+  Skunny Wild West.prof                                        Version=1.1
+
+* Solitile
+  Solitile 1.3.prof                                            Version=1.3
+  Solitile 1.4.prof                                            Version=1.4
+  Solitile 2.5.prof                                            Version=2.5
+  Solitile 2.6.prof                                            Version=2.6
+  Solitile 3.0.prof                                            Version=3.0
+  Solitile 3.1.prof                                            Version=3.1
+  Solitile 3.3.prof                                            Version=3.3
+  Solitile 3.5.prof                                            Version=3.5
+  Solitile 3.55.prof                                           Version=3.55
+  Solitile 3.58.prof                                           Version=3.58
+  Solitile 3.61.prof                                           Version=3.61
+
+* Spider Run
+  Spider Run 1.0.prof                                          Version=1.0
+  Spider Run 1.1.prof                                          Version=1.1
+  Spider Run 2.1.prof                                          Version=2.1
+
+* Squarez
+  Squarez 1.0.prof                                             Version=1.0
+  Squarez 1.2.prof                                             Version=1.2
+
+* Squarez Deluxe!
+  Squarez Deluxe! 1.0.prof                                     Version=1.0
+  Squarez Deluxe! 1.1.prof                                     Version=1.1
+  Squarez Deluxe! 1.1a.prof                                    Version=1.1a
+  Squarez Deluxe! 1.2.prof                                     Version=1.2
+
+* Starfire
+  Starfire 1.2.prof                                            Version=1.2
+  Starfire 1.3.prof                                            Version=1.3
+  Starfire 1.4.prof                                            Version=1.4
+
+* Stargunner
+  Stargunner 1.0.prof                                          Version=1.0
+  Stargunner 1.1.prof                                          Version=1.1
+  Stargunner 1.1b.prof                                         Version=1.1a
+
+* Super Angelo
+  Super Angelo 2.1.prof                                        Version=2.1
+  Super Angelo 2.2.prof                                        Version=2.2
+
+* SuperFly
+  SuperFly 1.0.prof                                            Version=1.0
+  SuperFly 1.1.prof                                            Version=1.1
+  SuperFly 2.0.prof                                            Version=2.0
+  SuperFly 2.1.prof                                            Version=2.1
+
+* Tile Match
+  Tile Match 1.0.prof                                          Version=1.0
+  Tile Match 1.1.prof                                          Version=1.1
+  Tile Match 1.2.prof                                          Version=1.2
+
+* Trek Trivia
+  Trek Trivia 1.0.prof                                         Version=1.0
+  Trek Trivia 2.0.prof                                         Version=2.0
+  Trek Trivia 3.0 (Public Domain).prof                         Version=3.0
+
+* Tribolo
+  Tribolo 1.0.prof                                             Version=1.0
+  Tribolo 1.1.prof                                             Version=1.1
+
+* Tubes
+  Tubes 1.0.prof                                               Version=1.0
+  Tubes 1.1.prof                                               Version=1.1
+
+* VGA Concentration
+  VGA Concentration 1.1.prof                                   Version=1.1
+  VGA Concentration 1.2.prof                                   Version=1.2
+
+* Vinyl Goddess From Mars
+  Vinyl Goddess From Mars 1.0.prof                             Version=1.0
+  Vinyl Goddess From Mars 1.1.prof                             Version=1.1
+
+* Wari: The Ancient Game of Africa
+  Wari The Ancient Game of Africa 1.2.prof                     Version=1.2
+  Wari The Ancient Game of Africa 1.4.prof                     Version=1.4
+
+* Wolfie's Music Games
+  Wolfies Music Games 1.1.prof                                 Version=1.1
+  Wolfies Music Games 2.2.prof                                 Version=2.2
+
+* Word Whiz
+  Word Whiz 1.0.prof                                           Version=1.0
+  Word Whiz 2.0.prof                                           Version=2.0
+  Word Whiz 3.0.prof                                           Version=3.0
+
+* WordMax
+  WordMax 1.0.prof                                             Version=1.0
+  WordMax 1.1.prof                                             Version=1.1
+
+* Xerix
+  Xerix 1.1.prof                                               Version=1.1
+  Xerix 1.3.prof                                               Version=1.3
+
+
+===============================================================================
+Boot image templates
+===============================================================================
+
+These templates boot a disk image instead of starting a program. They are not
+recognised automatically (only via "Add from template"). If the game can be
+started from a program file, change the template to use Exe / ExeMD5.
+
+Auto Sketch 1.0.prof
+FreeDOS (Boot-Image).prof
+
+
+===============================================================================
+Templates with missing information
+===============================================================================
+
+The fields listed after each template are empty. Fill them in (see
+docs/AutoSetupTemplates.md for the standard values; "autosetup.py lookup
+NAME --dos" searches Wikidata). License means UserInfo=License=...
+
+1on1 Jordan vs Bird.prof: Developer, Language, License
+240 Racing.prof: Developer, Publisher, Year, Language, License
+3D World Boxing.prof: Language, License
+4D Boxing.prof: Language, License
+4D Sports Boxing.prof: License
+4DOS 7.50.prof: License
+4DOS 7.58.prof: License
+4X4 Offroad Racing.prof: Language, License
+688 Attack Sub.prof: Language, License
+7 Cities of Gold.prof: Language, License
+A-Train.prof: License
+A10 Tank Killer.prof: Language, License
+Abandoned Places.prof: Language, License
+Abrams Battle Tank.prof: Language, License
+Absolute Pinball.prof: License
+Aces of the Deep.prof: Language, License
+Aces of the Pacific.prof: License
+Aces over Europe.prof: License
+Advanced Civilization.prof: License
+Advantage Tennis.prof: License
+Afterburner.prof: Language, License
+Airborne Ranger.prof: Language, License
+Airbus A320.prof: License
+Airlift Rescue.prof: Developer, Publisher, Language, License
+Akalabeth.prof: Genre, Developer, Publisher, Year, Language, License
+Al Qadim - The Genies Curse.prof: Language, License
+Aladin.prof: License
+Alcatraz.prof: Language, License
+Aldo Again (Aldo 2).prof: License
+Aldos Adventure (Aldo 1).prof: License
+Aldos Assault (Aldo 3).prof: License
+Alien Breed.prof: Language, License
+Alien Carnage.prof: License
+Alien Legacy.prof: Language, License
+Alien Trilogy.prof: Language, License
+Alone in the dark 2.prof: License
+Alone in the Dark 3.prof: Language, License
+Alone in the dark.prof: License
+Altered Beast.prof: Language, License
+Amberstar.prof: Language, License
+Amulets  Armour.prof: Language, License
+Another World.prof: Language, License
+Anvil of Dawn.prof: Language, License
+Apache Longbow.prof: Language, License
+Arachnaphobia.prof: Language, License
+Arctic Adventure 2.prof: Language, License
+Arctic Adventure 3.prof: Language, License
+Arctic Adventure 4.prof: Language, License
+Arctic Fox.prof: Language, License
+Arena.prof: Genre, Developer, Publisher, Year, License
+Argh.prof: Genre, Developer, Publisher, Year, Language, License
+Armaeth - The Lost Kingdom.prof: Language, License
+Armored Fist.prof: License
+Arthur - The Quest for Excalibur.prof: Language, License
+ArticFox Tanks.prof: Genre, Developer, Publisher, Year, License
+Asterix and the Magic Carpet.prof: Language, License
+Atomix.prof: License
+Auto Sketch 1.0.prof: License
+B17 Flying Fortress.prof: Language, License
+Bananoid.prof: License
+Bannermania.prof: License
+Barbarian.prof: Language, License
+Bards Tale 2.prof: Language, License
+Bards Tale 3.prof: Language, License
+Bards Tale Construction Set.prof: Language, License
+Bards Tale.prof: Language, License
+Bart Simpson vs. Space Mutants.prof: License
+Bart Simpsons House of Weirdness.prof: License
+BAT.prof: Language, License
+Battle Bugs.prof: License
+Battle Chess 4000.prof: License
+Battle Chess.prof: License
+Battle Isle 2.prof: License
+Battle Isle.prof: License
+Battle of Britain.prof: Language, License
+Battle Tech 2 - The Crescent Hawks Revenge.prof: Language, License
+Battle Zone.prof: License
+Batty.prof: Year
+BC-Race.prof: License
+Berlin 1946.prof: Language, License
+Betrayal at Krondor.prof: License
+Beyond Wolfenstein.prof: Developer, Publisher, Year, Language, License
+BH.prof: Language, License
+Bill  Teds Excellent Adventure.prof: Language, License
+Biomenace - Episode 1.prof: Language, License
+Biomenace - Episode 2.prof: Language, License
+Biomenace - Episode 3.prof: Language, License
+Black Sect.prof: Language, License
+Black Thorne.prof: License
+BlockOut.prof: License
+Blood.prof: License
+Bloodnet.prof: Language, License
+Bloodstone.prof: Language, License
+Blue Force.prof: License
+BlueMax - Aces of the Great War.prof: Language, License
+Blues Brothers 1 Player.prof: Language, License
+Blues Brothers 2.prof: License
+Blues Brothers.prof: License
+Borland C 2.0.prof: License
+Borland Pascal 7.0.prof: License
+brain2.prof: Language, License
+Brix 2.prof: Genre, Developer, Publisher, Year, Language, License
+Bubble Bobble.prof: Language, License
+Bureau 13.prof: License
+Caesar 2.prof: Language, License
+California Games 1.prof: Developer, Language, License
+California Games 2.prof: Language, License
+California Games.prof: Language, License
+Cannon Fodder 2.prof: License
+Captain Comic (Shareware).prof: License
+Captain Comic 2.prof: License
+Captain Comic.prof: License
+Capture The Flag.prof: Genre, Developer, Publisher, Year, Language, License
+Carnage.prof: Language, License
+Castles II.prof: Language, License
+Castlevania.prof: Language, License
+Cat Terror.prof: Language, License
+CaveMan Ulympics.prof: Genre, Developer, Publisher, Year, License
+Centurion - Defender of Rome.prof: Language, License
+Chasm - The Rift.prof: Language, License
+Chuck Yeager Air Combat.prof: Language, License
+Cisco Heat All American Police Car Race.prof: Language, License
+Civilisation.prof: Language, License
+Civilization.prof: License
+Clock (Pink Panter).prof: License
+Clock (Rolex).prof: License
+Clock (Seiko).prof: License
+Codename Iceman.prof: License
+cok.prof: Language, License
+Colonization.prof: License
+Comanche 2.0.prof: License
+Comanche 3.prof: License
+Commanche.prof: License
+Command  Conquer - Red Alert.prof: Language, License
+Command  Conquer.prof: License
+Commander Keen 2 (The Earth Explodes).prof: License
+Commander Keen 2.prof: Language, License
+Commander Keen 3 (Keen Must Die).prof: License
+Commander Keen 3.prof: Language, License
+Commander Keen 5 (The Armageddon Machine).prof: License
+Commander Keen 5.prof: Language, License
+Commander Keen 6 (Aliens Ate my Babysitter).prof: License
+Commander Keen 6.prof: Language, License
+Commander Keen 7 (Keen Dreams).prof: License
+Commander Keen Dreams.prof: Language, License
+Conan.prof: Language, License
+Conquests of Camelot.prof: Language, License
+Conquests of the Longbow - The Adventures of Robin Hood.prof: Language, License
+Conquests of the Longbow EGA version.prof: Year, Language, License
+Constructor.prof: License
+Corridor 7.prof: Language, License
+Crash Course.prof: License
+Crime City.prof: Language, License
+Crime Wave.prof: Language, License
+Crisis in the Kremlin.prof: Language, License
+Crusader - No Remorse.prof: License
+Crystal Caves 3.prof: Language, License
+Curse of Enchantia.prof: Language, License
+Curse of the Azure Bonds.prof: Language, License
+Cyrus Chess.prof: License
+Dame 12.prof: License
+Dangerous Dave in the Deserted Pirates Hideout.prof: Developer, Language, License
+DangerousDave.prof: Genre, Developer, Publisher, Year, Language, License
+Dark Ages  - Episode 2.prof: Developer, Publisher, Year, Language, License
+Dark Ages - Episode 3.prof: Developer, Publisher, Year, Language, License
+Dark Forces.prof: License
+Dark Sun.prof: Language, License
+Darklands.prof: Language, License
+Darksun - Shattered Lands.prof: Language, License
+Darksun - Wake of the Ravager.prof: Language, License
+Das Erbe.prof: License
+Das schwarze Auge 2.prof: License
+Das schwarze Auge.prof: License
+Das Telekommando.prof: Developer
+Dasboot.prof: Language, License
+Dawn Patrol.prof: Language, License
+Day of the Tentacle.prof: License
+Day of the Tentacle1.prof: Language, License
+dBase III Plus.prof: License
+Defender Of The Crown.prof: Genre, Developer, Publisher, Year, License
+DELTA V.prof: Language, License
+Depth Dwellers.prof: Language, License
+Der Patrizier.prof: License
+Descent 2.prof: License
+Descent to Undermountain.prof: Language, License
+Destruction Derby.prof: License
+dgate.prof: Language, License
+Diehard 2.prof: Developer, Language, License
+Diehard.prof: Language, License
+Digger.prof: License
+Dinopark Tycoon.prof: License
+Discworld 2.prof: License
+Discworld.prof: License
+DiskWorld.prof: Genre, Developer, Publisher, Year, Language, License
+dkk.prof: Language, License
+Dogfight.prof: Developer, Publisher, Year, Language, License
+Dominus.prof: Language, License
+Doom 2.prof: License
+Doom 3.prof: License
+Doom.prof: License
+DOSBox Info (DB-Info 1.0.2).prof: License
+DOSShell (MS-DOS 4.01).prof: License
+DOSShell (MS-DOS 5.0).prof: License
+Double Dragon 1.prof: Genre, Developer, Publisher, Year, License
+Double Dragon 2 - (The Revenge).prof: Genre, Developer, Publisher, Year, License
+Double Dragon 3 - (The Rosetta Stone).prof: Genre, Developer, Publisher, Year, License
+dqk.prof: Language, License
+Dr. Genius 3.0.prof: License
+Dragon Lord.prof: Language, License
+Dragons Lair 1 - (Escape From Singes Castle).prof: Genre, Developer, Publisher, Year, License
+Dragons Lair 2 - (Time Warp).prof: Genre, Developer, Publisher, Year, License
+Dragons Lair 3 - (The Curse Of Mordread).prof: Genre, Developer, Publisher, Year, License
+Dragons Strike.prof: Genre, Developer, Publisher, License
+Dragonsphere.prof: Language, License
+Ducktales - The Quest for Gold.prof: Language, License
+Duke Nukem Episode 2 Mission Moonbase.prof: Language, License
+Duke Nukem Episode 3 Trapped in the Future.prof: Language, License
+Dune 2 - The Building of a Dynasty.prof: License
+Dune.prof: License
+Dungeon Hack.prof: Language, License
+Dungeon Keeper.prof: Language, License
+Dungeon Master 2.prof: Language, License
+Dungeon Master II.prof: Language, License
+Dungeon Master.prof: License
+Dyna Blaster.prof: License
+Earthsiege.prof: Language, License
+Ecstatica.prof: License
+Eishockey Manager.prof: License
+Elder Scrolls - Arena.prof: Language, License
+Elite Plus.prof: License
+Elite.prof: License
+Enemy Star.prof: Language, License
+Epic Pinball.prof: License
+Epic.prof: Language, License
+Eye Of The Beholder 1.prof: License
+Eye Of The Beholder 2 - The Legend of Darkmoon.prof: License
+Eye of the Beholder 2.prof: Language, License
+Eye Of The Beholder 3 - Assault on Myth Drannor.prof: License
+Eye of the Beholder 3.prof: Language, License
+F-117a Stealth Fighter 2.prof: Language, License
+F-14.prof: Language, License
+F-29 Retaliator.prof: Language, License
+F14 Tomcat.prof: License
+F15 Strike Eagle.prof: License
+F19.prof: Language, License
+F22 Lightning II.prof: License
+F29 Retaliator.prof: License
+Falcon 3.0.prof: Language, License
+Falcon 3.prof: License
+Fallout.prof: Developer, Publisher
+Fanta Vision.prof: License
+Fates of Twinion.prof: Language, License
+FlashBack 1.prof: Genre, Developer, Publisher, License
+Flashback.prof: Language, License
+Flight of the Amazon Queen.prof: License
+Flying Corps.prof: Language, License
+Formula 1 GP.prof: Publisher, Year, Language, License
+Formula 1 Grand Prix.prof: License
+FreeDOS Edit.prof: Publisher, Year
+FreeDOS Shell.prof: Publisher
+Frogger.prof: Language, License
+Frontier Elite 2.prof: License
+Frontier.prof: Language, License
+Frosch.prof: License
+FW.prof: Language, License
+Galactix.prof: Genre, Developer, Publisher, Year, Language, License
+Galdregons.prof: Genre, Developer, Publisher, Year, Language, License
+Gateway to the Savage Frontier.prof: Language, License
+Gauntlet 1.prof: Genre, Developer, Publisher, Year, License
+Gauntlet 2.prof: Genre, Developer, Publisher, Year, License
+Gene Wars.prof: License
+Giana Sisters.prof: Language, License
+Gobliiins 2.prof: License
+Gobliiins 3.prof: License
+Gobliiins.prof: License
+Gobliins.prof: Language, License
+goblins 2.prof: Language, License
+GOD of THUNDER.prof: License
+Gods.prof: License
+Golden Axe.prof: Genre, Developer, Publisher, Year, Language, License
+Grand Prix 2.prof: Language, License
+Grand Prix Circuit.prof: License
+Grand Theft Auto - London.prof: Language, License
+Gunship 2000.prof: License
+Gunship.prof: License
+GW-Basic 3.22.prof: License
+Hanse - Die Expedition.prof: License
+HardBall 3.prof: Genre, Developer, Publisher, Year, License
+Harrier Jumpjet.prof: Language, License
+Harvard Graphics 3.prof: License
+Heimdall 2 - Into the Hall of Worlds.prof: Language, License
+Heretic.prof: License
+Hero Quest.prof: Language, License
+Hexen.prof: License
+HEXX.prof: Language, License
+Hexxagon 1.prof: Genre, Developer, Publisher, Year, License
+Hexxagon 2.prof: Genre, Developer, Publisher, Year, License
+Hillsfar.prof: Language, License
+Hind - Russian Helicopter Simulator.prof: Language, License
+History Line.prof: License
+Holiday Lemmings 1993.prof: License
+Holiday Lemmings 1994 (Shareware).prof: License
+Holiday Lemmings 1994.prof: License
+HOLMES2.prof: Language, License
+Home Alone 2.prof: Language, License
+Home Alone.prof: Language, License
+Hook.prof: Language, License
+Hugo II - Whodunnit.prof: Publisher, Language, License
+Humans.prof: License
+In Pursuit of Greed.prof: Language, License
+In Search of Dr. Riptide 1.0.prof: Publisher
+In Search of Dr. Riptide 1.1.prof: Publisher
+Indiana Jones 3 (EGA).prof: License
+Indiana Jones 3 (VGA).prof: License
+Indiana Jones 4.prof: License
+Indiana Jones and the Fate of Atlantis.prof: License
+Indiana Jones and the Last Crusade.prof: License
+Indiana Jones and the Last Crusade1.prof: Language, License
+Indiana Jones and the Revenge of the Ancients.prof: License
+Indiana Jones and the temple of doom.prof: License
+Indy 500.prof: Language, License
+IndyCar Racing 2.prof: Language, License
+Iron Lord.prof: Language, License
+Ironman Super Offroad.prof: Genre, Developer, Publisher, Year, Language, License
+Ishar II.prof: License
+Ishar III.prof: License
+Ishar.prof: License
+Ishido.prof: License
+Island of Dr Brain.prof: Language, License
+Isle of the Dead.prof: Language, License
+Jagged Alliance.prof: License
+Jet Willy.prof: License
+Jetstrike.prof: Language, License
+Jill goes underground (2).prof: License
+Jill of the jungle (1).prof: License
+Jill of the Jungle 2 - Jill goes underground.prof: License
+Jill of the Jungle 2.prof: Language, License
+Jill of the Jungle 3 - Jill saves the prince.prof: License
+Jill of the Jungle 3.prof: Language, License
+Jill saves the prince (3).prof: License
+Jones In The Fast Lane.prof: Genre, Developer, Publisher, Year, License
+KA 50 Hokum.prof: Language, License
+KGB.prof: License
+Kings Quest 4.prof: License
+Kings Quest 5.prof: License
+Kings Quest 6.prof: License
+Knights of the Round Table.prof: Language, License
+Knights of the Sky.prof: Language, License
+Krustys Super Funhouse.prof: Language, License
+Lakers vs Celtics.prof: Language, License
+Lamborghini.prof: License
+Lands of Lore - The Throne of Chaos.prof: License
+Lands of Lore.prof: Language, License
+Larry 1 VGA.prof: License
+Larry 1.prof: License
+Larry 2.prof: License
+Larry 3.prof: License
+Laura Bow 2.prof: License
+Laura Bow.prof: License
+Legends of Valour.prof: Language, License
+Lemmings 2 The Tribes Demo.prof: Genre, Developer, Publisher, Year, Language, License
+Lemmings 2.prof: License
+Lemmings 3 Chronicles Demo.prof: Genre, Developer, Publisher, Year, Language, License
+Lemmings 3.prof: License
+Lemmings Oh no more Lemmings.prof: License
+Lemmings VGA.prof: Genre, Developer, Publisher, Year, Language, License
+Lemmings Xmas 1991.prof: Genre, Developer, Publisher, Year, Language, License
+Lemmings Xmas 1992.prof: Genre, Developer, Publisher, Year, Language, License
+Lemmings Xmas 1993.prof: Genre, Developer, Publisher, Year, Language, License
+Lemmings.prof: License
+LHX - Attack Chopper.prof: License
+LHX Attack Chopper.prof: Language, License
+Links - The Challenge of Golf.prof: License
+Links 386 Golk.prof: Language, License
+Links Golf 386 Pro.prof: Language, License
+Lion King.prof: Developer, Publisher, License
+Locomotion.prof: License
+Lollypop.prof: License
+Loom.prof: License
+Lord of the Rings - The Two Towers.prof: License
+Lord of the Rings.prof: Language, License
+Lords of the Realm II.prof: Language, License
+Lords of the Realm.prof: Language, License
+Lost in Time.prof: Language, License
+Lost Vikings.prof: License
+Lotus 123.prof: License
+Lotus Symphony 3.prof: License
+Lotus.prof: License
+Low Blow.prof: License
+Lucas Arts Sampler.prof: Year, License
+M1 Tank Platoon.prof: License
+Macadam Bumper.prof: License
+Mad TV.prof: License
+Magic Johnsons Fast Break.prof: Language, License
+Maniac Mansion.prof: License
+Mario - Teaches Typing.prof: Genre, Developer, Publisher, Year, License
+Mario and Luigi.prof: Developer, Publisher, License
+Mario Brothers.prof: License
+Mario.prof: License
+Master of Magic.prof: License
+Maupiti Island.prof: Language, License
+Mean Streets.prof: Language, License
+Mech Warrior 2 - Ghost Bears Legacy.prof: Language, License
+Mech Warrior 2 - Mercenaries.prof: Language, License
+Mech Warrior 2.prof: Language, License
+Mech Warrior.prof: Language, License
+Metal Mutant.prof: Language, License
+Metaltech Battledrome.prof: Language, License
+Micro Machines 2.prof: License
+Micro Machines.prof: License
+Microsoft Flightsimulator 4.prof: License
+Microsoft Flightsimulator 5.1.prof: License
+Microsoft Space Simulator.prof: License
+Midwinter 2.prof: License
+Midwinter.prof: License
+Might and Magic 4 and 5 - World of Xeen.prof: License
+Mission Impossible 2.prof: License
+Monkey Island 1.prof: License
+Monkey Island 2.prof: License
+Monuments of Mars 3.prof: Language, License
+Monuments of Mars 4.prof: Language, License
+Monuments of Mars.prof: Language, License
+Moonstone.prof: License
+Mortal Combat 2.prof: License
+Mortal Combat.prof: License
+Mortal Kombat 1.prof: Language, License
+Mortal Kombat 2.prof: Language, License
+Mortal Kombat 3.prof: Language, License
+MS-PacMan PC.prof: Developer, Publisher, License
+Mühle 12.prof: License
+NAM.prof: Language, License
+Nascar Racing 2.prof: License
+Nascar Racing.prof: License
+NeoPaint 3.2d.prof: License
+Neuromancer.prof: License
+Ninja Gaiden.prof: Language, License
+North  South.prof: License
+Norton Commander 1.0.prof: License
+Norton Commander 5.5 (deutsch).prof: License
+Norton Commander 5.51 (english).prof: License
+Nova 9 - Return of Gir Draxon.prof: License
+Ocean Trader.prof: License
+Oh no more Lemmings.prof: License
+Oil Imperium.prof: License
+Operation Carnage.prof: Language, License
+Overlord.prof: Language, License
+Pacific Strike.prof: Language, License
+PacMan PC.prof: Developer, Publisher, Year, License
+Panza Kick Boxing.prof: Language, License
+PC Auto 1.5.prof: License
+PC Globe 3.0.prof: License
+PC Globe 5.0.prof: License
+PC Rally.prof: License
+PC Raumfahrt 1.5.prof: License
+Perestroika.prof: License
+PGA Tour Golf.prof: Language, License
+Pharaohs Tomb vol. 2.prof: Language, License
+Pharaohs Tomb vol. 3.prof: Language, License
+Pharaohs Tomb vol. 4.prof: Language, License
+PinBall Absolute PinBall.prof: Genre, Developer, Publisher, Year, Language, License
+PinBall Dreams 1.prof: Genre, Developer, Publisher, Year, Language, License
+Pinball Dreams 2.prof: License
+Pinball Dreams.prof: License
+Pinball Fantasies.prof: License
+Pinball Illusions.prof: License
+Pinball Mania.prof: License
+PinBall SilverBall 1.prof: License
+PinBall SilverBall 1995.prof: Genre, Developer, Publisher, Year, Language, License
+PinBall SilverBall 2.prof: Genre, Developer, Publisher, Year, Language, License
+PinBall World.prof: Genre, Developer, Publisher, Year, Language, License
+Pirates Gold.prof: License
+Pirates.prof: License
+Pizza Tycoon.prof: License
+Police Quest.prof: License
+Pools of Darkness.prof: Language, License
+Pools of Radiance.prof: Language, License
+Populous.prof: License
+Porntris.prof: Language, License
+Ports of Call.prof: License
+Powerslave (aka Exhumed).prof: Language, License
+Precision Approach.prof: License
+Prehistorik 1.prof: License
+Prehistorik 2.prof: License
+Prince of Persia 1.prof: Genre, Developer, Publisher, Year, Language, License
+Prince of Persia 2.prof: License
+Prince of Persia 4D.prof: License
+Prince of Persia.prof: License
+Prophecy.prof: Language, License
+Pushover.prof: License
+Pyrotechnica.prof: License
+QBasic.prof: License
+Qbasic1.prof: Genre, Developer, Publisher, Year, Language, License
+Quake Mission Pack I - Scourge of Armagon.prof: License
+Quake Mission Pack II - Dissolution of Eternity.prof: License
+Quake.prof: License
+Quarantine 2 - Road Warrior.prof: Language, License
+Quarantine.prof: Language, License
+QuickBasic 4.5.prof: License
+QuickBasic Extended 7.1.prof: License
+Railroad Tycoon.prof: License
+Rally Championship.prof: License
+Rampage.prof: License
+Rampart.prof: Language, License
+ranx.prof: Language, License
+Ravenloft.prof: Language, License
+Rawcopy.prof: Developer, Publisher, Year, Language, License
+Rayman.prof: License
+Realms of Arkania 2.prof: Language, License
+Realms of Arkania.prof: Language, License
+Red Baron.prof: License
+Renegade.prof: Language, License
+Return to Ringworld.prof: Language, License
+Return to Zork.prof: Language, License
+Rick Dangerous 1.prof: License
+Rick Dangerous 2.prof: License
+Riders of Rohan.prof: Language, License
+Rings of the Medusa 2.prof: License
+Rings of the Medusa.prof: License
+Rise of the Dragon.prof: Language, License
+Rise of the Triads.prof: Language, License
+Robin Hood.prof: Developer, Language, License
+Sabre.prof: Language, License
+Sam  Max (deutsch).prof: License
+Sam  Max.prof: License
+Sango Fighter 2.prof: License
+Sango Fighter.prof: License
+Scenario.prof: License
+Scorched Earth.prof: Developer, Publisher, Language, License
+Screamball.prof: License
+Screamer Rally.prof: Language, License
+Screamer.prof: License
+Seal 2.prof: License
+Seal Team.prof: Language, License
+Secret of Monkey Island 2  LeChucks Revenge.prof: Language, License
+Secret of Monkey Island.prof: Language, License
+Secret of the Silver Blades.prof: Language, License
+Secret Weapons of the Luftwaffe.prof: Language, License
+Sensible Soccer.prof: License
+Settlers 2.prof: Language, License
+Settlers.prof: Year, Language, License
+SHADOW.prof: Language, License
+Shadowgate.prof: Language, License
+Shadows of Mordor.prof: Language, License
+Shannara.prof: Language, License
+Sharkeys 3D Pool.prof: Language, License
+Siedler 2.prof: License
+Siege.prof: Language, License
+Silent Hunter.prof: Language, License
+Silent Service 2.prof: License
+Silent Service.prof: License
+Silverball.prof: License
+Sim Ant.prof: License
+Sim City (CD-Version).prof: License
+Sim City 2000.prof: License
+Sim City.prof: License
+SimCity 2000.prof: Language, License
+simcity.prof: Language, License
+SimEarth.prof: License
+SimFarm.prof: License
+Simon the Sorcerer 2.prof: License
+Simon the Sorcerer.prof: License
+SIMPSONS.prof: Language, License
+Simusex.prof: Language, License
+Sirwood.prof: Language, License
+Skate or Die.prof: License
+Ski or Die.prof: License
+Skies.prof: Language, License
+SopWith.prof: Language, License
+Space Federation.prof: Genre, Developer, Publisher, Year, Language, License
+Space Hulk.prof: Developer, Language, License
+Space Quest 1 - The Sarien Encounter - VGA.prof: License
+Space Quest 1 - The Sarien Encounter.prof: License
+Space Quest 2 - Vohauls Revenge.prof: License
+Space Quest 3 - The Pirates of Pestulon.prof: License
+Space Quest 4 - Roger Wilco and the Time Rippers.prof: License
+Space Quest 5 - The Next Mutation.prof: License
+Space Quest 6 - Roger Wilco in the Spinal Frontier.prof: Language, License
+SpaceAce.prof: Genre, Developer, Publisher, Year, Language, License
+Spirit Of Excalibur.prof: License
+Spot.prof: License
+SSN-21 Seawolf.prof: Language, License
+Star Base.prof: License
+Star Goose.prof: License
+Star Trek - 25th Anniversary.prof: License
+Star Trek - Judgment Rites.prof: License
+Star Trek - The Next Generation - The Transinium Challenge.prof: License
+Star Trek - The Rebel Universe.prof: License
+Star Trek Judgment Rites.prof: License
+Star Writer Compact.prof: License
+Stormlord.prof: Language, License
+Stratego.prof: License
+Street Fighter 2 Turbo.prof: Genre, Developer, Publisher, Year, Language, License
+Street Fighter 2.prof: Language, License
+Street Rod 2.prof: Language, License
+Street Rod.prof: Language, License
+Strider.prof: Language, License
+Strike Commander.prof: License
+Strip Poker 3.prof: Language, License
+Stronghold.prof: Language, License
+Stund Island.prof: License
+Stunts Island.prof: Language, License
+Stunts.prof: License
+SU-25.prof: Language, License
+Summer Games - Summer Challenge 1992.prof: Language, License
+Summer Games 1988.prof: Language, License
+Summer Games 3.prof: Genre, Developer, Publisher, Year, Language, License
+Summer Games.prof: License
+Summon.prof: Language, License
+Super Dune 2.prof: Language, License
+Super Space Invaders.prof: Language, License
+Super Street Fighter 2 Turbo.prof: License
+Super Street Fighter 2.prof: Language, License
+Super Tetris.prof: License
+Sword of Aragon.prof: Language, License
+Syndicate Wars.prof: Language, License
+Syndicate.prof: License
+System Shock.prof: License
+Teenage Mutant Ninja Turtles 2.prof: Language, License
+TekWar.prof: Language, License
+Terminator 2 Arcade.prof: Language, License
+Terminator 2.prof: Language, License
+Terminator 2029.prof: Language, License
+Terminator Rampage.prof: Language, License
+Test Drive 1.prof: License
+Test Drive 2.prof: License
+Test Drive 3.prof: License
+Tetris Classic.prof: License
+Tetris.prof: License
+The 3 Stooges.prof: Language, License
+The big red Adventure.prof: License
+The Catacomb Abyss 3D.prof: License
+The Clue.prof: License
+The Curse of Monkey Island.prof: Language, License
+The Even More Incredible Machine.prof: License
+The Flindstones.prof: Language, License
+The game of Robot - Junior.prof: License
+The game of Robot 1.prof: License
+The game of Robot 2.prof: License
+The game of Robot 3.prof: License
+The game of Robot 4.prof: License
+The Hobbit.prof: Genre, Developer, Publisher, Year, Language, License
+The Horde.prof: License
+The Incredible Machine 1.0.prof: License
+The Incredible Machine 2.prof: License
+The Incredible Machine.prof: License
+The legend of Kyrandia 2 - Hand of Fate.prof: License
+The Legend of Kyrandia 3  Malcolms Revenge.prof: Language, License
+The legend of Kyrandia 3 - Malcolms Revenge.prof: License
+The Legend of Kyrandia Hand of Fate.prof: Language, License
+The legend of Kyrandia.prof: License
+The Secret of Monkey Island 2  LeChucks Revenge.prof: Language, License
+The Simpsons.prof: License
+The Terminator - Future Shock.prof: License
+The Terminator - SkyNET.prof: License
+The Wild Science Arcade.prof: License
+Theme Park.prof: License
+Thunderhawk.prof: Language, License
+Thunderscape.prof: License
+Tie Fighter.prof: Language, License
+Tie-Fighter.prof: License
+Times of Lore.prof: License
+Tintin 2.prof: Language, License
+Tintin in Tibet.prof: Language, License
+Tintin.prof: Language, License
+Tomb Raider.prof: License
+Tornado.prof: License
+Transport Tycoon Deluxe.prof: License
+Transport Tycoon.prof: License
+Treasure Mountain.prof: Language, License
+Treasures of the Savage Frontier.prof: Language, License
+Turbo Pascal 6.0.prof: License
+Tutor.prof: License
+UFO - Enemy Unknown.prof: License
+Ugh.prof: License
+Ultima - Martian Dreams.prof: License
+Ultima - The Savage Empire.prof: License
+Ultima 1 - The First Age of Darkness.prof: License
+Ultima 2 - Revenge of the Enchantress.prof: License
+Ultima 3 - Exodus.prof: License
+Ultima 4 - Quest of the Avatar.prof: License
+Ultima 5 - Warriors of Destiny.prof: License
+Ultima 6 - The False Prophet.prof: License
+Ultima 7 - The Black Gate.prof: License
+Ultima 7 Part Two - Serpent Isle.prof: License
+Ultima 8 - Pagan (English).prof: License
+Ultima 8 - Pagan (Francais).prof: License
+Ultima 8 - Pagan.prof: License
+Ultima Underworld - The Stygian Abyss.prof: License
+Ultima Underworld 2  - Labyrinth of worlds.prof: License
+Ultima Underworld 2.prof: License
+Ultimate Cheater.prof: Developer, Publisher, Year, Language, License
+Ultimate Doom.prof: Language, License
+Universal Neverlock.prof: Developer, Publisher, Year, Language, License
+Unlimited Adventures.prof: Language, License
+V for Victory.prof: Language, License
+Vengeance of Excalibur.prof: Language, License
+Vette.prof: Language, License
+VGA Concentrate 2.1.prof: Genre
+VGA Concentration 1.1.prof: Genre
+VGA Concentration 1.2.prof: Genre
+VisiCalc.prof: License
+Visual Basic for DOS 1.0.prof: License
+Voka 10.prof: License
+War Diary.prof: Language, License
+Warcraft 2.prof: License
+Warcraft.prof: License
+Wastelands.prof: Language, License
+Waynes World.prof: Developer, Language, License
+Ween - The Prophecy.prof: Language, License
+Welltris.prof: License
+wh2.prof: Language, License
+Willy Beamish - The Adventure.prof: License
+Windows 2.03.prof: License
+Windows 3.0.prof: License
+Windows 3.1.prof: License
+Windows for Workgroups 3.11.prof: License
+Wing Commander 1.prof: License
+Wing Commander 2 - Vengeance of the Kilrathi.prof: License
+Wing Commander 2.prof: Language, License
+Wing Commander Academy.prof: Language, License
+Wing Commander Armada.prof: Language, License
+Wing Commander Privateer.prof: License
+Wing Commander.prof: License
+Winter Games - Winter Challenge 1991.prof: Language, License
+Winter Games 1985-1986.prof: Language, License
+Winter Games 1988.prof: Language, License
+Winter Games 1994.prof: Language, License
+Winter Games.prof: License
+Wipeout.prof: License
+Witchaven.prof: Language, License
+wof.prof: Language, License
+Wolfenstein 3D - Spear of Destiny Add-on I.prof: License
+Wolfenstein 3D - Spear of Destiny Add-on II.prof: License
+Wolfenstein 3D.prof: License
+Wolfpack.prof: License
+Word 5.0.prof: License
+Word 5.5.prof: License
+Word Perfect 5.1.prof: License
+Works 3.0.prof: License
+World Class Leaderboard Golf.prof: Language, License
+Worlds of Legend - Son of the Empire.prof: Developer, Language, License
+Worms Plus.prof: License
+Worms.prof: License
+Wrath of the Demon.prof: Language, License
+WWF Arcade.prof: Language, License
+X-COM - Terror from the Deep.prof: License
+X-Com 2.prof: License
+X-Wing.prof: License
+Xenon 2.prof: License
+Xenon.prof: License
+XMas-Lemmings 1991.prof: License
+XMas-Lemmings 1993.prof: License
+XTree Gold 3.0.prof: License
+Zak McKracken - And The Alien Mindbenders.prof: License
+Zak McKracken.prof: License
+Zeppelin.prof: Language, License
+Ökopoly.prof: License

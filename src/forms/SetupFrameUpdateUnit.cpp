@@ -73,6 +73,9 @@ void TSetupFrameUpdate::LoadLanguage()
     ui.DataReaderComboBox->setItemText(2, LanguageSetup->SetupFormUpdateDataReader2());
     ui.DataReaderComboBox->setItemText(3, LanguageSetup->SetupFormUpdateDataReader3());
     ui.DataReaderComboBox->setCurrentIndex(I);
+    // D-Fend Reborn: the MobyGames reader (configuration updates) is not used any more
+    ui.DataReaderInfoLabel->setVisible(false);
+    ui.DataReaderComboBox->setVisible(false);
     ui.PackagesLabel->setText(LanguageSetup->SetupFormUpdatePackages());
     I = ui.PackagesComboBox->currentIndex();
     ui.PackagesComboBox->setItemText(0, LanguageSetup->SetupFormUpdatePackages0());

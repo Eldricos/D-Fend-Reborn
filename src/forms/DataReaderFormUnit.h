@@ -13,7 +13,7 @@
 #include "VclLayout.h"
 #include "VclWidgets.h"
 #include "ui_DataReaderFormUnit.h"
-#include "DataReaderBaseUnit.h"
+#include "GameInfoUnit.h"
 
 class TDataReaderForm : public TVclForm
 {
@@ -57,13 +57,7 @@ public slots:
 protected:
     void showEvent(QShowEvent *E) override;
 private:
-    TStringList* GenreSt = nullptr;
-    TStringList* DeveloperSt = nullptr;
-    TStringList* PublisherSt = nullptr;
-    TStringList* YearSt = nullptr;
-    TStringList* CoverSt = nullptr;
-    TStringList* NotesSt = nullptr;
-    TDataReader* DataReader = nullptr;
+    QList<TGameInfo> Results;
     bool ShowCompleted = false;
     int LastSource = 0;
 };

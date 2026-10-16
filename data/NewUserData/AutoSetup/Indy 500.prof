@@ -43,7 +43,7 @@ IgnoreWindowsFileWarnings=0
 NoDOSBoxFailedDialog=0
 
 [ExtraInfo]
-Genre=Racing / Driving;Simulation;Sports
+Genre=Race;Simulation;Sports
 Developer=Papyrus Design Group, Inc.
 Publisher=Electronic Arts, Inc.
 Year=1989

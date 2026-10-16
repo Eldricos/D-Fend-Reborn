@@ -51,14 +51,14 @@ ExtraExe9=
 Favorite=0
 Name=The Draw 4.63
 Icon=
-Genre=ANSI art editor
+Genre=Paint program
 Developer=Ian E. Davis
 Publisher=TheSoft Programming Services
 Year=1993
 Notes=ANSI arts in the SACANSI and the SACANSI2 folder from http://www.roysac.com[13][10][13][10]Change keyb command in autoexec section to your language ![13][10](Codepage 437 is needed. This is not set via the automatic keyboard layout setting.)[13]
 WWW=http://en.wikipedia.org/wiki/TheDraw
 Language=English
-UserInfo=License=Shareware[13]
+UserInfo=License=Shareware[13][10]
 
 [sdl]
 fullscreen=0

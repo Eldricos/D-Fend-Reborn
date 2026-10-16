@@ -157,10 +157,6 @@ void TModernProfileEditorGameInfoFrame::InitGUI(TModernProfileEditorInitData& In
     St = ExtLicenseList(GetCustomLicenseName(InitData.GameDB->GetLicenseList())); E->setPickList(E->rowCount() - 1, St->ToQStringList()); delete St;
 
     ui.DownloadDataButton->setText(LanguageSetup->DataReaderButton());
-    // D-Fend Reborn: "Download game information" is disabled until the data
-    // reader works again (the game database sites it used have changed)
-    ui.DownloadDataButton->setVisible(false);
-    ui.ToolButton1->setVisible(false);
     ui.FavouriteCheckBox->setText(LanguageSetup->GameFavorite());
     {
         int L = E->x() + E->width() - ui.FavouriteCheckBox->fontMetrics().horizontalAdvance(ui.FavouriteCheckBox->text()) - 20;

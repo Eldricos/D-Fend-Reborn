@@ -20,8 +20,15 @@ Version 0.5.4 (not released yet)
 - [Fix] Games did not start with DOSBox Staging and DOSBox-X: the folders in
   the mount commands ended with a backslash before the closing quote, which
   these DOSBox versions read as an escaped quote (the drive was not mounted).
-- "Download game information" (profile editor, profile wizard) is disabled
-  until it works again with the current game database sites.
+- "Look up game information" (profile editor, profile wizard; formerly
+  "Download game information") uses the auto setup templates (offline) or,
+  if chosen, Wikidata (internet) instead of the MobyGames and TheGamesDB
+  pages, which have changed.
+- Auto setup templates: documented format (docs/AutoSetupTemplates.md), a
+  checker (tools/autosetup.py, also checked on GitHub) and an issue form to
+  submit new and improved templates. The included templates were normalised
+  (UTF-8, standard genre / language / license names, 4 digit years).
+  Exported templates are written in this format.
 - The video codec installer of DOSBox 0.74 (InstallVideoCodec.exe) is not
   included any more; videos are played with Qt Multimedia.
 - List of used components updated (Qt; components of the Delphi version

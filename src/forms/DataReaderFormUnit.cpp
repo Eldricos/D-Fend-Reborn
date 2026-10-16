@@ -2,13 +2,11 @@
 #include "DataReaderFormUnit.h"
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
-#include "InternetDataWaitFormUnit.h"
 #include "PrgSetupUnit.h"
 #include "PrgConsts.h"
 #include "IconLoaderUnit.h"
 #include "GameDBToolsUnit.h"
-#include "DataReaderMobyUnit.h"
-#include "DataReaderTheGamesDBUnit.h"
+#include "GameInfoUnit.h"
 
 TDataReaderForm* DataReaderForm = nullptr;
 
@@ -54,15 +52,9 @@ void TDataReaderForm::FormCreate(QObject* Sender)
 {
     Q_UNUSED(Sender);
     ShowCompleted = false;
-    GenreSt = new TStringList;
-    DeveloperSt = new TStringList;
-    PublisherSt = new TStringList;
-    YearSt = new TStringList;
-    CoverSt = new TStringList;
-    NotesSt = new TStringList;
-
-    DataReader = new TTheGamesDBDataReader;
-    ConfigOK = ShowDataReaderInternetConfigWaitDialog(parentWidget(), DataReader, false, LanguageSetup->DataReaderDownloadCaption(), LanguageSetup->DataReaderDownloadInfo(), LanguageSetup->DataReaderDownloadError());
+    // D-Fend Reborn: the game information comes from the auto setup templates
+    // (offline) or from Wikidata (online, optional) - see GameInfoUnit
+    ConfigOK = true;
 }
 
 void TDataReaderForm::FormShow(QObject* Sender)
@@ -83,6 +75,12 @@ void TDataReaderForm::FormShow(QObject* Sender)
 
     setWindowTitle(LanguageSetup->DataReader());
     ui.SourceLabel->setText(LanguageSetup->DataReaderSource());
+    {
+        const QSignalBlocker Block(ui.SourceComboBox);
+        ui.SourceComboBox->clear();
+        ui.SourceComboBox->addItem(LanguageSetup->DataReaderSourceTemplates());
+        ui.SourceComboBox->addItem(LanguageSetup->DataReaderSourceWikidata());
+    }
     ui.GameNameEdit_EditLabel->setText(LanguageSetup->GameName());
     ui.SearchButton->setText(LanguageSetup->Search());
     ui.SearchTypeCheckBox->setText(LanguageSetup->DataReaderSearchForDOSGames());
@@ -93,9 +91,10 @@ void TDataReaderForm::FormShow(QObject* Sender)
     ui.DeveloperCheckBox->setText(LanguageSetup->GameDeveloper());
     ui.PublisherCheckBox->setText(LanguageSetup->GamePublisher());
     ui.YearCheckBox->setText(LanguageSetup->GameYear());
-    ui.DownloadCoverCheckBox->setText(LanguageSetup->DataReaderCoverCheckbox());
-    ui.DownloadCoverAllCheckBox->setText(LanguageSetup->DataReaderCoverAllCheckbox());
     ui.DescriptionCheckBox->setText(LanguageSetup->CaptureNotes());
+    // (no covers: the templates have none, Wikidata only rarely)
+    ui.DownloadCoverCheckBox->setVisible(false);
+    ui.DownloadCoverAllCheckBox->setVisible(false);
 
     ui.InsertButton->setText(LanguageSetup->DataReaderInsert());
     ui.CancelButton->setText(LanguageSetup->Cancel());
@@ -104,37 +103,30 @@ void TDataReaderForm::FormShow(QObject* Sender)
     UserIconLoader->DialogImage(DI_OK, ui.InsertButton);
     UserIconLoader->DialogImage(DI_Cancel, ui.CancelButton);
 
-    ui.SourceComboBox->setCurrentIndex(Min(ui.SourceComboBox->count() - 1, Max(0, PrgSetup->DataReaderSource())));
-    SourceComboBoxChange(nullptr);
-
+    ui.SourceComboBox->setCurrentIndex(Min(ui.SourceComboBox->count() - 1, Max(0, PrgSetup->GameInfoSource())));
+    LastSource = ui.SourceComboBox->currentIndex();
     ui.SearchTypeCheckBox->setChecked(!PrgSetup->DataReaderAllPlatforms());
-
-    if (!Trim(ui.GameNameEdit->text()).isEmpty()) SearchButtonClick(Sender); else ListBoxClick(Sender);
-    ShowCompleted = true;
+    ui.SearchTypeCheckBox->setVisible(ui.SourceComboBox->currentIndex() == 1);
 
     S = Trim(PrgSetup->DataReaderActiveSettings());
-    while (Length(S) < 7) S = S + "X";
-    if (Length(S) > 7) S = Copy(S, 1, 7);
-    // S[8] reads behind the 7 chars in Delphi (#0, i.e. "not '-'")
+    while (Length(S) < 8) S = S + "X";
     auto Ch = [&S](int I) { return (I <= Length(S)) ? S[I - 1] : QChar(0); };
     ui.NameCheckBox->setChecked(Ch(1) != '-');
     ui.GenreCheckBox->setChecked(Ch(2) != '-');
     ui.DeveloperCheckBox->setChecked(Ch(3) != '-');
     ui.PublisherCheckBox->setChecked(Ch(4) != '-');
     ui.YearCheckBox->setChecked(Ch(5) != '-');
-    ui.DownloadCoverCheckBox->setChecked(Ch(6) != '-');
-    ui.DownloadCoverAllCheckBox->setEnabled(ui.DownloadCoverCheckBox->isChecked());
-    ui.DownloadCoverAllCheckBox->setChecked(Ch(7) != '-');
     ui.DescriptionCheckBox->setChecked(Ch(8) != '-');
 
-    ui.SearchTypeCheckBox->setVisible(ExtUpperCase(Trim(DataReader->GetListURL(false))) != ExtUpperCase(Trim(DataReader->GetListURL(true))));
+    if (!Trim(ui.GameNameEdit->text()).isEmpty()) SearchButtonClick(Sender); else ListBoxClick(Sender);
+    ShowCompleted = true;
 }
 
 void TDataReaderForm::FormDestroy(QObject* Sender)
 {
     Q_UNUSED(Sender);
     QString S;
-    PrgSetup->SetDataReaderSource(ui.SourceComboBox->currentIndex());
+    PrgSetup->SetGameInfoSource(ui.SourceComboBox->currentIndex());
 
     S = "";
     if (ui.NameCheckBox->isChecked()) S = S + "X"; else S = S + "-";
@@ -142,19 +134,9 @@ void TDataReaderForm::FormDestroy(QObject* Sender)
     if (ui.DeveloperCheckBox->isChecked()) S = S + "X"; else S = S + "-";
     if (ui.PublisherCheckBox->isChecked()) S = S + "X"; else S = S + "-";
     if (ui.YearCheckBox->isChecked()) S = S + "X"; else S = S + "-";
-    if (ui.DownloadCoverCheckBox->isChecked()) S = S + "X"; else S = S + "-";
-    if (ui.DownloadCoverAllCheckBox->isChecked()) S = S + "X"; else S = S + "-";
+    S = S + "--";   // (cover settings of the old data reader)
     if (ui.DescriptionCheckBox->isChecked()) S = S + "X"; else S = S + "-";
-
     PrgSetup->SetDataReaderActiveSettings(S);
-
-    delete GenreSt; GenreSt = nullptr;
-    delete DeveloperSt; DeveloperSt = nullptr;
-    delete PublisherSt; PublisherSt = nullptr;
-    delete YearSt; YearSt = nullptr;
-    delete CoverSt; CoverSt = nullptr;
-    delete NotesSt; NotesSt = nullptr;
-    delete DataReader; DataReader = nullptr;
 }
 
 void TDataReaderForm::DownloadCoverCheckBoxClick(QObject* Sender)
@@ -179,82 +161,39 @@ void TDataReaderForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)
 
 void TDataReaderForm::SearchButtonClick(QObject* Sender)
 {
-    int I;
-    QWidget* O;
+    Q_UNUSED(Sender);
+    QString Error;
+    bool OK = true;
+
+    Results.clear();
+    if (ui.SourceComboBox->currentIndex() == 1) {
+        OK = SearchWikidataGameInfo(ui.GameNameEdit->text(), ui.SearchTypeCheckBox->isChecked(), Results, Error);
+    } else {
+        Results = SearchTemplateGameInfo(ui.GameNameEdit->text());
+    }
 
     {
         QSignalBlocker Block(ui.ListBox);   // Items.Clear does not fire OnClick in VCL
         ui.ListBox->clear();
-    }
-    GenreSt->Clear();
-    DeveloperSt->Clear();
-    PublisherSt->Clear();
-    YearSt->Clear();
-    CoverSt->Clear();
-    NotesSt->Clear();
-
-    // Note: Delphi disables the form (Enabled:=False) while the modal wait dialog
-    // is shown.  In Qt a disabled parent would also disable the child dialog; the
-    // modal dialog blocks the input anyway.
-    if (ShowCompleted) O = this; else O = parentWidget();
-    if (ShowDataReaderInternetListWaitDialog(O, DataReader, ui.GameNameEdit->text(), LanguageSetup->DataReaderDownloadCaption(), LanguageSetup->DataReaderDownloadInfo(), LanguageSetup->DataReaderDownloadError())) {
-        QSignalBlocker Block(ui.ListBox);
-        for (I = 0; I < DataReader->GameNames()->Count(); I++) {
-            ui.ListBox->addItem((*DataReader->GameNames())[I]);
-            GenreSt->Add("");
-            DeveloperSt->Add("");
-            PublisherSt->Add("");
-            YearSt->Add("");
-            CoverSt->Add("");
-            NotesSt->Add("");
-        }
-    } else {
-        ListBoxClick(Sender);
-    }
-
-    /* finally */
-    {
-        QSignalBlocker Block(ui.ListBox);
+        for (const TGameInfo& Info : Results) ui.ListBox->addItem(Info.Year.isEmpty() ? Info.Name : (Info.Name + " (" + Info.Year + ")"));
         if (ui.ListBox->count() > 0) ui.ListBox->setCurrentRow(0);
     }
+    if (!OK) MessageDlg(Format(LanguageSetup->DataReaderDownloadError(), {"Wikidata"}) + "\n\n" + Error, mtError, mbOK, 0);
     ListBoxClick(Sender);
     if (ui.ListBox->count() > 0) ui.ListBox->setFocus();
 }
 
 void TDataReaderForm::SearchTypeCheckBoxClick(QObject* Sender)
 {
-    Q_UNUSED(Sender);
     PrgSetup->SetDataReaderAllPlatforms(!ui.SearchTypeCheckBox->isChecked());
+    if ((Sender != nullptr) && ShowCompleted && (ui.SourceComboBox->currentIndex() == 1)) SearchButtonClick(Sender);
 }
 
 void TDataReaderForm::SourceComboBoxChange(QObject* Sender)
 {
-    bool B;
-    if (DataReader != nullptr) { delete DataReader; DataReader = nullptr; }
-
-    switch (ui.SourceComboBox->currentIndex()) {
-        case 0: DataReader = new TTheGamesDBDataReader; break;
-        case 1: {
-            DataReader = new TMobyDataReader;
-            B = ShowDataReaderInternetConfigWaitDialog(parentWidget(), DataReader, false, LanguageSetup->DataReaderDownloadCaption(), LanguageSetup->DataReaderDownloadInfo(), LanguageSetup->DataReaderDownloadError());
-            if (!B) {
-                ui.SourceComboBox->setCurrentIndex(0);
-                SourceComboBoxChange(nullptr);
-                return;
-            }
-            break;
-        }
-    }
-
+    ui.SearchTypeCheckBox->setVisible(ui.SourceComboBox->currentIndex() == 1);
     if ((Sender != nullptr) && (LastSource != ui.SourceComboBox->currentIndex())) SearchButtonClick(Sender);
     LastSource = ui.SourceComboBox->currentIndex();
-}
-
-static QString ProcessGenre(const QString& S)
-{
-    QString result = S;
-    for (int I = 1; I <= Length(result); I++) if (result[I - 1] == ',') result[I - 1] = ';';
-    return result;
 }
 
 static QString BuildHint(const QString& AText)
@@ -282,15 +221,12 @@ static QString BuildHint(const QString& AText)
 void TDataReaderForm::ListBoxClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    TDataReaderGameDataThread* DataReaderGameDataThread;
-    int Nr;
-    QWidget* O;
-
-    Nr = ui.ListBox->currentRow();
-    if (Nr < 0) {
+    const int Nr = ui.ListBox->currentRow();
+    if ((Nr < 0) || (Nr >= Results.count())) {
         ui.GameDataBox->setTitle(LanguageSetup->DataReaderNoSearchResults());
         ui.InsertButton->setEnabled(false);
         ui.NameCheckBox->setEnabled(false);
+        ui.NameLabel->setText("");
         ui.GenreCheckBox->setEnabled(false);
         ui.GenreLabel->setText("");
         ui.DeveloperCheckBox->setEnabled(false);
@@ -299,98 +235,51 @@ void TDataReaderForm::ListBoxClick(QObject* Sender)
         ui.PublisherLabel->setText("");
         ui.YearCheckBox->setEnabled(false);
         ui.YearLabel->setText("");
-        ui.DownloadCoverCheckBox->setEnabled(false);
-        ui.DownloadCoverAllCheckBox->setEnabled(false);
-        ui.DeveloperCheckBox->setEnabled(false);
+        ui.DescriptionCheckBox->setEnabled(false);
         return;
     }
 
-    if ((Trim((*GenreSt)[Nr]).isEmpty()) && (Trim((*DeveloperSt)[Nr]).isEmpty()) && (Trim((*PublisherSt)[Nr]).isEmpty()) && (Trim((*YearSt)[Nr]).isEmpty()) && (Trim((*CoverSt)[Nr]).isEmpty()) && (Trim((*NotesSt)[Nr]).isEmpty())) {
-        // Enabled:=False / True around the modal dialog: see SearchButtonClick
-        if (ShowCompleted) O = this; else O = parentWidget();
-        DataReaderGameDataThread = ShowDataReaderInternetDataWaitDialog(O, DataReader, Nr, false, LanguageSetup->DataReaderDownloadCaption(), LanguageSetup->DataReaderDownloadInfo(), LanguageSetup->DataReaderDownloadError());
-        if (DataReaderGameDataThread != nullptr) {
-            (*GenreSt)[Nr] = GetCustomGenreName(ProcessGenre(DataReaderGameDataThread->Genre()));
-            (*DeveloperSt)[Nr] = DataReaderGameDataThread->Developer();
-            (*PublisherSt)[Nr] = DataReaderGameDataThread->Publisher();
-            (*YearSt)[Nr] = DataReaderGameDataThread->Year();
-            (*CoverSt)[Nr] = DataReaderGameDataThread->ImageURL();
-            (*NotesSt)[Nr] = DecodeHTMLSymbols(DataReaderGameDataThread->Notes());
-            delete DataReaderGameDataThread;
-        }
+    TGameInfo& Info = Results[Nr];
+    if (!Info.DetailsLoaded) {
+        QString Error;
+        if (!LoadWikidataGameInfo(Info, Error)) MessageDlg(Format(LanguageSetup->DataReaderDownloadError(), {"Wikidata"}) + "\n\n" + Error, mtError, mbOK, 0);
     }
 
-    ui.GameDataBox->setTitle(ui.ListBox->item(Nr)->text());
-    ui.NameLabel->setText(ui.ListBox->item(Nr)->text());
-    ui.NameCheckBox->setEnabled(true);
-    ui.GenreCheckBox->setEnabled(!Trim((*GenreSt)[Nr]).isEmpty());
-    ui.GenreLabel->setText((*GenreSt)[Nr]);
-    ui.DeveloperCheckBox->setEnabled(!Trim((*DeveloperSt)[Nr]).isEmpty());
-    ui.DeveloperLabel->setText((*DeveloperSt)[Nr]);
-    ui.PublisherCheckBox->setEnabled(!Trim((*PublisherSt)[Nr]).isEmpty());
-    ui.PublisherLabel->setText((*PublisherSt)[Nr]);
-    ui.YearCheckBox->setEnabled(!Trim((*YearSt)[Nr]).isEmpty());
-    ui.YearLabel->setText((*YearSt)[Nr]);
-    ui.DownloadCoverCheckBox->setEnabled(!Trim((*CoverSt)[Nr]).isEmpty());
-    ui.DownloadCoverAllCheckBox->setEnabled(ui.DownloadCoverCheckBox->isEnabled() && (Pos("$", (*CoverSt)[Nr]) > 0));
-    ui.DescriptionCheckBox->setEnabled(!Trim((*NotesSt)[Nr]).isEmpty());
-    ui.DescriptionCheckBox->setToolTip(BuildHint((*NotesSt)[Nr]));
+    const QString Genre = GetCustomGenreName(Info.Genre);   // (in the program language)
+    ui.GameDataBox->setTitle(Info.Name);
+    ui.NameLabel->setText(Info.Name);
+    ui.NameCheckBox->setEnabled(!Info.Name.isEmpty());
+    ui.GenreCheckBox->setEnabled(!Genre.isEmpty());
+    ui.GenreLabel->setText(Genre);
+    ui.DeveloperCheckBox->setEnabled(!Info.Developer.isEmpty());
+    ui.DeveloperLabel->setText(Info.Developer);
+    ui.PublisherCheckBox->setEnabled(!Info.Publisher.isEmpty());
+    ui.PublisherLabel->setText(Info.Publisher);
+    ui.YearCheckBox->setEnabled(!Info.Year.isEmpty());
+    ui.YearLabel->setText(Info.Year);
+    ui.DescriptionCheckBox->setEnabled(!Info.Notes.isEmpty());
+    ui.DescriptionCheckBox->setToolTip(BuildHint(Info.Notes));
+    ui.GameDataBox->setToolTip(Info.Internet);
 
-    ui.InsertButton->setEnabled((!Trim((*GenreSt)[Nr]).isEmpty()) || (!Trim((*DeveloperSt)[Nr]).isEmpty()) || (!Trim((*PublisherSt)[Nr]).isEmpty()) || (!Trim((*YearSt)[Nr]).isEmpty()) || (!Trim((*CoverSt)[Nr]).isEmpty()) || (!Trim((*NotesSt)[Nr]).isEmpty()));
+    ui.InsertButton->setEnabled(true);
 }
 
 void TDataReaderForm::InsertButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    QString S, T;
-    int I;
-    TDataReaderGameDataThread* DataReaderGameDataThread;
-
-    Name = "";
-    Genre = "";
-    Developer = "";
-    Publisher = "";
-    Year = "";
-    Notes = "";
+    Name = ""; Genre = ""; Developer = ""; Publisher = ""; Year = ""; Internet = ""; Notes = "";
 
     const int Nr = ui.ListBox->currentRow();
-    if (Nr < 0) return;   // Delphi would raise an index error here
+    if ((Nr < 0) || (Nr >= Results.count())) return;
+    const TGameInfo& Info = Results[Nr];
 
-    if (ui.NameCheckBox->isEnabled() && ui.NameCheckBox->isChecked()) Name = ui.ListBox->item(Nr)->text();
+    if (ui.NameCheckBox->isEnabled() && ui.NameCheckBox->isChecked()) Name = Info.Name;
     if (ui.GenreCheckBox->isEnabled() && ui.GenreCheckBox->isChecked()) Genre = ui.GenreLabel->text();
-    if (ui.DeveloperCheckBox->isEnabled() && ui.DeveloperCheckBox->isChecked()) Developer = ui.DeveloperLabel->text();
-    if (ui.PublisherCheckBox->isEnabled() && ui.PublisherCheckBox->isChecked()) Publisher = ui.PublisherLabel->text();
-    if (ui.YearCheckBox->isEnabled() && ui.YearCheckBox->isChecked()) Year = ui.YearLabel->text();
-
-    if (ui.DownloadCoverCheckBox->isEnabled() && ui.DownloadCoverCheckBox->isChecked() && (!CaptureDir.isEmpty())) {
-        ForceDirectories(CaptureDir);
-        if (ui.DownloadCoverAllCheckBox->isChecked()) {
-            /* Get URLs of all images */
-            DataReaderGameDataThread = ShowDataReaderInternetDataWaitDialog(this, DataReader, Nr, true, LanguageSetup->DataReaderDownloadCaption(), LanguageSetup->DataReaderDownloadInfo(), LanguageSetup->DataReaderDownloadError());
-            if (DataReaderGameDataThread != nullptr) {
-                S = DataReaderGameDataThread->ImageURL();
-                delete DataReaderGameDataThread;
-            }
-            /* Download all */
-            TStringList St;
-            I = Pos("$", S); while (I > 0) {
-                T = Trim(Copy(S, 1, I - 1));
-                S = Trim(Copy(S, I + 1, MaxInt));
-                St.Add(T);
-                if (!ui.DownloadCoverAllCheckBox->isChecked()) break;
-                I = Pos("$", S);
-            }
-            St.Add(S);
-            if (St.Count() > 0) ShowDataReaderInternetCoverWaitDialog(this, DataReader, &St, CaptureDir, LanguageSetup->DataReaderDownloadCaption(), LanguageSetup->DataReaderDownloadInfo(), LanguageSetup->DataReaderDownloadError());
-        } else {
-            S = (*CoverSt)[Nr];
-            /* Download first */
-            I = Pos("$", S); if (I > 0) S = Trim(Copy(S, 1, I - 1));
-            ShowDataReaderInternetCoverWaitDialog(this, DataReader, S, CaptureDir, LanguageSetup->DataReaderDownloadCaption(), LanguageSetup->DataReaderDownloadInfo(), LanguageSetup->DataReaderDownloadError());
-        }
-    }
-
-    if (ui.DescriptionCheckBox->isEnabled() && ui.DescriptionCheckBox->isChecked()) Notes = (*NotesSt)[Nr];
+    if (ui.DeveloperCheckBox->isEnabled() && ui.DeveloperCheckBox->isChecked()) Developer = Info.Developer;
+    if (ui.PublisherCheckBox->isEnabled() && ui.PublisherCheckBox->isChecked()) Publisher = Info.Publisher;
+    if (ui.YearCheckBox->isEnabled() && ui.YearCheckBox->isChecked()) Year = Info.Year;
+    if (ui.DescriptionCheckBox->isEnabled() && ui.DescriptionCheckBox->isChecked()) Notes = Info.Notes;
+    Internet = Info.Internet;   // (only used if the profile has no web site yet)
 }
 
 /* global */

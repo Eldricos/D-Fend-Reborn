@@ -51,14 +51,14 @@ ExtraExe9=
 Favorite=0
 Name=AnsiDraw 3.0
 Icon=
-Genre=ANSI art editor
+Genre=Paint program
 Developer=Amrich Enterprises
 Publisher=Amrich Enterprises
 Year=1985
 Notes=Change keyb command in autoexec section to your language ![13][10](Codepage 437 is needed. This is not set via the automatic keyboard layout setting.)[13]
 WWW=
 Language=English
-UserInfo=License=Shareware[13]
+UserInfo=License=Shareware[13][10]
 
 [sdl]
 fullscreen=0

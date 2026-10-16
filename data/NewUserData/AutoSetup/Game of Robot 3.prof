@@ -62,7 +62,7 @@ Year=1992
 Notes=
 WWW=http://www.game-of-robot.de/
 Language=German
-UserInfo=License=Shareware[13]
+UserInfo=License=Shareware[13][10]
 
 [sdl]
 fullscreen=0

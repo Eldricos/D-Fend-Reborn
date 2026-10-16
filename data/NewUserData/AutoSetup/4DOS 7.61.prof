@@ -51,14 +51,14 @@ ExtraExe9=
 Favorite=0
 Name=4DOS 7.61
 Icon=4DOS.ICO
-Genre=File manager
+Genre=File Manager
 Developer=Rex Conn & JP Software
 Publisher=L. I. Georgiev
 Year=2008
 Notes=
 WWW=http://4dos.hit.bg/
 Language=English
-UserInfo=License=Freeware[13]
+UserInfo=License=Freeware[13][10]
 
 [sdl]
 fullscreen=0

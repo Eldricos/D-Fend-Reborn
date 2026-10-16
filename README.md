@@ -25,6 +25,12 @@ cmake --build build
 
 or open `CMakeLists.txt` in Qt Creator.
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). New or improved auto setup templates
+(game profiles with game information) are especially welcome - format and
+checker: [docs/AutoSetupTemplates.md](docs/AutoSetupTemplates.md).
+
 ## Data files
 
 `data/` holds the run-time files of the original program in the layout of an

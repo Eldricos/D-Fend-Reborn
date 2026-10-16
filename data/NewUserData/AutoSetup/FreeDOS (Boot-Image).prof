@@ -51,14 +51,14 @@ ExtraExe9=
 Favorite=0
 Name=FreeDOS (Boot-Image)
 Icon=FDCOM.ICO
-Genre=Operating System
+Genre=Operating system
 Developer=The FreeDOS Project
 Publisher=The FreeDOS Project
 Year=2006
 Notes=
 WWW=http://www.freedos.org/
 Language=English
-UserInfo=License=GPL[13]
+UserInfo=License=Open Source[13][10]
 
 [sdl]
 fullscreen=0

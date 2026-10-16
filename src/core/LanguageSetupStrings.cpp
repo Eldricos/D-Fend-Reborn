@@ -1900,7 +1900,7 @@ void TLanguageSetup::SetupLanguageStrings4()
     AddStringRec(NR_RenameAllThisProfile, QStringLiteral("RenameAll"), QStringLiteral("ThisProfile"), QStringLiteral("Rename all files in the selected profile"));
     AddStringRec(NR_RenameAllAllProfiles, QStringLiteral("RenameAll"), QStringLiteral("AllProfiles"), QStringLiteral("Rename all files in all profiles"));
     AddStringRec(NR_DataReader, QStringLiteral("DataReader"), QStringLiteral("Caption"), QStringLiteral("Read game data"));
-    AddStringRec(NR_DataReaderButton, QStringLiteral("DataReader"), QStringLiteral("Button"), QStringLiteral("Download game information"));
+    AddStringRec(NR_DataReaderButton, QStringLiteral("DataReader"), QStringLiteral("Button"), QStringLiteral("Look up game information"));
     AddStringRec(NR_DataReaderSearchForDOSGames, QStringLiteral("DataReader"), QStringLiteral("DOSGamesOnly"), QStringLiteral("Search for DOS games only"));
     AddStringRec(NR_DataReaderSearchResults, QStringLiteral("DataReader"), QStringLiteral("SearchResults"), QStringLiteral("Search results"));
     AddStringRec(NR_DataReaderNoSearchResults, QStringLiteral("DataReader"), QStringLiteral("NoGameSelected"), QStringLiteral("No game name selected"));
@@ -1911,6 +1911,8 @@ void TLanguageSetup::SetupLanguageStrings4()
     AddStringRec(NR_DataReaderDownloadInfo, QStringLiteral("DataReader"), QStringLiteral("Download.Info"), QStringLiteral("Loading data from %s, please wait..."));
     AddStringRec(NR_DataReaderDownloadError, QStringLiteral("DataReader"), QStringLiteral("Download.Error"), QStringLiteral("Error reading data from %s"));
     AddStringRec(NR_DataReaderSource, QStringLiteral("DataReader"), QStringLiteral("Source"), QStringLiteral("Data source"));
+    AddStringRec(NR_DataReaderSourceTemplates, QStringLiteral("DataReader"), QStringLiteral("Source.Templates"), QStringLiteral("D-Fend Reborn auto setup templates (offline)"));
+    AddStringRec(NR_DataReaderSourceWikidata, QStringLiteral("DataReader"), QStringLiteral("Source.Wikidata"), QStringLiteral("Wikidata (internet, www.wikidata.org)"));
     AddStringRec(NR_InstallationSupport, QStringLiteral("InstallationSupport"), QStringLiteral("Caption"), QStringLiteral("Install game from source media"));
     AddStringRec(NR_InstallationSupportSourceFloppy, QStringLiteral("InstallationSupport"), QStringLiteral("Source.Floppy"), QStringLiteral("Install from real floppy disks"));
     AddStringRec(NR_InstallationSupportSourceFolder, QStringLiteral("InstallationSupport"), QStringLiteral("Source.Folder"), QStringLiteral("Install from folder"));
