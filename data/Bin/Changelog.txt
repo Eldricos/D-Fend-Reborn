@@ -2,7 +2,7 @@ D-Fend Reborn Changelog
 
 
 Version 0.5.5 (10/16/2026)
-================================
+==========================
 - DOSBox Staging: the settings of the profiles are written with the names
   of DOSBox Staging (e.g. cpu_cycles, mouse_capture, keyboard_layout);
   settings DOSBox Staging does not have any more (scaler, output, pixel
@@ -32,6 +32,10 @@ Version 0.5.5 (10/16/2026)
   values; values added or removed by the user stay as they are.
 - Linux: the option "Start with Windows" is called "Start when logging
   in" (it creates an autostart entry of the desktop session).
+- Edit multiple profiles: new section "DOSBox Staging" with the settings of
+  the DOSBox Staging page of the profile editor.
+- [Fix] Edit multiple profiles: the list of settings could not be scrolled
+  (the lower sections were not reachable).
 
 
 Version 0.5.4 (10/15/2026)

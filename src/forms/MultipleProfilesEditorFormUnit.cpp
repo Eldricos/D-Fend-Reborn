@@ -850,6 +850,16 @@ void TMultipleProfilesEditorForm::InitSettings()
         AddEditSetting(12605, LanguageSetup->GameNE2000RealInterface(), "", -1);
     }
 
+    /* DOSBox Staging (settings only DOSBox Staging has; "default": DOSBox Staging decides) */
+    AddCaption(LanguageSetup->ProfileEditorGeneralSheet() + " - DOSBox Staging");
+    for (I = 0; I < StagingSettingCount; I++) {
+        St = ValueToList(ConfOpt->StagingValues(I), ";,");
+        for (J = St->Count() - 1; J >= 0; J--) if (Trim((*St)[J]).isEmpty() || (Trim((*St)[J]) == "default")) St->Delete(J);
+        St->Insert(0, "default");
+        AddSetting(16001 + I, LanguageSetup->ProfileEditorStagingSetting(I), St, StagingSettings[I].Kind != skList, -1, true);
+        if (auto* C = qobject_cast<QComboBox*>(Sections.last().Settings.last().Values[0].Control)) if (C->isEditable()) C->setEditText("default");
+    }
+
     /* ScummVM */
     AddCaption(LanguageSetup->ProfileEditorScummVMSheet());
     AddSetting(13001, LanguageSetup->ProfileEditorScummVMPlatform(), ValueToList(ConfOpt->ScummVMPlatform(), ";,"), false, ValueWidth, true);
@@ -924,6 +934,8 @@ void TMultipleProfilesEditorForm::CaptionClick(QObject* Sender)
     }
 
     // ScrollBox.AutoScroll:=True; -> size of the scroll area contents
+    // (vclContentsHeight: kept by the layout code when the dialog is resized)
+    ui.ScrollBox_Contents->setProperty("vclContentsHeight", LastY);
     ui.ScrollBox_Contents->resize(ui.ScrollBox->viewport()->width(), LastY);
     ui.ScrollBox_Contents->setUpdatesEnabled(true);
     ui.ScrollBox->verticalScrollBar()->setValue(VertScrollBarPos);
@@ -1260,6 +1272,12 @@ void TMultipleProfilesEditorForm::OKButtonClick(QObject* Sender)
                 if (ValueActive(12603)) { if (TryStrToInt(GetComboText(), J)) G->SetNE2000IRQ(J); }
                 if (ValueActive(12604)) G->SetNE2000MACAddress(GetEditText());
                 if (ValueActive(12605)) G->SetNE2000RealInterface(GetEditText());
+            }
+
+            /* DOSBox Staging */
+            for (J = 0; J < StagingSettingCount; J++) if (ValueActive(16001 + J)) {
+                S = Trim(GetComboText());
+                G->SetStagingSetting(J, S.isEmpty() ? QStringLiteral("default") : S);
             }
         }
 
