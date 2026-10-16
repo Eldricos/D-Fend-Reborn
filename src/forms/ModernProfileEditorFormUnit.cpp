@@ -4,6 +4,8 @@
 #include <typeinfo>
 
 #include "LanguageSetupUnit.h"
+#include "DosBoxUnit.h"
+#include "DOSBoxConfUnit.h"
 #include "ModernProfileEditorBaseFrameUnit.h"
 #include "ModernProfileEditorGameInfoFrameUnit.h"
 #include "ModernProfileEditorDirectoryFrameUnit.h"
@@ -673,6 +675,7 @@ void TModernProfileEditorForm::TreeChange(QObject* Sender, QTreeWidgetItem* Node
         LastVisibleFrame->setVisible(true);
         LastVisibleFrame->raise();
         if (FrameList[I].ShowFrame) FrameList[I].ShowFrame(this);
+        MarkIgnoredDOSBoxSettings(LastVisibleFrame, ProfileDOSBoxInstallation);
         ui.TopPanel_Caption->setText("  " + Sel->text(0));
     }
 }
@@ -978,4 +981,74 @@ void AddDefaultValueHint(QComboBox* AComboBox)
     if (Length(S) > 80) for (I = 80; I >= 1; I--) if (S[I - 1] == QChar(32)) { S[I - 1] = QChar('\n'); break; }
     AComboBox->setToolTip(S);
     // ShowHint:=True is the default in Qt
+}
+
+namespace {
+
+struct TIgnoredSettingWidgets {
+    const char* Frame;    // object name of the profile editor page
+    const char* Section;  // DOSBox 0.74 setting
+    const char* Key;
+    QStringList Widgets;  // "*": all widgets of the page
+};
+
+void SetDOSBoxSettingIgnored(QWidget* W, bool Ignored, const QString& Hint)
+{
+    if (W->property("DFRIgnoredSetting").toBool() == Ignored) return;
+    if (Ignored) {
+        W->setProperty("DFRToolTip", W->toolTip());
+        W->setToolTip(Hint);
+    } else {
+        W->setToolTip(W->property("DFRToolTip").toString());
+    }
+    W->setEnabled(!Ignored);
+    W->setProperty("DFRIgnoredSetting", Ignored);
+}
+
+} // namespace
+
+void MarkIgnoredDOSBoxSettings(QWidget* Frame, const QString& DOSBoxInstallation)
+{
+    static const QList<TIgnoredSettingWidgets> Table = {
+        {"ModernProfileEditorGraphicsFrame", "sdl", "fulldouble", {QStringLiteral("DoublebufferingCheckBox")}},
+        {"ModernProfileEditorGraphicsFrame", "sdl", "fullresolution", {QStringLiteral("FullscreenResolutionComboBox"), QStringLiteral("FullscreenResolutionLabel")}},
+        {"ModernProfileEditorGraphicsFrame", "sdl", "output", {QStringLiteral("RenderComboBox"), QStringLiteral("RenderLabel")}},
+        {"ModernProfileEditorGraphicsFrame", "sdl", "pixelshader", {QStringLiteral("PixelShaderComboBox"), QStringLiteral("PixelShaderLabel")}},
+        {"ModernProfileEditorGraphicsFrame", "render", "scaler", {QStringLiteral("ScaleComboBox"), QStringLiteral("ScaleLabel")}},
+        {"ModernProfileEditorGraphicsFrame", "render", "frameskip", {QStringLiteral("FrameSkipEdit"), QStringLiteral("FrameSkipLabel")}},
+        {"ModernProfileEditorGraphicsFrame", "vga", "svgachipset", {QStringLiteral("VGAChipsetComboBox"), QStringLiteral("VGAChipsetLabel")}},
+        {"ModernProfileEditorGraphicsFrame", "glide", "glide", {QStringLiteral("GlideEmulationComboBox"), QStringLiteral("GlideEmulationLabel"), QStringLiteral("GlideEmulationPortComboBox"), QStringLiteral("GlideEmulationPortLabel"), QStringLiteral("GlideEmulationLFBComboBox"), QStringLiteral("GlideEmulationLFBLabel")}},
+        {"ModernProfileEditorDOSBoxFrame", "sdl", "priority", {QStringLiteral("DOSBoxForegroundPriorityComboBox"), QStringLiteral("DOSBoxForegroundPriorityLabel"), QStringLiteral("DOSBoxBackgroundPriorityComboBox"), QStringLiteral("DOSBoxBackgroundPriorityLabel")}},
+        {"ModernProfileEditorKeyboardFrame", "sdl", "usescancodes", {QStringLiteral("UseScancodesCheckBox")}},
+        {"ModernProfileEditorNetworkFrame", "ne2000", "realnic", {QStringLiteral("NE2000RealNICEdit"), QStringLiteral("NE2000RealNICEdit_EditLabel")}},
+        {"ModernProfileEditorPrinterFrame", "printer", "printer", {QStringLiteral("*")}},
+        {"ModernProfileEditorSoundBlasterFrame", "sblaster", "oplemu", {QStringLiteral("OplEmuComboBox"), QStringLiteral("OplEmuLabel")}},
+        {"ModernProfileEditorSoundBlasterFrame", "sblaster", "oplrate", {QStringLiteral("OplSampleRateComboBox"), QStringLiteral("OplSampleRateLabel")}},
+        {"ModernProfileEditorGUSFrame", "gus", "gusrate", {QStringLiteral("SampleRateComboBox"), QStringLiteral("SampleRateLabel")}},
+        {"ModernProfileEditorSoundFrame", "speaker", "pcrate", {QStringLiteral("PCSpeakerSampleRateComboBox"), QStringLiteral("PCSpeakerSampleRateLabel")}},
+        {"ModernProfileEditorSoundFrame", "speaker", "tandyrate", {QStringLiteral("TandyComboBox"), QStringLiteral("TandySampleRateLabel")}},
+        {"ModernProfileEditorInnovaFrame", "innova", "samplerate", {QStringLiteral("InnovaSampleRateComboBox"), QStringLiteral("InnovaSampleRateLabel")}},
+        {"ModernProfileEditorInnovaFrame", "innova", "sidbase", {QStringLiteral("InnovaBaseComboBox"), QStringLiteral("InnovaBaseLabel")}},
+        {"ModernProfileEditorInnovaFrame", "innova", "quality", {QStringLiteral("InnovaQualityComboBox"), QStringLiteral("InnovaQualityLabel")}},
+    };
+
+    if (Frame == nullptr) return;
+    const QString Name = Frame->objectName();
+    bool Found = false;
+    for (const TIgnoredSettingWidgets& E : Table) if (Name == QLatin1String(E.Frame)) { Found = true; break; }
+    if (!Found) return;
+
+    const TDOSBoxKind Kind = DOSBoxKindOfProfileInstallation(DOSBoxInstallation);
+    const QString Hint = LanguageSetup->ProfileEditorDOSBoxSettingIgnored();
+    for (const TIgnoredSettingWidgets& E : Table) {
+        if (Name != QLatin1String(E.Frame)) continue;
+        const bool Ignored = DOSBoxSettingIgnored(Kind, QLatin1String(E.Section), QLatin1String(E.Key));
+        for (const QString& W : E.Widgets) {
+            if (W == QLatin1String("*")) {
+                for (QWidget* C : Frame->findChildren<QWidget*>(QString(), Qt::FindDirectChildrenOnly)) SetDOSBoxSettingIgnored(C, Ignored, Hint);
+            } else if (QWidget* C = Frame->findChild<QWidget*>(W)) {
+                SetDOSBoxSettingIgnored(C, Ignored, Hint);
+            }
+        }
+    }
 }

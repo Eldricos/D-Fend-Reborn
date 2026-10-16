@@ -1,4 +1,4 @@
-#include "DOSBoxStagingConfUnit.h"
+#include "DOSBoxConfUnit.h"
 
 #include <QList>
 #include <QMap>
@@ -39,6 +39,12 @@
 //                                          [ethernet] (same names)
 //              realnic                     removed (Staging uses slirp)
 //   [vga], [glide], [printer]              removed (not in DOSBox Staging)
+//
+// DOSBox-X (checked with 2024.03.01) still reads the DOSBox 0.74 names; only
+// two settings are in other sections (DOSBox-X logs "Redirected" / "Migrated"):
+//
+//   [dosbox]   vmemsize                    [video] vmemsize
+//   [ne2000]   realnic                     [ethernet, pcap] realnic
 
 namespace {
 
@@ -59,17 +65,39 @@ QString MapperFileForSDL2(const QString& FileName)
     return FileName.left(Dot) + QStringLiteral("-sdl2") + FileName.mid(Dot);
 }
 
+// DOSBox 0.74 settings without effect in DOSBox Staging ("*": whole section)
+const QMap<QString, QStringList>& StagingIgnoredSettings()
+{
+    static const QMap<QString, QStringList> Map = {
+        {QStringLiteral("sdl"), {QStringLiteral("fulldouble"), QStringLiteral("fullresolution"), QStringLiteral("output"), QStringLiteral("waitonerror"), QStringLiteral("priority"), QStringLiteral("usescancodes"), QStringLiteral("pixelshader")}},
+        {QStringLiteral("render"), {QStringLiteral("frameskip"), QStringLiteral("scaler")}},
+        {QStringLiteral("vga"), {QStringLiteral("*")}},
+        {QStringLiteral("glide"), {QStringLiteral("*")}},
+        {QStringLiteral("printer"), {QStringLiteral("*")}},
+        {QStringLiteral("sblaster"), {QStringLiteral("oplrate"), QStringLiteral("oplemu")}},
+        {QStringLiteral("gus"), {QStringLiteral("gusrate")}},
+        {QStringLiteral("speaker"), {QStringLiteral("pcrate"), QStringLiteral("tandyrate")}},
+        {QStringLiteral("innova"), {QStringLiteral("samplerate"), QStringLiteral("sidbase"), QStringLiteral("quality")}},
+        {QStringLiteral("ne2000"), {QStringLiteral("realnic")}},
+    };
+    return Map;
+}
+
+bool StagingIgnored(const QString& Section, const QString& Key)
+{
+    const auto It = StagingIgnoredSettings().constFind(Section);
+    return (It != StagingIgnoredSettings().constEnd()) && (It->contains(QStringLiteral("*")) || It->contains(Key));
+}
+
 // Returns false if the setting is not known here (keep it unchanged);
 // otherwise Result holds the converted settings (empty: leave it out).
-bool ConvertSetting(const QString& Section, const QString& Key, const QString& RawValue, QList<TSetting>& Result)
+bool ConvertSettingStaging(const QString& Section, const QString& Key, const QString& RawValue, QList<TSetting>& Result)
 {
     const QString V = RawValue.trimmed().toLower();
     auto Add = [&Result](const QString& S, const QString& K, const QString& Val) { Result.append({S, K, Val}); };
 
+    if (StagingIgnored(Section, Key)) return true;
     if (Section == QLatin1String("sdl")) {
-        if (Key == QLatin1String("fulldouble") || Key == QLatin1String("fullresolution") || Key == QLatin1String("output")
-            || Key == QLatin1String("waitonerror") || Key == QLatin1String("priority") || Key == QLatin1String("usescancodes")
-            || Key == QLatin1String("pixelshader")) return true;
         if (Key == QLatin1String("windowresolution")) {
             static const QRegularExpression SizeRx(QStringLiteral("^\\d+x\\d+$"));
             if (SizeRx.match(V).hasMatch()) Add(QString(), QStringLiteral("window_size"), V);
@@ -86,7 +114,6 @@ bool ConvertSetting(const QString& Section, const QString& Key, const QString& R
         return false;
     }
     if (Section == QLatin1String("render")) {
-        if (Key == QLatin1String("frameskip") || Key == QLatin1String("scaler")) return true;
         if (Key == QLatin1String("aspect")) {
             if (IsTrue(V)) Add(QString(), Key, QStringLiteral("on"));
             else if (V != QLatin1String("false") && V != QLatin1String("0") && V != QLatin1String("off")) Add(QString(), Key, RawValue.trimmed());
@@ -114,10 +141,7 @@ bool ConvertSetting(const QString& Section, const QString& Key, const QString& R
         Add(QString(), Key, QStringLiteral("port"));
         return true;
     }
-    if (Section == QLatin1String("sblaster")) return (Key == QLatin1String("oplrate") || Key == QLatin1String("oplemu"));
-    if (Section == QLatin1String("gus")) return (Key == QLatin1String("gusrate"));
     if (Section == QLatin1String("speaker")) {
-        if (Key == QLatin1String("pcrate") || Key == QLatin1String("tandyrate")) return true;
         if (Key == QLatin1String("pcspeaker")) {
             if (IsTrue(V)) Add(QString(), Key, QStringLiteral("impulse"));
             else if (V == QLatin1String("false") || V == QLatin1String("0")) Add(QString(), Key, QStringLiteral("off"));
@@ -129,6 +153,7 @@ bool ConvertSetting(const QString& Section, const QString& Key, const QString& R
     }
     if (Section == QLatin1String("innova")) {
         if (Key == QLatin1String("innova")) Add(QStringLiteral("innovation"), QStringLiteral("innovation"), IsTrue(V) ? QStringLiteral("on") : QStringLiteral("off"));
+        else Add(QStringLiteral("innovation"), Key, RawValue.trimmed());  // (unknown setting: keep it)
         return true;
     }
     if (Section == QLatin1String("dos")) {
@@ -137,16 +162,24 @@ bool ConvertSetting(const QString& Section, const QString& Key, const QString& R
         return true;
     }
     if (Section == QLatin1String("ne2000")) {
-        if (Key != QLatin1String("realnic")) Add(QStringLiteral("ethernet"), Key, RawValue.trimmed());
+        Add(QStringLiteral("ethernet"), Key, RawValue.trimmed());
         return true;
     }
-    if (Section == QLatin1String("vga") || Section == QLatin1String("glide") || Section == QLatin1String("printer")) return true;
     return false;
 }
 
+bool ConvertSettingX(const QString& Section, const QString& Key, const QString& RawValue, QList<TSetting>& Result)
+{
+    if (Section == QLatin1String("dosbox") && Key == QLatin1String("vmemsize")) { Result.append({QStringLiteral("video"), Key, RawValue.trimmed()}); return true; }
+    if (Section == QLatin1String("ne2000") && Key == QLatin1String("realnic")) { Result.append({QStringLiteral("ethernet, pcap"), Key, RawValue.trimmed()}); return true; }
+    return false;
+}
+
+using TConvertSetting = bool (*)(const QString&, const QString&, const QString&, QList<TSetting>&);
+
 } // namespace
 
-QStringList ConvertConfForDOSBoxStaging(const QStringList& Lines)
+static QStringList ConvertConf(const QStringList& Lines, TConvertSetting Convert, const QStringList& SkipSections)
 {
     QStringList Result;
     QMap<QString, QStringList> Moved;  // settings for other sections
@@ -159,24 +192,22 @@ QStringList ConvertConfForDOSBoxStaging(const QStringList& Lines)
         if (T.startsWith('[') && T.endsWith(']')) {
             Section = T.mid(1, T.length() - 2).trimmed().toLower();
             if (Section == QLatin1String("autoexec") && AutoexecLine < 0) AutoexecLine = Result.count();
-            // sections without any setting left in DOSBox Staging
-            if (Section == QLatin1String("vga") || Section == QLatin1String("glide") || Section == QLatin1String("printer")) continue;
-            // sections whose settings all go to a new section
-            if (Section == QLatin1String("innova") || Section == QLatin1String("ne2000")) continue;
-            Result.append(Line);
+            // (sections whose settings are all left out or go to other sections)
+            if (!SkipSections.contains(Section)) Result.append(Line);
             continue;
         }
         const int Eq = T.indexOf('=');
         if (Section == QLatin1String("autoexec") || Eq <= 0 || T.startsWith('#') || T.startsWith(';')) {
-            if (Section == QLatin1String("vga") || Section == QLatin1String("glide") || Section == QLatin1String("printer")
-                || Section == QLatin1String("innova") || Section == QLatin1String("ne2000")) continue;
-            Result.append(Line);
+            if (!SkipSections.contains(Section)) Result.append(Line);
             continue;
         }
         const QString Key = T.left(Eq).trimmed().toLower();
         QList<TSetting> Converted;
-        if (!ConvertSetting(Section, Key, T.mid(Eq + 1), Converted)) {
-            Result.append(Line);
+        if (!Convert(Section, Key, T.mid(Eq + 1), Converted)) {
+            if (SkipSections.contains(Section)) {  // (not possible with the tables above)
+                if (!Moved.contains(Section)) MovedOrder.append(Section);
+                Moved[Section].append(T);
+            } else Result.append(Line);
             continue;
         }
         for (const TSetting& S : Converted) {
@@ -195,4 +226,21 @@ QStringList ConvertConfForDOSBoxStaging(const QStringList& Lines)
         for (const QString& L : Block) Result.insert(Pos++, L);
     }
     return Result;
+}
+
+QStringList ConvertConfForDOSBox(TDOSBoxKind Kind, const QStringList& Lines)
+{
+    switch (Kind) {
+        case dkStaging:
+            return ConvertConf(Lines, ConvertSettingStaging, {QStringLiteral("vga"), QStringLiteral("glide"), QStringLiteral("printer"), QStringLiteral("innova"), QStringLiteral("ne2000")});
+        case dkDOSBoxX:
+            return ConvertConf(Lines, ConvertSettingX, {});
+        default:
+            return Lines;
+    }
+}
+
+bool DOSBoxSettingIgnored(TDOSBoxKind Kind, const QString& Section, const QString& Key)
+{
+    return (Kind == dkStaging) && StagingIgnored(Section.toLower(), Key.toLower());
 }

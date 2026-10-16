@@ -9,6 +9,13 @@ Version 0.5.5 (not released yet)
   shader, printer, ...) are left out, so DOSBox Staging uses its own defaults
   and shows no warnings about outdated settings. The key mapper file of SDL 2
   based DOSBox Staging is kept separate (mapper-sdl2.map).
+- DOSBox-X: the two settings DOSBox-X expects in other sections (vmemsize,
+  realnic) are written there. The notice about DOSBox-X installations is
+  not shown any more.
+- Profile editor: settings the DOSBox version of the profile does not use
+  are greyed out (e.g. scaler, render mode and frameskip for DOSBox
+  Staging; a tooltip explains it). The values stay in the profile for other
+  DOSBox versions.
 
 
 Version 0.5.4 (10/15/2026)

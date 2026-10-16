@@ -14,7 +14,7 @@
 #include "VclWidgets.h"
 #include "ui_FirstRunWizardFormUnit.h"
 
-enum TDOSBoxWarningType { wtNoDir, wtOld, wtDOSBoxX };
+enum TDOSBoxWarningType { wtNoDir, wtOld };
 class TFirstRunWizardForm : public TVclForm
 {
     Q_OBJECT

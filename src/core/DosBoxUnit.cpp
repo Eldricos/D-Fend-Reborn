@@ -38,7 +38,7 @@
 #include "FileNameConvertor.h"
 #include "DOSBoxTempUnit.h"
 #include "WindowsFileWarningFormUnit.h"
-#include "DOSBoxStagingConfUnit.h"
+#include "DOSBoxConfUnit.h"
 #include "MIDITools.h"
 #include "HistoryUnit.h"
 #include "MainUnit.h"
@@ -928,13 +928,19 @@ static void AutoMountCDs(TStringList* St, TGame* Game, double DOSBoxVersion, QSt
 
 // D-Fend Reborn: DOSBox variant (DOSBox, DOSBox Staging, DOSBox-X) used by a
 // profile: a DOSBox installation or a DOSBox folder / program file
+TDOSBoxKind DOSBoxKindOfProfileInstallation(const QString& Installation)
+{
+    const QString S = Trim(ExtUpperCase(Installation));
+    if (S.isEmpty() || (S == "DEFAULT")) return DOSBoxKindOfInstallation(0);
+    for (int I = 0; I < PrgSetup->DOSBoxSettingsCount(); I++) if (Trim(ExtUpperCase(PrgSetup->DOSBoxSettings(I)->Name())) == S) return DOSBoxKindOfInstallation(I);
+    const QString P = MakeAbsPath(Trim(Installation), PrgSetup->BaseDir());
+    if (FileExists(P) && !DirectoryExists(P)) return DOSBoxKindOfFile(P);
+    return DOSBoxKind(P);
+}
+
 static TDOSBoxKind GetDOSBoxKindOfGame(TGame* Game)
 {
-    const int Nr = GetDOSBoxNr(Game);
-    if (Nr >= 0) return DOSBoxKindOfInstallation(Nr);
-    const QString S = MakeAbsPath(Trim(Game->CustomDOSBoxDir()), PrgSetup->BaseDir());
-    if (FileExists(S) && !DirectoryExists(S)) return DOSBoxKindOfFile(S);
-    return DOSBoxKind(S);
+    return DOSBoxKindOfProfileInstallation(Game->CustomDOSBoxDir());
 }
 
 static double GetDOSBoxVersionOfGame(TGame* Game)
@@ -1504,9 +1510,10 @@ TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, 
     if (result != nullptr) result->AddStrings(*St);
     delete St;
 
-    // DOSBox Staging: setting names of DOSBox Staging instead of DOSBox 0.74
-    if ((result != nullptr) && (GetDOSBoxKindOfGame(Game) == dkStaging)) {
-        const QStringList Lines = ConvertConfForDOSBoxStaging(result->ToQStringList());
+    // DOSBox Staging / DOSBox-X: their setting names instead of DOSBox 0.74
+    const TDOSBoxKind Kind = GetDOSBoxKindOfGame(Game);
+    if ((result != nullptr) && (Kind != dkDOSBox)) {
+        const QStringList Lines = ConvertConfForDOSBox(Kind, result->ToQStringList());
         result->Clear();
         result->AddStrings(Lines);
     }

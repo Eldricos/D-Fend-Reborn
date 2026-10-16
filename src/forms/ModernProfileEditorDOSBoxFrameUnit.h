@@ -47,7 +47,6 @@ public slots:
     void UserLanguageCheckBoxClick(QObject* Sender);
     void UserConsoleCheckBoxClick(QObject* Sender);
 private:
-    bool LastCustomWasDOSBoxX = false;   // (DOSBox-X notice for a chosen DOSBox-X folder)
     TStringList* DosBoxLang = nullptr;
     PString ProfileName;
     PString ProfileExe;

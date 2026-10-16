@@ -50,7 +50,7 @@ jobs:
              SHA-256 checksum of the Windows zip to \`cmake/DOSBoxStaging.cmake\`.
           2. Build (Windows) and test some games, also with old profiles. Check the
              release notes for renamed or removed settings and, if needed, adapt
-             \`src/core/DOSBoxStagingConfUnit.cpp\` (start DOSBox Staging with a game and
+             \`src/core/DOSBoxConfUnit.cpp\` (start DOSBox Staging with a game and
              look for "CONFIG:" warnings in its console / log).
           3. Add a line to the change logs (\`data/Bin/Changelog.txt\`, help ChangeLog EN/DE).
           4. Commit; the release workflow takes the version from the cmake file and
