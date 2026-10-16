@@ -172,6 +172,7 @@ void TSetupFrameDefaultValues::LoadLanguage()
     AddString(P1+LanguageSetup->GameJoysticks(), GameDB->ConfOpt()->Joysticks());
     AddString(P1+S4+LanguageSetup->GameNE2000BaseAddress(), GameDB->ConfOpt()->NE2000EmulationBaseAddress());
     AddString(P1+S4+LanguageSetup->GameNE2000Interrupt(), GameDB->ConfOpt()->NE2000EmulationInterrupt());
+    for (I = 0; I < StagingSettingCount; I++) AddString("(DOSBox Staging) " + LanguageSetup->ProfileEditorStagingSetting(I), GameDB->ConfOpt()->StagingValues(I));
     AddString(P2+LanguageSetup->ProfileEditorScummVMPlatform(), GameDB->ConfOpt()->ScummVMPlatform());
     AddString(P2+LanguageSetup->ProfileEditorScummVMLanguageLong(), GameDB->ConfOpt()->ScummVMLanguages());
     AddString(P2+LanguageSetup->ProfileEditorScummVMRenderMode(), GameDB->ConfOpt()->ScummVMRenderMode());
@@ -260,6 +261,7 @@ void TSetupFrameDefaultValues::SaveSetup()
     GameDB->ConfOpt()->SetJoysticks(GetString());
     GameDB->ConfOpt()->SetNE2000EmulationBaseAddress(GetString());
     GameDB->ConfOpt()->SetNE2000EmulationInterrupt(GetString());
+    for (int K = 0; K < StagingSettingCount; K++) GameDB->ConfOpt()->SetStagingValues(K, GetString());
     GameDB->ConfOpt()->SetScummVMPlatform(GetString());
     GameDB->ConfOpt()->SetScummVMLanguages(GetString());
     GameDB->ConfOpt()->SetScummVMRenderMode(GetString());
@@ -361,6 +363,7 @@ void TSetupFrameDefaultValues::PopupMenuWork(QObject* Sender)
     Work(DefaultValuesJoysticks);
     Work(DefaultValuesNE2000EmulationBaseAddress);
     Work(DefaultValuesNE2000EmulationInterrupt);
+    for (int K = 0; K < StagingSettingCount; K++) Work(StagingDefaultValues(K));
     Work(DefaultValuesScummVMPlatform);
     Work(DefaultValuesScummVMLanguages);
     Work(DefaultValuesScummVMRenderMode);

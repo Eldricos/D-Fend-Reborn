@@ -24,6 +24,12 @@ Version 0.5.5 (not released yet)
   PS/1 Audio, FluidSynth SoundFont, Roland MT-32 model and ROM folder, mouse
   capture. "default" leaves the choice to DOSBox Staging; the settings are
   only written for DOSBox Staging.
+- Default values (program options): the lists contain the values of DOSBox
+  Staging and DOSBox-X too (e.g. Sound Blaster types ess / ess688, OPL modes
+  opl3gold / esfm, MIDI devices port / mt32 / fluidsynth, video cards
+  cga_mono / mda / pc98, CPU types 486 / pentium); the values of the new
+  DOSBox Staging page can be edited there. Existing lists get the new
+  values; values added or removed by the user stay as they are.
 
 
 Version 0.5.4 (10/15/2026)

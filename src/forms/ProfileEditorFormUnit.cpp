@@ -1349,7 +1349,13 @@ void TProfileEditorForm::InitStagingSheet()
         V.Add(LanguageSetup->ProfileEditorStagingSetting(I) + "=default");
         if (S.Kind == skList) V.ReadOnly();
         if ((S.Kind == skFile) || (S.Kind == skFolder)) V.Ellipsis();
-        else for (const QString& Value : QString::fromLatin1(S.Values).split(';')) V.Pick(Value);
+        else {
+            // (values of the "Default values" page of the setup dialog; "default" always first)
+            TStringList* Values = ValueToList(GameDB->ConfOpt()->StagingValues(I), ";,");
+            V.Pick(QStringLiteral("default"));
+            for (int J = 0; J < Values->Count(); J++) if (!Trim((*Values)[J]).isEmpty() && (Trim((*Values)[J]) != "default")) V.Pick(Trim((*Values)[J]));
+            delete Values;
+        }
     }
     StagingValueListEditor->setColumnWidth(0, 300);   // (long names)
     connect(StagingValueListEditor, &TValueListEditorWidget::editButtonClicked, this, [this](int Row) { StagingEditButtonClick(Row); });

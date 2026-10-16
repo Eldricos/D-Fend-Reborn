@@ -25,7 +25,6 @@ TModernProfileEditorStagingFrame::TModernProfileEditorStagingFrame(QWidget* AOwn
 
 void TModernProfileEditorStagingFrame::InitGUI(TModernProfileEditorInitData& InitData)
 {
-    Q_UNUSED(InitData);
     auto* Main = new QVBoxLayout(this);
     Main->setContentsMargins(8, 8, 8, 8);
 
@@ -64,7 +63,15 @@ void TModernProfileEditorStagingFrame::InitGUI(TModernProfileEditorInitData& Ini
             if (qstrcmp(S.Group, G.Group) != 0) continue;
             auto* C = new QComboBox(Box);
             C->setEditable(S.Kind != skList);
-            C->addItems(QString::fromLatin1(S.Values).split(';'));
+            // (values of the "Default values" page of the setup dialog; "default" always first)
+            TStringList* List = ValueToList(InitData.GameDB->ConfOpt()->StagingValues(I), ";,");
+            QStringList Values;
+            for (int J = 0; J < List->Count(); J++) Values << Trim((*List)[J]);
+            delete List;
+            Values.removeAll(QString());
+            Values.removeAll(QStringLiteral("default"));
+            Values.prepend(QStringLiteral("default"));
+            C->addItems(Values);
             C->setToolTip(QStringLiteral("[%1] %2").arg(QLatin1String(S.Section), QLatin1String(S.Key)));
             Boxes[I] = C;
             QWidget* Field = C;
