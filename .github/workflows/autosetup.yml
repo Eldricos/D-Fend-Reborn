@@ -35,6 +35,7 @@ jobs:
         continue-on-error: true
         env:
           NAME: ${{ inputs.lookup || 'Commander Keen' }}
+          AUTOSETUP_DEBUG: 1
         run: |
           python3 tools/autosetup.py lookup "$NAME" --dos
           echo "----- all platforms"

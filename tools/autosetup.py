@@ -309,8 +309,11 @@ def wikidata_search(name, dos_only):
   BIND(EXISTS { ?item wdt:P400 wd:%s . } AS ?isdos)
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
 } GROUP BY ?item ?itemLabel""" % (" ".join("wd:" + i for i in ids), VIDEO_GAME, MSDOS, MSDOS)
+    rows = sparql(q)
+    if os.environ.get("AUTOSETUP_DEBUG"):
+        print("search: %d items %s; query: %d rows %s" % (len(ids), ids[:8], len(rows), rows[:2]), file=sys.stderr)
     found = {}
-    for b in sparql(q):
+    for b in rows:
         qid = b["item"]["value"].rsplit("/", 1)[1]
         dos = b.get("dos", {}).get("value", "false") in ("true", "1")
         if dos_only and not dos:
