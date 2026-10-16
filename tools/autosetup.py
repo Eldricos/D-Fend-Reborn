@@ -286,24 +286,37 @@ def sparql_string(s):
     return '"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+def wikidata_entity_search(name, limit=50):
+    """Wikidata items whose label or alias matches name (search order)"""
+    url = "https://www.wikidata.org/w/api.php?" + urllib.parse.urlencode({
+        "action": "wbsearchentities", "search": name, "language": "en", "uselang": "en",
+        "type": "item", "limit": str(limit), "format": "json"})
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return [e["id"] for e in json.load(r).get("search", [])]
+
+
 def wikidata_search(name, dos_only):
-    # (the same queries as D-Fend Reborn, src/core/GameInfoUnit.cpp)
-    platform = "?item wdt:P400 wd:%s ." % MSDOS if dos_only else \
-        "{ ?item wdt:P31/wdt:P279* wd:%s . } UNION { ?item wdt:P400 wd:%s . }" % (VIDEO_GAME, MSDOS)
-    q = """SELECT ?item ?itemLabel (MIN(YEAR(?date)) AS ?year) WHERE {
-  SERVICE wikibase:mwapi {
-    bd:serviceParam wikibase:endpoint "www.wikidata.org"; wikibase:api "EntitySearch";
-                    mwapi:search %s; mwapi:language "en"; wikibase:limit 50 .
-    ?item wikibase:apiOutputItem mwapi:item .
-  }
-  %s
+    # (the same requests as D-Fend Reborn, src/core/GameInfoUnit.cpp):
+    # 1. search the items by name, 2. keep video games and MS-DOS programs
+    ids = wikidata_entity_search(name)
+    if not ids:
+        return []
+    q = """SELECT ?item ?itemLabel (MIN(YEAR(?date)) AS ?year) (MAX(?isdos) AS ?dos) WHERE {
+  VALUES ?item { %s }
+  { ?item wdt:P31/wdt:P279* wd:%s . } UNION { ?item wdt:P400 wd:%s . }
   OPTIONAL { ?item wdt:P577 ?date . }
+  BIND(EXISTS { ?item wdt:P400 wd:%s . } AS ?isdos)
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
-} GROUP BY ?item ?itemLabel ORDER BY ?year LIMIT 50""" % (sparql_string(name), platform)
-    result = []
+} GROUP BY ?item ?itemLabel""" % (" ".join("wd:" + i for i in ids), VIDEO_GAME, MSDOS, MSDOS)
+    found = {}
     for b in sparql(q):
-        result.append((b["item"]["value"].rsplit("/", 1)[1], b.get("itemLabel", {}).get("value", ""), b.get("year", {}).get("value", "")))
-    return result
+        qid = b["item"]["value"].rsplit("/", 1)[1]
+        dos = b.get("dos", {}).get("value", "false") in ("true", "1")
+        if dos_only and not dos:
+            continue
+        found[qid] = (qid, b.get("itemLabel", {}).get("value", ""), b.get("year", {}).get("value", ""))
+    return [found[i] for i in ids if i in found]
 
 
 def wikidata_details(qid):
