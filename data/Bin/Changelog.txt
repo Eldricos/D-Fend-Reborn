@@ -5,6 +5,9 @@ Version 0.5.6 (not released yet)
 ================================
 - [Fix] Search for updates: the status texts (e.g. "List update check
   completed.") were cut off.
+- Package manager: the old D-Fend Reloaded lists of language add-ons and
+  auto setup templates are not offered any more (all their templates are
+  included in D-Fend Reborn; the language files were for old versions).
 
 
 Version 0.5.5 (10/16/2026)
