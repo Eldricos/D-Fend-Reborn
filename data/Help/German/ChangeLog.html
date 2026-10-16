@@ -17,7 +17,8 @@ D-Fend Reborn basiert auf D-Fend Reloaded 1.4.4 von Alexander Herzog. Die ersten
 
 <p class="small">
   <b>D-Fend Reborn</b><br />
-  <a href="#reborn054">D-Fend Reborn 0.5.4 (noch nicht ver&ouml;ffentlicht)</a><br />
+  <a href="#reborn055">D-Fend Reborn 0.5.5 (noch nicht ver&ouml;ffentlicht)</a><br />
+  <a href="#reborn054">D-Fend Reborn 0.5.4 (15.10.2026)</a><br />
   <a href="#reborn053">D-Fend Reborn 0.5.3 (15.10.2026)</a><br />
   <a href="#reborn052">D-Fend Reborn 0.5.2 (15.10.2026)</a><br />
   <a href="#reborn051">D-Fend Reborn 0.5.1 (15.10.2026)</a><br />
@@ -69,7 +70,19 @@ D-Fend Reborn basiert auf D-Fend Reloaded 1.4.4 von Alexander Herzog. Die ersten
 Die einzelnen Eintr&auml;ge zur Versionsgeschichte von D-Fend Reloaded liegen leider nur auf Englisch vor.
 </p>
 
-<a onclick="return Work('reborn054')" name="reborn054" href="#"><h2>&raquo; D-Fend Reborn 0.5.4 (noch nicht ver&ouml;ffentlicht)</h2></a>
+<a onclick="return Work('reborn055')" name="reborn055" href="#"><h2>&raquo; D-Fend Reborn 0.5.5 (noch nicht ver&ouml;ffentlicht)</h2></a>
+<div id="reborn055">
+<ul>
+  <li>DOSBox Staging: Die Einstellungen der Profile werden mit den Namen von DOSBox Staging geschrieben (z.&nbsp;B. <tt>cpu_cycles</tt>, <tt>mouse_capture</tt>, <tt>keyboard_layout</tt>); Einstellungen, die DOSBox Staging nicht mehr kennt (Scaler, Ausgabe, Pixel-Shader, Drucker, ...), werden weggelassen, sodass DOSBox Staging seine eigenen Standardwerte verwendet und keine Warnungen &uuml;ber veraltete Einstellungen anzeigt. Die Tastenbelegungsdatei des auf SDL 2 basierenden DOSBox Staging wird getrennt gespeichert (<tt>mapper-sdl2.map</tt>).</li>
+  <li>DOSBox-X: Die beiden Einstellungen, die DOSBox-X in anderen Abschnitten erwartet (<tt>vmemsize</tt>, <tt>realnic</tt>), werden dort geschrieben. Der Hinweis zu DOSBox-X-Installationen wird nicht mehr angezeigt.</li>
+  <li>Profileditor (modern und klassisch): Einstellungen, die die DOSBox-Version des Profils nicht verwendet, werden ausgegraut (z.&nbsp;B. Scaler, Render-Modus und Frameskip bei DOSBox Staging; ein Tooltip erkl&auml;rt dies). Die Werte bleiben f&uuml;r andere DOSBox-Versionen im Profil erhalten.</li>
+  <li>Neue Profileditor-Seite <a href="ProfileEditStaging.html">"DOSBox Staging"</a> (klassischer Editor: Registerkarte "DOSBox Staging") mit Einstellungen, die nur DOSBox Staging hat: Shader (CRT-Emulation, scharfe oder weiche Skalierung), ganzzahlige Skalierung, Gr&ouml;&szlig;e des Darstellungsbereichs, CGA-Composite- und 3dfx-Voodoo-Emulation, CPU-Zyklen f&uuml;r Protected-Mode-Programme, CPU-Drosselung, Hall, Chorus, Crossfeed, Soundger&auml;te am Parallelport, IBM PS/1 Audio, FluidSynth-SoundFont, Roland-MT-32-Modell und ROM-Verzeichnis, Mauserfassung. "default" &uuml;berl&auml;sst die Wahl DOSBox Staging; die Einstellungen werden nur f&uuml;r DOSBox Staging geschrieben.</li>
+  <li>Vorgabewerte (Programmeinstellungen): Die Listen enthalten auch die Werte von DOSBox Staging und DOSBox-X (z.&nbsp;B. Sound-Blaster-Typen <tt>ess</tt> / <tt>ess688</tt>, OPL-Modi <tt>opl3gold</tt> / <tt>esfm</tt>, MIDI-Ger&auml;te <tt>port</tt> / <tt>mt32</tt> / <tt>fluidsynth</tt>, Grafikkarten <tt>cga_mono</tt> / <tt>mda</tt> / <tt>pc98</tt>, CPU-Typen <tt>486</tt> / <tt>pentium</tt>); die Werte der neuen Seite DOSBox Staging k&ouml;nnen dort bearbeitet werden. Bestehende Listen erhalten die neuen Werte; vom Benutzer hinzugef&uuml;gte oder entfernte Werte bleiben erhalten.</li>
+  <li>Linux: Die Option "Mit Windows starten" hei&szlig;t "Bei der Anmeldung starten" (sie legt einen Autostart-Eintrag der Desktop-Sitzung an).</li>
+</ul>
+</div>
+
+<a onclick="return Work('reborn054')" name="reborn054" href="#"><h2>&raquo; D-Fend Reborn 0.5.4 (15.10.2026)</h2></a>
 <div id="reborn054">
 <ul>
   <li>Windows: DOSBox Staging 0.83.0 ersetzt DOSBox 0.74 als das mit D-Fend Reborn ausgelieferte DOSBox. Der Update-Installer ersetzt die Dateien von DOSBox 0.74; portable Kopien verwenden den portablen Modus von DOSBox Staging (Einstellungen im DOSBox-Verzeichnis). Der Quelltext von DOSBox Staging ist jeder Version beigef&uuml;gt.</li>

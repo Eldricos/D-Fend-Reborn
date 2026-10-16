@@ -13,11 +13,17 @@
 
 class TGameDB;
 
+// values offered for the DOSBox Staging settings (StagingSettings[I]): ConfOpt
+// records NR_ConfOptStagingFirst + I; NR_ConfOptValuesVersion: version of the
+// value lists (missing new values are added to older ConfOpt.dat files)
+constexpr int NR_ConfOptValuesVersion = 59;
+constexpr int NR_ConfOptStagingFirst = 60;
 class TConfOpt : public TBasePrgSetup
 {
 public:
     TConfOpt();
     ~TConfOpt() override;
+    void UpgradeValueLists();
     // properties
     QString ResolutionFullscreen() { return GetString(0); }
     void SetResolutionFullscreen(const QString& Value) { SetString(0, Value); }
@@ -123,6 +129,8 @@ public:
     void SetMT32ReverbMode(const QString& Value) { SetString(50, Value); }
     QString MT32ReverbTime() { return GetString(51); }
     void SetMT32ReverbTime(const QString& Value) { SetString(51, Value); }
+    QString StagingValues(int I) { return GetString(NR_ConfOptStagingFirst + I); }
+    void SetStagingValues(int I, const QString& Value) { SetString(NR_ConfOptStagingFirst + I, Value); }
     QString MT32ReverbLevel() { return GetString(52); }
     void SetMT32ReverbLevel(const QString& Value) { SetString(52, Value); }
 };
@@ -363,6 +371,41 @@ constexpr int NR_AddtionalChecksumFile4 = 506;
 constexpr int NR_AddtionalChecksumFile4Checksum = 507;
 constexpr int NR_AddtionalChecksumFile5 = 508;
 constexpr int NR_AddtionalChecksumFile5Checksum = 509;
+
+// DOSBox Staging settings without a DOSBox 0.74 counterpart (D-Fend Reborn).
+// They are stored in the profile with the DOSBox Staging names and only
+// written to the conf file for DOSBox Staging; "default" (or empty): not
+// written, DOSBox Staging uses its own default.
+enum TStagingSettingKind { skList, skEditableList, skFile, skFolder };
+struct TStagingSettingInfo {
+    const char* Section;
+    const char* Key;
+    const char* Values;   // values offered in the profile editor (";")
+    TStagingSettingKind Kind;
+    const char* Group;    // "graphics", "cpu", "sound", "midi", "mouse"
+};
+inline constexpr TStagingSettingInfo StagingSettings[] = {
+    {"render", "shader", "default;crt-auto;crt-auto-machine;crt-auto-arcade;crt-auto-arcade-sharp;sharp;bilinear;nearest;interpolation/catmull-rom;scaler/xbr-lv3;crt/crt-hyllian", skEditableList, "graphics"},
+    {"render", "integer_scaling", "default;auto;vertical;horizontal;off", skList, "graphics"},
+    {"render", "viewport", "default;fit;90%;80%;960x720;1280x960", skEditableList, "graphics"},
+    {"composite", "composite", "default;auto;on;off", skList, "graphics"},
+    {"voodoo", "voodoo", "default;on;off", skList, "graphics"},
+    {"cpu", "cpu_cycles_protected", "default;auto;max;30000;60000;100000;200000", skEditableList, "cpu"},
+    {"cpu", "cpu_throttle", "default;on;off", skList, "cpu"},
+    {"mixer", "reverb", "default;off;on;tiny;small;medium;large;huge", skList, "sound"},
+    {"mixer", "chorus", "default;off;on;light;normal;strong", skList, "sound"},
+    {"mixer", "crossfeed", "default;off;on;light;normal;strong", skList, "sound"},
+    {"speaker", "lpt_dac", "default;none;disney;covox;ston1", skList, "sound"},
+    {"speaker", "ps1audio", "default;on;off", skList, "sound"},
+    {"fluidsynth", "soundfont", "default", skFile, "midi"},
+    {"mt32", "model", "default;auto;cm32l;mt32;mt32_old;mt32_new", skEditableList, "midi"},
+    {"mt32", "romdir", "default", skFolder, "midi"},
+    {"mouse", "mouse_capture", "default;onclick;onstart;seamless;nomouse", skList, "mouse"},
+};
+constexpr int StagingSettingCount = int(sizeof(StagingSettings) / sizeof(StagingSettings[0]));
+constexpr int NR_StagingSettingFirst = 520;   // 520 ... 520 + StagingSettingCount - 1
+// default list of values for StagingSettings[I] (default values page)
+inline QString StagingDefaultValues(int I) { return QString::fromLatin1(StagingSettings[I].Values).replace(';', ','); }
 inline const QList<int> ScummVMSettings = {NR_ScummVMGame, NR_ScummVMPath, NR_ScummVMZip, NR_ScummVMFilter, NR_ScummVMRenderMode, NR_ScummVMAutosave, NR_ScummVMLanguage, NR_ScummVMMusicVolume, NR_ScummVMSpeechVolume, NR_ScummVMSFXVolume, NR_ScummVMMIDIGain, NR_ScummVMSampleRate, NR_ScummVMMusicDriver, NR_ScummVMNativeMT32, NR_ScummVMEnableGS, NR_ScummVMMultiMIDI, NR_ScummVMTalkSpeed, NR_ScummVMSpeechMute, NR_ScummVMSubtitles, NR_ScummVMSavePath, NR_ScummVMConfirmExit, NR_ScummVMCDROM, NR_ScummVMJoystickNum, NR_ScummVMAltIntro, NR_ScummVMGFXDetails, NR_ScummVMMusicMute, NR_ScummVMObjectLabels, NR_ScummVMReverseStereo, NR_ScummVMSFXMute, NR_ScummVMWalkspeed, NR_ScummVMExtraPath, NR_ScummVMPlatform, NR_ScummVMParameters};
 class TGame : public TBasePrgSetup
 {
@@ -470,6 +513,9 @@ public:
     void SetSwapMouseButtons(bool Value) { SetBoolean(NR_SwapMouseButtons, Value); }
     bool UseDoublebuffering() { return GetBoolean(NR_UseDoublebuffering); }
     void SetUseDoublebuffering(bool Value) { SetBoolean(NR_UseDoublebuffering, Value); }
+    // DOSBox Staging settings (StagingSettings[I])
+    QString StagingSetting(int I) { return GetString(NR_StagingSettingFirst + I); }
+    void SetStagingSetting(int I, const QString& Value) { SetString(NR_StagingSettingFirst + I, Value); }
     bool AspectCorrection() { return GetBoolean(NR_AspectCorrection); }
     void SetAspectCorrection(bool Value) { SetBoolean(NR_AspectCorrection, Value); }
     bool UseScanCodesOld() { return GetBoolean(NR_UseScanCodesOld); }
@@ -925,20 +971,20 @@ void GameDBUnit_Initialization();
 void GameDBUnit_Finalization();
 inline const QString DefaultValuesResolutionFullscreen = QStringLiteral("original,320x200,320x240,640x432,640x480,720x480,800x600,1024x768,1152x864,1280x720,1280x768,1280x960,1280x1024,1366x760,1366x768,1600x1200,1680x1050,1920x1080,1920x1200,0x0");
 inline const QString DefaultValuesResolutionWindow = QStringLiteral("original,320x200,320x240,640x432,640x480,720x480,800x600,1024x768,1152x864,1280x720,1280x768,1280x960,1280x1024,1366x760,1366x768,1600x1200,1920x1080,1920x1200");
-inline const QString DefaultValuesJoysticks = QStringLiteral("none,auto,2axis,4axis,4axis_2,fcs,ch");
+inline const QString DefaultValuesJoysticks = QStringLiteral("none,auto,2axis,4axis,4axis_2,fcs,ch") + QStringLiteral(",hidden,disabled");
 inline const QString DefaultValuesScale = QStringLiteral("No Scaling (none),Nearest neighbor upscaling with factor 2 (normal2x),Nearest neighbor upscaling with factor 3 (normal3x),") + QStringLiteral("Advanced upscaling with factor 2 (advmame2x),Advanced upscaling with factor 3 (advmame3x),") + QStringLiteral("high quality with factor 2 (hq2x), high quality with factor 3 (hq3x),2xsai (2xsai), super2xsai (super2xsai), supereagle (supereagle),") + QStringLiteral("Advanced interpoling with factor 2 (advinterp2x),Advanced interpoling with factor 3 (advinterp3x),") + QStringLiteral("Advanced upscaling with sharpening with factor 2 (tv2x),Advanced upscaling with sharpening with factor 3 (tv3x),Simulates the phopsphors on a dot trio CRT with factor 2 (rgb2x),Simulates the phopsphors on a dot trio CRT with factor 3 (rgb3x),") + QStringLiteral("Nearest neighbor with black lines with factor 2 (scan2x),Nearest neighbor with black lines with factor 3 (scan3x)");
-inline const QString DefaultValueRender = QStringLiteral("surface,overlay,opengl,openglnb,ddraw");
+inline const QString DefaultValueRender = QStringLiteral("surface,overlay,opengl,openglnb,ddraw") + QStringLiteral(",openglpp,openglhq,direct3d,ttf");
 inline const QString DefaultValueCycles = QStringLiteral("auto,max,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,6000,7000,8000,9000,10000,11000,12000,12000,13000,14000,15000,16000,17000,18000,19000,20000");
-inline const QString DefaultValuesVideo = QStringLiteral("hercules (Hercules Graphics Card),cga (Color Graphics Adapter),tandy (Tandy),pcjr (IBM PCjr),ega (Enhanced Graphics Adapter),") + QStringLiteral("vgaonly (Video Graphics Array), svga_s3 (VESA 2.0 compatible S3 SuperVGA card), svga_et3000 (Tseng ET3000 SuperVGA card),") + QStringLiteral("svga_et4000 (Tseng ET4000 SuperVGA card),svga_paradise (Paradise PVGA1A SuperVGA card),vesa_nolfb (VESA 2.0 compatible S3 SuperVGA card),") + QStringLiteral("vesa_oldvbe (VESA 1.2 compatible S3 SuperVGA card)");
+inline const QString DefaultValuesVideo = QStringLiteral("hercules (Hercules Graphics Card),cga (Color Graphics Adapter),tandy (Tandy),pcjr (IBM PCjr),ega (Enhanced Graphics Adapter),") + QStringLiteral("vgaonly (Video Graphics Array), svga_s3 (VESA 2.0 compatible S3 SuperVGA card), svga_et3000 (Tseng ET3000 SuperVGA card),") + QStringLiteral("svga_et4000 (Tseng ET4000 SuperVGA card),svga_paradise (Paradise PVGA1A SuperVGA card),vesa_nolfb (VESA 2.0 compatible S3 SuperVGA card),") + QStringLiteral("vesa_oldvbe (VESA 1.2 compatible S3 SuperVGA card)") + QStringLiteral(",cga_mono (CGA with monochrome monitor; DOSBox Staging and DOSBox-X),mda (Monochrome Display Adapter; DOSBox-X),mcga (Multi-Color Graphics Array; DOSBox-X),svga_s3virge (S3 ViRGE SuperVGA card; DOSBox-X),pc98 (NEC PC-98; DOSBox-X)");
 inline const QString DefaultValuesMemory = QStringLiteral("1,2,4,8,16,32,63");
 inline const QString DefaultValuesFrameSkip = QStringLiteral("0,1,2,3,4,5,6,7,8,9,10");
 inline const QString DefaultValuesCore = QStringLiteral("auto,normal,dynamic,simple");
-inline const QString DefaultValuesSBlaster = QStringLiteral("none,sb1,sb2,sbpro1,sbpro2,sb16,gb");
-inline const QString DefaultValuesOPLModes = QStringLiteral("auto,cms,opl2,dualopl2,opl3,none");
+inline const QString DefaultValuesSBlaster = QStringLiteral("none,sb1,sb2,sbpro1,sbpro2,sb16,gb") + QStringLiteral(",ess,sb16vibra,ess688,ess1688,reveal_sc400");
+inline const QString DefaultValuesOPLModes = QStringLiteral("auto,cms,opl2,dualopl2,opl3,none") + QStringLiteral(",opl3gold,esfm");
 inline const QString DefaultValuesKeyboardLayout = QStringLiteral("default,none,Albania (SQ),Albania (SQ448),Argentina (LA),Armenia (HY),Australia (US),Austria (DE),Austria (DE453),Azerbaijan (AZ),") + QStringLiteral("Belarus (BY),Belgium (BE),Bosnia & Herzegovina (BA),Brazil (BR),Brazil (BR274),Bulgaria (BG),Bulgaria (BG241),") + QStringLiteral("Canada (CA),Canada (CA445),Canada (CF501),Chile (LA),Colombia (LA),Croatia (HR),Czech Republic (CZ),Czech Republic (CZ243),") + QStringLiteral("Denmark (DK),Ecuador (LA),Estonia (EE),Faeroe Islands (FO),Finland (FI),France (FR),France (FR120),Georgia (KA),Germany (DE),Germany (DE453),") + QStringLiteral("Greece (GK),Greece (GK220),Greece (GK459),Hungary (HU),Hungary (HU208),Iceland (IS),Iceland (IS161),Ireland (UK),Ireland (UK168),") + QStringLiteral("Italy (IT),Italy (IT142),Kazakhstan (KK),Kyrgyzstan (KY),Latin-American-Spanish (LA),Latvia (LV),Latvia (LV455),") + QStringLiteral("Lithuania (LT),Lithuania (LT210),Lithuania (LT211),Lithuania (LT221),Lithuania (LT456),Macedonia (MK),Malta (MT),Malta (MT47),Mexico (LA),") + QStringLiteral("Mongolia (MN),Netherlands (NL),New Zealand (US),Norway (NO),Philippines (PH),Poland (PL),Poland (PL214),Portugal (PO),Romania (RO),Romania (RO446),") + QStringLiteral("Russia (RU),Russia (RU443),Serbia & Montenegro (SR),Serbia & Montenegro (SR450),Slovakia (SK),Slovenia (SI),South Africa (US),Spain (ES),") + QStringLiteral("Sweden (SV),Switzerland - French (SF),Switzerland - German (SD),Turkmenistan (TM),Turkey (TR),Turkey (TR440),Ukraine (UA),Ukraine (UA465),") + QStringLiteral("United Kingdom (UK),United Kingdom (UK168),US (US),US International (UX),US Dvorak (DV),US Left-Hand Dvorak (LH),US Right-Hand Dvorak (RH),") + QStringLiteral("Uzbekistan (UZ),Venezuela (LA),Yugoslavia (YU)");
 inline const QString DefaultValuesCodepage = QStringLiteral("default,113 (Yugoslavian),437 (United States),667 (Polish),668 (Polish),737 (Greek-2),770 (Baltic),771 (Lithuanian and Russian KBL),") + QStringLiteral("772 (Lithuanian and Russian),773 (Latin-7 Baltic - old standard),774 (Lithuanian),775 (Latin-7 Baltic),777 (Accented Lithuanian),") + QStringLiteral("778 (Accented Lithuanian),790 (Polish Mazovia),808 (Cyrillic-2 with Euro),848 (Cyrillic Ukrainian with Euro),849 (Cyrillic Belarusian with Euro),") + QStringLiteral("850 (Latin-1),851 (Greek),852 (Latin-2 Eastern European),853 (Latin-3 Southern European),855 (Cyrillic-1),857 (Latin-5 Turkish),") + QStringLiteral("858 (Latin-1 with Euro),859 (Latin-9; 858 plus full french and estonian),860 (Portugal),861 (Icelandic),863 (Canadian French),") + QStringLiteral("865 (Nordic),866 (Cyrillic-2 Russian),867 (Czech Kamenicky),869 (Greek),872 (Cyrillic-1 with Euro),899 (Armenian),991 (Polish Mazovia with Zloty sign),") + QStringLiteral("1116 (Estonian),1117 (Latvian),1125 (Cyrillic Ukrainian),1131 (Cyrillic Belarusian),57781 (Hungarian),58152 (Cyrillic Kazakh with Euro),") + QStringLiteral("58210 (Cyrillic Azeri Cyrillic),59234 (Cyrillic Tatar),59829 (Georgian),60258 (Cyrillic Azeri Latin),60853 (Georgian with capital letters),") + QStringLiteral("61282 (Latvian and Russian \"RusLat\"),62306 (Cyrillic Uzbek)");
-inline const QString DefaultValuesReportedDOSVersion = QStringLiteral("default,6.22,6.2,6.0,5.0,4.0,3.3");
-inline const QString DefaultValuesMIDIDevice = QStringLiteral("default,alsa,oss,win32,coreaudio,none");
+inline const QString DefaultValuesReportedDOSVersion = QStringLiteral("default,6.22,6.2,6.0,5.0,4.0,3.3") + QStringLiteral(",7.1,7.0");
+inline const QString DefaultValuesMIDIDevice = QStringLiteral("default,alsa,oss,win32,coreaudio,none") + QStringLiteral(",port,mt32,fluidsynth,soundcanvas,coremidi,synth,timidity");
 inline const QString DefaultValuesBlocksize = QStringLiteral("512,1024,2048,3072,4096,8192");
 inline const QString DefaultValuesCyclesDown = QStringLiteral("20,50,100,500,1000,2000,5000,10000");
 inline const QString DefaultValuesCyclesUp = QStringLiteral("20,50,100,500,1000,2000,5000,10000");
@@ -963,8 +1009,8 @@ inline const QString DefaultValuesVGAVideoRAM = QStringLiteral("512,1024,2048,40
 inline const QString DefaultValuesScummVMRenderMode = QStringLiteral("default,CGA,EGA,Hercules green (hercGreen),Hercules amber (hercAmber),Amiga");
 inline const QString DefaultValuesScummVMPlatform = QStringLiteral("auto,2gs,3do,acorn,amiga,atari,c64,fmtowns,mac,nes,pc,pce,segacd,windows");
 inline const QString DefaultValuesScummVMLanguages = QStringLiteral("maniac:en-de-fr-it-es,zak:en-de-fr-it-es,dig_jp-zh-kr,comi:en-de-fr-it-pt-es-jp-zh-kr,sky:gb-en-de-fr-it-pt-es-se,sword1:en-de-fr-it-es-pt-cz,simon1:en-de-fr-it-es-hb-pl-ru,simon2:en-de-fr-it-es-hb-pl-ru");
-inline const QString DefaultValuesCPUType = QStringLiteral("auto,386,386_slow,486_slow,pentium_slow,386_prefetch");
-inline const QString DefaultValuesOplEmu = QStringLiteral("default,compat,fast,old");
+inline const QString DefaultValuesCPUType = QStringLiteral("auto,386,386_slow,486_slow,pentium_slow,386_prefetch") + QStringLiteral(",386_fast,486,pentium,pentium_mmx,8086,286,ppro_slow,pentium_ii,pentium_iii");
+inline const QString DefaultValuesOplEmu = QStringLiteral("default,compat,fast,old") + QStringLiteral(",nuked,mame");
 inline const QString DefaultValuesGlideEmulation = QStringLiteral("false,true,emu");
 inline const QString DefaultValuesGlideEmulationPort = QStringLiteral("400,500,600");
 inline const QString DefaultValuesGlideEmulationLFB = QStringLiteral("full,read,write,none");

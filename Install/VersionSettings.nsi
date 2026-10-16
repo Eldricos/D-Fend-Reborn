@@ -1,7 +1,7 @@
 !macro VersionData
 !define VER_MAYOR 0
 !define VER_MINOR1 5
-!define VER_MINOR2 4
+!define VER_MINOR2 5
 !macroend
 
 !macro BetaWarning

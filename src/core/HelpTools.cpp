@@ -138,6 +138,7 @@ static QString HelpContextPage(qintptr ID)
         {ID_ProfileEditHardware, "ProfileEditHardware"},
         {ID_ProfileEditAdditionalChecksums, "ProfileEditAdditionalChecksums"},
         {ID_ProfileEditSoundInnova, "ProfileEditSoundInnova"},
+        {ID_ProfileEditStaging, "ProfileEditStaging"},
         {ID_ExtrasManageIcons, "ExtrasManageIcons"},
         {ID_ExtrasViewHistory, "ExtrasViewHistory"},
         {ID_ExtrasOpenGamesFolder, "ExtrasOpenGamesFolder"},

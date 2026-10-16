@@ -20,6 +20,9 @@ void RunCommandAndWait(TGame* Game, TStringList* DeleteOnExit, const QString& Co
 THandle RunCommandAndGetHandle(TGame* Game, TStringList* DeleteOnExit, const QString& Command, bool DisableFullscreen = false);
 void RunWithCommandline(TGame* Game, TStringList* DeleteOnExit, const QString& CommandLine, bool DisableFullscreen = false);
 void RunWithCommandlineAndWait(TGame* Game, TStringList* DeleteOnExit, const QString& CommandLine, bool DisableFullscreen = false);
+// DOSBox type of the DOSBox installation of a profile (TGame::CustomDOSBoxDir:
+// empty / "default", the name of an installation or a folder / program file)
+TDOSBoxKind DOSBoxKindOfProfileInstallation(const QString& Installation);
 TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, int RunExtraFile, TStringList* DeleteOnExit, bool BuildForArchivePackage);
 bool BuildAutoexec(TGame* Game, bool RunSetup, TStringList* St, bool WarnIfNotReachable, int RunExtraFile, bool WarnIfWindowsExe, bool SelectCD, bool BuildForArchivePackage);
 QString GetDOSBoxCommandLine(int DOSBoxNr, const QString& ConfFile, int ShowConsole, const QString& DosBoxCommandLine = QString(), TDOSBoxKind Kind = dkDOSBox);

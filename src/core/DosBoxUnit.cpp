@@ -38,6 +38,7 @@
 #include "FileNameConvertor.h"
 #include "DOSBoxTempUnit.h"
 #include "WindowsFileWarningFormUnit.h"
+#include "DOSBoxConfUnit.h"
 #include "MIDITools.h"
 #include "HistoryUnit.h"
 #include "MainUnit.h"
@@ -927,13 +928,19 @@ static void AutoMountCDs(TStringList* St, TGame* Game, double DOSBoxVersion, QSt
 
 // D-Fend Reborn: DOSBox variant (DOSBox, DOSBox Staging, DOSBox-X) used by a
 // profile: a DOSBox installation or a DOSBox folder / program file
+TDOSBoxKind DOSBoxKindOfProfileInstallation(const QString& Installation)
+{
+    const QString S = Trim(ExtUpperCase(Installation));
+    if (S.isEmpty() || (S == "DEFAULT")) return DOSBoxKindOfInstallation(0);
+    for (int I = 0; I < PrgSetup->DOSBoxSettingsCount(); I++) if (Trim(ExtUpperCase(PrgSetup->DOSBoxSettings(I)->Name())) == S) return DOSBoxKindOfInstallation(I);
+    const QString P = MakeAbsPath(Trim(Installation), PrgSetup->BaseDir());
+    if (FileExists(P) && !DirectoryExists(P)) return DOSBoxKindOfFile(P);
+    return DOSBoxKind(P);
+}
+
 static TDOSBoxKind GetDOSBoxKindOfGame(TGame* Game)
 {
-    const int Nr = GetDOSBoxNr(Game);
-    if (Nr >= 0) return DOSBoxKindOfInstallation(Nr);
-    const QString S = MakeAbsPath(Trim(Game->CustomDOSBoxDir()), PrgSetup->BaseDir());
-    if (FileExists(S) && !DirectoryExists(S)) return DOSBoxKindOfFile(S);
-    return DOSBoxKind(S);
+    return DOSBoxKindOfProfileInstallation(Game->CustomDOSBoxDir());
 }
 
 static double GetDOSBoxVersionOfGame(TGame* Game)
@@ -1491,6 +1498,26 @@ TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, 
         result->Add("multipage=" + ConfBoolToStr(Game->PrinterMultiPage()));
     }
 
+    // DOSBox Staging: settings of the "DOSBox Staging" profile editor page
+    const TDOSBoxKind Kind = GetDOSBoxKindOfGame(Game);
+    if (Kind == dkStaging) {
+        QString LastSection;
+        for (int I = 0; I < StagingSettingCount; I++) {
+            S = Trim(Game->StagingSetting(I));
+            if (S.isEmpty() || (ExtUpperCase(S) == "DEFAULT")) continue;
+            if (((StagingSettings[I].Kind == skFile) || (StagingSettings[I].Kind == skFolder)) && (S.contains('/') || S.contains('\\'))) {
+                S = MakeAbsPath(S, PrgSetup->BaseDir());
+                if (BuildForArchivePackage) S = MakeRelPath(S, PrgDataDir());
+            }
+            if (LastSection != QLatin1String(StagingSettings[I].Section)) {
+                LastSection = QLatin1String(StagingSettings[I].Section);
+                result->Add("");
+                result->Add("[" + LastSection + "]");
+            }
+            result->Add(QLatin1String(StagingSettings[I].Key) + "=" + S);
+        }
+    }
+
     if (!BuildAutoexec(Game, RunSetup, result, WarnIfNotReachable, RunExtraFile, true, true, BuildForArchivePackage)) { delete result; result = nullptr; return result; }
 
     SpeedTestInfo("Add custom settings to DOSBox conf file");
@@ -1502,6 +1529,13 @@ TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, 
     St = StringToStringList(PrgSetup->DOSBoxSettings(DOSBoxNr)->CustomSettings());
     if (result != nullptr) result->AddStrings(*St);
     delete St;
+
+    // DOSBox Staging / DOSBox-X: their setting names instead of DOSBox 0.74
+    if ((result != nullptr) && (Kind != dkDOSBox)) {
+        const QStringList Lines = ConvertConfForDOSBox(Kind, result->ToQStringList());
+        result->Clear();
+        result->AddStrings(Lines);
+    }
 
     return result;
 }

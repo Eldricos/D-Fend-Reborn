@@ -35,7 +35,11 @@ On this page you can configurate the DOSBox versions to use with D-Fend Reborn.
     When D-Fend Reborn is started again it <b>will make absolute paths for the three directories again</b>.
     So this directory is shown here with absolute paths in any operation mode.<br /><br />
     The Windows version of D-Fend Reborn includes <a href="https://www.dosbox-staging.org/">DOSBox Staging</a>
-    in the subfolder <tt>DOSBox</tt> of the program folder; this is the default installation.<br /><br />
+    in the subfolder <tt>DOSBox</tt> of the program folder; this is the default installation.
+    For DOSBox Staging, D-Fend Reborn writes the profile settings with the setting names of DOSBox Staging
+    (e.g. <tt>cpu_cycles</tt> instead of <tt>cycles</tt>). Settings DOSBox Staging does not have any more
+    (scaler, output, pixel shader, printer, ...) are left out; DOSBox Staging uses its own defaults for them
+    (e.g. its CRT shaders instead of the scalers). Its key mapper file is <tt>mapper-sdl2.map</tt>.<br /><br />
     On Linux DOSBox is installed via the package manager (package <tt>dosbox-staging</tt> or <tt>dosbox</tt>).
     In this case enter the folder containing the <tt>dosbox</tt> program (usually <tt>/usr/bin</tt>).
     If there is no <tt>dosbox</tt> program in the given folder, D-Fend Reborn uses the <tt>dosbox</tt>
@@ -52,11 +56,12 @@ version in the chosen folder (the program <tt>dosbox</tt>, <tt>dosbox-staging</t
 the program file can also be selected in the "More settings" dialog).
 </p>
 <p>
-D-Fend Reborn writes its DOSBox configuration files for DOSBox and DOSBox Staging.
-<a href="https://dosbox-x.com/">DOSBox-X</a> reads most of these settings, but some profile settings
-(for example graphics output, sound or keyboard settings) may not work as expected. If a DOSBox-X
-installation is selected, a warning button is shown next to the DOSBox folder. If a game does not run
-correctly with DOSBox-X, select the default DOSBox installation (DOSBox Staging) for it.
+The profiles store their settings independent of the DOSBox version. When a game is started, D-Fend Reborn
+writes the DOSBox configuration file in the format of the DOSBox version selected for the profile:
+the setting names of DOSBox Staging for DOSBox Staging, the sections of
+<a href="https://dosbox-x.com/">DOSBox-X</a> for DOSBox-X and the DOSBox 0.74 settings for other versions.
+So a profile can be switched between DOSBox versions at any time. Settings a DOSBox version does not use
+are greyed out in the <a href="ProfileEdit.html">profile editor</a>.
 </p>
 
 <h2>"More settings for this DOSBox installation" dialog</h2>

@@ -911,11 +911,6 @@ TDOSBoxKind DOSBoxKindOfInstallation(int Nr)
     return DOSBoxKindOfFile(DOSBoxExeFileOfInstallation(Nr));
 }
 
-void DOSBoxXWarning()
-{
-    MessageDlg(LanguageSetup->MessageDOSBoxXWarning(), mtWarning, mbOK, 0);
-}
-
 QString CheckDOSBoxVersion(int Nr, const QString& Path)
 {
     QString result, DOSBoxPath;

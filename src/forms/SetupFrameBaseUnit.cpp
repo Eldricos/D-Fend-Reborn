@@ -42,7 +42,12 @@ void TSetupFrameBase::BeforeChangeLanguage()
 void TSetupFrameBase::LoadLanguage()
 {
     ui.MinimizeToTrayCheckBox->setText(LanguageSetup->SetupFormMinimizeToTray());
+#ifdef Q_OS_WIN
     ui.StartWithWindowsCheckBox->setText(LanguageSetup->SetupFormStartWithWindows());
+#else
+    // (Linux: autostart entry of the desktop session, see SetStartWithWindows)
+    ui.StartWithWindowsCheckBox->setText(LanguageSetup->SetupFormStartWithLogin());
+#endif
     ui.OnlySingleInstanceCheckBox->setText(LanguageSetup->SetupFormSingleInstance());
 }
 

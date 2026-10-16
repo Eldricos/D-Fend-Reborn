@@ -31,7 +31,7 @@ body:
     attributes:
       label: Tested with
       description: DOSBox version (e.g. the DOSBox Staging included in D-Fend Reborn) and D-Fend Reborn version
-      placeholder: "D-Fend Reborn 0.5.4, DOSBox Staging 0.83.0"
+      placeholder: "D-Fend Reborn 0.5.5, DOSBox Staging 0.83.0"
     validations:
       required: true
   - type: textarea

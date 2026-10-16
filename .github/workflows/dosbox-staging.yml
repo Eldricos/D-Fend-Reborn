@@ -1,0 +1,61 @@
+# Checks once a week whether a new version of DOSBox Staging (the DOSBox
+# included in the Windows downloads, cmake/DOSBoxStaging.cmake) is available.
+# If so, it opens an issue with the steps to update it (one issue per version).
+# "Run workflow" (Actions > DOSBox Staging update) checks immediately.
+name: DOSBox Staging update
+
+on:
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tools/update-dosbox-staging.py'
+      - '.github/workflows/dosbox-staging.yml'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check for a new DOSBox Staging version
+        id: check
+        run: python3 tools/update-dosbox-staging.py check
+
+      # pushes only test the check above
+      - name: Open an issue for the new version
+        if: steps.check.outputs.update == 'true' && github.event_name != 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CURRENT: ${{ steps.check.outputs.current }}
+          LATEST: ${{ steps.check.outputs.latest }}
+        run: |
+          TITLE="Update the included DOSBox Staging to $LATEST"
+          if gh issue list --repo "$GITHUB_REPOSITORY" --state all --search "\"$TITLE\" in:title" --json title --jq '.[].title' | grep -qxF "$TITLE"; then
+            echo "Issue \"$TITLE\" already exists"
+            exit 0
+          fi
+          cat > body.md <<EOF
+          DOSBox Staging $LATEST is available (included in D-Fend Reborn: $CURRENT).
+
+          Release notes: https://github.com/dosbox-staging/dosbox-staging/releases/tag/v$LATEST
+
+          Steps:
+          1. \`python3 tools/update-dosbox-staging.py apply\` - writes the new version and the
+             SHA-256 checksum of the Windows zip to \`cmake/DOSBoxStaging.cmake\`.
+          2. Build (Windows) and test some games, also with old profiles. Check the
+             release notes for renamed or removed settings and, if needed, adapt
+             \`src/core/DOSBoxConfUnit.cpp\` (start DOSBox Staging with a game and
+             look for "CONFIG:" warnings in its console / log).
+          3. Add a line to the change logs (\`data/Bin/Changelog.txt\`, help ChangeLog EN/DE).
+          4. Commit; the release workflow takes the version from the cmake file and
+             attaches the matching DOSBox Staging source archive to the next release.
+
+          _Opened by the "DOSBox Staging update" workflow._
+          EOF
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body-file body.md

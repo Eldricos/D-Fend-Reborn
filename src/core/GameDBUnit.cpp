@@ -1,5 +1,6 @@
 // C++ port of GameDBUnit.pas (implementation section).
 #include "GameDBUnit.h"
+#include <QSet>
 #include "CommonTools.h"
 #include "PrgConsts.h"
 #include "PrgSetupUnit.h"
@@ -89,8 +90,34 @@ TConfOpt::TConfOpt() : TBasePrgSetup(PrgDataDir() + SettingsFolder + PathDelim +
     AddStringRec(50, "MT32ReverbMode", "value", DefaultValuesMT32ReverbMode);
     AddStringRec(51, "MT32ReverbTime", "value", DefaultValuesMT32ReverbTime);
     AddStringRec(52, "MT32ReverbLevel", "value", DefaultValuesMT32ReverbLevel);
+    AddStringRec(NR_ConfOptValuesVersion, "Values", "Version", "");
+    for (int I = 0; I < StagingSettingCount; I++) AddStringRec(NR_ConfOptStagingFirst + I, QStringLiteral("Staging.") + QLatin1String(StagingSettings[I].Key), "value", StagingDefaultValues(I));
 
     CacheAllStrings();
+    UpgradeValueLists();
+}
+
+// D-Fend Reborn 0.5.5: values of DOSBox Staging and DOSBox-X added to the
+// lists; older ConfOpt.dat files get the values they do not have yet (the
+// values the user added or removed stay as they are otherwise)
+void TConfOpt::UpgradeValueLists()
+{
+    if (GetString(NR_ConfOptValuesVersion) == QLatin1String("2")) return;
+    const struct { int Nr; QString Defaults; } Lists[] = {
+        {6, DefaultValuesVideo}, {40, DefaultValuesCPUType}, {10, DefaultValuesSBlaster}, {11, DefaultValuesOPLModes},
+        {41, DefaultValuesOplEmu}, {15, DefaultValuesMIDIDevice}, {4, DefaultValueRender}, {2, DefaultValuesJoysticks},
+        {14, DefaultValuesReportedDOSVersion},
+    };
+    auto KeyOf = [](QString S) { S = S.trimmed(); const int P = S.indexOf('('); if (P > 0) S = S.left(P).trimmed(); return S.toLower(); };
+    for (const auto& L : Lists) {
+        QStringList Current = GetString(L.Nr).split(',');
+        QSet<QString> Keys;
+        for (const QString& S : Current) Keys.insert(KeyOf(S));
+        bool Changed = false;
+        for (const QString& S : L.Defaults.split(',')) if (!Keys.contains(KeyOf(S))) { Current.append(S.trimmed()); Keys.insert(KeyOf(S)); Changed = true; }
+        if (Changed) SetString(L.Nr, Current.join(','));
+    }
+    SetString(NR_ConfOptValuesVersion, QStringLiteral("2"));
 }
 
 TConfOpt::~TConfOpt()
@@ -403,6 +430,8 @@ void TGame::InitData()
     AddStringRec(NR_AddtionalChecksumFile4Checksum, "ExtraGameIdentify", "File4.Checksum", "");
     AddStringRec(NR_AddtionalChecksumFile5, "ExtraGameIdentify", "File5.Filename", "");
     AddStringRec(NR_AddtionalChecksumFile5Checksum, "ExtraGameIdentify", "File5.Checksum", "");
+
+    for (int I = 0; I < StagingSettingCount; I++) AddStringRec(NR_StagingSettingFirst + I, StagingSettings[I].Section, StagingSettings[I].Key, "default");
 
     FastAddRecDone();
 }

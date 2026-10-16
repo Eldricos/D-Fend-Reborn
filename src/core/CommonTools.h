@@ -91,7 +91,6 @@ TDOSBoxKind DOSBoxKindOfFile(const QString& PrgFile);
 TDOSBoxKind DOSBoxKind(const QString& Dir, const QString& Executable = QString());
 TDOSBoxKind DOSBoxKindOfInstallation(int Nr);
 // Notice that the configuration files may not work completely with DOSBox-X
-void DOSBoxXWarning();
 bool OldDOSBoxVersion(const QString& Version);
 void DOSBoxOutdatedWarning(const QString& DOSBoxPath);
 TDateTime GetFileDate(const QString& FileName);

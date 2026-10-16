@@ -57,7 +57,6 @@ public slots:
 protected:
     void showEvent(QShowEvent* Event) override;   // OnShow
 private:
-    bool LastWasDOSBoxX = false;   // (DOSBox-X notice when a DOSBox-X folder is chosen)
     friend bool ShowSetupFrameDOSBoxDialog(QWidget* AOwner, TDOSBoxData& DOSBoxData, bool IsDefault, TGameDB* GameDB);
     TStringList* DosBoxLang = nullptr;
     TGameDB* GameDB = nullptr;

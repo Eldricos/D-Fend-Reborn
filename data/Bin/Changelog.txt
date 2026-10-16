@@ -1,8 +1,41 @@
 D-Fend Reborn Changelog
 
 
-Version 0.5.4 (10/15/2026)
+Version 0.5.5 (not released yet)
 ================================
+- DOSBox Staging: the settings of the profiles are written with the names
+  of DOSBox Staging (e.g. cpu_cycles, mouse_capture, keyboard_layout);
+  settings DOSBox Staging does not have any more (scaler, output, pixel
+  shader, printer, ...) are left out, so DOSBox Staging uses its own defaults
+  and shows no warnings about outdated settings. The key mapper file of SDL 2
+  based DOSBox Staging is kept separate (mapper-sdl2.map).
+- DOSBox-X: the two settings DOSBox-X expects in other sections (vmemsize,
+  realnic) are written there. The notice about DOSBox-X installations is
+  not shown any more.
+- Profile editor (modern and classic): settings the DOSBox version of the
+  profile does not use are greyed out (e.g. scaler, render mode and
+  frameskip for DOSBox Staging; a tooltip explains it). The values stay in
+  the profile for other DOSBox versions.
+- New profile editor page "DOSBox Staging" (classic editor: tab "DOSBox
+  Staging") with settings only DOSBox Staging has: shader (CRT emulation,
+  sharp or smooth scaling), integer scaling, viewport size, CGA composite
+  and 3dfx Voodoo emulation, CPU cycles for protected mode programs, CPU
+  throttling, reverb, chorus, crossfeed, parallel port sound devices, IBM
+  PS/1 Audio, FluidSynth SoundFont, Roland MT-32 model and ROM folder, mouse
+  capture. "default" leaves the choice to DOSBox Staging; the settings are
+  only written for DOSBox Staging.
+- Default values (program options): the lists contain the values of DOSBox
+  Staging and DOSBox-X too (e.g. Sound Blaster types ess / ess688, OPL modes
+  opl3gold / esfm, MIDI devices port / mt32 / fluidsynth, video cards
+  cga_mono / mda / pc98, CPU types 486 / pentium); the values of the new
+  DOSBox Staging page can be edited there. Existing lists get the new
+  values; values added or removed by the user stay as they are.
+- Linux: the option "Start with Windows" is called "Start when logging
+  in" (it creates an autostart entry of the desktop session).
+
+
+Version 0.5.4 (10/15/2026)
+==========================
 - Windows: DOSBox Staging 0.83.0 replaces DOSBox 0.74 as the DOSBox included
   with D-Fend Reborn. The update installer replaces the files of DOSBox 0.74;
   portable copies use the portable mode of DOSBox Staging (settings in the
@@ -611,7 +644,7 @@ Version 0.9.2 (03/19/2010)
 Version 0.9.1 (02/05/2010)
 ==========================
 - Brazilian Portuguese language file (thanks to Cpt.Guapo)
-- Turkish language file (thanks to Hakan ATEÞ)
+- Turkish language file (thanks to Hakan ATEŞ)
 - Updated DOSZip from 1.37 to 1.41.
 - Updated the DOSBox language files for German and Italian and added a new
   DOSBox language file for Polish.

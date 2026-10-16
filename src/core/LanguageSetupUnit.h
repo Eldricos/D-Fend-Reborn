@@ -197,8 +197,6 @@ constexpr int NR_MessageCouldNotActivateXML = 20110;
 constexpr int NR_MessageZipImportDuplicateWarning = 20111;
 constexpr int NR_MessageNoFloppyDrive = 20112;
 constexpr int NR_MessageNoCDDrive = 20113;
-constexpr int NR_MessageDOSBoxXWarning = 20114;   // D-Fend Reborn
-constexpr int NR_MessageDOSBoxXWarningShort = 20115;   // D-Fend Reborn
 constexpr int NR_MenuFile = 30001;
 constexpr int NR_MenuFileImport = 30002;
 constexpr int NR_MenuFileImportConf = 30003;
@@ -701,6 +699,10 @@ constexpr int NR_ProfileEditorToolsResetToAutoSetup = 41011;
 constexpr int NR_ProfileEditorToolsResetToAutoSetupPage = 41012;
 constexpr int NR_ProfileEditorToolsResetToAutoSetupAll = 41013;
 constexpr int NR_ProfileEditorToolsResetToAutoSetupSelect = 41014;
+constexpr int NR_ProfileEditorDOSBoxSettingIgnored = 41015;   // D-Fend Reborn
+constexpr int NR_ProfileEditorStagingOnly = 41016;   // D-Fend Reborn
+constexpr int NR_ProfileEditorStagingInfo = 41017;   // D-Fend Reborn
+constexpr int NR_ProfileEditorStagingSettingFirst = 41020;   // D-Fend Reborn: 41020 ... 41035 (StagingSettings)
 constexpr int NR_ProfileMounting = 42001;
 constexpr int NR_ProfileMountingFolderSheet = 42002;
 constexpr int NR_ProfileMountingFloppySheet = 42003;
@@ -816,6 +818,7 @@ constexpr int NR_SetupFormStartRestoreFilter = 43118;
 constexpr int NR_SetupFormStartRestorePreviewerCategory = 43119;
 constexpr int NR_SetupFormMinimizeToTray = 43120;
 constexpr int NR_SetupFormStartWithWindows = 43121;
+constexpr int NR_SetupFormStartWithLogin = 43152;   // D-Fend Reborn (Linux)
 constexpr int NR_SetupFormSingleInstance = 43122;
 constexpr int NR_SetupFormAddButtonFunctionLabel = 43123;
 constexpr int NR_SetupFormAddButtonFunctionAdd = 43124;
@@ -2512,10 +2515,6 @@ public:
     void SetMessageNoFloppyDrive(const QString& Value) { SetString(NR_MessageNoFloppyDrive, Value); }
     QString MessageNoCDDrive() { return GetString(NR_MessageNoCDDrive); }
     void SetMessageNoCDDrive(const QString& Value) { SetString(NR_MessageNoCDDrive, Value); }
-    QString MessageDOSBoxXWarning() { return GetString(NR_MessageDOSBoxXWarning); }
-    void SetMessageDOSBoxXWarning(const QString& Value) { SetString(NR_MessageDOSBoxXWarning, Value); }
-    QString MessageDOSBoxXWarningShort() { return GetString(NR_MessageDOSBoxXWarningShort); }
-    void SetMessageDOSBoxXWarningShort(const QString& Value) { SetString(NR_MessageDOSBoxXWarningShort, Value); }
     QString MenuFile() { return GetString(NR_MenuFile); }
     void SetMenuFile(const QString& Value) { SetString(NR_MenuFile, Value); }
     QString MenuFileImport() { return GetString(NR_MenuFileImport); }
@@ -3487,6 +3486,10 @@ public:
     QString ProfileEditorAdditionalChecksumsSelectFileFilter() { return GetString(NR_ProfileEditorAdditionalChecksumsSelectFileFilter); }
     void SetProfileEditorAdditionalChecksumsSelectFileFilter(const QString& Value) { SetString(NR_ProfileEditorAdditionalChecksumsSelectFileFilter, Value); }
     QString ProfileEditorDefaultValueHint() { return GetString(NR_ProfileEditorDefaultValueHint); }
+    QString ProfileEditorDOSBoxSettingIgnored() { return GetString(NR_ProfileEditorDOSBoxSettingIgnored); }
+    QString ProfileEditorStagingOnly() { return GetString(NR_ProfileEditorStagingOnly); }
+    QString ProfileEditorStagingInfo() { return GetString(NR_ProfileEditorStagingInfo); }
+    QString ProfileEditorStagingSetting(int I) { return GetString(NR_ProfileEditorStagingSettingFirst + I); }
     void SetProfileEditorDefaultValueHint(const QString& Value) { SetString(NR_ProfileEditorDefaultValueHint, Value); }
     QString ProfileEditorTools() { return GetString(NR_ProfileEditorTools); }
     void SetProfileEditorTools(const QString& Value) { SetString(NR_ProfileEditorTools, Value); }
@@ -3757,6 +3760,7 @@ public:
     QString SetupFormMinimizeToTray() { return GetString(NR_SetupFormMinimizeToTray); }
     void SetSetupFormMinimizeToTray(const QString& Value) { SetString(NR_SetupFormMinimizeToTray, Value); }
     QString SetupFormStartWithWindows() { return GetString(NR_SetupFormStartWithWindows); }
+    QString SetupFormStartWithLogin() { return GetString(NR_SetupFormStartWithLogin); }
     void SetSetupFormStartWithWindows(const QString& Value) { SetString(NR_SetupFormStartWithWindows, Value); }
     QString SetupFormSingleInstance() { return GetString(NR_SetupFormSingleInstance); }
     void SetSetupFormSingleInstance(const QString& Value) { SetString(NR_SetupFormSingleInstance, Value); }

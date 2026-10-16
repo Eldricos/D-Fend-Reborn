@@ -253,12 +253,7 @@ void TSetupFrameDOSBoxForm::DosBoxDirEditChange(QObject* Sender)
     for (J = 0; J < St.Count(); J++) ui.DosBoxLangEditComboBox->addItem(ExtendLanguageName(St[J]));
     if (St.Count() > 0) ui.DosBoxLangEditComboBox->setCurrentIndex(qMax(0, I));
 
-    const bool IsX = (DOSBoxKind(ui.DosBoxDirEdit->text(), SelectedExecutable()) == dkDOSBoxX);
-    ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())) || IsX);
-    // notice when the user chooses a DOSBox-X folder or program file (not
-    // when the dialog is opened)
-    if (IsX && (!LastWasDOSBoxX) && (Sender != this) && isVisible()) DOSBoxXWarning();
-    LastWasDOSBoxX = IsX;
+    ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())));
     QRect G = ui.DosBoxDirEdit->geometry();
     QRect WB = ui.WarningButton->geometry();
     int W = (ui.WarningButton->isVisibleTo(this) ? WB.x() - 4 : WB.x() + WB.width()) - G.x();
@@ -386,7 +381,6 @@ void TSetupFrameDOSBoxForm::WarningButtonClick(QObject* Sender)
 {
     Q_UNUSED(Sender);
     if (OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text()))) DOSBoxOutdatedWarning(ui.DosBoxDirEdit->text());
-    else if (DOSBoxKind(ui.DosBoxDirEdit->text(), SelectedExecutable()) == dkDOSBoxX) DOSBoxXWarning();
 }
 
 /* global */

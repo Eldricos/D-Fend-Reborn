@@ -140,3 +140,7 @@ bool ModernEditGameProfil(QWidget* AOwner, TGameDB* AGameDB, TGame*& AGame, TGam
 bool ModernEditGameTemplate(QWidget* AOwner, TGameDB* AGameDB, TGame*& AGame, TGame* ADefaultGame, TLinkFile* ASearchLinkFile, TStringList* ADeleteOnExit, TList* GameList = nullptr, TList* TemplateType = nullptr);
 int EditGameProfilInt(QWidget* AOwner, TGameDB* AGameDB, TGame*& AGame, TGame* ADefaultGame, TLinkFile* ASearchLinkFile, TStringList* ADeleteOnExit, bool PrevButton, bool NextButton, bool RestorePos, bool EditingTemplate, const QString& ANewProfileName, const QString& ANewExeFile, bool HideGameInfoPage);
 void AddDefaultValueHint(QComboBox* AComboBox);
+// Greys out the settings of a profile editor page that the DOSBox version of
+// DOSBoxInstallation does not use (e.g. the scaler for DOSBox Staging); the
+// values stay in the profile for other DOSBox versions.
+void MarkIgnoredDOSBoxSettings(QWidget* Frame, const QString& DOSBoxInstallation);
