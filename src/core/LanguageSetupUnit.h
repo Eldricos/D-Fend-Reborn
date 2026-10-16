@@ -700,6 +700,9 @@ constexpr int NR_ProfileEditorToolsResetToAutoSetupPage = 41012;
 constexpr int NR_ProfileEditorToolsResetToAutoSetupAll = 41013;
 constexpr int NR_ProfileEditorToolsResetToAutoSetupSelect = 41014;
 constexpr int NR_ProfileEditorDOSBoxSettingIgnored = 41015;   // D-Fend Reborn
+constexpr int NR_ProfileEditorStagingOnly = 41016;   // D-Fend Reborn
+constexpr int NR_ProfileEditorStagingInfo = 41017;   // D-Fend Reborn
+constexpr int NR_ProfileEditorStagingSettingFirst = 41020;   // D-Fend Reborn: 41020 ... 41035 (StagingSettings)
 constexpr int NR_ProfileMounting = 42001;
 constexpr int NR_ProfileMountingFolderSheet = 42002;
 constexpr int NR_ProfileMountingFloppySheet = 42003;
@@ -3483,6 +3486,9 @@ public:
     void SetProfileEditorAdditionalChecksumsSelectFileFilter(const QString& Value) { SetString(NR_ProfileEditorAdditionalChecksumsSelectFileFilter, Value); }
     QString ProfileEditorDefaultValueHint() { return GetString(NR_ProfileEditorDefaultValueHint); }
     QString ProfileEditorDOSBoxSettingIgnored() { return GetString(NR_ProfileEditorDOSBoxSettingIgnored); }
+    QString ProfileEditorStagingOnly() { return GetString(NR_ProfileEditorStagingOnly); }
+    QString ProfileEditorStagingInfo() { return GetString(NR_ProfileEditorStagingInfo); }
+    QString ProfileEditorStagingSetting(int I) { return GetString(NR_ProfileEditorStagingSettingFirst + I); }
     void SetProfileEditorDefaultValueHint(const QString& Value) { SetString(NR_ProfileEditorDefaultValueHint, Value); }
     QString ProfileEditorTools() { return GetString(NR_ProfileEditorTools); }
     void SetProfileEditorTools(const QString& Value) { SetString(NR_ProfileEditorTools, Value); }

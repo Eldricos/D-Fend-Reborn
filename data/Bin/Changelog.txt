@@ -13,9 +13,17 @@ Version 0.5.5 (not released yet)
   realnic) are written there. The notice about DOSBox-X installations is
   not shown any more.
 - Profile editor (modern and classic): settings the DOSBox version of the
-  profile does not use are greyed out (e.g. scaler, render mode and frameskip for DOSBox
-  Staging; a tooltip explains it). The values stay in the profile for
-  other DOSBox versions.
+  profile does not use are greyed out (e.g. scaler, render mode and
+  frameskip for DOSBox Staging; a tooltip explains it). The values stay in
+  the profile for other DOSBox versions.
+- New profile editor page "DOSBox Staging" (classic editor: tab "DOSBox
+  Staging") with settings only DOSBox Staging has: shader (CRT emulation,
+  sharp or smooth scaling), integer scaling, viewport size, CGA composite
+  and 3dfx Voodoo emulation, CPU cycles for protected mode programs, CPU
+  throttling, reverb, chorus, crossfeed, parallel port sound devices, IBM
+  PS/1 Audio, FluidSynth SoundFont, Roland MT-32 model and ROM folder, mouse
+  capture. "default" leaves the choice to DOSBox Staging; the settings are
+  only written for DOSBox Staging.
 
 
 Version 0.5.4 (10/15/2026)

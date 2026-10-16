@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Profile editor | DOSBox Staging</title>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="Global.css">
+  <script language="JavaScript" type="text/javascript" src="Global.js"></script>
+  <meta name="keywords" content="Menu, Profile, Edit, DOSBox Staging">
+</head>
+<body>
+
+<p class="content">
+Menu: &nbsp; <b>Profile</b> | <b>Edit</b> | <b>DOSBox Staging</b>
+</p>
+
+<h1>Profile editor dialog page "DOSBox Staging"</h1>
+
+<p>
+This page contains settings of <a href="https://www.dosbox-staging.org/">DOSBox Staging</a>, the DOSBox
+included with D-Fend Reborn, that older DOSBox versions do not have. They are only used if DOSBox Staging is
+selected for the profile (on the <a href="ProfileEditDOSBox.html">DOSBox settings</a> page); otherwise they
+are greyed out. "default" leaves the choice to DOSBox Staging (the setting is not written to the DOSBox
+configuration file). In the classic profile editor these settings are on the tab "DOSBox Staging".
+</p>
+
+<ul>
+  <li><b>Shader</b> (<tt>[render] shader</tt>): how the picture is scaled to the window or screen. <tt>crt-auto</tt> (default of DOSBox Staging) emulates a CRT monitor matching the video mode of the game, <tt>crt-auto-machine</tt> a monitor matching the emulated video card, <tt>crt-auto-arcade</tt> / <tt>crt-auto-arcade-sharp</tt> an arcade monitor with thick scanlines; <tt>sharp</tt> gives sharp pixels without blur, <tt>bilinear</tt> a smooth image, <tt>nearest</tt> unfiltered pixels. Other shaders of DOSBox Staging can be entered by name (e.g. <tt>scaler/xbr-lv3</tt>). This replaces the scalers of DOSBox 0.74.</li>
+  <li><b>Integer scaling</b> (<tt>[render] integer_scaling</tt>): only scale by whole numbers (<tt>vertical</tt>, <tt>horizontal</tt>), <tt>auto</tt> (for the CRT shaders) or <tt>off</tt>.</li>
+  <li><b>Viewport size</b> (<tt>[render] viewport</tt>): the maximum area used for the picture: <tt>fit</tt> (window or screen), a size like <tt>1280x960</tt> or a percentage of the desktop like <tt>80%</tt>.</li>
+  <li><b>CGA composite monitor emulation</b> (<tt>[composite] composite</tt>): NTSC composite colours for CGA, PCjr and Tandy games: <tt>auto</tt>, <tt>on</tt> or <tt>off</tt>.</li>
+  <li><b>3dfx Voodoo emulation</b> (<tt>[voodoo] voodoo</tt>): emulation of a 3dfx Voodoo graphics card (needs a fast computer).</li>
+  <li><b>CPU cycles for protected mode programs</b> (<tt>[cpu] cpu_cycles_protected</tt>): speed of the emulated CPU for protected mode (32 bit) programs: <tt>auto</tt> (the same as the CPU cycles of the profile), <tt>max</tt> or a number. If this is "default", D-Fend Reborn sets it from the CPU cycles of the profile ("auto" in DOSBox 0.74 means 3000 cycles for real mode and <tt>max</tt> for protected mode).</li>
+  <li><b>Reduce the CPU cycles if the computer is too slow</b> (<tt>[cpu] cpu_throttle</tt>): for fixed cycles values.</li>
+  <li><b>Reverb</b> (<tt>[mixer] reverb</tt>): room effect for the sound: <tt>tiny</tt>, <tt>small</tt>, <tt>medium</tt>, <tt>large</tt>, <tt>huge</tt> (<tt>on</tt> = medium).</li>
+  <li><b>Chorus</b> (<tt>[mixer] chorus</tt>): chorus effect for the synthesizer channels: <tt>light</tt>, <tt>normal</tt>, <tt>strong</tt>.</li>
+  <li><b>Crossfeed</b> (<tt>[mixer] crossfeed</tt>): mixes the left and the right channel of OPL / Game Blaster music a bit (better with headphones): <tt>light</tt>, <tt>normal</tt>, <tt>strong</tt>.</li>
+  <li><b>Parallel port sound device</b> (<tt>[speaker] lpt_dac</tt>): <tt>disney</tt> (Disney Sound Source), <tt>covox</tt> (Covox Speech Thing), <tt>ston1</tt> (Stereo-on-1) or <tt>none</tt>. If this is "default", the Disney Sound Source setting of the profile is used.</li>
+  <li><b>IBM PS/1 Audio</b> (<tt>[speaker] ps1audio</tt>): emulation of the IBM PS/1 Audio card.</li>
+  <li><b>SoundFont for FluidSynth</b> (<tt>[fluidsynth] soundfont</tt>): the SoundFont (<tt>.sf2</tt>) used if the MIDI device of the profile is <tt>fluidsynth</tt>: a file or the name of a SoundFont in the <tt>soundfonts</tt> folder of DOSBox Staging.</li>
+  <li><b>Roland MT-32 model</b> (<tt>[mt32] model</tt>): the model used if the MIDI device of the profile is <tt>mt32</tt> (<tt>cm32l</tt>, <tt>mt32</tt>, <tt>mt32_old</tt>, <tt>mt32_new</tt> or an exact version like <tt>mt32_204</tt>).</li>
+  <li><b>Folder with the Roland MT-32 ROM files</b> (<tt>[mt32] romdir</tt>): the folder with the MT-32 / CM-32L ROM files (otherwise the <tt>mt32-roms</tt> folder of DOSBox Staging is used).</li>
+  <li><b>Mouse capture</b> (<tt>[mouse] mouse_capture</tt>): <tt>onclick</tt> (capture the mouse when clicking into the window), <tt>onstart</tt>, <tt>seamless</tt> (move the mouse freely between DOSBox and the desktop) or <tt>nomouse</tt>. If this is "default", the "Auto lock mouse" setting of the profile is used.</li>
+</ul>
+
+<p>
+A value chosen here takes precedence over the value D-Fend Reborn derives from the settings of the other pages
+(e.g. "Mouse capture" over "Auto lock mouse"). Further DOSBox Staging settings can be entered as custom settings
+on the <a href="ProfileEditDOSBox.html">DOSBox settings</a> page (e.g. <tt>[render]</tt> and
+<tt>monochrome_palette=green</tt> in two lines).
+</p>
+
+<p>&nbsp;</p>
+
+<p class="smallH">See also:</p>
+<p class="smallT">
+  <a href="ProfileEdit.html">Profile editor dialog</a><br />
+  <a href="FileOptionsDOSBox.html">DOSBox options</a>
+</p>
+
+</body>
+</html>

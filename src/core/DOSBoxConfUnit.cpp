@@ -3,6 +3,7 @@
 #include <QList>
 #include <QMap>
 #include <QRegularExpression>
+#include <QSet>
 
 // Settings of DOSBox 0.74 and their DOSBox Staging names (checked with DOSBox
 // Staging 0.83, which logs "Deprecated setting" / "No config section or
@@ -187,6 +188,20 @@ static QStringList ConvertConf(const QStringList& Lines, TConvertSetting Convert
     QString Section;
     int AutoexecLine = -1;
 
+    // settings already written with the new names (e.g. the DOSBox Staging
+    // page of the profile editor or custom settings) win over converted ones
+    QSet<QString> Native;
+    for (const QString& Line : Lines) {
+        const QString T = Line.trimmed();
+        if (T.startsWith('[') && T.endsWith(']')) { Section = T.mid(1, T.length() - 2).trimmed().toLower(); continue; }
+        const int Eq = T.indexOf('=');
+        if (Section == QLatin1String("autoexec") || Eq <= 0 || T.startsWith('#') || T.startsWith(';')) continue;
+        QList<TSetting> Dummy;
+        const QString Key = T.left(Eq).trimmed().toLower();
+        if (!Convert(Section, Key, T.mid(Eq + 1), Dummy)) Native.insert(Section + '/' + Key);
+    }
+    Section.clear();
+
     for (const QString& Line : Lines) {
         const QString T = Line.trimmed();
         if (T.startsWith('[') && T.endsWith(']')) {
@@ -211,6 +226,7 @@ static QStringList ConvertConf(const QStringList& Lines, TConvertSetting Convert
             continue;
         }
         for (const TSetting& S : Converted) {
+            if (Native.contains((S.Section.isEmpty() ? Section : S.Section) + '/' + S.Key)) continue;
             const QString NewLine = S.Key + '=' + S.Value;
             if (S.Section.isEmpty() || S.Section == Section) { Result.append(NewLine); continue; }
             if (!Moved.contains(S.Section)) MovedOrder.append(S.Section);

@@ -32,6 +32,7 @@
 #include "ModernProfileEditorScummVMFrameUnit.h"
 #include "ModernProfileEditorScummVMSoundFrameUnit.h"
 #include "ModernProfileEditorPrinterFrameUnit.h"
+#include "ModernProfileEditorStagingFrameUnit.h"
 #include "ModernProfileEditorScummVMGameFrameUnit.h"
 #include "ModernProfileEditorHelperProgramsFrameUnit.h"
 #include "ModernProfileEditorScummVMHardwareFrameUnit.h"
@@ -464,7 +465,8 @@ void TModernProfileEditorForm::InitGUI()
                 if (!HideGameInfoPage) { F = new TModernProfileEditorGameInfoFrame(P); AddTreeNode(N, F, dynamic_cast<IModernProfileEditorFrame*>(F), LanguageSetup->ProfileEditorGameInfoSheet(), 1, 1); }
                 F = new TModernProfileEditorDirectoryFrame(P); AddTreeNode(N, F, dynamic_cast<IModernProfileEditorFrame*>(F), LanguageSetup->ProfileEditorGameDirectorySheet(), 0, 8);
                 F = new TModernProfileEditorHelperProgramsFrame(P); AddTreeNode(N, F, dynamic_cast<IModernProfileEditorFrame*>(F), LanguageSetup->ProfileEditorHelperProgramsSheet(), 0, 0);
-                F = new TModernProfileEditorDOSBoxFrame(P); AddTreeNode(nullptr, F, dynamic_cast<IModernProfileEditorFrame*>(F), LanguageSetup->ProfileEditorGeneralSheet(), 2, 2);
+                F = new TModernProfileEditorDOSBoxFrame(P); N2 = AddTreeNode(nullptr, F, dynamic_cast<IModernProfileEditorFrame*>(F), LanguageSetup->ProfileEditorGeneralSheet(), 2, 2);
+                { auto* SF = new TModernProfileEditorStagingFrame(P); AddTreeNode(N2, SF, SF, QStringLiteral("DOSBox Staging"), 2, 2); }
                 F = new TModernProfileEditorHardwareFrame(P); N = AddTreeNode(nullptr, F, dynamic_cast<IModernProfileEditorFrame*>(F), LanguageSetup->ProfileEditorHardwareSheet(), 3, 3);
                 F = new TModernProfileEditorCPUFrame(P); AddTreeNode(N, F, dynamic_cast<IModernProfileEditorFrame*>(F), LanguageSetup->ProfileEditorCPUSheet(), 3, 9);
                 F = new TModernProfileEditorMemoryFrame(P); AddTreeNode(N, F, dynamic_cast<IModernProfileEditorFrame*>(F), LanguageSetup->ProfileEditorMemorySheet(), 4, 10);
@@ -1030,6 +1032,7 @@ void MarkIgnoredDOSBoxSettings(QWidget* Frame, const QString& DOSBoxInstallation
         {"ModernProfileEditorInnovaFrame", "innova", "samplerate", {QStringLiteral("InnovaSampleRateComboBox"), QStringLiteral("InnovaSampleRateLabel")}},
         {"ModernProfileEditorInnovaFrame", "innova", "sidbase", {QStringLiteral("InnovaBaseComboBox"), QStringLiteral("InnovaBaseLabel")}},
         {"ModernProfileEditorInnovaFrame", "innova", "quality", {QStringLiteral("InnovaQualityComboBox"), QStringLiteral("InnovaQualityLabel")}},
+        {"ModernProfileEditorStagingFrame", "staging", "*", {QStringLiteral("Staging_graphics"), QStringLiteral("Staging_cpu"), QStringLiteral("Staging_sound"), QStringLiteral("Staging_midi"), QStringLiteral("Staging_mouse")}},
     };
 
     if (Frame == nullptr) return;
@@ -1039,10 +1042,12 @@ void MarkIgnoredDOSBoxSettings(QWidget* Frame, const QString& DOSBoxInstallation
     if (!Found) return;
 
     const TDOSBoxKind Kind = DOSBoxKindOfProfileInstallation(DOSBoxInstallation);
-    const QString Hint = LanguageSetup->ProfileEditorDOSBoxSettingIgnored();
     for (const TIgnoredSettingWidgets& E : Table) {
         if (Name != QLatin1String(E.Frame)) continue;
-        const bool Ignored = DOSBoxSettingIgnored(Kind, QLatin1String(E.Section), QLatin1String(E.Key));
+        // ("staging": settings only DOSBox Staging has)
+        const bool StagingOnly = (qstrcmp(E.Section, "staging") == 0);
+        const bool Ignored = StagingOnly ? (Kind != dkStaging) : DOSBoxSettingIgnored(Kind, QLatin1String(E.Section), QLatin1String(E.Key));
+        const QString Hint = StagingOnly ? LanguageSetup->ProfileEditorStagingOnly() : LanguageSetup->ProfileEditorDOSBoxSettingIgnored();
         for (const QString& W : E.Widgets) {
             if (W == QLatin1String("*")) {
                 for (QWidget* C : Frame->findChildren<QWidget*>(QString(), Qt::FindDirectChildrenOnly)) SetDOSBoxSettingIgnored(C, Ignored, Hint);

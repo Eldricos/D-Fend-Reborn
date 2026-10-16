@@ -404,6 +404,8 @@ void TGame::InitData()
     AddStringRec(NR_AddtionalChecksumFile5, "ExtraGameIdentify", "File5.Filename", "");
     AddStringRec(NR_AddtionalChecksumFile5Checksum, "ExtraGameIdentify", "File5.Checksum", "");
 
+    for (int I = 0; I < StagingSettingCount; I++) AddStringRec(NR_StagingSettingFirst + I, StagingSettings[I].Section, StagingSettings[I].Key, "default");
+
     FastAddRecDone();
 }
 

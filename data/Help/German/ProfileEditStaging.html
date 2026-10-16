@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Profileditor | DOSBox Staging</title>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="Global.css">
+  <script language="JavaScript" type="text/javascript" src="Global.js"></script>
+  <meta name="keywords" content="Menu, Profile, Edit, DOSBox Staging">
+</head>
+<body>
+
+<p class="content">
+Men&uuml;: &nbsp; <b>Profil</b> | <b>Bearbeiten</b> | <b>DOSBox Staging</b>
+</p>
+
+<h1>Profileditor-Dialogseite "DOSBox Staging"</h1>
+
+<p>
+Diese Seite enth&auml;lt Einstellungen von <a href="https://www.dosbox-staging.org/">DOSBox Staging</a>, dem mit
+D-Fend Reborn ausgelieferten DOSBox, die &auml;ltere DOSBox-Versionen nicht haben. Sie werden nur verwendet, wenn f&uuml;r
+das Profil DOSBox Staging gew&auml;hlt ist (auf der Seite <a href="ProfileEditDOSBox.html">DOSBox-Einstellungen</a>);
+sonst sind sie ausgegraut. "default" &uuml;berl&auml;sst die Wahl DOSBox Staging (die Einstellung wird nicht in die
+DOSBox-Konfigurationsdatei geschrieben). Im klassischen Profileditor befinden sich diese Einstellungen auf der
+Registerkarte "DOSBox Staging".
+</p>
+
+<ul>
+  <li><b>Shader</b> (<tt>[render] shader</tt>): wie das Bild auf Fenster oder Bildschirm skaliert wird. <tt>crt-auto</tt> (Standard von DOSBox Staging) emuliert einen zum Grafikmodus des Spiels passenden R&ouml;hrenmonitor, <tt>crt-auto-machine</tt> einen zur emulierten Grafikkarte passenden Monitor, <tt>crt-auto-arcade</tt> / <tt>crt-auto-arcade-sharp</tt> einen Arcade-Monitor mit kr&auml;ftigen Scanlines; <tt>sharp</tt> liefert scharfe Pixel ohne Unsch&auml;rfe, <tt>bilinear</tt> ein weiches Bild, <tt>nearest</tt> ungefilterte Pixel. Weitere Shader von DOSBox Staging k&ouml;nnen mit ihrem Namen eingegeben werden (z.&nbsp;B. <tt>scaler/xbr-lv3</tt>). Dies ersetzt die Scaler von DOSBox 0.74.</li>
+  <li><b>Ganzzahlige Skalierung</b> (<tt>[render] integer_scaling</tt>): nur um ganzzahlige Faktoren vergr&ouml;&szlig;ern (<tt>vertical</tt>, <tt>horizontal</tt>), <tt>auto</tt> (f&uuml;r die CRT-Shader) oder <tt>off</tt>.</li>
+  <li><b>Gr&ouml;&szlig;e des Darstellungsbereichs</b> (<tt>[render] viewport</tt>): die maximal f&uuml;r das Bild genutzte Fl&auml;che: <tt>fit</tt> (Fenster bzw. Bildschirm), eine Gr&ouml;&szlig;e wie <tt>1280x960</tt> oder ein Anteil des Desktops wie <tt>80%</tt>.</li>
+  <li><b>CGA-Composite-Monitor-Emulation</b> (<tt>[composite] composite</tt>): NTSC-Composite-Farben f&uuml;r CGA-, PCjr- und Tandy-Spiele: <tt>auto</tt>, <tt>on</tt> oder <tt>off</tt>.</li>
+  <li><b>3dfx-Voodoo-Emulation</b> (<tt>[voodoo] voodoo</tt>): Emulation einer 3dfx-Voodoo-Grafikkarte (ben&ouml;tigt einen schnellen Computer).</li>
+  <li><b>CPU-Zyklen f&uuml;r Protected-Mode-Programme</b> (<tt>[cpu] cpu_cycles_protected</tt>): Geschwindigkeit der emulierten CPU f&uuml;r Protected-Mode-Programme (32 Bit): <tt>auto</tt> (wie die CPU-Zyklen des Profils), <tt>max</tt> oder eine Zahl. Bei "default" leitet D-Fend Reborn den Wert aus den CPU-Zyklen des Profils ab ("auto" bedeutet bei DOSBox 0.74 3000 Zyklen im Real Mode und <tt>max</tt> im Protected Mode).</li>
+  <li><b>CPU-Zyklen reduzieren, wenn der Computer zu langsam ist</b> (<tt>[cpu] cpu_throttle</tt>): bei festen Zyklenwerten.</li>
+  <li><b>Hall</b> (<tt>[mixer] reverb</tt>): Raumeffekt f&uuml;r den Klang: <tt>tiny</tt>, <tt>small</tt>, <tt>medium</tt>, <tt>large</tt>, <tt>huge</tt> (<tt>on</tt> = medium).</li>
+  <li><b>Chorus</b> (<tt>[mixer] chorus</tt>): Chorus-Effekt f&uuml;r die Synthesizer-Kan&auml;le: <tt>light</tt>, <tt>normal</tt>, <tt>strong</tt>.</li>
+  <li><b>Crossfeed</b> (<tt>[mixer] crossfeed</tt>): mischt den linken und rechten Kanal der OPL- / Game-Blaster-Musik etwas (angenehmer mit Kopfh&ouml;rern): <tt>light</tt>, <tt>normal</tt>, <tt>strong</tt>.</li>
+  <li><b>Soundger&auml;t am Parallelport</b> (<tt>[speaker] lpt_dac</tt>): <tt>disney</tt> (Disney Sound Source), <tt>covox</tt> (Covox Speech Thing), <tt>ston1</tt> (Stereo-on-1) oder <tt>none</tt>. Bei "default" gilt die Disney-Sound-Source-Einstellung des Profils.</li>
+  <li><b>IBM PS/1 Audio</b> (<tt>[speaker] ps1audio</tt>): Emulation der IBM-PS/1-Audio-Karte.</li>
+  <li><b>SoundFont f&uuml;r FluidSynth</b> (<tt>[fluidsynth] soundfont</tt>): der SoundFont (<tt>.sf2</tt>), der verwendet wird, wenn das MIDI-Ger&auml;t des Profils <tt>fluidsynth</tt> ist: eine Datei oder der Name eines SoundFonts im Verzeichnis <tt>soundfonts</tt> von DOSBox Staging.</li>
+  <li><b>Roland-MT-32-Modell</b> (<tt>[mt32] model</tt>): das Modell, wenn das MIDI-Ger&auml;t des Profils <tt>mt32</tt> ist (<tt>cm32l</tt>, <tt>mt32</tt>, <tt>mt32_old</tt>, <tt>mt32_new</tt> oder eine genaue Version wie <tt>mt32_204</tt>).</li>
+  <li><b>Verzeichnis mit den ROM-Dateien des Roland MT-32</b> (<tt>[mt32] romdir</tt>): das Verzeichnis mit den MT-32- / CM-32L-ROM-Dateien (sonst wird das Verzeichnis <tt>mt32-roms</tt> von DOSBox Staging verwendet).</li>
+  <li><b>Mauserfassung</b> (<tt>[mouse] mouse_capture</tt>): <tt>onclick</tt> (Maus beim Klick ins Fenster einfangen), <tt>onstart</tt>, <tt>seamless</tt> (Maus frei zwischen DOSBox und Desktop bewegen) oder <tt>nomouse</tt>. Bei "default" gilt die Einstellung "Maus im DOSBox-Fenster locken" des Profils.</li>
+</ul>
+
+<p>
+Ein hier gew&auml;hlter Wert hat Vorrang vor dem Wert, den D-Fend Reborn aus den Einstellungen der anderen Seiten ableitet
+(z.&nbsp;B. "Mauserfassung" vor "Maus im DOSBox-Fenster locken"). Weitere Einstellungen von DOSBox Staging k&ouml;nnen als
+benutzerdefinierte Einstellungen auf der Seite <a href="ProfileEditDOSBox.html">DOSBox-Einstellungen</a> eingegeben werden
+(z.&nbsp;B. <tt>[render]</tt> und <tt>monochrome_palette=green</tt> in zwei Zeilen).
+</p>
+
+<p>&nbsp;</p>
+
+<p class="smallH">Siehe auch:</p>
+<p class="smallT">
+  <a href="ProfileEdit.html">Profileditor-Dialog</a><br />
+  <a href="FileOptionsDOSBox.html">DOSBox-Einstellungen</a>
+</p>
+
+</body>
+</html>

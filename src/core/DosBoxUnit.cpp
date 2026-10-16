@@ -1498,6 +1498,26 @@ TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, 
         result->Add("multipage=" + ConfBoolToStr(Game->PrinterMultiPage()));
     }
 
+    // DOSBox Staging: settings of the "DOSBox Staging" profile editor page
+    const TDOSBoxKind Kind = GetDOSBoxKindOfGame(Game);
+    if (Kind == dkStaging) {
+        QString LastSection;
+        for (int I = 0; I < StagingSettingCount; I++) {
+            S = Trim(Game->StagingSetting(I));
+            if (S.isEmpty() || (ExtUpperCase(S) == "DEFAULT")) continue;
+            if (((StagingSettings[I].Kind == skFile) || (StagingSettings[I].Kind == skFolder)) && (S.contains('/') || S.contains('\\'))) {
+                S = MakeAbsPath(S, PrgSetup->BaseDir());
+                if (BuildForArchivePackage) S = MakeRelPath(S, PrgDataDir());
+            }
+            if (LastSection != QLatin1String(StagingSettings[I].Section)) {
+                LastSection = QLatin1String(StagingSettings[I].Section);
+                result->Add("");
+                result->Add("[" + LastSection + "]");
+            }
+            result->Add(QLatin1String(StagingSettings[I].Key) + "=" + S);
+        }
+    }
+
     if (!BuildAutoexec(Game, RunSetup, result, WarnIfNotReachable, RunExtraFile, true, true, BuildForArchivePackage)) { delete result; result = nullptr; return result; }
 
     SpeedTestInfo("Add custom settings to DOSBox conf file");
@@ -1511,7 +1531,6 @@ TStringList* BuildConfFile(TGame* Game, bool RunSetup, bool WarnIfNotReachable, 
     delete St;
 
     // DOSBox Staging / DOSBox-X: their setting names instead of DOSBox 0.74
-    const TDOSBoxKind Kind = GetDOSBoxKindOfGame(Game);
     if ((result != nullptr) && (Kind != dkDOSBox)) {
         const QStringList Lines = ConvertConfForDOSBox(Kind, result->ToQStringList());
         result->Clear();

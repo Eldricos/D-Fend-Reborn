@@ -109,6 +109,7 @@ constexpr int ID_ProfileEditHelperPrograms = 2124;
 constexpr int ID_ProfileEditHardware = 2125;
 constexpr int ID_ProfileEditAdditionalChecksums = 2126;
 constexpr int ID_ProfileEditSoundInnova = 2127;
+constexpr int ID_ProfileEditStaging = 2128;   // D-Fend Reborn
 constexpr int ID_ExtrasManageIcons = 3001;
 constexpr int ID_ExtrasViewHistory = 3002;
 constexpr int ID_ExtrasOpenGamesFolder = 3003;

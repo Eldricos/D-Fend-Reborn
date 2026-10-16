@@ -125,6 +125,9 @@ private:
     void LoadIcon();
     void InitGUI();
     void LoadData();
+    TValueListEditorWidget* StagingValueListEditor = nullptr;   // "DOSBox Staging" tab (StagingSettings)
+    void InitStagingSheet();
+    void StagingEditButtonClick(int Row);
     void MarkIgnoredDOSBoxSettings();
     void LoadMountingList();
     QChar NextFreeDriveLetter();

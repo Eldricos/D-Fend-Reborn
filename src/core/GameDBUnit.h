@@ -363,6 +363,39 @@ constexpr int NR_AddtionalChecksumFile4 = 506;
 constexpr int NR_AddtionalChecksumFile4Checksum = 507;
 constexpr int NR_AddtionalChecksumFile5 = 508;
 constexpr int NR_AddtionalChecksumFile5Checksum = 509;
+
+// DOSBox Staging settings without a DOSBox 0.74 counterpart (D-Fend Reborn).
+// They are stored in the profile with the DOSBox Staging names and only
+// written to the conf file for DOSBox Staging; "default" (or empty): not
+// written, DOSBox Staging uses its own default.
+enum TStagingSettingKind { skList, skEditableList, skFile, skFolder };
+struct TStagingSettingInfo {
+    const char* Section;
+    const char* Key;
+    const char* Values;   // values offered in the profile editor (";")
+    TStagingSettingKind Kind;
+    const char* Group;    // "graphics", "cpu", "sound", "midi", "mouse"
+};
+inline constexpr TStagingSettingInfo StagingSettings[] = {
+    {"render", "shader", "default;crt-auto;crt-auto-machine;crt-auto-arcade;crt-auto-arcade-sharp;sharp;bilinear;nearest;interpolation/catmull-rom;scaler/xbr-lv3;crt/crt-hyllian", skEditableList, "graphics"},
+    {"render", "integer_scaling", "default;auto;vertical;horizontal;off", skList, "graphics"},
+    {"render", "viewport", "default;fit;90%;80%;960x720;1280x960", skEditableList, "graphics"},
+    {"composite", "composite", "default;auto;on;off", skList, "graphics"},
+    {"voodoo", "voodoo", "default;on;off", skList, "graphics"},
+    {"cpu", "cpu_cycles_protected", "default;auto;max;30000;60000;100000;200000", skEditableList, "cpu"},
+    {"cpu", "cpu_throttle", "default;on;off", skList, "cpu"},
+    {"mixer", "reverb", "default;off;on;tiny;small;medium;large;huge", skList, "sound"},
+    {"mixer", "chorus", "default;off;on;light;normal;strong", skList, "sound"},
+    {"mixer", "crossfeed", "default;off;on;light;normal;strong", skList, "sound"},
+    {"speaker", "lpt_dac", "default;none;disney;covox;ston1", skList, "sound"},
+    {"speaker", "ps1audio", "default;on;off", skList, "sound"},
+    {"fluidsynth", "soundfont", "default", skFile, "midi"},
+    {"mt32", "model", "default;auto;cm32l;mt32;mt32_old;mt32_new", skEditableList, "midi"},
+    {"mt32", "romdir", "default", skFolder, "midi"},
+    {"mouse", "mouse_capture", "default;onclick;onstart;seamless;nomouse", skList, "mouse"},
+};
+constexpr int StagingSettingCount = int(sizeof(StagingSettings) / sizeof(StagingSettings[0]));
+constexpr int NR_StagingSettingFirst = 520;   // 520 ... 520 + StagingSettingCount - 1
 inline const QList<int> ScummVMSettings = {NR_ScummVMGame, NR_ScummVMPath, NR_ScummVMZip, NR_ScummVMFilter, NR_ScummVMRenderMode, NR_ScummVMAutosave, NR_ScummVMLanguage, NR_ScummVMMusicVolume, NR_ScummVMSpeechVolume, NR_ScummVMSFXVolume, NR_ScummVMMIDIGain, NR_ScummVMSampleRate, NR_ScummVMMusicDriver, NR_ScummVMNativeMT32, NR_ScummVMEnableGS, NR_ScummVMMultiMIDI, NR_ScummVMTalkSpeed, NR_ScummVMSpeechMute, NR_ScummVMSubtitles, NR_ScummVMSavePath, NR_ScummVMConfirmExit, NR_ScummVMCDROM, NR_ScummVMJoystickNum, NR_ScummVMAltIntro, NR_ScummVMGFXDetails, NR_ScummVMMusicMute, NR_ScummVMObjectLabels, NR_ScummVMReverseStereo, NR_ScummVMSFXMute, NR_ScummVMWalkspeed, NR_ScummVMExtraPath, NR_ScummVMPlatform, NR_ScummVMParameters};
 class TGame : public TBasePrgSetup
 {
@@ -470,6 +503,9 @@ public:
     void SetSwapMouseButtons(bool Value) { SetBoolean(NR_SwapMouseButtons, Value); }
     bool UseDoublebuffering() { return GetBoolean(NR_UseDoublebuffering); }
     void SetUseDoublebuffering(bool Value) { SetBoolean(NR_UseDoublebuffering, Value); }
+    // DOSBox Staging settings (StagingSettings[I])
+    QString StagingSetting(int I) { return GetString(NR_StagingSettingFirst + I); }
+    void SetStagingSetting(int I, const QString& Value) { SetString(NR_StagingSettingFirst + I, Value); }
     bool AspectCorrection() { return GetBoolean(NR_AspectCorrection); }
     void SetAspectCorrection(bool Value) { SetBoolean(NR_AspectCorrection, Value); }
     bool UseScanCodesOld() { return GetBoolean(NR_UseScanCodesOld); }

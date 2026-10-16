@@ -424,6 +424,8 @@ void TProfileEditorForm::InitGUI()
         ui.NotesLabel->setText(LanguageSetup->GameNotes() + ":");
     }
 
+    InitStagingSheet();
+
     // General Sheet
 
     SetTabCaption(ui.PageControl, ui.GeneralSheet, LanguageSetup->ProfileEditorGeneralSheet());
@@ -1262,6 +1264,13 @@ void TProfileEditorForm::LoadData()
         ui.PageControl->setCurrentIndex(0);
     }
 
+    // DOSBox Staging Sheet
+
+    for (I = 0; I < StagingSettingCount; I++) {
+        S = (Game == nullptr) ? QString() : Trim(Game->StagingSetting(I));
+        SetVFI(StagingValueListEditor, I, S.isEmpty() ? QStringLiteral("default") : S);
+    }
+
     MarkIgnoredDOSBoxSettings();
 
     // Set profile name in caption
@@ -1319,6 +1328,46 @@ void TProfileEditorForm::MarkIgnoredDOSBoxSettings()
         {ui.SoundMiscValueListEditor, 3, "speaker", "tandyrate"},
     };
     for (const TRow& R : Rows) SetRowIgnored(R.E, R.Row, DOSBoxSettingIgnored(Kind, QLatin1String(R.Section), QLatin1String(R.Key)), Hint);
+    // ("DOSBox Staging" tab: only used by DOSBox Staging)
+    for (int I = 0; I < StagingSettingCount; I++) SetRowIgnored(StagingValueListEditor, I, Kind != dkStaging, LanguageSetup->ProfileEditorStagingOnly());
+}
+
+void TProfileEditorForm::InitStagingSheet()
+{
+    auto* Page = new QWidget(ui.PageControl);
+    auto* Layout = new QVBoxLayout(Page);
+    auto* Info = new QLabel(LanguageSetup->ProfileEditorStagingInfo(), Page);
+    Info->setWordWrap(true);
+    Layout->addWidget(Info);
+    StagingValueListEditor = new TValueListEditorWidget(Page);
+    StagingValueListEditor->setTitleCaptions({LanguageSetup->Key(), LanguageSetup->Value()});
+    Layout->addWidget(StagingValueListEditor, 1);
+    TVLE V(StagingValueListEditor);
+    while (StagingValueListEditor->rowCount() > 0) V.Delete(0);
+    for (int I = 0; I < StagingSettingCount; I++) {
+        const TStagingSettingInfo& S = StagingSettings[I];
+        V.Add(LanguageSetup->ProfileEditorStagingSetting(I) + "=default");
+        if (S.Kind == skList) V.ReadOnly();
+        if ((S.Kind == skFile) || (S.Kind == skFolder)) V.Ellipsis();
+        else for (const QString& Value : QString::fromLatin1(S.Values).split(';')) V.Pick(Value);
+    }
+    StagingValueListEditor->setColumnWidth(0, 300);   // (long names)
+    connect(StagingValueListEditor, &TValueListEditorWidget::editButtonClicked, this, [this](int Row) { StagingEditButtonClick(Row); });
+    // (added as the last tab: the other code uses the indexes of the tabs)
+    ui.PageControl->addTab(Page, QStringLiteral("DOSBox Staging"));
+}
+
+void TProfileEditorForm::StagingEditButtonClick(int Row)
+{
+    if ((Row < 0) || (Row >= StagingSettingCount) || StagingValueListEditor->isReadOnly(Row)) return;
+    QString S = Trim(VFI(StagingValueListEditor, Row));
+    if (ExtUpperCase(S) == "DEFAULT") S.clear();
+    const QString Start = S.isEmpty() ? PrgSetup->BaseDir() : MakeAbsPath(S, PrgSetup->BaseDir());
+    if (StagingSettings[Row].Kind == skFolder)
+        S = QFileDialog::getExistingDirectory(this, LanguageSetup->ProfileEditorStagingSetting(Row), Start);
+    else
+        S = QFileDialog::getOpenFileName(this, LanguageSetup->ProfileEditorStagingSetting(Row), Start, QStringLiteral("SoundFont (*.sf2 *.sf3);;* (*)"));
+    if (!S.isEmpty()) SetVFI(StagingValueListEditor, Row, MakeRelPath(QDir::toNativeSeparators(S), PrgSetup->BaseDir()));
 }
 
 void TProfileEditorForm::LoadIcon()
@@ -1668,6 +1717,10 @@ void TProfileEditorForm::OKButtonClick(QObject* Sender)
         SetVFI(E, 2, Game->SpeakerTandy());
         try { Game->SetSpeakerTandyRate(StrToInt(Trim(VFI(E, 3)))); } catch (...) {}
         Game->SetSpeakerDisney(VFI(E, 4) == RemoveUnderline(LanguageSetup->Yes()));
+        for (int J = 0; J < StagingSettingCount; J++) {
+            const QString V = Trim(VFI(StagingValueListEditor, J));
+            Game->SetStagingSetting(J, V.isEmpty() ? QStringLiteral("default") : V);
+        }
         Game->SetMixerVolumeMasterLeft(ui.SoundVolumeMasterLeftEdit->value());
         Game->SetMixerVolumeMasterRight(ui.SoundVolumeMasterRightEdit->value());
         Game->SetMixerVolumeDisneyLeft(ui.SoundVolumeDisneyLeftEdit->value());
