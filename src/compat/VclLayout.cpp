@@ -318,7 +318,10 @@ public:
     {
         if (E->type() == QEvent::Resize) {
             QSize V = FA->viewport()->size();
-            FC->resize(qMax(V.width(), FDesign.width()), qMax(V.height(), FDesign.height()));
+            // ("vclContentsHeight": height the form code needs for its controls,
+            // e.g. the expandable sections of the multiple profiles editor)
+            const int H = qMax(qMax(V.height(), FDesign.height()), FC->property("vclContentsHeight").toInt());
+            FC->resize(qMax(V.width(), FDesign.width()), H);
         }
         return false;
     }

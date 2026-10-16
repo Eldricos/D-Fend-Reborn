@@ -17,7 +17,7 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
 
 <p class="small">
   <b>D-Fend Reborn</b><br />
-  <a href="#reborn055">D-Fend Reborn 0.5.5 (10/15/2026)</a><br />
+  <a href="#reborn055">D-Fend Reborn 0.5.5 (10/16/2026)</a><br />
   <a href="#reborn054">D-Fend Reborn 0.5.4 (10/15/2026)</a><br />
   <a href="#reborn053">D-Fend Reborn 0.5.3 (10/15/2026)</a><br />
   <a href="#reborn052">D-Fend Reborn 0.5.2 (10/15/2026)</a><br />
@@ -66,7 +66,7 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
   <a href="#ver010">Version 0.1.0 (11/08/2007)</a>
 </p>
 
-<a onclick="return Work('reborn055')" name="reborn055" href="#"><h2>&raquo; D-Fend Reborn 0.5.5 (not released yet)</h2></a>
+<a onclick="return Work('reborn055')" name="reborn055" href="#"><h2>&raquo; D-Fend Reborn 0.5.5 (10/16/2026)</h2></a>
 <div id="reborn055">
 <ul>
   <li>DOSBox Staging: the settings of the profiles are written with the names of DOSBox Staging (e.g. <tt>cpu_cycles</tt>, <tt>mouse_capture</tt>, <tt>keyboard_layout</tt>); settings DOSBox Staging does not have any more (scaler, output, pixel shader, printer, ...) are left out, so DOSBox Staging uses its own defaults and shows no warnings about outdated settings. The key mapper file of SDL 2 based DOSBox Staging is kept separate (<tt>mapper-sdl2.map</tt>).</li>
@@ -75,6 +75,8 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
   <li>New profile editor page <a href="ProfileEditStaging.html">"DOSBox Staging"</a> (classic editor: tab "DOSBox Staging") with settings only DOSBox Staging has: shader (CRT emulation, sharp or smooth scaling), integer scaling, viewport size, CGA composite and 3dfx Voodoo emulation, CPU cycles for protected mode programs, CPU throttling, reverb, chorus, crossfeed, parallel port sound devices, IBM PS/1 Audio, FluidSynth SoundFont, Roland MT-32 model and ROM folder, mouse capture. "default" leaves the choice to DOSBox Staging; the settings are only written for DOSBox Staging.</li>
   <li>Default values (program options): the lists contain the values of DOSBox Staging and DOSBox-X too (e.g. Sound Blaster types <tt>ess</tt> / <tt>ess688</tt>, OPL modes <tt>opl3gold</tt> / <tt>esfm</tt>, MIDI devices <tt>port</tt> / <tt>mt32</tt> / <tt>fluidsynth</tt>, video cards <tt>cga_mono</tt> / <tt>mda</tt> / <tt>pc98</tt>, CPU types <tt>486</tt> / <tt>pentium</tt>); the values of the new DOSBox Staging page can be edited there. Existing lists get the new values; values added or removed by the user stay as they are.</li>
   <li>Linux: the option "Start with Windows" is called "Start when logging in" (it creates an autostart entry of the desktop session).</li>
+  <li>Edit multiple profiles: new section "DOSBox Staging" with the settings of the <a href="ProfileEditStaging.html">DOSBox Staging</a> page of the profile editor.</li>
+  <li>[Fix] Edit multiple profiles: the list of settings could not be scrolled (the lower sections were not reachable).</li>
 </ul>
 </div>
 
