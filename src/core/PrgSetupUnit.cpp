@@ -462,7 +462,6 @@ void TPrgSetup::ReadSettings()
     AddBooleanRec(86, "ProgramSets", "SingleInstanceOnly", true);
     AddBooleanRec(87, "ProgramSets", "NonModalViewer", false);
     AddBooleanRec(88, "ProgramSets", "AllowPackingWindowsGames", false);
-    AddBooleanRec(89, "ProgramSets", "DataReaderDownloadCompleteMediaLibrary", true);
     AddBooleanRec(90, "ProgramSets", "OfferRunAsAdmin", false);
     /* AddBooleanRec(91,'ProgramSets','ActivateIncompleteFeatures',False); */
     AddBooleanRec(92, "ProgramSets", "DOSBoxFullSearchDone", false);   // D-Fend Reborn
@@ -498,8 +497,6 @@ void TPrgSetup::ReadSettings()
     AddIntegerRec(27, "ProgramSets", "NoteLinesInTooltips", 5);
     AddIntegerRec(28, "ProgramSets", "PreviewerCategory", 0);
     AddIntegerRec(29, "ProgramSets", "LanguageEditorViewMode", 0);
-    AddIntegerRec(30, "ProgramSets", "LastDataReaderUpdateCheck", 0);
-    AddIntegerRec(31, "ProgramSets", "DataReaderCheckForUpdates", 1);
     AddIntegerRec(32, "ProgramSets", "PackageListsCheckForUpdates", 0);
     AddIntegerRec(33, "ProgramSets", "LastPackageListeUpdateCheck", 0);
     AddIntegerRec(34, "ProgramSets", "CheatsDBCheckForUpdates", 0);

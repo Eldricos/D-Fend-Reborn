@@ -18,7 +18,7 @@ cp -R "$N/Capture/DOSBox DOS/." "$D/Capture/DOSBox DOS/"
 cp -R "$N/Templates/." "$D/Templates/"
 cp -R "$N/AutoSetup/." "$D/AutoSetup/"
 cp -R "$N/IconLibrary/." "$D/IconLibrary/"
-cp "$N/Icons.ini" "$N/DataReader.xml" "$D/Settings/"
+cp "$N/Icons.ini" "$D/Settings/"
 if [ -f "$D/Bin/Cheats.xml" ]; then cp "$D/Bin/Cheats.xml" "$D/Settings/"; fi
 cp -R "$N/FREEDOS" "$D/VirtualHD/FREEDOS"
 cp -R "$N/DOSZIP" "$D/VirtualHD/DOSZIP"

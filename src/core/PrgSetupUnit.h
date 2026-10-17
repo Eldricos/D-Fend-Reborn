@@ -425,8 +425,6 @@ public:
     void SetNonModalViewer(bool Value) { SetBoolean(87, Value); }
     bool AllowPackingWindowsGames() { return GetBoolean(88); }
     void SetAllowPackingWindowsGames(bool Value) { SetBoolean(88, Value); }
-    bool DataReaderDownloadCompleteMediaLibrary() { return GetBoolean(89); }
-    void SetDataReaderDownloadCompleteMediaLibrary(bool Value) { SetBoolean(89, Value); }
     bool OfferRunAsAdmin() { return GetBoolean(90); }
     void SetOfferRunAsAdmin(bool Value) { SetBoolean(90, Value); }
     // D-Fend Reborn: the full disk search for DOSBox at startup is only done once
@@ -495,10 +493,6 @@ public:
     void SetPreviewerCategory(int Value) { SetInteger(28, Value); }
     int LanguageEditorViewMode() { return GetInteger(29); }
     void SetLanguageEditorViewMode(int Value) { SetInteger(29, Value); }
-    int LastDataReaderUpdateCheck() { return GetInteger(30); }
-    void SetLastDataReaderUpdateCheck(int Value) { SetInteger(30, Value); }
-    int DataReaderCheckForUpdates() { return GetInteger(31); }
-    void SetDataReaderCheckForUpdates(int Value) { SetInteger(31, Value); }
     int PackageListsCheckForUpdates() { return GetInteger(32); }
     void SetPackageListsCheckForUpdates(int Value) { SetInteger(32, Value); }
     int LastPackageListeUpdateCheck() { return GetInteger(33); }

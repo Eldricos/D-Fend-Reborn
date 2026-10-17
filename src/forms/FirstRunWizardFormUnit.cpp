@@ -452,10 +452,8 @@ void TFirstRunWizardForm::FormClose(QObject* Sender, TCloseAction& Action)
     PrgSetup->SetVersionSpecificUpdateCheck(true);
     if (ui.UpdatesCheckBox->isChecked()) {
         PrgSetup->SetCheckForUpdates(1);
-        PrgSetup->SetDataReaderCheckForUpdates(2);
     } else {
         PrgSetup->SetCheckForUpdates(0);
-        PrgSetup->SetDataReaderCheckForUpdates(0);
     }
     PrgSetup->SetPackageListsCheckForUpdates(0);
     PrgSetup->SetCheatsDBCheckForUpdates(0);

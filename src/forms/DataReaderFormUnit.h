@@ -39,7 +39,6 @@ public:
     //   DataReaderForm.OnShow = FormShow
     //   SearchButton.OnClick = SearchButtonClick
     //   ListBox.OnClick = ListBoxClick
-    //   DownloadCoverCheckBox.OnClick = DownloadCoverCheckBoxClick
     //   InsertButton.OnClick = InsertButtonClick
     //   SearchTypeCheckBox.OnClick = SearchTypeCheckBoxClick
     //   SourceComboBox.OnChange = SourceComboBoxChange
@@ -52,7 +51,6 @@ public slots:
     void InsertButtonClick(QObject* Sender);
     void FormKeyDown(QObject* Sender, int& Key, TShiftState Shift);   // Key = Qt::Key_* value
     void SearchTypeCheckBoxClick(QObject* Sender);
-    void DownloadCoverCheckBoxClick(QObject* Sender);
     void SourceComboBoxChange(QObject* Sender);
 protected:
     void showEvent(QShowEvent *E) override;

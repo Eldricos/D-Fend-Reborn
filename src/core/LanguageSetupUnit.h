@@ -959,11 +959,6 @@ constexpr int NR_SetupFormUpdate3 = 43804;
 constexpr int NR_SetupFormUpdateVersionSpecific = 43805;
 constexpr int NR_SetupFormUpdateProgram = 43806;
 constexpr int NR_SetupFormUpdateButton = 43807;
-constexpr int NR_SetupFormUpdateDataReader = 43808;
-constexpr int NR_SetupFormUpdateDataReader0 = 43809;
-constexpr int NR_SetupFormUpdateDataReader1 = 43810;
-constexpr int NR_SetupFormUpdateDataReader2 = 43811;
-constexpr int NR_SetupFormUpdateDataReader3 = 43812;
 constexpr int NR_SetupFormUpdatePackages = 43813;
 constexpr int NR_SetupFormUpdatePackages0 = 43814;
 constexpr int NR_SetupFormUpdatePackages1 = 43815;
@@ -1518,8 +1513,6 @@ constexpr int NR_UpdateCheckDialogPackages = 70104;
 constexpr int NR_UpdateCheckDialogPackagesInfo = 70105;
 constexpr int NR_UpdateCheckDialogCheats = 70106;
 constexpr int NR_UpdateCheckDialogCheatsInfo = 70107;
-constexpr int NR_UpdateCheckDialogDataReader = 70108;
-constexpr int NR_UpdateCheckDialogDataReaderInfo = 70109;
 constexpr int NR_UpdateCheckDialogDownload = 70110;
 constexpr int NR_UpdateCheckDialogUpdate = 70111;
 constexpr int NR_UpdateCheckDialogAutoUpdate = 70112;
@@ -1530,7 +1523,6 @@ constexpr int NR_UpdateCheckDialogStatusAborted = 70116;
 constexpr int NR_UpdateCheckDialogStatusProgramNewVersionAvailable = 70117;
 constexpr int NR_UpdateCheckDialogStatusPackagesDone = 70118;
 constexpr int NR_UpdateCheckDialogStatusCheatsDone = 70119;
-constexpr int NR_UpdateCheckDialogStatusDataReaderDone = 70120;
 constexpr int NR_CacheChooseCaption = 71001;
 constexpr int NR_CacheChooseInfo = 71002;
 constexpr int NR_RestoreDeletedCaption = 71101;
@@ -1898,16 +1890,11 @@ constexpr int NR_RenameAllPlaceholderError = 96305;
 constexpr int NR_RenameAllNoFiles = 96306;
 constexpr int NR_RenameAllThisProfile = 96307;
 constexpr int NR_RenameAllAllProfiles = 96308;
-constexpr int NR_DataReader = 96401;
 constexpr int NR_DataReaderButton = 96402;
 constexpr int NR_DataReaderSearchForDOSGames = 96403;
 constexpr int NR_DataReaderSearchResults = 96404;
 constexpr int NR_DataReaderNoSearchResults = 96405;
-constexpr int NR_DataReaderCoverCheckbox = 96406;
-constexpr int NR_DataReaderCoverAllCheckbox = 96407;
 constexpr int NR_DataReaderInsert = 96408;
-constexpr int NR_DataReaderDownloadCaption = 96409;
-constexpr int NR_DataReaderDownloadInfo = 96410;
 constexpr int NR_DataReaderDownloadError = 96411;
 constexpr int NR_DataReaderSource = 96412;
 constexpr int NR_DataReaderSourceTemplates = 96413;   // D-Fend Reborn
@@ -4032,16 +4019,6 @@ public:
     void SetSetupFormUpdateProgram(const QString& Value) { SetString(NR_SetupFormUpdateProgram, Value); }
     QString SetupFormUpdateButton() { return GetString(NR_SetupFormUpdateButton); }
     void SetSetupFormUpdateButton(const QString& Value) { SetString(NR_SetupFormUpdateButton, Value); }
-    QString SetupFormUpdateDataReader() { return GetString(NR_SetupFormUpdateDataReader); }
-    void SetSetupFormUpdateDataReader(const QString& Value) { SetString(NR_SetupFormUpdateDataReader, Value); }
-    QString SetupFormUpdateDataReader0() { return GetString(NR_SetupFormUpdateDataReader0); }
-    void SetSetupFormUpdateDataReader0(const QString& Value) { SetString(NR_SetupFormUpdateDataReader0, Value); }
-    QString SetupFormUpdateDataReader1() { return GetString(NR_SetupFormUpdateDataReader1); }
-    void SetSetupFormUpdateDataReader1(const QString& Value) { SetString(NR_SetupFormUpdateDataReader1, Value); }
-    QString SetupFormUpdateDataReader2() { return GetString(NR_SetupFormUpdateDataReader2); }
-    void SetSetupFormUpdateDataReader2(const QString& Value) { SetString(NR_SetupFormUpdateDataReader2, Value); }
-    QString SetupFormUpdateDataReader3() { return GetString(NR_SetupFormUpdateDataReader3); }
-    void SetSetupFormUpdateDataReader3(const QString& Value) { SetString(NR_SetupFormUpdateDataReader3, Value); }
     QString SetupFormUpdatePackages() { return GetString(NR_SetupFormUpdatePackages); }
     void SetSetupFormUpdatePackages(const QString& Value) { SetString(NR_SetupFormUpdatePackages, Value); }
     QString SetupFormUpdatePackages0() { return GetString(NR_SetupFormUpdatePackages0); }
@@ -5148,10 +5125,6 @@ public:
     void SetUpdateCheckDialogCheats(const QString& Value) { SetString(NR_UpdateCheckDialogCheats, Value); }
     QString UpdateCheckDialogCheatsInfo() { return GetString(NR_UpdateCheckDialogCheatsInfo); }
     void SetUpdateCheckDialogCheatsInfo(const QString& Value) { SetString(NR_UpdateCheckDialogCheatsInfo, Value); }
-    QString UpdateCheckDialogDataReader() { return GetString(NR_UpdateCheckDialogDataReader); }
-    void SetUpdateCheckDialogDataReader(const QString& Value) { SetString(NR_UpdateCheckDialogDataReader, Value); }
-    QString UpdateCheckDialogDataReaderInfo() { return GetString(NR_UpdateCheckDialogDataReaderInfo); }
-    void SetUpdateCheckDialogDataReaderInfo(const QString& Value) { SetString(NR_UpdateCheckDialogDataReaderInfo, Value); }
     QString UpdateCheckDialogDownload() { return GetString(NR_UpdateCheckDialogDownload); }
     void SetUpdateCheckDialogDownload(const QString& Value) { SetString(NR_UpdateCheckDialogDownload, Value); }
     QString UpdateCheckDialogUpdate() { return GetString(NR_UpdateCheckDialogUpdate); }
@@ -5172,8 +5145,6 @@ public:
     void SetUpdateCheckDialogStatusPackagesDone(const QString& Value) { SetString(NR_UpdateCheckDialogStatusPackagesDone, Value); }
     QString UpdateCheckDialogStatusCheatsDone() { return GetString(NR_UpdateCheckDialogStatusCheatsDone); }
     void SetUpdateCheckDialogStatusCheatsDone(const QString& Value) { SetString(NR_UpdateCheckDialogStatusCheatsDone, Value); }
-    QString UpdateCheckDialogStatusDataReaderDone() { return GetString(NR_UpdateCheckDialogStatusDataReaderDone); }
-    void SetUpdateCheckDialogStatusDataReaderDone(const QString& Value) { SetString(NR_UpdateCheckDialogStatusDataReaderDone, Value); }
     QString CacheChooseCaption() { return GetString(NR_CacheChooseCaption); }
     void SetCacheChooseCaption(const QString& Value) { SetString(NR_CacheChooseCaption, Value); }
     QString CacheChooseInfo() { return GetString(NR_CacheChooseInfo); }
@@ -5908,8 +5879,6 @@ public:
     void SetRenameAllThisProfile(const QString& Value) { SetString(NR_RenameAllThisProfile, Value); }
     QString RenameAllAllProfiles() { return GetString(NR_RenameAllAllProfiles); }
     void SetRenameAllAllProfiles(const QString& Value) { SetString(NR_RenameAllAllProfiles, Value); }
-    QString DataReader() { return GetString(NR_DataReader); }
-    void SetDataReader(const QString& Value) { SetString(NR_DataReader, Value); }
     QString DataReaderButton() { return GetString(NR_DataReaderButton); }
     void SetDataReaderButton(const QString& Value) { SetString(NR_DataReaderButton, Value); }
     QString DataReaderSearchForDOSGames() { return GetString(NR_DataReaderSearchForDOSGames); }
@@ -5918,16 +5887,8 @@ public:
     void SetDataReaderSearchResults(const QString& Value) { SetString(NR_DataReaderSearchResults, Value); }
     QString DataReaderNoSearchResults() { return GetString(NR_DataReaderNoSearchResults); }
     void SetDataReaderNoSearchResults(const QString& Value) { SetString(NR_DataReaderNoSearchResults, Value); }
-    QString DataReaderCoverCheckbox() { return GetString(NR_DataReaderCoverCheckbox); }
-    void SetDataReaderCoverCheckbox(const QString& Value) { SetString(NR_DataReaderCoverCheckbox, Value); }
-    QString DataReaderCoverAllCheckbox() { return GetString(NR_DataReaderCoverAllCheckbox); }
-    void SetDataReaderCoverAllCheckbox(const QString& Value) { SetString(NR_DataReaderCoverAllCheckbox, Value); }
     QString DataReaderInsert() { return GetString(NR_DataReaderInsert); }
     void SetDataReaderInsert(const QString& Value) { SetString(NR_DataReaderInsert, Value); }
-    QString DataReaderDownloadCaption() { return GetString(NR_DataReaderDownloadCaption); }
-    void SetDataReaderDownloadCaption(const QString& Value) { SetString(NR_DataReaderDownloadCaption, Value); }
-    QString DataReaderDownloadInfo() { return GetString(NR_DataReaderDownloadInfo); }
-    void SetDataReaderDownloadInfo(const QString& Value) { SetString(NR_DataReaderDownloadInfo, Value); }
     QString DataReaderDownloadError() { return GetString(NR_DataReaderDownloadError); }
     void SetDataReaderDownloadError(const QString& Value) { SetString(NR_DataReaderDownloadError, Value); }
     QString DataReaderSource() { return GetString(NR_DataReaderSource); }

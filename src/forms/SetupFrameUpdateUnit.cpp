@@ -35,14 +35,11 @@ void TSetupFrameUpdate::InitGUIAndLoadSetup(TInitData &InitData)
     UserIconLoader->DialogImage(DI_Update, ui.UpdateButton);
     ui.ProgramUpdateComboBox->clear();
     while (ui.ProgramUpdateComboBox->count() < 4) ui.ProgramUpdateComboBox->addItem(QString());
-    ui.DataReaderComboBox->clear();
-    while (ui.DataReaderComboBox->count() < 4) ui.DataReaderComboBox->addItem(QString());
     ui.PackagesComboBox->clear();
     while (ui.PackagesComboBox->count() < 4) ui.PackagesComboBox->addItem(QString());
     ui.CheatsComboBox->clear();
     while (ui.CheatsComboBox->count() < 3) ui.CheatsComboBox->addItem(QString());
     ui.ProgramUpdateComboBox->setCurrentIndex(Max(0, Min(3, PrgSetup->CheckForUpdates())));
-    ui.DataReaderComboBox->setCurrentIndex(Max(0, Min(3, PrgSetup->DataReaderCheckForUpdates())));
     ui.PackagesComboBox->setCurrentIndex(Max(0, Min(3, PrgSetup->PackageListsCheckForUpdates())));
     ui.CheatsComboBox->setCurrentIndex(Max(0, Min(2, PrgSetup->CheatsDBCheckForUpdates())));
     GameDB = InitData.GameDB;
@@ -66,16 +63,6 @@ void TSetupFrameUpdate::LoadLanguage()
     ui.ProgramUpdateComboBox->setItemText(2, LanguageSetup->SetupFormUpdate2());
     ui.ProgramUpdateComboBox->setItemText(3, LanguageSetup->SetupFormUpdate3());
     ui.ProgramUpdateComboBox->setCurrentIndex(I);
-    ui.DataReaderInfoLabel->setText(LanguageSetup->SetupFormUpdateDataReader());
-    I = ui.DataReaderComboBox->currentIndex();
-    ui.DataReaderComboBox->setItemText(0, LanguageSetup->SetupFormUpdateDataReader0());
-    ui.DataReaderComboBox->setItemText(1, LanguageSetup->SetupFormUpdateDataReader1());
-    ui.DataReaderComboBox->setItemText(2, LanguageSetup->SetupFormUpdateDataReader2());
-    ui.DataReaderComboBox->setItemText(3, LanguageSetup->SetupFormUpdateDataReader3());
-    ui.DataReaderComboBox->setCurrentIndex(I);
-    // D-Fend Reborn: the MobyGames reader (configuration updates) is not used any more
-    ui.DataReaderInfoLabel->setVisible(false);
-    ui.DataReaderComboBox->setVisible(false);
     ui.PackagesLabel->setText(LanguageSetup->SetupFormUpdatePackages());
     I = ui.PackagesComboBox->currentIndex();
     ui.PackagesComboBox->setItemText(0, LanguageSetup->SetupFormUpdatePackages0());
@@ -109,7 +96,6 @@ void TSetupFrameUpdate::RestoreDefaults()
 {
     ui.UpdateCheckBox->setChecked(true);
     ui.ProgramUpdateComboBox->setCurrentIndex(0);
-    ui.DataReaderComboBox->setCurrentIndex(2);
     ui.PackagesComboBox->setCurrentIndex(0);
     ui.CheatsComboBox->setCurrentIndex(0);
 }
@@ -118,7 +104,6 @@ void TSetupFrameUpdate::SaveSetup()
 {
     PrgSetup->SetVersionSpecificUpdateCheck(ui.UpdateCheckBox->isChecked());
     PrgSetup->SetCheckForUpdates(ui.ProgramUpdateComboBox->currentIndex());
-    PrgSetup->SetDataReaderCheckForUpdates(ui.DataReaderComboBox->currentIndex());
     PrgSetup->SetPackageListsCheckForUpdates(ui.PackagesComboBox->currentIndex());
     PrgSetup->SetCheatsDBCheckForUpdates(ui.CheatsComboBox->currentIndex());
 }
