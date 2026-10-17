@@ -8,34 +8,58 @@
     <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
     <property name="vclDesignWidth" stdset="0"><number>427</number></property>
     <property name="vclDesignHeight" stdset="0"><number>123</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>8</x><y>12</y><width>411</width><height>49</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>You can close DOSBox at any time by pressing Ctrl+F9.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QCheckBox" name="CheckBox">
-      <property name="geometry"><rect><x>8</x><y>64</y><width>411</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Do not show this information again</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>8</x><y>90</y><width>89</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-    </widget>
+    <layout class="QGridLayout" name="FullscreenInfoForm_Layout" columnstretch="0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>12</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="InfoLabel">
+          <property name="text"><string>You can close DOSBox at any time by pressing Ctrl+F9.</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+        <widget class="QCheckBox" name="CheckBox">
+          <property name="text"><string>Do not show this information again</string></property>
+          <property name="checked"><bool>true</bool></property>
+        </widget>
+      </item>
+      <item row="2" column="0" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="OKButton">
+          <property name="text"><string /></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+          <property name="default"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+          <property name="minimumSize"><size><width>89</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="0" column="1">
+        <spacer name="FullscreenInfoForm_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+      <item row="3" column="0">
+        <spacer name="FullscreenInfoForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>CheckBox</tabstop>
     <tabstop>OKButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

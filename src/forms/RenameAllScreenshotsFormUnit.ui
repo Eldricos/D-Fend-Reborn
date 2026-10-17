@@ -8,43 +8,150 @@
     <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
     <property name="vclDesignWidth" stdset="0"><number>431</number></property>
     <property name="vclDesignHeight" stdset="0"><number>204</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>8</x><y>8</y><width>415</width><height>49</height></rect></property>
-      <property name="text"><string>InfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLineEdit" name="Edit">
-      <property name="geometry"><rect><x>8</x><y>72</y><width>415</width><height>21</height></rect></property>
-      <property name="text"><string>Edit</string></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>8</x><y>174</y><width>97</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-    </widget>
-    <widget class="QPushButton" name="CancelButton">
-      <property name="geometry"><rect><x>111</x><y>174</y><width>97</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-      <property name="vclCancel" stdset="0"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-    </widget>
-    <widget class="QRadioButton" name="ThisProfileRadioButton">
-      <property name="geometry"><rect><x>8</x><y>113</y><width>415</width><height>17</height></rect></property>
-      <property name="text"><string>Rename all files in the selected profile</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QRadioButton" name="AllProfilesRadioButton">
-      <property name="geometry"><rect><x>8</x><y>136</y><width>415</width><height>17</height></rect></property>
-      <property name="text"><string>Rename all files in all profiles</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="RenameAllScreenshotsForm_Layout" stretch="0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="RenameAllScreenshotsForm_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="InfoLabel">
+              <property name="text"><string>InfoLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="minimumSize"><size><width>415</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="RenameAllScreenshotsForm_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="RenameAllScreenshotsForm_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="RenameAllScreenshotsForm_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLineEdit" name="Edit">
+              <property name="text"><string>Edit</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="RenameAllScreenshotsForm_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="RenameAllScreenshotsForm_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>20</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="RenameAllScreenshotsForm_Section3" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QRadioButton" name="ThisProfileRadioButton">
+              <property name="text"><string>Rename all files in the selected profile</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QRadioButton" name="AllProfilesRadioButton">
+              <property name="text"><string>Rename all files in all profiles</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="RenameAllScreenshotsForm_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="RenameAllScreenshotsForm_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>21</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="RenameAllScreenshotsForm_Section4" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="OKButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+              <property name="default"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CancelButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+              <property name="vclCancel" stdset="0"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="RenameAllScreenshotsForm_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="RenameAllScreenshotsForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>Edit</tabstop>
@@ -53,6 +160,8 @@
     <tabstop>OKButton</tabstop>
     <tabstop>CancelButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

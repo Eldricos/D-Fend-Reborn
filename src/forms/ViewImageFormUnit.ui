@@ -33,15 +33,15 @@
         <property name="vclButtonHeight" stdset="0"><number>22</number></property>
         <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
         <property name="vclWrapable" stdset="0"><bool>false</bool></property>
-        <addaction name="PreviousButton"/>
-        <addaction name="NextButton"/>
-        <addaction name="CopyButton"/>
-        <addaction name="ToolButton2"/>
-        <addaction name="SaveButton"/>
-        <addaction name="ClearButton"/>
-        <addaction name="ToolButton1"/>
-        <addaction name="ZoomButton"/>
-        <addaction name="BackgroundButton"/>
+        <addaction name="PreviousButton" />
+        <addaction name="NextButton" />
+        <addaction name="CopyButton" />
+        <addaction name="ToolButton2" />
+        <addaction name="SaveButton" />
+        <addaction name="ClearButton" />
+        <addaction name="ToolButton1" />
+        <addaction name="ZoomButton" />
+        <addaction name="BackgroundButton" />
       </widget>
     </widget>
     <widget class="QStatusBar" name="StatusBar">
@@ -52,18 +52,18 @@
     </widget>
     <widget class="QMenu" name="ZoomPopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="ZoomMenuItem1"/>
-      <addaction name="ZoomMenuItem2"/>
-      <addaction name="ZoomMenuItem3"/>
-      <addaction name="ZoomMenuItem4"/>
-      <addaction name="ZoomMenuItem5"/>
-      <addaction name="ZoomMenuItem6"/>
-      <addaction name="ZoomMenuItem7"/>
-      <addaction name="ZoomMenuItem8"/>
-      <addaction name="ZoomMenuItem9"/>
-      <addaction name="ZoomMenuItem10"/>
-      <addaction name="ZoomMenuItem11"/>
-      <addaction name="ZoomMenuItem12"/>
+      <addaction name="ZoomMenuItem1" />
+      <addaction name="ZoomMenuItem2" />
+      <addaction name="ZoomMenuItem3" />
+      <addaction name="ZoomMenuItem4" />
+      <addaction name="ZoomMenuItem5" />
+      <addaction name="ZoomMenuItem6" />
+      <addaction name="ZoomMenuItem7" />
+      <addaction name="ZoomMenuItem8" />
+      <addaction name="ZoomMenuItem9" />
+      <addaction name="ZoomMenuItem10" />
+      <addaction name="ZoomMenuItem11" />
+      <addaction name="ZoomMenuItem12" />
     </widget>
     <action name="PreviousButton">
       <property name="text"><string>PreviousButton</string></property>
@@ -162,6 +162,8 @@
       <header>VclWidgets.h</header>
     </customwidget>
   </customwidgets>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

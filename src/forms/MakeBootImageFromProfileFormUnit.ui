@@ -9,79 +9,138 @@
     <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
     <property name="vclDesignWidth" stdset="0"><number>443</number></property>
     <property name="vclDesignHeight" stdset="0"><number>265</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>8</x><y>8</y><width>424</width><height>82</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>This function can create a bootable harddisk image from a profile. Running a game under FreeDOS from a harddisk image can solve some rare problems on games not running in DOSBox directly. (The original profile is not changed in any way. The new harddisk image based profile is created as a copy.)</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="FreeSizeLabel">
-      <property name="geometry"><rect><x>8</x><y>134</y><width>299</width><height>13</height></rect></property>
-      <property name="text"><string>Additional free size on harddisk image (for saving games etc.):</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="FreeSizeMBLabel">
-      <property name="geometry"><rect><x>79</x><y>155</y><width>14</width><height>13</height></rect></property>
-      <property name="text"><string>MB</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QComboBox" name="ProfileComboBox">
-      <property name="geometry"><rect><x>8</x><y>96</y><width>424</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>8</x><y>232</y><width>97</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-    </widget>
-    <widget class="QPushButton" name="CancelButton">
-      <property name="geometry"><rect><x>111</x><y>232</y><width>97</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-      <property name="vclCancel" stdset="0"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-    </widget>
-    <widget class="QPushButton" name="HelpButton">
-      <property name="geometry"><rect><x>214</x><y>232</y><width>97</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
-    </widget>
-    <widget class="QSpinBox" name="FreeSizeEdit">
-      <property name="geometry"><rect><x>8</x><y>152</y><width>65</width><height>22</height></rect></property>
-      <property name="minimum"><number>1</number></property>
-      <property name="maximum"><number>100</number></property>
-      <property name="value"><number>10</number></property>
-    </widget>
-    <widget class="QCheckBox" name="CompressedCheckBox">
-      <property name="geometry"><rect><x>8</x><y>182</y><width>424</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Store Image with NTFS-compression</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="MemoryManagerCheckBox">
-      <property name="geometry"><rect><x>8</x><y>205</y><width>424</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Use memory manager on disk image</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
+    <layout class="QVBoxLayout" name="MakeBootImageFromProfileForm_Layout" stretch="0,0,0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="MakeBootImageFromProfileForm_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="InfoLabel">
+              <property name="text"><string>This function can create a bootable harddisk image from a profile. Running a game under FreeDOS from a harddisk image can solve some rare problems on games not running in DOSBox directly. (The original profile is not changed in any way. The new harddisk image based profile is created as a copy.)</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QComboBox" name="ProfileComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+              <property name="minimumContentsLength"><number>10</number></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="MakeBootImageFromProfileForm_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="MakeBootImageFromProfileForm_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>17</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="MakeBootImageFromProfileForm_Section2" columnstretch="0,0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="5">
+            <widget class="QLabel" name="FreeSizeLabel">
+              <property name="text"><string>Additional free size on harddisk image (for saving games etc.):</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QSpinBox" name="FreeSizeEdit">
+              <property name="minimum"><number>1</number></property>
+              <property name="maximum"><number>100</number></property>
+              <property name="value"><number>10</number></property>
+              <property name="minimumSize"><size><width>65</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="4">
+            <widget class="QLabel" name="FreeSizeMBLabel">
+              <property name="text"><string>MB</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="5">
+            <widget class="QCheckBox" name="CompressedCheckBox">
+              <property name="text"><string>Store Image with NTFS-compression</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="5">
+            <widget class="QCheckBox" name="MemoryManagerCheckBox">
+              <property name="text"><string>Use memory manager on disk image</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="4" column="0" colspan="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="OKButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+              <property name="default"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CancelButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+              <property name="vclCancel" stdset="0"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="3" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="HelpButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="4">
+            <spacer name="MakeBootImageFromProfileForm_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="MakeBootImageFromProfileForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>ProfileComboBox</tabstop>
@@ -92,6 +151,8 @@
     <tabstop>CancelButton</tabstop>
     <tabstop>HelpButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

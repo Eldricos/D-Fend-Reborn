@@ -16,24 +16,50 @@
       <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
       <property name="frameShadow"><enum>QFrame::Plain</enum></property>
       <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-      <widget class="QPushButton" name="CloseButton">
-        <property name="geometry"><rect><x>4</x><y>4</y><width>97</width><height>25</height></rect></property>
-        <property name="text"><string></string></property>
-        <property name="autoDefault"><bool>false</bool></property>
-        <property name="vclKind" stdset="0"><string notr="true">bkClose</string></property>
-        <property name="vclModalResult" stdset="0"><string notr="true">mrClose</string></property>
-      </widget>
-      <widget class="QComboBox" name="SectionComboBox">
-        <property name="geometry"><rect><x>344</x><y>5</y><width>305</width><height>21</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-      <widget class="QComboBox" name="ShowComboBox">
-        <property name="geometry"><rect><x>120</x><y>5</y><width>201</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
+      <layout class="QGridLayout" name="Panel1_Layout" columnstretch="0,0,0,1">
+        <property name="leftMargin"><number>4</number></property>
+        <property name="topMargin"><number>4</number></property>
+        <property name="rightMargin"><number>8</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <property name="horizontalSpacing"><number>8</number></property>
+        <property name="verticalSpacing"><number>4</number></property>
+        <item row="0" column="0" alignment="Qt::AlignLeft">
+          <widget class="QPushButton" name="CloseButton">
+            <property name="text"><string /></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclKind" stdset="0"><string notr="true">bkClose</string></property>
+            <property name="vclModalResult" stdset="0"><string notr="true">mrClose</string></property>
+            <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="1" alignment="Qt::AlignLeft">
+          <widget class="QComboBox" name="ShowComboBox">
+            <property name="editable"><bool>false</bool></property>
+            <property name="maxVisibleItems"><number>8</number></property>
+            <property name="minimumSize"><size><width>201</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="2" colspan="2">
+          <widget class="QComboBox" name="SectionComboBox">
+            <property name="editable"><bool>false</bool></property>
+            <property name="maxVisibleItems"><number>8</number></property>
+            <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+            <property name="minimumContentsLength"><number>10</number></property>
+          </widget>
+        </item>
+        <item row="0" column="3">
+          <spacer name="Panel1_Layout_HFill">
+            <property name="orientation"><enum>Qt::Horizontal</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+        <item row="1" column="0">
+          <spacer name="Panel1_VFill">
+            <property name="orientation"><enum>Qt::Vertical</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+      </layout>
     </widget>
     <widget class="QTableWidget" name="Tab">
       <property name="geometry"><rect><x>0</x><y>32</y><width>659</width><height>488</height></rect></property>
@@ -57,6 +83,8 @@
     <tabstop>SectionComboBox</tabstop>
     <tabstop>Tab</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

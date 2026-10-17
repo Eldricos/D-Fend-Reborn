@@ -374,11 +374,7 @@ void TScanGamesFolderForm::Template1ComboBoxChange(QObject* Sender)
     ui.ProgramFileComboBox->setVisible((ui.Template1ComboBox->currentIndex() < 2) && (ui.ProgramFileComboBox->count() > 1));
     ui.Template2Label->setVisible((ui.Template1ComboBox->currentIndex() < 2) || (NewGame->MatchingAutoSetup()->Count() > 1));
     ui.Template2ComboBox->setVisible((ui.Template1ComboBox->currentIndex() < 2) || (NewGame->MatchingAutoSetup()->Count() > 1));
-    if ((ui.Template1ComboBox->currentIndex() < 2) || (NewGame->MatchingAutoSetup()->Count() > 1)) {
-        VclLayout::setAlignedExtent(ui.EditPanel, ui.Template2ComboBox->y() + ui.Template2ComboBox->height() + 8);
-    } else {
-        VclLayout::setAlignedExtent(ui.EditPanel, ui.ProfileNameEdit->y() + ui.ProfileNameEdit->height() + 8);
-    }
+    VclLayout::fitHeight(ui.EditPanel);   // (height of the visible settings)
 
     SaveState = JustUpdating; JustUpdating = true;
 

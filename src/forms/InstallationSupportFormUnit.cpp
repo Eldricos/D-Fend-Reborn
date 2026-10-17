@@ -207,10 +207,8 @@ void TInstallationSupportForm::InstallTypeComboBoxChange(QObject* Sender)
     ui.UpButton->setEnabled(false);
     ui.DownButton->setEnabled(false);
 
-    QWidget* LB = ui.ListBox;
     QLabel* DIL = ui.DropInfoLabel;
-    auto SetTop = [](QWidget* W, int Top) { VclLayout::setBounds(W, W->x(), Top, W->width(), W->height()); };
-    auto SetHeight = [](QWidget* W, int Height) { VclLayout::setBounds(W, W->x(), W->y(), W->width(), Height); };
+    // (the layout places the visible controls; the list gets the free height)
 
     switch (I) {
         case 0: /* Install from real floppy disks */
@@ -220,22 +218,16 @@ void TInstallationSupportForm::InstallTypeComboBoxChange(QObject* Sender)
             ui.AddButton->setToolTip(LanguageSetup->InstallationSupportAddFolder());
             ui.DelButton->setToolTip(LanguageSetup->InstallationSupportDelFolder());
             DIL->setText(LanguageSetup->InstallationSupportDragDropFolder());
-            SetTop(DIL, ui.AlwaysMountSourceComboBox->y());
-            SetHeight(LB, DIL->y() - 2 - LB->y());
             break;
         case 2: /* Install from archive files */
             ui.AddButton->setToolTip(LanguageSetup->InstallationSupportAddArchive());
             ui.DelButton->setToolTip(LanguageSetup->InstallationSupportDelArchive());
             DIL->setText(LanguageSetup->InstallationSupportDragDropArchive());
-            SetTop(DIL, ui.AlwaysMountSourceComboBox->y());
-            SetHeight(LB, DIL->y() - 2 - LB->y());
             break;
         case 3: /* Install from floppy image */
             ui.AddButton->setToolTip(LanguageSetup->InstallationSupportAddFloppyImage());
             ui.DelButton->setToolTip(LanguageSetup->InstallationSupportDelFloppyImage());
             DIL->setText(LanguageSetup->InstallationSupportDragDropFloppyImage());
-            SetTop(DIL, ui.AlwaysMountSourceComboBox->y());
-            SetHeight(LB, DIL->y() - 2 - LB->y());
             break;
         case 4: /* Install from CD drive */
             ui.InsertMediaLabel->setText(LanguageSetup->InstallationSupportInsertFirstCD());
@@ -244,9 +236,6 @@ void TInstallationSupportForm::InstallTypeComboBoxChange(QObject* Sender)
             ui.AddButton->setToolTip(LanguageSetup->InstallationSupportAddCDImage());
             ui.DelButton->setToolTip(LanguageSetup->InstallationSupportDelCDImage());
             DIL->setText(LanguageSetup->InstallationSupportDragDropCDImage());
-            SetTop(DIL, ui.AlwaysMountSourceCheckBox->y() - 5 - DIL->height());
-            SetTop(ui.CDImageTypeLabel, DIL->y() - ui.CDImageTypeLabel->height());
-            SetHeight(LB, ui.CDImageTypeLabel->y() - 2 - LB->y());
             break;
     }
 

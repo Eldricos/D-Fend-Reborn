@@ -9,194 +9,340 @@
     <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
     <property name="vclDesignWidth" stdset="0"><number>606</number></property>
     <property name="vclDesignHeight" stdset="0"><number>248</number></property>
-    <widget class="TImageWidget" name="EasterImage1">
-      <property name="geometry"><rect><x>8</x><y>270</y><width>97</width><height>78</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_EasterImage1.gif</pixmap></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="TImageWidget" name="EasterImage2">
-      <property name="geometry"><rect><x>127</x><y>270</y><width>97</width><height>78</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_EasterImage2.gif</pixmap></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="TImageWidget" name="EasterImage3">
-      <property name="geometry"><rect><x>247</x><y>270</y><width>97</width><height>78</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_EasterImage3.gif</pixmap></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QTabWidget" name="PageControl">
-      <property name="geometry"><rect><x>0</x><y>0</y><width>609</width><height>209</height></rect></property>
-      <property name="currentIndex"><number>0</number></property>
-      <widget class="QWidget" name="MainSheet">
-        <attribute name="title"><string>MainSheet</string></attribute>
-        <property name="vclDesignWidth" stdset="0"><number>601</number></property>
-        <property name="vclDesignHeight" stdset="0"><number>181</number></property>
-        <widget class="QLabel" name="VersionLabel">
-          <property name="geometry"><rect><x>16</x><y>48</y><width>60</width><height>13</height></rect></property>
-          <property name="text"><string>VersionLabel</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QLabel" name="Label1">
-          <property name="geometry"><rect><x>16</x><y>16</y><width>109</width><height>16</height></rect></property>
-          <property name="font">
-            <font>
-              <pointsize>10</pointsize>
-              <bold>true</bold>
-            </font>
-          </property>
-          <property name="text"><string>D-Fend Reborn</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QLabel" name="WrittenByLabel">
-          <property name="geometry"><rect><x>16</x><y>80</y><width>73</width><height>13</height></rect></property>
-          <property name="text"><string>WrittenByLabel</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QLabel" name="eMailLabel">
-          <property name="geometry"><rect><x>16</x><y>99</y><width>49</width><height>13</height></rect></property>
-          <property name="text"><string>eMailLabel</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QLabel" name="HomepageLabel">
-          <property name="geometry"><rect><x>16</x><y>136</y><width>377</width><height>17</height></rect></property>
-          <property name="font">
-            <font>
-              <underline>true</underline>
-            </font>
-          </property>
-          <property name="styleSheet"><string notr="true">#HomepageLabel { color: #000080; }</string></property>
-          <property name="text"><string>https://github.com/Eldricos/D-Fend-Reborn</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        </widget>
-        <widget class="TImageWidget" name="Image3">
-          <property name="geometry"><rect><x>450</x><y>122</y><width>127</width><height>51</height></rect></property>
-          <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_Image3.gif</pixmap></property>
-          <property name="scaledContents"><bool>true</bool></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        </widget>
-        <widget class="TImageWidget" name="Image4">
-          <property name="geometry"><rect><x>356</x><y>16</y><width>225</width><height>96</height></rect></property>
-          <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_Image4.png</pixmap></property>
-          <property name="scaledContents"><bool>true</bool></property>
-          <property name="proportional" stdset="0"><bool>true</bool></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        </widget>
-      </widget>
-      <widget class="QWidget" name="LanguageSheet">
-        <attribute name="title"><string>LanguageSheet</string></attribute>
-        <property name="vclDesignWidth" stdset="0"><number>601</number></property>
-        <property name="vclDesignHeight" stdset="0"><number>181</number></property>
-        <widget class="QTableWidget" name="LanguageAuthorsTab">
-          <property name="geometry"><rect><x>0</x><y>0</y><width>601</width><height>181</height></rect></property>
-          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
-          <property name="columnCount"><number>2</number></property>
-          <property name="rowCount"><number>2</number></property>
-          <property name="vclFixedCols" stdset="0"><number>1</number></property>
-          <property name="vclFixedRows" stdset="0"><number>1</number></property>
-          <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
-          <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
-        </widget>
-      </widget>
-      <widget class="QWidget" name="LicenseSheet">
-        <attribute name="title"><string>LicenseSheet</string></attribute>
-        <property name="vclDesignWidth" stdset="0"><number>601</number></property>
-        <property name="vclDesignHeight" stdset="0"><number>181</number></property>
-        <widget class="QTextEdit" name="LicenseMemo">
-          <property name="geometry"><rect><x>0</x><y>30</y><width>601</width><height>151</height></rect></property>
-          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
-          <property name="readOnly"><bool>true</bool></property>
-          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-          <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-        </widget>
-        <widget class="QFrame" name="LicensePanel">
-          <property name="geometry"><rect><x>0</x><y>0</y><width>601</width><height>30</height></rect></property>
-          <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
-          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
-          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
-          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-          <widget class="QComboBox" name="LicenseComboBox">
-            <property name="geometry"><rect><x>2</x><y>0</y><width>145</width><height>21</height></rect></property>
-            <property name="editable"><bool>false</bool></property>
-            <property name="maxVisibleItems"><number>8</number></property>
-          </widget>
-        </widget>
-      </widget>
-      <widget class="QWidget" name="CompLicenseSheet">
-        <attribute name="title"><string>CompLicenseSheet</string></attribute>
-        <property name="vclDesignWidth" stdset="0"><number>601</number></property>
-        <property name="vclDesignHeight" stdset="0"><number>181</number></property>
-        <widget class="QTextEdit" name="CompLicenseMemo">
-          <property name="geometry"><rect><x>0</x><y>0</y><width>601</width><height>181</height></rect></property>
-          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
-          <property name="readOnly"><bool>true</bool></property>
-          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-          <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-        </widget>
-      </widget>
-      <widget class="QWidget" name="ChangeLogTabSheet">
-        <attribute name="title"><string>ChangeLogTabSheet</string></attribute>
-        <property name="vclDesignWidth" stdset="0"><number>601</number></property>
-        <property name="vclDesignHeight" stdset="0"><number>181</number></property>
-        <widget class="QTextEdit" name="ChangeLogMemo">
-          <property name="geometry"><rect><x>0</x><y>30</y><width>601</width><height>151</height></rect></property>
-          <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
-          <property name="readOnly"><bool>true</bool></property>
-          <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
-          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-          <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-        </widget>
-        <widget class="QFrame" name="ChangeLogPanel">
-          <property name="geometry"><rect><x>0</x><y>0</y><width>601</width><height>30</height></rect></property>
-          <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
-          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
-          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
-          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-          <widget class="QComboBox" name="ChangeLogComboBox">
-            <property name="geometry"><rect><x>2</x><y>0</y><width>145</width><height>21</height></rect></property>
-            <property name="editable"><bool>false</bool></property>
-            <property name="maxVisibleItems"><number>8</number></property>
-          </widget>
-        </widget>
-      </widget>
-      <widget class="QWidget" name="DFendTabSheet">
-        <attribute name="title"><string>D-Fend</string></attribute>
-        <property name="vclDesignWidth" stdset="0"><number>601</number></property>
-        <property name="vclDesignHeight" stdset="0"><number>181</number></property>
-        <widget class="QLabel" name="DFendInfoLabel">
-          <property name="geometry"><rect><x>16</x><y>16</y><width>370</width><height>162</height></rect></property>
-          <property name="text"><string>DFendInfoLabel</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="wordWrap"><bool>true</bool></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        </widget>
-        <widget class="TImageWidget" name="Image1">
-          <property name="geometry"><rect><x>392</x><y>16</y><width>201</width><height>153</height></rect></property>
-          <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_Image1.png</pixmap></property>
-          <property name="proportional" stdset="0"><bool>true</bool></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        </widget>
-      </widget>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>8</x><y>215</y><width>97</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="InfoForm_Layout" stretch="0,0,0,1">
+      <property name="leftMargin"><number>0</number></property>
+      <property name="topMargin"><number>0</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="InfoForm_Section1" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2" alignment="Qt::AlignLeft">
+            <widget class="QTabWidget" name="PageControl">
+              <property name="currentIndex"><number>0</number></property>
+              <property name="minimumSize"><size><width>609</width><height>209</height></size></property>
+              <widget class="QWidget" name="MainSheet">
+                <attribute name="title"><string>MainSheet</string></attribute>
+                <property name="vclDesignWidth" stdset="0"><number>601</number></property>
+                <property name="vclDesignHeight" stdset="0"><number>181</number></property>
+                <layout class="QGridLayout" name="MainSheet_Layout" columnstretch="0,0,0,1">
+                  <property name="leftMargin"><number>16</number></property>
+                  <property name="topMargin"><number>16</number></property>
+                  <property name="rightMargin"><number>4</number></property>
+                  <property name="bottomMargin"><number>8</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0">
+                    <widget class="QLabel" name="Label1">
+                      <property name="font"><font><pointsize>10</pointsize><bold>true</bold></font></property>
+                      <property name="text"><string>D-Fend Reborn</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="1" rowspan="4" colspan="2" alignment="Qt::AlignLeft|Qt::AlignTop">
+                    <widget class="TImageWidget" name="Image4">
+                      <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_Image4.png</pixmap></property>
+                      <property name="scaledContents"><bool>true</bool></property>
+                      <property name="proportional" stdset="0"><bool>true</bool></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                      <property name="minimumSize"><size><width>225</width><height>96</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="1" column="0">
+                    <widget class="QLabel" name="VersionLabel">
+                      <property name="text"><string>VersionLabel</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="0">
+                    <widget class="QLabel" name="WrittenByLabel">
+                      <property name="text"><string>WrittenByLabel</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    </widget>
+                  </item>
+                  <item row="3" column="0">
+                    <widget class="QLabel" name="eMailLabel">
+                      <property name="text"><string>eMailLabel</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    </widget>
+                  </item>
+                  <item row="4" column="2" rowspan="2" alignment="Qt::AlignLeft|Qt::AlignTop">
+                    <widget class="TImageWidget" name="Image3">
+                      <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_Image3.gif</pixmap></property>
+                      <property name="scaledContents"><bool>true</bool></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                      <property name="minimumSize"><size><width>127</width><height>51</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="5" column="0" colspan="2">
+                    <widget class="QLabel" name="HomepageLabel">
+                      <property name="font"><font><underline>true</underline></font></property>
+                      <property name="styleSheet"><string notr="true">#HomepageLabel { color: #000080; }</string></property>
+                      <property name="text"><string>https://github.com/Eldricos/D-Fend-Reborn</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="3">
+                    <spacer name="MainSheet_Layout_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                  <item row="6" column="0">
+                    <spacer name="MainSheet_VFill">
+                      <property name="orientation"><enum>Qt::Vertical</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </widget>
+              <widget class="QWidget" name="LanguageSheet">
+                <attribute name="title"><string>LanguageSheet</string></attribute>
+                <property name="vclDesignWidth" stdset="0"><number>601</number></property>
+                <property name="vclDesignHeight" stdset="0"><number>181</number></property>
+                <widget class="QTableWidget" name="LanguageAuthorsTab">
+                  <property name="geometry"><rect><x>0</x><y>0</y><width>601</width><height>181</height></rect></property>
+                  <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+                  <property name="columnCount"><number>2</number></property>
+                  <property name="rowCount"><number>2</number></property>
+                  <property name="vclFixedCols" stdset="0"><number>1</number></property>
+                  <property name="vclFixedRows" stdset="0"><number>1</number></property>
+                  <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+                  <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+                </widget>
+              </widget>
+              <widget class="QWidget" name="LicenseSheet">
+                <attribute name="title"><string>LicenseSheet</string></attribute>
+                <property name="vclDesignWidth" stdset="0"><number>601</number></property>
+                <property name="vclDesignHeight" stdset="0"><number>181</number></property>
+                <widget class="QTextEdit" name="LicenseMemo">
+                  <property name="geometry"><rect><x>0</x><y>30</y><width>601</width><height>151</height></rect></property>
+                  <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+                  <property name="readOnly"><bool>true</bool></property>
+                  <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+                  <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+                </widget>
+                <widget class="QFrame" name="LicensePanel">
+                  <property name="geometry"><rect><x>0</x><y>0</y><width>601</width><height>30</height></rect></property>
+                  <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+                  <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+                  <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+                  <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+                  <layout class="QGridLayout" name="LicensePanel_Layout" columnstretch="0,1">
+                    <property name="leftMargin"><number>2</number></property>
+                    <property name="topMargin"><number>0</number></property>
+                    <property name="rightMargin"><number>4</number></property>
+                    <property name="bottomMargin"><number>8</number></property>
+                    <property name="horizontalSpacing"><number>8</number></property>
+                    <property name="verticalSpacing"><number>4</number></property>
+                    <item row="0" column="0" alignment="Qt::AlignLeft">
+                      <widget class="QComboBox" name="LicenseComboBox">
+                        <property name="editable"><bool>false</bool></property>
+                        <property name="maxVisibleItems"><number>8</number></property>
+                        <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+                      </widget>
+                    </item>
+                    <item row="0" column="1">
+                      <spacer name="LicensePanel_Layout_HFill">
+                        <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                        <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                      </spacer>
+                    </item>
+                    <item row="1" column="0">
+                      <spacer name="LicensePanel_VFill">
+                        <property name="orientation"><enum>Qt::Vertical</enum></property>
+                        <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                      </spacer>
+                    </item>
+                  </layout>
+                </widget>
+              </widget>
+              <widget class="QWidget" name="CompLicenseSheet">
+                <attribute name="title"><string>CompLicenseSheet</string></attribute>
+                <property name="vclDesignWidth" stdset="0"><number>601</number></property>
+                <property name="vclDesignHeight" stdset="0"><number>181</number></property>
+                <widget class="QTextEdit" name="CompLicenseMemo">
+                  <property name="geometry"><rect><x>0</x><y>0</y><width>601</width><height>181</height></rect></property>
+                  <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+                  <property name="readOnly"><bool>true</bool></property>
+                  <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+                  <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+                </widget>
+              </widget>
+              <widget class="QWidget" name="ChangeLogTabSheet">
+                <attribute name="title"><string>ChangeLogTabSheet</string></attribute>
+                <property name="vclDesignWidth" stdset="0"><number>601</number></property>
+                <property name="vclDesignHeight" stdset="0"><number>181</number></property>
+                <widget class="QTextEdit" name="ChangeLogMemo">
+                  <property name="geometry"><rect><x>0</x><y>30</y><width>601</width><height>151</height></rect></property>
+                  <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
+                  <property name="readOnly"><bool>true</bool></property>
+                  <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+                  <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+                  <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+                </widget>
+                <widget class="QFrame" name="ChangeLogPanel">
+                  <property name="geometry"><rect><x>0</x><y>0</y><width>601</width><height>30</height></rect></property>
+                  <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+                  <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+                  <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+                  <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+                  <layout class="QGridLayout" name="ChangeLogPanel_Layout" columnstretch="0,1">
+                    <property name="leftMargin"><number>2</number></property>
+                    <property name="topMargin"><number>0</number></property>
+                    <property name="rightMargin"><number>4</number></property>
+                    <property name="bottomMargin"><number>8</number></property>
+                    <property name="horizontalSpacing"><number>8</number></property>
+                    <property name="verticalSpacing"><number>4</number></property>
+                    <item row="0" column="0" alignment="Qt::AlignLeft">
+                      <widget class="QComboBox" name="ChangeLogComboBox">
+                        <property name="editable"><bool>false</bool></property>
+                        <property name="maxVisibleItems"><number>8</number></property>
+                        <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+                      </widget>
+                    </item>
+                    <item row="0" column="1">
+                      <spacer name="ChangeLogPanel_Layout_HFill">
+                        <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                        <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                      </spacer>
+                    </item>
+                    <item row="1" column="0">
+                      <spacer name="ChangeLogPanel_VFill">
+                        <property name="orientation"><enum>Qt::Vertical</enum></property>
+                        <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                      </spacer>
+                    </item>
+                  </layout>
+                </widget>
+              </widget>
+              <widget class="QWidget" name="DFendTabSheet">
+                <attribute name="title"><string>D-Fend</string></attribute>
+                <property name="vclDesignWidth" stdset="0"><number>601</number></property>
+                <property name="vclDesignHeight" stdset="0"><number>181</number></property>
+                <layout class="QGridLayout" name="DFendTabSheet_Layout" columnstretch="0,0,1">
+                  <property name="leftMargin"><number>16</number></property>
+                  <property name="topMargin"><number>16</number></property>
+                  <property name="rightMargin"><number>4</number></property>
+                  <property name="bottomMargin"><number>8</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0">
+                    <widget class="QLabel" name="DFendInfoLabel">
+                      <property name="text"><string>DFendInfoLabel</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="wordWrap"><bool>true</bool></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                      <property name="minimumSize"><size><width>370</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="1" alignment="Qt::AlignLeft">
+                    <widget class="TImageWidget" name="Image1">
+                      <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_Image1.png</pixmap></property>
+                      <property name="proportional" stdset="0"><bool>true</bool></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                      <property name="minimumSize"><size><width>201</width><height>153</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="2">
+                    <spacer name="DFendTabSheet_Layout_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                  <item row="1" column="0">
+                    <spacer name="DFendTabSheet_VFill">
+                      <property name="orientation"><enum>Qt::Vertical</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </widget>
+            </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="OKButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+              <property name="default"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="InfoForm_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="InfoForm_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>30</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="InfoForm_Section2" columnstretch="0,0,0,1">
+          <property name="leftMargin"><number>8</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="TImageWidget" name="EasterImage1">
+              <property name="visible"><bool>false</bool></property>
+              <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_EasterImage1.gif</pixmap></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="minimumSize"><size><width>97</width><height>78</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1" alignment="Qt::AlignLeft">
+            <widget class="TImageWidget" name="EasterImage2">
+              <property name="visible"><bool>false</bool></property>
+              <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_EasterImage2.gif</pixmap></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="minimumSize"><size><width>97</width><height>78</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2" alignment="Qt::AlignLeft">
+            <widget class="TImageWidget" name="EasterImage3">
+              <property name="visible"><bool>false</bool></property>
+              <property name="pixmap"><pixmap resource="../../resources/dfend.qrc">:/pictures/InfoFormUnit_EasterImage3.gif</pixmap></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="minimumSize"><size><width>97</width><height>78</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="InfoForm_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="InfoForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <customwidgets>
     <customwidget>
@@ -215,6 +361,8 @@
     <tabstop>ChangeLogComboBox</tabstop>
     <tabstop>OKButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

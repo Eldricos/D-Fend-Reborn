@@ -8,62 +8,173 @@
     <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
     <property name="vclDesignWidth" stdset="0"><number>468</number></property>
     <property name="vclDesignHeight" stdset="0"><number>335</number></property>
-    <widget class="QToolButton" name="SelectFileButton">
-      <property name="geometry"><rect><x>434</x><y>134</y><width>23</width><height>22</height></rect></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>16</x><y>302</y><width>97</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-    </widget>
-    <widget class="QPushButton" name="CancelButton">
-      <property name="geometry"><rect><x>119</x><y>302</y><width>97</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-      <property name="vclCancel" stdset="0"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-    </widget>
-    <widget class="QRadioButton" name="RadioButtonURL">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>113</width><height>17</height></rect></property>
-      <property name="text"><string>URL</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QRadioButton" name="RadioButtonLocalFile">
-      <property name="geometry"><rect><x>16</x><y>112</y><width>113</width><height>17</height></rect></property>
-      <property name="text"><string>Local file</string></property>
-    </widget>
-    <widget class="QLineEdit" name="URLEdit">
-      <property name="geometry"><rect><x>35</x><y>39</y><width>425</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QPushButton" name="PasteURLButton">
-      <property name="geometry"><rect><x>32</x><y>66</y><width>225</width><height>25</height></rect></property>
-      <property name="enabled"><bool>false</bool></property>
-      <property name="text"><string>Paste URL from clipboard</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8125093dd54ecf00.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">PasteURLButtonClick</string></property>
-    </widget>
-    <widget class="QLineEdit" name="LocalFileEdit">
-      <property name="geometry"><rect><x>32</x><y>135</y><width>396</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QGroupBox" name="WarningGroupBox">
-      <property name="geometry"><rect><x>16</x><y>176</y><width>444</width><height>113</height></rect></property>
-      <property name="title"><string>WarningGroupBox</string></property>
-      <widget class="QLabel" name="WarningLabel">
-        <property name="geometry"><rect><x>8</x><y>24</y><width>433</width><height>73</height></rect></property>
-        <property name="text"><string>WarningLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="wordWrap"><bool>true</bool></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+    <layout class="QVBoxLayout" name="PackageManagerRepositoriesEditURLForm_Layout" stretch="0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="PackageManagerRepositoriesEditURLForm_Section1" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QRadioButton" name="RadioButtonURL">
+              <property name="text"><string>URL</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLineEdit" name="URLEdit">
       </widget>
-    </widget>
+          </item>
+          <item row="2" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="PasteURLButton">
+              <property name="enabled"><bool>false</bool></property>
+              <property name="text"><string>Paste URL from clipboard</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8125093dd54ecf00.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">PasteURLButtonClick</string></property>
+              <property name="minimumSize"><size><width>225</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="PackageManagerRepositoriesEditURLForm_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="PackageManagerRepositoriesEditURLForm_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>21</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="PackageManagerRepositoriesEditURLForm_Section2" columnstretch="0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="4">
+            <widget class="QRadioButton" name="RadioButtonLocalFile">
+              <property name="text"><string>Local file</string></property>
+            </widget>
+          </item>
+          <item row="1" column="1">
+            <widget class="QLineEdit" name="LocalFileEdit">
+      </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignLeft">
+            <widget class="QToolButton" name="SelectFileButton">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="PackageManagerRepositoriesEditURLForm_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="PackageManagerRepositoriesEditURLForm_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>20</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="PackageManagerRepositoriesEditURLForm_Section3" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2" alignment="Qt::AlignLeft">
+            <widget class="QGroupBox" name="WarningGroupBox">
+              <property name="title"><string>WarningGroupBox</string></property>
+              <property name="minimumSize"><size><width>444</width><height>0</height></size></property>
+              <layout class="QGridLayout" name="WarningGroupBox_Layout" columnstretch="0,1">
+                <property name="leftMargin"><number>8</number></property>
+                <property name="topMargin"><number>6</number></property>
+                <property name="rightMargin"><number>4</number></property>
+                <property name="bottomMargin"><number>8</number></property>
+                <property name="horizontalSpacing"><number>8</number></property>
+                <property name="verticalSpacing"><number>4</number></property>
+                <item row="0" column="0" colspan="2">
+                  <widget class="QLabel" name="WarningLabel">
+                    <property name="text"><string>WarningLabel</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="wordWrap"><bool>true</bool></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    <property name="minimumSize"><size><width>433</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="0" column="1">
+                  <spacer name="WarningGroupBox_Layout_HFill">
+                    <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+                <item row="1" column="0">
+                  <spacer name="WarningGroupBox_VFill">
+                    <property name="orientation"><enum>Qt::Vertical</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="OKButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+              <property name="default"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CancelButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+              <property name="vclCancel" stdset="0"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="PackageManagerRepositoriesEditURLForm_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="PackageManagerRepositoriesEditURLForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>RadioButtonURL</tabstop>
@@ -74,6 +185,8 @@
     <tabstop>OKButton</tabstop>
     <tabstop>CancelButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

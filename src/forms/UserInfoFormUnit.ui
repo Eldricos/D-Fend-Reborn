@@ -15,42 +15,70 @@
       <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
       <property name="frameShadow"><enum>QFrame::Plain</enum></property>
       <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-      <widget class="QToolButton" name="DelButton">
-        <property name="geometry"><rect><x>469</x><y>6</y><width>23</width><height>22</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
-        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-      </widget>
-      <widget class="QToolButton" name="AddButton">
-        <property name="geometry"><rect><x>440</x><y>6</y><width>23</width><height>22</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-      </widget>
-      <widget class="QPushButton" name="OKButton">
-        <property name="geometry"><rect><x>8</x><y>6</y><width>97</width><height>25</height></rect></property>
-        <property name="text"><string></string></property>
-        <property name="autoDefault"><bool>false</bool></property>
-        <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-        <property name="default"><bool>true</bool></property>
-        <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-        <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-      </widget>
-      <widget class="QPushButton" name="CancelButton">
-        <property name="geometry"><rect><x>120</x><y>6</y><width>97</width><height>25</height></rect></property>
-        <property name="text"><string></string></property>
-        <property name="autoDefault"><bool>false</bool></property>
-        <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-        <property name="vclCancel" stdset="0"><bool>true</bool></property>
-        <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-      </widget>
-      <widget class="QPushButton" name="HelpButton">
-        <property name="geometry"><rect><x>232</x><y>6</y><width>97</width><height>25</height></rect></property>
-        <property name="text"><string></string></property>
-        <property name="autoDefault"><bool>false</bool></property>
-        <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
-        <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
-      </widget>
+      <layout class="QGridLayout" name="Panel1_Layout" columnstretch="0,0,0,1,0,0">
+        <property name="leftMargin"><number>8</number></property>
+        <property name="topMargin"><number>6</number></property>
+        <property name="rightMargin"><number>8</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <property name="horizontalSpacing"><number>8</number></property>
+        <property name="verticalSpacing"><number>4</number></property>
+        <item row="0" column="0" alignment="Qt::AlignLeft">
+          <widget class="QPushButton" name="OKButton">
+            <property name="text"><string /></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+            <property name="default"><bool>true</bool></property>
+            <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+            <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="1" alignment="Qt::AlignLeft">
+          <widget class="QPushButton" name="CancelButton">
+            <property name="text"><string /></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+            <property name="vclCancel" stdset="0"><bool>true</bool></property>
+            <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+            <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="2" alignment="Qt::AlignLeft">
+          <widget class="QPushButton" name="HelpButton">
+            <property name="text"><string /></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+            <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="4" alignment="Qt::AlignRight">
+          <widget class="QToolButton" name="AddButton">
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+            <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+            <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="5" alignment="Qt::AlignRight">
+          <widget class="QToolButton" name="DelButton">
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+            <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+            <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="3">
+          <spacer name="Panel1_Layout_HFill">
+            <property name="orientation"><enum>Qt::Horizontal</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+        <item row="1" column="0">
+          <spacer name="Panel1_VFill">
+            <property name="orientation"><enum>Qt::Vertical</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+      </layout>
     </widget>
     <widget class="QTableWidget" name="Tab">
       <property name="geometry"><rect><x>0</x><y>0</y><width>501</width><height>400</height></rect></property>
@@ -72,6 +100,8 @@
     <tabstop>HelpButton</tabstop>
     <tabstop>Tab</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

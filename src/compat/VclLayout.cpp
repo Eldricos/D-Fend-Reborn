@@ -807,6 +807,23 @@ void fitTreeWidth(QTreeWidget *Tree)
     else W->resize(W->width() + Delta, W->height());
 }
 
+void fitHeight(QWidget *W)
+{
+    QLayout *L = W->layout();
+    if (!L) return;
+    L->invalidate();
+    L->activate();
+    const int Wd = qMax(W->width(), W->minimumSizeHint().width());
+    int H = L->hasHeightForWidth() ? L->totalHeightForWidth(Wd) : L->totalMinimumSize().height();
+    H = qMax(H, W->minimumSizeHint().height());
+    if (W->isWindow()) {
+        if (W->minimumWidth() == W->maximumWidth() || W->property("vclBorderStyle").toString() == "bsDialog") W->setFixedSize(Wd, H);
+        else W->resize(Wd, H);
+    } else {
+        setAlignedExtent(W, H);
+    }
+}
+
 static QSize pageMinimum(QWidget *P, int Width)
 {
     QSize S = P->layout() ? P->minimumSizeHint() : QSize(0, 0);

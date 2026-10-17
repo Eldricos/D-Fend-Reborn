@@ -9,81 +9,174 @@
     <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
     <property name="vclDesignWidth" stdset="0"><number>463</number></property>
     <property name="vclDesignHeight" stdset="0"><number>462</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>8</x><y>8</y><width>263</width><height>13</height></rect></property>
-      <property name="text"><string>Bitte wählen Sie die zu übertragenden Programme aus:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QToolButton" name="DestPrgDirButton">
-      <property name="geometry"><rect><x>432</x><y>359</y><width>23</width><height>22</height></rect></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QListWidget" name="ListBox">
-      <property name="geometry"><rect><x>8</x><y>27</y><width>447</width><height>270</height></rect></property>
-      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QPushButton" name="SelectAllButton">
-      <property name="geometry"><rect><x>8</x><y>303</y><width>107</width><height>25</height></rect></property>
-      <property name="text"><string>SelectAllButton</string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-    </widget>
-    <widget class="QPushButton" name="SelectNoneButton">
-      <property name="geometry"><rect><x>121</x><y>303</y><width>107</width><height>25</height></rect></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="text"><string>SelectNoneButton</string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>8</x><y>432</y><width>97</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-    </widget>
-    <widget class="QPushButton" name="CancelButton">
-      <property name="geometry"><rect><x>120</x><y>432</y><width>97</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-      <property name="vclCancel" stdset="0"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-    </widget>
-    <widget class="QLineEdit" name="DestPrgDirEdit">
-      <property name="geometry"><rect><x>8</x><y>360</y><width>418</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLabel" name="DestPrgDirEdit_EditLabel">
-      <property name="geometry"><rect><x>8</x><y>344</y><width>190</width><height>13</height></rect></property>
-      <property name="text"><string>Programmverzeichnis der Zielinstallation</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">DestPrgDirEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestPrgDirEdit</string></property>
-    </widget>
-    <widget class="QPushButton" name="SelectGenreButton">
-      <property name="geometry"><rect><x>234</x><y>303</y><width>107</width><height>25</height></rect></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="text"><string>By Genre</string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-    </widget>
-    <widget class="QCheckBox" name="CopyDFRCheckBox">
-      <property name="geometry"><rect><x>8</x><y>387</y><width>455</width><height>17</height></rect></property>
-      <property name="text"><string>Create portable D-Fend Reborn installation in destination folder</string></property>
-    </widget>
-    <widget class="QPushButton" name="HelpButton">
-      <property name="geometry"><rect><x>234</x><y>432</y><width>97</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="TransferForm_Layout" stretch="0,0,0,0,0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="TransferForm_Section1" columnstretch="0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="4">
+            <widget class="QLabel" name="InfoLabel">
+              <property name="text"><string>Bitte wählen Sie die zu übertragenden Programme aus:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="3" alignment="Qt::AlignLeft">
+            <widget class="QListWidget" name="ListBox">
+              <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+              <property name="minimumSize"><size><width>447</width><height>270</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="SelectAllButton">
+              <property name="text"><string>SelectAllButton</string></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+              <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="SelectNoneButton">
+              <property name="tag" stdset="0"><number>1</number></property>
+              <property name="text"><string>SelectNoneButton</string></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+              <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="SelectGenreButton">
+              <property name="tag" stdset="0"><number>2</number></property>
+              <property name="text"><string>By Genre</string></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+              <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="TransferForm_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="TransferForm_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="TransferForm_Section2" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="DestPrgDirEdit_EditLabel">
+              <property name="text"><string>Programmverzeichnis der Zielinstallation</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">DestPrgDirEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestPrgDirEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0">
+            <widget class="QLineEdit" name="DestPrgDirEdit">
+      </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QToolButton" name="DestPrgDirButton">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+            <widget class="QCheckBox" name="CopyDFRCheckBox">
+              <property name="text"><string>Create portable D-Fend Reborn installation in destination folder</string></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="TransferForm_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="TransferForm_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>28</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="TransferForm_Section3" columnstretch="0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="OKButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+              <property name="default"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CancelButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+              <property name="vclCancel" stdset="0"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="HelpButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="TransferForm_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="TransferForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
     <widget class="QMenu" name="PopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
     </widget>
@@ -99,6 +192,8 @@
     <tabstop>CancelButton</tabstop>
     <tabstop>HelpButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

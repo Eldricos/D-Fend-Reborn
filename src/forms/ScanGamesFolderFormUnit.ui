@@ -18,53 +18,81 @@
       <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
       <property name="frameShadow"><enum>QFrame::Plain</enum></property>
       <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-      <widget class="QLabel" name="Template1Label">
-        <property name="geometry"><rect><x>239</x><y>8</y><width>69</width><height>13</height></rect></property>
-        <property name="text"><string>Template type</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QLabel" name="Template2Label">
-        <property name="geometry"><rect><x>8</x><y>48</y><width>77</width><height>13</height></rect></property>
-        <property name="text"><string>Template to use</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QLabel" name="ProgramFileLabel">
-        <property name="geometry"><rect><x>239</x><y>48</y><width>57</width><height>13</height></rect></property>
-        <property name="text"><string>Program file</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QLineEdit" name="ProfileNameEdit">
-        <property name="geometry"><rect><x>8</x><y>24</y><width>206</width><height>21</height></rect></property>
-      </widget>
-      <widget class="QLabel" name="ProfileNameEdit_EditLabel">
-        <property name="geometry"><rect><x>8</x><y>8</y><width>59</width><height>13</height></rect></property>
-        <property name="text"><string>Profile name</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-        <property name="vclFocusControl" stdset="0"><string notr="true">ProfileNameEdit</string></property>
-        <property name="vclLabeledEditOf" stdset="0"><string notr="true">ProfileNameEdit</string></property>
-      </widget>
-      <widget class="QComboBox" name="Template1ComboBox">
-        <property name="geometry"><rect><x>239</x><y>24</y><width>206</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-      <widget class="QComboBox" name="Template2ComboBox">
-        <property name="geometry"><rect><x>8</x><y>64</y><width>206</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-      <widget class="QComboBox" name="ProgramFileComboBox">
-        <property name="geometry"><rect><x>239</x><y>64</y><width>206</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
+      <layout class="QGridLayout" name="EditPanel_Layout" columnstretch="0,0,1">
+        <property name="leftMargin"><number>8</number></property>
+        <property name="topMargin"><number>8</number></property>
+        <property name="rightMargin"><number>4</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <property name="horizontalSpacing"><number>8</number></property>
+        <property name="verticalSpacing"><number>4</number></property>
+        <item row="0" column="0">
+          <widget class="QLabel" name="ProfileNameEdit_EditLabel">
+            <property name="text"><string>Profile name</string></property>
+            <property name="textFormat"><enum>Qt::PlainText</enum></property>
+            <property name="vclFocusControl" stdset="0"><string notr="true">ProfileNameEdit</string></property>
+            <property name="vclLabeledEditOf" stdset="0"><string notr="true">ProfileNameEdit</string></property>
+          </widget>
+        </item>
+        <item row="0" column="1" colspan="2">
+          <widget class="QLabel" name="Template1Label">
+            <property name="text"><string>Template type</string></property>
+            <property name="textFormat"><enum>Qt::PlainText</enum></property>
+            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          </widget>
+        </item>
+        <item row="1" column="0" alignment="Qt::AlignLeft">
+          <widget class="QLineEdit" name="ProfileNameEdit">
+            <property name="minimumSize"><size><width>206</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="1" column="1" alignment="Qt::AlignLeft">
+          <widget class="QComboBox" name="Template1ComboBox">
+            <property name="editable"><bool>false</bool></property>
+            <property name="maxVisibleItems"><number>8</number></property>
+            <property name="minimumSize"><size><width>206</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="2" column="0">
+          <widget class="QLabel" name="Template2Label">
+            <property name="text"><string>Template to use</string></property>
+            <property name="textFormat"><enum>Qt::PlainText</enum></property>
+            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          </widget>
+        </item>
+        <item row="2" column="1" colspan="2">
+          <widget class="QLabel" name="ProgramFileLabel">
+            <property name="text"><string>Program file</string></property>
+            <property name="textFormat"><enum>Qt::PlainText</enum></property>
+            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          </widget>
+        </item>
+        <item row="3" column="0" alignment="Qt::AlignLeft">
+          <widget class="QComboBox" name="Template2ComboBox">
+            <property name="editable"><bool>false</bool></property>
+            <property name="maxVisibleItems"><number>8</number></property>
+            <property name="minimumSize"><size><width>206</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="3" column="1" alignment="Qt::AlignLeft">
+          <widget class="QComboBox" name="ProgramFileComboBox">
+            <property name="editable"><bool>false</bool></property>
+            <property name="maxVisibleItems"><number>8</number></property>
+            <property name="minimumSize"><size><width>206</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="2">
+          <spacer name="EditPanel_Layout_HFill">
+            <property name="orientation"><enum>Qt::Horizontal</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+        <item row="4" column="0">
+          <spacer name="EditPanel_VFill">
+            <property name="orientation"><enum>Qt::Vertical</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+      </layout>
     </widget>
     <widget class="TListView" name="List">
       <property name="geometry"><rect><x>0</x><y>34</y><width>734</width><height>261</height></rect></property>
@@ -91,14 +119,14 @@
         <property name="vclButtonHeight" stdset="0"><number>30</number></property>
         <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
         <property name="vclWrapable" stdset="0"><bool>false</bool></property>
-        <addaction name="CloseButton"/>
-        <addaction name="OpenFolderButton"/>
-        <addaction name="ToolButton2"/>
-        <addaction name="NameTypeButton"/>
-        <addaction name="ScanButton"/>
-        <addaction name="AddButton"/>
-        <addaction name="ToolButton7"/>
-        <addaction name="HelpButton"/>
+        <addaction name="CloseButton" />
+        <addaction name="OpenFolderButton" />
+        <addaction name="ToolButton2" />
+        <addaction name="NameTypeButton" />
+        <addaction name="ScanButton" />
+        <addaction name="AddButton" />
+        <addaction name="ToolButton7" />
+        <addaction name="HelpButton" />
       </widget>
     </widget>
     <widget class="QFrame" name="InfoPanel">
@@ -108,25 +136,39 @@
       <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
       <property name="frameShadow"><enum>QFrame::Plain</enum></property>
       <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-      <widget class="QLabel" name="InfoLabel">
-        <property name="geometry"><rect><x>8</x><y>6</y><width>722</width><height>32</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-        <property name="text"><string>InfoLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="wordWrap"><bool>true</bool></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      </widget>
+      <layout class="QGridLayout" name="InfoPanel_Layout" columnstretch="0,1" rowstretch="1">
+        <property name="leftMargin"><number>8</number></property>
+        <property name="topMargin"><number>6</number></property>
+        <property name="rightMargin"><number>4</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <property name="horizontalSpacing"><number>8</number></property>
+        <property name="verticalSpacing"><number>4</number></property>
+        <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="InfoLabel">
+            <property name="text"><string>InfoLabel</string></property>
+            <property name="textFormat"><enum>Qt::PlainText</enum></property>
+            <property name="wordWrap"><bool>true</bool></property>
+            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          </widget>
+        </item>
+        <item row="0" column="1">
+          <spacer name="InfoPanel_Layout_HFill">
+            <property name="orientation"><enum>Qt::Horizontal</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+      </layout>
     </widget>
     <widget class="QMenu" name="PopupMenuName">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="PopupNameFilename"/>
-      <addaction name="PopupNameFoldername"/>
+      <addaction name="PopupNameFilename" />
+      <addaction name="PopupNameFoldername" />
     </widget>
     <widget class="QMenu" name="PopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="PopupSelectAll"/>
-      <addaction name="PopupSelectAutoSetup"/>
-      <addaction name="PopupSelectNone"/>
+      <addaction name="PopupSelectAll" />
+      <addaction name="PopupSelectAutoSetup" />
+      <addaction name="PopupSelectNone" />
     </widget>
     <action name="CloseButton">
       <property name="text"><string>Close</string></property>
@@ -206,6 +248,8 @@
     <tabstop>ProgramFileComboBox</tabstop>
     <tabstop>List</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

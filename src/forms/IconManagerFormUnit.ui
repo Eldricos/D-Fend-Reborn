@@ -31,7 +31,7 @@
     <widget class="QPushButton" name="OKButton">
       <property name="geometry"><rect><x>8</x><y>314</y><width>97</width><height>25</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
+      <property name="text"><string /></property>
       <property name="autoDefault"><bool>false</bool></property>
       <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
       <property name="default"><bool>true</bool></property>
@@ -41,7 +41,7 @@
     <widget class="QPushButton" name="CancelButton">
       <property name="geometry"><rect><x>111</x><y>314</y><width>97</width><height>25</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
+      <property name="text"><string /></property>
       <property name="autoDefault"><bool>false</bool></property>
       <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
       <property name="vclCancel" stdset="0"><bool>true</bool></property>
@@ -81,7 +81,7 @@
     <widget class="QPushButton" name="HelpButton">
       <property name="geometry"><rect><x>420</x><y>314</y><width>97</width><height>25</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
+      <property name="text"><string /></property>
       <property name="autoDefault"><bool>false</bool></property>
       <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
       <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
@@ -96,16 +96,16 @@
     </widget>
     <widget class="QMenu" name="AddPopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="PopupAddIcon"/>
-      <addaction name="PopupAddIconsFromFolder"/>
-      <addaction name="PopupAddAllIcons"/>
+      <addaction name="PopupAddIcon" />
+      <addaction name="PopupAddIconsFromFolder" />
+      <addaction name="PopupAddAllIcons" />
     </widget>
     <widget class="QMenu" name="ToolsPopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="PopupToolsExplorer"/>
-      <addaction name="N1"/>
-      <addaction name="PopupToolsRenameUpper"/>
-      <addaction name="PopupToolsRenameLower"/>
+      <addaction name="PopupToolsExplorer" />
+      <addaction name="N1" />
+      <addaction name="PopupToolsRenameUpper" />
+      <addaction name="PopupToolsRenameLower" />
     </widget>
     <action name="PopupAddIcon">
       <property name="text"><string>Add single icon...</string></property>
@@ -154,6 +154,8 @@
     <tabstop>HelpButton</tabstop>
     <tabstop>ToolsButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

@@ -44,19 +44,19 @@
         <property name="vclButtonHeight" stdset="0"><number>22</number></property>
         <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
         <property name="vclWrapable" stdset="0"><bool>false</bool></property>
-        <addaction name="PreviousButton"/>
-        <addaction name="NextButton"/>
-        <addaction name="ToolButton1"/>
-        <addaction name="SaveButton"/>
-        <addaction name="ToolButton2"/>
-        <addaction name="PlayPauseButton"/>
+        <addaction name="PreviousButton" />
+        <addaction name="NextButton" />
+        <addaction name="ToolButton1" />
+        <addaction name="SaveButton" />
+        <addaction name="ToolButton2" />
+        <addaction name="PlayPauseButton" />
       </widget>
     </widget>
     <widget class="QMenu" name="PopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="MenuSave"/>
-      <addaction name="MenuSaveMp3"/>
-      <addaction name="MenuSaveOgg"/>
+      <addaction name="MenuSave" />
+      <addaction name="MenuSaveMp3" />
+      <addaction name="MenuSaveOgg" />
     </widget>
     <action name="PreviousButton">
       <property name="text"><string>PreviousButton</string></property>
@@ -96,6 +96,8 @@
       <property name="tag" stdset="0"><number>5</number></property>
     </action>
   </widget>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

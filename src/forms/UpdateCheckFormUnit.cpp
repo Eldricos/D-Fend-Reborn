@@ -75,14 +75,15 @@ void TUpdateCheckForm::FormCreate(QObject * /*Sender*/)
     }
     ui.DFRHomepageLabel->setCursor(Qt::PointingHandCursor);
 
-    ui.LabelDownload->adjustSize();
-    VclLayout::setClientSize(this, Max(width(), 2 * ui.LabelDownload->x() + ui.LabelDownload->width()), height());
+    // (the layout makes the window wide enough for the download text; the
+    // height is what the controls need)
+    VclLayout::fitHeight(this);
 }
 
 void TUpdateCheckForm::SetStatus(QLabel *ALabel, const QString &AText, TColor AColor)
 {
     ALabel->setText(AText);
-    ALabel->adjustSize();   // (AutoSize: the status texts are longer than "Not yet checked.")
+    VclLayout::fitHeight(this);   // (longer status texts: the window gets wider if needed)
     QPalette P = ALabel->palette();
     P.setColor(QPalette::WindowText, TColorToQColor(AColor));
     ALabel->setPalette(P);

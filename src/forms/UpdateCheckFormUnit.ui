@@ -8,107 +8,234 @@
     <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
     <property name="vclDesignWidth" stdset="0"><number>571</number></property>
     <property name="vclDesignHeight" stdset="0"><number>502</number></property>
-    <widget class="QLabel" name="InfoLabelProgram">
-      <property name="geometry"><rect><x>32</x><y>34</y><width>535</width><height>47</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>If activated the update checker will search for new versions of D-Fend Reborn. If there is a new version, it will ask you, if you want to update your installation.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="InfoLabelPackages">
-      <property name="geometry"><rect><x>32</x><y>135</y><width>535</width><height>47</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>If activated the update checker will update the list of available packages if there are new lists on the server.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="InfoLabelCheats">
-      <property name="geometry"><rect><x>32</x><y>236</y><width>535</width><height>47</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>If activated the update checker add new cheat records to the local data base if there are new records on the server.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="LabelDownload">
-      <property name="geometry"><rect><x>16</x><y>418</y><width>409</width><height>13</height></rect></property>
-      <property name="text"><string>You can also open the D-Fend Reborn homepage and search for updates manually:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="DFRHomepageLabel">
-      <property name="geometry"><rect><x>16</x><y>437</y><width>96</width><height>13</height></rect></property>
-      <property name="text"><string>DFRHomepageLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="StatusLabelProgram">
-      <property name="geometry"><rect><x>32</x><y>82</y><width>120</width><height>13</height></rect></property>
-      <property name="text"><string>Status: Not yet checked.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="StatusLabelPackages">
-      <property name="geometry"><rect><x>32</x><y>183</y><width>120</width><height>13</height></rect></property>
-      <property name="text"><string>Status: Not yet checked.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="StatusLabelCheats">
-      <property name="geometry"><rect><x>32</x><y>279</y><width>120</width><height>13</height></rect></property>
-      <property name="text"><string>Status: Not yet checked.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="CheckBoxProgram">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>540</width><height>17</height></rect></property>
-      <property name="text"><string>Search for program updates</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="CheckBoxPackages">
-      <property name="geometry"><rect><x>16</x><y>117</y><width>540</width><height>17</height></rect></property>
-      <property name="text"><string>Package lists for downloading add-ons and game packages</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="CheckBoxCheats">
-      <property name="geometry"><rect><x>16</x><y>218</y><width>540</width><height>17</height></rect></property>
-      <property name="text"><string>Cheats database</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QPushButton" name="UpdateButton">
-      <property name="geometry"><rect><x>16</x><y>472</y><width>113</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>3</number></property>
-      <property name="text"><string>Update</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/e25f5585dc4c1fa1.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">UpdateButtonClick</string></property>
-    </widget>
-    <widget class="QPushButton" name="CloseButton">
-      <property name="geometry"><rect><x>135</x><y>472</y><width>113</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>3</number></property>
-      <property name="text"><string>&amp;Schließen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/3b5b38c3bde6a17f.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-    </widget>
-    <widget class="QPushButton" name="SetupButton">
-      <property name="geometry"><rect><x>254</x><y>472</y><width>243</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>3</number></property>
-      <property name="text"><string>Automatisches Update konfigurieren</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/aa4f1d25bbf76da6.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="UpdateCheckForm_Layout" stretch="0,0,0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="UpdateCheckForm_Section1" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QCheckBox" name="CheckBoxProgram">
+              <property name="text"><string>Search for program updates</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLabel" name="InfoLabelProgram">
+              <property name="text"><string>If activated the update checker will search for new versions of D-Fend Reborn. If there is a new version, it will ask you, if you want to update your installation.</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+            <widget class="QLabel" name="StatusLabelProgram">
+              <property name="text"><string>Status: Not yet checked.</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="UpdateCheckForm_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="UpdateCheckForm_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>22</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="UpdateCheckForm_Section2" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QCheckBox" name="CheckBoxPackages">
+              <property name="text"><string>Package lists for downloading add-ons and game packages</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLabel" name="InfoLabelPackages">
+              <property name="text"><string>If activated the update checker will update the list of available packages if there are new lists on the server.</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+            <widget class="QLabel" name="StatusLabelPackages">
+              <property name="text"><string>Status: Not yet checked.</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="UpdateCheckForm_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="UpdateCheckForm_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>22</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="UpdateCheckForm_Section3" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QCheckBox" name="CheckBoxCheats">
+              <property name="text"><string>Cheats database</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLabel" name="InfoLabelCheats">
+              <property name="text"><string>If activated the update checker add new cheat records to the local data base if there are new records on the server.</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+            <widget class="QLabel" name="StatusLabelCheats">
+              <property name="text"><string>Status: Not yet checked.</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="UpdateCheckForm_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="UpdateCheckForm_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>22</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="UpdateCheckForm_Section4" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="LabelDownload">
+              <property name="text"><string>You can also open the D-Fend Reborn homepage and search for updates manually:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="DFRHomepageLabel">
+              <property name="text"><string>DFRHomepageLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="UpdateCheckForm_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="UpdateCheckForm_Gap4">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>22</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="UpdateCheckForm_Section5" columnstretch="0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="UpdateButton">
+              <property name="tag" stdset="0"><number>3</number></property>
+              <property name="text"><string>Update</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/e25f5585dc4c1fa1.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">UpdateButtonClick</string></property>
+              <property name="minimumSize"><size><width>113</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CloseButton">
+              <property name="tag" stdset="0"><number>3</number></property>
+              <property name="text"><string>&amp;Schließen</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/3b5b38c3bde6a17f.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+              <property name="minimumSize"><size><width>113</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="SetupButton">
+              <property name="tag" stdset="0"><number>3</number></property>
+              <property name="text"><string>Automatisches Update konfigurieren</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/aa4f1d25bbf76da6.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+              <property name="minimumSize"><size><width>243</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="UpdateCheckForm_Section5_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="UpdateCheckForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>CheckBoxProgram</tabstop>
@@ -118,6 +245,8 @@
     <tabstop>CloseButton</tabstop>
     <tabstop>SetupButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

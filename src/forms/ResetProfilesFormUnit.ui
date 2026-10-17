@@ -18,41 +18,59 @@
         <attribute name="title"><string>TabSheet1</string></attribute>
         <property name="vclDesignWidth" stdset="0"><number>646</number></property>
         <property name="vclDesignHeight" stdset="0"><number>457</number></property>
-        <widget class="QLabel" name="InfoLabel1">
-          <property name="geometry"><rect><x>8</x><y>8</y><width>158</width><height>13</height></rect></property>
-          <property name="text"><string>Select the games to be changed:</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QListWidget" name="ListBox">
-          <property name="geometry"><rect><x>8</x><y>24</y><width>628</width><height>399</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QPushButton" name="SelectAllButton">
-          <property name="geometry"><rect><x>8</x><y>429</y><width>107</width><height>25</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-          <property name="text"><string>SelectAllButton</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-        </widget>
-        <widget class="QPushButton" name="SelectNoneButton">
-          <property name="geometry"><rect><x>121</x><y>429</y><width>107</width><height>25</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-          <property name="tag" stdset="0"><number>1</number></property>
-          <property name="text"><string>SelectNoneButton</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-        </widget>
-        <widget class="QPushButton" name="SelectGenreButton">
-          <property name="geometry"><rect><x>234</x><y>429</y><width>107</width><height>25</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-          <property name="tag" stdset="0"><number>2</number></property>
-          <property name="text"><string>By ...</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-        </widget>
+        <layout class="QGridLayout" name="TabSheet1_Layout" columnstretch="0,0,0,1" rowstretch="0,1,0">
+          <property name="leftMargin"><number>8</number></property>
+          <property name="topMargin"><number>8</number></property>
+          <property name="rightMargin"><number>8</number></property>
+          <property name="bottomMargin"><number>8</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="4">
+            <widget class="QLabel" name="InfoLabel1">
+              <property name="text"><string>Select the games to be changed:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="4">
+            <widget class="QListWidget" name="ListBox">
+              <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="SelectAllButton">
+              <property name="text"><string>SelectAllButton</string></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+              <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="SelectNoneButton">
+              <property name="tag" stdset="0"><number>1</number></property>
+              <property name="text"><string>SelectNoneButton</string></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+              <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="SelectGenreButton">
+              <property name="tag" stdset="0"><number>2</number></property>
+              <property name="text"><string>By ...</string></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+              <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="TabSheet1_Layout_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
       </widget>
       <widget class="QWidget" name="TabSheet2">
         <attribute name="title"><string>TabSheet2</string></attribute>
@@ -63,41 +81,58 @@
           <property name="styleSheet"><string notr="true">#ScrollBox { background-color: palette(base); }</string></property>
           <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
           <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
-          <property name="widgetResizable"><bool>false</bool></property>
           <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOff</enum></property>
+          <property name="widgetResizable"><bool>true</bool></property>
           <widget class="QWidget" name="ScrollBox_Contents">
             <property name="geometry"><rect><x>0</x><y>0</y><width>642</width><height>454</height></rect></property>
             <property name="vclScrollContents" stdset="0"><bool>true</bool></property>
             <property name="vclDesignWidth" stdset="0"><number>642</number></property>
             <property name="vclDesignHeight" stdset="0"><number>454</number></property>
-            <widget class="QLabel" name="InfoLabel2">
-              <property name="geometry"><rect><x>8</x><y>8</y><width>133</width><height>13</height></rect></property>
-              <property name="text"><string>Select pages to be reseted:</string></property>
-              <property name="textFormat"><enum>Qt::PlainText</enum></property>
-              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-              <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-            </widget>
-            <widget class="QListWidget" name="ListBox2">
-              <property name="geometry"><rect><x>8</x><y>24</y><width>628</width><height>399</height></rect></property>
-              <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-              <property name="vclCheckList" stdset="0"><bool>true</bool></property>
-            </widget>
-            <widget class="QPushButton" name="SelectAllButton2">
-              <property name="geometry"><rect><x>8</x><y>429</y><width>107</width><height>25</height></rect></property>
-              <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-              <property name="tag" stdset="0"><number>3</number></property>
-              <property name="text"><string>SelectAllButton</string></property>
-              <property name="autoDefault"><bool>false</bool></property>
-              <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-            </widget>
-            <widget class="QPushButton" name="SelectNoneButton2">
-              <property name="geometry"><rect><x>121</x><y>429</y><width>107</width><height>25</height></rect></property>
-              <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-              <property name="tag" stdset="0"><number>4</number></property>
-              <property name="text"><string>SelectNoneButton</string></property>
-              <property name="autoDefault"><bool>false</bool></property>
-              <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-            </widget>
+            <layout class="QGridLayout" name="ScrollBox_Contents_Layout" columnstretch="0,0,1" rowstretch="0,1,0">
+              <property name="leftMargin"><number>8</number></property>
+              <property name="topMargin"><number>8</number></property>
+              <property name="rightMargin"><number>6</number></property>
+              <property name="bottomMargin"><number>8</number></property>
+              <property name="horizontalSpacing"><number>8</number></property>
+              <property name="verticalSpacing"><number>4</number></property>
+              <item row="0" column="0" colspan="3">
+                <widget class="QLabel" name="InfoLabel2">
+                  <property name="text"><string>Select pages to be reseted:</string></property>
+                  <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                  <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                </widget>
+              </item>
+              <item row="1" column="0" colspan="3">
+                <widget class="QListWidget" name="ListBox2">
+                  <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+                  <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+                </widget>
+              </item>
+              <item row="2" column="0" alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="SelectAllButton2">
+                  <property name="tag" stdset="0"><number>3</number></property>
+                  <property name="text"><string>SelectAllButton</string></property>
+                  <property name="autoDefault"><bool>false</bool></property>
+                  <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+                  <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                </widget>
+              </item>
+              <item row="2" column="1" alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="SelectNoneButton2">
+                  <property name="tag" stdset="0"><number>4</number></property>
+                  <property name="text"><string>SelectNoneButton</string></property>
+                  <property name="autoDefault"><bool>false</bool></property>
+                  <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+                  <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                </widget>
+              </item>
+              <item row="0" column="2">
+                <spacer name="ScrollBox_Contents_Layout_HFill">
+                  <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                </spacer>
+              </item>
+            </layout>
           </widget>
         </widget>
       </widget>
@@ -105,35 +140,91 @@
         <attribute name="title"><string>TabSheet3</string></attribute>
         <property name="vclDesignWidth" stdset="0"><number>646</number></property>
         <property name="vclDesignHeight" stdset="0"><number>457</number></property>
-        <widget class="QRadioButton" name="RadioButtonTemplate">
-          <property name="geometry"><rect><x>16</x><y>24</y><width>618</width><height>17</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          <property name="text"><string>Reset to template</string></property>
-          <property name="checked"><bool>true</bool></property>
-        </widget>
-        <widget class="QComboBox" name="ComboBoxTemplate">
-          <property name="geometry"><rect><x>32</x><y>47</y><width>602</width><height>21</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          <property name="editable"><bool>false</bool></property>
-          <property name="maxVisibleItems"><number>8</number></property>
-        </widget>
-        <widget class="QRadioButton" name="RadioButtonAutoSetup">
-          <property name="geometry"><rect><x>16</x><y>88</y><width>618</width><height>17</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          <property name="text"><string>Reset to auto setup template</string></property>
-        </widget>
-        <widget class="QComboBox" name="ComboBoxAutoSetup">
-          <property name="geometry"><rect><x>32</x><y>111</y><width>602</width><height>21</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          <property name="editable"><bool>false</bool></property>
-          <property name="maxVisibleItems"><number>8</number></property>
-        </widget>
+        <layout class="QVBoxLayout" name="TabSheet3_Layout" stretch="0,0,0,1">
+          <property name="leftMargin"><number>16</number></property>
+          <property name="topMargin"><number>24</number></property>
+          <property name="rightMargin"><number>12</number></property>
+          <property name="bottomMargin"><number>8</number></property>
+          <property name="spacing"><number>0</number></property>
+          <item>
+            <layout class="QGridLayout" name="TabSheet3_Section1" columnstretch="0,0,1">
+              <property name="leftMargin"><number>0</number></property>
+              <property name="topMargin"><number>0</number></property>
+              <property name="rightMargin"><number>0</number></property>
+              <property name="bottomMargin"><number>0</number></property>
+              <property name="horizontalSpacing"><number>8</number></property>
+              <property name="verticalSpacing"><number>4</number></property>
+              <item row="0" column="0" colspan="3">
+                <widget class="QRadioButton" name="RadioButtonTemplate">
+                  <property name="text"><string>Reset to template</string></property>
+                  <property name="checked"><bool>true</bool></property>
+                </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
+                <widget class="QComboBox" name="ComboBoxTemplate">
+                  <property name="editable"><bool>false</bool></property>
+                  <property name="maxVisibleItems"><number>8</number></property>
+                  <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+                  <property name="minimumContentsLength"><number>10</number></property>
+                </widget>
+              </item>
+              <item row="0" column="2">
+                <spacer name="TabSheet3_Section1_HFill">
+                  <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                </spacer>
+              </item>
+            </layout>
+          </item>
+          <item>
+            <spacer name="TabSheet3_Gap1">
+              <property name="orientation"><enum>Qt::Vertical</enum></property>
+              <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>20</height></size></property>
+            </spacer>
+          </item>
+          <item>
+            <layout class="QGridLayout" name="TabSheet3_Section2" columnstretch="0,0,1">
+              <property name="leftMargin"><number>0</number></property>
+              <property name="topMargin"><number>0</number></property>
+              <property name="rightMargin"><number>0</number></property>
+              <property name="bottomMargin"><number>0</number></property>
+              <property name="horizontalSpacing"><number>8</number></property>
+              <property name="verticalSpacing"><number>4</number></property>
+              <item row="0" column="0" colspan="3">
+                <widget class="QRadioButton" name="RadioButtonAutoSetup">
+                  <property name="text"><string>Reset to auto setup template</string></property>
+                </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
+                <widget class="QComboBox" name="ComboBoxAutoSetup">
+                  <property name="editable"><bool>false</bool></property>
+                  <property name="maxVisibleItems"><number>8</number></property>
+                  <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+                  <property name="minimumContentsLength"><number>10</number></property>
+                </widget>
+              </item>
+              <item row="0" column="2">
+                <spacer name="TabSheet3_Section2_HFill">
+                  <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                </spacer>
+              </item>
+            </layout>
+          </item>
+          <item>
+            <spacer name="TabSheet3_VFill">
+              <property name="orientation"><enum>Qt::Vertical</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
       </widget>
     </widget>
     <widget class="QPushButton" name="OKButton">
       <property name="geometry"><rect><x>8</x><y>491</y><width>97</width><height>25</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
+      <property name="text"><string /></property>
       <property name="autoDefault"><bool>false</bool></property>
       <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
       <property name="default"><bool>true</bool></property>
@@ -143,7 +234,7 @@
     <widget class="QPushButton" name="CancelButton">
       <property name="geometry"><rect><x>120</x><y>491</y><width>97</width><height>25</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
+      <property name="text"><string /></property>
       <property name="autoDefault"><bool>false</bool></property>
       <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
       <property name="vclCancel" stdset="0"><bool>true</bool></property>
@@ -152,7 +243,7 @@
     <widget class="QPushButton" name="HelpButton">
       <property name="geometry"><rect><x>232</x><y>491</y><width>97</width><height>25</height></rect></property>
       <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
+      <property name="text"><string /></property>
       <property name="autoDefault"><bool>false</bool></property>
       <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
       <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
@@ -178,6 +269,8 @@
     <tabstop>CancelButton</tabstop>
     <tabstop>HelpButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

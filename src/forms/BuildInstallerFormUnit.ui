@@ -9,283 +9,644 @@
     <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
     <property name="vclDesignWidth" stdset="0"><number>408</number></property>
     <property name="vclDesignHeight" stdset="0"><number>578</number></property>
-    <widget class="QTabWidget" name="PageControl">
-      <property name="geometry"><rect><x>0</x><y>0</y><width>409</width><height>577</height></rect></property>
-      <property name="currentIndex"><number>0</number></property>
-      <widget class="QWidget" name="GamesSheet">
-        <attribute name="title"><string>GamesSheet</string></attribute>
-        <property name="vclDesignWidth" stdset="0"><number>401</number></property>
-        <property name="vclDesignHeight" stdset="0"><number>549</number></property>
-        <widget class="QLabel" name="InfoLabel">
-          <property name="geometry"><rect><x>8</x><y>8</y><width>376</width><height>13</height></rect></property>
-          <property name="text"><string>Bitte wählen Sie die Programme, die in das Paket aufgenommen werden sollen:</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
+    <layout class="QGridLayout" name="BuildInstallerForm_Layout" columnstretch="0,1">
+      <property name="leftMargin"><number>0</number></property>
+      <property name="topMargin"><number>0</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0" alignment="Qt::AlignLeft">
+        <widget class="QTabWidget" name="PageControl">
+          <property name="currentIndex"><number>0</number></property>
+          <property name="minimumSize"><size><width>409</width><height>577</height></size></property>
+          <widget class="QWidget" name="GamesSheet">
+            <attribute name="title"><string>GamesSheet</string></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>401</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>549</number></property>
+            <layout class="QVBoxLayout" name="GamesSheet_Layout" stretch="0,0,0,0,0,0,0,1">
+              <property name="leftMargin"><number>8</number></property>
+              <property name="topMargin"><number>8</number></property>
+              <property name="rightMargin"><number>8</number></property>
+              <property name="bottomMargin"><number>8</number></property>
+              <property name="spacing"><number>0</number></property>
+              <item>
+                <layout class="QGridLayout" name="GamesSheet_Section1" columnstretch="0,0,0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" colspan="4">
+                    <widget class="QLabel" name="InfoLabel">
+                      <property name="text"><string>Bitte wählen Sie die Programme, die in das Paket aufgenommen werden sollen:</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    </widget>
+                  </item>
+                  <item row="1" column="0" colspan="3" alignment="Qt::AlignLeft">
+                    <widget class="QListWidget" name="ListBox">
+                      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+                      <property name="minimumSize"><size><width>377</width><height>270</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="0" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="SelectAllButton">
+                      <property name="text"><string>SelectAllButton</string></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+                      <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="1" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="SelectNoneButton">
+                      <property name="tag" stdset="0"><number>1</number></property>
+                      <property name="text"><string>SelectNoneButton</string></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+                      <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="2" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="SelectGenreButton">
+                      <property name="tag" stdset="0"><number>2</number></property>
+                      <property name="text"><string>By ...</string></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
+                      <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="3">
+                    <spacer name="GamesSheet_Section1_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="GamesSheet_Gap1">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+                </spacer>
+              </item>
+              <item>
+                <layout class="QGridLayout" name="GamesSheet_Section2" columnstretch="0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" colspan="2">
+                    <widget class="QCheckBox" name="GroupGamesCheckBox">
+                      <property name="text"><string>Spiele im Installer nach Generes gruppieren</string></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="1">
+                    <spacer name="GamesSheet_Section2_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="GamesSheet_Gap2">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+                </spacer>
+              </item>
+              <item>
+                <layout class="QGridLayout" name="GamesSheet_Section3" columnstretch="0,0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" alignment="Qt::AlignLeft">
+                    <widget class="TRadioGroupWidget" name="InstTypeRadioGroup">
+                      <property name="title"><string>Paket-Erstellung</string></property>
+                      <property name="items" stdset="0"><stringlist notr="true"><string>Nur NSI-Skript erstellen</string><string>Skript erstellen und mit NSIS compilieren</string></stringlist></property>
+                      <property name="itemIndex" stdset="0"><number>1</number></property>
+                      <property name="minimumSize"><size><width>348</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="1" column="0" colspan="3">
+                    <widget class="QLabel" name="DestFileEdit_EditLabel">
+                      <property name="text"><string>Dateiname des Paketes</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="vclFocusControl" stdset="0"><string notr="true">DestFileEdit</string></property>
+                      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestFileEdit</string></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="0">
+                    <widget class="QLineEdit" name="DestFileEdit">
+          </widget>
+                  </item>
+                  <item row="2" column="1" alignment="Qt::AlignLeft">
+                    <widget class="QToolButton" name="DestFileButton">
+                      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+                      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+                      <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="2">
+                    <spacer name="GamesSheet_Section3_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="GamesSheet_Gap3">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+                </spacer>
+              </item>
+              <item>
+                <layout class="QGridLayout" name="GamesSheet_Section4" columnstretch="0,0,0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="OKButton">
+                      <property name="text"><string /></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+                      <property name="default"><bool>true</bool></property>
+                      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+                      <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="1" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="CancelButton">
+                      <property name="text"><string /></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+                      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+                      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+                      <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="2" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="HelpButton">
+                      <property name="text"><string /></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+                      <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="3">
+                    <spacer name="GamesSheet_Section4_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="GamesSheet_VFill">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                </spacer>
+              </item>
+            </layout>
+          </widget>
+          <widget class="QWidget" name="TemplatesSheet">
+            <attribute name="title"><string>TemplatesSheet</string></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>401</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>549</number></property>
+            <layout class="QVBoxLayout" name="TemplatesSheet_Layout" stretch="0,0,0,0,0,0,0,1">
+              <property name="leftMargin"><number>8</number></property>
+              <property name="topMargin"><number>8</number></property>
+              <property name="rightMargin"><number>8</number></property>
+              <property name="bottomMargin"><number>8</number></property>
+              <property name="spacing"><number>0</number></property>
+              <item>
+                <layout class="QGridLayout" name="TemplatesSheet_Section1" columnstretch="0,0,0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" colspan="4">
+                    <widget class="QLabel" name="InfoLabel3">
+                      <property name="text"><string>Bitte wählen Sie die Programme, die in das Paket aufgenommen werden sollen:</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    </widget>
+                  </item>
+                  <item row="1" column="0" colspan="3" alignment="Qt::AlignLeft">
+                    <widget class="QListWidget" name="ListBox3">
+                      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+                      <property name="minimumSize"><size><width>377</width><height>270</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="0" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="SelectAllButton3">
+                      <property name="text"><string>SelectAllButton</string></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick3</string></property>
+                      <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="1" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="SelectNoneButton3">
+                      <property name="tag" stdset="0"><number>1</number></property>
+                      <property name="text"><string>SelectNoneButton</string></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick3</string></property>
+                      <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="2" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="SelectGenreButton3">
+                      <property name="tag" stdset="0"><number>2</number></property>
+                      <property name="text"><string>By ...</string></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick3</string></property>
+                      <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="3">
+                    <spacer name="TemplatesSheet_Section1_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="TemplatesSheet_Gap1">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+                </spacer>
+              </item>
+              <item>
+                <layout class="QGridLayout" name="TemplatesSheet_Section2" columnstretch="0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" colspan="2">
+                    <widget class="QCheckBox" name="GroupGamesCheckBox3">
+                      <property name="text"><string>Spiele im Installer nach Generes gruppieren</string></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="1">
+                    <spacer name="TemplatesSheet_Section2_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="TemplatesSheet_Gap2">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+                </spacer>
+              </item>
+              <item>
+                <layout class="QGridLayout" name="TemplatesSheet_Section3" columnstretch="0,0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" alignment="Qt::AlignLeft">
+                    <widget class="TRadioGroupWidget" name="InstTypeRadioGroup3">
+                      <property name="title"><string>Paket-Erstellung</string></property>
+                      <property name="items" stdset="0"><stringlist notr="true"><string>Nur NSI-Skript erstellen</string><string>Skript erstellen und mit NSIS compilieren</string></stringlist></property>
+                      <property name="itemIndex" stdset="0"><number>1</number></property>
+                      <property name="minimumSize"><size><width>348</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="1" column="0" colspan="3">
+                    <widget class="QLabel" name="DestFileEdit3_EditLabel">
+                      <property name="text"><string>Dateiname des Paketes</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="vclFocusControl" stdset="0"><string notr="true">DestFileEdit3</string></property>
+                      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestFileEdit3</string></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="0">
+                    <widget class="QLineEdit" name="DestFileEdit3">
+          </widget>
+                  </item>
+                  <item row="2" column="1" alignment="Qt::AlignLeft">
+                    <widget class="QToolButton" name="DestFileButton3">
+                      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+                      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+                      <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="2">
+                    <spacer name="TemplatesSheet_Section3_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="TemplatesSheet_Gap3">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+                </spacer>
+              </item>
+              <item>
+                <layout class="QGridLayout" name="TemplatesSheet_Section4" columnstretch="0,0,0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="OKButton3">
+                      <property name="text"><string /></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+                      <property name="default"><bool>true</bool></property>
+                      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">OKButton3Click</string></property>
+                      <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="1" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="CancelButton3">
+                      <property name="text"><string /></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+                      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+                      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+                      <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="2" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="HelpButton3">
+                      <property name="text"><string /></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+                      <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="3">
+                    <spacer name="TemplatesSheet_Section4_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="TemplatesSheet_VFill">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                </spacer>
+              </item>
+            </layout>
+          </widget>
+          <widget class="QWidget" name="AutoSetupSheet">
+            <attribute name="title"><string>AutoSetupSheet</string></attribute>
+            <property name="vclDesignWidth" stdset="0"><number>401</number></property>
+            <property name="vclDesignHeight" stdset="0"><number>549</number></property>
+            <layout class="QVBoxLayout" name="AutoSetupSheet_Layout" stretch="0,0,0,0,0,0,0,1">
+              <property name="leftMargin"><number>8</number></property>
+              <property name="topMargin"><number>8</number></property>
+              <property name="rightMargin"><number>8</number></property>
+              <property name="bottomMargin"><number>8</number></property>
+              <property name="spacing"><number>0</number></property>
+              <item>
+                <layout class="QGridLayout" name="AutoSetupSheet_Section1" columnstretch="0,0,0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" colspan="4">
+                    <widget class="QLabel" name="InfoLabel2">
+                      <property name="text"><string>Bitte wählen Sie die Programme, die in das Paket aufgenommen werden sollen:</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    </widget>
+                  </item>
+                  <item row="1" column="0" colspan="3" alignment="Qt::AlignLeft">
+                    <widget class="QListWidget" name="ListBox2">
+                      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+                      <property name="minimumSize"><size><width>377</width><height>270</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="0" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="SelectAllButton2">
+                      <property name="text"><string>SelectAllButton</string></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick2</string></property>
+                      <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="1" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="SelectNoneButton2">
+                      <property name="tag" stdset="0"><number>1</number></property>
+                      <property name="text"><string>SelectNoneButton</string></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick2</string></property>
+                      <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="2" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="SelectGenreButton2">
+                      <property name="tag" stdset="0"><number>2</number></property>
+                      <property name="text"><string>By ...</string></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick2</string></property>
+                      <property name="minimumSize"><size><width>107</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="3">
+                    <spacer name="AutoSetupSheet_Section1_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="AutoSetupSheet_Gap1">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+                </spacer>
+              </item>
+              <item>
+                <layout class="QGridLayout" name="AutoSetupSheet_Section2" columnstretch="0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" colspan="2">
+                    <widget class="QCheckBox" name="GroupGamesCheckBox2">
+                      <property name="text"><string>Spiele im Installer nach Generes gruppieren</string></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="1">
+                    <spacer name="AutoSetupSheet_Section2_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="AutoSetupSheet_Gap2">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+                </spacer>
+              </item>
+              <item>
+                <layout class="QGridLayout" name="AutoSetupSheet_Section3" columnstretch="0,0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" alignment="Qt::AlignLeft">
+                    <widget class="TRadioGroupWidget" name="InstTypeRadioGroup2">
+                      <property name="title"><string>Paket-Erstellung</string></property>
+                      <property name="items" stdset="0"><stringlist notr="true"><string>Nur NSI-Skript erstellen</string><string>Skript erstellen und mit NSIS compilieren</string></stringlist></property>
+                      <property name="itemIndex" stdset="0"><number>1</number></property>
+                      <property name="minimumSize"><size><width>348</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="1" column="0" colspan="3">
+                    <widget class="QLabel" name="DestFileEdit2_EditLabel">
+                      <property name="text"><string>Dateiname des Paketes</string></property>
+                      <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                      <property name="vclFocusControl" stdset="0"><string notr="true">DestFileEdit2</string></property>
+                      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestFileEdit2</string></property>
+                    </widget>
+                  </item>
+                  <item row="2" column="0">
+                    <widget class="QLineEdit" name="DestFileEdit2">
+          </widget>
+                  </item>
+                  <item row="2" column="1" alignment="Qt::AlignLeft">
+                    <widget class="QToolButton" name="DestFileButton2">
+                      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+                      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+                      <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="2">
+                    <spacer name="AutoSetupSheet_Section3_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="AutoSetupSheet_Gap3">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+                </spacer>
+              </item>
+              <item>
+                <layout class="QGridLayout" name="AutoSetupSheet_Section4" columnstretch="0,0,0,1">
+                  <property name="leftMargin"><number>0</number></property>
+                  <property name="topMargin"><number>0</number></property>
+                  <property name="rightMargin"><number>0</number></property>
+                  <property name="bottomMargin"><number>0</number></property>
+                  <property name="horizontalSpacing"><number>8</number></property>
+                  <property name="verticalSpacing"><number>4</number></property>
+                  <item row="0" column="0" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="OKButton2">
+                      <property name="text"><string /></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+                      <property name="default"><bool>true</bool></property>
+                      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">OKButton2Click</string></property>
+                      <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="1" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="CancelButton2">
+                      <property name="text"><string /></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+                      <property name="vclCancel" stdset="0"><bool>true</bool></property>
+                      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+                      <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="2" alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="HelpButton2">
+                      <property name="text"><string /></property>
+                      <property name="autoDefault"><bool>false</bool></property>
+                      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+                      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+                      <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+                    </widget>
+                  </item>
+                  <item row="0" column="3">
+                    <spacer name="AutoSetupSheet_Section4_HFill">
+                      <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                      <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                    </spacer>
+                  </item>
+                </layout>
+              </item>
+              <item>
+                <spacer name="AutoSetupSheet_VFill">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                </spacer>
+              </item>
+            </layout>
+          </widget>
         </widget>
-        <widget class="QToolButton" name="DestFileButton">
-          <property name="geometry"><rect><x>362</x><y>478</y><width>23</width><height>22</height></rect></property>
-          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-        </widget>
-        <widget class="QListWidget" name="ListBox">
-          <property name="geometry"><rect><x>8</x><y>27</y><width>377</width><height>270</height></rect></property>
-          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QPushButton" name="SelectAllButton">
-          <property name="geometry"><rect><x>8</x><y>303</y><width>107</width><height>25</height></rect></property>
-          <property name="text"><string>SelectAllButton</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-        </widget>
-        <widget class="QPushButton" name="SelectNoneButton">
-          <property name="geometry"><rect><x>121</x><y>303</y><width>107</width><height>25</height></rect></property>
-          <property name="tag" stdset="0"><number>1</number></property>
-          <property name="text"><string>SelectNoneButton</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-        </widget>
-        <widget class="QLineEdit" name="DestFileEdit">
-          <property name="geometry"><rect><x>8</x><y>478</y><width>348</width><height>21</height></rect></property>
-        </widget>
-        <widget class="QLabel" name="DestFileEdit_EditLabel">
-          <property name="geometry"><rect><x>8</x><y>462</y><width>112</width><height>13</height></rect></property>
-          <property name="text"><string>Dateiname des Paketes</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-          <property name="vclFocusControl" stdset="0"><string notr="true">DestFileEdit</string></property>
-          <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestFileEdit</string></property>
-        </widget>
-        <widget class="QPushButton" name="OKButton">
-          <property name="geometry"><rect><x>8</x><y>516</y><width>97</width><height>25</height></rect></property>
-          <property name="text"><string></string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-          <property name="default"><bool>true</bool></property>
-          <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-        </widget>
-        <widget class="QPushButton" name="CancelButton">
-          <property name="geometry"><rect><x>120</x><y>516</y><width>97</width><height>25</height></rect></property>
-          <property name="text"><string></string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-          <property name="vclCancel" stdset="0"><bool>true</bool></property>
-          <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-        </widget>
-        <widget class="TRadioGroupWidget" name="InstTypeRadioGroup">
-          <property name="geometry"><rect><x>8</x><y>376</y><width>348</width><height>73</height></rect></property>
-          <property name="title"><string>Paket-Erstellung</string></property>
-          <property name="items" stdset="0">
-            <stringlist notr="true">
-              <string>Nur NSI-Skript erstellen</string>
-              <string>Skript erstellen und mit NSIS compilieren</string>
-            </stringlist>
-          </property>
-          <property name="itemIndex" stdset="0"><number>1</number></property>
-        </widget>
-        <widget class="QCheckBox" name="GroupGamesCheckBox">
-          <property name="geometry"><rect><x>8</x><y>344</y><width>376</width><height>17</height></rect></property>
-          <property name="text"><string>Spiele im Installer nach Generes gruppieren</string></property>
-        </widget>
-        <widget class="QPushButton" name="SelectGenreButton">
-          <property name="geometry"><rect><x>234</x><y>303</y><width>107</width><height>25</height></rect></property>
-          <property name="tag" stdset="0"><number>2</number></property>
-          <property name="text"><string>By ...</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick</string></property>
-        </widget>
-        <widget class="QPushButton" name="HelpButton">
-          <property name="geometry"><rect><x>234</x><y>516</y><width>97</width><height>25</height></rect></property>
-          <property name="text"><string></string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
-        </widget>
-      </widget>
-      <widget class="QWidget" name="TemplatesSheet">
-        <attribute name="title"><string>TemplatesSheet</string></attribute>
-        <property name="vclDesignWidth" stdset="0"><number>401</number></property>
-        <property name="vclDesignHeight" stdset="0"><number>549</number></property>
-        <widget class="QLabel" name="InfoLabel3">
-          <property name="geometry"><rect><x>8</x><y>8</y><width>376</width><height>13</height></rect></property>
-          <property name="text"><string>Bitte wählen Sie die Programme, die in das Paket aufgenommen werden sollen:</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QToolButton" name="DestFileButton3">
-          <property name="geometry"><rect><x>362</x><y>478</y><width>23</width><height>22</height></rect></property>
-          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-        </widget>
-        <widget class="QListWidget" name="ListBox3">
-          <property name="geometry"><rect><x>8</x><y>27</y><width>377</width><height>270</height></rect></property>
-          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QPushButton" name="SelectAllButton3">
-          <property name="geometry"><rect><x>8</x><y>303</y><width>107</width><height>25</height></rect></property>
-          <property name="text"><string>SelectAllButton</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick3</string></property>
-        </widget>
-        <widget class="QPushButton" name="SelectNoneButton3">
-          <property name="geometry"><rect><x>121</x><y>303</y><width>107</width><height>25</height></rect></property>
-          <property name="tag" stdset="0"><number>1</number></property>
-          <property name="text"><string>SelectNoneButton</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick3</string></property>
-        </widget>
-        <widget class="QPushButton" name="SelectGenreButton3">
-          <property name="geometry"><rect><x>234</x><y>303</y><width>107</width><height>25</height></rect></property>
-          <property name="tag" stdset="0"><number>2</number></property>
-          <property name="text"><string>By ...</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick3</string></property>
-        </widget>
-        <widget class="QCheckBox" name="GroupGamesCheckBox3">
-          <property name="geometry"><rect><x>8</x><y>344</y><width>376</width><height>17</height></rect></property>
-          <property name="text"><string>Spiele im Installer nach Generes gruppieren</string></property>
-        </widget>
-        <widget class="TRadioGroupWidget" name="InstTypeRadioGroup3">
-          <property name="geometry"><rect><x>8</x><y>376</y><width>348</width><height>73</height></rect></property>
-          <property name="title"><string>Paket-Erstellung</string></property>
-          <property name="items" stdset="0">
-            <stringlist notr="true">
-              <string>Nur NSI-Skript erstellen</string>
-              <string>Skript erstellen und mit NSIS compilieren</string>
-            </stringlist>
-          </property>
-          <property name="itemIndex" stdset="0"><number>1</number></property>
-        </widget>
-        <widget class="QLineEdit" name="DestFileEdit3">
-          <property name="geometry"><rect><x>8</x><y>478</y><width>348</width><height>21</height></rect></property>
-        </widget>
-        <widget class="QLabel" name="DestFileEdit3_EditLabel">
-          <property name="geometry"><rect><x>8</x><y>462</y><width>112</width><height>13</height></rect></property>
-          <property name="text"><string>Dateiname des Paketes</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-          <property name="vclFocusControl" stdset="0"><string notr="true">DestFileEdit3</string></property>
-          <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestFileEdit3</string></property>
-        </widget>
-        <widget class="QPushButton" name="OKButton3">
-          <property name="geometry"><rect><x>8</x><y>516</y><width>97</width><height>25</height></rect></property>
-          <property name="text"><string></string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-          <property name="default"><bool>true</bool></property>
-          <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">OKButton3Click</string></property>
-        </widget>
-        <widget class="QPushButton" name="CancelButton3">
-          <property name="geometry"><rect><x>120</x><y>516</y><width>97</width><height>25</height></rect></property>
-          <property name="text"><string></string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-          <property name="vclCancel" stdset="0"><bool>true</bool></property>
-          <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-        </widget>
-        <widget class="QPushButton" name="HelpButton3">
-          <property name="geometry"><rect><x>234</x><y>516</y><width>97</width><height>25</height></rect></property>
-          <property name="text"><string></string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
-        </widget>
-      </widget>
-      <widget class="QWidget" name="AutoSetupSheet">
-        <attribute name="title"><string>AutoSetupSheet</string></attribute>
-        <property name="vclDesignWidth" stdset="0"><number>401</number></property>
-        <property name="vclDesignHeight" stdset="0"><number>549</number></property>
-        <widget class="QLabel" name="InfoLabel2">
-          <property name="geometry"><rect><x>8</x><y>8</y><width>376</width><height>13</height></rect></property>
-          <property name="text"><string>Bitte wählen Sie die Programme, die in das Paket aufgenommen werden sollen:</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QToolButton" name="DestFileButton2">
-          <property name="geometry"><rect><x>362</x><y>478</y><width>23</width><height>22</height></rect></property>
-          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-        </widget>
-        <widget class="QPushButton" name="OKButton2">
-          <property name="geometry"><rect><x>8</x><y>516</y><width>97</width><height>25</height></rect></property>
-          <property name="text"><string></string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-          <property name="default"><bool>true</bool></property>
-          <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">OKButton2Click</string></property>
-        </widget>
-        <widget class="QPushButton" name="CancelButton2">
-          <property name="geometry"><rect><x>120</x><y>516</y><width>97</width><height>25</height></rect></property>
-          <property name="text"><string></string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-          <property name="vclCancel" stdset="0"><bool>true</bool></property>
-          <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-        </widget>
-        <widget class="QListWidget" name="ListBox2">
-          <property name="geometry"><rect><x>8</x><y>27</y><width>377</width><height>270</height></rect></property>
-          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
-        </widget>
-        <widget class="QPushButton" name="SelectAllButton2">
-          <property name="geometry"><rect><x>8</x><y>303</y><width>107</width><height>25</height></rect></property>
-          <property name="text"><string>SelectAllButton</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick2</string></property>
-        </widget>
-        <widget class="QPushButton" name="SelectNoneButton2">
-          <property name="geometry"><rect><x>121</x><y>303</y><width>107</width><height>25</height></rect></property>
-          <property name="tag" stdset="0"><number>1</number></property>
-          <property name="text"><string>SelectNoneButton</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick2</string></property>
-        </widget>
-        <widget class="QPushButton" name="SelectGenreButton2">
-          <property name="geometry"><rect><x>234</x><y>303</y><width>107</width><height>25</height></rect></property>
-          <property name="tag" stdset="0"><number>2</number></property>
-          <property name="text"><string>By ...</string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">SelectButtonClick2</string></property>
-        </widget>
-        <widget class="QCheckBox" name="GroupGamesCheckBox2">
-          <property name="geometry"><rect><x>8</x><y>344</y><width>376</width><height>17</height></rect></property>
-          <property name="text"><string>Spiele im Installer nach Generes gruppieren</string></property>
-        </widget>
-        <widget class="TRadioGroupWidget" name="InstTypeRadioGroup2">
-          <property name="geometry"><rect><x>8</x><y>376</y><width>348</width><height>73</height></rect></property>
-          <property name="title"><string>Paket-Erstellung</string></property>
-          <property name="items" stdset="0">
-            <stringlist notr="true">
-              <string>Nur NSI-Skript erstellen</string>
-              <string>Skript erstellen und mit NSIS compilieren</string>
-            </stringlist>
-          </property>
-          <property name="itemIndex" stdset="0"><number>1</number></property>
-        </widget>
-        <widget class="QLineEdit" name="DestFileEdit2">
-          <property name="geometry"><rect><x>8</x><y>478</y><width>348</width><height>21</height></rect></property>
-        </widget>
-        <widget class="QLabel" name="DestFileEdit2_EditLabel">
-          <property name="geometry"><rect><x>8</x><y>462</y><width>112</width><height>13</height></rect></property>
-          <property name="text"><string>Dateiname des Paketes</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-          <property name="vclFocusControl" stdset="0"><string notr="true">DestFileEdit2</string></property>
-          <property name="vclLabeledEditOf" stdset="0"><string notr="true">DestFileEdit2</string></property>
-        </widget>
-        <widget class="QPushButton" name="HelpButton2">
-          <property name="geometry"><rect><x>234</x><y>516</y><width>97</width><height>25</height></rect></property>
-          <property name="text"><string></string></property>
-          <property name="autoDefault"><bool>false</bool></property>
-          <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
-          <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
-        </widget>
-      </widget>
-    </widget>
+      </item>
+      <item row="0" column="1">
+        <spacer name="BuildInstallerForm_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+      <item row="1" column="0">
+        <spacer name="BuildInstallerForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
     <widget class="QMenu" name="PopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
     </widget>
@@ -333,6 +694,8 @@
     <tabstop>DestFileEdit2</tabstop>
     <tabstop>HelpButton2</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

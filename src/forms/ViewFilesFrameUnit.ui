@@ -29,9 +29,9 @@
       <property name="vclButtonHeight" stdset="0"><number>22</number></property>
       <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
       <property name="vclWrapable" stdset="0"><bool>false</bool></property>
-      <addaction name="UpdateButton"/>
-      <addaction name="OpenButton"/>
-      <addaction name="OpenFileButton"/>
+      <addaction name="UpdateButton" />
+      <addaction name="OpenButton" />
+      <addaction name="OpenFileButton" />
     </widget>
     <widget class="QTreeWidget" name="Tree">
       <property name="geometry"><rect><x>0</x><y>22</y><width>121</width><height>282</height></rect></property>
@@ -39,7 +39,9 @@
       <property name="vclPopupMenu" stdset="0"><string notr="true">TreePopupMenu</string></property>
       <property name="headerHidden"><bool>true</bool></property>
       <property name="columnCount"><number>1</number></property>
-      <column><property name="text"><string notr="true">1</string></property></column>
+      <column>
+        <property name="text"><string notr="true">1</string></property>
+      </column>
       <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
       <property name="indentation"><number>19</number></property>
       <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
@@ -62,26 +64,26 @@
     </widget>
     <widget class="QMenu" name="TreePopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="TreeUpdate"/>
-      <addaction name="TreeCreateFolder"/>
-      <addaction name="TreeRename"/>
-      <addaction name="TreeDelete"/>
-      <addaction name="N4"/>
-      <addaction name="TreeExplorer"/>
+      <addaction name="TreeUpdate" />
+      <addaction name="TreeCreateFolder" />
+      <addaction name="TreeRename" />
+      <addaction name="TreeDelete" />
+      <addaction name="N4" />
+      <addaction name="TreeExplorer" />
     </widget>
     <widget class="QMenu" name="ListPopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="ListRun"/>
-      <addaction name="ListOpenInDefaultViewer"/>
-      <addaction name="N2"/>
-      <addaction name="ListUpdate"/>
-      <addaction name="ListCreateFolder"/>
-      <addaction name="ListRename"/>
-      <addaction name="ListDelete"/>
-      <addaction name="N5"/>
-      <addaction name="ListExplorer"/>
-      <addaction name="N1"/>
-      <addaction name="ListUseInScreenshotList"/>
+      <addaction name="ListRun" />
+      <addaction name="ListOpenInDefaultViewer" />
+      <addaction name="N2" />
+      <addaction name="ListUpdate" />
+      <addaction name="ListCreateFolder" />
+      <addaction name="ListRename" />
+      <addaction name="ListDelete" />
+      <addaction name="N5" />
+      <addaction name="ListExplorer" />
+      <addaction name="N1" />
+      <addaction name="ListUseInScreenshotList" />
     </widget>
     <action name="UpdateButton">
       <property name="text"><string>Update</string></property>
@@ -199,6 +201,8 @@
     <tabstop>List</tabstop>
     <tabstop>SetupDataDirButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>
