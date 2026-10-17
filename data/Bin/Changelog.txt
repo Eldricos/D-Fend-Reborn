@@ -21,6 +21,9 @@ Version 0.5.6 (not released yet)
   a page needs more space.
 - Profile wizard and first run wizard: the pages use Qt layouts too; the
   wizard windows get larger if a page needs more space.
+- All other dialogs (package manager, mount editor, update check, cheats,
+  image tools, ...) use Qt layouts too. Search for updates: no empty space
+  any more where the removed data reader options were.
 - Program options: the DOSBox download link points to DOSBox Staging.
 
 

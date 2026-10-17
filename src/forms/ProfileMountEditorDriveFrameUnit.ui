@@ -5,71 +5,174 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>697</width><height>417</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>697</number></property>
     <property name="vclDesignHeight" stdset="0"><number>417</number></property>
-    <widget class="QToolButton" name="FolderButton">
-      <property name="geometry"><rect><x>671</x><y>32</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="FolderDriveLetterLabel">
-      <property name="geometry"><rect><x>16</x><y>77</y><width>98</width><height>13</height></rect></property>
-      <property name="text"><string>Mounted drive letter</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="FolderDriveLetterWarningLabel">
-      <property name="geometry"><rect><x>176</x><y>99</y><width>513</width><height>18</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>FolderDriveLetterWarningLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="FolderFreeSpaceLabel">
-      <property name="geometry"><rect><x>16</x><y>144</y><width>166</width><height>13</height></rect></property>
-      <property name="text"><string>Free virtual Harddisk-Space (x MB)</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLineEdit" name="FolderEdit">
-      <property name="geometry"><rect><x>16</x><y>32</y><width>649</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="FolderEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>223</width><height>13</height></rect></property>
-      <property name="text"><string>Select drive/CDROM/Image or floppy to mount</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">FolderEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">FolderEdit</string></property>
-    </widget>
-    <widget class="QComboBox" name="FolderDriveLetterComboBox">
-      <property name="geometry"><rect><x>16</x><y>96</y><width>145</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QSlider" name="FolderFreeSpaceTrackBar">
-      <property name="geometry"><rect><x>16</x><y>162</y><width>636</width><height>33</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="orientation"><enum>Qt::Horizontal</enum></property>
-      <property name="minimum"><number>10</number></property>
-      <property name="maximum"><number>4000</number></property>
-      <property name="value"><number>10</number></property>
-      <property name="pageStep"><number>10</number></property>
-      <property name="tickInterval"><number>100</number></property>
-      <property name="tickPosition"><enum>QSlider::TicksBelow</enum></property>
-    </widget>
-    <widget class="QPushButton" name="MakeZipDriveButton">
-      <property name="geometry"><rect><x>16</x><y>242</y><width>337</width><height>25</height></rect></property>
-      <property name="toolTip"><string>This function compress the game directory to an archive file and will mount this file instead of the chosen folderwill extract the archive file and convert the mount into a normal directory mount</string></property>
-      <property name="text"><string>Make archive file drive from this mount</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/2a724c99f3caf258.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">MakeZipDriveButtonClick</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="ProfileMountEditorDriveFrame_Layout" stretch="0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ProfileMountEditorDriveFrame_Section1" columnstretch="0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="FolderEdit_EditLabel">
+              <property name="text"><string>Select drive/CDROM/Image or floppy to mount</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">FolderEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">FolderEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLineEdit" name="FolderEdit">
+      </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="FolderButton">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ProfileMountEditorDriveFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ProfileMountEditorDriveFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>23</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ProfileMountEditorDriveFrame_Section2" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="FolderDriveLetterLabel">
+              <property name="text"><string>Mounted drive letter</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="FolderDriveLetterComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLabel" name="FolderDriveLetterWarningLabel">
+              <property name="visible"><bool>false</bool></property>
+              <property name="text"><string>FolderDriveLetterWarningLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ProfileMountEditorDriveFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ProfileMountEditorDriveFrame_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>27</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ProfileMountEditorDriveFrame_Section3" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="FolderFreeSpaceLabel">
+              <property name="text"><string>Free virtual Harddisk-Space (x MB)</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QSlider" name="FolderFreeSpaceTrackBar">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="minimum"><number>10</number></property>
+              <property name="maximum"><number>4000</number></property>
+              <property name="value"><number>10</number></property>
+              <property name="pageStep"><number>10</number></property>
+              <property name="tickInterval"><number>100</number></property>
+              <property name="tickPosition"><enum>QSlider::TicksBelow</enum></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ProfileMountEditorDriveFrame_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ProfileMountEditorDriveFrame_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>47</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ProfileMountEditorDriveFrame_Section4" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="MakeZipDriveButton">
+              <property name="toolTip"><string>This function compress the game directory to an archive file and will mount this file instead of the chosen folderwill extract the archive file and convert the mount into a normal directory mount</string></property>
+              <property name="text"><string>Make archive file drive from this mount</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/2a724c99f3caf258.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">MakeZipDriveButtonClick</string></property>
+              <property name="minimumSize"><size><width>337</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ProfileMountEditorDriveFrame_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ProfileMountEditorDriveFrame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>FolderEdit</tabstop>
@@ -77,6 +180,8 @@
     <tabstop>FolderFreeSpaceTrackBar</tabstop>
     <tabstop>MakeZipDriveButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

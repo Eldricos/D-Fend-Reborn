@@ -9,129 +9,212 @@
     <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
     <property name="vclDesignWidth" stdset="0"><number>556</number></property>
     <property name="vclDesignHeight" stdset="0"><number>288</number></property>
-    <widget class="QLabel" name="TemplateLabel">
-      <property name="geometry"><rect><x>16</x><y>189</y><width>77</width><height>13</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string>Template to use</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="ProgramFileLabel">
-      <property name="geometry"><rect><x>310</x><y>189</y><width>57</width><height>13</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
-      <property name="text"><string>Program file</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="SetupFileLabel">
-      <property name="geometry"><rect><x>438</x><y>189</y><width>45</width><height>13</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
-      <property name="text"><string>Setup file</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="WarningLabel">
-      <property name="geometry"><rect><x>223</x><y>76</y><width>77</width><height>13</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="text"><string>Already existing</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>16</x><y>255</y><width>97</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-    </widget>
-    <widget class="QPushButton" name="CancelButton">
-      <property name="geometry"><rect><x>119</x><y>255</y><width>97</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-      <property name="vclCancel" stdset="0"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-    </widget>
-    <widget class="QPushButton" name="HelpButton">
-      <property name="geometry"><rect><x>464</x><y>255</y><width>84</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
-    </widget>
-    <widget class="QRadioButton" name="TemplateType1RadioButton">
-      <property name="geometry"><rect><x>16</x><y>109</y><width>530</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-      <property name="text"><string>Matching auto setup template</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QRadioButton" name="TemplateType2RadioButton">
-      <property name="geometry"><rect><x>16</x><y>132</y><width>530</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-      <property name="text"><string>Auto setup template</string></property>
-    </widget>
-    <widget class="QRadioButton" name="TemplateType3RadioButton">
-      <property name="geometry"><rect><x>16</x><y>155</y><width>530</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-      <property name="text"><string>User template</string></property>
-    </widget>
-    <widget class="QLineEdit" name="ProfileNameEdit">
-      <property name="geometry"><rect><x>16</x><y>24</y><width>530</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="ProfileNameEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>8</y><width>59</width><height>13</height></rect></property>
-      <property name="text"><string>Profile name</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">ProfileNameEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ProfileNameEdit</string></property>
-    </widget>
-    <widget class="QComboBox" name="TemplateComboBox">
-      <property name="geometry"><rect><x>16</x><y>208</y><width>271</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="ProgramFileComboBox">
-      <property name="geometry"><rect><x>310</x><y>208</y><width>108</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QLineEdit" name="FolderEdit">
-      <property name="geometry"><rect><x>16</x><y>74</y><width>201</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLabel" name="FolderEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>58</y><width>99</width><height>13</height></rect></property>
-      <property name="text"><string>Folder for new game</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">FolderEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">FolderEdit</string></property>
-    </widget>
-    <widget class="QComboBox" name="SetupFileComboBox">
-      <property name="geometry"><rect><x>438</x><y>208</y><width>108</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QPushButton" name="InstallSupportButton">
-      <property name="geometry"><rect><x>222</x><y>255</y><width>236</width><height>25</height></rect></property>
-      <property name="text"><string>Use installation support</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/fe29ca0d42d1d39c.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">InstallSupportButtonClick</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="SelectTemplateForZipImportForm_Layout" stretch="0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SelectTemplateForZipImportForm_Section1" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="ProfileNameEdit_EditLabel">
+              <property name="text"><string>Profile name</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">ProfileNameEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">ProfileNameEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+            <widget class="QLineEdit" name="ProfileNameEdit">
+      </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+            <widget class="QLabel" name="FolderEdit_EditLabel">
+              <property name="text"><string>Folder for new game</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">FolderEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">FolderEdit</string></property>
+            </widget>
+          </item>
+          <item row="3" column="0" alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="FolderEdit">
+              <property name="minimumSize"><size><width>201</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+            <widget class="QLabel" name="WarningLabel">
+              <property name="visible"><bool>false</bool></property>
+              <property name="text"><string>Already existing</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+            <widget class="QRadioButton" name="TemplateType1RadioButton">
+              <property name="text"><string>Matching auto setup template</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="5" column="0" colspan="3">
+            <widget class="QRadioButton" name="TemplateType2RadioButton">
+              <property name="text"><string>Auto setup template</string></property>
+            </widget>
+          </item>
+          <item row="6" column="0" colspan="3">
+            <widget class="QRadioButton" name="TemplateType3RadioButton">
+              <property name="text"><string>User template</string></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="SelectTemplateForZipImportForm_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SelectTemplateForZipImportForm_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>17</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SelectTemplateForZipImportForm_Section2" columnstretch="0,1,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="TemplateLabel">
+              <property name="text"><string>Template to use</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2" alignment="Qt::AlignRight">
+            <widget class="QLabel" name="ProgramFileLabel">
+              <property name="text"><string>Program file</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="3" alignment="Qt::AlignRight">
+            <widget class="QLabel" name="SetupFileLabel">
+              <property name="text"><string>Setup file</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QComboBox" name="TemplateComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+              <property name="minimumContentsLength"><number>10</number></property>
+            </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignRight">
+            <widget class="QComboBox" name="ProgramFileComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>108</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QComboBox" name="SetupFileComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>108</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SelectTemplateForZipImportForm_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SelectTemplateForZipImportForm_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>26</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SelectTemplateForZipImportForm_Section3" columnstretch="0,0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="OKButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+              <property name="default"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CancelButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+              <property name="vclCancel" stdset="0"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="InstallSupportButton">
+              <property name="text"><string>Use installation support</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/fe29ca0d42d1d39c.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">InstallSupportButtonClick</string></property>
+              <property name="minimumSize"><size><width>236</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="HelpButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+              <property name="minimumSize"><size><width>84</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="4">
+            <spacer name="SelectTemplateForZipImportForm_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SelectTemplateForZipImportForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>ProfileNameEdit</tabstop>
@@ -147,6 +230,8 @@
     <tabstop>InstallSupportButton</tabstop>
     <tabstop>HelpButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

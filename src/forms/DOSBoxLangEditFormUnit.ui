@@ -16,46 +16,65 @@
       <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
       <property name="frameShadow"><enum>QFrame::Plain</enum></property>
       <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-      <widget class="QLabel" name="LanguageStringLabel">
-        <property name="geometry"><rect><x>8</x><y>12</y><width>136</width><height>13</height></rect></property>
-        <property name="text"><string>Name of the language string</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QComboBox" name="LanguageStringComboBox">
-        <property name="geometry"><rect><x>8</x><y>31</y><width>417</width><height>21</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-      <widget class="QPushButton" name="OKButton">
-        <property name="geometry"><rect><x>440</x><y>4</y><width>181</width><height>25</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-        <property name="text"><string>Save &amp;&amp; Close</string></property>
-        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/e14ef6f791580315.png</normaloff></iconset></property>
-        <property name="default"><bool>true</bool></property>
-        <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-      </widget>
-      <widget class="QPushButton" name="CancelButton">
-        <property name="geometry"><rect><x>440</x><y>32</y><width>181</width><height>25</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-        <property name="tag" stdset="0"><number>1</number></property>
-        <property name="text"><string>Discard changes and close</string></property>
-        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/bd0ff9a43277f4e6.png</normaloff></iconset></property>
-        <property name="autoDefault"><bool>false</bool></property>
-        <property name="vclCancel" stdset="0"><bool>true</bool></property>
-        <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-      </widget>
+      <layout class="QGridLayout" name="Panel_Layout" columnstretch="0,1,0">
+        <property name="leftMargin"><number>8</number></property>
+        <property name="topMargin"><number>4</number></property>
+        <property name="rightMargin"><number>4</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <property name="horizontalSpacing"><number>8</number></property>
+        <property name="verticalSpacing"><number>4</number></property>
+        <item row="0" column="2" rowspan="2" alignment="Qt::AlignRight|Qt::AlignTop">
+          <widget class="QPushButton" name="OKButton">
+            <property name="text"><string>Save &amp;&amp; Close</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/e14ef6f791580315.png</normaloff></iconset></property>
+            <property name="default"><bool>true</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+            <property name="minimumSize"><size><width>181</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="1" column="0">
+          <widget class="QLabel" name="LanguageStringLabel">
+            <property name="text"><string>Name of the language string</string></property>
+            <property name="textFormat"><enum>Qt::PlainText</enum></property>
+            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          </widget>
+        </item>
+        <item row="2" column="0" colspan="2">
+          <widget class="QComboBox" name="LanguageStringComboBox">
+            <property name="editable"><bool>false</bool></property>
+            <property name="maxVisibleItems"><number>8</number></property>
+            <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+            <property name="minimumContentsLength"><number>10</number></property>
+          </widget>
+        </item>
+        <item row="2" column="2" alignment="Qt::AlignRight">
+          <widget class="QPushButton" name="CancelButton">
+            <property name="tag" stdset="0"><number>1</number></property>
+            <property name="text"><string>Discard changes and close</string></property>
+            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/bd0ff9a43277f4e6.png</normaloff></iconset></property>
+            <property name="autoDefault"><bool>false</bool></property>
+            <property name="vclCancel" stdset="0"><bool>true</bool></property>
+            <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+            <property name="minimumSize"><size><width>181</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="1">
+          <spacer name="Panel_Layout_HFill">
+            <property name="orientation"><enum>Qt::Horizontal</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+        <item row="3" column="0">
+          <spacer name="Panel_VFill">
+            <property name="orientation"><enum>Qt::Vertical</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+      </layout>
     </widget>
     <widget class="QTextEdit" name="Memo">
       <property name="geometry"><rect><x>0</x><y>62</y><width>624</width><height>352</height></rect></property>
-      <property name="font">
-        <font>
-          <family>Courier New</family>
-          <pointsize>10</pointsize>
-        </font>
-      </property>
+      <property name="font"><font><family>Courier New</family><pointsize>10</pointsize></font></property>
       <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
       <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
       <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
@@ -69,6 +88,8 @@
     <tabstop>CancelButton</tabstop>
     <tabstop>Memo</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

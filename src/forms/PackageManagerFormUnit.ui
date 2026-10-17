@@ -27,12 +27,12 @@
         <property name="vclButtonWidth" stdset="0"><number>102</number></property>
         <property name="vclButtonHeight" stdset="0"><number>22</number></property>
         <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
-        <addaction name="CloseButton"/>
-        <addaction name="ToolButton3"/>
-        <addaction name="UpdateButton"/>
-        <addaction name="ResponsitoriesButton"/>
-        <addaction name="ToolButton5"/>
-        <addaction name="HelpButton"/>
+        <addaction name="CloseButton" />
+        <addaction name="ToolButton3" />
+        <addaction name="UpdateButton" />
+        <addaction name="ResponsitoriesButton" />
+        <addaction name="ToolButton5" />
+        <addaction name="HelpButton" />
       </widget>
     </widget>
     <widget class="QTabWidget" name="PageControl">
@@ -51,26 +51,50 @@
           <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
           <property name="frameShadow"><enum>QFrame::Plain</enum></property>
           <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-          <widget class="QLabel" name="GamesSizeLabel">
-            <property name="geometry"><rect><x>416</x><y>11</y><width>76</width><height>13</height></rect></property>
-            <property name="text"><string>GamesSizeLabel</string></property>
-            <property name="textFormat"><enum>Qt::PlainText</enum></property>
-            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-            <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-          </widget>
-          <widget class="QPushButton" name="GamesButton">
-            <property name="geometry"><rect><x>81</x><y>5</y><width>316</width><height>25</height></rect></property>
-            <property name="text"><string>Download and install selected games</string></property>
-            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-            <property name="autoDefault"><bool>false</bool></property>
-            <property name="vclOnClick" stdset="0"><string notr="true">GamesButtonClick</string></property>
-          </widget>
-          <widget class="QPushButton" name="GamesFilterButton">
-            <property name="geometry"><rect><x>0</x><y>5</y><width>75</width><height>25</height></rect></property>
-            <property name="text"><string>Filter list</string></property>
-            <property name="autoDefault"><bool>false</bool></property>
-            <property name="vclOnClick" stdset="0"><string notr="true">FilterClick</string></property>
-          </widget>
+          <layout class="QGridLayout" name="GamesPanel_Layout" columnstretch="0,0,0,1">
+            <property name="leftMargin"><number>0</number></property>
+            <property name="topMargin"><number>5</number></property>
+            <property name="rightMargin"><number>4</number></property>
+            <property name="bottomMargin"><number>8</number></property>
+            <property name="horizontalSpacing"><number>8</number></property>
+            <property name="verticalSpacing"><number>4</number></property>
+            <item row="0" column="0" alignment="Qt::AlignLeft">
+              <widget class="QPushButton" name="GamesFilterButton">
+                <property name="text"><string>Filter list</string></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">FilterClick</string></property>
+                <property name="minimumSize"><size><width>75</width><height>0</height></size></property>
+              </widget>
+            </item>
+            <item row="0" column="1" alignment="Qt::AlignLeft">
+              <widget class="QPushButton" name="GamesButton">
+                <property name="text"><string>Download and install selected games</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">GamesButtonClick</string></property>
+                <property name="minimumSize"><size><width>316</width><height>0</height></size></property>
+              </widget>
+            </item>
+            <item row="0" column="2" colspan="2">
+              <widget class="QLabel" name="GamesSizeLabel">
+                <property name="text"><string>GamesSizeLabel</string></property>
+                <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              </widget>
+            </item>
+            <item row="0" column="3">
+              <spacer name="GamesPanel_Layout_HFill">
+                <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+            <item row="1" column="0">
+              <spacer name="GamesPanel_VFill">
+                <property name="orientation"><enum>Qt::Vertical</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+          </layout>
         </widget>
         <widget class="TListView" name="GamesListView">
           <property name="geometry"><rect><x>0</x><y>0</y><width>701</width><height>336</height></rect></property>
@@ -93,27 +117,51 @@
           <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
           <property name="frameShadow"><enum>QFrame::Plain</enum></property>
           <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-          <widget class="QLabel" name="AutoSetupSizeLabel">
-            <property name="geometry"><rect><x>416</x><y>11</y><width>95</width><height>13</height></rect></property>
-            <property name="text"><string>AutoSetupSizeLabel</string></property>
-            <property name="textFormat"><enum>Qt::PlainText</enum></property>
-            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-            <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-          </widget>
-          <widget class="QPushButton" name="AutoSetupButton">
-            <property name="geometry"><rect><x>81</x><y>5</y><width>316</width><height>25</height></rect></property>
-            <property name="text"><string>Download and install selected templates</string></property>
-            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-            <property name="autoDefault"><bool>false</bool></property>
-            <property name="vclOnClick" stdset="0"><string notr="true">AutoSetupButtonClick</string></property>
-          </widget>
-          <widget class="QPushButton" name="AutoSetupFilterButton">
-            <property name="geometry"><rect><x>0</x><y>5</y><width>75</width><height>25</height></rect></property>
-            <property name="tag" stdset="0"><number>1</number></property>
-            <property name="text"><string>Filter list</string></property>
-            <property name="autoDefault"><bool>false</bool></property>
-            <property name="vclOnClick" stdset="0"><string notr="true">FilterClick</string></property>
-          </widget>
+          <layout class="QGridLayout" name="AutoSetupPanel_Layout" columnstretch="0,0,0,1">
+            <property name="leftMargin"><number>0</number></property>
+            <property name="topMargin"><number>5</number></property>
+            <property name="rightMargin"><number>4</number></property>
+            <property name="bottomMargin"><number>8</number></property>
+            <property name="horizontalSpacing"><number>8</number></property>
+            <property name="verticalSpacing"><number>4</number></property>
+            <item row="0" column="0" alignment="Qt::AlignLeft">
+              <widget class="QPushButton" name="AutoSetupFilterButton">
+                <property name="tag" stdset="0"><number>1</number></property>
+                <property name="text"><string>Filter list</string></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">FilterClick</string></property>
+                <property name="minimumSize"><size><width>75</width><height>0</height></size></property>
+              </widget>
+            </item>
+            <item row="0" column="1" alignment="Qt::AlignLeft">
+              <widget class="QPushButton" name="AutoSetupButton">
+                <property name="text"><string>Download and install selected templates</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">AutoSetupButtonClick</string></property>
+                <property name="minimumSize"><size><width>316</width><height>0</height></size></property>
+              </widget>
+            </item>
+            <item row="0" column="2" colspan="2">
+              <widget class="QLabel" name="AutoSetupSizeLabel">
+                <property name="text"><string>AutoSetupSizeLabel</string></property>
+                <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              </widget>
+            </item>
+            <item row="0" column="3">
+              <spacer name="AutoSetupPanel_Layout_HFill">
+                <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+            <item row="1" column="0">
+              <spacer name="AutoSetupPanel_VFill">
+                <property name="orientation"><enum>Qt::Vertical</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+          </layout>
         </widget>
         <widget class="TListView" name="AutoSetupListView">
           <property name="geometry"><rect><x>0</x><y>0</y><width>701</width><height>336</height></rect></property>
@@ -136,20 +184,42 @@
           <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
           <property name="frameShadow"><enum>QFrame::Plain</enum></property>
           <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-          <widget class="QLabel" name="IconsSizeLabel">
-            <property name="geometry"><rect><x>336</x><y>11</y><width>70</width><height>13</height></rect></property>
-            <property name="text"><string>IconsSizeLabel</string></property>
-            <property name="textFormat"><enum>Qt::PlainText</enum></property>
-            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-            <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-          </widget>
-          <widget class="QPushButton" name="IconsButton">
-            <property name="geometry"><rect><x>0</x><y>5</y><width>316</width><height>25</height></rect></property>
-            <property name="text"><string>Download and install selected icons</string></property>
-            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-            <property name="autoDefault"><bool>false</bool></property>
-            <property name="vclOnClick" stdset="0"><string notr="true">IconsButtonClick</string></property>
-          </widget>
+          <layout class="QGridLayout" name="IconsPanel_Layout" columnstretch="0,0,1">
+            <property name="leftMargin"><number>0</number></property>
+            <property name="topMargin"><number>5</number></property>
+            <property name="rightMargin"><number>4</number></property>
+            <property name="bottomMargin"><number>8</number></property>
+            <property name="horizontalSpacing"><number>8</number></property>
+            <property name="verticalSpacing"><number>4</number></property>
+            <item row="0" column="0" alignment="Qt::AlignLeft">
+              <widget class="QPushButton" name="IconsButton">
+                <property name="text"><string>Download and install selected icons</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">IconsButtonClick</string></property>
+                <property name="minimumSize"><size><width>316</width><height>0</height></size></property>
+              </widget>
+            </item>
+            <item row="0" column="1" colspan="2">
+              <widget class="QLabel" name="IconsSizeLabel">
+                <property name="text"><string>IconsSizeLabel</string></property>
+                <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              </widget>
+            </item>
+            <item row="0" column="2">
+              <spacer name="IconsPanel_Layout_HFill">
+                <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+            <item row="1" column="0">
+              <spacer name="IconsPanel_VFill">
+                <property name="orientation"><enum>Qt::Vertical</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+          </layout>
         </widget>
         <widget class="TListView" name="IconsListView">
           <property name="geometry"><rect><x>0</x><y>0</y><width>701</width><height>336</height></rect></property>
@@ -172,20 +242,42 @@
           <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
           <property name="frameShadow"><enum>QFrame::Plain</enum></property>
           <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-          <widget class="QLabel" name="IconSetsSizeLabel">
-            <property name="geometry"><rect><x>336</x><y>11</y><width>86</width><height>13</height></rect></property>
-            <property name="text"><string>IconSetsSizeLabel</string></property>
-            <property name="textFormat"><enum>Qt::PlainText</enum></property>
-            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-            <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-          </widget>
-          <widget class="QPushButton" name="IconSetsButton">
-            <property name="geometry"><rect><x>0</x><y>5</y><width>316</width><height>25</height></rect></property>
-            <property name="text"><string>Download and install selected icon sets</string></property>
-            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-            <property name="autoDefault"><bool>false</bool></property>
-            <property name="vclOnClick" stdset="0"><string notr="true">IconSetsButtonClick</string></property>
-          </widget>
+          <layout class="QGridLayout" name="IconSetsPanel_Layout" columnstretch="0,0,1">
+            <property name="leftMargin"><number>0</number></property>
+            <property name="topMargin"><number>5</number></property>
+            <property name="rightMargin"><number>4</number></property>
+            <property name="bottomMargin"><number>8</number></property>
+            <property name="horizontalSpacing"><number>8</number></property>
+            <property name="verticalSpacing"><number>4</number></property>
+            <item row="0" column="0" alignment="Qt::AlignLeft">
+              <widget class="QPushButton" name="IconSetsButton">
+                <property name="text"><string>Download and install selected icon sets</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">IconSetsButtonClick</string></property>
+                <property name="minimumSize"><size><width>316</width><height>0</height></size></property>
+              </widget>
+            </item>
+            <item row="0" column="1" colspan="2">
+              <widget class="QLabel" name="IconSetsSizeLabel">
+                <property name="text"><string>IconSetsSizeLabel</string></property>
+                <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              </widget>
+            </item>
+            <item row="0" column="2">
+              <spacer name="IconSetsPanel_Layout_HFill">
+                <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+            <item row="1" column="0">
+              <spacer name="IconSetsPanel_VFill">
+                <property name="orientation"><enum>Qt::Vertical</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+          </layout>
         </widget>
         <widget class="TListView" name="IconSetsListView">
           <property name="geometry"><rect><x>0</x><y>0</y><width>701</width><height>336</height></rect></property>
@@ -208,20 +300,42 @@
           <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
           <property name="frameShadow"><enum>QFrame::Plain</enum></property>
           <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-          <widget class="QLabel" name="LanguageFilesSizeLabel">
-            <property name="geometry"><rect><x>336</x><y>11</y><width>112</width><height>13</height></rect></property>
-            <property name="text"><string>LanguageFilesSizeLabel</string></property>
-            <property name="textFormat"><enum>Qt::PlainText</enum></property>
-            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-            <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-          </widget>
-          <widget class="QPushButton" name="LanguageButton">
-            <property name="geometry"><rect><x>0</x><y>5</y><width>316</width><height>25</height></rect></property>
-            <property name="text"><string>Download and install selected languages</string></property>
-            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-            <property name="autoDefault"><bool>false</bool></property>
-            <property name="vclOnClick" stdset="0"><string notr="true">LanguageButtonClick</string></property>
-          </widget>
+          <layout class="QGridLayout" name="LanguagePanel_Layout" columnstretch="0,0,1">
+            <property name="leftMargin"><number>0</number></property>
+            <property name="topMargin"><number>5</number></property>
+            <property name="rightMargin"><number>4</number></property>
+            <property name="bottomMargin"><number>8</number></property>
+            <property name="horizontalSpacing"><number>8</number></property>
+            <property name="verticalSpacing"><number>4</number></property>
+            <item row="0" column="0" alignment="Qt::AlignLeft">
+              <widget class="QPushButton" name="LanguageButton">
+                <property name="text"><string>Download and install selected languages</string></property>
+                <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+                <property name="autoDefault"><bool>false</bool></property>
+                <property name="vclOnClick" stdset="0"><string notr="true">LanguageButtonClick</string></property>
+                <property name="minimumSize"><size><width>316</width><height>0</height></size></property>
+              </widget>
+            </item>
+            <item row="0" column="1" colspan="2">
+              <widget class="QLabel" name="LanguageFilesSizeLabel">
+                <property name="text"><string>LanguageFilesSizeLabel</string></property>
+                <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              </widget>
+            </item>
+            <item row="0" column="2">
+              <spacer name="LanguagePanel_Layout_HFill">
+                <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+            <item row="1" column="0">
+              <spacer name="LanguagePanel_VFill">
+                <property name="orientation"><enum>Qt::Vertical</enum></property>
+                <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+              </spacer>
+            </item>
+          </layout>
         </widget>
         <widget class="TListView" name="LanguagesListView">
           <property name="geometry"><rect><x>0</x><y>0</y><width>701</width><height>336</height></rect></property>
@@ -258,20 +372,44 @@
             <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
             <property name="frameShadow"><enum>QFrame::Plain</enum></property>
             <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-            <widget class="QPushButton" name="ExePackagesButton">
-              <property name="geometry"><rect><x>3</x><y>3</y><width>198</width><height>25</height></rect></property>
-              <property name="text"><string>Download and install</string></property>
-              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-              <property name="autoDefault"><bool>false</bool></property>
-              <property name="vclOnClick" stdset="0"><string notr="true">ExePackagesButtonClick</string></property>
-            </widget>
-            <widget class="QPushButton" name="ExePackagesDelButton">
-              <property name="geometry"><rect><x>207</x><y>4</y><width>153</width><height>25</height></rect></property>
-              <property name="text"><string>Delete cached file</string></property>
-              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
-              <property name="autoDefault"><bool>false</bool></property>
-              <property name="vclOnClick" stdset="0"><string notr="true">ExePackagesDelButtonClick</string></property>
-            </widget>
+            <layout class="QGridLayout" name="ExePackagesPanel2_Layout" columnstretch="0,0,1">
+              <property name="leftMargin"><number>3</number></property>
+              <property name="topMargin"><number>3</number></property>
+              <property name="rightMargin"><number>4</number></property>
+              <property name="bottomMargin"><number>8</number></property>
+              <property name="horizontalSpacing"><number>8</number></property>
+              <property name="verticalSpacing"><number>4</number></property>
+              <item row="0" column="0" alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="ExePackagesButton">
+                  <property name="text"><string>Download and install</string></property>
+                  <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+                  <property name="autoDefault"><bool>false</bool></property>
+                  <property name="vclOnClick" stdset="0"><string notr="true">ExePackagesButtonClick</string></property>
+                  <property name="minimumSize"><size><width>198</width><height>0</height></size></property>
+                </widget>
+              </item>
+              <item row="0" column="1" alignment="Qt::AlignLeft">
+                <widget class="QPushButton" name="ExePackagesDelButton">
+                  <property name="text"><string>Delete cached file</string></property>
+                  <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+                  <property name="autoDefault"><bool>false</bool></property>
+                  <property name="vclOnClick" stdset="0"><string notr="true">ExePackagesDelButtonClick</string></property>
+                  <property name="minimumSize"><size><width>153</width><height>0</height></size></property>
+                </widget>
+              </item>
+              <item row="0" column="2">
+                <spacer name="ExePackagesPanel2_Layout_HFill">
+                  <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                </spacer>
+              </item>
+              <item row="1" column="0">
+                <spacer name="ExePackagesPanel2_VFill">
+                  <property name="orientation"><enum>Qt::Vertical</enum></property>
+                  <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                </spacer>
+              </item>
+            </layout>
           </widget>
           <widget class="QTextEdit" name="ExePackagesMemo">
             <property name="geometry"><rect><x>0</x><y>0</y><width>457</width><height>338</height></rect></property>
@@ -290,21 +428,35 @@
       <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
       <property name="frameShadow"><enum>QFrame::Plain</enum></property>
       <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-      <widget class="QLabel" name="InfoLabel">
-        <property name="geometry"><rect><x>8</x><y>6</y><width>697</width><height>27</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-        <property name="text"><string>InfoLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="wordWrap"><bool>true</bool></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      </widget>
+      <layout class="QGridLayout" name="InfoPanel_Layout" columnstretch="0,1" rowstretch="1">
+        <property name="leftMargin"><number>8</number></property>
+        <property name="topMargin"><number>6</number></property>
+        <property name="rightMargin"><number>4</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <property name="horizontalSpacing"><number>8</number></property>
+        <property name="verticalSpacing"><number>4</number></property>
+        <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="InfoLabel">
+            <property name="text"><string>InfoLabel</string></property>
+            <property name="textFormat"><enum>Qt::PlainText</enum></property>
+            <property name="wordWrap"><bool>true</bool></property>
+            <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          </widget>
+        </item>
+        <item row="0" column="1">
+          <spacer name="InfoPanel_Layout_HFill">
+            <property name="orientation"><enum>Qt::Horizontal</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+      </layout>
     </widget>
     <widget class="QMenu" name="FilterPopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
     </widget>
     <widget class="QMenu" name="ListViewPopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="ListViewPopupMenuDelete"/>
+      <addaction name="ListViewPopupMenuDelete" />
     </widget>
     <action name="CloseButton">
       <property name="text"><string>Close</string></property>
@@ -371,6 +523,8 @@
     <tabstop>ExePackagesDelButton</tabstop>
     <tabstop>ExePackagesMemo</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

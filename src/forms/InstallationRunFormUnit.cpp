@@ -171,8 +171,8 @@ void TInstallationRunForm::FreeGamesDirData(TStringList* St)
 
 void TInstallationRunForm::HideSourceSection()
 {
-    VclLayout::setClientSize(this, width(), 2 * ui.InfoLabel->y() + ui.InfoLabel->height());
     ui.SourceListBox->setVisible(false);
+    VclLayout::fitHeight(this);
 }
 
 QString TInstallationRunForm::FindFileToStart(const QString& Dir)

@@ -8,82 +8,210 @@
     <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
     <property name="vclDesignWidth" stdset="0"><number>645</number></property>
     <property name="vclDesignHeight" stdset="0"><number>357</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>8</x><y>8</y><width>628</width><height>73</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>InfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QCheckBox" name="DoNotShowAgainCheckBox">
-      <property name="geometry"><rect><x>128</x><y>328</y><width>509</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-      <property name="text"><string>DoNotShowAgainCheckBox</string></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>8</x><y>324</y><width>97</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-    </widget>
-    <widget class="QGroupBox" name="ProfileGroupBox">
-      <property name="geometry"><rect><x>8</x><y>96</y><width>629</width><height>129</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="title"><string>Profile specific settings</string></property>
-      <widget class="QLabel" name="RenderLabel">
-        <property name="geometry"><rect><x>8</x><y>75</y><width>60</width><height>13</height></rect></property>
-        <property name="text"><string>RenderLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QCheckBox" name="CloseDOSBoxCheckBox">
-        <property name="geometry"><rect><x>8</x><y>23</y><width>605</width><height>17</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="text"><string>CloseDOSBoxCheckBox</string></property>
-      </widget>
-      <widget class="QCheckBox" name="ShowConsoleCheckBox">
-        <property name="geometry"><rect><x>8</x><y>46</y><width>605</width><height>17</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="text"><string>ShowConsoleCheckBox</string></property>
-      </widget>
-      <widget class="QComboBox" name="RenderComboBox">
-        <property name="geometry"><rect><x>8</x><y>90</y><width>225</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-    </widget>
-    <widget class="QGroupBox" name="GlobalGroupBox">
-      <property name="geometry"><rect><x>8</x><y>240</y><width>629</width><height>73</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="title"><string>Settings for all profiles</string></property>
-      <widget class="QLabel" name="SDLLabel">
-        <property name="geometry"><rect><x>8</x><y>24</y><width>78</width><height>13</height></rect></property>
-        <property name="text"><string>SDL video driver</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QLabel" name="RemoteLabel">
-        <property name="geometry"><rect><x>248</x><y>24</y><width>378</width><height>41</height></rect></property>
-        <property name="text"><string>RemoteLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="wordWrap"><bool>true</bool></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      </widget>
-      <widget class="QComboBox" name="SDLComboBox">
-        <property name="geometry"><rect><x>8</x><y>39</y><width>225</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-        <item><property name="text"><string>Direct X</string></property></item>
-        <item><property name="text"><string>Win DIB</string></property></item>
-        <property name="currentIndex"><number>0</number></property>
-      </widget>
-    </widget>
+    <layout class="QVBoxLayout" name="DOSBoxFailedForm_Layout" stretch="0,0,0,0,0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="DOSBoxFailedForm_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="InfoLabel">
+              <property name="text"><string>InfoLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="DOSBoxFailedForm_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="DOSBoxFailedForm_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="DOSBoxFailedForm_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QGroupBox" name="ProfileGroupBox">
+              <property name="title"><string>Profile specific settings</string></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+              <layout class="QGridLayout" name="ProfileGroupBox_Layout" columnstretch="0,1">
+                <property name="leftMargin"><number>8</number></property>
+                <property name="topMargin"><number>5</number></property>
+                <property name="rightMargin"><number>8</number></property>
+                <property name="bottomMargin"><number>8</number></property>
+                <property name="horizontalSpacing"><number>8</number></property>
+                <property name="verticalSpacing"><number>4</number></property>
+                <item row="0" column="0" colspan="2">
+                  <widget class="QCheckBox" name="CloseDOSBoxCheckBox">
+                    <property name="text"><string>CloseDOSBoxCheckBox</string></property>
+                  </widget>
+                </item>
+                <item row="1" column="0" colspan="2">
+                  <widget class="QCheckBox" name="ShowConsoleCheckBox">
+                    <property name="text"><string>ShowConsoleCheckBox</string></property>
+                  </widget>
+                </item>
+                <item row="2" column="0" colspan="2">
+                  <widget class="QLabel" name="RenderLabel">
+                    <property name="text"><string>RenderLabel</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                  </widget>
+                </item>
+                <item row="3" column="0" alignment="Qt::AlignLeft">
+                  <widget class="QComboBox" name="RenderComboBox">
+                    <property name="editable"><bool>false</bool></property>
+                    <property name="maxVisibleItems"><number>8</number></property>
+                    <property name="minimumSize"><size><width>225</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="0" column="1">
+                  <spacer name="ProfileGroupBox_Layout_HFill">
+                    <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+                <item row="4" column="0">
+                  <spacer name="ProfileGroupBox_VFill">
+                    <property name="orientation"><enum>Qt::Vertical</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="DOSBoxFailedForm_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="DOSBoxFailedForm_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="DOSBoxFailedForm_Section3" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QGroupBox" name="GlobalGroupBox">
+              <property name="title"><string>Settings for all profiles</string></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+              <layout class="QGridLayout" name="GlobalGroupBox_Layout" columnstretch="0,0,1">
+                <property name="leftMargin"><number>8</number></property>
+                <property name="topMargin"><number>6</number></property>
+                <property name="rightMargin"><number>4</number></property>
+                <property name="bottomMargin"><number>8</number></property>
+                <property name="horizontalSpacing"><number>8</number></property>
+                <property name="verticalSpacing"><number>4</number></property>
+                <item row="0" column="0">
+                  <widget class="QLabel" name="SDLLabel">
+                    <property name="text"><string>SDL video driver</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                  </widget>
+                </item>
+                <item row="0" column="1" rowspan="2" colspan="2">
+                  <widget class="QLabel" name="RemoteLabel">
+                    <property name="text"><string>RemoteLabel</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="wordWrap"><bool>true</bool></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                    <property name="minimumSize"><size><width>378</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="1" column="0" alignment="Qt::AlignLeft">
+                  <widget class="QComboBox" name="SDLComboBox">
+                    <property name="editable"><bool>false</bool></property>
+                    <property name="maxVisibleItems"><number>8</number></property>
+                    <item>
+                      <property name="text"><string>Direct X</string></property>
+                    </item>
+                    <item>
+                      <property name="text"><string>Win DIB</string></property>
+                    </item>
+                    <property name="currentIndex"><number>0</number></property>
+                    <property name="minimumSize"><size><width>225</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="0" column="2">
+                  <spacer name="GlobalGroupBox_Layout_HFill">
+                    <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+                <item row="2" column="0">
+                  <spacer name="GlobalGroupBox_VFill">
+                    <property name="orientation"><enum>Qt::Vertical</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="OKButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+              <property name="default"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QCheckBox" name="DoNotShowAgainCheckBox">
+              <property name="text"><string>DoNotShowAgainCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="DOSBoxFailedForm_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="DOSBoxFailedForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>DoNotShowAgainCheckBox</tabstop>
@@ -93,6 +221,8 @@
     <tabstop>RenderComboBox</tabstop>
     <tabstop>SDLComboBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

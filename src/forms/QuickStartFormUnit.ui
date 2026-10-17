@@ -28,12 +28,12 @@
         <property name="vclButtonHeight" stdset="0"><number>22</number></property>
         <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
         <property name="vclWrapable" stdset="0"><bool>false</bool></property>
-        <addaction name="CloseButton"/>
-        <addaction name="ToolButton2"/>
-        <addaction name="UpdateButton"/>
-        <addaction name="StartButton"/>
-        <addaction name="ToolButton1"/>
-        <addaction name="HelpButton"/>
+        <addaction name="CloseButton" />
+        <addaction name="ToolButton2" />
+        <addaction name="UpdateButton" />
+        <addaction name="StartButton" />
+        <addaction name="ToolButton1" />
+        <addaction name="HelpButton" />
       </widget>
     </widget>
     <widget class="QFrame" name="BottomPanel">
@@ -42,22 +42,48 @@
       <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
       <property name="frameShadow"><enum>QFrame::Plain</enum></property>
       <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-      <widget class="QComboBox" name="TemplateComboBox">
-        <property name="geometry"><rect><x>2</x><y>6</y><width>290</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-      <widget class="QComboBox" name="SetupComboBox1">
-        <property name="geometry"><rect><x>300</x><y>6</y><width>125</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-      <widget class="QComboBox" name="SetupComboBox2">
-        <property name="geometry"><rect><x>431</x><y>6</y><width>244</width><height>21</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
+      <layout class="QGridLayout" name="BottomPanel_Layout" columnstretch="0,0,0,1">
+        <property name="leftMargin"><number>2</number></property>
+        <property name="topMargin"><number>6</number></property>
+        <property name="rightMargin"><number>4</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <property name="horizontalSpacing"><number>8</number></property>
+        <property name="verticalSpacing"><number>4</number></property>
+        <item row="0" column="0" alignment="Qt::AlignLeft">
+          <widget class="QComboBox" name="TemplateComboBox">
+            <property name="editable"><bool>false</bool></property>
+            <property name="maxVisibleItems"><number>8</number></property>
+            <property name="minimumSize"><size><width>290</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="1" alignment="Qt::AlignLeft">
+          <widget class="QComboBox" name="SetupComboBox1">
+            <property name="editable"><bool>false</bool></property>
+            <property name="maxVisibleItems"><number>8</number></property>
+            <property name="minimumSize"><size><width>125</width><height>0</height></size></property>
+          </widget>
+        </item>
+        <item row="0" column="2" colspan="2">
+          <widget class="QComboBox" name="SetupComboBox2">
+            <property name="editable"><bool>false</bool></property>
+            <property name="maxVisibleItems"><number>8</number></property>
+            <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+            <property name="minimumContentsLength"><number>10</number></property>
+          </widget>
+        </item>
+        <item row="0" column="3">
+          <spacer name="BottomPanel_Layout_HFill">
+            <property name="orientation"><enum>Qt::Horizontal</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+        <item row="1" column="0">
+          <spacer name="BottomPanel_VFill">
+            <property name="orientation"><enum>Qt::Vertical</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+          </spacer>
+        </item>
+      </layout>
     </widget>
     <widget class="QFrame" name="MainPanel">
       <property name="geometry"><rect><x>0</x><y>22</y><width>678</width><height>429</height></rect></property>
@@ -87,7 +113,9 @@
           <property name="vclPopupMenu" stdset="0"><string notr="true">TreePopupMenu</string></property>
           <property name="headerHidden"><bool>true</bool></property>
           <property name="columnCount"><number>1</number></property>
-          <column><property name="text"><string notr="true">1</string></property></column>
+          <column>
+            <property name="text"><string notr="true">1</string></property>
+          </column>
           <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
           <property name="indentation"><number>19</number></property>
           <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
@@ -106,38 +134,38 @@
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
       <widget class="QMenu" name="TreeViewMode">
         <property name="title"><string>View mode</string></property>
-        <addaction name="TreeViewModeGames"/>
-        <addaction name="TreeViewModeCapture"/>
-        <addaction name="TreeViewModeData"/>
-        <addaction name="TreeViewModeFull"/>
+        <addaction name="TreeViewModeGames" />
+        <addaction name="TreeViewModeCapture" />
+        <addaction name="TreeViewModeData" />
+        <addaction name="TreeViewModeFull" />
       </widget>
-      <addaction name="TreeUpdate"/>
-      <addaction name="TreeCreateFolder"/>
-      <addaction name="TreeRename"/>
-      <addaction name="TreeDelete"/>
-      <addaction name="N4"/>
-      <addaction name="TreeExplorer"/>
-      <addaction name="TreeDOSBox"/>
-      <addaction name="N1"/>
-      <addaction name="TreeViewMode"/>
+      <addaction name="TreeUpdate" />
+      <addaction name="TreeCreateFolder" />
+      <addaction name="TreeRename" />
+      <addaction name="TreeDelete" />
+      <addaction name="N4" />
+      <addaction name="TreeExplorer" />
+      <addaction name="TreeDOSBox" />
+      <addaction name="N1" />
+      <addaction name="TreeViewMode" />
     </widget>
     <widget class="QMenu" name="ListPopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="ListRun"/>
-      <addaction name="ListRunWithParameters"/>
-      <addaction name="ListOpenInDefaultViewer"/>
-      <addaction name="ListOpenInEditor"/>
-      <addaction name="N2"/>
-      <addaction name="ListMakeProfile"/>
-      <addaction name="ListMakeProfileWizard"/>
-      <addaction name="N3"/>
-      <addaction name="ListUpdate"/>
-      <addaction name="ListCreateFolder"/>
-      <addaction name="ListRename"/>
-      <addaction name="ListDelete"/>
-      <addaction name="N5"/>
-      <addaction name="ListExplorer"/>
-      <addaction name="ListDOSBox"/>
+      <addaction name="ListRun" />
+      <addaction name="ListRunWithParameters" />
+      <addaction name="ListOpenInDefaultViewer" />
+      <addaction name="ListOpenInEditor" />
+      <addaction name="N2" />
+      <addaction name="ListMakeProfile" />
+      <addaction name="ListMakeProfileWizard" />
+      <addaction name="N3" />
+      <addaction name="ListUpdate" />
+      <addaction name="ListCreateFolder" />
+      <addaction name="ListRename" />
+      <addaction name="ListDelete" />
+      <addaction name="N5" />
+      <addaction name="ListExplorer" />
+      <addaction name="ListDOSBox" />
     </widget>
     <action name="CloseButton">
       <property name="text"><string>CloseButton</string></property>
@@ -322,6 +350,8 @@
     <tabstop>SetupComboBox1</tabstop>
     <tabstop>SetupComboBox2</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

@@ -181,7 +181,7 @@ void TSelectTemplateForZipImportForm::Prepare(bool DoNotCopyFolder, const QStrin
     if (DoNotCopyFolder) {
         ui.FolderEdit->setVisible(false);
         ui.FolderEdit_EditLabel->setVisible(false);
-        VclLayout::setClientSize(this, width(), height() - 40);
+        VclLayout::fitHeight(this);
     }
 
     ui.ProgramFileComboBox->addItems(PrgFiles->ToQStringList());

@@ -9,27 +9,50 @@
     <property name="vclBorderIcons" stdset="0"><string notr="true">biMinimize,biMaximize</string></property>
     <property name="vclDesignWidth" stdset="0"><number>341</number></property>
     <property name="vclDesignHeight" stdset="0"><number>177</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>8</x><y>8</y><width>325</width><height>41</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>InfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="SourceLabel">
-      <property name="geometry"><rect><x>8</x><y>55</y><width>100</width><height>13</height></rect></property>
-      <property name="text"><string>Select active source:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QListWidget" name="SourceListBox">
-      <property name="geometry"><rect><x>8</x><y>74</y><width>325</width><height>97</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
-    </widget>
+    <layout class="QGridLayout" name="InstallationRunForm_Layout" columnstretch="0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="InfoLabel">
+          <property name="text"><string>InfoLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="SourceLabel">
+          <property name="text"><string>Select active source:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+        <widget class="QListWidget" name="SourceListBox">
+          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+          <property name="minimumSize"><size><width>0</width><height>97</height></size></property>
+        </widget>
+      </item>
+      <item row="0" column="1">
+        <spacer name="InstallationRunForm_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+      <item row="3" column="0">
+        <spacer name="InstallationRunForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

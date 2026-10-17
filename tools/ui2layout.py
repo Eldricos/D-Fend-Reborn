@@ -210,8 +210,13 @@ def build_grid(items, name, margins, check_only=False):
         for r in range(i["row"], i["row"] + i["rs"]):
             for cc in range(i["c"], i["c"] + i["cs"]):
                 if (r, cc) in occ:
-                    raise Fail("%s overlaps %s" % (i["w"].get("name"), occ[(r, cc)]))
-                occ[(r, cc)] = i["w"].get("name")
+                    o = occ[(r, cc)]
+                    # alternatives (one of them hidden in the design) starting
+                    # in the same cell share it
+                    if (is_hidden(i["w"]) or is_hidden(o["w"])) and (i["row"], i["c"]) == (o["row"], o["c"]):
+                        continue
+                    raise Fail("%s overlaps %s" % (i["w"].get("name"), o["w"].get("name")))
+                occ[(r, cc)] = i
     if check_only:
         return None
     lay = ET.Element("layout", {"class": "QGridLayout", "name": name})

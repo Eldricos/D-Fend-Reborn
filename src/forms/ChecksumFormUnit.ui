@@ -8,48 +8,78 @@
     <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
     <property name="vclDesignWidth" stdset="0"><number>564</number></property>
     <property name="vclDesignHeight" stdset="0"><number>257</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>529</width><height>193</height></rect></property>
-      <property name="text"><string>InfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QPushButton" name="YesButton">
-      <property name="geometry"><rect><x>8</x><y>222</y><width>97</width><height>27</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkYes</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrYes</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="NoButton">
-      <property name="geometry"><rect><x>111</x><y>222</y><width>97</width><height>27</height></rect></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkNo</string></property>
-      <property name="vclCancel" stdset="0"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrNo</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="TurnOffButton">
-      <property name="geometry"><rect><x>214</x><y>222</y><width>291</width><height>27</height></rect></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="text"><string>Prüfsummen für dieses Profil deaktivieren</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/bd0ff9a43277f4e6.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclCancel" stdset="0"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrYes</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
+    <layout class="QGridLayout" name="ChecksumForm_Layout" columnstretch="0,0,0,0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="1" colspan="4">
+        <widget class="QLabel" name="InfoLabel">
+          <property name="text"><string>InfoLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="minimumSize"><size><width>529</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="0" colspan="2" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="YesButton">
+          <property name="text"><string /></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkYes</string></property>
+          <property name="default"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrYes</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="2" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="NoButton">
+          <property name="tag" stdset="0"><number>1</number></property>
+          <property name="text"><string /></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkNo</string></property>
+          <property name="vclCancel" stdset="0"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrNo</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="3" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="TurnOffButton">
+          <property name="tag" stdset="0"><number>2</number></property>
+          <property name="text"><string>Prüfsummen für dieses Profil deaktivieren</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/bd0ff9a43277f4e6.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclCancel" stdset="0"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrYes</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          <property name="minimumSize"><size><width>291</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="0" column="4">
+        <spacer name="ChecksumForm_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+      <item row="2" column="0">
+        <spacer name="ChecksumForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>YesButton</tabstop>
     <tabstop>NoButton</tabstop>
     <tabstop>TurnOffButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

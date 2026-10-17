@@ -5,112 +5,141 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>697</width><height>240</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>697</number></property>
     <property name="vclDesignHeight" stdset="0"><number>240</number></property>
-    <widget class="QToolButton" name="CDROMButton">
-      <property name="geometry"><rect><x>671</x><y>32</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="CDROMDriveAccessLabel">
-      <property name="geometry"><rect><x>16</x><y>112</y><width>72</width><height>13</height></rect></property>
-      <property name="text"><string>Access method</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="CDROMDriveLetterLabel">
-      <property name="geometry"><rect><x>16</x><y>165</y><width>98</width><height>13</height></rect></property>
-      <property name="text"><string>Mounted drive letter</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="CDROMDriveLetterWarningLabel">
-      <property name="geometry"><rect><x>176</x><y>187</y><width>510</width><height>18</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>CDROMDriveLetterWarningLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="CDDriveNumberLabel">
-      <property name="geometry"><rect><x>472</x><y>16</y><width>101</width><height>13</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="text"><string>CDDriveNumberLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="CDMountTypeLabel">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>113</width><height>13</height></rect></property>
-      <property name="text"><string>CD drive mounting type</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLineEdit" name="CDROMEdit">
-      <property name="geometry"><rect><x>264</x><y>32</y><width>401</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="CDROMEdit_EditLabel">
-      <property name="geometry"><rect><x>264</x><y>16</y><width>223</width><height>13</height></rect></property>
-      <property name="text"><string>Select drive/CDROM/Image or floppy to mount</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">CDROMEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">CDROMEdit</string></property>
-    </widget>
-    <widget class="QLineEdit" name="CDROMLabelEdit">
-      <property name="geometry"><rect><x>16</x><y>80</y><width>649</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="CDROMLabelEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>64</y><width>50</width><height>13</height></rect></property>
-      <property name="text"><string>Drive label</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">CDROMLabelEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">CDROMLabelEdit</string></property>
-    </widget>
-    <widget class="QComboBox" name="CDROMDriveAccessComboBox">
-      <property name="geometry"><rect><x>16</x><y>130</y><width>649</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="CDROMDriveLetterComboBox">
-      <property name="geometry"><rect><x>16</x><y>184</y><width>145</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="CDMountTypeComboBox">
-      <property name="geometry"><rect><x>16</x><y>32</y><width>242</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QSpinBox" name="CDDriveNumberEdit">
-      <property name="geometry"><rect><x>264</x><y>32</y><width>65</width><height>22</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="minimum"><number>1</number></property>
-      <property name="maximum"><number>10</number></property>
-      <property name="value"><number>1</number></property>
-    </widget>
-    <widget class="QLineEdit" name="CDLabelEdit">
-      <property name="geometry"><rect><x>264</x><y>32</y><width>401</width><height>21</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="CDLabelEdit_EditLabel">
-      <property name="geometry"><rect><x>264</x><y>16</y><width>57</width><height>13</height></rect></property>
-      <property name="text"><string>CDLabelEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">CDLabelEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">CDLabelEdit</string></property>
-      <property name="visible"><bool>false</bool></property>
-    </widget>
+    <layout class="QGridLayout" name="ProfileMountEditorCDDriveFrame_Layout" columnstretch="0,0,0,0,1,0">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0">
+        <widget class="QLabel" name="CDMountTypeLabel">
+          <property name="text"><string>CD drive mounting type</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="0" column="2">
+        <widget class="QLabel" name="CDROMEdit_EditLabel">
+          <property name="text"><string>Select drive/CDROM/Image or floppy to mount</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="vclFocusControl" stdset="0"><string notr="true">CDROMEdit</string></property>
+          <property name="vclLabeledEditOf" stdset="0"><string notr="true">CDROMEdit</string></property>
+        </widget>
+      </item>
+      <item row="0" column="2">
+        <widget class="QLabel" name="CDLabelEdit_EditLabel">
+          <property name="text"><string>CDLabelEdit</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="vclFocusControl" stdset="0"><string notr="true">CDLabelEdit</string></property>
+          <property name="vclLabeledEditOf" stdset="0"><string notr="true">CDLabelEdit</string></property>
+          <property name="visible"><bool>false</bool></property>
+        </widget>
+      </item>
+      <item row="0" column="2">
+        <widget class="QLabel" name="CDDriveNumberLabel">
+          <property name="visible"><bool>false</bool></property>
+          <property name="text"><string>CDDriveNumberLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="1" column="0" colspan="2" alignment="Qt::AlignLeft">
+        <widget class="QComboBox" name="CDMountTypeComboBox">
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+          <property name="minimumSize"><size><width>242</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="2" colspan="3">
+        <widget class="QLineEdit" name="CDROMEdit">
+      </widget>
+      </item>
+      <item row="1" column="2" alignment="Qt::AlignLeft">
+        <widget class="QSpinBox" name="CDDriveNumberEdit">
+          <property name="visible"><bool>false</bool></property>
+          <property name="minimum"><number>1</number></property>
+          <property name="maximum"><number>10</number></property>
+          <property name="value"><number>1</number></property>
+          <property name="minimumSize"><size><width>65</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="2" colspan="3">
+        <widget class="QLineEdit" name="CDLabelEdit">
+          <property name="visible"><bool>false</bool></property>
+        </widget>
+      </item>
+      <item row="1" column="5" alignment="Qt::AlignRight">
+        <widget class="QToolButton" name="CDROMButton">
+          <property name="tag" stdset="0"><number>2</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+          <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="2" column="0" colspan="5">
+        <widget class="QLabel" name="CDROMLabelEdit_EditLabel">
+          <property name="text"><string>Drive label</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="vclFocusControl" stdset="0"><string notr="true">CDROMLabelEdit</string></property>
+          <property name="vclLabeledEditOf" stdset="0"><string notr="true">CDROMLabelEdit</string></property>
+        </widget>
+      </item>
+      <item row="3" column="0" colspan="5">
+        <widget class="QLineEdit" name="CDROMLabelEdit">
+      </widget>
+      </item>
+      <item row="4" column="0" colspan="5">
+        <widget class="QLabel" name="CDROMDriveAccessLabel">
+          <property name="text"><string>Access method</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="5" column="0" colspan="5">
+        <widget class="QComboBox" name="CDROMDriveAccessComboBox">
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+          <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+          <property name="minimumContentsLength"><number>10</number></property>
+        </widget>
+      </item>
+      <item row="6" column="0" colspan="5">
+        <widget class="QLabel" name="CDROMDriveLetterLabel">
+          <property name="text"><string>Mounted drive letter</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="7" column="0" alignment="Qt::AlignLeft">
+        <widget class="QComboBox" name="CDROMDriveLetterComboBox">
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+          <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="7" column="1" colspan="5">
+        <widget class="QLabel" name="CDROMDriveLetterWarningLabel">
+          <property name="visible"><bool>false</bool></property>
+          <property name="text"><string>CDROMDriveLetterWarningLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="0" column="4">
+        <spacer name="ProfileMountEditorCDDriveFrame_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+      <item row="8" column="0">
+        <spacer name="ProfileMountEditorCDDriveFrame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>CDROMEdit</tabstop>
@@ -121,6 +150,8 @@
     <tabstop>CDDriveNumberEdit</tabstop>
     <tabstop>CDLabelEdit</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

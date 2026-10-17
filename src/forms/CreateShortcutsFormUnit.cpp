@@ -69,11 +69,7 @@ void TCreateShortcutsForm::FormCreate(QObject* Sender)
         ui.FolderEdit->setVisible(true);
         ui.FolderEdit_EditLabel->setVisible(true);
         ui.SelectFolderButton->setVisible(true);
-        const int T = ui.FolderEdit->y() + ui.FolderEdit->height() + 15;
-        VclLayout::setBounds(ui.OKButton, ui.OKButton->x(), T, ui.OKButton->width(), ui.OKButton->height());
-        VclLayout::setBounds(ui.CancelButton, ui.CancelButton->x(), T, ui.CancelButton->width(), ui.CancelButton->height());
-        VclLayout::setBounds(ui.HelpButton, ui.HelpButton->x(), T, ui.HelpButton->width(), ui.HelpButton->height());
-        VclLayout::setClientSize(this, width(), ui.OKButton->y() + ui.OKButton->height() + 10);
+        // (the layout puts the folder setting in place of the hidden ones)
     }
 
     ui.FolderEdit->setText(GetSpecialFolder(winId(), CSIDL_DESKTOPDIRECTORY));

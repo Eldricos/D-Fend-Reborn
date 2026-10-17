@@ -30,6 +30,8 @@
       <property name="vclOnClick" stdset="0"><string notr="true">AbortButtonClick</string></property>
     </widget>
   </widget>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

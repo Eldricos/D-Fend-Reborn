@@ -8,32 +8,56 @@
     <property name="vclPosition" stdset="0"><string notr="true">poOwnerFormCenter</string></property>
     <property name="vclDesignWidth" stdset="0"><number>437</number></property>
     <property name="vclDesignHeight" stdset="0"><number>122</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>8</x><y>8</y><width>421</width><height>57</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>InfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>8</x><y>94</y><width>97</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-    </widget>
-    <widget class="QCheckBox" name="TurnOffWarningsCheckBox">
-      <property name="geometry"><rect><x>8</x><y>71</y><width>421</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Turn off warnings for this profile.</string></property>
-    </widget>
+    <layout class="QGridLayout" name="WindowsFileWarningForm_Layout" columnstretch="0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="InfoLabel">
+          <property name="text"><string>InfoLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+        <widget class="QCheckBox" name="TurnOffWarningsCheckBox">
+          <property name="text"><string>Turn off warnings for this profile.</string></property>
+        </widget>
+      </item>
+      <item row="2" column="0" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="OKButton">
+          <property name="text"><string /></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+          <property name="default"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+          <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="0" column="1">
+        <spacer name="WindowsFileWarningForm_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+      <item row="3" column="0">
+        <spacer name="WindowsFileWarningForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>OKButton</tabstop>
     <tabstop>TurnOffWarningsCheckBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

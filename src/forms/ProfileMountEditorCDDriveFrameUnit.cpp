@@ -45,7 +45,6 @@ bool TProfileMountEditorCDDriveFrame::Init(const TInfoData& AInfoData)
     ui.CDMountTypeComboBox->setCurrentIndex(0);
     ui.CDMountTypeComboBox->blockSignals(false);
     ui.CDDriveNumberLabel->setText(LanguageSetup->ProfileMountingCDDriveTypeNumberLabel());
-    ui.CDDriveNumberLabel->move(ui.CDDriveNumberEdit->x(), ui.CDDriveNumberLabel->y());
     ui.CDROMEdit_EditLabel->setText(LanguageSetup->ProfileMountingFolder());
     ui.CDROMLabelEdit_EditLabel->setText(LanguageSetup->ProfileMountingLabel());
 

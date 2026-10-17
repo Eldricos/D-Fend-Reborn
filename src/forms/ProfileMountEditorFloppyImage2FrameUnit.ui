@@ -5,92 +5,119 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>697</width><height>337</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>697</number></property>
     <property name="vclDesignHeight" stdset="0"><number>337</number></property>
-    <widget class="QLabel" name="FloppyImageLabel">
-      <property name="geometry"><rect><x>16</x><y>10</y><width>223</width><height>13</height></rect></property>
-      <property name="text"><string>Select drive/CDROM/Image or floppy to mount</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QToolButton" name="FloppyImageButton2">
-      <property name="geometry"><rect><x>640</x><y>24</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>10</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="FloppyImageCreateButton2">
-      <property name="geometry"><rect><x>671</x><y>24</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>16</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/a7fc1030571280f9.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="FloppyImageDelButton">
-      <property name="geometry"><rect><x>671</x><y>52</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>12</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="FloppyImageAddButton">
-      <property name="geometry"><rect><x>640</x><y>52</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>11</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="FloppyImageSwitchLabel">
-      <property name="geometry"><rect><x>16</x><y>92</y><width>337</width><height>13</height></rect></property>
-      <property name="text"><string>(You can switch between the images by pressing Strg+F4 in DOSBox.)</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="FloppyImageDriveLetterLabel2">
-      <property name="geometry"><rect><x>16</x><y>118</y><width>98</width><height>13</height></rect></property>
-      <property name="text"><string>Mounted drive letter</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="DriveLetterInfoLabel3">
-      <property name="geometry"><rect><x>16</x><y>160</y><width>647</width><height>58</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>DriveLetterInfoLabel3</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="FloppyImageDriveLetterWarningLabel2">
-      <property name="geometry"><rect><x>176</x><y>136</y><width>510</width><height>18</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>FloppyImageDriveLetterWarningLabel2</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QTableWidget" name="FloppyImageTab">
-      <property name="geometry"><rect><x>16</x><y>24</y><width>618</width><height>68</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="columnCount"><number>1</number></property>
-      <property name="rowCount"><number>1</number></property>
-      <property name="vclFixedCols" stdset="0"><number>0</number></property>
-      <property name="vclFixedRows" stdset="0"><number>0</number></property>
-      <attribute name="horizontalHeaderVisible"><bool>false</bool></attribute>
-      <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
-      <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
-    </widget>
-    <widget class="QComboBox" name="FloppyImageDriveLetterComboBox2">
-      <property name="geometry"><rect><x>16</x><y>133</y><width>145</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
+    <layout class="QGridLayout" name="ProfileMountEditorFloppyImage2Frame_Layout" columnstretch="0,0,1,0,0">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>10</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0" colspan="3">
+        <widget class="QLabel" name="FloppyImageLabel">
+          <property name="text"><string>Select drive/CDROM/Image or floppy to mount</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="1" column="0" rowspan="2" colspan="3">
+        <widget class="QTableWidget" name="FloppyImageTab">
+          <property name="columnCount"><number>1</number></property>
+          <property name="rowCount"><number>1</number></property>
+          <property name="vclFixedCols" stdset="0"><number>0</number></property>
+          <property name="vclFixedRows" stdset="0"><number>0</number></property>
+          <property name="minimumSize"><size><width>0</width><height>68</height></size></property>
+          <attribute name="horizontalHeaderVisible"><bool>false</bool></attribute>
+          <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+          <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+        </widget>
+      </item>
+      <item row="1" column="3" alignment="Qt::AlignRight">
+        <widget class="QToolButton" name="FloppyImageButton2">
+          <property name="tag" stdset="0"><number>10</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+          <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="4" alignment="Qt::AlignRight">
+        <widget class="QToolButton" name="FloppyImageCreateButton2">
+          <property name="tag" stdset="0"><number>16</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/a7fc1030571280f9.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+          <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="2" column="3" alignment="Qt::AlignRight">
+        <widget class="QToolButton" name="FloppyImageAddButton">
+          <property name="tag" stdset="0"><number>11</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+          <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="2" column="4" alignment="Qt::AlignRight">
+        <widget class="QToolButton" name="FloppyImageDelButton">
+          <property name="tag" stdset="0"><number>12</number></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+          <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="3" column="0" colspan="3">
+        <widget class="QLabel" name="FloppyImageSwitchLabel">
+          <property name="text"><string>(You can switch between the images by pressing Strg+F4 in DOSBox.)</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="4" column="0" colspan="3">
+        <widget class="QLabel" name="FloppyImageDriveLetterLabel2">
+          <property name="text"><string>Mounted drive letter</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="5" column="0" alignment="Qt::AlignLeft">
+        <widget class="QComboBox" name="FloppyImageDriveLetterComboBox2">
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+          <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="5" column="1" colspan="4">
+        <widget class="QLabel" name="FloppyImageDriveLetterWarningLabel2">
+          <property name="visible"><bool>false</bool></property>
+          <property name="text"><string>FloppyImageDriveLetterWarningLabel2</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="6" column="0" colspan="4">
+        <widget class="QLabel" name="DriveLetterInfoLabel3">
+          <property name="text"><string>DriveLetterInfoLabel3</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="0" column="2">
+        <spacer name="ProfileMountEditorFloppyImage2Frame_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+      <item row="7" column="0">
+        <spacer name="ProfileMountEditorFloppyImage2Frame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
     <widget class="QMenu" name="FloppyPopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="FloppyPopupCreateImage"/>
-      <addaction name="FloppyPopupReadImage"/>
+      <addaction name="FloppyPopupCreateImage" />
+      <addaction name="FloppyPopupReadImage" />
     </widget>
     <action name="FloppyPopupCreateImage">
       <property name="text"><string>Create empty image</string></property>
@@ -104,6 +131,8 @@
     <tabstop>FloppyImageTab</tabstop>
     <tabstop>FloppyImageDriveLetterComboBox2</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

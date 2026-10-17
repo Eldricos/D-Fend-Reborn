@@ -73,6 +73,11 @@ void fitTreeWidth(QTreeWidget *Tree);
 // Area has (pages with Qt layouts; also contents of scroll boxes).
 void fitPages(QWidget *Area, int TopOffset, const QList<QWidget *> &Pages);
 
+// A window or an aligned panel with a Qt layout gets the height its visible
+// controls need (e.g. after hiding some of them); the width is kept, or
+// increased if needed.
+void fitHeight(QWidget *W);
+
 // TabSheet.TabVisible
 void setTabVisible(QTabWidget *Tabs, QWidget *Page, bool Visible);
 // TabSheet.PageIndex / ActivePage helpers

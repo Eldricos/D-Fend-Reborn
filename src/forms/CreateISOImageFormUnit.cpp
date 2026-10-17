@@ -102,11 +102,7 @@ void TCreateISOImageForm::FormShow(QObject* Sender)
         SaveDialog->DefaultExt = "img";
 
         ui.InfoLabel->setVisible(false);
-        const int T = ui.InfoLabel->y() + 8;
-        VclLayout::setBounds(ui.OKButton, ui.OKButton->x(), T, ui.OKButton->width(), ui.OKButton->height());
-        VclLayout::setBounds(ui.CancelButton, ui.CancelButton->x(), T, ui.CancelButton->width(), ui.CancelButton->height());
-        VclLayout::setBounds(ui.HelpButton, ui.HelpButton->x(), T, ui.HelpButton->width(), ui.HelpButton->height());
-        VclLayout::setClientSize(this, width(), T + ui.OKButton->height() + 8);
+        VclLayout::fitHeight(this);   // (the buttons move up)
     } else {
         setWindowTitle(LanguageSetup->ReadImageCaptionISO());
         ui.DriveLabel->setText(LanguageSetup->ReadImageDriveLabelCD());

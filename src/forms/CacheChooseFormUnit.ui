@@ -9,31 +9,59 @@
     <property name="vclBorderIcons" stdset="0"><string notr="true">biMinimize,biMaximize</string></property>
     <property name="vclDesignWidth" stdset="0"><number>425</number></property>
     <property name="vclDesignHeight" stdset="0"><number>412</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>393</width><height>105</height></rect></property>
-      <property name="text"><string>The listed profiles have changed on disk. This changes will be overwritten with the version in memory when D-Fend Reborn closes. If you want to keep the manual made changes to the files on the disk, you have to reload this files now. please select which profiles should be reloaded from disk now.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QListWidget" name="ProfileListBox">
-      <property name="geometry"><rect><x>16</x><y>120</y><width>393</width><height>253</height></rect></property>
-      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>16</x><y>379</y><width>89</width><height>25</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-    </widget>
+    <layout class="QGridLayout" name="CacheChooseForm_Layout" columnstretch="0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="InfoLabel">
+          <property name="text"><string>The listed profiles have changed on disk. This changes will be overwritten with the version in memory when D-Fend Reborn closes. If you want to keep the manual made changes to the files on the disk, you have to reload this files now. please select which profiles should be reloaded from disk now.</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+          <property name="minimumSize"><size><width>393</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignLeft">
+        <widget class="QListWidget" name="ProfileListBox">
+          <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+          <property name="minimumSize"><size><width>393</width><height>253</height></size></property>
+        </widget>
+      </item>
+      <item row="2" column="0" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="OKButton">
+          <property name="text"><string /></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+          <property name="default"><bool>true</bool></property>
+          <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+          <property name="minimumSize"><size><width>89</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="0" column="1">
+        <spacer name="CacheChooseForm_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+      <item row="3" column="0">
+        <spacer name="CacheChooseForm_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>ProfileListBox</tabstop>
     <tabstop>OKButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>
