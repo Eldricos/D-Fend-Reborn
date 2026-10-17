@@ -12,6 +12,7 @@
 #include <QHBoxLayout>
 #include <QRegularExpressionValidator>
 #include <QComboBox>
+#include <QGridLayout>
 #include <QPainter>
 
 // ---------------------------------------------------------------------------
@@ -101,8 +102,18 @@ void TRadioGroupWidget::rebuild()
 
 void TRadioGroupWidget::arrange()
 {
-    // VCL TRadioGroup.ArrangeButtons
     if (FButtons.isEmpty()) return;
+    // In a Qt layout (converted .ui): the buttons get a grid layout, so the
+    // group box is as large as its buttons need.
+    if (layout() || (parentWidget() && parentWidget()->layout())) {
+        auto *G = qobject_cast<QGridLayout *>(layout());
+        if (!G) G = new QGridLayout(this);
+        while (G->count() > 0) delete G->takeAt(0);
+        const int Rows = (FButtons.size() + FColumns - 1) / FColumns;
+        for (int i = 0; i < FButtons.size(); i++) G->addWidget(FButtons[i], i % Rows, i / Rows);
+        return;
+    }
+    // VCL TRadioGroup.ArrangeButtons
     QFontMetrics FM(font());
     int Top = FM.height() + 2;
     int Rows = (FButtons.size() + FColumns - 1) / FColumns;
@@ -122,13 +133,13 @@ void TRadioGroupWidget::arrange()
 void TRadioGroupWidget::resizeEvent(QResizeEvent *e)
 {
     QGroupBox::resizeEvent(e);
-    arrange();
+    if (!layout()) arrange();
 }
 
 void TRadioGroupWidget::changeEvent(QEvent *e)
 {
     QGroupBox::changeEvent(e);
-    if (e->type() == QEvent::FontChange) arrange();
+    if (e->type() == QEvent::FontChange && !layout()) arrange();
 }
 
 // ---------------------------------------------------------------------------

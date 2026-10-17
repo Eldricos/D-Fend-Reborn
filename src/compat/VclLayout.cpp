@@ -264,6 +264,7 @@ static void installEngines(QWidget *Root)
         if (!needsEngine(W)) continue;
         QWidget *P = W->parentWidget();
         if (!P) continue;
+        if (P->layout()) continue;   // positioned by a Qt layout (converted .ui)
         if (qobject_cast<QToolBar *>(P) || qobject_cast<QStatusBar *>(P)) continue;
         if (qobject_cast<QStackedWidget *>(P) || qobject_cast<QTabWidget *>(P)) continue;
         if (P->objectName() == "qt_tabwidget_stackedwidget") continue;
@@ -341,6 +342,7 @@ void autoSizeLabels(QWidget *Root)
         if (!L->property("vclAutoSize").toBool()) continue;
         if (L->wordWrap()) continue;
         if (L->property("vclAlign").isValid()) continue;
+        if (L->parentWidget() && L->parentWidget()->layout()) continue;  // sized by the layout
         QSize H = L->sizeHint();
         int NewW = H.width();
         if (NewW == L->width()) continue;

@@ -5,129 +5,235 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>641</width><height>530</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>641</number></property>
     <property name="vclDesignHeight" stdset="0"><number>530</number></property>
-    <widget class="QToolButton" name="CustomDOSBoxInstallationButton">
-      <property name="geometry"><rect><x>605</x><y>205</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="CustomSetsLabel">
-      <property name="geometry"><rect><x>16</x><y>320</y><width>82</width><height>13</height></rect></property>
-      <property name="text"><string>CustomSetsLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="DOSBoxForegroundPriorityLabel">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>154</width><height>13</height></rect></property>
-      <property name="text"><string>DOSBoxForegroundPriorityLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="DOSBoxBackgroundPriorityLabel">
-      <property name="geometry"><rect><x>240</x><y>16</y><width>154</width><height>13</height></rect></property>
-      <property name="text"><string>DOSBoxBackgroundPriorityLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="CloseDOSBoxOnExitCheckBox">
-      <property name="geometry"><rect><x>16</x><y>80</y><width>612</width><height>15</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>CloseDOSBoxOnExitCheckBox</string></property>
-    </widget>
-    <widget class="QRadioButton" name="DefaultDOSBoxInstallationRadioButton">
-      <property name="geometry"><rect><x>16</x><y>137</y><width>612</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>DefaultDOSBoxInstallationRadioButton</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QRadioButton" name="CustomDOSBoxInstallationRadioButton">
-      <property name="geometry"><rect><x>16</x><y>187</y><width>612</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>CustomDOSBoxInstallationRadioButton</string></property>
-    </widget>
-    <widget class="QLineEdit" name="CustomDOSBoxInstallationEdit">
-      <property name="geometry"><rect><x>32</x><y>206</y><width>567</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QPushButton" name="CustomSetsClearButton">
-      <property name="geometry"><rect><x>16</x><y>494</y><width>105</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string>Löschen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="CustomSetsLoadButton">
-      <property name="geometry"><rect><x>129</x><y>494</y><width>105</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="text"><string>Laden...</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="CustomSetsSaveButton">
-      <property name="geometry"><rect><x>240</x><y>494</y><width>105</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="text"><string>Speichern...</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QTextEdit" name="CustomSetsMemo">
-      <property name="geometry"><rect><x>16</x><y>336</y><width>612</width><height>152</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-      <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
-      <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-      <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-      <property name="acceptRichText"><bool>false</bool></property>
-    </widget>
-    <widget class="QComboBox" name="DOSBoxInstallationComboBox">
-      <property name="geometry"><rect><x>32</x><y>156</y><width>596</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QCheckBox" name="UserLanguageCheckBox">
-      <property name="geometry"><rect><x>16</x><y>256</y><width>411</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Use this custom language in DOSBox</string></property>
-    </widget>
-    <widget class="QComboBox" name="UserLanguageComboBox">
-      <property name="geometry"><rect><x>483</x><y>254</y><width>145</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="DOSBoxForegroundPriorityComboBox">
-      <property name="geometry"><rect><x>16</x><y>35</y><width>185</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="DOSBoxBackgroundPriorityComboBox">
-      <property name="geometry"><rect><x>240</x><y>35</y><width>185</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QCheckBox" name="UserConsoleCheckBox">
-      <property name="geometry"><rect><x>16</x><y>288</y><width>417</width><height>17</height></rect></property>
-      <property name="text"><string>Use this custom settings for the console window</string></property>
-    </widget>
-    <widget class="QComboBox" name="UserConsoleComboBox">
-      <property name="geometry"><rect><x>483</x><y>286</y><width>145</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QCheckBox" name="RunAsAdminCheckBox">
-      <property name="geometry"><rect><x>16</x><y>105</y><width>612</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>RunAsAdminCheckBox</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="ModernProfileEditorDOSBoxFrame_Layout" stretch="0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>13</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorDOSBoxFrame_Section1" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="DOSBoxForegroundPriorityLabel">
+              <property name="text"><string>DOSBoxForegroundPriorityLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+            <widget class="QLabel" name="DOSBoxBackgroundPriorityLabel">
+              <property name="text"><string>DOSBoxBackgroundPriorityLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="DOSBoxForegroundPriorityComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>185</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="DOSBoxBackgroundPriorityComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>185</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorDOSBoxFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorDOSBoxFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>24</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorDOSBoxFrame_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="CloseDOSBoxOnExitCheckBox">
+              <property name="text"><string>CloseDOSBoxOnExitCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QCheckBox" name="RunAsAdminCheckBox">
+              <property name="text"><string>RunAsAdminCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorDOSBoxFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorDOSBoxFrame_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorDOSBoxFrame_Section3" columnstretch="0,0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="4">
+            <widget class="QRadioButton" name="DefaultDOSBoxInstallationRadioButton">
+              <property name="text"><string>DefaultDOSBoxInstallationRadioButton</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="3">
+            <widget class="QComboBox" name="DOSBoxInstallationComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+              <property name="minimumContentsLength"><number>10</number></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="4">
+            <widget class="QRadioButton" name="CustomDOSBoxInstallationRadioButton">
+              <property name="text"><string>CustomDOSBoxInstallationRadioButton</string></property>
+            </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+            <widget class="QLineEdit" name="CustomDOSBoxInstallationEdit">
+      </widget>
+          </item>
+          <item row="3" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="CustomDOSBoxInstallationButton">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorDOSBoxFrame_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorDOSBoxFrame_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>27</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorDOSBoxFrame_Section4" columnstretch="0,0,0,1,0" rowstretch="0,0,0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="4">
+            <widget class="QCheckBox" name="UserLanguageCheckBox">
+              <property name="text"><string>Use this custom language in DOSBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="4" alignment="Qt::AlignRight">
+            <widget class="QComboBox" name="UserLanguageComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+            <widget class="QCheckBox" name="UserConsoleCheckBox">
+              <property name="text"><string>Use this custom settings for the console window</string></property>
+            </widget>
+          </item>
+          <item row="1" column="4" alignment="Qt::AlignRight">
+            <widget class="QComboBox" name="UserConsoleComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="4">
+            <widget class="QLabel" name="CustomSetsLabel">
+              <property name="text"><string>CustomSetsLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="5">
+            <widget class="QTextEdit" name="CustomSetsMemo">
+              <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+              <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="acceptRichText"><bool>false</bool></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CustomSetsClearButton">
+              <property name="text"><string>Löschen</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CustomSetsLoadButton">
+              <property name="tag" stdset="0"><number>1</number></property>
+              <property name="text"><string>Laden...</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CustomSetsSaveButton">
+              <property name="tag" stdset="0"><number>2</number></property>
+              <property name="text"><string>Speichern...</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="ModernProfileEditorDOSBoxFrame_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>DOSBoxForegroundPriorityComboBox</tabstop>
@@ -147,6 +253,8 @@
     <tabstop>CustomSetsLoadButton</tabstop>
     <tabstop>CustomSetsSaveButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

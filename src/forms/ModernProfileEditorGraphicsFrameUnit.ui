@@ -5,216 +5,397 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>640</width><height>537</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>640</number></property>
     <property name="vclDesignHeight" stdset="0"><number>537</number></property>
-    <widget class="QLabel" name="WindowResolutionLabel">
-      <property name="geometry"><rect><x>24</x><y>13</y><width>113</width><height>13</height></rect></property>
-      <property name="text"><string>WindowResolutionLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="FullscreenResolutionLabel">
-      <property name="geometry"><rect><x>184</x><y>13</y><width>123</width><height>13</height></rect></property>
-      <property name="text"><string>FullscreenResolutionLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="RenderLabel">
-      <property name="geometry"><rect><x>24</x><y>296</y><width>60</width><height>13</height></rect></property>
-      <property name="text"><string>RenderLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="VideoCardLabel">
-      <property name="geometry"><rect><x>184</x><y>296</y><width>74</width><height>13</height></rect></property>
-      <property name="text"><string>VideoCardLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="ScaleLabel">
-      <property name="geometry"><rect><x>24</x><y>352</y><width>50</width><height>13</height></rect></property>
-      <property name="text"><string>ScaleLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="FrameSkipLabel">
-      <property name="geometry"><rect><x>422</x><y>352</y><width>74</width><height>13</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="text"><string>FrameSkipLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="FullscreenInfoLabel">
-      <property name="geometry"><rect><x>40</x><y>138</y><width>584</width><height>35</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>FullscreenInfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="PixelShaderLabel">
-      <property name="geometry"><rect><x>520</x><y>352</y><width>81</width><height>13</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="text"><string>PixelShaderLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="ResolutionInfoLabel">
-      <property name="geometry"><rect><x>24</x><y>59</y><width>600</width><height>46</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>ResolutionInfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="GlideEmulationLabel">
-      <property name="geometry"><rect><x>24</x><y>240</y><width>94</width><height>13</height></rect></property>
-      <property name="text"><string>GlideEmulationLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="GlideEmulationPortLabel">
-      <property name="geometry"><rect><x>184</x><y>240</y><width>114</width><height>13</height></rect></property>
-      <property name="text"><string>GlideEmulationPortLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="GlideEmulationLFBLabel">
-      <property name="geometry"><rect><x>363</x><y>240</y><width>111</width><height>13</height></rect></property>
-      <property name="text"><string>GlideEmulationLFBLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QComboBox" name="WindowResolutionComboBox">
-      <property name="geometry"><rect><x>24</x><y>32</y><width>145</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="FullscreenResolutionComboBox">
-      <property name="geometry"><rect><x>184</x><y>32</y><width>145</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QCheckBox" name="StartFullscreenCheckBox">
-      <property name="geometry"><rect><x>24</x><y>120</y><width>600</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>StartFullscreenCheckBox</string></property>
-    </widget>
-    <widget class="QCheckBox" name="DoublebufferingCheckBox">
-      <property name="geometry"><rect><x>24</x><y>176</y><width>600</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>DoublebufferingCheckBox</string></property>
-    </widget>
-    <widget class="QCheckBox" name="KeepAspectRatioCheckBox">
-      <property name="geometry"><rect><x>24</x><y>208</y><width>600</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>KeepAspectRatioCheckBox</string></property>
-    </widget>
-    <widget class="QComboBox" name="RenderComboBox">
-      <property name="geometry"><rect><x>24</x><y>315</y><width>145</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="VideoCardComboBox">
-      <property name="geometry"><rect><x>184</x><y>315</y><width>330</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="ScaleComboBox">
-      <property name="geometry"><rect><x>24</x><y>371</y><width>385</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QSpinBox" name="FrameSkipEdit">
-      <property name="geometry"><rect><x>422</x><y>371</y><width>92</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="minimum"><number>0</number></property>
-      <property name="maximum"><number>10</number></property>
-      <property name="value"><number>0</number></property>
-    </widget>
-    <widget class="TRadioGroupWidget" name="TextModeLinesRadioGroup">
-      <property name="geometry"><rect><x>24</x><y>405</y><width>169</width><height>76</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="title"><string>TextModeLinesRadioGroup</string></property>
-      <property name="items" stdset="0">
-        <stringlist notr="true">
-          <string>25</string>
-          <string>28</string>
-          <string>50</string>
-        </stringlist>
-      </property>
-      <property name="itemIndex" stdset="0"><number>0</number></property>
-    </widget>
-    <widget class="QGroupBox" name="VGASettingsGroupBox">
-      <property name="geometry"><rect><x>207</x><y>405</y><width>417</width><height>105</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="title"><string>VGASettingsGroupBox</string></property>
-      <widget class="QLabel" name="VGAChipsetLabel">
-        <property name="geometry"><rect><x>16</x><y>26</y><width>81</width><height>13</height></rect></property>
-        <property name="text"><string>VGAChipsetLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QLabel" name="VideoRamLabel">
-        <property name="geometry"><rect><x>167</x><y>26</y><width>72</width><height>13</height></rect></property>
-        <property name="text"><string>VideoRamLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QLabel" name="VGASettingsLabel">
-        <property name="geometry"><rect><x>16</x><y>68</y><width>385</width><height>34</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="text"><string>This settings are only used if video card type is "vga".</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="wordWrap"><bool>true</bool></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      </widget>
-      <widget class="QComboBox" name="VGAChipsetComboBox">
-        <property name="geometry"><rect><x>16</x><y>40</y><width>145</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-      <widget class="QComboBox" name="VideoRamComboBox">
-        <property name="geometry"><rect><x>167</x><y>40</y><width>145</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-    </widget>
-    <widget class="QComboBox" name="PixelShaderComboBox">
-      <property name="geometry"><rect><x>520</x><y>371</y><width>104</width><height>21</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="GlideEmulationComboBox">
-      <property name="geometry"><rect><x>24</x><y>259</y><width>105</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="GlideEmulationPortComboBox">
-      <property name="geometry"><rect><x>184</x><y>259</y><width>105</width><height>21</height></rect></property>
-      <property name="editable"><bool>true</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="GlideEmulationLFBComboBox">
-      <property name="geometry"><rect><x>363</x><y>259</y><width>105</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
+    <layout class="QVBoxLayout" name="ModernProfileEditorGraphicsFrame_Layout" stretch="0,0,0,0,0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>24</number></property>
+      <property name="topMargin"><number>13</number></property>
+      <property name="rightMargin"><number>16</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGraphicsFrame_Section1" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="WindowResolutionLabel">
+              <property name="text"><string>WindowResolutionLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+            <widget class="QLabel" name="FullscreenResolutionLabel">
+              <property name="text"><string>FullscreenResolutionLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="WindowResolutionComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="FullscreenResolutionComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+            <widget class="QLabel" name="ResolutionInfoLabel">
+              <property name="text"><string>ResolutionInfoLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorGraphicsFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGraphicsFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGraphicsFrame_Section2" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QCheckBox" name="StartFullscreenCheckBox">
+              <property name="text"><string>StartFullscreenCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLabel" name="FullscreenInfoLabel">
+              <property name="text"><string>FullscreenInfoLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+            <widget class="QCheckBox" name="DoublebufferingCheckBox">
+              <property name="text"><string>DoublebufferingCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorGraphicsFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGraphicsFrame_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGraphicsFrame_Section3" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="KeepAspectRatioCheckBox">
+              <property name="text"><string>KeepAspectRatioCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorGraphicsFrame_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGraphicsFrame_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGraphicsFrame_Section4" columnstretch="0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="GlideEmulationLabel">
+              <property name="text"><string>GlideEmulationLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <widget class="QLabel" name="GlideEmulationPortLabel">
+              <property name="text"><string>GlideEmulationPortLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2" colspan="2">
+            <widget class="QLabel" name="GlideEmulationLFBLabel">
+              <property name="text"><string>GlideEmulationLFBLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="GlideEmulationComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="GlideEmulationPortComboBox">
+              <property name="editable"><bool>true</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="GlideEmulationLFBComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="ModernProfileEditorGraphicsFrame_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGraphicsFrame_Gap4">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGraphicsFrame_Section5" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="RenderLabel">
+              <property name="text"><string>RenderLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+            <widget class="QLabel" name="VideoCardLabel">
+              <property name="text"><string>VideoCardLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="RenderComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="VideoCardComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>330</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorGraphicsFrame_Section5_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGraphicsFrame_Gap5">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGraphicsFrame_Section6" columnstretch="0,0,1,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="ScaleLabel">
+              <property name="text"><string>ScaleLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="3" alignment="Qt::AlignRight">
+            <widget class="QLabel" name="FrameSkipLabel">
+              <property name="text"><string>FrameSkipLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="4" alignment="Qt::AlignRight">
+            <widget class="QLabel" name="PixelShaderLabel">
+              <property name="visible"><bool>false</bool></property>
+              <property name="text"><string>PixelShaderLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+            <widget class="QComboBox" name="ScaleComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+              <property name="minimumContentsLength"><number>10</number></property>
+            </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QSpinBox" name="FrameSkipEdit">
+              <property name="minimum"><number>0</number></property>
+              <property name="maximum"><number>10</number></property>
+              <property name="value"><number>0</number></property>
+              <property name="minimumSize"><size><width>92</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="4" alignment="Qt::AlignRight">
+            <widget class="QComboBox" name="PixelShaderComboBox">
+              <property name="visible"><bool>false</bool></property>
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>104</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" alignment="Qt::AlignLeft">
+            <widget class="TRadioGroupWidget" name="TextModeLinesRadioGroup">
+              <property name="visible"><bool>false</bool></property>
+              <property name="title"><string>TextModeLinesRadioGroup</string></property>
+              <property name="items" stdset="0"><stringlist notr="true"><string>25</string><string>28</string><string>50</string></stringlist></property>
+              <property name="itemIndex" stdset="0"><number>0</number></property>
+              <property name="minimumSize"><size><width>169</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="1" colspan="4">
+            <widget class="QGroupBox" name="VGASettingsGroupBox">
+              <property name="visible"><bool>false</bool></property>
+              <property name="title"><string>VGASettingsGroupBox</string></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+              <layout class="QGridLayout" name="VGASettingsGroupBox_Layout" columnstretch="0,0,1">
+                <property name="leftMargin"><number>16</number></property>
+                <property name="topMargin"><number>8</number></property>
+                <property name="rightMargin"><number>16</number></property>
+                <property name="bottomMargin"><number>8</number></property>
+                <property name="horizontalSpacing"><number>8</number></property>
+                <property name="verticalSpacing"><number>4</number></property>
+                <item row="0" column="0">
+                  <widget class="QLabel" name="VGAChipsetLabel">
+                    <property name="text"><string>VGAChipsetLabel</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                  </widget>
+                </item>
+                <item row="0" column="1" colspan="2">
+                  <widget class="QLabel" name="VideoRamLabel">
+                    <property name="text"><string>VideoRamLabel</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                  </widget>
+                </item>
+                <item row="1" column="0" alignment="Qt::AlignLeft">
+                  <widget class="QComboBox" name="VGAChipsetComboBox">
+                    <property name="editable"><bool>false</bool></property>
+                    <property name="maxVisibleItems"><number>8</number></property>
+                    <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="1" column="1" alignment="Qt::AlignLeft">
+                  <widget class="QComboBox" name="VideoRamComboBox">
+                    <property name="editable"><bool>false</bool></property>
+                    <property name="maxVisibleItems"><number>8</number></property>
+                    <property name="minimumSize"><size><width>145</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="2" column="0" colspan="3">
+                  <widget class="QLabel" name="VGASettingsLabel">
+                    <property name="text"><string>This settings are only used if video card type is "vga".</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="wordWrap"><bool>true</bool></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                  </widget>
+                </item>
+                <item row="0" column="2">
+                  <spacer name="VGASettingsGroupBox_Layout_HFill">
+                    <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+                <item row="3" column="0">
+                  <spacer name="VGASettingsGroupBox_VFill">
+                    <property name="orientation"><enum>Qt::Vertical</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorGraphicsFrame_Section6_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGraphicsFrame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <customwidgets>
     <customwidget>
@@ -240,6 +421,8 @@
     <tabstop>VGAChipsetComboBox</tabstop>
     <tabstop>VideoRamComboBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

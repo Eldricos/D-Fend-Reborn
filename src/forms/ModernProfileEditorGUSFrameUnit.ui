@@ -5,71 +5,200 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>621</width><height>489</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>621</number></property>
     <property name="vclDesignHeight" stdset="0"><number>489</number></property>
-    <widget class="QLabel" name="AddressLabel">
-      <property name="geometry"><rect><x>24</x><y>64</y><width>64</width><height>13</height></rect></property>
-      <property name="text"><string>AddressLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="SampleRateLabel">
-      <property name="geometry"><rect><x>128</x><y>64</y><width>82</width><height>13</height></rect></property>
-      <property name="text"><string>SampleRateLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="Interrupt1Label">
-      <property name="geometry"><rect><x>24</x><y>120</y><width>75</width><height>13</height></rect></property>
-      <property name="text"><string>Interrupt1Label</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="DMA1Label">
-      <property name="geometry"><rect><x>24</x><y>176</y><width>53</width><height>13</height></rect></property>
-      <property name="text"><string>DMA1Label</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="ActivateGUSCheckBox">
-      <property name="geometry"><rect><x>24</x><y>24</y><width>569</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>ActivateGUSCheckBox</string></property>
-    </widget>
-    <widget class="QComboBox" name="AddressComboBox">
-      <property name="geometry"><rect><x>24</x><y>83</y><width>81</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="SampleRateComboBox">
-      <property name="geometry"><rect><x>128</x><y>83</y><width>81</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="Interrupt1ComboBox">
-      <property name="geometry"><rect><x>24</x><y>139</y><width>81</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="DMA1ComboBox">
-      <property name="geometry"><rect><x>24</x><y>195</y><width>81</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QLineEdit" name="PathEdit">
-      <property name="geometry"><rect><x>24</x><y>248</y><width>577</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="PathEdit_EditLabel">
-      <property name="geometry"><rect><x>24</x><y>232</y><width>40</width><height>13</height></rect></property>
-      <property name="text"><string>PathEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">PathEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">PathEdit</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="ModernProfileEditorGUSFrame_Layout" stretch="0,0,0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>24</number></property>
+      <property name="topMargin"><number>24</number></property>
+      <property name="rightMargin"><number>20</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGUSFrame_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="ActivateGUSCheckBox">
+              <property name="text"><string>ActivateGUSCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorGUSFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGUSFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>23</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGUSFrame_Section2" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="AddressLabel">
+              <property name="text"><string>AddressLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+            <widget class="QLabel" name="SampleRateLabel">
+              <property name="text"><string>SampleRateLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="AddressComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>81</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="SampleRateComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>81</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorGUSFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGUSFrame_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGUSFrame_Section3" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="Interrupt1Label">
+              <property name="text"><string>Interrupt1Label</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="Interrupt1ComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>81</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorGUSFrame_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGUSFrame_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGUSFrame_Section4" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="DMA1Label">
+              <property name="text"><string>DMA1Label</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="DMA1ComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>81</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorGUSFrame_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGUSFrame_Gap4">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorGUSFrame_Section5" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="PathEdit_EditLabel">
+              <property name="text"><string>PathEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">PathEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">PathEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLineEdit" name="PathEdit">
+      </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorGUSFrame_Section5_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorGUSFrame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>ActivateGUSCheckBox</tabstop>
@@ -79,6 +208,8 @@
     <tabstop>DMA1ComboBox</tabstop>
     <tabstop>PathEdit</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

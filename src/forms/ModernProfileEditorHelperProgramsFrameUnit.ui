@@ -5,88 +5,146 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>693</width><height>566</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>693</number></property>
     <property name="vclDesignHeight" stdset="0"><number>566</number></property>
-    <widget class="QToolButton" name="AddButton1">
-      <property name="geometry"><rect><x>660</x><y>39</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DelButton1">
-      <property name="geometry"><rect><x>660</x><y>67</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DelButton2">
-      <property name="geometry"><rect><x>660</x><y>275</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>3</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="AddButton2">
-      <property name="geometry"><rect><x>660</x><y>247</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QCheckBox" name="Command1CheckBox">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>667</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Execute commands before main program</string></property>
-    </widget>
-    <widget class="QCheckBox" name="Command2CheckBox">
-      <property name="geometry"><rect><x>16</x><y>224</y><width>649</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Execute commands after main program quits</string></property>
-    </widget>
-    <widget class="QCheckBox" name="RunMinimized1CheckBox">
-      <property name="geometry"><rect><x>32</x><y>127</y><width>651</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Run minimized</string></property>
-    </widget>
-    <widget class="QCheckBox" name="Wait1CheckBox">
-      <property name="geometry"><rect><x>32</x><y>173</y><width>651</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Wait before execution of the main program</string></property>
-    </widget>
-    <widget class="QCheckBox" name="RunMinimized2CheckBox">
-      <property name="geometry"><rect><x>32</x><y>335</y><width>633</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Run minimized</string></property>
-    </widget>
-    <widget class="QCheckBox" name="InOrder1CheckBox">
-      <property name="geometry"><rect><x>32</x><y>150</y><width>651</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Run commands in order</string></property>
-    </widget>
-    <widget class="QCheckBox" name="InOrder2CheckBox">
-      <property name="geometry"><rect><x>32</x><y>358</y><width>633</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Run commands in order</string></property>
-    </widget>
-    <widget class="QTableWidget" name="Command1Tab">
-      <property name="geometry"><rect><x>32</x><y>39</y><width>622</width><height>82</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="columnCount"><number>1</number></property>
-      <property name="rowCount"><number>1</number></property>
-      <property name="vclFixedCols" stdset="0"><number>0</number></property>
-      <property name="vclFixedRows" stdset="0"><number>1</number></property>
-      <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
-      <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
-    </widget>
-    <widget class="QTableWidget" name="Command2Tab">
-      <property name="geometry"><rect><x>32</x><y>247</y><width>622</width><height>82</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="columnCount"><number>1</number></property>
-      <property name="rowCount"><number>1</number></property>
-      <property name="vclFixedCols" stdset="0"><number>0</number></property>
-      <property name="vclFixedRows" stdset="0"><number>1</number></property>
-      <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
-      <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
-    </widget>
+    <layout class="QVBoxLayout" name="ModernProfileEditorHelperProgramsFrame_Layout" stretch="0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>10</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorHelperProgramsFrame_Section1" columnstretch="0,0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="4">
+            <widget class="QCheckBox" name="Command1CheckBox">
+              <property name="text"><string>Execute commands before main program</string></property>
+            </widget>
+          </item>
+          <item row="1" column="1" rowspan="2" colspan="2">
+            <widget class="QTableWidget" name="Command1Tab">
+              <property name="columnCount"><number>1</number></property>
+              <property name="rowCount"><number>1</number></property>
+              <property name="vclFixedCols" stdset="0"><number>0</number></property>
+              <property name="vclFixedRows" stdset="0"><number>1</number></property>
+              <property name="minimumSize"><size><width>0</width><height>82</height></size></property>
+              <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+              <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+            </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="AddButton1">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DelButton1">
+              <property name="tag" stdset="0"><number>1</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="1" colspan="3">
+            <widget class="QCheckBox" name="RunMinimized1CheckBox">
+              <property name="text"><string>Run minimized</string></property>
+            </widget>
+          </item>
+          <item row="4" column="1" colspan="3">
+            <widget class="QCheckBox" name="InOrder1CheckBox">
+              <property name="text"><string>Run commands in order</string></property>
+            </widget>
+          </item>
+          <item row="5" column="1" colspan="3">
+            <widget class="QCheckBox" name="Wait1CheckBox">
+              <property name="text"><string>Wait before execution of the main program</string></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorHelperProgramsFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorHelperProgramsFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>34</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorHelperProgramsFrame_Section2" columnstretch="0,0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QCheckBox" name="Command2CheckBox">
+              <property name="text"><string>Execute commands after main program quits</string></property>
+            </widget>
+          </item>
+          <item row="1" column="1" rowspan="2" colspan="2">
+            <widget class="QTableWidget" name="Command2Tab">
+              <property name="columnCount"><number>1</number></property>
+              <property name="rowCount"><number>1</number></property>
+              <property name="vclFixedCols" stdset="0"><number>0</number></property>
+              <property name="vclFixedRows" stdset="0"><number>1</number></property>
+              <property name="minimumSize"><size><width>0</width><height>82</height></size></property>
+              <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+              <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+            </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="AddButton2">
+              <property name="tag" stdset="0"><number>2</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DelButton2">
+              <property name="tag" stdset="0"><number>3</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+            <widget class="QCheckBox" name="RunMinimized2CheckBox">
+              <property name="text"><string>Run minimized</string></property>
+            </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+            <widget class="QCheckBox" name="InOrder2CheckBox">
+              <property name="text"><string>Run commands in order</string></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorHelperProgramsFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorHelperProgramsFrame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>Command1CheckBox</tabstop>
@@ -99,6 +157,8 @@
     <tabstop>RunMinimized2CheckBox</tabstop>
     <tabstop>InOrder2CheckBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

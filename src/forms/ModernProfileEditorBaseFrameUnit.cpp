@@ -17,12 +17,6 @@
 #include "ImageStretch.h"
 #include "DosBoxUnit.h"
 
-// Control.Top:=Value (keeps the anchor rules of the layout engine up to date)
-static void SetTop(QWidget* W, int Top)
-{
-    VclLayout::setBounds(W, W->x(), Top, W->width(), W->height());
-}
-
 // TStrings.IndexOf (case insensitive)
 static int ComboIndexOf(QComboBox* C, const QString& S)
 {
@@ -265,12 +259,7 @@ void TModernProfileEditorBaseFrame::ShowFrame(QObject* Sender)
         ui.TurnOffDOSBoxFailedWarningCheckBox->setVisible(false);
         ui.RunAsAdminCheckBox->setVisible(false);
     } else {
-        ui.GameGroup->setVisible(false);
-        SetTop(ui.GameExeGroup, ui.GameGroup->y());
-        SetTop(ui.SetupExeGroup, ui.GameExeGroup->y() + ui.GameExeGroup->height() + 8);
-        SetTop(ui.ExtraExeFilesButton, ui.SetupExeGroup->y() + ui.SetupExeGroup->height() + 8);
-        SetTop(ui.IgnoreWindowsWarningsCheckBox, ui.ExtraExeFilesButton->y() + 5);
-        SetTop(ui.TurnOffDOSBoxFailedWarningCheckBox, ui.IgnoreWindowsWarningsCheckBox->y() + ui.IgnoreWindowsWarningsCheckBox->height());
+        ui.GameGroup->setVisible(false);  // (the layout moves the other groups up)
         if (WindowsMode) {
             /* Windows mode */
             ui.GameRelPathCheckBox->setVisible(false);
@@ -285,7 +274,6 @@ void TModernProfileEditorBaseFrame::ShowFrame(QObject* Sender)
             GameExeEditChange(Sender); /* Make IgnoreWindowsWarningsCheckBox visible if needed */
             ui.TurnOffDOSBoxFailedWarningCheckBox->setVisible(ui.TurnOffDOSBoxFailedWarningCheckBox->isChecked());
             ui.RunAsAdminCheckBox->setVisible(false);
-            CalcCheckBoxTop();
         }
     }
 }
@@ -401,7 +389,6 @@ void TModernProfileEditorBaseFrame::GameExeEditChange(QObject* Sender)
     FOnProfileNameChange(Sender, *ProfileName, S + ui.GameExeEdit->text(), *ProfileSetup, *ProfileScummVMGameName, *ProfileScummVMPath, *ProfileDOSBoxInstallation, *ProfileCaptureDir);
 
     ui.IgnoreWindowsWarningsCheckBox->setVisible((!ui.GameRelPathCheckBox->isChecked()) && (IsWindowsExe(MakeAbsPath(ui.GameExeEdit->text(), PrgSetup->BaseDir())) || IsWindowsExe(MakeAbsPath(ui.SetupExeEdit->text(), PrgSetup->BaseDir()))));
-    CalcCheckBoxTop();
 }
 
 void TModernProfileEditorBaseFrame::GameRelPathButton(QObject* Sender)
@@ -419,17 +406,6 @@ void TModernProfileEditorBaseFrame::SetupExeEditChange(QObject* Sender)
     FOnProfileNameChange(Sender, *ProfileName, *ProfileExe, S + ui.SetupExeEdit->text(), *ProfileScummVMGameName, *ProfileScummVMPath, *ProfileDOSBoxInstallation, *ProfileCaptureDir);
 
     ui.IgnoreWindowsWarningsCheckBox->setVisible((!ui.GameRelPathCheckBox->isChecked()) && (IsWindowsExe(MakeAbsPath(ui.GameExeEdit->text(), PrgSetup->BaseDir())) || IsWindowsExe(MakeAbsPath(ui.SetupExeEdit->text(), PrgSetup->BaseDir()))));
-    CalcCheckBoxTop();
-}
-
-void TModernProfileEditorBaseFrame::CalcCheckBoxTop()
-{
-    SetTop(ui.IgnoreWindowsWarningsCheckBox, ui.ExtraExeFilesButton->y() + 5);
-    if (!ui.IgnoreWindowsWarningsCheckBox->isHidden()) {
-        SetTop(ui.TurnOffDOSBoxFailedWarningCheckBox, ui.IgnoreWindowsWarningsCheckBox->y() + ui.IgnoreWindowsWarningsCheckBox->height());
-    } else {
-        SetTop(ui.TurnOffDOSBoxFailedWarningCheckBox, ui.IgnoreWindowsWarningsCheckBox->y());
-    }
 }
 
 void TModernProfileEditorBaseFrame::RelPathCheckBoxClick(QObject* Sender)

@@ -5,114 +5,220 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>553</width><height>419</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>553</number></property>
     <property name="vclDesignHeight" stdset="0"><number>419</number></property>
-    <widget class="QLabel" name="PortLabel">
-      <property name="geometry"><rect><x>471</x><y>149</y><width>45</width><height>13</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="text"><string>PortLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="NE2000BaseAddressLabel">
-      <property name="geometry"><rect><x>24</x><y>256</y><width>104</width><height>13</height></rect></property>
-      <property name="text"><string>NE2000 base address</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="NE2000InterruptLabel">
-      <property name="geometry"><rect><x>208</x><y>256</y><width>82</width><height>13</height></rect></property>
-      <property name="text"><string>NE2000 interrupt</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="ActivateCheckBox">
-      <property name="geometry"><rect><x>24</x><y>24</y><width>526</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>ActivateCheckBox</string></property>
-    </widget>
-    <widget class="TRadioGroupWidget" name="ConnectionsRadioGroup">
-      <property name="geometry"><rect><x>24</x><y>56</y><width>185</width><height>81</height></rect></property>
-      <property name="title"><string>ConnectionsRadioGroup</string></property>
-      <property name="items" stdset="0">
-        <stringlist notr="true">
-          <string>None</string>
-          <string>Client</string>
-          <string>Server</string>
-        </stringlist>
-      </property>
-    </widget>
-    <widget class="QLineEdit" name="ServerAddressEdit">
-      <property name="geometry"><rect><x>24</x><y>168</y><width>401</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="ServerAddressEdit_EditLabel">
-      <property name="geometry"><rect><x>24</x><y>152</y><width>89</width><height>13</height></rect></property>
-      <property name="text"><string>ServerAddressEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">ServerAddressEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ServerAddressEdit</string></property>
-    </widget>
-    <widget class="QSpinBox" name="PortEdit">
-      <property name="geometry"><rect><x>471</x><y>168</y><width>63</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="minimum"><number>1</number></property>
-      <property name="maximum"><number>65535</number></property>
-      <property name="value"><number>1</number></property>
-    </widget>
-    <widget class="QCheckBox" name="NE2000CheckBox">
-      <property name="geometry"><rect><x>24</x><y>224</y><width>526</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Activate NE2000 emulation</string></property>
-    </widget>
-    <widget class="QComboBox" name="NE2000BaseAddressComboBox">
-      <property name="geometry"><rect><x>24</x><y>275</y><width>113</width><height>21</height></rect></property>
-      <property name="editable"><bool>true</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-      <property name="currentText"><string>NE2000BaseAddressComboBox</string></property>
-    </widget>
-    <widget class="QComboBox" name="NE2000InterruptComboBox">
-      <property name="geometry"><rect><x>208</x><y>275</y><width>113</width><height>21</height></rect></property>
-      <property name="editable"><bool>true</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-      <property name="currentText"><string>NE2000InterruptComboBox</string></property>
-    </widget>
-    <widget class="QLineEdit" name="NE2000MACAddressEdit">
-      <property name="geometry"><rect><x>24</x><y>325</y><width>297</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLabel" name="NE2000MACAddressEdit_EditLabel">
-      <property name="geometry"><rect><x>24</x><y>309</y><width>103</width><height>13</height></rect></property>
-      <property name="text"><string>NE2000 MAC address</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">NE2000MACAddressEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">NE2000MACAddressEdit</string></property>
-    </widget>
-    <widget class="QPushButton" name="ResetMACButton">
-      <property name="geometry"><rect><x>327</x><y>323</y><width>146</width><height>25</height></rect></property>
-      <property name="text"><string>Reset to default</string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ResetMACButtonClick</string></property>
-    </widget>
-    <widget class="QLineEdit" name="NE2000RealNICEdit">
-      <property name="geometry"><rect><x>24</x><y>376</y><width>297</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLabel" name="NE2000RealNICEdit_EditLabel">
-      <property name="geometry"><rect><x>24</x><y>360</y><width>97</width><height>13</height></rect></property>
-      <property name="text"><string>Real network device</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">NE2000RealNICEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">NE2000RealNICEdit</string></property>
-    </widget>
-    <widget class="QPushButton" name="ListNICButton">
-      <property name="geometry"><rect><x>327</x><y>374</y><width>146</width><height>25</height></rect></property>
-      <property name="text"><string>List real network devices</string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ListNICButtonClick</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="ModernProfileEditorNetworkFrame_Layout" stretch="0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>24</number></property>
+      <property name="topMargin"><number>24</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorNetworkFrame_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="ActivateCheckBox">
+              <property name="text"><string>ActivateCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorNetworkFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorNetworkFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorNetworkFrame_Section2" columnstretch="0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="TRadioGroupWidget" name="ConnectionsRadioGroup">
+              <property name="title"><string>ConnectionsRadioGroup</string></property>
+              <property name="items" stdset="0"><stringlist notr="true"><string>None</string><string>Client</string><string>Server</string></stringlist></property>
+              <property name="minimumSize"><size><width>185</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="0">
+            <widget class="QLabel" name="ServerAddressEdit_EditLabel">
+              <property name="text"><string>ServerAddressEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">ServerAddressEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">ServerAddressEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignRight">
+            <widget class="QLabel" name="PortLabel">
+              <property name="text"><string>PortLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+            <widget class="QLineEdit" name="ServerAddressEdit">
+      </widget>
+          </item>
+          <item row="2" column="2" alignment="Qt::AlignRight">
+            <widget class="QSpinBox" name="PortEdit">
+              <property name="minimum"><number>1</number></property>
+              <property name="maximum"><number>65535</number></property>
+              <property name="value"><number>1</number></property>
+              <property name="minimumSize"><size><width>63</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorNetworkFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorNetworkFrame_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>34</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorNetworkFrame_Section3" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="NE2000CheckBox">
+              <property name="text"><string>Activate NE2000 emulation</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorNetworkFrame_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorNetworkFrame_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorNetworkFrame_Section4" columnstretch="0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="NE2000BaseAddressLabel">
+              <property name="text"><string>NE2000 base address</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1" colspan="3">
+            <widget class="QLabel" name="NE2000InterruptLabel">
+              <property name="text"><string>NE2000 interrupt</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="NE2000BaseAddressComboBox">
+              <property name="editable"><bool>true</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="currentText"><string>NE2000BaseAddressComboBox</string></property>
+              <property name="minimumSize"><size><width>113</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="NE2000InterruptComboBox">
+              <property name="editable"><bool>true</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="currentText"><string>NE2000InterruptComboBox</string></property>
+              <property name="minimumSize"><size><width>113</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="4">
+            <widget class="QLabel" name="NE2000MACAddressEdit_EditLabel">
+              <property name="text"><string>NE2000 MAC address</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">NE2000MACAddressEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">NE2000MACAddressEdit</string></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="2" alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="NE2000MACAddressEdit">
+              <property name="minimumSize"><size><width>297</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="ResetMACButton">
+              <property name="text"><string>Reset to default</string></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ResetMACButtonClick</string></property>
+              <property name="minimumSize"><size><width>146</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="0" colspan="4">
+            <widget class="QLabel" name="NE2000RealNICEdit_EditLabel">
+              <property name="text"><string>Real network device</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">NE2000RealNICEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">NE2000RealNICEdit</string></property>
+            </widget>
+          </item>
+          <item row="5" column="0" colspan="2" alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="NE2000RealNICEdit">
+              <property name="minimumSize"><size><width>297</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="5" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="ListNICButton">
+              <property name="text"><string>List real network devices</string></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ListNICButtonClick</string></property>
+              <property name="minimumSize"><size><width>146</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="ModernProfileEditorNetworkFrame_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorNetworkFrame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <customwidgets>
     <customwidget>
@@ -133,6 +239,8 @@
     <tabstop>NE2000RealNICEdit</tabstop>
     <tabstop>ListNICButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

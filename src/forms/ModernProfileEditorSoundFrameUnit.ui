@@ -5,96 +5,245 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>556</width><height>541</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>556</number></property>
     <property name="vclDesignHeight" stdset="0"><number>541</number></property>
-    <widget class="QLabel" name="PCSpeakerSampleRateLabel">
-      <property name="geometry"><rect><x>40</x><y>215</y><width>134</width><height>13</height></rect></property>
-      <property name="text"><string>PCSpeakerSampleRateLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="TandySampleRateLabel">
-      <property name="geometry"><rect><x>24</x><y>391</y><width>112</width><height>13</height></rect></property>
-      <property name="text"><string>TandySampleRateLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="ActivateSoundCheckBox">
-      <property name="geometry"><rect><x>24</x><y>24</y><width>508</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>ActivateSoundCheckBox</string></property>
-    </widget>
-    <widget class="QGroupBox" name="MixerGroupBox">
-      <property name="geometry"><rect><x>40</x><y>56</y><width>492</width><height>97</height></rect></property>
-      <property name="title"><string>MixerGroupBox</string></property>
-      <widget class="QLabel" name="SampleRateLabel">
-        <property name="geometry"><rect><x>16</x><y>32</y><width>82</width><height>13</height></rect></property>
-        <property name="text"><string>SampleRateLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QLabel" name="BlockSizeLabel">
-        <property name="geometry"><rect><x>184</x><y>32</y><width>68</width><height>13</height></rect></property>
-        <property name="text"><string>BlockSizeLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QLabel" name="PreBufferLabel">
-        <property name="geometry"><rect><x>360</x><y>34</y><width>71</width><height>13</height></rect></property>
-        <property name="text"><string>PreBufferLabel</string></property>
-        <property name="textFormat"><enum>Qt::PlainText</enum></property>
-        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      </widget>
-      <widget class="QComboBox" name="SampleRateComboBox">
-        <property name="geometry"><rect><x>16</x><y>51</y><width>82</width><height>21</height></rect></property>
-        <property name="editable"><bool>false</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-      <widget class="QComboBox" name="BlockSizeComboBox">
-        <property name="geometry"><rect><x>184</x><y>51</y><width>82</width><height>21</height></rect></property>
-        <property name="editable"><bool>true</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-      <widget class="QComboBox" name="PreBufferComboBox">
-        <property name="geometry"><rect><x>360</x><y>53</y><width>82</width><height>21</height></rect></property>
-        <property name="editable"><bool>true</bool></property>
-        <property name="maxVisibleItems"><number>8</number></property>
-      </widget>
-    </widget>
-    <widget class="QCheckBox" name="ActivatePCSpeakerCheckBox">
-      <property name="geometry"><rect><x>24</x><y>184</y><width>508</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>ActivatePCSpeakerCheckBox</string></property>
-    </widget>
-    <widget class="QComboBox" name="PCSpeakerSampleRateComboBox">
-      <property name="geometry"><rect><x>40</x><y>234</y><width>82</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="TRadioGroupWidget" name="TandyRadioGroup">
-      <property name="geometry"><rect><x>24</x><y>288</y><width>150</width><height>89</height></rect></property>
-      <property name="title"><string>TandyRadioGroup</string></property>
-      <property name="items" stdset="0">
-        <stringlist notr="true">
-          <string>auto</string>
-          <string>on</string>
-          <string>off</string>
-        </stringlist>
-      </property>
-    </widget>
-    <widget class="QComboBox" name="TandyComboBox">
-      <property name="geometry"><rect><x>24</x><y>410</y><width>82</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QCheckBox" name="ActivateDisneyCheckBox">
-      <property name="geometry"><rect><x>24</x><y>464</y><width>508</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>ActivateDisneyCheckBox</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="ModernProfileEditorSoundFrame_Layout" stretch="0,0,0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>24</number></property>
+      <property name="topMargin"><number>24</number></property>
+      <property name="rightMargin"><number>24</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorSoundFrame_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="ActivateSoundCheckBox">
+              <property name="text"><string>ActivateSoundCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorSoundFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorSoundFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorSoundFrame_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>16</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="QGroupBox" name="MixerGroupBox">
+              <property name="title"><string>MixerGroupBox</string></property>
+              <property name="minimumSize"><size><width>492</width><height>0</height></size></property>
+              <layout class="QGridLayout" name="MixerGroupBox_Layout" columnstretch="0,0,0,1">
+                <property name="leftMargin"><number>16</number></property>
+                <property name="topMargin"><number>14</number></property>
+                <property name="rightMargin"><number>4</number></property>
+                <property name="bottomMargin"><number>8</number></property>
+                <property name="horizontalSpacing"><number>8</number></property>
+                <property name="verticalSpacing"><number>4</number></property>
+                <item row="0" column="0">
+                  <widget class="QLabel" name="SampleRateLabel">
+                    <property name="text"><string>SampleRateLabel</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                  </widget>
+                </item>
+                <item row="0" column="1">
+                  <widget class="QLabel" name="BlockSizeLabel">
+                    <property name="text"><string>BlockSizeLabel</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                  </widget>
+                </item>
+                <item row="0" column="2" colspan="2">
+                  <widget class="QLabel" name="PreBufferLabel">
+                    <property name="text"><string>PreBufferLabel</string></property>
+                    <property name="textFormat"><enum>Qt::PlainText</enum></property>
+                    <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+                  </widget>
+                </item>
+                <item row="1" column="0" alignment="Qt::AlignLeft">
+                  <widget class="QComboBox" name="SampleRateComboBox">
+                    <property name="editable"><bool>false</bool></property>
+                    <property name="maxVisibleItems"><number>8</number></property>
+                    <property name="minimumSize"><size><width>82</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="1" column="1" alignment="Qt::AlignLeft">
+                  <widget class="QComboBox" name="BlockSizeComboBox">
+                    <property name="editable"><bool>true</bool></property>
+                    <property name="maxVisibleItems"><number>8</number></property>
+                    <property name="minimumSize"><size><width>82</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="1" column="2" alignment="Qt::AlignLeft">
+                  <widget class="QComboBox" name="PreBufferComboBox">
+                    <property name="editable"><bool>true</bool></property>
+                    <property name="maxVisibleItems"><number>8</number></property>
+                    <property name="minimumSize"><size><width>82</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="0" column="3">
+                  <spacer name="MixerGroupBox_Layout_HFill">
+                    <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+                <item row="2" column="0">
+                  <spacer name="MixerGroupBox_VFill">
+                    <property name="orientation"><enum>Qt::Vertical</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorSoundFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorSoundFrame_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>31</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorSoundFrame_Section3" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QCheckBox" name="ActivatePCSpeakerCheckBox">
+              <property name="text"><string>ActivatePCSpeakerCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLabel" name="PCSpeakerSampleRateLabel">
+              <property name="text"><string>PCSpeakerSampleRateLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="1" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="PCSpeakerSampleRateComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>82</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorSoundFrame_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorSoundFrame_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>33</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorSoundFrame_Section4" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="TRadioGroupWidget" name="TandyRadioGroup">
+              <property name="title"><string>TandyRadioGroup</string></property>
+              <property name="items" stdset="0"><stringlist notr="true"><string>auto</string><string>on</string><string>off</string></stringlist></property>
+              <property name="minimumSize"><size><width>150</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="TandySampleRateLabel">
+              <property name="text"><string>TandySampleRateLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="TandyComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>82</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorSoundFrame_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorSoundFrame_Gap4">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>33</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorSoundFrame_Section5" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="ActivateDisneyCheckBox">
+              <property name="text"><string>ActivateDisneyCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorSoundFrame_Section5_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorSoundFrame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <customwidgets>
     <customwidget>
@@ -113,6 +262,8 @@
     <tabstop>TandyComboBox</tabstop>
     <tabstop>ActivateDisneyCheckBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

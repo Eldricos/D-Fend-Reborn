@@ -123,7 +123,7 @@ void TSetupFrameDOSBox::LoadLanguage()
     ui.PortableModeInfoButton->setText(LanguageSetup->SetupFormDOSBoxPortableModeInfo());
 
     ui.DOSBoxDownloadURLInfo->setText(LanguageSetup->SetupFormDOSBoxDownloadURL());
-    ui.DOSBoxDownloadURL->setText(QString("http:/") + "/www.dosbox.com/download.php?main=1");
+    ui.DOSBoxDownloadURL->setText(QStringLiteral("https://www.dosbox-staging.org/"));
     VclLayout::makeLinkLabel(ui.DOSBoxDownloadURL);
 }
 

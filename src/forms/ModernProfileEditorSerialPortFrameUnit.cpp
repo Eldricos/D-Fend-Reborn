@@ -171,26 +171,8 @@ void TModernProfileEditorSerialPortFrame::SetIRQ(const QString& S)
     if (I >= 0) ui.IRQComboBox->setCurrentIndex(I);
 }
 
-// SetPanel(P): P.Left:=IRQComboBox.Left-17; P.Top:=IRQComboBox.Top+IRQComboBox.Height+15;
-// P.Width:=ClientWidth-10-P.Left; P.Height:=ClientHeight-10-P.Top;
-// P.Anchors:=[akLeft,akTop,akRight,akBottom] (the anchors are emulated by resizeEvent)
-void TModernProfileEditorSerialPortFrame::UpdatePanelBounds()
-{
-    // IRQComboBox position in frame coordinates
-    const QPoint C = ui.IRQComboBox->mapTo(this, QPoint(0, 0));
-    for (QFrame* P : {ui.ModemPanel, ui.NullModemPanel, ui.DirectSerialPanel}) {
-        if (!P->isVisibleTo(this)) continue;
-        const QPoint ParentOfs = P->parentWidget()->mapTo(this, QPoint(0, 0));
-        const int L = C.x() - 17, T = C.y() + ui.IRQComboBox->height() + 15;
-        VclLayout::setBounds(P, L - ParentOfs.x(), T - ParentOfs.y(), width() - 10 - L, height() - 10 - T);
-    }
-}
-
-void TModernProfileEditorSerialPortFrame::resizeEvent(QResizeEvent* E)
-{
-    QWidget::resizeEvent(E);
-    UpdatePanelBounds();
-}
+// SetPanel(P): the panels share one cell of the layout below the IRQ setting;
+// only the panel of the selected device type is visible.
 
 void TModernProfileEditorSerialPortFrame::DeviceTypeClick(QObject* Sender)
 {
@@ -204,7 +186,6 @@ void TModernProfileEditorSerialPortFrame::DeviceTypeClick(QObject* Sender)
     if (ui.SerialTypeModemRadioButton->isChecked()) ui.ModemPanel->setVisible(true);
     if (ui.SerialTypeNullmodemRadioButton->isChecked()) ui.NullModemPanel->setVisible(true);
     if (ui.SerialTypeDirectSerialRadioButton->isChecked()) ui.DirectSerialPanel->setVisible(true);
-    UpdatePanelBounds();
 
     ui.ModemIPEdit->setEnabled(!ui.ModemListenCheckBox->isChecked());
     ui.ModemIPEdit_EditLabel->setEnabled(ui.ModemIPEdit->isEnabled());

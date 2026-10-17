@@ -5,70 +5,90 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>593</width><height>511</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>593</number></property>
     <property name="vclDesignHeight" stdset="0"><number>511</number></property>
-    <widget class="QCheckBox" name="AutoMountCheckBox">
-      <property name="geometry"><rect><x>12</x><y>471</y><width>572</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-      <property name="text"><string>Aktuell verfügbare CDs in allen Laufwerken automatisch mounten</string></property>
-    </widget>
-    <widget class="TListView" name="MountingListView">
-      <property name="geometry"><rect><x>12</x><y>17</y><width>572</width><height>416</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-      <property name="vclPopupMenu" stdset="0"><string notr="true">PopupMenu</string></property>
-      <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
-      <property name="readOnly" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QPushButton" name="MountingAddButton">
-      <property name="geometry"><rect><x>12</x><y>439</y><width>98</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string>Hinzufügen...</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/a7fc1030571280f9.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="MountingEditButton">
-      <property name="geometry"><rect><x>116</x><y>439</y><width>98</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="text"><string>Bearbeiten...</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="MountingDelButton">
-      <property name="geometry"><rect><x>220</x><y>439</y><width>98</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="text"><string>Löschen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="MountingDeleteAllButton">
-      <property name="geometry"><rect><x>324</x><y>439</y><width>98</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>3</number></property>
-      <property name="text"><string>Alle löschen</string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="MountingAutoCreateButton">
-      <property name="geometry"><rect><x>428</x><y>439</y><width>133</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>4</number></property>
-      <property name="text"><string>Autom. erstellen</string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QCheckBox" name="SecureModeCheckBox">
-      <property name="geometry"><rect><x>12</x><y>494</y><width>572</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-      <property name="text"><string>Disable mounting of drives after DOSBox start</string></property>
-    </widget>
+    <layout class="QGridLayout" name="ModernProfileEditorDrivesFrame_Layout" columnstretch="0,0,0,0,0,1" rowstretch="1,0,0,0">
+      <property name="leftMargin"><number>12</number></property>
+      <property name="topMargin"><number>17</number></property>
+      <property name="rightMargin"><number>9</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0" colspan="6">
+        <widget class="TListView" name="MountingListView">
+          <property name="vclPopupMenu" stdset="0"><string notr="true">PopupMenu</string></property>
+          <property name="viewStyle" stdset="0"><string notr="true">vsReport</string></property>
+          <property name="readOnly" stdset="0"><bool>true</bool></property>
+          <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="MountingAddButton">
+          <property name="text"><string>Hinzufügen...</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/a7fc1030571280f9.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          <property name="minimumSize"><size><width>98</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="1" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="MountingEditButton">
+          <property name="tag" stdset="0"><number>1</number></property>
+          <property name="text"><string>Bearbeiten...</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          <property name="minimumSize"><size><width>98</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="2" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="MountingDelButton">
+          <property name="tag" stdset="0"><number>2</number></property>
+          <property name="text"><string>Löschen</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          <property name="minimumSize"><size><width>98</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="3" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="MountingDeleteAllButton">
+          <property name="tag" stdset="0"><number>3</number></property>
+          <property name="text"><string>Alle löschen</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          <property name="minimumSize"><size><width>98</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="4" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="MountingAutoCreateButton">
+          <property name="tag" stdset="0"><number>4</number></property>
+          <property name="text"><string>Autom. erstellen</string></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+          <property name="minimumSize"><size><width>133</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="2" column="0" colspan="6">
+        <widget class="QCheckBox" name="AutoMountCheckBox">
+          <property name="text"><string>Aktuell verfügbare CDs in allen Laufwerken automatisch mounten</string></property>
+        </widget>
+      </item>
+      <item row="3" column="0" colspan="6">
+        <widget class="QCheckBox" name="SecureModeCheckBox">
+          <property name="text"><string>Disable mounting of drives after DOSBox start</string></property>
+        </widget>
+      </item>
+      <item row="0" column="5">
+        <spacer name="ModernProfileEditorDrivesFrame_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
     <widget class="QMenu" name="PopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="PopupAdd"/>
-      <addaction name="PopupEdit"/>
-      <addaction name="PopupDelete"/>
+      <addaction name="PopupAdd" />
+      <addaction name="PopupEdit" />
+      <addaction name="PopupDelete" />
     </widget>
     <action name="PopupAdd">
       <property name="text"><string>Add</string></property>
@@ -105,6 +125,8 @@
     <tabstop>MountingAutoCreateButton</tabstop>
     <tabstop>SecureModeCheckBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

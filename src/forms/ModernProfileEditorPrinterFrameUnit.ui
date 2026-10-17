@@ -5,90 +5,196 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>640</width><height>520</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>640</number></property>
     <property name="vclDesignHeight" stdset="0"><number>520</number></property>
-    <widget class="QLabel" name="ResolutionLabel">
-      <property name="geometry"><rect><x>16</x><y>56</y><width>75</width><height>13</height></rect></property>
-      <property name="text"><string>ResolutionLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="PaperWidthLabel">
-      <property name="geometry"><rect><x>16</x><y>104</y><width>81</width><height>13</height></rect></property>
-      <property name="text"><string>PaperWidthLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="PaperHeightLabel">
-      <property name="geometry"><rect><x>128</x><y>104</y><width>84</width><height>13</height></rect></property>
-      <property name="text"><string>PaperHeightLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="PaperSizeInfoLabel">
-      <property name="geometry"><rect><x>16</x><y>151</y><width>92</width><height>13</height></rect></property>
-      <property name="text"><string>PaperSizeInfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="OutputFormatLabel">
-      <property name="geometry"><rect><x>16</x><y>184</y><width>93</width><height>13</height></rect></property>
-      <property name="text"><string>OutputFormatLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="OutputFormatInfoLabel">
-      <property name="geometry"><rect><x>143</x><y>200</y><width>474</width><height>33</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>OutputFormatInfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="MultiPageInfoLabel">
-      <property name="geometry"><rect><x>32</x><y>271</y><width>585</width><height>50</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>MultiPageInfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QCheckBox" name="EnablePrinterEmulationCheckBox">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>601</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>EnablePrinterEmulationCheckBox</string></property>
-    </widget>
-    <widget class="QSpinBox" name="ResolutionEdit">
-      <property name="geometry"><rect><x>16</x><y>72</y><width>65</width><height>22</height></rect></property>
-      <property name="minimum"><number>72</number></property>
-      <property name="maximum"><number>1200</number></property>
-      <property name="value"><number>360</number></property>
-    </widget>
-    <widget class="QSpinBox" name="PaperWidthEdit">
-      <property name="geometry"><rect><x>16</x><y>123</y><width>65</width><height>22</height></rect></property>
-      <property name="minimum"><number>1</number></property>
-      <property name="maximum"><number>250</number></property>
-      <property name="value"><number>1</number></property>
-    </widget>
-    <widget class="QSpinBox" name="PaperHeightEdit">
-      <property name="geometry"><rect><x>128</x><y>123</y><width>65</width><height>22</height></rect></property>
-      <property name="minimum"><number>1</number></property>
-      <property name="maximum"><number>250</number></property>
-      <property name="value"><number>1</number></property>
-    </widget>
-    <widget class="QComboBox" name="OutputFormatComboBox">
-      <property name="geometry"><rect><x>16</x><y>200</y><width>121</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QCheckBox" name="MultiPageCheckBox">
-      <property name="geometry"><rect><x>16</x><y>248</y><width>601</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>MultiPageCheckBox</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="ModernProfileEditorPrinterFrame_Layout" stretch="0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>16</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorPrinterFrame_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="EnablePrinterEmulationCheckBox">
+              <property name="text"><string>EnablePrinterEmulationCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorPrinterFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorPrinterFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>23</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorPrinterFrame_Section2" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="ResolutionLabel">
+              <property name="text"><string>ResolutionLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QSpinBox" name="ResolutionEdit">
+              <property name="minimum"><number>72</number></property>
+              <property name="maximum"><number>1200</number></property>
+              <property name="value"><number>360</number></property>
+              <property name="minimumSize"><size><width>65</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0">
+            <widget class="QLabel" name="PaperWidthLabel">
+              <property name="text"><string>PaperWidthLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+            <widget class="QLabel" name="PaperHeightLabel">
+              <property name="text"><string>PaperHeightLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="3" column="0" alignment="Qt::AlignLeft">
+            <widget class="QSpinBox" name="PaperWidthEdit">
+              <property name="minimum"><number>1</number></property>
+              <property name="maximum"><number>250</number></property>
+              <property name="value"><number>1</number></property>
+              <property name="minimumSize"><size><width>65</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="1" alignment="Qt::AlignLeft">
+            <widget class="QSpinBox" name="PaperHeightEdit">
+              <property name="minimum"><number>1</number></property>
+              <property name="maximum"><number>250</number></property>
+              <property name="value"><number>1</number></property>
+              <property name="minimumSize"><size><width>65</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+            <widget class="QLabel" name="PaperSizeInfoLabel">
+              <property name="text"><string>PaperSizeInfoLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorPrinterFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorPrinterFrame_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>20</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorPrinterFrame_Section3" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="OutputFormatLabel">
+              <property name="text"><string>OutputFormatLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="OutputFormatComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>121</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLabel" name="OutputFormatInfoLabel">
+              <property name="text"><string>OutputFormatInfoLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorPrinterFrame_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorPrinterFrame_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorPrinterFrame_Section4" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QCheckBox" name="MultiPageCheckBox">
+              <property name="text"><string>MultiPageCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLabel" name="MultiPageInfoLabel">
+              <property name="text"><string>MultiPageInfoLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorPrinterFrame_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorPrinterFrame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>EnablePrinterEmulationCheckBox</tabstop>
@@ -98,6 +204,8 @@
     <tabstop>OutputFormatComboBox</tabstop>
     <tabstop>MultiPageCheckBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

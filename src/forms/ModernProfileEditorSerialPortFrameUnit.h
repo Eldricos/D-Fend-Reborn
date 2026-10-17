@@ -39,9 +39,6 @@ public:
     //   NullModemClientRadioButton.OnClick = DeviceTypeClick
 public slots:
     void DeviceTypeClick(QObject* Sender);
-protected:
-    void resizeEvent(QResizeEvent* E) override;  // emulates Anchors=[akLeft,akTop,akRight,akBottom] set in SetPanel
 private:
-    void UpdatePanelBounds();
     void SetIRQ(const QString& S);
 };
