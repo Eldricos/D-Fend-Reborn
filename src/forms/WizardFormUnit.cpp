@@ -191,6 +191,10 @@ void TWizardForm::FormShow(QObject* Sender)
     }
 
     SetActivePage(0);
+
+    // the window gets larger if a page needs more space (fonts, translations)
+    VclLayout::fitPages(FrameHost, 0, {WizardBaseFrame, WizardPrgFileFrame, WizardTemplateFrame, WizardGameInfoFrame,
+                                       WizardFinishFrame, WizardScummVMFrame, WizardScummVMSettingsFrame});
 }
 
 void TWizardForm::FormHide(QObject* Sender)

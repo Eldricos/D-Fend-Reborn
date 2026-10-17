@@ -73,9 +73,7 @@ void TWizardBaseFrame::Init(TGameDB* GameDB, QWidget* ADialog)
 
     if (Trim(PrgSetup->ScummVMPath()).isEmpty()) ui.EmulationTypeComboBox->removeItem(1);
     ui.ListScummGamesLabel->setVisible(!Trim(PrgSetup->ScummVMPath()).isEmpty());
-    if (ui.ListScummGamesLabel->isHidden()) {
-        VclLayout::setBounds(ui.ShowInfoLabel, ui.ShowInfoLabel->x(), ui.ListScummGamesLabel->y(), ui.ShowInfoLabel->width(), ui.ShowInfoLabel->height());
-    }
+    // (the layout moves ShowInfoLabel up when ListScummGamesLabel is hidden)
 
     VclLayout::makeLinkLabel(ui.ListScummGamesLabel);
     VclLayout::makeLinkLabel(ui.ShowInfoLabel);

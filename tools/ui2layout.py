@@ -2,7 +2,10 @@
 """Convert the absolute positions of a .ui file created by dfm2ui.py into Qt
 layouts.
 
-  ui2layout.py FILE.ui [--only NAME,...] [--skip NAME,...] [--grow-big] [--dry-run]
+  ui2layout.py FILE.ui [--only NAME,...] [--skip NAME,...] [--free NAME,...] [--grow-big] [--dry-run]
+
+--free: these controls stay outside of the layouts (overlays that the form
+code positions itself).
 
 --grow-big: lists, tables, memos and tab controls fill the remaining space
 (as if anchored to all sides), e.g. for dialogs that had a fixed size.
@@ -34,6 +37,7 @@ NO_LAYOUT_CHILD = {"QMenu", "QAction", "QToolBar"}
 INPUTS = {"QComboBox", "QLineEdit", "QSpinBox", "QDoubleSpinBox", "QPushButton", "QToolButton",
           "TColorBoxWidget", "QSlider", "QDateEdit"}
 GROW_BIG = False
+FREE = set()
 TEXTS = {"QLabel", "QCheckBox", "QRadioButton"}
 BIG = {"QListWidget", "QTextEdit", "QPlainTextEdit", "QTableWidget", "QTreeWidget", "TListView",
        "TValueListEditorWidget", "QTabWidget", "QScrollArea", "TImageWidget", "QListView"}
@@ -154,7 +158,7 @@ def sections(items):
     return result
 
 
-def build_grid(items, name, margins):
+def build_grid(items, name, margins, check_only=False):
     cols = cluster([i["x"] for i in items])
     rows = row_spans(items)
     for i in items:
@@ -208,6 +212,8 @@ def build_grid(items, name, margins):
                 if (r, cc) in occ:
                     raise Fail("%s overlaps %s" % (i["w"].get("name"), occ[(r, cc)]))
                 occ[(r, cc)] = i["w"].get("name")
+    if check_only:
+        return None
     lay = ET.Element("layout", {"class": "QGridLayout", "name": name})
     margin_props(lay, margins)
     lay.append(ET.fromstring('<property name="horizontalSpacing"><number>8</number></property>'))
@@ -266,8 +272,32 @@ def build_grid(items, name, margins):
     return lay, bool(grow), len(rows), ntotal
 
 
+def is_hidden(k):
+    v = prop(k, "visible")
+    return v is not None and v.find("bool").text == "false"
+
+
+def shift_hidden_alternatives(items):
+    """Controls hidden in the design that share their place with visible
+    ones (the form code shows either the one or the other group): the hidden
+    group is placed below the visible controls of that place."""
+    hid = [i for i in items if is_hidden(i["w"])]
+    vis = [i for i in items if not is_hidden(i["w"])]
+    if not hid:
+        return
+    top = min(i["y"] for i in hid)
+    over = [v for v in vis if v["b"] > top and v["y"] < max(h["b"] for h in hid)
+            and any(v["x"] < h["r"] and h["x"] < v["r"] and v["y"] < h["b"] and h["y"] < v["b"] for h in hid)]
+    if not over:
+        return
+    dy = max(v["b"] for v in over) - top + 4
+    for h in hid:
+        h["y"] += dy
+        h["b"] += dy
+
+
 def convert_container(c, cls_of, report, top_offset):
-    kids = [k for k in c.findall("widget") if k.get("class") not in NO_LAYOUT_CHILD]
+    kids = [k for k in c.findall("widget") if k.get("class") not in NO_LAYOUT_CHILD and k.get("name") not in FREE]
     if c.find("layout") is not None or not kids:
         return False
     for k in kids:
@@ -288,12 +318,24 @@ def convert_container(c, cls_of, report, top_offset):
             # wide inputs grow with the page instead of a large minimum width
             an = an | {"akLeft", "akRight"}
         items.append(dict(w=k, x=x, y=y, r=x + w, b=y + h, cls=k.get("class"), an=an))
+    # VCL info texts often reach into the bevel line below them
+    for ln in items:
+        fs = prop(ln["w"], "frameShape")
+        if ln["cls"] == "QFrame" and fs is not None and "HLine" in "".join(fs.itertext()):
+            for i in items:
+                if i is not ln and i["y"] < ln["y"] < i["b"]:
+                    i["b"] = ln["y"]
+            ln["y"] = max(ln["y"], max((i["b"] for i in items if i is not ln and i["b"] <= ln["y"] + TOL), default=ln["y"]))
     right_any = any("akRight" in i["an"] for i in items)
     ml = min(i["x"] for i in items)
     mt = max(0, min(i["y"] for i in items) - top_offset)
     mr = max(4, W - max(i["r"] for i in items)) if right_any else 4
     mr = min(mr, max(ml, 8))
     base = c.get("name")
+    try:
+        build_grid([dict(i) for i in items], "probe", (0, 0, 0, 0), check_only=True)
+    except Fail:
+        shift_hidden_alternatives(items)
     secs = sections(items)
     if len(secs) == 1:
         lay, grows, nrows, _ = build_grid(items, base + "_Layout", (ml, mt, mr, 8))
@@ -397,6 +439,9 @@ def main(argv):
     dry = "--dry-run" in args
     global GROW_BIG
     GROW_BIG = "--grow-big" in args
+    global FREE
+    if "--free" in args:
+        FREE = set(args[args.index("--free") + 1].split(","))
     only = skip = None
     if "--only" in args:
         only = set(args[args.index("--only") + 1].split(","))
