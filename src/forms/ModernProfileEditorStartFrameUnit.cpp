@@ -1,6 +1,8 @@
 // C++ port of ModernProfileEditorStartFrameUnit.pas (implementation section).
 #include "ModernProfileEditorStartFrameUnit.h"
 
+#include <QHeaderView>
+
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
 #include "PrgSetupUnit.h"
@@ -115,7 +117,7 @@ void TModernProfileEditorStartFrame::InitGUI(TModernProfileEditorInitData& InitD
     UserIconLoader->DialogImage(DI_Add, ui.AutoexecBootFloppyImageAddButton);
     UserIconLoader->DialogImage(DI_Delete, ui.AutoexecBootFloppyImageDelButton);
 
-    ui.AutoexecBootFloppyImageTab->setColumnWidth(0, ui.AutoexecBootFloppyImageTab->viewport()->width() - 25);
+    ui.AutoexecBootFloppyImageTab->horizontalHeader()->setStretchLastSection(true);
 
     setProperty("HelpContext", ID_ProfileEditStarting);  // HelpContext:=...
 }

@@ -5,145 +5,221 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>436</width><height>437</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>436</number></property>
     <property name="vclDesignHeight" stdset="0"><number>437</number></property>
-    <widget class="QLabel" name="FilenameLabel">
-      <property name="geometry"><rect><x>16</x><y>5</y><width>42</width><height>13</height></rect></property>
-      <property name="text"><string>Filename</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="ChecksumLabel">
-      <property name="geometry"><rect><x>151</x><y>5</y><width>48</width><height>13</height></rect></property>
-      <property name="text"><string>Checksum</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QToolButton" name="SelectButton1">
-      <property name="geometry"><rect><x>378</x><y>24</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DeleteButton1">
-      <property name="geometry"><rect><x>405</x><y>24</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>5</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="SelectButton2">
-      <property name="geometry"><rect><x>378</x><y>50</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DeleteButton2">
-      <property name="geometry"><rect><x>405</x><y>50</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>6</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="SelectButton3">
-      <property name="geometry"><rect><x>378</x><y>78</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DeleteButton3">
-      <property name="geometry"><rect><x>405</x><y>78</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>7</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="SelectButton4">
-      <property name="geometry"><rect><x>378</x><y>104</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>3</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DeleteButton4">
-      <property name="geometry"><rect><x>405</x><y>104</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>8</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="SelectButton5">
-      <property name="geometry"><rect><x>378</x><y>131</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>4</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DeleteButton5">
-      <property name="geometry"><rect><x>405</x><y>131</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>9</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLineEdit" name="FilenameEdit1">
-      <property name="geometry"><rect><x>16</x><y>24</y><width>129</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLineEdit" name="ChecksumEdit1">
-      <property name="geometry"><rect><x>151</x><y>24</y><width>221</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="readOnly"><bool>true</bool></property>
-    </widget>
-    <widget class="QLineEdit" name="FilenameEdit2">
-      <property name="geometry"><rect><x>16</x><y>51</y><width>129</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLineEdit" name="ChecksumEdit2">
-      <property name="geometry"><rect><x>151</x><y>51</y><width>221</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="readOnly"><bool>true</bool></property>
-    </widget>
-    <widget class="QLineEdit" name="FilenameEdit3">
-      <property name="geometry"><rect><x>16</x><y>78</y><width>129</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLineEdit" name="ChecksumEdit3">
-      <property name="geometry"><rect><x>151</x><y>78</y><width>221</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="readOnly"><bool>true</bool></property>
-    </widget>
-    <widget class="QLineEdit" name="FilenameEdit4">
-      <property name="geometry"><rect><x>16</x><y>105</y><width>129</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLineEdit" name="ChecksumEdit4">
-      <property name="geometry"><rect><x>151</x><y>105</y><width>221</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="readOnly"><bool>true</bool></property>
-    </widget>
-    <widget class="QLineEdit" name="FilenameEdit5">
-      <property name="geometry"><rect><x>16</x><y>132</y><width>129</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLineEdit" name="ChecksumEdit5">
-      <property name="geometry"><rect><x>151</x><y>132</y><width>221</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="readOnly"><bool>true</bool></property>
-    </widget>
-    <widget class="QPushButton" name="AddAllButton">
-      <property name="geometry"><rect><x>16</x><y>176</y><width>217</width><height>25</height></rect></property>
-      <property name="tag" stdset="0"><number>-1</number></property>
-      <property name="text"><string>Autonatically add checksums</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/3a424dac33bae56c.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="ClearAllButton">
-      <property name="geometry"><rect><x>16</x><y>207</y><width>217</width><height>25</height></rect></property>
-      <property name="tag" stdset="0"><number>-2</number></property>
-      <property name="text"><string>Remove all checksums</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="ModernProfileEditorAddtionalChecksumFrame_Layout" stretch="0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>5</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorAddtionalChecksumFrame_Section1" columnstretch="0,0,1,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="FilenameLabel">
+              <property name="text"><string>Filename</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+            <widget class="QLabel" name="ChecksumLabel">
+              <property name="text"><string>Checksum</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="FilenameEdit1">
+              <property name="minimumSize"><size><width>129</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLineEdit" name="ChecksumEdit1">
+              <property name="readOnly"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="SelectButton1">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="4" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DeleteButton1">
+              <property name="tag" stdset="0"><number>5</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="FilenameEdit2">
+              <property name="minimumSize"><size><width>129</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+            <widget class="QLineEdit" name="ChecksumEdit2">
+              <property name="readOnly"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="2" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="SelectButton2">
+              <property name="tag" stdset="0"><number>1</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="4" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DeleteButton2">
+              <property name="tag" stdset="0"><number>6</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="0" alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="FilenameEdit3">
+              <property name="minimumSize"><size><width>129</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+            <widget class="QLineEdit" name="ChecksumEdit3">
+              <property name="readOnly"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="3" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="SelectButton3">
+              <property name="tag" stdset="0"><number>2</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="4" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DeleteButton3">
+              <property name="tag" stdset="0"><number>7</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="0" alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="FilenameEdit4">
+              <property name="minimumSize"><size><width>129</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+            <widget class="QLineEdit" name="ChecksumEdit4">
+              <property name="readOnly"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="4" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="SelectButton4">
+              <property name="tag" stdset="0"><number>3</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="4" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DeleteButton4">
+              <property name="tag" stdset="0"><number>8</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="5" column="0" alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="FilenameEdit5">
+              <property name="minimumSize"><size><width>129</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="5" column="1" colspan="2">
+            <widget class="QLineEdit" name="ChecksumEdit5">
+              <property name="readOnly"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="5" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="SelectButton5">
+              <property name="tag" stdset="0"><number>4</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="5" column="4" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DeleteButton5">
+              <property name="tag" stdset="0"><number>9</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorAddtionalChecksumFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorAddtionalChecksumFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>23</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorAddtionalChecksumFrame_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="AddAllButton">
+              <property name="tag" stdset="0"><number>-1</number></property>
+              <property name="text"><string>Autonatically add checksums</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/3a424dac33bae56c.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>217</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="ClearAllButton">
+              <property name="tag" stdset="0"><number>-2</number></property>
+              <property name="text"><string>Remove all checksums</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>217</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorAddtionalChecksumFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorAddtionalChecksumFrame_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>FilenameEdit1</tabstop>
@@ -159,6 +235,8 @@
     <tabstop>AddAllButton</tabstop>
     <tabstop>ClearAllButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

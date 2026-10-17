@@ -5,140 +5,199 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>615</width><height>450</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>615</number></property>
     <property name="vclDesignHeight" stdset="0"><number>450</number></property>
-    <widget class="QToolButton" name="ScreenshotFolderEditButton">
-      <property name="geometry"><rect><x>584</x><y>32</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DataFolderEditButton">
-      <property name="geometry"><rect><x>584</x><y>124</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="ExtraDirsLabel">
-      <property name="geometry"><rect><x>24</x><y>298</y><width>172</width><height>13</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string>Zusätzliche Programmverzeichnisse:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QToolButton" name="ExtraDirsAddButton">
-      <property name="geometry"><rect><x>584</x><y>310</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
-      <property name="tag" stdset="0"><number>5</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="ExtraDirsEditButton">
-      <property name="geometry"><rect><x>584</x><y>338</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
-      <property name="tag" stdset="0"><number>6</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="ExtraDirsDelButton">
-      <property name="geometry"><rect><x>584</x><y>366</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akRight,akBottom</string></property>
-      <property name="tag" stdset="0"><number>7</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="ExtraDirsInfoLabel">
-      <property name="geometry"><rect><x>24</x><y>394</y><width>554</width><height>42</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-      <property name="text"><string>Das eigentliche Programmverzeichnis wird bei einer Deinstallation standardmäßig gelöscht und muss hier nicht zusätzlich aufgeführt werden.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="DataFolderInfoLabel">
-      <property name="geometry"><rect><x>357</x><y>156</y><width>250</width><height>53</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>In diesem Verzeichnis können z.B. Handbücher abgelegt werden.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="ExtraFilesLabel">
-      <property name="geometry"><rect><x>24</x><y>200</y><width>327</width><height>13</height></rect></property>
-      <property name="text"><string>Zusätzliche Programmdateien (außerhalb des Spiele-Verzeichnisses):</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QToolButton" name="ExtraFilesAddButton">
-      <property name="geometry"><rect><x>584</x><y>216</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="ExtraFilesEditButton">
-      <property name="geometry"><rect><x>584</x><y>244</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>3</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="ExtraFilesDelButton">
-      <property name="geometry"><rect><x>584</x><y>272</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>4</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLineEdit" name="ScreenshotFolderEdit">
-      <property name="geometry"><rect><x>24</x><y>32</y><width>554</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="ScreenshotFolderEdit_EditLabel">
-      <property name="geometry"><rect><x>24</x><y>16</y><width>102</width><height>13</height></rect></property>
-      <property name="text"><string>ScreenshotFolderEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">ScreenshotFolderEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ScreenshotFolderEdit</string></property>
-    </widget>
-    <widget class="QPushButton" name="GenerateScreenshotFolderNameButton">
-      <property name="geometry"><rect><x>24</x><y>59</y><width>321</width><height>25</height></rect></property>
-      <property name="tag" stdset="0"><number>9</number></property>
-      <property name="text"><string>Screenshot-Verzeichnis automatisch festlegen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/b95a66cb73ac2323.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">GenerateScreenshotFolderNameButtonClick</string></property>
-    </widget>
-    <widget class="QLineEdit" name="DataFolderEdit">
-      <property name="geometry"><rect><x>24</x><y>124</y><width>554</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="DataFolderEdit_EditLabel">
-      <property name="geometry"><rect><x>24</x><y>108</y><width>71</width><height>13</height></rect></property>
-      <property name="text"><string>DataFolderEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">DataFolderEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DataFolderEdit</string></property>
-    </widget>
-    <widget class="QPushButton" name="GenerateGameDataFolderNameButton">
-      <property name="geometry"><rect><x>24</x><y>151</y><width>321</width><height>25</height></rect></property>
-      <property name="tag" stdset="0"><number>19</number></property>
-      <property name="text"><string>Daten-Verzeichnis automatisch erstellen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1ecd1554339d9b00.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">GenerateGameDataFolderNameButtonClick</string></property>
-    </widget>
-    <widget class="QListWidget" name="ExtraDirsListBox">
-      <property name="geometry"><rect><x>24</x><y>313</y><width>554</width><height>75</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-    </widget>
-    <widget class="QListWidget" name="ExtraFilesListBox">
-      <property name="geometry"><rect><x>24</x><y>216</y><width>554</width><height>75</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="ModernProfileEditorDirectoryFrame_Layout" stretch="0,0,1">
+      <property name="leftMargin"><number>24</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorDirectoryFrame_Section1" columnstretch="0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="ScreenshotFolderEdit_EditLabel">
+              <property name="text"><string>ScreenshotFolderEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">ScreenshotFolderEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">ScreenshotFolderEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLineEdit" name="ScreenshotFolderEdit">
+      </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="ScreenshotFolderEditButton">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="GenerateScreenshotFolderNameButton">
+              <property name="tag" stdset="0"><number>9</number></property>
+              <property name="text"><string>Screenshot-Verzeichnis automatisch festlegen</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/b95a66cb73ac2323.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">GenerateScreenshotFolderNameButtonClick</string></property>
+              <property name="minimumSize"><size><width>321</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorDirectoryFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorDirectoryFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>24</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorDirectoryFrame_Section2" columnstretch="0,0,1,0" rowstretch="0,0,0,0,0,0,1,0,0,0,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="DataFolderEdit_EditLabel">
+              <property name="text"><string>DataFolderEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">DataFolderEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">DataFolderEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+            <widget class="QLineEdit" name="DataFolderEdit">
+      </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DataFolderEditButton">
+              <property name="tag" stdset="0"><number>1</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="GenerateGameDataFolderNameButton">
+              <property name="tag" stdset="0"><number>19</number></property>
+              <property name="text"><string>Daten-Verzeichnis automatisch erstellen</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1ecd1554339d9b00.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">GenerateGameDataFolderNameButtonClick</string></property>
+              <property name="minimumSize"><size><width>321</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="1" rowspan="2" colspan="3">
+            <widget class="QLabel" name="DataFolderInfoLabel">
+              <property name="text"><string>In diesem Verzeichnis können z.B. Handbücher abgelegt werden.</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="3" column="0">
+            <widget class="QLabel" name="ExtraFilesLabel">
+              <property name="text"><string>Zusätzliche Programmdateien (außerhalb des Spiele-Verzeichnisses):</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="4" column="0" rowspan="3" colspan="3">
+            <widget class="QListWidget" name="ExtraFilesListBox">
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="ExtraFilesAddButton">
+              <property name="tag" stdset="0"><number>2</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="5" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="ExtraFilesEditButton">
+              <property name="tag" stdset="0"><number>3</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="6" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="ExtraFilesDelButton">
+              <property name="tag" stdset="0"><number>4</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="7" column="0" colspan="3">
+            <widget class="QLabel" name="ExtraDirsLabel">
+              <property name="text"><string>Zusätzliche Programmverzeichnisse:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="8" column="0" rowspan="3" colspan="3">
+            <widget class="QListWidget" name="ExtraDirsListBox">
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="8" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="ExtraDirsAddButton">
+              <property name="tag" stdset="0"><number>5</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="9" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="ExtraDirsEditButton">
+              <property name="tag" stdset="0"><number>6</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="10" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="ExtraDirsDelButton">
+              <property name="tag" stdset="0"><number>7</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="11" column="0" colspan="3">
+            <widget class="QLabel" name="ExtraDirsInfoLabel">
+              <property name="text"><string>Das eigentliche Programmverzeichnis wird bei einer Deinstallation standardmäßig gelöscht und muss hier nicht zusätzlich aufgeführt werden.</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorDirectoryFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>ScreenshotFolderEdit</tabstop>
@@ -148,6 +207,8 @@
     <tabstop>ExtraFilesListBox</tabstop>
     <tabstop>ExtraDirsListBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

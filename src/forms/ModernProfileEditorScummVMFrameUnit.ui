@@ -5,157 +5,261 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>602</width><height>512</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>602</number></property>
     <property name="vclDesignHeight" stdset="0"><number>512</number></property>
-    <widget class="QLabel" name="LanguageLabel">
-      <property name="geometry"><rect><x>24</x><y>13</y><width>72</width><height>13</height></rect></property>
-      <property name="text"><string>LanguageLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="AutosaveLabel">
-      <property name="geometry"><rect><x>24</x><y>60</y><width>71</width><height>13</height></rect></property>
-      <property name="text"><string>AutosaveLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="TalkSpeedLabel">
-      <property name="geometry"><rect><x>24</x><y>100</y><width>74</width><height>13</height></rect></property>
-      <property name="text"><string>TalkSpeedLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="CustomSetsLabel">
-      <property name="geometry"><rect><x>24</x><y>410</y><width>82</width><height>13</height></rect></property>
-      <property name="text"><string>CustomSetsLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QToolButton" name="ExtraDirButton">
-      <property name="geometry"><rect><x>559</x><y>329</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QComboBox" name="LanguageComboBox">
-      <property name="geometry"><rect><x>24</x><y>30</y><width>105</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QCheckBox" name="SubtitlesCheckBox">
-      <property name="geometry"><rect><x>24</x><y>144</y><width>561</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>SubtitlesCheckBox</string></property>
-    </widget>
-    <widget class="QSpinBox" name="AutosaveEdit">
-      <property name="geometry"><rect><x>24</x><y>74</y><width>105</width><height>22</height></rect></property>
-      <property name="minimum"><number>1</number></property>
-      <property name="maximum"><number>86400</number></property>
-      <property name="value"><number>300</number></property>
-    </widget>
-    <widget class="QSpinBox" name="TalkSpeedEdit">
-      <property name="geometry"><rect><x>24</x><y>114</y><width>105</width><height>22</height></rect></property>
-      <property name="minimum"><number>1</number></property>
-      <property name="maximum"><number>1000</number></property>
-      <property name="value"><number>60</number></property>
-    </widget>
-    <widget class="QGroupBox" name="SavePathGroupBox">
-      <property name="geometry"><rect><x>24</x><y>216</y><width>561</width><height>81</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="title"><string>Folder for saved games</string></property>
-      <widget class="QToolButton" name="SavePathEditButton">
-        <property name="geometry"><rect><x>535</x><y>54</y><width>23</width><height>22</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-        <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+    <layout class="QVBoxLayout" name="ModernProfileEditorScummVMFrame_Layout" stretch="0,0,0,0,1">
+      <property name="leftMargin"><number>24</number></property>
+      <property name="topMargin"><number>13</number></property>
+      <property name="rightMargin"><number>17</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorScummVMFrame_Section1" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="LanguageLabel">
+              <property name="text"><string>LanguageLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="LanguageComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignLeft">
+            <widget class="QLineEdit" name="CustomLanguageEdit">
+              <property name="visible"><bool>false</bool></property>
+              <property name="minimumSize"><size><width>50</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+            <widget class="QLabel" name="AutosaveLabel">
+              <property name="text"><string>AutosaveLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="3" column="0" alignment="Qt::AlignLeft">
+            <widget class="QSpinBox" name="AutosaveEdit">
+              <property name="minimum"><number>1</number></property>
+              <property name="maximum"><number>86400</number></property>
+              <property name="value"><number>300</number></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+            <widget class="QLabel" name="TalkSpeedLabel">
+              <property name="text"><string>TalkSpeedLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="5" column="0" alignment="Qt::AlignLeft">
+            <widget class="QSpinBox" name="TalkSpeedEdit">
+              <property name="minimum"><number>1</number></property>
+              <property name="maximum"><number>1000</number></property>
+              <property name="value"><number>60</number></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="6" column="0" colspan="3">
+            <widget class="QCheckBox" name="SubtitlesCheckBox">
+              <property name="text"><string>SubtitlesCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="7" column="0" colspan="3">
+            <widget class="QCheckBox" name="ConfirmExitCheckBox">
+              <property name="text"><string>Confirm program exit</string></property>
+            </widget>
+          </item>
+          <item row="8" column="0" colspan="3">
+            <widget class="QCheckBox" name="RunAsAdminCheckBox">
+              <property name="text"><string>RunAsAdminCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="ModernProfileEditorScummVMFrame_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorScummVMFrame_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>17</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorScummVMFrame_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QGroupBox" name="SavePathGroupBox">
+              <property name="title"><string>Folder for saved games</string></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+              <layout class="QGridLayout" name="SavePathGroupBox_Layout" columnstretch="0,0,1,0">
+                <property name="leftMargin"><number>16</number></property>
+                <property name="topMargin"><number>0</number></property>
+                <property name="rightMargin"><number>4</number></property>
+                <property name="bottomMargin"><number>8</number></property>
+                <property name="horizontalSpacing"><number>8</number></property>
+                <property name="verticalSpacing"><number>4</number></property>
+                <item row="0" column="0" colspan="4">
+                  <widget class="QRadioButton" name="SavePathDefaultRadioButton">
+                    <property name="text"><string>Use game folder (default)</string></property>
+                    <property name="checked"><bool>true</bool></property>
+                  </widget>
+                </item>
+                <item row="1" column="0" colspan="4">
+                  <widget class="QRadioButton" name="SavePathCustomRadioButton">
+                    <property name="text"><string>Use this custom folder</string></property>
+                  </widget>
+                </item>
+                <item row="2" column="1" colspan="2">
+                  <widget class="QLineEdit" name="SavePathEdit">
+        </widget>
+                </item>
+                <item row="2" column="3" alignment="Qt::AlignRight">
+                  <widget class="QToolButton" name="SavePathEditButton">
+                    <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+                    <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+                    <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="0" column="2">
+                  <spacer name="SavePathGroupBox_Layout_HFill">
+                    <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+                <item row="3" column="0">
+                  <spacer name="SavePathGroupBox_VFill">
+                    <property name="orientation"><enum>Qt::Vertical</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ModernProfileEditorScummVMFrame_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="ModernProfileEditorScummVMFrame_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="ModernProfileEditorScummVMFrame_Section3" columnstretch="0,0,0,1,0" rowstretch="0,0,0,0,0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="5">
+            <widget class="QCheckBox" name="ExtraDirCheckBox">
+              <property name="text"><string>Use extra directory</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="4">
+            <widget class="QLineEdit" name="ExtraDirEdit">
       </widget>
-      <widget class="QRadioButton" name="SavePathDefaultRadioButton">
-        <property name="geometry"><rect><x>16</x><y>17</y><width>529</width><height>17</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="text"><string>Use game folder (default)</string></property>
-        <property name="checked"><bool>true</bool></property>
+          </item>
+          <item row="1" column="4" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="ExtraDirButton">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="4">
+            <widget class="QLabel" name="CommandLineEdit_EditLabel">
+              <property name="text"><string>CommandLineEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">CommandLineEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">CommandLineEdit</string></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="4">
+            <widget class="QLineEdit" name="CommandLineEdit">
       </widget>
-      <widget class="QRadioButton" name="SavePathCustomRadioButton">
-        <property name="geometry"><rect><x>16</x><y>36</y><width>529</width><height>17</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="text"><string>Use this custom folder</string></property>
-      </widget>
-      <widget class="QLineEdit" name="SavePathEdit">
-        <property name="geometry"><rect><x>32</x><y>54</y><width>497</width><height>21</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      </widget>
-    </widget>
-    <widget class="QCheckBox" name="ConfirmExitCheckBox">
-      <property name="geometry"><rect><x>24</x><y>163</y><width>561</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Confirm program exit</string></property>
-    </widget>
-    <widget class="QTextEdit" name="CustomSetsMemo">
-      <property name="geometry"><rect><x>24</x><y>424</y><width>558</width><height>51</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-      <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
-      <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-      <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-      <property name="acceptRichText"><bool>false</bool></property>
-    </widget>
-    <widget class="QPushButton" name="CustomSetsClearButton">
-      <property name="geometry"><rect><x>26</x><y>481</y><width>105</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string>Löschen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="CustomSetsLoadButton">
-      <property name="geometry"><rect><x>137</x><y>481</y><width>105</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="text"><string>Laden...</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="CustomSetsSaveButton">
-      <property name="geometry"><rect><x>248</x><y>481</y><width>105</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="text"><string>Speichern...</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QCheckBox" name="ExtraDirCheckBox">
-      <property name="geometry"><rect><x>24</x><y>312</y><width>561</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Use extra directory</string></property>
-    </widget>
-    <widget class="QLineEdit" name="ExtraDirEdit">
-      <property name="geometry"><rect><x>24</x><y>330</y><width>529</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLineEdit" name="CustomLanguageEdit">
-      <property name="geometry"><rect><x>135</x><y>30</y><width>50</width><height>21</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-    </widget>
-    <widget class="QLineEdit" name="CommandLineEdit">
-      <property name="geometry"><rect><x>24</x><y>376</y><width>527</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="CommandLineEdit_EditLabel">
-      <property name="geometry"><rect><x>24</x><y>360</y><width>84</width><height>13</height></rect></property>
-      <property name="text"><string>CommandLineEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">CommandLineEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">CommandLineEdit</string></property>
-    </widget>
-    <widget class="QCheckBox" name="RunAsAdminCheckBox">
-      <property name="geometry"><rect><x>24</x><y>182</y><width>559</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>RunAsAdminCheckBox</string></property>
-    </widget>
+          </item>
+          <item row="4" column="0" colspan="4">
+            <widget class="QLabel" name="CustomSetsLabel">
+              <property name="text"><string>CustomSetsLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="5" column="0" colspan="5">
+            <widget class="QTextEdit" name="CustomSetsMemo">
+              <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+              <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="acceptRichText"><bool>false</bool></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="6" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CustomSetsClearButton">
+              <property name="text"><string>Löschen</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="6" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CustomSetsLoadButton">
+              <property name="tag" stdset="0"><number>1</number></property>
+              <property name="text"><string>Laden...</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="6" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CustomSetsSaveButton">
+              <property name="tag" stdset="0"><number>2</number></property>
+              <property name="text"><string>Speichern...</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="ModernProfileEditorScummVMFrame_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>LanguageComboBox</tabstop>
@@ -176,6 +280,8 @@
     <tabstop>CustomSetsLoadButton</tabstop>
     <tabstop>CustomSetsSaveButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

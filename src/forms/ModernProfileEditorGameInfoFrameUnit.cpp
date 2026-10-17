@@ -1,6 +1,8 @@
 // C++ port of ModernProfileEditorGameInfoFrameUnit.pas (implementation section).
 #include "ModernProfileEditorGameInfoFrameUnit.h"
 
+#include <QHeaderView>
+
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
 #include "HelpConsts.h"
@@ -158,10 +160,6 @@ void TModernProfileEditorGameInfoFrame::InitGUI(TModernProfileEditorInitData& In
 
     ui.DownloadDataButton->setText(LanguageSetup->DataReaderButton());
     ui.FavouriteCheckBox->setText(LanguageSetup->GameFavorite());
-    {
-        int L = E->x() + E->width() - ui.FavouriteCheckBox->fontMetrics().horizontalAdvance(ui.FavouriteCheckBox->text()) - 20;
-        VclLayout::setBounds(ui.FavouriteCheckBox, L, ui.FavouriteCheckBox->y(), ui.FavouriteCheckBox->width(), ui.FavouriteCheckBox->height());
-    }
 
     ui.MultiValueInfoLabel->setText(LanguageSetup->ProfileEditorMultipleValuesInfo());
 
@@ -325,7 +323,7 @@ void TModernProfileEditorGameInfoFrame::FrameResize(QObject* Sender)
 {
     Q_UNUSED(Sender);
     ui.Tab->setColumnWidth(0, ui.GameInfoValueListEditor->columnWidth(0));
-    ui.Tab->setColumnWidth(1, Max(0, ui.Tab->viewport()->width() - 10 - ui.Tab->columnWidth(0)));
+    ui.Tab->horizontalHeader()->setStretchLastSection(true);
 }
 
 void TModernProfileEditorGameInfoFrame::AddButtonClick(QObject* Sender)

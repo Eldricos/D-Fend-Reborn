@@ -77,5 +77,4 @@ private:
     void CheckValue(QObject* Sender, bool& OK);
     void ShowFrame(QObject* Sender);
     void ProfileNameChangedCallback(QObject* Sender);
-    void CalcCheckBoxTop();
 };

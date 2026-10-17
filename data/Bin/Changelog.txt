@@ -12,6 +12,11 @@ Version 0.5.6 (not released yet)
   (hidden since 0.5.4): their code, the reader configuration (DataReader.xml)
   and its update option. "Look up game information" uses the auto setup
   templates and Wikidata; its window has the same title as the button.
+- Profile editors: the pages use Qt layouts instead of fixed pixel positions.
+  With display scaling (e.g. 125 % or 150 % on Windows), larger fonts or long
+  translations texts and borders of controls are no longer cut off; the
+  page tree and the classic editor (all tabs visible) get wider if needed.
+- Program options: the DOSBox download link points to DOSBox Staging.
 
 
 Version 0.5.5 (10/16/2026)

@@ -5,88 +5,108 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>630</width><height>551</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>630</number></property>
     <property name="vclDesignHeight" stdset="0"><number>551</number></property>
-    <widget class="QLabel" name="NotesLabel">
-      <property name="geometry"><rect><x>12</x><y>384</y><width>69</width><height>13</height></rect></property>
-      <property name="text"><string>Bemerkungen:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="UserDefinedDataLabel">
-      <property name="geometry"><rect><x>12</x><y>246</y><width>107</width><height>13</height></rect></property>
-      <property name="text"><string>UserDefinedDataLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QToolButton" name="DelButton">
-      <property name="geometry"><rect><x>593</x><y>238</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="AddButton">
-      <property name="geometry"><rect><x>564</x><y>238</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="MultiValueInfoLabel">
-      <property name="geometry"><rect><x>12</x><y>21</y><width>250</width><height>13</height></rect></property>
-      <property name="text"><string>You can enter multiple values per key divided by ";".</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="TValueListEditorWidget" name="GameInfoValueListEditor">
-      <property name="geometry"><rect><x>12</x><y>40</y><width>605</width><height>164</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="vclColumnWidths" stdset="0"><string notr="true">150,449</string></property>
-    </widget>
-    <widget class="QCheckBox" name="FavouriteCheckBox">
-      <property name="geometry"><rect><x>467</x><y>21</y><width>149</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="text"><string>FavouriteCheckBox</string></property>
-    </widget>
-    <widget class="QTextEdit" name="NotesMemo">
-      <property name="geometry"><rect><x>12</x><y>400</y><width>605</width><height>145</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-      <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-      <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-      <property name="acceptRichText"><bool>false</bool></property>
-    </widget>
-    <widget class="QTableWidget" name="Tab">
-      <property name="geometry"><rect><x>12</x><y>261</y><width>605</width><height>114</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="columnCount"><number>2</number></property>
-      <property name="rowCount"><number>1</number></property>
-      <property name="vclFixedCols" stdset="0"><number>0</number></property>
-      <property name="vclFixedRows" stdset="0"><number>1</number></property>
-      <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
-      <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
-    </widget>
-    <widget class="QFrame" name="ToolBarPanel">
-      <property name="geometry"><rect><x>12</x><y>205</y><width>604</width><height>30</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
-      <property name="frameShadow"><enum>QFrame::Plain</enum></property>
-      <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-      <widget class="QToolBar" name="ToolBar">
-        <property name="geometry"><rect><x>0</x><y>0</y><width>604</width><height>30</height></rect></property>
-        <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
-        <property name="movable"><bool>false</bool></property>
-        <property name="floatable"><bool>false</bool></property>
-        <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-        <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
-        <property name="vclButtonWidth" stdset="0"><number>166</number></property>
-        <property name="vclButtonHeight" stdset="0"><number>30</number></property>
-        <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
-        <property name="vclWrapable" stdset="0"><bool>false</bool></property>
-        <addaction name="SearchGameButton"/>
-        <addaction name="ToolButton1"/>
-        <addaction name="DownloadDataButton"/>
-      </widget>
-    </widget>
+    <layout class="QGridLayout" name="ModernProfileEditorGameInfoFrame_Layout" columnstretch="0,1,0,0,0" rowstretch="0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>12</number></property>
+      <property name="topMargin"><number>21</number></property>
+      <property name="rightMargin"><number>12</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0">
+        <widget class="QLabel" name="MultiValueInfoLabel">
+          <property name="text"><string>You can enter multiple values per key divided by ";".</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="0" column="2" colspan="3" alignment="Qt::AlignRight">
+        <widget class="QCheckBox" name="FavouriteCheckBox">
+          <property name="text"><string>FavouriteCheckBox</string></property>
+        </widget>
+      </item>
+      <item row="1" column="0" colspan="5">
+        <widget class="TValueListEditorWidget" name="GameInfoValueListEditor">
+          <property name="vclColumnWidths" stdset="0"><string notr="true">150,449</string></property>
+          <property name="minimumSize"><size><width>0</width><height>164</height></size></property>
+        </widget>
+      </item>
+      <item row="2" column="0" colspan="5">
+        <widget class="QFrame" name="ToolBarPanel">
+          <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+          <property name="frameShadow"><enum>QFrame::Plain</enum></property>
+          <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
+          <property name="minimumSize"><size><width>0</width><height>30</height></size></property>
+          <widget class="QToolBar" name="ToolBar">
+            <property name="geometry"><rect><x>0</x><y>0</y><width>604</width><height>30</height></rect></property>
+            <property name="vclAlign" stdset="0"><string notr="true">alTop</string></property>
+            <property name="movable"><bool>false</bool></property>
+            <property name="floatable"><bool>false</bool></property>
+            <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+            <property name="toolButtonStyle"><enum>Qt::ToolButtonTextBesideIcon</enum></property>
+            <property name="vclButtonWidth" stdset="0"><number>166</number></property>
+            <property name="vclButtonHeight" stdset="0"><number>30</number></property>
+            <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
+            <property name="vclWrapable" stdset="0"><bool>false</bool></property>
+            <addaction name="SearchGameButton" />
+            <addaction name="ToolButton1" />
+            <addaction name="DownloadDataButton" />
+          </widget>
+        </widget>
+      </item>
+      <item row="3" column="3" rowspan="2" alignment="Qt::AlignRight|Qt::AlignTop">
+        <widget class="QToolButton" name="AddButton">
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+          <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="3" column="4" rowspan="2" alignment="Qt::AlignRight|Qt::AlignTop">
+        <widget class="QToolButton" name="DelButton">
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+          <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="4" column="0">
+        <widget class="QLabel" name="UserDefinedDataLabel">
+          <property name="text"><string>UserDefinedDataLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="5" column="0" colspan="5">
+        <widget class="QTableWidget" name="Tab">
+          <property name="columnCount"><number>2</number></property>
+          <property name="rowCount"><number>1</number></property>
+          <property name="vclFixedCols" stdset="0"><number>0</number></property>
+          <property name="vclFixedRows" stdset="0"><number>1</number></property>
+          <property name="minimumSize"><size><width>0</width><height>114</height></size></property>
+          <attribute name="verticalHeaderVisible"><bool>false</bool></attribute>
+          <attribute name="verticalHeaderDefaultSectionSize"><number>24</number></attribute>
+        </widget>
+      </item>
+      <item row="6" column="0" colspan="2">
+        <widget class="QLabel" name="NotesLabel">
+          <property name="text"><string>Bemerkungen:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="7" column="0" colspan="5">
+        <widget class="QTextEdit" name="NotesMemo">
+          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="acceptRichText"><bool>false</bool></property>
+          <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="0" column="1">
+        <spacer name="ModernProfileEditorGameInfoFrame_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
     <widget class="QMenu" name="SearchPopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
     </widget>
@@ -122,6 +142,8 @@
     <tabstop>Tab</tabstop>
     <tabstop>NotesMemo</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

@@ -1,6 +1,8 @@
 // C++ port of ModernProfileEditorHelperProgramsFrameUnit.pas (implementation section).
 #include "ModernProfileEditorHelperProgramsFrameUnit.h"
 
+#include <QHeaderView>
+
 #include "LanguageSetupUnit.h"
 #include "HelpConsts.h"
 #include "CommonTools.h"
@@ -137,8 +139,9 @@ void TModernProfileEditorHelperProgramsFrame::SetGame(TGame* Game, bool LoadFrom
 void TModernProfileEditorHelperProgramsFrame::FrameResize(QObject* Sender)
 {
     Q_UNUSED(Sender);
-    ui.Command1Tab->setColumnWidth(0, ui.Command1Tab->viewport()->width() - 10);
-    ui.Command2Tab->setColumnWidth(0, ui.Command2Tab->viewport()->width() - 10);
+    // (the only column fills the table)
+    ui.Command1Tab->horizontalHeader()->setStretchLastSection(true);
+    ui.Command2Tab->horizontalHeader()->setStretchLastSection(true);
 }
 
 void TModernProfileEditorHelperProgramsFrame::Command1TabSetEditText(QObject* Sender, int ACol, int ARow, const QString& Value)

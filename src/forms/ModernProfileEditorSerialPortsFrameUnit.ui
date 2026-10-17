@@ -5,15 +5,31 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>396</width><height>351</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>396</number></property>
     <property name="vclDesignHeight" stdset="0"><number>351</number></property>
-    <widget class="QLabel" name="InfoLabel">
-      <property name="geometry"><rect><x>24</x><y>24</y><width>350</width><height>310</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-      <property name="text"><string>InfoLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
+    <layout class="QGridLayout" name="ModernProfileEditorSerialPortsFrame_Layout" columnstretch="0,1" rowstretch="1">
+      <property name="leftMargin"><number>24</number></property>
+      <property name="topMargin"><number>24</number></property>
+      <property name="rightMargin"><number>22</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="InfoLabel">
+          <property name="text"><string>InfoLabel</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="0" column="1">
+        <spacer name="ModernProfileEditorSerialPortsFrame_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>
