@@ -408,6 +408,37 @@ public:
     bool FDone = false;
 };
 
+// Fixed size dialog with a Qt layout (converted .ui): design size, or larger
+// if the controls need more space (scaling, fonts, translations).
+class FitOnShow : public QObject
+{
+public:
+    explicit FitOnShow(QWidget *Top) : QObject(Top), FTop(Top) { Top->installEventFilter(this); }
+    bool eventFilter(QObject *O, QEvent *E) override
+    {
+        if (O == FTop && E->type() == QEvent::Polish && !FDone) {   // (before CenterOnShow)
+            FDone = true;
+            fit(false);
+        }
+        if (O == FTop && E->type() == QEvent::Show) {
+            // some forms set their texts in showEvent (after this filter)
+            QPointer<QWidget> T = FTop;
+            QTimer::singleShot(0, this, [this, T]() { if (T) fit(true); });
+        }
+        return false;
+    }
+    void fit(bool KeepCenter)
+    {
+        FTop->layout()->activate();
+        const QSize Old = FTop->size(), New = Old.expandedTo(FTop->minimumSizeHint());
+        if (New == Old && FTop->minimumSize() == Old) return;
+        FTop->setFixedSize(New);
+        if (KeepCenter && New != Old) FTop->move(FTop->x() - (New.width() - Old.width()) / 2, FTop->y() - (New.height() - Old.height()) / 2);
+    }
+    QWidget *FTop;
+    bool FDone = false;
+};
+
 static void applyWindowSettings(QWidget *Top)
 {
     if (!Top->isWindow() && !qobject_cast<QDialog *>(Top) && !qobject_cast<QMainWindow *>(Top)) return;
@@ -430,7 +461,8 @@ static void applyWindowSettings(QWidget *Top)
         Top->setWindowFlags(F);
     }
     if (BS == "bsDialog" || BS == "bsSingle" || BS == "bsToolWindow") {
-        Top->setFixedSize(Top->size());
+        if (Top->layout()) new FitOnShow(Top);   // texts are set after setupForm
+        else Top->setFixedSize(Top->size());
     } else {
         int MW = Top->property("vclMinWidth").toInt(), MH = Top->property("vclMinHeight").toInt();
         // Constraints are outer sizes in VCL; subtract a typical frame

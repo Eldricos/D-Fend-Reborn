@@ -1,6 +1,8 @@
 // C++ port of ProfileEditorFormUnit.pas (implementation section).
 #include "ProfileEditorFormUnit.h"
 
+#include <QHeaderView>
+
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
 #include "PrgConsts.h"
@@ -164,6 +166,9 @@ TProfileEditorForm::TProfileEditorForm(QWidget *AOwner) : TVclForm(AOwner)
 {
     ui.setupUi(this);
     VclLayout::setupForm(this);
+    // all tabs visible (the dialog gets wider if needed)
+    ui.PageControl->setUsesScrollButtons(false);
+    ui.PageControl->setElideMode(Qt::ElideNone);
 
     // Non visual DFM components
     OpenDialog = new TOpenDialog(this);
@@ -321,7 +326,7 @@ void TProfileEditorForm::InitGUI()
 
     // DoubleBuffered, SetVistaFonts and Font.Charset are not needed with Qt.
 
-    ui.AutoexecBootFloppyImageTab->setColumnWidth(0, ui.AutoexecBootFloppyImageTab->width() - 2 * ui.AutoexecBootFloppyImageTab->frameWidth() - 25);
+    ui.AutoexecBootFloppyImageTab->horizontalHeader()->setStretchLastSection(true);
 
     SetRichEditPopup(ui.NotesMemo);
     SetRichEditPopup(ui.CustomSetsMemo);

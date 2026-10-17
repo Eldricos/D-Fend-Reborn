@@ -2,7 +2,10 @@
 """Convert the absolute positions of a .ui file created by dfm2ui.py into Qt
 layouts.
 
-  ui2layout.py FILE.ui [--only NAME,...] [--skip NAME,...] [--dry-run]
+  ui2layout.py FILE.ui [--only NAME,...] [--skip NAME,...] [--grow-big] [--dry-run]
+
+--grow-big: lists, tables, memos and tab controls fill the remaining space
+(as if anchored to all sides), e.g. for dialogs that had a fixed size.
 
 Every container (the form itself, group boxes, frames, tab pages) whose
 children are positioned by pixels (no vclAlign) gets a QGridLayout. The rows
@@ -29,6 +32,7 @@ CONTAINERS = {"QWidget", "QGroupBox", "QFrame"}
 NO_LAYOUT_CHILD = {"QMenu", "QAction", "QToolBar"}
 INPUTS = {"QComboBox", "QLineEdit", "QSpinBox", "QDoubleSpinBox", "QPushButton", "QToolButton",
           "TColorBoxWidget", "QSlider", "QDateEdit"}
+GROW_BIG = False
 TEXTS = {"QLabel", "QCheckBox", "QRadioButton"}
 BIG = {"QListWidget", "QTextEdit", "QPlainTextEdit", "QTableWidget", "QTreeWidget", "TListView",
        "TValueListEditorWidget", "QTabWidget", "QScrollArea", "TImageWidget", "QListView"}
@@ -272,9 +276,14 @@ def convert_container(c, cls_of, report, top_offset):
             raise Fail("no geometry: %s" % k.get("name"))
     W, H = design_size(c)
     items = []
+    # --grow-big only where the design has no anchors of its own
+    grow_big = GROW_BIG and all(anchors(k) == {"akLeft", "akTop"} for k in kids)
     for k in kids:
         x, y, w, h = geom(k)
-        items.append(dict(w=k, x=x, y=y, r=x + w, b=y + h, cls=k.get("class"), an=anchors(k)))
+        an = anchors(k)
+        if grow_big and k.get("class") in BIG:
+            an = {"akLeft", "akTop", "akRight", "akBottom"}
+        items.append(dict(w=k, x=x, y=y, r=x + w, b=y + h, cls=k.get("class"), an=an))
     right_any = any("akRight" in i["an"] for i in items)
     ml = min(i["x"] for i in items)
     mt = max(0, min(i["y"] for i in items) - top_offset)
@@ -292,8 +301,10 @@ def convert_container(c, cls_of, report, top_offset):
         lay = ET.Element("layout", {"class": "QVBoxLayout", "name": base + "_Layout"})
         margin_props(lay, (ml, mt, mr, 8))
         lay.append(ET.fromstring('<property name="spacing"><number>0</number></property>'))
-        stretch, any_grow = [], False
+        stretch, any_grow, prev_grows = [], False, False
         for n, (sec, gap) in enumerate(secs):
+            if prev_grows:
+                gap = min(gap, 12)  # the growing control above takes the space
             if n > 0:
                 it = ET.SubElement(lay, "item")
                 it.append(spacer_xml("%s_Gap%d" % (base, n), True, gap, True))
@@ -305,6 +316,7 @@ def convert_container(c, cls_of, report, top_offset):
             it.append(g)
             stretch.append("1" if grows else "0")
             any_grow = any_grow or grows
+            prev_grows = grows
         if not any_grow:
             it = ET.SubElement(lay, "item")
             it.append(spacer_xml(base + "_VFill", True))
@@ -375,6 +387,8 @@ def serialize(e, depth):
 def main(argv):
     args = argv[1:]
     dry = "--dry-run" in args
+    global GROW_BIG
+    GROW_BIG = "--grow-big" in args
     only = skip = None
     if "--only" in args:
         only = set(args[args.index("--only") + 1].split(","))
