@@ -234,8 +234,9 @@ static bool CreateInfoFile(TGame* Game, const QString& Dir)
     }
     if (DOSBoxMode(Game)) {
         St.Add("You can also run the game from this package without having D-Fend Reborn");
-        St.Add("installed. All you need is DOSBox (http:/" "/www.dosbox.com). You can just use");
-        St.Add("the conf file from this folder to run the game inside DOSBox.");
+        St.Add("installed. All you need is DOSBox (e.g. DOSBox Staging,");
+        St.Add("https://www.dosbox-staging.org). You can just use the conf file from this");
+        St.Add("folder to run the game inside DOSBox.");
     }
     St.Add("");
     St.Add("You can find all files needed to run the game in the subfolders of this folder.");

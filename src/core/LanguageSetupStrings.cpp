@@ -335,7 +335,7 @@ void TLanguageSetup::SetupLanguageStrings1()
     AddStringRec(NR_MenuExtrasTranslationEditorDOSBox, QStringLiteral("Menu"), QStringLiteral("Extras.TranslationEditor.DOSBox"), QStringLiteral("DOSBox translation editor..."));
     AddStringRec(NR_MenuHelp, QStringLiteral("Menu"), QStringLiteral("Help"), QStringLiteral("&Help"));
     AddStringRec(NR_MenuHelpDOSBox, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox"), QStringLiteral("&DOSBox"));
-    AddStringRec(NR_MenuHelpDOSBoxFAQ, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.FAQ"), QStringLiteral("&FAQ (Webpage)"));
+    AddStringRec(NR_MenuHelpDOSBoxFAQ, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.FAQ"), QStringLiteral("&Getting started (Webpage)"));
     AddStringRec(NR_MenuHelpDOSBoxHotkeys, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.Hotkeys"), QStringLiteral("&Hotkeys (Webpage)"));
     AddStringRec(NR_MenuHelpDOSBoxHotkeysDOSBox, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.Hotkeys.DOSBox"), QStringLiteral("&Hotkeys (DOSBox)"));
     AddStringRec(NR_MenuHelpDOSBoxCompatibility, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.Compatibility"), QStringLiteral("Compatibility list (Webpage)"));
@@ -343,7 +343,7 @@ void TLanguageSetup::SetupLanguageStrings1()
     AddStringRec(NR_MenuHelpDOSBoxIntro, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.Intro"), QStringLiteral("Introduction (Webpage)"));
     AddStringRec(NR_MenuHelpDOSBoxIntroDOSBox, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.Intro.DOSBox"), QStringLiteral("Introduction (DOSBox)"));
     AddStringRec(NR_MenuHelpDOSBoxReadme, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.Readme"), QStringLiteral("Manual"));
-    AddStringRec(NR_MenuHelpDOSBoxHomepage, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.Homepage"), QStringLiteral("DOSBox homepage"));
+    AddStringRec(NR_MenuHelpDOSBoxHomepage, QStringLiteral("Menu"), QStringLiteral("Help.DOSBox.Homepage"), QStringLiteral("DOSBox Staging homepage"));
     AddStringRec(NR_MenuHelpScummVM, QStringLiteral("Menu"), QStringLiteral("Help.ScummVM"), QStringLiteral("ScummVM"));
     AddStringRec(NR_MenuHelpScummVMReadme, QStringLiteral("Menu"), QStringLiteral("Help.ScummVM.Readme"), QStringLiteral("Manual"));
     AddStringRec(NR_MenuHelpScummVMFAQ, QStringLiteral("Menu"), QStringLiteral("Help.ScummVM.FAQ"), QStringLiteral("&FAQ (Webpage)"));

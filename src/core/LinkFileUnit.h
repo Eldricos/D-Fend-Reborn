@@ -64,6 +64,10 @@ class TLinkFile : public TLinkList
 public:
     TLinkFile(const QString& AFileNameOnly, bool AAllowLinesAndSubs, int AHelpID);
     ~TLinkFile() override;
+    // Lists edited by the user (own copy in the settings folder): links of
+    // the default list that changed are replaced (empty new link: the entry
+    // is removed). Only exact matches of the old links are changed.
+    void UpgradeLinks(const QList<QPair<QString, QString>>& OldNew);
 protected:
     void LoadData() override;
     void SaveData() override;
