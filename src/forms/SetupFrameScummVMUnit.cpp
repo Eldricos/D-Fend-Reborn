@@ -91,13 +91,7 @@ void TSetupFrameScummVM::ShowFrame(bool AdvancedMode)
     ui.HideConsoleCheckBox->setVisible(AdvancedMode);
     ui.CommandLineEdit->setVisible(AdvancedMode);
     ui.CommandLineEdit_EditLabel->setVisible(AdvancedMode);
-    QWidget *Info = ui.ScummVMDownloadURLInfo;
-    if (AdvancedMode) {
-        Info->move(Info->x(), ui.CommandLineEdit->y() + ui.CommandLineEdit->height() + 18);
-    } else {
-        Info->move(Info->x(), ui.MinimizeDFendScummVMCheckBox->y());
-    }
-    ui.ScummVMDownloadURL->move(ui.ScummVMDownloadURL->x(), Info->y() + 19);
+    // (the layout moves the download link up when the settings are hidden)
 }
 
 void TSetupFrameScummVM::HideFrame()

@@ -5,18 +5,33 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>603</width><height>497</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>603</number></property>
     <property name="vclDesignHeight" stdset="0"><number>497</number></property>
-    <widget class="TRadioGroupWidget" name="IconSizeRadioGroup">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>185</width><height>105</height></rect></property>
-      <property name="title"><string>IconSizeRadioGroup</string></property>
-      <property name="items" stdset="0">
-        <stringlist notr="true">
-          <string>32</string>
-          <string>64</string>
-          <string>128</string>
-          <string>256</string>
-        </stringlist>
-      </property>
-    </widget>
+    <layout class="QGridLayout" name="SetupFrameGameListIconModeAppearance_Layout" columnstretch="0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0" alignment="Qt::AlignLeft">
+        <widget class="TRadioGroupWidget" name="IconSizeRadioGroup">
+          <property name="title"><string>IconSizeRadioGroup</string></property>
+          <property name="items" stdset="0"><stringlist notr="true"><string>32</string><string>64</string><string>128</string><string>256</string></stringlist></property>
+          <property name="minimumSize"><size><width>185</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="0" column="1">
+        <spacer name="SetupFrameGameListIconModeAppearance_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+      <item row="1" column="0">
+        <spacer name="SetupFrameGameListIconModeAppearance_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <customwidgets>
     <customwidget>
@@ -25,6 +40,8 @@
       <header>VclWidgets.h</header>
     </customwidget>
   </customwidgets>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

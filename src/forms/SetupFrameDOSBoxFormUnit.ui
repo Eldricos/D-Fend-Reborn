@@ -9,237 +9,355 @@
     <property name="vclKeyPreview" stdset="0"><bool>true</bool></property>
     <property name="vclDesignWidth" stdset="0"><number>719</number></property>
     <property name="vclDesignHeight" stdset="0"><number>574</number></property>
-    <widget class="QToolButton" name="DosBoxMapperButton">
-      <property name="geometry"><rect><x>688</x><y>114</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="SDLVideodriverLabel">
-      <property name="geometry"><rect><x>14</x><y>308</y><width>83</width><height>13</height></rect></property>
-      <property name="text"><string>SDL Videotreiber:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="SDLVideodriverInfoLabel">
-      <property name="geometry"><rect><x>248</x><y>308</y><width>433</width><height>50</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Falls es nicht per Keymapper behebbare Probleme mit der Tastaturbelegung gibt, so kann das Umschalten auf "Win DIB" helfen.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QToolButton" name="DosBoxButton">
-      <property name="geometry"><rect><x>659</x><y>24</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="FindDosBoxButton">
-      <property name="geometry"><rect><x>688</x><y>24</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="DosBoxLangLabel">
-      <property name="geometry"><rect><x>14</x><y>52</y><width>84</width><height>13</height></rect></property>
-      <property name="text"><string>DosBoxLangLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QToolButton" name="WarningButton">
-      <property name="geometry"><rect><x>630</x><y>24</y><width>23</width><height>22</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/cef1bd486c60a35e.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="DOSBoxKeyboardLayoutLabel">
-      <property name="geometry"><rect><x>216</x><y>52</y><width>143</width><height>13</height></rect></property>
-      <property name="text"><string>DOSBoxKeyboardLayoutLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="DOSBoxCodepageLabel">
-      <property name="geometry"><rect><x>416</x><y>52</y><width>113</width><height>13</height></rect></property>
-      <property name="text"><string>DOSBoxCodepageLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="CustomSetsLabel">
-      <property name="geometry"><rect><x>14</x><y>360</y><width>82</width><height>13</height></rect></property>
-      <property name="text"><string>CustomSetsLabel</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLineEdit" name="DosBoxMapperEdit">
-      <property name="geometry"><rect><x>14</x><y>114</y><width>639</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="DosBoxMapperEdit_EditLabel">
-      <property name="geometry"><rect><x>14</x><y>98</y><width>90</width><height>13</height></rect></property>
-      <property name="text"><string>DosBoxMapperEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">DosBoxMapperEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DosBoxMapperEdit</string></property>
-    </widget>
-    <widget class="QCheckBox" name="HideDosBoxConsoleCheckBox">
-      <property name="geometry"><rect><x>14</x><y>200</y><width>668</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>DosBox-Console ausblenden</string></property>
-    </widget>
-    <widget class="QCheckBox" name="CenterDOSBoxCheckBox">
-      <property name="geometry"><rect><x>14</x><y>223</y><width>668</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>CenterDOSBoxCheckBox</string></property>
-    </widget>
-    <widget class="QComboBox" name="SDLVideoDriverComboBox">
-      <property name="geometry"><rect><x>14</x><y>323</y><width>218</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-      <item><property name="text"><string>Direct X</string></property></item>
-      <item><property name="text"><string>Win DIB</string></property></item>
-      <property name="currentIndex"><number>0</number></property>
-    </widget>
-    <widget class="QCheckBox" name="DisableScreensaverCheckBox">
-      <property name="geometry"><rect><x>14</x><y>246</y><width>668</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Disable screensaver when DOSBox is running</string></property>
-    </widget>
-    <widget class="QLineEdit" name="CommandLineEdit">
-      <property name="geometry"><rect><x>14</x><y>160</y><width>409</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QComboBox" name="DosBoxExecutableComboBox">
-      <property name="geometry"><rect><x>430</x><y>160</y><width>223</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="editable"><bool>true</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QLabel" name="DosBoxExecutableLabel">
-      <property name="geometry"><rect><x>430</x><y>144</y><width>223</width><height>13</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="text"><string>DosBoxExecutable</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="buddy"><cstring>DosBoxExecutableComboBox</cstring></property>
-    </widget>
-    <widget class="QLabel" name="CommandLineEdit_EditLabel">
-      <property name="geometry"><rect><x>14</x><y>144</y><width>84</width><height>13</height></rect></property>
-      <property name="text"><string>CommandLineEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">CommandLineEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">CommandLineEdit</string></property>
-    </widget>
-    <widget class="QPushButton" name="OKButton">
-      <property name="geometry"><rect><x>14</x><y>539</y><width>97</width><height>27</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
-      <property name="default"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
-    </widget>
-    <widget class="QPushButton" name="CancelButton">
-      <property name="geometry"><rect><x>117</x><y>539</y><width>97</width><height>27</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
-      <property name="vclCancel" stdset="0"><bool>true</bool></property>
-      <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
-    </widget>
-    <widget class="QPushButton" name="RestoreDefaultValuesButton">
-      <property name="geometry"><rect><x>323</x><y>538</y><width>202</width><height>28</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string>Vorgabewerte wiederherstellen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/90dee0f3d0aa0e54.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">RestoreDefaultValuesButtonClick</string></property>
-    </widget>
-    <widget class="QLineEdit" name="DosBoxDirEdit">
-      <property name="geometry"><rect><x>14</x><y>24</y><width>639</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="DosBoxDirEdit_EditLabel">
-      <property name="geometry"><rect><x>14</x><y>8</y><width>67</width><height>13</height></rect></property>
-      <property name="text"><string>DosBoxDirEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">DosBoxDirEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DosBoxDirEdit</string></property>
-    </widget>
-    <widget class="QComboBox" name="DosBoxLangEditComboBox">
-      <property name="geometry"><rect><x>14</x><y>67</y><width>169</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QCheckBox" name="WaitOnErrorCheckBox">
-      <property name="geometry"><rect><x>14</x><y>269</y><width>668</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Wait on error</string></property>
-    </widget>
-    <widget class="QComboBox" name="DOSBoxKeyboardLayoutComboBox">
-      <property name="geometry"><rect><x>216</x><y>67</y><width>169</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="DOSBoxCodepageComboBox">
-      <property name="geometry"><rect><x>416</x><y>67</y><width>169</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QTextEdit" name="CustomSetsMemo">
-      <property name="geometry"><rect><x>14</x><y>376</y><width>639</width><height>100</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-      <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
-      <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-      <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-      <property name="acceptRichText"><bool>false</bool></property>
-    </widget>
-    <widget class="QPushButton" name="CustomSetsClearButton">
-      <property name="geometry"><rect><x>14</x><y>482</y><width>105</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>3</number></property>
-      <property name="text"><string>Löschen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="CustomSetsLoadButton">
-      <property name="geometry"><rect><x>127</x><y>482</y><width>105</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>4</number></property>
-      <property name="text"><string>Laden...</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="CustomSetsSaveButton">
-      <property name="geometry"><rect><x>238</x><y>482</y><width>105</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="tag" stdset="0"><number>5</number></property>
-      <property name="text"><string>Speichern...</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="HelpButton">
-      <property name="geometry"><rect><x>220</x><y>539</y><width>97</width><height>27</height></rect></property>
-      <property name="text"><string></string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="SetupFrameDOSBoxForm_Layout" stretch="0,0,0,0,1,0,0">
+      <property name="leftMargin"><number>14</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameDOSBoxForm_Section1" columnstretch="0,0,0,1,0,0,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="4">
+            <widget class="QLabel" name="DosBoxDirEdit_EditLabel">
+              <property name="text"><string>DosBoxDirEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">DosBoxDirEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">DosBoxDirEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="5">
+            <widget class="QLineEdit" name="DosBoxDirEdit">
+      </widget>
+          </item>
+          <item row="1" column="5" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="WarningButton">
+              <property name="visible"><bool>false</bool></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/cef1bd486c60a35e.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="6" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DosBoxButton">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="7" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="FindDosBoxButton">
+              <property name="tag" stdset="0"><number>1</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0">
+            <widget class="QLabel" name="DosBoxLangLabel">
+              <property name="text"><string>DosBoxLangLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="1">
+            <widget class="QLabel" name="DOSBoxKeyboardLayoutLabel">
+              <property name="text"><string>DOSBoxKeyboardLayoutLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="2" colspan="3">
+            <widget class="QLabel" name="DOSBoxCodepageLabel">
+              <property name="text"><string>DOSBoxCodepageLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="3" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="DosBoxLangEditComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>169</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="1" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="DOSBoxKeyboardLayoutComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>169</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="2" colspan="3" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="DOSBoxCodepageComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>169</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="0" colspan="4">
+            <widget class="QLabel" name="DosBoxMapperEdit_EditLabel">
+              <property name="text"><string>DosBoxMapperEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">DosBoxMapperEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">DosBoxMapperEdit</string></property>
+            </widget>
+          </item>
+          <item row="5" column="0" colspan="6">
+            <widget class="QLineEdit" name="DosBoxMapperEdit">
+      </widget>
+          </item>
+          <item row="5" column="7" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DosBoxMapperButton">
+              <property name="tag" stdset="0"><number>2</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="6" column="0">
+            <widget class="QLabel" name="CommandLineEdit_EditLabel">
+              <property name="text"><string>CommandLineEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">CommandLineEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">CommandLineEdit</string></property>
+            </widget>
+          </item>
+          <item row="6" column="4" colspan="2" alignment="Qt::AlignRight">
+            <widget class="QLabel" name="DosBoxExecutableLabel">
+              <property name="text"><string>DosBoxExecutable</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="buddy"><cstring>DosBoxExecutableComboBox</cstring></property>
+            </widget>
+          </item>
+          <item row="7" column="0" colspan="4">
+            <widget class="QLineEdit" name="CommandLineEdit">
+      </widget>
+          </item>
+          <item row="7" column="4" colspan="2" alignment="Qt::AlignRight">
+            <widget class="QComboBox" name="DosBoxExecutableComboBox">
+              <property name="editable"><bool>true</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="minimumSize"><size><width>223</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="SetupFrameDOSBoxForm_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameDOSBoxForm_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>19</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameDOSBoxForm_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="HideDosBoxConsoleCheckBox">
+              <property name="text"><string>DosBox-Console ausblenden</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QCheckBox" name="CenterDOSBoxCheckBox">
+              <property name="text"><string>CenterDOSBoxCheckBox</string></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="DisableScreensaverCheckBox">
+              <property name="text"><string>Disable screensaver when DOSBox is running</string></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+            <widget class="QCheckBox" name="WaitOnErrorCheckBox">
+              <property name="text"><string>Wait on error</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameDOSBoxForm_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameDOSBoxForm_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>22</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameDOSBoxForm_Section3" columnstretch="0,0,0,0,1" rowstretch="0,0,0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0">
+            <widget class="QLabel" name="SDLVideodriverLabel">
+              <property name="text"><string>SDL Videotreiber:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="3" rowspan="2" colspan="2">
+            <widget class="QLabel" name="SDLVideodriverInfoLabel">
+              <property name="text"><string>Falls es nicht per Keymapper behebbare Probleme mit der Tastaturbelegung gibt, so kann das Umschalten auf "Win DIB" helfen.</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="SDLVideoDriverComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <item>
+                <property name="text"><string>Direct X</string></property>
+              </item>
+              <item>
+                <property name="text"><string>Win DIB</string></property>
+              </item>
+              <property name="currentIndex"><number>0</number></property>
+              <property name="minimumSize"><size><width>218</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="5">
+            <widget class="QLabel" name="CustomSetsLabel">
+              <property name="text"><string>CustomSetsLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="5">
+            <widget class="QTextEdit" name="CustomSetsMemo">
+              <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+              <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+              <property name="acceptRichText"><bool>false</bool></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CustomSetsClearButton">
+              <property name="tag" stdset="0"><number>3</number></property>
+              <property name="text"><string>Löschen</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/86ad06b420cc830c.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CustomSetsLoadButton">
+              <property name="tag" stdset="0"><number>4</number></property>
+              <property name="text"><string>Laden...</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/45f75812cc6f15e7.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="2" colspan="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CustomSetsSaveButton">
+              <property name="tag" stdset="0"><number>5</number></property>
+              <property name="text"><string>Speichern...</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/47fc5700323c2859.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>105</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="4">
+            <spacer name="SetupFrameDOSBoxForm_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameDOSBoxForm_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>12</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameDOSBoxForm_Section4" columnstretch="0,0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="OKButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkOK</string></property>
+              <property name="default"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrOk</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">OKButtonClick</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="CancelButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkCancel</string></property>
+              <property name="vclCancel" stdset="0"><bool>true</bool></property>
+              <property name="vclModalResult" stdset="0"><string notr="true">mrCancel</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="HelpButton">
+              <property name="text"><string /></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclKind" stdset="0"><string notr="true">bkHelp</string></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">HelpButtonClick</string></property>
+              <property name="minimumSize"><size><width>97</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="3" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="RestoreDefaultValuesButton">
+              <property name="text"><string>Vorgabewerte wiederherstellen</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/90dee0f3d0aa0e54.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">RestoreDefaultValuesButtonClick</string></property>
+              <property name="minimumSize"><size><width>202</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="4">
+            <spacer name="SetupFrameDOSBoxForm_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>DosBoxDirEdit</tabstop>
@@ -262,6 +380,8 @@
     <tabstop>HelpButton</tabstop>
     <tabstop>RestoreDefaultValuesButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

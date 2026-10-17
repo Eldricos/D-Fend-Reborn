@@ -9,112 +9,198 @@
       <property name="geometry"><rect><x>0</x><y>0</y><width>800</width><height>425</height></rect></property>
       <property name="vclAlign" stdset="0"><string notr="true">alClient</string></property>
       <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
-      <property name="widgetResizable"><bool>false</bool></property>
+      <property name="widgetResizable"><bool>true</bool></property>
       <widget class="QWidget" name="ScrollBox_Contents">
         <property name="geometry"><rect><x>0</x><y>0</y><width>796</width><height>421</height></rect></property>
         <property name="vclScrollContents" stdset="0"><bool>true</bool></property>
         <property name="vclDesignWidth" stdset="0"><number>796</number></property>
         <property name="vclDesignHeight" stdset="0"><number>421</number></property>
-        <widget class="QGroupBox" name="VideosGroupBox">
-          <property name="geometry"><rect><x>5</x><y>294</y><width>784</width><height>115</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          <property name="title"><string>Videos</string></property>
-          <widget class="QToolButton" name="VideosButton">
-            <property name="geometry"><rect><x>750</x><y>77</y><width>23</width><height>22</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-            <property name="tag" stdset="0"><number>2</number></property>
-            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-            <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-          </widget>
-          <widget class="QRadioButton" name="VideosRadioButton1">
-            <property name="geometry"><rect><x>16</x><y>20</y><width>752</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Use internal viewer</string></property>
-            <property name="checked"><bool>true</bool></property>
-          </widget>
-          <widget class="QRadioButton" name="VideosRadioButton2">
-            <property name="geometry"><rect><x>16</x><y>40</y><width>752</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Use default program for opening files</string></property>
-          </widget>
-          <widget class="QRadioButton" name="VideosRadioButton3">
-            <property name="geometry"><rect><x>16</x><y>60</y><width>752</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Use custom program</string></property>
-          </widget>
-          <widget class="QLineEdit" name="VideosEdit">
-            <property name="geometry"><rect><x>32</x><y>78</y><width>712</width><height>21</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          </widget>
-        </widget>
-        <widget class="QGroupBox" name="SoundsGroupBox">
-          <property name="geometry"><rect><x>5</x><y>167</y><width>784</width><height>113</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          <property name="title"><string>Sounds</string></property>
-          <widget class="QToolButton" name="SoundsButton">
-            <property name="geometry"><rect><x>750</x><y>77</y><width>23</width><height>22</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-            <property name="tag" stdset="0"><number>1</number></property>
-            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-            <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-          </widget>
-          <widget class="QRadioButton" name="SoundsRadioButton1">
-            <property name="geometry"><rect><x>16</x><y>20</y><width>752</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Use internal viewer</string></property>
-            <property name="checked"><bool>true</bool></property>
-          </widget>
-          <widget class="QRadioButton" name="SoundsRadioButton2">
-            <property name="geometry"><rect><x>16</x><y>40</y><width>752</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Use default program for opening files</string></property>
-          </widget>
-          <widget class="QRadioButton" name="SoundsRadioButton3">
-            <property name="geometry"><rect><x>16</x><y>60</y><width>752</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Use custom program</string></property>
-          </widget>
-          <widget class="QLineEdit" name="SoundsEdit">
-            <property name="geometry"><rect><x>32</x><y>78</y><width>712</width><height>21</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          </widget>
-        </widget>
-        <widget class="QGroupBox" name="ImagesGroupBox">
-          <property name="geometry"><rect><x>5</x><y>16</y><width>784</width><height>137</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          <property name="title"><string>Images</string></property>
-          <widget class="QToolButton" name="ImagesButton">
-            <property name="geometry"><rect><x>750</x><y>77</y><width>23</width><height>22</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-            <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-            <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-          </widget>
-          <widget class="QRadioButton" name="ImagesRadioButton1">
-            <property name="geometry"><rect><x>16</x><y>20</y><width>752</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Use internal viewer</string></property>
-            <property name="checked"><bool>true</bool></property>
-          </widget>
-          <widget class="QRadioButton" name="ImagesRadioButton2">
-            <property name="geometry"><rect><x>16</x><y>40</y><width>752</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Use default program for opening files</string></property>
-          </widget>
-          <widget class="QRadioButton" name="ImagesRadioButton3">
-            <property name="geometry"><rect><x>16</x><y>60</y><width>752</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Use custom program</string></property>
-          </widget>
-          <widget class="QLineEdit" name="ImagesEdit">
-            <property name="geometry"><rect><x>32</x><y>78</y><width>712</width><height>21</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          </widget>
-          <widget class="QCheckBox" name="ModalImageViewerCheckBox">
-            <property name="geometry"><rect><x>16</x><y>105</y><width>728</width><height>17</height></rect></property>
-            <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-            <property name="text"><string>Show internal image viewer as modal window</string></property>
-          </widget>
-        </widget>
+        <layout class="QGridLayout" name="ScrollBox_Contents_Layout" columnstretch="0,1">
+          <property name="leftMargin"><number>5</number></property>
+          <property name="topMargin"><number>16</number></property>
+          <property name="rightMargin"><number>7</number></property>
+          <property name="bottomMargin"><number>8</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QGroupBox" name="ImagesGroupBox">
+              <property name="title"><string>Images</string></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+              <layout class="QGridLayout" name="ImagesGroupBox_Layout" columnstretch="0,0,1,0">
+                <property name="leftMargin"><number>16</number></property>
+                <property name="topMargin"><number>2</number></property>
+                <property name="rightMargin"><number>11</number></property>
+                <property name="bottomMargin"><number>8</number></property>
+                <property name="horizontalSpacing"><number>8</number></property>
+                <property name="verticalSpacing"><number>4</number></property>
+                <item row="0" column="0" colspan="4">
+                  <widget class="QRadioButton" name="ImagesRadioButton1">
+                    <property name="text"><string>Use internal viewer</string></property>
+                    <property name="checked"><bool>true</bool></property>
+                  </widget>
+                </item>
+                <item row="1" column="0" colspan="4">
+                  <widget class="QRadioButton" name="ImagesRadioButton2">
+                    <property name="text"><string>Use default program for opening files</string></property>
+                  </widget>
+                </item>
+                <item row="2" column="0" colspan="4">
+                  <widget class="QRadioButton" name="ImagesRadioButton3">
+                    <property name="text"><string>Use custom program</string></property>
+                  </widget>
+                </item>
+                <item row="3" column="1" colspan="2">
+                  <widget class="QLineEdit" name="ImagesEdit">
+            </widget>
+                </item>
+                <item row="3" column="3" alignment="Qt::AlignRight">
+                  <widget class="QToolButton" name="ImagesButton">
+                    <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+                    <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+                    <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="4" column="0" colspan="3">
+                  <widget class="QCheckBox" name="ModalImageViewerCheckBox">
+                    <property name="text"><string>Show internal image viewer as modal window</string></property>
+                  </widget>
+                </item>
+                <item row="0" column="2">
+                  <spacer name="ImagesGroupBox_Layout_HFill">
+                    <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+                <item row="5" column="0">
+                  <spacer name="ImagesGroupBox_VFill">
+                    <property name="orientation"><enum>Qt::Vertical</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QGroupBox" name="SoundsGroupBox">
+              <property name="title"><string>Sounds</string></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+              <layout class="QGridLayout" name="SoundsGroupBox_Layout" columnstretch="0,0,1,0">
+                <property name="leftMargin"><number>16</number></property>
+                <property name="topMargin"><number>2</number></property>
+                <property name="rightMargin"><number>11</number></property>
+                <property name="bottomMargin"><number>8</number></property>
+                <property name="horizontalSpacing"><number>8</number></property>
+                <property name="verticalSpacing"><number>4</number></property>
+                <item row="0" column="0" colspan="4">
+                  <widget class="QRadioButton" name="SoundsRadioButton1">
+                    <property name="text"><string>Use internal viewer</string></property>
+                    <property name="checked"><bool>true</bool></property>
+                  </widget>
+                </item>
+                <item row="1" column="0" colspan="4">
+                  <widget class="QRadioButton" name="SoundsRadioButton2">
+                    <property name="text"><string>Use default program for opening files</string></property>
+                  </widget>
+                </item>
+                <item row="2" column="0" colspan="4">
+                  <widget class="QRadioButton" name="SoundsRadioButton3">
+                    <property name="text"><string>Use custom program</string></property>
+                  </widget>
+                </item>
+                <item row="3" column="1" colspan="2">
+                  <widget class="QLineEdit" name="SoundsEdit">
+            </widget>
+                </item>
+                <item row="3" column="3" alignment="Qt::AlignRight">
+                  <widget class="QToolButton" name="SoundsButton">
+                    <property name="tag" stdset="0"><number>1</number></property>
+                    <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+                    <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+                    <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="0" column="2">
+                  <spacer name="SoundsGroupBox_Layout_HFill">
+                    <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+                <item row="4" column="0">
+                  <spacer name="SoundsGroupBox_VFill">
+                    <property name="orientation"><enum>Qt::Vertical</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+            <widget class="QGroupBox" name="VideosGroupBox">
+              <property name="title"><string>Videos</string></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+              <layout class="QGridLayout" name="VideosGroupBox_Layout" columnstretch="0,0,1,0">
+                <property name="leftMargin"><number>16</number></property>
+                <property name="topMargin"><number>2</number></property>
+                <property name="rightMargin"><number>11</number></property>
+                <property name="bottomMargin"><number>8</number></property>
+                <property name="horizontalSpacing"><number>8</number></property>
+                <property name="verticalSpacing"><number>4</number></property>
+                <item row="0" column="0" colspan="4">
+                  <widget class="QRadioButton" name="VideosRadioButton1">
+                    <property name="text"><string>Use internal viewer</string></property>
+                    <property name="checked"><bool>true</bool></property>
+                  </widget>
+                </item>
+                <item row="1" column="0" colspan="4">
+                  <widget class="QRadioButton" name="VideosRadioButton2">
+                    <property name="text"><string>Use default program for opening files</string></property>
+                  </widget>
+                </item>
+                <item row="2" column="0" colspan="4">
+                  <widget class="QRadioButton" name="VideosRadioButton3">
+                    <property name="text"><string>Use custom program</string></property>
+                  </widget>
+                </item>
+                <item row="3" column="1" colspan="2">
+                  <widget class="QLineEdit" name="VideosEdit">
+            </widget>
+                </item>
+                <item row="3" column="3" alignment="Qt::AlignRight">
+                  <widget class="QToolButton" name="VideosButton">
+                    <property name="tag" stdset="0"><number>2</number></property>
+                    <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+                    <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+                    <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+                  </widget>
+                </item>
+                <item row="0" column="2">
+                  <spacer name="VideosGroupBox_Layout_HFill">
+                    <property name="orientation"><enum>Qt::Horizontal</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+                <item row="4" column="0">
+                  <spacer name="VideosGroupBox_VFill">
+                    <property name="orientation"><enum>Qt::Vertical</enum></property>
+                    <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ScrollBox_Contents_Layout_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+          <item row="3" column="0">
+            <spacer name="ScrollBox_Contents_VFill">
+              <property name="orientation"><enum>Qt::Vertical</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
       </widget>
     </widget>
   </widget>
@@ -133,6 +219,8 @@
     <tabstop>ImagesEdit</tabstop>
     <tabstop>ModalImageViewerCheckBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

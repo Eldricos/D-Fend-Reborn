@@ -5,93 +5,198 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>663</width><height>347</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>663</number></property>
     <property name="vclDesignHeight" stdset="0"><number>347</number></property>
-    <widget class="QToolButton" name="ScummVMButton">
-      <property name="geometry"><rect><x>594</x><y>32</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>16</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="FindScummVMButton">
-      <property name="geometry"><rect><x>623</x><y>32</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>17</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="ScummVMDownloadURLInfo">
-      <property name="geometry"><rect><x>16</x><y>304</y><width>162</width><height>13</height></rect></property>
-      <property name="text"><string>You can download ScummVM from</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="ScummVMDownloadURL">
-      <property name="geometry"><rect><x>16</x><y>323</y><width>113</width><height>13</height></rect></property>
-      <property name="text"><string>ScummVMDownloadURL</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLineEdit" name="ScummVMDirEdit">
-      <property name="geometry"><rect><x>16</x><y>32</y><width>572</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="ScummVMDirEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>78</width><height>13</height></rect></property>
-      <property name="text"><string>ScummVMDirEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">ScummVMDirEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ScummVMDirEdit</string></property>
-    </widget>
-    <widget class="QPushButton" name="ScummVMReadList">
-      <property name="geometry"><rect><x>16</x><y>59</y><width>289</width><height>25</height></rect></property>
-      <property name="tag" stdset="0"><number>18</number></property>
-      <property name="text"><string>Liste unterstützter Spiele einlesen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/916d878d86dd6903.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QCheckBox" name="MinimizeDFendScummVMCheckBox">
-      <property name="geometry"><rect><x>16</x><y>135</y><width>628</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>D-Fend minimieren, wenn ScummVM gestartet wird</string></property>
-    </widget>
-    <widget class="QPushButton" name="ScummVMShowListButton">
-      <property name="geometry"><rect><x>16</x><y>90</y><width>289</width><height>25</height></rect></property>
-      <property name="tag" stdset="0"><number>19</number></property>
-      <property name="text"><string>Liste unterstützter Spiele anzeigen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/813e1c2e8e29a4bc.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QCheckBox" name="CenterScummVMCheckBox">
-      <property name="geometry"><rect><x>16</x><y>182</y><width>628</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Center ScummVM window</string></property>
-    </widget>
-    <widget class="QCheckBox" name="HideConsoleCheckBox">
-      <property name="geometry"><rect><x>16</x><y>205</y><width>628</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Hide ScummVM console</string></property>
-    </widget>
-    <widget class="QCheckBox" name="RestoreWindowCheckBox">
-      <property name="geometry"><rect><x>37</x><y>158</y><width>607</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Restore program window when ScummVM is closed</string></property>
-    </widget>
-    <widget class="QLineEdit" name="CommandLineEdit">
-      <property name="geometry"><rect><x>16</x><y>256</y><width>630</width><height>21</height></rect></property>
-    </widget>
-    <widget class="QLabel" name="CommandLineEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>240</y><width>84</width><height>13</height></rect></property>
-      <property name="text"><string>CommandLineEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">CommandLineEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">CommandLineEdit</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="SetupFrameScummVM_Layout" stretch="0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>16</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameScummVM_Section1" columnstretch="0,1,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="ScummVMDirEdit_EditLabel">
+              <property name="text"><string>ScummVMDirEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">ScummVMDirEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">ScummVMDirEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLineEdit" name="ScummVMDirEdit">
+      </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="ScummVMButton">
+              <property name="tag" stdset="0"><number>16</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="FindScummVMButton">
+              <property name="tag" stdset="0"><number>17</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="ScummVMReadList">
+              <property name="tag" stdset="0"><number>18</number></property>
+              <property name="text"><string>Liste unterstützter Spiele einlesen</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/916d878d86dd6903.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>289</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="ScummVMShowListButton">
+              <property name="tag" stdset="0"><number>19</number></property>
+              <property name="text"><string>Liste unterstützter Spiele anzeigen</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/813e1c2e8e29a4bc.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>289</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameScummVM_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameScummVM_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>20</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameScummVM_Section2" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QCheckBox" name="MinimizeDFendScummVMCheckBox">
+              <property name="text"><string>D-Fend minimieren, wenn ScummVM gestartet wird</string></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QCheckBox" name="RestoreWindowCheckBox">
+              <property name="text"><string>Restore program window when ScummVM is closed</string></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+            <widget class="QCheckBox" name="CenterScummVMCheckBox">
+              <property name="text"><string>Center ScummVM window</string></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+            <widget class="QCheckBox" name="HideConsoleCheckBox">
+              <property name="text"><string>Hide ScummVM console</string></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="SetupFrameScummVM_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameScummVM_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>18</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameScummVM_Section3" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="CommandLineEdit_EditLabel">
+              <property name="text"><string>CommandLineEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">CommandLineEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">CommandLineEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLineEdit" name="CommandLineEdit">
+      </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameScummVM_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameScummVM_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>27</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameScummVM_Section4" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="ScummVMDownloadURLInfo">
+              <property name="text"><string>You can download ScummVM from</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="ScummVMDownloadURL">
+              <property name="text"><string>ScummVMDownloadURL</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameScummVM_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameScummVM_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>ScummVMDirEdit</tabstop>
@@ -103,6 +208,8 @@
     <tabstop>HideConsoleCheckBox</tabstop>
     <tabstop>CommandLineEdit</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

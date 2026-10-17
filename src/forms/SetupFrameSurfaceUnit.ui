@@ -5,71 +5,129 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>733</width><height>315</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>733</number></property>
     <property name="vclDesignHeight" stdset="0"><number>315</number></property>
-    <widget class="QLabel" name="StartSizeLabel">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>168</width><height>13</height></rect></property>
-      <property name="text"><string>Fenstergröße beim Programmstart:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="IconSetLabel">
-      <property name="geometry"><rect><x>16</x><y>80</y><width>48</width><height>13</height></rect></property>
-      <property name="text"><string>Icon sets:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="IconSetAuthorLabel">
-      <property name="geometry"><rect><x>16</x><y>271</y><width>37</width><height>13</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string>Author:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="IconSetAuthorNameLabel">
-      <property name="geometry"><rect><x>16</x><y>290</y><width>697</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akRight,akBottom</string></property>
-      <property name="text"><string></string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="IconSetPreviewLabel">
-      <property name="geometry"><rect><x>16</x><y>232</y><width>42</width><height>13</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="text"><string>Preview:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="TImageWidget" name="IconSetImage">
-      <property name="geometry"><rect><x>16</x><y>247</y><width>113</width><height>20</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akBottom</string></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="IconCustomizeLabel">
-      <property name="geometry"><rect><x>312</x><y>99</y><width>128</width><height>13</height></rect></property>
-      <property name="text"><string>Open icons customizing file</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QComboBox" name="StartSizeComboBox">
-      <property name="geometry"><rect><x>16</x><y>37</y><width>281</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-      <item><property name="text"><string>Vorgabewerte für Fenstergröße</string></property></item>
-      <item><property name="text"><string>Letzte Fenstergröße wiederherstellen</string></property></item>
-      <item><property name="text"><string>Minimiert starten</string></property></item>
-      <item><property name="text"><string>Maximiert starten</string></property></item>
-      <item><property name="text"><string>Vollbildmodus ohne Fensterrahmen</string></property></item>
-      <property name="currentIndex"><number>0</number></property>
-    </widget>
-    <widget class="QListWidget" name="IconSetListbox">
-      <property name="geometry"><rect><x>16</x><y>99</y><width>281</width><height>127</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akBottom</string></property>
-      <property name="vclCheckList" stdset="0"><bool>true</bool></property>
-    </widget>
+    <layout class="QVBoxLayout" name="SetupFrameSurface_Layout" stretch="0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>16</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameSurface_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="StartSizeLabel">
+              <property name="text"><string>Fenstergröße beim Programmstart:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="StartSizeComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <item>
+                <property name="text"><string>Vorgabewerte für Fenstergröße</string></property>
+              </item>
+              <item>
+                <property name="text"><string>Letzte Fenstergröße wiederherstellen</string></property>
+              </item>
+              <item>
+                <property name="text"><string>Minimiert starten</string></property>
+              </item>
+              <item>
+                <property name="text"><string>Maximiert starten</string></property>
+              </item>
+              <item>
+                <property name="text"><string>Vollbildmodus ohne Fensterrahmen</string></property>
+              </item>
+              <property name="currentIndex"><number>0</number></property>
+              <property name="minimumSize"><size><width>281</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameSurface_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameSurface_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>22</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameSurface_Section2" columnstretch="0,0,1" rowstretch="0,1,0,0,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="IconSetLabel">
+              <property name="text"><string>Icon sets:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" alignment="Qt::AlignLeft">
+            <widget class="QListWidget" name="IconSetListbox">
+              <property name="vclCheckList" stdset="0"><bool>true</bool></property>
+              <property name="minimumSize"><size><width>281</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLabel" name="IconCustomizeLabel">
+              <property name="text"><string>Open icons customizing file</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+            <widget class="QLabel" name="IconSetPreviewLabel">
+              <property name="text"><string>Preview:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="3" column="0" alignment="Qt::AlignLeft">
+            <widget class="TImageWidget" name="IconSetImage">
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+              <property name="minimumSize"><size><width>113</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+            <widget class="QLabel" name="IconSetAuthorLabel">
+              <property name="text"><string>Author:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="5" column="0" colspan="3">
+            <widget class="QLabel" name="IconSetAuthorNameLabel">
+              <property name="text"><string /></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="SetupFrameSurface_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+    </layout>
   </widget>
   <customwidgets>
     <customwidget>
@@ -82,6 +140,8 @@
     <tabstop>StartSizeComboBox</tabstop>
     <tabstop>IconSetListbox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

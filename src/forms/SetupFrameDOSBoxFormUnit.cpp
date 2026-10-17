@@ -254,10 +254,7 @@ void TSetupFrameDOSBoxForm::DosBoxDirEditChange(QObject* Sender)
     if (St.Count() > 0) ui.DosBoxLangEditComboBox->setCurrentIndex(qMax(0, I));
 
     ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())));
-    QRect G = ui.DosBoxDirEdit->geometry();
-    QRect WB = ui.WarningButton->geometry();
-    int W = (ui.WarningButton->isVisibleTo(this) ? WB.x() - 4 : WB.x() + WB.width()) - G.x();
-    VclLayout::setBounds(ui.DosBoxDirEdit, G.x(), G.y(), W, G.height());
+    // (the layout gives the edit the space of the hidden warning button)
 }
 
 void TSetupFrameDOSBoxForm::ButtonWork(QObject* Sender)

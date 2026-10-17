@@ -64,6 +64,15 @@ void setStatusPanelWidth(QStatusBar *Bar, int Panel, int Width);
 QList<QIcon> imageList(const QString &Unit, const QString &Name);
 QIcon imageListIcon(const QString &Unit, const QString &Name, int Index);
 
+// Page tree of a dialog (alLeft): makes the tree and its window wider if the
+// item texts need more space (long translations, larger fonts).
+void fitTreeWidth(QTreeWidget *Tree);
+
+// Pages (frames) shown one at a time in Area below TopOffset and positioned
+// by the form code: makes the window larger if a page needs more space than
+// Area has (pages with Qt layouts; also contents of scroll boxes).
+void fitPages(QWidget *Area, int TopOffset, const QList<QWidget *> &Pages);
+
 // TabSheet.TabVisible
 void setTabVisible(QTabWidget *Tabs, QWidget *Page, bool Visible);
 // TabSheet.PageIndex / ActivePage helpers

@@ -55,7 +55,6 @@ void TSetupFrameUpdate::LoadLanguage()
     int I;
     ui.UpdateCheckBox->setText(LanguageSetup->SetupFormUpdateVersionSpecific());
     ui.UpdateButton->setText(LanguageSetup->SetupFormUpdateButton());
-    ui.UpdateButton->resize(Max(169, 40 + ui.UpdateButton->fontMetrics().horizontalAdvance(LanguageSetup->SetupFormUpdateButton())), ui.UpdateButton->height());
     ui.ProgramUpdateInfoLabel->setText(LanguageSetup->SetupFormUpdateProgram());
     I = ui.ProgramUpdateComboBox->currentIndex();
     ui.ProgramUpdateComboBox->setItemText(0, LanguageSetup->SetupFormUpdate0());

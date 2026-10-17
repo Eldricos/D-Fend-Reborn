@@ -16,6 +16,9 @@ Version 0.5.6 (not released yet)
   With display scaling (e.g. 125 % or 150 % on Windows), larger fonts or long
   translations texts and borders of controls are no longer cut off; the
   page tree and the classic editor (all tabs visible) get wider if needed.
+- Program options: the pages use Qt layouts too (same improvements as in the
+  profile editors). The options window and the profile editor get larger if
+  a page needs more space.
 - Program options: the DOSBox download link points to DOSBox Staging.
 
 

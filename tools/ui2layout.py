@@ -27,6 +27,7 @@ import sys
 import xml.etree.ElementTree as ET
 
 TOL = 6           # px: edges closer than this are the same row / column
+WIDE = 300        # px: wider edits / combo boxes stretch with the page
 GAP = 14          # px: vertical gaps larger than this get a spacer
 CONTAINERS = {"QWidget", "QGroupBox", "QFrame"}
 NO_LAYOUT_CHILD = {"QMenu", "QAction", "QToolBar"}
@@ -283,6 +284,9 @@ def convert_container(c, cls_of, report, top_offset):
         an = anchors(k)
         if grow_big and k.get("class") in BIG:
             an = {"akLeft", "akTop", "akRight", "akBottom"}
+        if k.get("class") in ("QLineEdit", "QComboBox") and w > WIDE:
+            # wide inputs grow with the page instead of a large minimum width
+            an = an | {"akLeft", "akRight"}
         items.append(dict(w=k, x=x, y=y, r=x + w, b=y + h, cls=k.get("class"), an=an))
     right_any = any("akRight" in i["an"] for i in items)
     ml = min(i["x"] for i in items)
@@ -342,6 +346,10 @@ def walk(c, only, skip, report, is_top):
         if cls in ("QTabWidget", "QStackedWidget", "QScrollArea"):
             for page in k.findall("widget"):
                 walk(page, only, skip, report, True)
+                if cls == "QScrollArea" and page.find("layout") is not None:
+                    # the contents get the size of the viewport, but at least
+                    # the size their layout needs (then the scroll bars appear)
+                    set_prop(k, "widgetResizable", "<bool>true</bool>")
         elif cls in CONTAINERS:
             walk(k, only, skip, report, False)
     name = c.get("name")

@@ -5,50 +5,163 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>542</width><height>358</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>542</number></property>
     <property name="vclDesignHeight" stdset="0"><number>358</number></property>
-    <widget class="QCheckBox" name="ReopenLastActiveProfileSheetCheckBox">
-      <property name="geometry"><rect><x>16</x><y>24</y><width>520</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Zuletzt aktive Seite im Profileditor merken</string></property>
-    </widget>
-    <widget class="QRadioButton" name="ProfileEditorDFendRadioButton">
-      <property name="geometry"><rect><x>16</x><y>65</y><width>520</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Klassischen D-Fend Profileditor verwenden</string></property>
-    </widget>
-    <widget class="QRadioButton" name="ProfileEditorModernRadioButton">
-      <property name="geometry"><rect><x>16</x><y>85</y><width>520</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Modernen Profileditor verwenden</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="TRadioGroupWidget" name="AutoSetScreenshotFolderRadioGroup">
-      <property name="geometry"><rect><x>16</x><y>120</y><width>520</width><height>65</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="title"><string>Screenshot-Ordner beim Hinzufügen von Profilen automatisch festlegen</string></property>
-      <property name="items" stdset="0">
-        <stringlist notr="true">
-          <string>Nur beim Hinzufügen über den Assistenten</string>
-          <string>Beim Hinzufügen über den Assistenten und über den modernen Profileditor</string>
-        </stringlist>
-      </property>
-      <property name="itemIndex" stdset="0"><number>1</number></property>
-    </widget>
-    <widget class="QCheckBox" name="RenameProfFilesCheckBox">
-      <property name="geometry"><rect><x>16</x><y>208</y><width>520</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Profildateinamen immer gemäß dem Profilnamen umbenennen</string></property>
-    </widget>
-    <widget class="TRadioGroupWidget" name="AutoAddMountingsRadioGroup">
-      <property name="geometry"><rect><x>16</x><y>250</y><width>520</width><height>63</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="title"><string>Mounting-Einstellungen bei Bedarf automatisch hinzufügen</string></property>
-      <property name="items" stdset="0">
-        <stringlist notr="true">
-          <string>Nur beim Hinzufügen über den Assistenten</string>
-          <string>Beim Hinzufügen über den Assistenten und über den modernen Profileditor</string>
-        </stringlist>
-      </property>
-    </widget>
+    <layout class="QVBoxLayout" name="SetupFrameProfileEditor_Layout" stretch="0,0,0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>24</number></property>
+      <property name="rightMargin"><number>6</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameProfileEditor_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="ReopenLastActiveProfileSheetCheckBox">
+              <property name="text"><string>Zuletzt aktive Seite im Profileditor merken</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameProfileEditor_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameProfileEditor_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>24</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameProfileEditor_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QRadioButton" name="ProfileEditorDFendRadioButton">
+              <property name="text"><string>Klassischen D-Fend Profileditor verwenden</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QRadioButton" name="ProfileEditorModernRadioButton">
+              <property name="text"><string>Modernen Profileditor verwenden</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameProfileEditor_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameProfileEditor_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>18</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameProfileEditor_Section3" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="TRadioGroupWidget" name="AutoSetScreenshotFolderRadioGroup">
+              <property name="title"><string>Screenshot-Ordner beim Hinzufügen von Profilen automatisch festlegen</string></property>
+              <property name="items" stdset="0"><stringlist notr="true"><string>Nur beim Hinzufügen über den Assistenten</string><string>Beim Hinzufügen über den Assistenten und über den modernen Profileditor</string></stringlist></property>
+              <property name="itemIndex" stdset="0"><number>1</number></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameProfileEditor_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameProfileEditor_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>23</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameProfileEditor_Section4" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="RenameProfFilesCheckBox">
+              <property name="text"><string>Profildateinamen immer gemäß dem Profilnamen umbenennen</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameProfileEditor_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameProfileEditor_Gap4">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>25</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameProfileEditor_Section5" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="TRadioGroupWidget" name="AutoAddMountingsRadioGroup">
+              <property name="title"><string>Mounting-Einstellungen bei Bedarf automatisch hinzufügen</string></property>
+              <property name="items" stdset="0"><stringlist notr="true"><string>Nur beim Hinzufügen über den Assistenten</string><string>Beim Hinzufügen über den Assistenten und über den modernen Profileditor</string></stringlist></property>
+              <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameProfileEditor_Section5_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameProfileEditor_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <customwidgets>
     <customwidget>
@@ -63,6 +176,8 @@
     <tabstop>ProfileEditorModernRadioButton</tabstop>
     <tabstop>RenameProfFilesCheckBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

@@ -27,12 +27,14 @@
 #include <QScrollArea>
 #include <QStackedWidget>
 #include <QStatusBar>
+#include <QStyle>
 #include <QTabWidget>
 #include <QTableWidget>
 #include <QTimer>
 #include <QToolBar>
 #include <QToolButton>
 #include <QTreeWidget>
+#include <QTreeWidgetItemIterator>
 #include <QWindow>
 #include <algorithm>
 
@@ -728,7 +730,7 @@ static void setupMisc(QWidget *Top)
     // Scroll boxes
     const QList<QScrollArea *> Areas = Top->findChildren<QScrollArea *>();
     for (QScrollArea *A : Areas)
-        if (QWidget *C = A->widget()) if (C->property("vclScrollContents").toBool()) new ScrollContentsFollower(A, C);
+        if (QWidget *C = A->widget()) if (C->property("vclScrollContents").toBool() && !C->layout()) new ScrollContentsFollower(A, C);
     // Panels used as caption holders: let mouse clicks pass through captions
     for (QLabel *L : Labels)
         if (L->property("vclPanelCaptionOf").isValid()) L->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -781,6 +783,62 @@ QIcon imageListIcon(const QString &Unit, const QString &Name, int Index)
 {
     QList<QIcon> L = imageList(Unit, Name);
     return (Index >= 0 && Index < L.size()) ? L[Index] : QIcon();
+}
+
+void fitTreeWidth(QTreeWidget *Tree)
+{
+    // (all items count, also those in collapsed branches)
+    QList<QTreeWidgetItem *> Collapsed;
+    for (QTreeWidgetItemIterator It(Tree); *It; ++It) if ((*It)->childCount() > 0 && !(*It)->isExpanded()) Collapsed << *It;
+    for (QTreeWidgetItem *I : Collapsed) I->setExpanded(true);
+    Tree->resizeColumnToContents(0);
+    for (QTreeWidgetItem *I : Collapsed) I->setExpanded(false);
+    const int Needed = Tree->header()->sectionSize(0) + 2 * Tree->frameWidth() + Tree->style()->pixelMetric(QStyle::PM_ScrollBarExtent) + 4;
+    if (Needed <= Tree->width()) return;
+    const int Delta = Needed - Tree->width();
+    setAlignedExtent(Tree, Needed);
+    QWidget *W = Tree->window();
+    if (W->minimumWidth() == W->maximumWidth()) W->setFixedWidth(W->width() + Delta);
+    else W->resize(W->width() + Delta, W->height());
+}
+
+static QSize pageMinimum(QWidget *P)
+{
+    QSize S = P->layout() ? P->minimumSizeHint() : QSize(0, 0);
+    // scroll boxes: their contents need the width (the height can scroll)
+    for (QScrollArea *A : P->findChildren<QScrollArea *>()) {
+        QWidget *C = A->widget();
+        if (!C || !C->layout() || !A->widgetResizable() || A->width() <= 0) continue;
+        const int W = P->width() - A->width() + C->minimumSizeHint().width() + 2 * A->frameWidth()
+                      + A->style()->pixelMetric(QStyle::PM_ScrollBarExtent);
+        S.setWidth(qMax(S.width(), W));
+    }
+    return S;
+}
+
+void fitPages(QWidget *Area, int TopOffset, const QList<QWidget *> &Pages)
+{
+    QSize Need(0, 0);
+    for (QWidget *P : Pages) if (P) Need = Need.expandedTo(pageMinimum(P));
+    const QSize Have(Area->width(), Area->height() - TopOffset);
+    const int DW = qMax(0, Need.width() - Have.width()), DH = qMax(0, Need.height() - Have.height());
+    if (DW == 0 && DH == 0) return;
+    QWidget *W = Area->window();
+    QSize New = W->size() + QSize(DW, DH);
+    if (QScreen *Scr = W->screen()) New = New.boundedTo(Scr->availableGeometry().size() - (W->frameGeometry().size() - W->size()));
+    if (W->minimumWidth() == W->maximumWidth()) W->setFixedSize(New);
+    else {
+        W->setMinimumSize(W->minimumSize().expandedTo(New));
+        W->resize(New);
+    }
+    if (W->isVisible()) {   // keep the window on the screen
+        if (QScreen *Scr = W->screen()) {
+            QRect F = W->frameGeometry(), A = Scr->availableGeometry();
+            if (F.right() > A.right()) F.moveRight(A.right());
+            if (F.bottom() > A.bottom()) F.moveBottom(A.bottom());
+            W->move(qMax(A.left(), F.left()), qMax(A.top(), F.top()));
+        }
+    }
 }
 
 void setTabVisible(QTabWidget *Tabs, QWidget *Page, bool Visible)
