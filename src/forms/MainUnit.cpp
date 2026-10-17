@@ -829,11 +829,15 @@ void TDFendRebornMainForm::FormCreate(QObject *Sender)
     HelpMenuLinkFile = new TLinkFile("Links.txt", true, ID_HelpOldGames);
     SearchLinkFile = new TLinkFile("SearchLinks.txt", false, ID_ProfileSearchGame);
     // Lists edited by the user: addresses of D-Fend Reloaded that changed
-    // (search pages of the sites, https, sites that no longer exist)
+    // (search pages of the sites, https, sites that no longer exist or no
+    // longer offer what the link was for)
     HelpMenuLinkFile->UpgradeLinks({
         {QStringLiteral("http://vogons.zetafleet.com"), QStringLiteral("https://www.vogons.org")},
         {QStringLiteral("http://www.mobygames.com"), QStringLiteral("https://www.mobygames.com")},
         {QStringLiteral("http://www.squakenet.com/"), QString()},
+        {QStringLiteral("http://www.thelegacy.de/"), QString()},
+        {QStringLiteral("http://www.3drealms.com/downloads.html"), QString()},
+        {QStringLiteral("http://liberatedgames.org/"), QString()},
         {QStringLiteral("http://en.wikipedia.org/wiki/List_of_commercial_games_released_as_freeware"), QStringLiteral("https://en.wikipedia.org/wiki/List_of_commercial_games_released_as_freeware")},
         {QStringLiteral("http://en.wikipedia.org/wiki/List_of_freeware_games"), QStringLiteral("https://en.wikipedia.org/wiki/List_of_freeware_games")},
         {QStringLiteral("http://en.wikipedia.org/wiki/List_of_open_source_games"), QStringLiteral("https://en.wikipedia.org/wiki/List_of_open_source_games")}
@@ -842,6 +846,7 @@ void TDFendRebornMainForm::FormCreate(QObject *Sender)
         {QStringLiteral("http://thegamesdb.net/search/?string=<GAMENAME>&function=Search"), QStringLiteral("https://thegamesdb.net/search.php?name=<GAMENAME>")},
         {QStringLiteral("http://www.mobygames.com/search/quick?game=<GAMENAME>&p=-1&search=Go"), QStringLiteral("https://www.mobygames.com/search/?q=<GAMENAME>")},
         {QStringLiteral("http://www.squakenet.com/pc_games/?q=<GAMENAME>"), QString()},
+        {QStringLiteral("http://www.thelegacy.de/Museum/SQLFrameset.php3?SearchValue=<GAMENAME>&searchEntity=TITLE&misc=yes&quick=yes&list=SQLlist_games.php3"), QString()},
         {QStringLiteral("http://www.google.com/search?q=<GAMENAME>"), QStringLiteral("https://www.google.com/search?q=<GAMENAME>")},
         {QStringLiteral("http://en.wikipedia.org/wiki/<GAMENAME>"), QStringLiteral("https://en.wikipedia.org/w/index.php?search=<GAMENAME>")}
     });

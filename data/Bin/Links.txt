@@ -1,12 +1,9 @@
 Vogons (Very old games on new systems) (Forum);https://www.vogons.org
 ---
 Moby Games (Game info site);https://www.mobygames.com
-The Legacy (Game info site);http://www.thelegacy.de/
 Free oldies (Game info site);http://www.freeoldies.com
 ---
-Apogee/3D Realms (DOS Shareware games);http://www.3drealms.com/downloads.html
 Classic DOS Games (DOS Free- and Shareware games);http://www.classicdosgames.com/
-Liberated games (Freeware games);http://liberatedgames.org/
 Remain in play (Freeware games);http://www.remaininplay.com/
 ---
 Wikipedia list of commercial games released as freeware;https://en.wikipedia.org/wiki/List_of_commercial_games_released_as_freeware
