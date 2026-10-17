@@ -1,6 +1,8 @@
 // C++ port of WizardGameInfoUnit.pas (implementation section).
 #include "WizardGameInfoUnit.h"
 
+#include <QHeaderView>
+
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
 #include "IconLoaderUnit.h"
@@ -158,9 +160,6 @@ void TWizardGameInfoFrame::Init(TGameDB* AGameDB, TLinkFile* ALinkFile)
     }
     ui.DownloadDataButton->setText(LanguageSetup->DataReaderButton());
     ui.FavouriteCheckBox->setText(LanguageSetup->GameFavorite());
-    VclLayout::setBounds(ui.FavouriteCheckBox,
-        ui.GameInfoValueListEditor->x() + ui.GameInfoValueListEditor->width() - ui.FavouriteCheckBox->fontMetrics().horizontalAdvance(ui.FavouriteCheckBox->text()) - 20,
-        ui.FavouriteCheckBox->y(), ui.FavouriteCheckBox->width(), ui.FavouriteCheckBox->height());
 
     ui.MultiValueInfoLabel->setText(LanguageSetup->ProfileEditorMultipleValuesInfo());
 
@@ -183,7 +182,7 @@ void TWizardGameInfoFrame::Init(TGameDB* AGameDB, TLinkFile* ALinkFile)
     ui.NotesLabel->setText(LanguageSetup->GameNotes() + ":");
 
     ui.Tab->setColumnWidth(0, ui.GameInfoValueListEditor->columnWidth(0));
-    ui.Tab->setColumnWidth(1, ui.Tab->viewport()->width() - 10 - ui.Tab->columnWidth(0));
+    ui.Tab->horizontalHeader()->setStretchLastSection(true);
 
     LinkFile = ALinkFile;
     LoadLinks();

@@ -19,6 +19,8 @@ Version 0.5.6 (not released yet)
 - Program options: the pages use Qt layouts too (same improvements as in the
   profile editors). The options window and the profile editor get larger if
   a page needs more space.
+- Profile wizard and first run wizard: the pages use Qt layouts too; the
+  wizard windows get larger if a page needs more space.
 - Program options: the DOSBox download link points to DOSBox Staging.
 
 

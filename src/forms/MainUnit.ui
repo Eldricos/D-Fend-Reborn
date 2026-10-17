@@ -23,7 +23,9 @@
         <property name="vclPopupMenu" stdset="0"><string notr="true">TreeViewPopupMenu</string></property>
         <property name="headerHidden"><bool>true</bool></property>
         <property name="columnCount"><number>1</number></property>
-        <column><property name="text"><string notr="true">1</string></property></column>
+        <column>
+          <property name="text"><string notr="true">1</string></property>
+        </column>
         <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
         <property name="indentation"><number>19</number></property>
         <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
@@ -44,16 +46,16 @@
           <property name="vclButtonWidth" stdset="0"><number>76</number></property>
           <property name="vclButtonHeight" stdset="0"><number>22</number></property>
           <property name="vclImages" stdset="0"><string notr="true">ImageList</string></property>
-          <addaction name="ButtonClose"/>
-          <addaction name="ButtonRun"/>
-          <addaction name="ButtonRunSetup"/>
-          <addaction name="ToolButton2"/>
-          <addaction name="ButtonAdd"/>
-          <addaction name="ButtonEdit"/>
-          <addaction name="ButtonDelete"/>
-          <addaction name="ToolButton1"/>
-          <addaction name="ToolButton3"/>
-          <addaction name="ButtonHelp"/>
+          <addaction name="ButtonClose" />
+          <addaction name="ButtonRun" />
+          <addaction name="ButtonRunSetup" />
+          <addaction name="ToolButton2" />
+          <addaction name="ButtonAdd" />
+          <addaction name="ButtonEdit" />
+          <addaction name="ButtonDelete" />
+          <addaction name="ToolButton1" />
+          <addaction name="ToolButton3" />
+          <addaction name="ButtonHelp" />
           <widget class="QLineEdit" name="SearchEdit">
             <property name="geometry"><rect><x>364</x><y>0</y><width>121</width><height>22</height></rect></property>
             <property name="vclToolbarPos" stdset="0"><number>8</number></property>
@@ -196,11 +198,11 @@
               <property name="vclButtonWidth" stdset="0"><number>54</number></property>
               <property name="vclButtonHeight" stdset="0"><number>22</number></property>
               <property name="vclImages" stdset="0"><string notr="true">GameNotesImageList</string></property>
-              <addaction name="GameNotesCutButton"/>
-              <addaction name="GameNotesCopyButton"/>
-              <addaction name="GameNotesPasteButton"/>
-              <addaction name="ToolButton7"/>
-              <addaction name="GameNotesUndoButton"/>
+              <addaction name="GameNotesCutButton" />
+              <addaction name="GameNotesCopyButton" />
+              <addaction name="GameNotesPasteButton" />
+              <addaction name="ToolButton7" />
+              <addaction name="GameNotesUndoButton" />
             </widget>
           </widget>
           <widget class="QWidget" name="DataFilesTab">
@@ -219,14 +221,34 @@
         <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
         <property name="frameShadow"><enum>QFrame::Plain</enum></property>
         <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-        <widget class="QLabel" name="ZipInfoLabel">
-          <property name="geometry"><rect><x>8</x><y>4</y><width>762</width><height>32</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-          <property name="text"><string>ZipInfoLabel</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="wordWrap"><bool>true</bool></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        </widget>
+        <layout class="QGridLayout" name="ZipInfoPanel_Layout" columnstretch="0,1">
+          <property name="leftMargin"><number>8</number></property>
+          <property name="topMargin"><number>4</number></property>
+          <property name="rightMargin"><number>4</number></property>
+          <property name="bottomMargin"><number>8</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="ZipInfoLabel">
+              <property name="text"><string>ZipInfoLabel</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="ZipInfoPanel_Layout_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+          <item row="1" column="0">
+            <spacer name="ZipInfoPanel_VFill">
+              <property name="orientation"><enum>Qt::Vertical</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
       </widget>
       <widget class="QFrame" name="FirstRunInfoPanel">
         <property name="geometry"><rect><x>0</x><y>936</y><width>774</width><height>82</height></rect></property>
@@ -236,167 +258,182 @@
         <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
         <property name="frameShadow"><enum>QFrame::Plain</enum></property>
         <property name="vclClass" stdset="0"><string notr="true">TPanel</string></property>
-        <widget class="QLabel" name="FirstRunInfoLabel">
-          <property name="geometry"><rect><x>8</x><y>2</y><width>745</width><height>78</height></rect></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-          <property name="text"><string>To add a new game to D-Fend Reborn just drop the archive file containing the game to the program window or copy the game to a subfolder of the games folder (see Extras|Open games folder) and add it via the wizard (Profiles|Add with wizard) or scan the games folder for new games (Extras|Scan games folder for new games). Also see the online help on how to add a game (Help|Adding games).</string></property>
-          <property name="textFormat"><enum>Qt::PlainText</enum></property>
-          <property name="wordWrap"><bool>true</bool></property>
-          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-        </widget>
-        <widget class="QToolButton" name="FirstRunInfoButton">
-          <property name="geometry"><rect><x>750</x><y>6</y><width>23</width><height>22</height></rect></property>
-          <property name="toolTip"><string>Remove this information bar.</string></property>
-          <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/ef9628bfbea83c17.png</normaloff></iconset></property>
-          <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-          <property name="autoRaise"><bool>true</bool></property>
-        </widget>
+        <layout class="QGridLayout" name="FirstRunInfoPanel_Layout" columnstretch="0,1,0" rowstretch="1">
+          <property name="leftMargin"><number>8</number></property>
+          <property name="topMargin"><number>2</number></property>
+          <property name="rightMargin"><number>4</number></property>
+          <property name="bottomMargin"><number>8</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="FirstRunInfoLabel">
+              <property name="text"><string>To add a new game to D-Fend Reborn just drop the archive file containing the game to the program window or copy the game to a subfolder of the games folder (see Extras|Open games folder) and add it via the wizard (Profiles|Add with wizard) or scan the games folder for new games (Extras|Scan games folder for new games). Also see the online help on how to add a game (Help|Adding games).</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="2" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="FirstRunInfoButton">
+              <property name="toolTip"><string>Remove this information bar.</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/ef9628bfbea83c17.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="autoRaise"><bool>true</bool></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="FirstRunInfoPanel_Layout_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
       </widget>
       <widget class="QMenu" name="PopupMenu">
         <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
         <widget class="QMenu" name="PopupFilesFolders">
           <property name="title"><string>Files &amp;&amp; Folders</string></property>
-          <addaction name="PopupOpenFolder"/>
-          <addaction name="PopupOpenFolderDOSBox"/>
-          <addaction name="PopupOpenCaptureFolder"/>
-          <addaction name="PopupOpenDataFolder"/>
-          <addaction name="PopupOpenFileInProgramFolder"/>
-          <addaction name="PopupOpenFileInDataFolder"/>
+          <addaction name="PopupOpenFolder" />
+          <addaction name="PopupOpenFolderDOSBox" />
+          <addaction name="PopupOpenCaptureFolder" />
+          <addaction name="PopupOpenDataFolder" />
+          <addaction name="PopupOpenFileInProgramFolder" />
+          <addaction name="PopupOpenFileInDataFolder" />
         </widget>
         <widget class="QMenu" name="PopupViews">
           <property name="title"><string>&amp;View</string></property>
-          <addaction name="PopupSimpleListNoIcons"/>
-          <addaction name="PopupSimpleList"/>
-          <addaction name="PopupListNoIcons"/>
-          <addaction name="PopupList"/>
-          <addaction name="PopupSmallIcons"/>
-          <addaction name="PopupIcons"/>
-          <addaction name="PopupScreenshots"/>
+          <addaction name="PopupSimpleListNoIcons" />
+          <addaction name="PopupSimpleList" />
+          <addaction name="PopupListNoIcons" />
+          <addaction name="PopupList" />
+          <addaction name="PopupSmallIcons" />
+          <addaction name="PopupIcons" />
+          <addaction name="PopupScreenshots" />
         </widget>
-        <addaction name="PopupRunGame"/>
-        <addaction name="PopupRunSetup"/>
-        <addaction name="PopupRunExtraFile"/>
-        <addaction name="N3"/>
-        <addaction name="PopupEdit"/>
-        <addaction name="PopupCopy"/>
-        <addaction name="PopupDelete"/>
-        <addaction name="PopupDeinstall"/>
-        <addaction name="PopupMarkAsFavorite"/>
-        <addaction name="N30"/>
-        <addaction name="PopupMakeInstaller"/>
-        <addaction name="PopupMakeZipArchive"/>
-        <addaction name="PopupViewConfFile"/>
-        <addaction name="PopupViewINIFile"/>
-        <addaction name="PopupCreateShortcut"/>
-        <addaction name="N4"/>
-        <addaction name="PopupFilesFolders"/>
-        <addaction name="PopupWWW"/>
-        <addaction name="PopupSearchGame"/>
-        <addaction name="PopupCheating"/>
-        <addaction name="N19"/>
-        <addaction name="PopupViews"/>
+        <addaction name="PopupRunGame" />
+        <addaction name="PopupRunSetup" />
+        <addaction name="PopupRunExtraFile" />
+        <addaction name="N3" />
+        <addaction name="PopupEdit" />
+        <addaction name="PopupCopy" />
+        <addaction name="PopupDelete" />
+        <addaction name="PopupDeinstall" />
+        <addaction name="PopupMarkAsFavorite" />
+        <addaction name="N30" />
+        <addaction name="PopupMakeInstaller" />
+        <addaction name="PopupMakeZipArchive" />
+        <addaction name="PopupViewConfFile" />
+        <addaction name="PopupViewINIFile" />
+        <addaction name="PopupCreateShortcut" />
+        <addaction name="N4" />
+        <addaction name="PopupFilesFolders" />
+        <addaction name="PopupWWW" />
+        <addaction name="PopupSearchGame" />
+        <addaction name="PopupCheating" />
+        <addaction name="N19" />
+        <addaction name="PopupViews" />
       </widget>
       <widget class="QMenu" name="ScreenshotPopupMenu">
         <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-        <addaction name="ScreenshotPopupOpen"/>
-        <addaction name="ScreenshotPopupOpenExternal"/>
-        <addaction name="ScreenshotPopupOpenCaptureFolder"/>
-        <addaction name="N7"/>
-        <addaction name="ScreenshotPopupRefresh"/>
-        <addaction name="N8"/>
-        <addaction name="ScreenshotPopupImport"/>
-        <addaction name="ScreenshotPopupCopy"/>
-        <addaction name="ScreenshotPopupSave"/>
-        <addaction name="ScreenshotPopupRename"/>
-        <addaction name="ScreenshotPopupRenameAll"/>
-        <addaction name="ScreenshotPopupDelete"/>
-        <addaction name="ScreenshotPopupDeleteAll"/>
-        <addaction name="N24"/>
-        <addaction name="ScreenshotPopupUseAsBackground"/>
-        <addaction name="N29"/>
-        <addaction name="ScreenshotPopupUseInScreenshotList"/>
+        <addaction name="ScreenshotPopupOpen" />
+        <addaction name="ScreenshotPopupOpenExternal" />
+        <addaction name="ScreenshotPopupOpenCaptureFolder" />
+        <addaction name="N7" />
+        <addaction name="ScreenshotPopupRefresh" />
+        <addaction name="N8" />
+        <addaction name="ScreenshotPopupImport" />
+        <addaction name="ScreenshotPopupCopy" />
+        <addaction name="ScreenshotPopupSave" />
+        <addaction name="ScreenshotPopupRename" />
+        <addaction name="ScreenshotPopupRenameAll" />
+        <addaction name="ScreenshotPopupDelete" />
+        <addaction name="ScreenshotPopupDeleteAll" />
+        <addaction name="N24" />
+        <addaction name="ScreenshotPopupUseAsBackground" />
+        <addaction name="N29" />
+        <addaction name="ScreenshotPopupUseInScreenshotList" />
       </widget>
       <widget class="QMenu" name="AddButtonPopupMenu">
         <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
         <widget class="QMenu" name="AddButtonMenuAddManually">
           <property name="title"><string>Add manually</string></property>
-          <addaction name="AddButtonMenuAdd"/>
-          <addaction name="AddButtonMenuAddScummVM"/>
-          <addaction name="AddButtonMenuAddWindows"/>
-          <addaction name="AddButtonMenuAddOther"/>
+          <addaction name="AddButtonMenuAdd" />
+          <addaction name="AddButtonMenuAddScummVM" />
+          <addaction name="AddButtonMenuAddWindows" />
+          <addaction name="AddButtonMenuAddOther" />
         </widget>
-        <addaction name="AddButtonMenuAddManually"/>
-        <addaction name="AddButtonMenuAddFromTemplate"/>
-        <addaction name="AddButtonMenuAddWithWizard"/>
-        <addaction name="N43"/>
-        <addaction name="AddButtonMenuImportZip"/>
-        <addaction name="AddButtonMenuAddInstallationSupport"/>
-        <addaction name="AddButtonMenuDownloadPackages"/>
-        <addaction name="N45"/>
-        <addaction name="AddButtonMenuAddGetGames"/>
+        <addaction name="AddButtonMenuAddManually" />
+        <addaction name="AddButtonMenuAddFromTemplate" />
+        <addaction name="AddButtonMenuAddWithWizard" />
+        <addaction name="N43" />
+        <addaction name="AddButtonMenuImportZip" />
+        <addaction name="AddButtonMenuAddInstallationSupport" />
+        <addaction name="AddButtonMenuDownloadPackages" />
+        <addaction name="N45" />
+        <addaction name="AddButtonMenuAddGetGames" />
       </widget>
       <widget class="QMenu" name="SoundPopupMenu">
         <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-        <addaction name="SoundPopupOpen"/>
-        <addaction name="SoundPopupOpenExternal"/>
-        <addaction name="SoundPopupOpenCaptureFolder"/>
-        <addaction name="N21"/>
-        <addaction name="SoundPopupRefresh"/>
-        <addaction name="N22"/>
-        <addaction name="SoundPopupImport"/>
-        <addaction name="SoundPopupSave"/>
-        <addaction name="SoundPopupSaveMp3"/>
-        <addaction name="SoundPopupSaveOgg"/>
-        <addaction name="SoundPopupRename"/>
-        <addaction name="SoundPopupRenameAll"/>
-        <addaction name="SoundPopupDelete"/>
-        <addaction name="SoundPopupDeleteAll"/>
-        <addaction name="N23"/>
-        <addaction name="SoundPopupSaveMp3All"/>
-        <addaction name="SoundPopupSaveOggAll"/>
+        <addaction name="SoundPopupOpen" />
+        <addaction name="SoundPopupOpenExternal" />
+        <addaction name="SoundPopupOpenCaptureFolder" />
+        <addaction name="N21" />
+        <addaction name="SoundPopupRefresh" />
+        <addaction name="N22" />
+        <addaction name="SoundPopupImport" />
+        <addaction name="SoundPopupSave" />
+        <addaction name="SoundPopupSaveMp3" />
+        <addaction name="SoundPopupSaveOgg" />
+        <addaction name="SoundPopupRename" />
+        <addaction name="SoundPopupRenameAll" />
+        <addaction name="SoundPopupDelete" />
+        <addaction name="SoundPopupDeleteAll" />
+        <addaction name="N23" />
+        <addaction name="SoundPopupSaveMp3All" />
+        <addaction name="SoundPopupSaveOggAll" />
       </widget>
       <widget class="QMenu" name="TreeViewPopupMenu">
         <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-        <addaction name="TreeViewPopupEditUserFilters"/>
+        <addaction name="TreeViewPopupEditUserFilters" />
       </widget>
       <widget class="QMenu" name="TrayIconPopupMenu">
         <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-        <addaction name="TrayIconPopupRestore"/>
-        <addaction name="N9"/>
-        <addaction name="TrayIconPopupRun"/>
-        <addaction name="TrayIconPopupRecentlyStarted"/>
-        <addaction name="N27"/>
-        <addaction name="TrayIconPopupAddProfile"/>
-        <addaction name="TrayIconPopupAddScummVMProfile"/>
-        <addaction name="TrayIconPopupAddWindowsProfile"/>
-        <addaction name="TrayIconPopupAddOther"/>
-        <addaction name="TrayIconPopupAddFromTemplate"/>
-        <addaction name="TrayIconPopupAddWithWizard"/>
-        <addaction name="N26"/>
-        <addaction name="TrayIconPopupClose"/>
+        <addaction name="TrayIconPopupRestore" />
+        <addaction name="N9" />
+        <addaction name="TrayIconPopupRun" />
+        <addaction name="TrayIconPopupRecentlyStarted" />
+        <addaction name="N27" />
+        <addaction name="TrayIconPopupAddProfile" />
+        <addaction name="TrayIconPopupAddScummVMProfile" />
+        <addaction name="TrayIconPopupAddWindowsProfile" />
+        <addaction name="TrayIconPopupAddOther" />
+        <addaction name="TrayIconPopupAddFromTemplate" />
+        <addaction name="TrayIconPopupAddWithWizard" />
+        <addaction name="N26" />
+        <addaction name="TrayIconPopupClose" />
       </widget>
       <widget class="QMenu" name="VideoPopupMenu">
         <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-        <addaction name="VideoPopupOpen"/>
-        <addaction name="VideoPopupOpenExternal"/>
-        <addaction name="VideoPopupOpenCaptureFolder"/>
-        <addaction name="MenuItem2"/>
-        <addaction name="VideoPopupRefresh"/>
-        <addaction name="MenuItem4"/>
-        <addaction name="VideoPopupImport"/>
-        <addaction name="VideoPopupSave"/>
-        <addaction name="VideoPopupRename"/>
-        <addaction name="VideoPopupRenameAll"/>
-        <addaction name="VideoPopupDelete"/>
-        <addaction name="VideoPopupDeleteAll"/>
+        <addaction name="VideoPopupOpen" />
+        <addaction name="VideoPopupOpenExternal" />
+        <addaction name="VideoPopupOpenCaptureFolder" />
+        <addaction name="MenuItem2" />
+        <addaction name="VideoPopupRefresh" />
+        <addaction name="MenuItem4" />
+        <addaction name="VideoPopupImport" />
+        <addaction name="VideoPopupSave" />
+        <addaction name="VideoPopupRename" />
+        <addaction name="VideoPopupRenameAll" />
+        <addaction name="VideoPopupDelete" />
+        <addaction name="VideoPopupDeleteAll" />
       </widget>
       <widget class="QMenu" name="ToolbarPopupMenu">
         <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-        <addaction name="ToolbarPopupSetupButtons"/>
-        <addaction name="ToolbarPopupSetupIconSet"/>
-        <addaction name="N34"/>
-        <addaction name="ToolbarPopupShowMenubar"/>
+        <addaction name="ToolbarPopupSetupButtons" />
+        <addaction name="ToolbarPopupSetupIconSet" />
+        <addaction name="N34" />
+        <addaction name="ToolbarPopupShowMenubar" />
       </widget>
     </widget>
     <widget class="QMenuBar" name="MainMenu">
@@ -406,216 +443,216 @@
         <widget class="QMenu" name="MenuFileImport">
           <property name="title"><string>&amp;Import</string></property>
           <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/21.png</normaloff></iconset></property>
-          <addaction name="MenuFileImportConfFile"/>
-          <addaction name="MenuFileImportProfFile"/>
-          <addaction name="MenuFileImportXMLFile"/>
-          <addaction name="N37"/>
-          <addaction name="MenuFileImportZIPFile"/>
-          <addaction name="MenuFileImportZIPFileWithInstallationSupport"/>
-          <addaction name="MenuFileImportFolder"/>
-          <addaction name="MenuFileImportFolderWithInstallationSupport"/>
-          <addaction name="N39"/>
-          <addaction name="MenuFileImportDownload"/>
+          <addaction name="MenuFileImportConfFile" />
+          <addaction name="MenuFileImportProfFile" />
+          <addaction name="MenuFileImportXMLFile" />
+          <addaction name="N37" />
+          <addaction name="MenuFileImportZIPFile" />
+          <addaction name="MenuFileImportZIPFileWithInstallationSupport" />
+          <addaction name="MenuFileImportFolder" />
+          <addaction name="MenuFileImportFolderWithInstallationSupport" />
+          <addaction name="N39" />
+          <addaction name="MenuFileImportDownload" />
         </widget>
         <widget class="QMenu" name="MenuFileExport">
           <property name="title"><string>&amp;Export</string></property>
           <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/22.png</normaloff></iconset></property>
-          <addaction name="MenuFileExportGamesList"/>
-          <addaction name="N35"/>
-          <addaction name="MenuFileCreateConf"/>
-          <addaction name="MenuFileCreateProf"/>
-          <addaction name="MenuFileCreateXML"/>
-          <addaction name="N36"/>
-          <addaction name="MenuFileCreateZIP"/>
-          <addaction name="MenuFileCreateInstaller"/>
-          <addaction name="N41"/>
-          <addaction name="MenuFileExportBuildZipPackages"/>
-          <addaction name="MenuFileExportBuildInstaller"/>
-          <addaction name="MenuFileExportTransferProfiles"/>
-          <addaction name="N38"/>
-          <addaction name="MenuFileCreateXMlPackageList"/>
+          <addaction name="MenuFileExportGamesList" />
+          <addaction name="N35" />
+          <addaction name="MenuFileCreateConf" />
+          <addaction name="MenuFileCreateProf" />
+          <addaction name="MenuFileCreateXML" />
+          <addaction name="N36" />
+          <addaction name="MenuFileCreateZIP" />
+          <addaction name="MenuFileCreateInstaller" />
+          <addaction name="N41" />
+          <addaction name="MenuFileExportBuildZipPackages" />
+          <addaction name="MenuFileExportBuildInstaller" />
+          <addaction name="MenuFileExportTransferProfiles" />
+          <addaction name="N38" />
+          <addaction name="MenuFileCreateXMlPackageList" />
         </widget>
-        <addaction name="MenuFileImport"/>
-        <addaction name="MenuFileExport"/>
-        <addaction name="N10"/>
-        <addaction name="MenuFileSetup"/>
-        <addaction name="N2"/>
-        <addaction name="MenuFileQuit"/>
+        <addaction name="MenuFileImport" />
+        <addaction name="MenuFileExport" />
+        <addaction name="N10" />
+        <addaction name="MenuFileSetup" />
+        <addaction name="N2" />
+        <addaction name="MenuFileQuit" />
       </widget>
       <widget class="QMenu" name="MenuView">
         <property name="title"><string>&amp;View</string></property>
-        <addaction name="MenuViewShowMenubar"/>
-        <addaction name="MenuViewShowToolbar"/>
-        <addaction name="MenuViewsShowTree"/>
-        <addaction name="MenuViewsShowScreenshots"/>
-        <addaction name="MenuViewsShowSearchBox"/>
-        <addaction name="MenuViewsShowExtraInfo"/>
-        <addaction name="MenuViewsShowTooltips"/>
-        <addaction name="N12"/>
-        <addaction name="MenuViewsSimpleListNoIcons"/>
-        <addaction name="MenuViewsSimpleList"/>
-        <addaction name="MenuViewsListNoIcons"/>
-        <addaction name="MenuViewsList"/>
-        <addaction name="MenuViewsSmallIcons"/>
-        <addaction name="MenuViewsIcons"/>
-        <addaction name="MenuViewsScreenshots"/>
-        <addaction name="N18"/>
-        <addaction name="MenuViewsQuickStarter"/>
+        <addaction name="MenuViewShowMenubar" />
+        <addaction name="MenuViewShowToolbar" />
+        <addaction name="MenuViewsShowTree" />
+        <addaction name="MenuViewsShowScreenshots" />
+        <addaction name="MenuViewsShowSearchBox" />
+        <addaction name="MenuViewsShowExtraInfo" />
+        <addaction name="MenuViewsShowTooltips" />
+        <addaction name="N12" />
+        <addaction name="MenuViewsSimpleListNoIcons" />
+        <addaction name="MenuViewsSimpleList" />
+        <addaction name="MenuViewsListNoIcons" />
+        <addaction name="MenuViewsList" />
+        <addaction name="MenuViewsSmallIcons" />
+        <addaction name="MenuViewsIcons" />
+        <addaction name="MenuViewsScreenshots" />
+        <addaction name="N18" />
+        <addaction name="MenuViewsQuickStarter" />
       </widget>
       <widget class="QMenu" name="MenuRun">
         <property name="title"><string>&amp;Run</string></property>
-        <addaction name="MenuRunGame"/>
-        <addaction name="MenuRunSetup"/>
-        <addaction name="MenuRunExtraFile"/>
-        <addaction name="N6"/>
-        <addaction name="MenuRunRunDosBox"/>
-        <addaction name="MenuRunRunDosBoxKeyMapper"/>
-        <addaction name="MenuRunOpenDosBoxConfig"/>
-        <addaction name="MenuRunDOSBoxOutputTest"/>
-        <addaction name="N28"/>
-        <addaction name="MenuRunRunScummVM"/>
-        <addaction name="MenuRunOpenScummVMConfig"/>
+        <addaction name="MenuRunGame" />
+        <addaction name="MenuRunSetup" />
+        <addaction name="MenuRunExtraFile" />
+        <addaction name="N6" />
+        <addaction name="MenuRunRunDosBox" />
+        <addaction name="MenuRunRunDosBoxKeyMapper" />
+        <addaction name="MenuRunOpenDosBoxConfig" />
+        <addaction name="MenuRunDOSBoxOutputTest" />
+        <addaction name="N28" />
+        <addaction name="MenuRunRunScummVM" />
+        <addaction name="MenuRunOpenScummVMConfig" />
       </widget>
       <widget class="QMenu" name="MenuProfile">
         <property name="title"><string>&amp;Profile</string></property>
         <widget class="QMenu" name="MenuProfileAddManually">
           <property name="title"><string>Add manually</string></property>
-          <addaction name="MenuProfileAdd"/>
-          <addaction name="MenuProfileAddScummVM"/>
-          <addaction name="MenuProfileAddWindows"/>
-          <addaction name="MenuProfileAddOther"/>
+          <addaction name="MenuProfileAdd" />
+          <addaction name="MenuProfileAddScummVM" />
+          <addaction name="MenuProfileAddWindows" />
+          <addaction name="MenuProfileAddOther" />
         </widget>
         <widget class="QMenu" name="MenuProfileFilesFolders">
           <property name="title"><string>Files &amp;&amp; Folders</string></property>
-          <addaction name="MenuProfileOpenFolder"/>
-          <addaction name="MenuProfileOpenFolderDOSBox"/>
-          <addaction name="MenuProfileOpenCaptureFolder"/>
-          <addaction name="MenuProfileOpenDataFolder"/>
-          <addaction name="MenuProfileOpenFileInProgramFolder"/>
-          <addaction name="MenuProfileOpenFileInDataFolder"/>
+          <addaction name="MenuProfileOpenFolder" />
+          <addaction name="MenuProfileOpenFolderDOSBox" />
+          <addaction name="MenuProfileOpenCaptureFolder" />
+          <addaction name="MenuProfileOpenDataFolder" />
+          <addaction name="MenuProfileOpenFileInProgramFolder" />
+          <addaction name="MenuProfileOpenFileInDataFolder" />
         </widget>
-        <addaction name="MenuProfileAddManually"/>
-        <addaction name="MenuProfileAddFromTemplate"/>
-        <addaction name="MenuProfileAddWithWizard"/>
-        <addaction name="N46"/>
-        <addaction name="MenuProfileImportZip"/>
-        <addaction name="MenuProfileAddInstallationSupport"/>
-        <addaction name="MenuProfileDownloadPackages"/>
-        <addaction name="N11"/>
-        <addaction name="MenuProfileEdit"/>
-        <addaction name="MenuProfileCopy"/>
-        <addaction name="MenuProfileDelete"/>
-        <addaction name="MenuProfileDeinstall"/>
-        <addaction name="MenuProfileMarkAsFavorite"/>
-        <addaction name="N31"/>
-        <addaction name="MenuProfileMakeInstaller"/>
-        <addaction name="MenuProfileMakeZipArchive"/>
-        <addaction name="MenuProfileViewConfFile"/>
-        <addaction name="MenuProfileViewIniFile"/>
-        <addaction name="MenuProfileCreateShortcut"/>
-        <addaction name="N5"/>
-        <addaction name="MenuProfileFilesFolders"/>
-        <addaction name="MenuProfileWWW"/>
-        <addaction name="MenuProfileSearchGame"/>
-        <addaction name="N48"/>
-        <addaction name="MenuProfileCheating"/>
+        <addaction name="MenuProfileAddManually" />
+        <addaction name="MenuProfileAddFromTemplate" />
+        <addaction name="MenuProfileAddWithWizard" />
+        <addaction name="N46" />
+        <addaction name="MenuProfileImportZip" />
+        <addaction name="MenuProfileAddInstallationSupport" />
+        <addaction name="MenuProfileDownloadPackages" />
+        <addaction name="N11" />
+        <addaction name="MenuProfileEdit" />
+        <addaction name="MenuProfileCopy" />
+        <addaction name="MenuProfileDelete" />
+        <addaction name="MenuProfileDeinstall" />
+        <addaction name="MenuProfileMarkAsFavorite" />
+        <addaction name="N31" />
+        <addaction name="MenuProfileMakeInstaller" />
+        <addaction name="MenuProfileMakeZipArchive" />
+        <addaction name="MenuProfileViewConfFile" />
+        <addaction name="MenuProfileViewIniFile" />
+        <addaction name="MenuProfileCreateShortcut" />
+        <addaction name="N5" />
+        <addaction name="MenuProfileFilesFolders" />
+        <addaction name="MenuProfileWWW" />
+        <addaction name="MenuProfileSearchGame" />
+        <addaction name="N48" />
+        <addaction name="MenuProfileCheating" />
       </widget>
       <widget class="QMenu" name="MenuExtras">
         <property name="title"><string>&amp;Extras</string></property>
         <widget class="QMenu" name="MenuExtrasCheating">
           <property name="title"><string>Cheating</string></property>
-          <addaction name="MenuExtrasCheatingApply"/>
-          <addaction name="MenuExtrasCheatingEdit"/>
-          <addaction name="MenuExtrasCheatingSearch"/>
+          <addaction name="MenuExtrasCheatingApply" />
+          <addaction name="MenuExtrasCheatingEdit" />
+          <addaction name="MenuExtrasCheatingSearch" />
         </widget>
         <widget class="QMenu" name="MenuExtrasImageFiles">
           <property name="title"><string>Image files</string></property>
-          <addaction name="MenuExtrasCreateImage"/>
-          <addaction name="N25"/>
-          <addaction name="MenuExtrasCreateIMGImage"/>
-          <addaction name="MenuExtrasWriteIMGImage"/>
-          <addaction name="MenuExtrasImageFromFolder"/>
-          <addaction name="MenuExtrasExtractImage"/>
-          <addaction name="MenuExtrasCreateISOImage"/>
-          <addaction name="N44"/>
-          <addaction name="MenuExtrasImageFromProfile"/>
+          <addaction name="MenuExtrasCreateImage" />
+          <addaction name="N25" />
+          <addaction name="MenuExtrasCreateIMGImage" />
+          <addaction name="MenuExtrasWriteIMGImage" />
+          <addaction name="MenuExtrasImageFromFolder" />
+          <addaction name="MenuExtrasExtractImage" />
+          <addaction name="MenuExtrasCreateISOImage" />
+          <addaction name="N44" />
+          <addaction name="MenuExtrasImageFromProfile" />
         </widget>
         <widget class="QMenu" name="MenuExtrasTranslation">
           <property name="title"><string>&amp;Translation editor</string></property>
           <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/43.png</normaloff></iconset></property>
-          <addaction name="MenuExtrasTranslationDFendReborn"/>
-          <addaction name="MenuExtrasTranslationDOSBox"/>
+          <addaction name="MenuExtrasTranslationDFendReborn" />
+          <addaction name="MenuExtrasTranslationDOSBox" />
         </widget>
-        <addaction name="MenuExtrasIconManager"/>
-        <addaction name="MenuExtrasViewLogs"/>
-        <addaction name="MenuExtrasOpenGamesFolder"/>
-        <addaction name="MenuExtrasTemplates"/>
-        <addaction name="MenuExtrasCheating"/>
-        <addaction name="N1"/>
-        <addaction name="MenuExtrasImageFiles"/>
-        <addaction name="N17"/>
-        <addaction name="MenuExtrasScanGamesFolder"/>
-        <addaction name="MenuExtrasCheckProfiles"/>
-        <addaction name="MenuExtrasChangeProfiles"/>
-        <addaction name="MenuExtrasDeinstallMultipleGames"/>
-        <addaction name="MenuExtrasTransferProfiles"/>
-        <addaction name="MenuExtrasCreateShortcuts"/>
-        <addaction name="N40"/>
-        <addaction name="MenuExtrasTranslation"/>
+        <addaction name="MenuExtrasIconManager" />
+        <addaction name="MenuExtrasViewLogs" />
+        <addaction name="MenuExtrasOpenGamesFolder" />
+        <addaction name="MenuExtrasTemplates" />
+        <addaction name="MenuExtrasCheating" />
+        <addaction name="N1" />
+        <addaction name="MenuExtrasImageFiles" />
+        <addaction name="N17" />
+        <addaction name="MenuExtrasScanGamesFolder" />
+        <addaction name="MenuExtrasCheckProfiles" />
+        <addaction name="MenuExtrasChangeProfiles" />
+        <addaction name="MenuExtrasDeinstallMultipleGames" />
+        <addaction name="MenuExtrasTransferProfiles" />
+        <addaction name="MenuExtrasCreateShortcuts" />
+        <addaction name="N40" />
+        <addaction name="MenuExtrasTranslation" />
       </widget>
       <widget class="QMenu" name="MenuHelp">
         <property name="title"><string>&amp;Help</string></property>
         <widget class="QMenu" name="MenuHelpDosBox">
           <property name="title"><string>&amp;DosBox</string></property>
           <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/16.png</normaloff></iconset></property>
-          <addaction name="MenuHelpDosBoxReadme"/>
-          <addaction name="MenuHelpDosBoxFAQ"/>
-          <addaction name="N16"/>
-          <addaction name="MenuHelpDosBoxIntro"/>
-          <addaction name="MenuHelpDosBoxIntroDosBox"/>
-          <addaction name="N13"/>
-          <addaction name="MenuHelpDosBoxHotkeys"/>
-          <addaction name="MenuHelpDosBoxHotkeysDosbox"/>
-          <addaction name="N14"/>
-          <addaction name="MenuHelpDosBoxHomepage"/>
-          <addaction name="MenuHelpDosBoxCompatibility"/>
-          <addaction name="MenuHelpDemoCompatibility"/>
+          <addaction name="MenuHelpDosBoxReadme" />
+          <addaction name="MenuHelpDosBoxFAQ" />
+          <addaction name="N16" />
+          <addaction name="MenuHelpDosBoxIntro" />
+          <addaction name="MenuHelpDosBoxIntroDosBox" />
+          <addaction name="N13" />
+          <addaction name="MenuHelpDosBoxHotkeys" />
+          <addaction name="MenuHelpDosBoxHotkeysDosbox" />
+          <addaction name="N14" />
+          <addaction name="MenuHelpDosBoxHomepage" />
+          <addaction name="MenuHelpDosBoxCompatibility" />
+          <addaction name="MenuHelpDemoCompatibility" />
         </widget>
         <widget class="QMenu" name="MenuHelpScummVM">
           <property name="title"><string>ScummVM</string></property>
           <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/imagelists/MainUnit/ImageList/37.png</normaloff></iconset></property>
-          <addaction name="MenuHelpScummVMReadme"/>
-          <addaction name="MenuHelpScummVMFAQ"/>
-          <addaction name="N15"/>
-          <addaction name="MenuHelpScummVMHomepage"/>
-          <addaction name="MenuHelpScummVMCompatibility"/>
-          <addaction name="MenuHelpScummVMCompatibilityIntern"/>
+          <addaction name="MenuHelpScummVMReadme" />
+          <addaction name="MenuHelpScummVMFAQ" />
+          <addaction name="N15" />
+          <addaction name="MenuHelpScummVMHomepage" />
+          <addaction name="MenuHelpScummVMCompatibility" />
+          <addaction name="MenuHelpScummVMCompatibilityIntern" />
         </widget>
-        <addaction name="MenuHelpHelp"/>
-        <addaction name="MenuHelpHelpContent"/>
-        <addaction name="MenuHelpIntroduction"/>
-        <addaction name="MenuHelpGetGames"/>
-        <addaction name="MenuHelpAddingGames"/>
-        <addaction name="N47"/>
-        <addaction name="MenuHelpHomepage"/>
-        <addaction name="MenuHelpForum"/>
-        <addaction name="N33"/>
-        <addaction name="MenuHelpDosBox"/>
-        <addaction name="MenuHelpScummVM"/>
-        <addaction name="MenuHelpAbandonware"/>
-        <addaction name="N20"/>
-        <addaction name="MenuHelpStatistics"/>
-        <addaction name="MenuHelpOperationMode"/>
-        <addaction name="MenuHelpUpdates"/>
-        <addaction name="N32"/>
-        <addaction name="MenuHelpAbout"/>
+        <addaction name="MenuHelpHelp" />
+        <addaction name="MenuHelpHelpContent" />
+        <addaction name="MenuHelpIntroduction" />
+        <addaction name="MenuHelpGetGames" />
+        <addaction name="MenuHelpAddingGames" />
+        <addaction name="N47" />
+        <addaction name="MenuHelpHomepage" />
+        <addaction name="MenuHelpForum" />
+        <addaction name="N33" />
+        <addaction name="MenuHelpDosBox" />
+        <addaction name="MenuHelpScummVM" />
+        <addaction name="MenuHelpAbandonware" />
+        <addaction name="N20" />
+        <addaction name="MenuHelpStatistics" />
+        <addaction name="MenuHelpOperationMode" />
+        <addaction name="MenuHelpUpdates" />
+        <addaction name="N32" />
+        <addaction name="MenuHelpAbout" />
       </widget>
-      <addaction name="MenuFile"/>
-      <addaction name="MenuView"/>
-      <addaction name="MenuRun"/>
-      <addaction name="MenuProfile"/>
-      <addaction name="MenuExtras"/>
-      <addaction name="MenuHelp"/>
+      <addaction name="MenuFile" />
+      <addaction name="MenuView" />
+      <addaction name="MenuRun" />
+      <addaction name="MenuProfile" />
+      <addaction name="MenuExtras" />
+      <addaction name="MenuHelp" />
     </widget>
     <action name="ButtonClose">
       <property name="text"><string>Close</string></property>
@@ -1870,6 +1907,8 @@
     <tabstop>GameNotesEdit</tabstop>
     <tabstop>SearchEdit</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

@@ -302,8 +302,6 @@ void TWizardTemplateFrame::HelpButtonClick(QObject* Sender)
         const int W = width() - 2 * ui.InfoPanel->x();
         const int H = height() - 8 - ui.InfoPanel->y();
         VclLayout::setBounds(ui.InfoPanel, ui.InfoPanel->x(), ui.InfoPanel->y(), W, H);
-        const QRect CR = ui.InfoPanel->contentsRect();
-        VclLayout::setBounds(ui.PanelInfoLabel, ui.PanelInfoLabel->x(), ui.PanelInfoLabel->y(), CR.width() - 32, ui.OKButton->y() - 32);
         ui.InfoPanel->setVisible(true);
         ui.InfoPanel->raise();
         if (auto *F = qobject_cast<TWizardForm *>(window())) F->ui.BottomPanel->setVisible(false);

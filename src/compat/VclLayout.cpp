@@ -18,6 +18,7 @@
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QLabel>
+#include <QLayout>
 #include <QMouseEvent>
 #include <QMainWindow>
 #include <QMenu>
@@ -431,8 +432,12 @@ public:
     }
     void fit(bool KeepCenter)
     {
-        FTop->layout()->activate();
-        const QSize Old = FTop->size(), New = Old.expandedTo(FTop->minimumSizeHint());
+        QLayout *L = FTop->layout();
+        L->activate();
+        const QSize Old = FTop->size();
+        QSize New = Old.expandedTo(FTop->minimumSizeHint());
+        // wrapped texts need more height at this width
+        if (L->hasHeightForWidth()) New.setHeight(qMax(New.height(), L->totalHeightForWidth(New.width())));
         if (New == Old && FTop->minimumSize() == Old) return;
         FTop->setFixedSize(New);
         if (KeepCenter && New != Old) FTop->move(FTop->x() - (New.width() - Old.width()) / 2, FTop->y() - (New.height() - Old.height()) / 2);
@@ -802,9 +807,11 @@ void fitTreeWidth(QTreeWidget *Tree)
     else W->resize(W->width() + Delta, W->height());
 }
 
-static QSize pageMinimum(QWidget *P)
+static QSize pageMinimum(QWidget *P, int Width)
 {
     QSize S = P->layout() ? P->minimumSizeHint() : QSize(0, 0);
+    if (P->layout() && P->layout()->hasHeightForWidth())   // wrapped texts
+        S.setHeight(qMax(S.height(), P->layout()->totalHeightForWidth(qMax(Width, S.width()))));
     // scroll boxes: their contents need the width (the height can scroll)
     for (QScrollArea *A : P->findChildren<QScrollArea *>()) {
         QWidget *C = A->widget();
@@ -818,9 +825,9 @@ static QSize pageMinimum(QWidget *P)
 
 void fitPages(QWidget *Area, int TopOffset, const QList<QWidget *> &Pages)
 {
-    QSize Need(0, 0);
-    for (QWidget *P : Pages) if (P) Need = Need.expandedTo(pageMinimum(P));
     const QSize Have(Area->width(), Area->height() - TopOffset);
+    QSize Need(0, 0);
+    for (QWidget *P : Pages) if (P) Need = Need.expandedTo(pageMinimum(P, Have.width()));
     const int DW = qMax(0, Need.width() - Have.width()), DH = qMax(0, Need.height() - Have.height());
     if (DW == 0 && DH == 0) return;
     QWidget *W = Area->window();
