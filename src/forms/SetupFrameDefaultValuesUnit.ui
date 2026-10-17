@@ -5,38 +5,56 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>547</width><height>358</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>547</number></property>
     <property name="vclDesignHeight" stdset="0"><number>358</number></property>
-    <widget class="QLabel" name="DefaultValueLabel">
-      <property name="geometry"><rect><x>8</x><y>19</y><width>50</width><height>13</height></rect></property>
-      <property name="text"><string>Kategorie:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QComboBox" name="DefaultValueComboBox">
-      <property name="geometry"><rect><x>80</x><y>17</y><width>241</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QTextEdit" name="DefaultValueMemo">
-      <property name="geometry"><rect><x>8</x><y>44</y><width>529</width><height>301</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight,akBottom</string></property>
-      <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
-      <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
-      <property name="acceptRichText"><bool>false</bool></property>
-    </widget>
-    <widget class="QPushButton" name="DefaultValueSpeedButton">
-      <property name="geometry"><rect><x>335</x><y>13</y><width>202</width><height>25</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="text"><string>Vorgabewerte wiederherstellen</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/90dee0f3d0aa0e54.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">DefaultValueSpeedButtonClick</string></property>
-    </widget>
+    <layout class="QGridLayout" name="SetupFrameDefaultValues_Layout" columnstretch="0,0,1,0" rowstretch="0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>13</number></property>
+      <property name="rightMargin"><number>8</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="horizontalSpacing"><number>8</number></property>
+      <property name="verticalSpacing"><number>4</number></property>
+      <item row="0" column="0">
+        <widget class="QLabel" name="DefaultValueLabel">
+          <property name="text"><string>Kategorie:</string></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+        </widget>
+      </item>
+      <item row="0" column="1" colspan="2">
+        <widget class="QComboBox" name="DefaultValueComboBox">
+          <property name="editable"><bool>false</bool></property>
+          <property name="maxVisibleItems"><number>8</number></property>
+          <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+          <property name="minimumContentsLength"><number>10</number></property>
+        </widget>
+      </item>
+      <item row="0" column="3" alignment="Qt::AlignRight">
+        <widget class="QPushButton" name="DefaultValueSpeedButton">
+          <property name="text"><string>Vorgabewerte wiederherstellen</string></property>
+          <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/90dee0f3d0aa0e54.png</normaloff></iconset></property>
+          <property name="autoDefault"><bool>false</bool></property>
+          <property name="vclOnClick" stdset="0"><string notr="true">DefaultValueSpeedButtonClick</string></property>
+          <property name="minimumSize"><size><width>202</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="1" column="0" colspan="4">
+        <widget class="QTextEdit" name="DefaultValueMemo">
+          <property name="lineWrapMode"><enum>QTextEdit::NoWrap</enum></property>
+          <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOn</enum></property>
+          <property name="acceptRichText"><bool>false</bool></property>
+          <property name="minimumSize"><size><width>0</width><height>0</height></size></property>
+        </widget>
+      </item>
+      <item row="0" column="2">
+        <spacer name="SetupFrameDefaultValues_Layout_HFill">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
     <widget class="QMenu" name="DefaultValuePopupMenu">
       <property name="vclPopupMenu" stdset="0"><bool>true</bool></property>
-      <addaction name="PopupThisValue"/>
-      <addaction name="PopupAllValues"/>
+      <addaction name="PopupThisValue" />
+      <addaction name="PopupAllValues" />
     </widget>
     <action name="PopupThisValue">
       <property name="text"><string>Diese Kategorie</string></property>
@@ -51,6 +69,8 @@
     <tabstop>DefaultValueMemo</tabstop>
     <tabstop>DefaultValueSpeedButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

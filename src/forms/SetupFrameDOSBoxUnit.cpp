@@ -22,13 +22,6 @@ void ComboExchange(QComboBox *Combo, int I1, int I2)
     Combo->setItemText(I2, S);
 }
 
-// Control.Top:=Value
-void SetTop(QWidget *W, int Top)
-{
-    QRect G = W->geometry();
-    VclLayout::setBounds(W, G.x(), Top, G.width(), G.height());
-}
-
 }  // namespace
 
 TSetupFrameDOSBox::TSetupFrameDOSBox(QWidget* AOwner) : QWidget(AOwner)
@@ -52,7 +45,6 @@ TSetupFrameDOSBox::TSetupFrameDOSBox(QWidget* AOwner) : QWidget(AOwner)
     connect(ui.MoreSettingsButton, &QPushButton::clicked, this, [this]() { ButtonWork(ui.MoreSettingsButton); });
     connect(ui.PortableModeInfoButton, &QPushButton::clicked, this, [this]() { PortableModeInfoButtonClick(ui.PortableModeInfoButton); });
 
-    OrigPortableModeInfoButtonTop = -1;
 }
 
 TSetupFrameDOSBox::~TSetupFrameDOSBox()
@@ -141,25 +133,7 @@ void TSetupFrameDOSBox::ShowFrame(bool AdvancedMode)
 {
     ui.MoreSettingsButton->setVisible(AdvancedMode);
     ui.PortableModeInfoButton->setVisible(OperationMode == omPortable);
-
-    if (OrigPortableModeInfoButtonTop < 0)
-        OrigPortableModeInfoButtonTop = ui.PortableModeInfoButton->y();
-    else
-        SetTop(ui.PortableModeInfoButton, OrigPortableModeInfoButtonTop);
-
-    if (AdvancedMode) {
-        if (ui.PortableModeInfoButton->isVisibleTo(this))
-            SetTop(ui.DOSBoxDownloadURLInfo, ui.PortableModeInfoButton->y() + ui.PortableModeInfoButton->height() + 10);
-        else
-            SetTop(ui.DOSBoxDownloadURLInfo, ui.MoreSettingsButton->y() + ui.MoreSettingsButton->height() + 10);
-    } else {
-        SetTop(ui.PortableModeInfoButton, ui.MoreSettingsButton->y());
-        if (ui.PortableModeInfoButton->isVisibleTo(this))
-            SetTop(ui.DOSBoxDownloadURLInfo, ui.PortableModeInfoButton->y() + ui.PortableModeInfoButton->height() + 10);
-        else
-            SetTop(ui.DOSBoxDownloadURLInfo, ui.DosBoxDirEdit->y() + ui.DosBoxDirEdit->height() + 15);
-    }
-    SetTop(ui.DOSBoxDownloadURL, ui.DOSBoxDownloadURLInfo->y() + 19);
+    // (the layout moves the following controls up when buttons are hidden)
 
     DosBoxDirEditChange(this);
 }
@@ -223,10 +197,7 @@ void TSetupFrameDOSBox::DosBoxDirEditChange(QObject* Sender)
         TTraceScope T("SetupFrameDOSBox: CheckDOSBoxVersion(" + ui.DosBoxDirEdit->text() + ")", 20);
         ui.WarningButton->setVisible(OldDOSBoxVersion(CheckDOSBoxVersion(-1, ui.DosBoxDirEdit->text())));
     }
-    QRect G = ui.DosBoxDirEdit->geometry();
-    QRect WB = ui.WarningButton->geometry();
-    int W = (ui.WarningButton->isVisibleTo(this) ? WB.x() - 4 : WB.x() + WB.width()) - G.x();
-    VclLayout::setBounds(ui.DosBoxDirEdit, G.x(), G.y(), W, G.height());
+    // (the layout gives the edit the space of the hidden warning button)
 }
 
 void TSetupFrameDOSBox::ButtonWork(QObject* Sender)

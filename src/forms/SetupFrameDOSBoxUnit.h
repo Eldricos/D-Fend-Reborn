@@ -62,5 +62,4 @@ private:
     TSimpleEvent DosBoxDirChange;
     int LastIndex = -1;
     TGameDB* GameDB = nullptr;
-    int OrigPortableModeInfoButtonTop = -1;
 };

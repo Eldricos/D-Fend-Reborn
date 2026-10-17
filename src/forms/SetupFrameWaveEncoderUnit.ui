@@ -5,82 +5,138 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>652</width><height>247</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>652</number></property>
     <property name="vclDesignHeight" stdset="0"><number>247</number></property>
-    <widget class="QToolButton" name="WaveEncMp3Button1">
-      <property name="geometry"><rect><x>594</x><y>32</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>10</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="WaveEncMp3Button2">
-      <property name="geometry"><rect><x>621</x><y>32</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>11</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="WaveEncOggButton1">
-      <property name="geometry"><rect><x>594</x><y>138</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>12</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="WaveEncOggButton2">
-      <property name="geometry"><rect><x>623</x><y>138</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>13</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLineEdit" name="WaveEncMp3Edit">
-      <property name="geometry"><rect><x>16</x><y>32</y><width>572</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="WaveEncMp3Edit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>16</y><width>83</width><height>13</height></rect></property>
-      <property name="text"><string>WaveEncMp3Edit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">WaveEncMp3Edit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">WaveEncMp3Edit</string></property>
-    </widget>
-    <widget class="QLineEdit" name="WaveEncOggEdit">
-      <property name="geometry"><rect><x>16</x><y>138</y><width>572</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="WaveEncOggEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>122</y><width>83</width><height>13</height></rect></property>
-      <property name="text"><string>WaveEncOggEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">WaveEncOggEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">WaveEncOggEdit</string></property>
-    </widget>
-    <widget class="QLineEdit" name="WaveEncMp3ParameterEdit">
-      <property name="geometry"><rect><x>16</x><y>80</y><width>572</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="WaveEncMp3ParameterEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>64</y><width>133</width><height>13</height></rect></property>
-      <property name="text"><string>WaveEncMp3ParameterEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">WaveEncMp3ParameterEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">WaveEncMp3ParameterEdit</string></property>
-    </widget>
-    <widget class="QLineEdit" name="WaveEncOggParameterEdit">
-      <property name="geometry"><rect><x>16</x><y>184</y><width>572</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="WaveEncOggParameterEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>168</y><width>133</width><height>13</height></rect></property>
-      <property name="text"><string>WaveEncOggParameterEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">WaveEncOggParameterEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">WaveEncOggParameterEdit</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="SetupFrameWaveEncoder_Layout" stretch="0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="rightMargin"><number>6</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameWaveEncoder_Section1" columnstretch="0,1,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="WaveEncMp3Edit_EditLabel">
+              <property name="text"><string>WaveEncMp3Edit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">WaveEncMp3Edit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">WaveEncMp3Edit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLineEdit" name="WaveEncMp3Edit">
+      </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="WaveEncMp3Button1">
+              <property name="tag" stdset="0"><number>10</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="WaveEncMp3Button2">
+              <property name="tag" stdset="0"><number>11</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+            <widget class="QLabel" name="WaveEncMp3ParameterEdit_EditLabel">
+              <property name="text"><string>WaveEncMp3ParameterEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">WaveEncMp3ParameterEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">WaveEncMp3ParameterEdit</string></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+            <widget class="QLineEdit" name="WaveEncMp3ParameterEdit">
+      </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameWaveEncoder_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameWaveEncoder_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>21</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameWaveEncoder_Section2" columnstretch="0,1,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="WaveEncOggEdit_EditLabel">
+              <property name="text"><string>WaveEncOggEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">WaveEncOggEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">WaveEncOggEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLineEdit" name="WaveEncOggEdit">
+      </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="WaveEncOggButton1">
+              <property name="tag" stdset="0"><number>12</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="WaveEncOggButton2">
+              <property name="tag" stdset="0"><number>13</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+            <widget class="QLabel" name="WaveEncOggParameterEdit_EditLabel">
+              <property name="text"><string>WaveEncOggParameterEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">WaveEncOggParameterEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">WaveEncOggParameterEdit</string></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+            <widget class="QLineEdit" name="WaveEncOggParameterEdit">
+      </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameWaveEncoder_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameWaveEncoder_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>WaveEncMp3Edit</tabstop>
@@ -88,6 +144,8 @@
     <tabstop>WaveEncOggEdit</tabstop>
     <tabstop>WaveEncOggParameterEdit</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

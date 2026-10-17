@@ -2,8 +2,6 @@
 #include "ModernProfileEditorFormUnit.h"
 
 #include <typeinfo>
-#include <QHeaderView>
-#include <QStyle>
 
 #include "LanguageSetupUnit.h"
 #include "DosBoxUnit.h"
@@ -505,14 +503,13 @@ void TModernProfileEditorForm::InitGUI()
 
     /* Page names of long translations or larger fonts: the tree (and the
        window) get wider instead of cutting off the names */
+    VclLayout::fitTreeWidth(ui.Tree);
     {
-        ui.Tree->resizeColumnToContents(0);
-        const int Needed = ui.Tree->header()->sectionSize(0) + 2 * ui.Tree->frameWidth() + ui.Tree->style()->pixelMetric(QStyle::PM_ScrollBarExtent) + 4;
-        if (Needed > ui.Tree->width()) {
-            const int Delta = Needed - ui.Tree->width();
-            VclLayout::setAlignedExtent(ui.Tree, Needed);
-            resize(width() + Delta, height());
-        }
+        // the window gets larger if a page needs more space
+        QList<QWidget*> Pages;
+        for (const TFrameRecord& Rec : FrameList) Pages << Rec.Frame;
+        LayoutFrames();
+        VclLayout::fitPages(ui.RightPanel, ui.TopPanel->isVisibleTo(ui.RightPanel) ? ui.TopPanel->geometry().bottom() + 1 : 0, Pages);
     }
 
     if (ui.Tree->topLevelItemCount() > 0) {

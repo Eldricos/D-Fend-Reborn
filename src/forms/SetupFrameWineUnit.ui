@@ -5,67 +5,144 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>572</width><height>452</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>572</number></property>
     <property name="vclDesignHeight" stdset="0"><number>452</number></property>
-    <widget class="QLabel" name="MainInfoLabel">
-      <property name="geometry"><rect><x>32</x><y>42</y><width>529</width><height>34</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>You can overwrite this setting by using one of the following command line parameters: "WindowsMode" or "NoWineSupport".</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
-    <widget class="QLabel" name="ListInfoLabel">
-      <property name="geometry"><rect><x>16</x><y>87</y><width>69</width><height>13</height></rect></property>
-      <property name="text"><string>Remapping list</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="MainCheckBox">
-      <property name="geometry"><rect><x>16</x><y>24</y><width>545</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Enable Wine mode</string></property>
-    </widget>
-    <widget class="TValueListEditorWidget" name="List">
-      <property name="geometry"><rect><x>16</x><y>102</y><width>241</width><height>131</height></rect></property>
-      <property name="vclColumnWidths" stdset="0"><string notr="true">91,144</string></property>
-    </widget>
-    <widget class="QCheckBox" name="RemapMountsCheckBox">
-      <property name="geometry"><rect><x>272</x><y>112</y><width>297</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Remap mount commands</string></property>
-    </widget>
-    <widget class="QCheckBox" name="RemapScreenshotFolderCheckBox">
-      <property name="geometry"><rect><x>272</x><y>144</y><width>297</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Remap screenshot folder name</string></property>
-    </widget>
-    <widget class="QCheckBox" name="RemapMapperFileCheckBox">
-      <property name="geometry"><rect><x>272</x><y>176</y><width>297</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Remap key mapper file</string></property>
-    </widget>
-    <widget class="QCheckBox" name="RemapDOSBoxFolderCheckBox">
-      <property name="geometry"><rect><x>272</x><y>208</y><width>297</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Remap DOSBOX path</string></property>
-    </widget>
-    <widget class="QCheckBox" name="LinuxLinkModeCheckBox">
-      <property name="geometry"><rect><x>16</x><y>256</y><width>545</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Switch link creation menu item to create Linux shell scripts</string></property>
-    </widget>
-    <widget class="QLineEdit" name="ShellScriptPreambleEdit">
-      <property name="geometry"><rect><x>16</x><y>304</y><width>545</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="ShellScriptPreambleEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>288</y><width>98</width><height>13</height></rect></property>
-      <property name="text"><string>Shell script preamble</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">ShellScriptPreambleEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">ShellScriptPreambleEdit</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="SetupFrameWine_Layout" stretch="0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>24</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameWine_Section1" columnstretch="0,0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="4">
+            <widget class="QCheckBox" name="MainCheckBox">
+              <property name="text"><string>Enable Wine mode</string></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="3">
+            <widget class="QLabel" name="MainInfoLabel">
+              <property name="text"><string>You can overwrite this setting by using one of the following command line parameters: "WindowsMode" or "NoWineSupport".</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="wordWrap"><bool>true</bool></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="4">
+            <widget class="QLabel" name="ListInfoLabel">
+              <property name="text"><string>Remapping list</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="3" column="0" rowspan="5" colspan="2" alignment="Qt::AlignLeft|Qt::AlignTop">
+            <widget class="TValueListEditorWidget" name="List">
+              <property name="vclColumnWidths" stdset="0"><string notr="true">91,144</string></property>
+              <property name="minimumSize"><size><width>241</width><height>131</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="2" colspan="2">
+            <widget class="QCheckBox" name="RemapMountsCheckBox">
+              <property name="text"><string>Remap mount commands</string></property>
+            </widget>
+          </item>
+          <item row="5" column="2" colspan="2">
+            <widget class="QCheckBox" name="RemapScreenshotFolderCheckBox">
+              <property name="text"><string>Remap screenshot folder name</string></property>
+            </widget>
+          </item>
+          <item row="6" column="2" colspan="2">
+            <widget class="QCheckBox" name="RemapMapperFileCheckBox">
+              <property name="text"><string>Remap key mapper file</string></property>
+            </widget>
+          </item>
+          <item row="7" column="2" colspan="2">
+            <widget class="QCheckBox" name="RemapDOSBoxFolderCheckBox">
+              <property name="text"><string>Remap DOSBOX path</string></property>
+            </widget>
+          </item>
+          <item row="0" column="3">
+            <spacer name="SetupFrameWine_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameWine_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>23</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameWine_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="LinuxLinkModeCheckBox">
+              <property name="text"><string>Switch link creation menu item to create Linux shell scripts</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameWine_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameWine_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameWine_Section3" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="ShellScriptPreambleEdit_EditLabel">
+              <property name="text"><string>Shell script preamble</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">ShellScriptPreambleEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">ShellScriptPreambleEdit</string></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLineEdit" name="ShellScriptPreambleEdit">
+      </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameWine_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameWine_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <customwidgets>
     <customwidget>
@@ -84,6 +161,8 @@
     <tabstop>LinuxLinkModeCheckBox</tabstop>
     <tabstop>ShellScriptPreambleEdit</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

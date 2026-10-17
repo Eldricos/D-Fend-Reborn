@@ -5,43 +5,142 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>597</width><height>458</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>597</number></property>
     <property name="vclDesignHeight" stdset="0"><number>458</number></property>
-    <widget class="QToolButton" name="CustomButton">
-      <property name="geometry"><rect><x>562</x><y>135</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QRadioButton" name="RadioButtonDefault">
-      <property name="geometry"><rect><x>8</x><y>24</y><width>578</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Use default editor for file type</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="FallbackCheckBox">
-      <property name="geometry"><rect><x>23</x><y>47</y><width>571</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>If no default editor is registered for given file type use default editor for txt files</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QRadioButton" name="RadioButtonNotepad">
-      <property name="geometry"><rect><x>8</x><y>80</y><width>578</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Always use Notepad</string></property>
-    </widget>
-    <widget class="QRadioButton" name="RadioButtonCustom">
-      <property name="geometry"><rect><x>8</x><y>112</y><width>578</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Use custom editor</string></property>
-    </widget>
-    <widget class="QLineEdit" name="CustomEdit">
-      <property name="geometry"><rect><x>23</x><y>135</y><width>533</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QCheckBox" name="FixLineWrapCheckBox">
-      <property name="geometry"><rect><x>8</x><y>200</y><width>578</width><height>17</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>Automatically fix line wrap on opening files if needed</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="SetupFrameEditor_Layout" stretch="0,0,0,0,0,0,0,1">
+      <property name="leftMargin"><number>8</number></property>
+      <property name="topMargin"><number>24</number></property>
+      <property name="rightMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameEditor_Section1" columnstretch="0,0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="3">
+            <widget class="QRadioButton" name="RadioButtonDefault">
+              <property name="text"><string>Use default editor for file type</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QCheckBox" name="FallbackCheckBox">
+              <property name="text"><string>If no default editor is registered for given file type use default editor for txt files</string></property>
+              <property name="checked"><bool>true</bool></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="SetupFrameEditor_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameEditor_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>16</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameEditor_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QRadioButton" name="RadioButtonNotepad">
+              <property name="text"><string>Always use Notepad</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameEditor_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameEditor_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameEditor_Section3" columnstretch="0,0,1,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="4">
+            <widget class="QRadioButton" name="RadioButtonCustom">
+              <property name="text"><string>Use custom editor</string></property>
+            </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+            <widget class="QLineEdit" name="CustomEdit">
+      </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="CustomButton">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/92d9d1a333bceee3.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="2">
+            <spacer name="SetupFrameEditor_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameEditor_Gap3">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>43</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameEditor_Section4" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="FixLineWrapCheckBox">
+              <property name="text"><string>Automatically fix line wrap on opening files if needed</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameEditor_Section4_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameEditor_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>RadioButtonDefault</tabstop>
@@ -51,6 +150,8 @@
     <tabstop>CustomEdit</tabstop>
     <tabstop>FixLineWrapCheckBox</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

@@ -170,6 +170,12 @@ void TSetupForm::FormShow(QObject* Sender)
         default: ui.Tree->setCurrentItem(ui.Tree->topLevelItem(0)); break;
     }
     if (ui.Tree->currentItem() != nullptr) ui.Tree->scrollToItem(ui.Tree->currentItem());
+
+    // the window gets larger if a page needs more space (fonts, translations)
+    QList<QWidget*> Pages;
+    for (const TSetupFrameRecord &Rec : Frames) Pages << Rec.Frame;
+    LayoutFrames();
+    VclLayout::fitPages(ui.RightPanel, ui.TopPanel->isVisible() ? ui.TopPanel->geometry().bottom() + 1 : 0, Pages);
 }
 
 QWidget* TSetupForm::GetFrame(TFrameClass FrameClass)
@@ -357,6 +363,7 @@ void TSetupForm::ModeComboBoxChange(QObject* Sender)
     if (LastNode == nullptr) LastNode = ui.Tree->topLevelItem(0);
     ui.Tree->setCurrentItem(LastNode);
     ui.Tree->setUpdatesEnabled(true);
+    VclLayout::fitTreeWidth(ui.Tree);   // (long page names)
 
     if (ui.Tree->currentItem() != nullptr) ui.Tree->scrollToItem(ui.Tree->currentItem());
 }

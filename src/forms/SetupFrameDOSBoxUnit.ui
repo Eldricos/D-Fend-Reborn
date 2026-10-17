@@ -5,114 +5,180 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>660</width><height>340</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>660</number></property>
     <property name="vclDesignHeight" stdset="0"><number>340</number></property>
-    <widget class="QToolButton" name="DosBoxButton">
-      <property name="geometry"><rect><x>592</x><y>72</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>5</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="FindDosBoxButton">
-      <property name="geometry"><rect><x>621</x><y>72</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>6</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLabel" name="DOSBoxDownloadURLInfo">
-      <property name="geometry"><rect><x>16</x><y>183</y><width>154</width><height>13</height></rect></property>
-      <property name="text"><string>You can download DOSBox from</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="DOSBoxDownloadURL">
-      <property name="geometry"><rect><x>16</x><y>202</y><width>105</width><height>13</height></rect></property>
-      <property name="text"><string>DOSBoxDownloadURL</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="DOSBoxInstallationLabel">
-      <property name="geometry"><rect><x>16</x><y>8</y><width>93</width><height>13</height></rect></property>
-      <property name="text"><string>DOSBox installation</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QToolButton" name="DOSBoxAddButton">
-      <property name="geometry"><rect><x>534</x><y>26</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>1</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DOSBoxDeleteButton">
-      <property name="geometry"><rect><x>563</x><y>26</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>2</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DOSBoxDownButton">
-      <property name="geometry"><rect><x>621</x><y>26</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>4</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1caf3e36d49c7929.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DOSBoxUpButton">
-      <property name="geometry"><rect><x>592</x><y>26</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="tag" stdset="0"><number>3</number></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0ae3fe79a233a82b.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="DOSBoxEditButton">
-      <property name="geometry"><rect><x>505</x><y>26</y><width>23</width><height>22</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QToolButton" name="WarningButton">
-      <property name="geometry"><rect><x>563</x><y>72</y><width>23</width><height>22</height></rect></property>
-      <property name="visible"><bool>false</bool></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akTop,akRight</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/cef1bd486c60a35e.png</normaloff></iconset></property>
-      <property name="iconSize"><size><width>16</width><height>16</height></size></property>
-    </widget>
-    <widget class="QLineEdit" name="DosBoxDirEdit">
-      <property name="geometry"><rect><x>16</x><y>72</y><width>572</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-    </widget>
-    <widget class="QLabel" name="DosBoxDirEdit_EditLabel">
-      <property name="geometry"><rect><x>16</x><y>56</y><width>67</width><height>13</height></rect></property>
-      <property name="text"><string>DosBoxDirEdit</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-      <property name="vclFocusControl" stdset="0"><string notr="true">DosBoxDirEdit</string></property>
-      <property name="vclLabeledEditOf" stdset="0"><string notr="true">DosBoxDirEdit</string></property>
-    </widget>
-    <widget class="QComboBox" name="DOSBoxInstallationComboBox">
-      <property name="geometry"><rect><x>16</x><y>27</y><width>481</width><height>21</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QPushButton" name="MoreSettingsButton">
-      <property name="geometry"><rect><x>16</x><y>107</y><width>297</width><height>25</height></rect></property>
-      <property name="tag" stdset="0"><number>7</number></property>
-      <property name="text"><string>More settings for this DOSBox installation</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/3a424dac33bae56c.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QPushButton" name="PortableModeInfoButton">
-      <property name="geometry"><rect><x>16</x><y>138</y><width>170</width><height>25</height></rect></property>
-      <property name="text"><string>Portable mode information</string></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">PortableModeInfoButtonClick</string></property>
-    </widget>
+    <layout class="QVBoxLayout" name="SetupFrameDOSBox_Layout" stretch="0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>16</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameDOSBox_Section1" columnstretch="0,1,0,0,0,0,0">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="DOSBoxInstallationLabel">
+              <property name="text"><string>DOSBox installation</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QComboBox" name="DOSBoxInstallationComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+              <property name="minimumContentsLength"><number>10</number></property>
+            </widget>
+          </item>
+          <item row="1" column="2" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DOSBoxEditButton">
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/8cae1683440d5f8e.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="3" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DOSBoxAddButton">
+              <property name="tag" stdset="0"><number>1</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/7bc99400adfc8024.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="4" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DOSBoxDeleteButton">
+              <property name="tag" stdset="0"><number>2</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/190e94d8efb3a1c9.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="5" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DOSBoxUpButton">
+              <property name="tag" stdset="0"><number>3</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0ae3fe79a233a82b.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="1" column="6" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DOSBoxDownButton">
+              <property name="tag" stdset="0"><number>4</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1caf3e36d49c7929.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+            <widget class="QLabel" name="DosBoxDirEdit_EditLabel">
+              <property name="text"><string>DosBoxDirEdit</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="vclFocusControl" stdset="0"><string notr="true">DosBoxDirEdit</string></property>
+              <property name="vclLabeledEditOf" stdset="0"><string notr="true">DosBoxDirEdit</string></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="4">
+            <widget class="QLineEdit" name="DosBoxDirEdit">
+      </widget>
+          </item>
+          <item row="3" column="4" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="WarningButton">
+              <property name="visible"><bool>false</bool></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/cef1bd486c60a35e.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="5" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="DosBoxButton">
+              <property name="tag" stdset="0"><number>5</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/f94df2c8efcaad41.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="3" column="6" alignment="Qt::AlignRight">
+            <widget class="QToolButton" name="FindDosBoxButton">
+              <property name="tag" stdset="0"><number>6</number></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/0604c54cc06c5a09.png</normaloff></iconset></property>
+              <property name="iconSize"><size><width>16</width><height>16</height></size></property>
+              <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="4" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="MoreSettingsButton">
+              <property name="tag" stdset="0"><number>7</number></property>
+              <property name="text"><string>More settings for this DOSBox installation</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/3a424dac33bae56c.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>297</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="5" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="PortableModeInfoButton">
+              <property name="text"><string>Portable mode information</string></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">PortableModeInfoButtonClick</string></property>
+              <property name="minimumSize"><size><width>170</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameDOSBox_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameDOSBox_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>20</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameDOSBox_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="DOSBoxDownloadURLInfo">
+              <property name="text"><string>You can download DOSBox from</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="DOSBoxDownloadURL">
+              <property name="text"><string>DOSBoxDownloadURL</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameDOSBox_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameDOSBox_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>DOSBoxInstallationComboBox</tabstop>
@@ -120,6 +186,8 @@
     <tabstop>MoreSettingsButton</tabstop>
     <tabstop>PortableModeInfoButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>

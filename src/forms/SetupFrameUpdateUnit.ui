@@ -5,53 +5,140 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>583</width><height>282</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>583</number></property>
     <property name="vclDesignHeight" stdset="0"><number>282</number></property>
-    <widget class="QLabel" name="PackagesLabel">
-      <property name="geometry"><rect><x>16</x><y>80</y><width>102</width><height>13</height></rect></property>
-      <property name="text"><string>Package lists update:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="CheatsLabel">
-      <property name="geometry"><rect><x>16</x><y>126</y><width>86</width><height>13</height></rect></property>
-      <property name="text"><string>Cheats database:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QLabel" name="ProgramUpdateInfoLabel">
-      <property name="geometry"><rect><x>16</x><y>8</y><width>81</width><height>13</height></rect></property>
-      <property name="text"><string>Program update:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="UpdateCheckBox">
-      <property name="geometry"><rect><x>16</x><y>48</y><width>553</width><height>17</height></rect></property>
-      <property name="text"><string>Kennung der aktuellen Version in die Abfrage-URL integrieren</string></property>
-    </widget>
-    <widget class="QComboBox" name="PackagesComboBox">
-      <property name="geometry"><rect><x>16</x><y>95</y><width>401</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QPushButton" name="UpdateButton">
-      <property name="geometry"><rect><x>16</x><y>236</y><width>169</width><height>25</height></rect></property>
-      <property name="text"><string>Search for updates now</string></property>
-      <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/e25f5585dc4c1fa1.png</normaloff></iconset></property>
-      <property name="autoDefault"><bool>false</bool></property>
-      <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
-    </widget>
-    <widget class="QComboBox" name="CheatsComboBox">
-      <property name="geometry"><rect><x>16</x><y>141</y><width>401</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
-    <widget class="QComboBox" name="ProgramUpdateComboBox">
-      <property name="geometry"><rect><x>16</x><y>23</y><width>401</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
-    </widget>
+    <layout class="QVBoxLayout" name="SetupFrameUpdate_Layout" stretch="0,0,0,0,0,1">
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>8</number></property>
+      <property name="rightMargin"><number>14</number></property>
+      <property name="bottomMargin"><number>8</number></property>
+      <property name="spacing"><number>0</number></property>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameUpdate_Section1" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="ProgramUpdateInfoLabel">
+              <property name="text"><string>Program update:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QComboBox" name="ProgramUpdateComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+              <property name="minimumContentsLength"><number>10</number></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="UpdateCheckBox">
+              <property name="text"><string>Kennung der aktuellen Version in die Abfrage-URL integrieren</string></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameUpdate_Section1_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameUpdate_Gap1">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>15</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameUpdate_Section2" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="PackagesLabel">
+              <property name="text"><string>Package lists update:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+            <widget class="QComboBox" name="PackagesComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+              <property name="minimumContentsLength"><number>10</number></property>
+            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+            <widget class="QLabel" name="CheatsLabel">
+              <property name="text"><string>Cheats database:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+            <widget class="QComboBox" name="CheatsComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="maxVisibleItems"><number>8</number></property>
+              <property name="sizeAdjustPolicy"><enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum></property>
+              <property name="minimumContentsLength"><number>10</number></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameUpdate_Section2_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameUpdate_Gap2">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>74</height></size></property>
+        </spacer>
+      </item>
+      <item>
+        <layout class="QGridLayout" name="SetupFrameUpdate_Section3" columnstretch="0,1">
+          <property name="leftMargin"><number>0</number></property>
+          <property name="topMargin"><number>0</number></property>
+          <property name="rightMargin"><number>0</number></property>
+          <property name="bottomMargin"><number>0</number></property>
+          <property name="horizontalSpacing"><number>8</number></property>
+          <property name="verticalSpacing"><number>4</number></property>
+          <item row="0" column="0" alignment="Qt::AlignLeft">
+            <widget class="QPushButton" name="UpdateButton">
+              <property name="text"><string>Search for updates now</string></property>
+              <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/e25f5585dc4c1fa1.png</normaloff></iconset></property>
+              <property name="autoDefault"><bool>false</bool></property>
+              <property name="vclOnClick" stdset="0"><string notr="true">ButtonWork</string></property>
+              <property name="minimumSize"><size><width>169</width><height>0</height></size></property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <spacer name="SetupFrameUpdate_Section3_HFill">
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+            </spacer>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="SetupFrameUpdate_VFill">
+          <property name="orientation"><enum>Qt::Vertical</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+        </spacer>
+      </item>
+    </layout>
   </widget>
   <tabstops>
     <tabstop>ProgramUpdateComboBox</tabstop>
@@ -60,6 +147,8 @@
     <tabstop>CheatsComboBox</tabstop>
     <tabstop>UpdateButton</tabstop>
   </tabstops>
-  <resources><include location="../../resources/dfend.qrc"/></resources>
-  <connections/>
+  <resources>
+    <include location="../../resources/dfend.qrc" />
+  </resources>
+  <connections />
 </ui>
