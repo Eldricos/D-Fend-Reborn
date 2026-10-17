@@ -41,7 +41,6 @@ private:
     void UpdateProgram();
     void UpdatePackagesDB();
     void UpdateCheatsDB();
-    void UpdateDataReader();
 };
 extern TUpdateCheckForm* UpdateCheckForm;
 void ShowUpdateCheckDialog(QWidget* AOwner, TGameDB* AGameDB, TLinkFile* ASearchLinkFile, bool ANoConfigButton = false);

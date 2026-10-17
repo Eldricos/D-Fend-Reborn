@@ -1485,11 +1485,6 @@ void UpdateUserDataFolderAndSettingsAfterUpgrade(TGameDB *GameDB, int LastVersio
 
     // Copy new and changed NewUserData files to DataDir
     if (PrgDataDir() != PrgDir()) {
-        // Update DataReader.xml to version 6 (only if upgrade from below 1.4.0)
-        if (LastVersion < 10400) {
-            if (FileExists(NewUserData + DataReaderConfigFile)) CopyFile(NewUserData + DataReaderConfigFile, Settings + DataReaderConfigFile, false); // False = overwrite existing file
-        }
-
         // Update installer package base script (only if upgrade from below 0.9)
         if (LastVersion < 900) {
             if (FileExists(PrgDir() + NSIInstallerHelpFile)) {

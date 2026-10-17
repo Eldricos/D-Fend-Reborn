@@ -967,11 +967,6 @@ void TLanguageSetup::SetupLanguageStrings2()
     AddStringRec(NR_SetupFormUpdateVersionSpecific, QStringLiteral("SetupForm"), QStringLiteral("UpdateVersionSpecific"), QStringLiteral("Add current version number to request URL"));
     AddStringRec(NR_SetupFormUpdateButton, QStringLiteral("SetupForm"), QStringLiteral("Update.Button"), QStringLiteral("Search for updates now"));
     AddStringRec(NR_SetupFormUpdateProgram, QStringLiteral("SetupForm"), QStringLiteral("Update.Program"), QStringLiteral("Program update:"));
-    AddStringRec(NR_SetupFormUpdateDataReader, QStringLiteral("SetupForm"), QStringLiteral("Update.DataReader"), QStringLiteral("Mobygames reader configuration update:"));
-    AddStringRec(NR_SetupFormUpdateDataReader0, QStringLiteral("SetupForm"), QStringLiteral("Update.DataReader0"), QStringLiteral("On first use only to get an initial configuration file"));
-    AddStringRec(NR_SetupFormUpdateDataReader1, QStringLiteral("SetupForm"), QStringLiteral("Update.DataReader1"), QStringLiteral("On the first use each week"));
-    AddStringRec(NR_SetupFormUpdateDataReader2, QStringLiteral("SetupForm"), QStringLiteral("Update.DataReader2"), QStringLiteral("On the first use each day"));
-    AddStringRec(NR_SetupFormUpdateDataReader3, QStringLiteral("SetupForm"), QStringLiteral("Update.DataReader3"), QStringLiteral("Every time I use the data reader"));
     AddStringRec(NR_SetupFormUpdatePackages, QStringLiteral("SetupForm"), QStringLiteral("Update.Packages"), QStringLiteral("Package lists update:"));
     AddStringRec(NR_SetupFormUpdatePackages0, QStringLiteral("SetupForm"), QStringLiteral("Update.Packages0"), QStringLiteral("Only manual (\"Update lists\" in packages manager)"));
     AddStringRec(NR_SetupFormUpdatePackages1, QStringLiteral("SetupForm"), QStringLiteral("Update.Packages1"), QStringLiteral("Weekly"));
@@ -1530,8 +1525,6 @@ void TLanguageSetup::SetupLanguageStrings3()
     AddStringRec(NR_UpdateCheckDialogPackagesInfo, QStringLiteral("UpdateCheck"), QStringLiteral("Packages.Info"), QStringLiteral("If activated the update checker will update the list of available packages if there are new lists on the server."));
     AddStringRec(NR_UpdateCheckDialogCheats, QStringLiteral("UpdateCheck"), QStringLiteral("Cheats"), QStringLiteral("Cheats data base"));
     AddStringRec(NR_UpdateCheckDialogCheatsInfo, QStringLiteral("UpdateCheck"), QStringLiteral("Cheats.Info"), QStringLiteral("If activated the update checker add new cheat records to the local data base if there are new records on the server."));
-    AddStringRec(NR_UpdateCheckDialogDataReader, QStringLiteral("UpdateCheck"), QStringLiteral("DataReader"), QStringLiteral("Data reader configuration"));
-    AddStringRec(NR_UpdateCheckDialogDataReaderInfo, QStringLiteral("UpdateCheck"), QStringLiteral("DataReader.Info"), QStringLiteral("If activated the update checker will update the data reader configuration from the server to ensure D-Fend Reborn is able to interpret the MobyGames search results homepage."));
     AddStringRec(NR_UpdateCheckDialogDownload, QStringLiteral("UpdateCheck"), QStringLiteral("Download"), QStringLiteral("You can also open the D-Fend Reborn homepage and search for updates manually:"));
     AddStringRec(NR_UpdateCheckDialogUpdate, QStringLiteral("UpdateCheck"), QStringLiteral("Update"), QStringLiteral("Update"));
     AddStringRec(NR_UpdateCheckDialogAutoUpdate, QStringLiteral("UpdateCheck"), QStringLiteral("AutoUpdate"), QStringLiteral("Configure automatic update"));
@@ -1542,7 +1535,6 @@ void TLanguageSetup::SetupLanguageStrings3()
     AddStringRec(NR_UpdateCheckDialogStatusProgramNewVersionAvailable, QStringLiteral("UpdateCheck"), QStringLiteral("Status.Program.NewVersionAvailable"), QStringLiteral("A new version is available."));
     AddStringRec(NR_UpdateCheckDialogStatusPackagesDone, QStringLiteral("UpdateCheck"), QStringLiteral("Status.Packages.Done"), QStringLiteral("List update check completed."));
     AddStringRec(NR_UpdateCheckDialogStatusCheatsDone, QStringLiteral("UpdateCheck"), QStringLiteral("Status.Cheats.Done"), QStringLiteral("The data base has been updated from the server."));
-    AddStringRec(NR_UpdateCheckDialogStatusDataReaderDone, QStringLiteral("UpdateCheck"), QStringLiteral("Status.DataReader.Done"), QStringLiteral("The data reader configuration has been updated from the server."));
     AddStringRec(NR_CacheChooseCaption, QStringLiteral("CacheChoose"), QStringLiteral("Caption"), QStringLiteral("File conflict"));
     AddStringRec(NR_CacheChooseInfo, QStringLiteral("CacheChoose"), QStringLiteral("Info"), QStringLiteral("The listed profiles have changed on disk. This changes will be overwritten with the profiles in memory. If you want to keep the manual made changes to the files on the disk, you have to reload this files now. ") + QStringLiteral("Please select which profiles should be reloaded from disk now."));
     AddStringRec(NR_RestoreDeletedCaption, QStringLiteral("RestoreDeletedProfiles"), QStringLiteral("Caption"), QStringLiteral("Deleted profiles"));
@@ -1917,16 +1909,11 @@ void TLanguageSetup::SetupLanguageStrings4()
     AddStringRec(NR_RenameAllNoFiles, QStringLiteral("RenameAll"), QStringLiteral("NoFiles"), QStringLiteral("There are no files in the folder %s to be renamed."));
     AddStringRec(NR_RenameAllThisProfile, QStringLiteral("RenameAll"), QStringLiteral("ThisProfile"), QStringLiteral("Rename all files in the selected profile"));
     AddStringRec(NR_RenameAllAllProfiles, QStringLiteral("RenameAll"), QStringLiteral("AllProfiles"), QStringLiteral("Rename all files in all profiles"));
-    AddStringRec(NR_DataReader, QStringLiteral("DataReader"), QStringLiteral("Caption"), QStringLiteral("Read game data"));
     AddStringRec(NR_DataReaderButton, QStringLiteral("DataReader"), QStringLiteral("Button"), QStringLiteral("Look up game information"));
     AddStringRec(NR_DataReaderSearchForDOSGames, QStringLiteral("DataReader"), QStringLiteral("DOSGamesOnly"), QStringLiteral("Search for DOS games only"));
     AddStringRec(NR_DataReaderSearchResults, QStringLiteral("DataReader"), QStringLiteral("SearchResults"), QStringLiteral("Search results"));
     AddStringRec(NR_DataReaderNoSearchResults, QStringLiteral("DataReader"), QStringLiteral("NoGameSelected"), QStringLiteral("No game name selected"));
-    AddStringRec(NR_DataReaderCoverCheckbox, QStringLiteral("DataReader"), QStringLiteral("CoverCheckbox"), QStringLiteral("Download cover and store it in the capture folder"));
-    AddStringRec(NR_DataReaderCoverAllCheckbox, QStringLiteral("DataReader"), QStringLiteral("AllCoverCheckbox"), QStringLiteral("Download all available images"));
     AddStringRec(NR_DataReaderInsert, QStringLiteral("DataReader"), QStringLiteral("InsertButton"), QStringLiteral("Insert"));
-    AddStringRec(NR_DataReaderDownloadCaption, QStringLiteral("DataReader"), QStringLiteral("Download.Caption"), QStringLiteral("Receiving data"));
-    AddStringRec(NR_DataReaderDownloadInfo, QStringLiteral("DataReader"), QStringLiteral("Download.Info"), QStringLiteral("Loading data from %s, please wait..."));
     AddStringRec(NR_DataReaderDownloadError, QStringLiteral("DataReader"), QStringLiteral("Download.Error"), QStringLiteral("Error reading data from %s"));
     AddStringRec(NR_DataReaderSource, QStringLiteral("DataReader"), QStringLiteral("Source"), QStringLiteral("Data source"));
     AddStringRec(NR_DataReaderSourceTemplates, QStringLiteral("DataReader"), QStringLiteral("Source.Templates"), QStringLiteral("D-Fend Reborn auto setup templates (offline)"));

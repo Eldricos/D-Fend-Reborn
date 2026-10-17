@@ -10,9 +10,6 @@
 #include "ProgramUpdateCheckUnit.h"
 #include "CheatDBToolsUnit.h"
 #include "SetupFormUnit.h"
-#include "DataReaderMobyUnit.h"
-#include "DataReaderConfigUnit.h"
-#include "InternetDataWaitFormUnit.h"
 #include "PackageDBToolsUnit.h"
 #include "PrgConsts.h"
 #include "Process.h"
@@ -52,8 +49,6 @@ void TUpdateCheckForm::FormCreate(QObject * /*Sender*/)
     ui.InfoLabelPackages->setText(LanguageSetup->UpdateCheckDialogPackagesInfo());
     ui.CheckBoxCheats->setText(LanguageSetup->UpdateCheckDialogCheats());
     ui.InfoLabelCheats->setText(LanguageSetup->UpdateCheckDialogCheatsInfo());
-    ui.CheckBoxDatareader->setText(LanguageSetup->UpdateCheckDialogDataReader());
-    ui.InfoLabelDatareader->setText(LanguageSetup->UpdateCheckDialogDataReaderInfo());
     ui.LabelDownload->setText(LanguageSetup->UpdateCheckDialogDownload());
     ui.UpdateButton->setText(LanguageSetup->UpdateCheckDialogUpdate());
     ui.CloseButton->setText(LanguageSetup->Close());
@@ -63,21 +58,13 @@ void TUpdateCheckForm::FormCreate(QObject * /*Sender*/)
     UserIconLoader->DialogImage(DI_Close, ui.CloseButton);
     UserIconLoader->DirectLoad("Main", 6, ui.SetupButton);
 
-    for (QCheckBox *C : {ui.CheckBoxProgram, ui.CheckBoxPackages, ui.CheckBoxCheats, ui.CheckBoxDatareader}) {
+    for (QCheckBox *C : {ui.CheckBoxProgram, ui.CheckBoxPackages, ui.CheckBoxCheats}) {
         QFont F = C->font(); F.setBold(true); C->setFont(F);
     }
-
-    // D-Fend Reborn: the MobyGames reader is not used any more (game
-    // information comes from the auto setup templates and Wikidata)
-    ui.CheckBoxDatareader->setChecked(false);
-    ui.CheckBoxDatareader->setVisible(false);
-    ui.InfoLabelDatareader->setVisible(false);
-    ui.StatusLabelDatareader->setVisible(false);
 
     SetStatus(ui.StatusLabelProgram, LanguageSetup->UpdateCheckDialogStatusNotYetChecked(), clGrayText);
     SetStatus(ui.StatusLabelPackages, LanguageSetup->UpdateCheckDialogStatusNotYetChecked(), clGrayText);
     SetStatus(ui.StatusLabelCheats, LanguageSetup->UpdateCheckDialogStatusNotYetChecked(), clGrayText);
-    SetStatus(ui.StatusLabelDatareader, LanguageSetup->UpdateCheckDialogStatusNotYetChecked(), clGrayText);
 
     ui.DFRHomepageLabel->setText(LanguageSetup->MenuHelpUpdatesURL());
     {
@@ -95,6 +82,7 @@ void TUpdateCheckForm::FormCreate(QObject * /*Sender*/)
 void TUpdateCheckForm::SetStatus(QLabel *ALabel, const QString &AText, TColor AColor)
 {
     ALabel->setText(AText);
+    ALabel->adjustSize();   // (AutoSize: the status texts are longer than "Not yet checked.")
     QPalette P = ALabel->palette();
     P.setColor(QPalette::WindowText, TColorToQColor(AColor));
     ALabel->setPalette(P);
@@ -121,7 +109,6 @@ void TUpdateCheckForm::UpdateButtonClick(QObject * /*Sender*/)
     ui.CloseButton->setEnabled(false);
     ui.SetupButton->setEnabled(false);
     try {
-        if (ui.CheckBoxDatareader->isChecked()) UpdateDataReader();
         if (ui.CheckBoxCheats->isChecked()) UpdateCheatsDB();
         if (ui.CheckBoxPackages->isChecked()) UpdatePackagesDB();
         if (ui.CheckBoxProgram->isChecked()) UpdateProgram();
@@ -172,29 +159,6 @@ void TUpdateCheckForm::UpdateCheatsDB()
         case urUpdateInstalled: SetStatus(ui.StatusLabelCheats, LanguageSetup->UpdateCheckDialogStatusCheatsDone(), clGreen); break;
         default: break;
     }
-    raise(); activateWindow();   // BringWindowToTop(Handle)
-}
-
-void TUpdateCheckForm::UpdateDataReader()
-{
-    SetStatus(ui.StatusLabelDatareader, LanguageSetup->UpdateCheckDialogStatusSearching(), clDarkYellow);
-    auto *DataReader = new TMobyDataReader();
-    if (!DataReader->LoadConfig(PrgDataDir() + SettingsFolder + PathDelim + DataReaderConfigFile, false)) {
-        SetStatus(ui.StatusLabelDatareader, Format(LanguageSetup->DataReaderDownloadError(), {DataReaderUpdateURL}), clRed);
-        delete DataReader;
-        return;
-    }
-    int I = DataReader->Config()->Version();
-    if (ShowDataReaderInternetConfigWaitDialog(parentWidget(), DataReader, true, LanguageSetup->DataReaderDownloadCaption(), LanguageSetup->DataReaderDownloadInfo(), LanguageSetup->DataReaderDownloadError())) {
-        if (DataReader->Config()->Version() > I) {
-            SetStatus(ui.StatusLabelDatareader, LanguageSetup->UpdateCheckDialogStatusDataReaderDone(), clGreen);
-        } else {
-            SetStatus(ui.StatusLabelDatareader, LanguageSetup->UpdateCheckDialogStatusNoUpdates(), clGreen);
-        }
-    } else {
-        SetStatus(ui.StatusLabelDatareader, LanguageSetup->UpdateCheckDialogStatusAborted(), clRed);
-    }
-    delete DataReader;
     raise(); activateWindow();   // BringWindowToTop(Handle)
 }
 

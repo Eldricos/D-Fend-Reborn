@@ -32,14 +32,6 @@
       <property name="wordWrap"><bool>true</bool></property>
       <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
     </widget>
-    <widget class="QLabel" name="InfoLabelDatareader">
-      <property name="geometry"><rect><x>32</x><y>332</y><width>535</width><height>47</height></rect></property>
-      <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-      <property name="text"><string>If activated the update checker will update the data reader configuration from the server to ensure D-Fend Reborn is able to interpret the MobyGames search results homepage.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="wordWrap"><bool>true</bool></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-    </widget>
     <widget class="QLabel" name="LabelDownload">
       <property name="geometry"><rect><x>16</x><y>418</y><width>409</width><height>13</height></rect></property>
       <property name="text"><string>You can also open the D-Fend Reborn homepage and search for updates manually:</string></property>
@@ -75,13 +67,6 @@
       <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
       <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
     </widget>
-    <widget class="QLabel" name="StatusLabelDatareader">
-      <property name="geometry"><rect><x>32</x><y>380</y><width>120</width><height>13</height></rect></property>
-      <property name="text"><string>Status: Not yet checked.</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
     <widget class="QCheckBox" name="CheckBoxProgram">
       <property name="geometry"><rect><x>16</x><y>16</y><width>540</width><height>17</height></rect></property>
       <property name="text"><string>Search for program updates</string></property>
@@ -95,11 +80,6 @@
     <widget class="QCheckBox" name="CheckBoxCheats">
       <property name="geometry"><rect><x>16</x><y>218</y><width>540</width><height>17</height></rect></property>
       <property name="text"><string>Cheats database</string></property>
-      <property name="checked"><bool>true</bool></property>
-    </widget>
-    <widget class="QCheckBox" name="CheckBoxDatareader">
-      <property name="geometry"><rect><x>16</x><y>314</y><width>540</width><height>17</height></rect></property>
-      <property name="text"><string>Data reader configuration</string></property>
       <property name="checked"><bool>true</bool></property>
     </widget>
     <widget class="QPushButton" name="UpdateButton">
@@ -134,7 +114,6 @@
     <tabstop>CheckBoxProgram</tabstop>
     <tabstop>CheckBoxPackages</tabstop>
     <tabstop>CheckBoxCheats</tabstop>
-    <tabstop>CheckBoxDatareader</tabstop>
     <tabstop>UpdateButton</tabstop>
     <tabstop>CloseButton</tabstop>
     <tabstop>SetupButton</tabstop>

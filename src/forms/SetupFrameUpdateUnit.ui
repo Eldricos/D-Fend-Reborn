@@ -5,13 +5,6 @@
     <property name="geometry"><rect><x>0</x><y>0</y><width>583</width><height>282</height></rect></property>
     <property name="vclDesignWidth" stdset="0"><number>583</number></property>
     <property name="vclDesignHeight" stdset="0"><number>282</number></property>
-    <widget class="QLabel" name="DataReaderInfoLabel">
-      <property name="geometry"><rect><x>16</x><y>174</y><width>199</width><height>13</height></rect></property>
-      <property name="text"><string>Mobygames reader configuration update:</string></property>
-      <property name="textFormat"><enum>Qt::PlainText</enum></property>
-      <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
-      <property name="vclAutoSize" stdset="0"><bool>true</bool></property>
-    </widget>
     <widget class="QLabel" name="PackagesLabel">
       <property name="geometry"><rect><x>16</x><y>80</y><width>102</width><height>13</height></rect></property>
       <property name="text"><string>Package lists update:</string></property>
@@ -36,11 +29,6 @@
     <widget class="QCheckBox" name="UpdateCheckBox">
       <property name="geometry"><rect><x>16</x><y>48</y><width>553</width><height>17</height></rect></property>
       <property name="text"><string>Kennung der aktuellen Version in die Abfrage-URL integrieren</string></property>
-    </widget>
-    <widget class="QComboBox" name="DataReaderComboBox">
-      <property name="geometry"><rect><x>16</x><y>189</y><width>401</width><height>21</height></rect></property>
-      <property name="editable"><bool>false</bool></property>
-      <property name="maxVisibleItems"><number>8</number></property>
     </widget>
     <widget class="QComboBox" name="PackagesComboBox">
       <property name="geometry"><rect><x>16</x><y>95</y><width>401</width><height>21</height></rect></property>
@@ -70,7 +58,6 @@
     <tabstop>UpdateCheckBox</tabstop>
     <tabstop>PackagesComboBox</tabstop>
     <tabstop>CheatsComboBox</tabstop>
-    <tabstop>DataReaderComboBox</tabstop>
     <tabstop>UpdateButton</tabstop>
   </tabstops>
   <resources><include location="../../resources/dfend.qrc"/></resources>

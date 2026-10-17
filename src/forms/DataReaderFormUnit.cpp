@@ -24,7 +24,6 @@ TDataReaderForm::TDataReaderForm(QWidget* AOwner) : TVclForm(AOwner)
     // DFM event wiring
     connect(ui.SearchButton, &QPushButton::clicked, this, [this]() { SearchButtonClick(ui.SearchButton); });
     connect(ui.ListBox, &QListWidget::currentRowChanged, this, [this]() { ListBoxClick(ui.ListBox); });
-    connect(ui.DownloadCoverCheckBox, &QCheckBox::toggled, this, [this]() { DownloadCoverCheckBoxClick(ui.DownloadCoverCheckBox); });
     connect(ui.InsertButton, &QPushButton::clicked, this, [this]() { InsertButtonClick(ui.InsertButton); });
     connect(ui.SearchTypeCheckBox, &QCheckBox::toggled, this, [this]() { SearchTypeCheckBoxClick(ui.SearchTypeCheckBox); });
     connect(ui.SourceComboBox, &QComboBox::activated, this, [this]() { SourceComboBoxChange(ui.SourceComboBox); });
@@ -73,7 +72,7 @@ void TDataReaderForm::FormShow(QObject* Sender)
     ui.PublisherLabel->setText("");
     ui.YearLabel->setText("");
 
-    setWindowTitle(LanguageSetup->DataReader());
+    setWindowTitle(RemoveUnderline(LanguageSetup->DataReaderButton()));   // ("Look up game information")
     ui.SourceLabel->setText(LanguageSetup->DataReaderSource());
     {
         const QSignalBlocker Block(ui.SourceComboBox);
@@ -92,9 +91,6 @@ void TDataReaderForm::FormShow(QObject* Sender)
     ui.PublisherCheckBox->setText(LanguageSetup->GamePublisher());
     ui.YearCheckBox->setText(LanguageSetup->GameYear());
     ui.DescriptionCheckBox->setText(LanguageSetup->CaptureNotes());
-    // (no covers: the templates have none, Wikidata only rarely)
-    ui.DownloadCoverCheckBox->setVisible(false);
-    ui.DownloadCoverAllCheckBox->setVisible(false);
 
     ui.InsertButton->setText(LanguageSetup->DataReaderInsert());
     ui.CancelButton->setText(LanguageSetup->Cancel());
@@ -137,12 +133,6 @@ void TDataReaderForm::FormDestroy(QObject* Sender)
     S = S + "--";   // (cover settings of the old data reader)
     if (ui.DescriptionCheckBox->isChecked()) S = S + "X"; else S = S + "-";
     PrgSetup->SetDataReaderActiveSettings(S);
-}
-
-void TDataReaderForm::DownloadCoverCheckBoxClick(QObject* Sender)
-{
-    Q_UNUSED(Sender);
-    ui.DownloadCoverAllCheckBox->setEnabled(ui.DownloadCoverCheckBox->isChecked() && ui.DownloadCoverCheckBox->isEnabled());
 }
 
 void TDataReaderForm::FormKeyDown(QObject* Sender, int& Key, TShiftState Shift)

@@ -113,22 +113,11 @@
         <property name="text"><string>Year</string></property>
         <property name="checked"><bool>true</bool></property>
       </widget>
-      <widget class="QCheckBox" name="DownloadCoverCheckBox">
-        <property name="geometry"><rect><x>16</x><y>248</y><width>324</width><height>17</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="text"><string>Download cover and store it in the capture folder</string></property>
-        <property name="checked"><bool>true</bool></property>
-      </widget>
       <widget class="QCheckBox" name="NameCheckBox">
         <property name="geometry"><rect><x>16</x><y>24</y><width>321</width><height>17</height></rect></property>
         <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
         <property name="text"><string>Game name</string></property>
         <property name="checked"><bool>true</bool></property>
-      </widget>
-      <widget class="QCheckBox" name="DownloadCoverAllCheckBox">
-        <property name="geometry"><rect><x>32</x><y>271</y><width>305</width><height>17</height></rect></property>
-        <property name="vclAnchors" stdset="0"><string notr="true">akLeft,akTop,akRight</string></property>
-        <property name="text"><string>Download all available images</string></property>
       </widget>
       <widget class="QCheckBox" name="DescriptionCheckBox">
         <property name="geometry"><rect><x>16</x><y>304</y><width>321</width><height>17</height></rect></property>
@@ -181,8 +170,6 @@
     <tabstop>DeveloperCheckBox</tabstop>
     <tabstop>PublisherCheckBox</tabstop>
     <tabstop>YearCheckBox</tabstop>
-    <tabstop>DownloadCoverCheckBox</tabstop>
-    <tabstop>DownloadCoverAllCheckBox</tabstop>
     <tabstop>DescriptionCheckBox</tabstop>
     <tabstop>InsertButton</tabstop>
     <tabstop>CancelButton</tabstop>

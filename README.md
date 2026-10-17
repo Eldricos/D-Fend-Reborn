@@ -53,7 +53,7 @@ so a build can be run directly:
   out; the installed system programs are used instead (see below).
 * The user data the original installer created (`Templates`, `AutoSetup`,
   `IconLibrary`, `Capture`, `VirtualHD`, `Settings/Icons.ini`,
-  `Settings/DataReader.xml`, `Settings/Cheats.xml`) is copied only once per
+  `Settings/Cheats.xml`) is copied only once per
   build folder. Delete `Settings/.DataDeployed` to copy it again.
 
 On Linux the program uses these system programs (install them with the
@@ -98,10 +98,9 @@ NSIS installers). D-Fend Reborn's own game packages are published as the
 `DFRPackageTool` command line tool - see `tools/PackageTool/README.md` for
 how to add games. The online services of the program are the files in `online/` (same
 layout as the old D-Fend Reloaded homepage), which the program downloads
-from this repository: the package lists (`Packages`: main list, add-ons,
-auto setup templates), the data reader configuration (`DataReader`), the
-cheats database (`Cheats`) and the document type definitions of the XML
-files.
+from this repository: the package lists (`Packages`: the main list, which
+links to the game packages), the cheats database (`Cheats`) and the document
+type definitions of the XML files.
 
 Every push and pull request is built on Linux and Windows by GitHub Actions
 (`.github/workflows/build.yml`). Pushing a version tag (`v1.5.0`) starts the

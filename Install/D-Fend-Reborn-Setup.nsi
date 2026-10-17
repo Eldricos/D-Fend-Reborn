@@ -127,7 +127,6 @@ Section "$(LANGNAME_DFendReborn)" ID_DFend
 	
     SetOutPath "$DataInstDir\Settings"
     File "${STAGE}\NewUserData\Icons.ini"
-	File "${STAGE}\NewUserData\DataReader.xml"
   
   Goto TemplateWritingFinish
   WriteNewUserDir:  
@@ -146,7 +145,6 @@ Section "$(LANGNAME_DFendReborn)" ID_DFend
 	
     SetOutPath "$INSTDIR\NewUserData"
     File "${STAGE}\NewUserData\Icons.ini"
-	File "${STAGE}\NewUserData\DataReader.xml"
 
   TemplateWritingFinish:
   

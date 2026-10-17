@@ -35,7 +35,6 @@ ImportSelectTemplateFormUnit	TImportSelectTemplateForm	form	Ui::ImportSelectTemp
 InfoFormUnit	TInfoForm	form	Ui::InfoForm
 InstallationRunFormUnit	TInstallationRunForm	form	Ui::InstallationRunForm
 InstallationSupportFormUnit	TInstallationSupportForm	form	Ui::InstallationSupportForm
-InternetDataWaitFormUnit	TInternetDataWaitForm	form	Ui::InternetDataWaitForm
 LanguageEditorFormUnit	TLanguageEditorForm	form	Ui::LanguageEditorForm
 LanguageEditorStartFormUnit	TLanguageEditorStartForm	form	Ui::LanguageEditorStartForm
 LinkFileEditFormUnit	TLinkFileEditForm	form	Ui::LinkFileEditForm
