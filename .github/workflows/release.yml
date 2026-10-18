@@ -340,7 +340,7 @@ jobs:
           - \`D-Fend-Reborn-$VERSION-x86_64.AppImage\`: make it executable and start it (data in \`~/.local/share/D-Fend Reborn\`)
           - \`D-Fend-Reborn-$VERSION-Linux-x86_64.tar.gz\`: program folder, needs Qt 6.4 or newer from your distribution
 
-          The Linux downloads need glibc 2.35 or newer (e.g. Ubuntu 22.04, Debian 12, Fedora 36). Optional: 7-Zip (\`7z\`), \`mkfs.fat\`, \`oggenc\`, \`curl\`, ScummVM, Wine; another DOSBox version can be selected in the program options.
+          The AppImage needs glibc 2.35 or newer (e.g. Ubuntu 22.04, Debian 12, Fedora 36), the tar.gz glibc 2.39 or newer (e.g. Ubuntu 24.04, Debian 13, Fedora 40). Optional: 7-Zip (\`7z\`), \`mkfs.fat\`, \`oggenc\`, \`curl\`, ScummVM, Wine; another DOSBox version can be selected in the program options.
 
           The Windows and Linux downloads include [DOSBox Staging](https://www.dosbox-staging.org/) $DOSBOX (GNU GPL); \`dosbox-staging-$DOSBOX-source.tar.gz\` is its source code.
           EOF
