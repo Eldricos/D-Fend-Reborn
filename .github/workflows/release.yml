@@ -106,7 +106,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DDFR_BUILD_TESTS=OFF
           cmake --build build
 
       - name: Program folder
@@ -180,7 +180,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DDFR_BUILD_TESTS=OFF
           cmake --build build
 
       - name: AppDir
@@ -271,7 +271,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DDFR_BUILD_TESTS=OFF
           cmake --build build
 
       - name: Archive

@@ -25,6 +25,17 @@ cmake --build build
 
 or open `CMakeLists.txt` in Qt Creator.
 
+Automated tests (`tests/CoreTests.cpp`, built if Qt Test is installed): conf
+files for DOSBox Staging and DOSBox-X, the DOSBox version detection, saving
+and loading profiles and the conf files of all auto setup templates. Run them
+with
+
+```
+ctest --test-dir build --output-on-failure
+```
+
+(on a system without a display: `QT_QPA_PLATFORM=offscreen`, ctest sets it).
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). New or improved auto setup templates
@@ -102,8 +113,8 @@ from this repository: the package lists (`Packages`: the main list, which
 links to the game packages), the cheats database (`Cheats`) and the document
 type definitions of the XML files.
 
-Every push and pull request is built on Linux and Windows by GitHub Actions
-(`.github/workflows/build.yml`). Pushing a version tag (`v1.5.0`) starts the
+Every push and pull request is built and tested on Linux and Windows by GitHub
+Actions (`.github/workflows/build.yml`). Pushing a version tag (`v1.5.0`) starts the
 "Release" workflow (`.github/workflows/release.yml`): it builds the Windows
 installers, a portable Windows zip, a PortableApps.com package, a Linux
 AppImage (X11 and Wayland) and a Linux tar.gz and

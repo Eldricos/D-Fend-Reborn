@@ -1,5 +1,6 @@
 # Build check: compiles D-Fend Reborn on Linux (GCC, distribution Qt) and on
-# Windows (MSVC, official Qt) for every push and pull request.
+# Windows (MSVC, official Qt) for every push and pull request and runs the
+# automated tests (tests/CoreTests.cpp).
 name: Build
 
 on:
@@ -39,6 +40,11 @@ jobs:
           test -f build/Help/English/Index.html
           # the Linux build must not contain the Windows helper programs
           if ls build/Bin/*.exe build/Bin/*.dll 2>/dev/null; then echo "Windows programs in Linux build"; exit 1; fi
+
+      - name: Run the tests
+        run: |
+          test -x build/DFRTests
+          ctest --test-dir build --output-on-failure
 
   windows:
     name: Windows (MSVC, Qt 6.8)
@@ -91,6 +97,12 @@ jobs:
           # included DOSBox Staging (cmake/DOSBoxStaging.cmake)
           test -f build/DOSBox/dosbox.exe
           test -f build/DOSBox/SOURCE.txt
+
+      - name: Run the tests
+        shell: bash
+        run: |
+          test -f build/DFRTests.exe
+          ctest --test-dir build --output-on-failure
 
       - name: Build the installers
         shell: bash
