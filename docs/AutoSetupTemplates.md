@@ -122,6 +122,8 @@ python3 tools/autosetup.py report
 ## Submitting
 
 * **Pull request:** add or change the file in `data/NewUserData/AutoSetup/`.
+  The "Build" workflow also builds the conf files of all templates for DOSBox
+  Staging and DOSBox-X (`ctest`, see README.md).
   The "AutoSetup templates" check runs `tools/autosetup.py check` on all
   templates. Describe what you changed and which DOSBox version you tested
   with.

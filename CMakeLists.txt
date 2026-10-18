@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
 
-project(DFendReborn VERSION 0.5.6 LANGUAGES CXX)
+project(DFendReborn VERSION 0.5.7 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -52,6 +52,25 @@ target_link_libraries(DFendReborn PRIVATE DFendCore)
 qt_add_executable(DFRPackageTool tools/PackageTool/main.cpp)
 target_link_libraries(DFRPackageTool PRIVATE DFendCore)
 
+# Automated tests (tests/CoreTests.cpp; run with ctest). Built if Qt Test
+# is installed.
+option(DFR_BUILD_TESTS "Build the automated tests" ON)
+if(DFR_BUILD_TESTS)
+    find_package(Qt6 QUIET COMPONENTS Test)
+    if(Qt6Test_FOUND)
+        enable_testing()
+        qt_add_executable(DFRTests tests/CoreTests.cpp)
+        target_link_libraries(DFRTests PRIVATE DFendCore Qt6::Test)
+        target_compile_definitions(DFRTests PRIVATE DFR_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
+        add_test(NAME DFRTests COMMAND DFRTests)
+        # (no windows are shown; on systems without a display Qt needs the
+        # "offscreen" platform)
+        set_tests_properties(DFRTests PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
+    else()
+        message(STATUS "Qt Test not found: the automated tests are not built")
+    endif()
+endif()
+
 # Linux/BSD desktops: D-Bus is used to inhibit the screensaver while games
 # run and to set the KDE Plasma wallpaper (optional - without Qt D-Bus these
 # features are left out)
@@ -89,12 +108,17 @@ endif()
 
 set_target_properties(DFendReborn PROPERTIES OUTPUT_NAME "DFend")
 
-# Windows: DOSBox Staging is included in the program folder (folder "DOSBox",
-# downloaded when the build is configured, see cmake/DOSBoxStaging.cmake).
-# Linux/macOS use the DOSBox of the system.
-option(DFR_BUNDLE_DOSBOX "Include DOSBox Staging in the program folder (Windows)" ${WIN32})
+# Windows and Linux (x86_64): DOSBox Staging is included in the program
+# folder (folder "DOSBox", downloaded when the build is configured, see
+# cmake/DOSBoxStaging.cmake). Without it (-DDFR_BUNDLE_DOSBOX=OFF, other
+# systems) the DOSBox of the system is used.
+set(_BundleDefault OFF)
+if(WIN32 OR (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86_64|AMD64|amd64)$"))
+    set(_BundleDefault ON)
+endif()
+option(DFR_BUNDLE_DOSBOX "Include DOSBox Staging in the program folder (Windows, Linux x86_64)" ${_BundleDefault})
 set(DFR_DOSBOX_DIR "")
-if(WIN32 AND DFR_BUNDLE_DOSBOX)
+if(DFR_BUNDLE_DOSBOX)
     include(cmake/DOSBoxStaging.cmake)
 endif()
 
@@ -134,4 +158,8 @@ if(WIN32)
     endif()
 else()
     install(DIRECTORY data/Bin DESTINATION . PATTERN "*.exe" EXCLUDE PATTERN "*.dll" EXCLUDE)
+    if(DFR_DOSBOX_DIR)
+        # (USE_SOURCE_PERMISSIONS: the program files stay executable)
+        install(DIRECTORY "${DFR_DOSBOX_DIR}/" DESTINATION DOSBox USE_SOURCE_PERMISSIONS)
+    endif()
 endif()

@@ -28,7 +28,7 @@ else()
 endif()
 
 if(DOSBOX)
-    # included DOSBox (DOSBox Staging, Windows build, see DOSBoxStaging.cmake;
+    # included DOSBox (DOSBox Staging, Windows or Linux build, see DOSBoxStaging.cmake;
     # it has its own translations and keyboard / code page files)
     file(COPY "${DOSBOX}/" DESTINATION "${DST}/DOSBox")
 endif()

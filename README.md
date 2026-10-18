@@ -25,6 +25,17 @@ cmake --build build
 
 or open `CMakeLists.txt` in Qt Creator.
 
+Automated tests (`tests/CoreTests.cpp`, built if Qt Test is installed): conf
+files for DOSBox Staging and DOSBox-X, the DOSBox version detection, saving
+and loading profiles and the conf files of all auto setup templates. Run them
+with
+
+```
+ctest --test-dir build --output-on-failure
+```
+
+(on a system without a display: `QT_QPA_PLATFORM=offscreen`, ctest sets it).
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). New or improved auto setup templates
@@ -38,16 +49,20 @@ installed copy: `Bin` (helper programs, links, cheats database, 7-Zip),
 `Lang` (program translations), `Help` (the help pages), `IconSets` and
 `NewUserData` (templates, AutoSetup profiles, FreeDOS, Doszip, ...).
 
-The Windows build includes [DOSBox Staging](https://www.dosbox-staging.org/)
-(folder `DOSBox` next to `DFend.exe`): CMake downloads the official Windows
-release of the version set in `cmake/DOSBoxStaging.cmake` (with its SHA-256
-checksum) when it configures the build folder. Configure with
-`-DDFR_BUNDLE_DOSBOX=OFF` to build without it (no internet access).
+The Windows and Linux (x86_64) builds include
+[DOSBox Staging](https://www.dosbox-staging.org/) (folder `DOSBox` next to the
+program): CMake downloads the official Windows or Linux release of the
+version set in `cmake/DOSBoxStaging.cmake` (with its SHA-256 checksum) when
+it configures the build folder. Configure with `-DDFR_BUNDLE_DOSBOX=OFF` to
+build without it (no internet access, or to use the system DOSBox). Build
+folders configured before Linux bundling existed keep the option off; set
+`-DDFR_BUNDLE_DOSBOX=ON` or use a new build folder. The Linux release of
+DOSBox Staging needs glibc 2.34 or newer.
 
 Every build copies them next to the executable (`cmake/DeployData.cmake`),
 so a build can be run directly:
 
-* `Bin`, `Lang`, `IconSets`, `NewUserData` (and on Windows `DOSBox`) are
+* `Bin`, `Lang`, `IconSets`, `NewUserData` (and `DOSBox` when bundled) are
   refreshed on each build.
   On Linux/macOS the Windows programs in `Bin` (`*.exe`, `*.dll`) are left
   out; the installed system programs are used instead (see below).
@@ -57,7 +72,8 @@ so a build can be run directly:
   build folder. Delete `Settings/.DataDeployed` to copy it again.
 
 On Linux the program uses these system programs (install them with the
-package manager): `dosbox` (DOSBox Staging or DOSBox), `7z`/`7za`/`7zz`
+package manager): `dosbox` (only without the bundled DOSBox Staging; DOSBox
+Staging or DOSBox), `7z`/`7za`/`7zz`
 (p7zip or 7zip, for zip/7z archives), `mkfs.fat` (dosfstools, for creating
 disk images), `oggenc` (vorbis-tools), `curl` (FTP downloads in the package
 manager) and optionally `lame` and `scummvm`.
@@ -102,8 +118,8 @@ from this repository: the package lists (`Packages`: the main list, which
 links to the game packages), the cheats database (`Cheats`) and the document
 type definitions of the XML files.
 
-Every push and pull request is built on Linux and Windows by GitHub Actions
-(`.github/workflows/build.yml`). Pushing a version tag (`v1.5.0`) starts the
+Every push and pull request is built and tested on Linux and Windows by GitHub
+Actions (`.github/workflows/build.yml`). Pushing a version tag (`v1.5.0`) starts the
 "Release" workflow (`.github/workflows/release.yml`): it builds the Windows
 installers, a portable Windows zip, a PortableApps.com package, a Linux
 AppImage (X11 and Wayland) and a Linux tar.gz and

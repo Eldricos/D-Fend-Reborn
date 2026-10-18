@@ -106,7 +106,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DDFR_BUILD_TESTS=OFF
           cmake --build build
 
       - name: Program folder
@@ -180,7 +180,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DDFR_BUILD_TESTS=OFF
           cmake --build build
 
       - name: AppDir
@@ -190,6 +190,7 @@ jobs:
           cmake --install build --prefix AppDir/usr/bin
           # the AppImage is read-only: user data in ~/.local/share/D-Fend Reborn
           printf 'USERDIRMODE\n' > AppDir/usr/bin/DFend.dat
+          test -x AppDir/usr/bin/DOSBox/dosbox
 
       - name: AppImage
         env:
@@ -204,6 +205,9 @@ jobs:
           curl -sSLO https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
           curl -sSLO https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
           chmod +x *.AppImage
+          # the included DOSBox Staging is added unchanged after linuxdeploy
+          # (it brings its own libraries; linuxdeploy must not change it)
+          mv AppDir/usr/bin/DOSBox DOSBox.included
           export QMAKE="$QT_ROOT_DIR/bin/qmake"
           export LD_LIBRARY_PATH="$QT_ROOT_DIR/lib:$LD_LIBRARY_PATH"
           ./linuxdeploy-x86_64.AppImage --appdir AppDir \
@@ -215,6 +219,7 @@ jobs:
                    wayland-shell-integration wayland-decoration-client; do
             test -e "AppDir/usr/plugins/$P" || { echo "::error::Qt plugin $P missing in the AppImage"; exit 1; }
           done
+          mv DOSBox.included AppDir/usr/bin/DOSBox
           mkdir -p dist
           ./appimagetool-x86_64.AppImage AppDir "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage"
 
@@ -227,6 +232,8 @@ jobs:
           # test can stop the program itself.
           sudo apt-get install -y --no-install-recommends xvfb weston
           "dist/D-Fend-Reborn-$VERSION-x86_64.AppImage" --appimage-extract > /dev/null
+          # the included DOSBox Staging runs from the AppImage
+          squashfs-root/usr/bin/DOSBox/dosbox --version
           cat > test-start.sh <<'EOF'
           export HOME="$RUNNER_TEMP/home-$1"; mkdir -p "$HOME"
           squashfs-root/AppRun > "start-$1.log" 2>&1 &
@@ -271,7 +278,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DDFR_BUILD_TESTS=OFF
           cmake --build build
 
       - name: Archive
@@ -281,6 +288,7 @@ jobs:
           cmake --install build --prefix "D-Fend Reborn"
           sh packaging/portable-layout.sh "D-Fend Reborn"
           cp packaging/linux/dfend-reborn.desktop packaging/linux/dfend-reborn.png "D-Fend Reborn/"
+          test -x "D-Fend Reborn/DOSBox/dosbox"
           mkdir -p dist
           tar czf "dist/D-Fend-Reborn-$VERSION-Linux-x86_64.tar.gz" "D-Fend Reborn"
 
@@ -308,7 +316,7 @@ jobs:
 
       - name: Source code of the included DOSBox Staging
         run: |
-          # the Windows downloads include DOSBox Staging (GNU GPL): its source
+          # the Windows and Linux downloads include DOSBox Staging (GNU GPL): its source
           # code is attached to the release
           DOSBOX=$(sed -n 's/^set(DFR_DOSBOX_STAGING_VERSION \([0-9.]*\)).*/\1/p' cmake/DOSBoxStaging.cmake)
           test -n "$DOSBOX"
@@ -332,9 +340,9 @@ jobs:
           - \`D-Fend-Reborn-$VERSION-x86_64.AppImage\`: make it executable and start it (data in \`~/.local/share/D-Fend Reborn\`)
           - \`D-Fend-Reborn-$VERSION-Linux-x86_64.tar.gz\`: program folder, needs Qt 6.4 or newer from your distribution
 
-          On Linux install DOSBox Staging (or DOSBox) with your package manager; optional: 7-Zip (\`7z\`), \`mkfs.fat\`, \`oggenc\`, \`curl\`, ScummVM, Wine.
+          The Linux downloads need glibc 2.35 or newer (e.g. Ubuntu 22.04, Debian 12, Fedora 36). Optional: 7-Zip (\`7z\`), \`mkfs.fat\`, \`oggenc\`, \`curl\`, ScummVM, Wine; another DOSBox version can be selected in the program options.
 
-          The Windows downloads include [DOSBox Staging](https://www.dosbox-staging.org/) $DOSBOX (GNU GPL); \`dosbox-staging-$DOSBOX-source.tar.gz\` is its source code.
+          The Windows and Linux downloads include [DOSBox Staging](https://www.dosbox-staging.org/) $DOSBOX (GNU GPL); \`dosbox-staging-$DOSBOX-source.tar.gz\` is its source code.
           EOF
           if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
             # release created on GitHub: add the files and the download notes
