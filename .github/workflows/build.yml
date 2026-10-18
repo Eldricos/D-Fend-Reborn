@@ -1,6 +1,6 @@
 # Build check: compiles D-Fend Reborn on Linux (GCC, distribution Qt) and on
 # Windows (MSVC, official Qt) for every push and pull request and runs the
-# automated tests (tests/CoreTests.cpp).
+# automated tests (tests/CoreTests.cpp, tests/DialogTests.cpp).
 name: Build
 
 on:
@@ -48,6 +48,7 @@ jobs:
       - name: Run the tests
         run: |
           test -x build/DFRTests
+          test -x build/DFRDialogTests
           ctest --test-dir build --output-on-failure
 
   windows:
@@ -106,6 +107,7 @@ jobs:
         shell: bash
         run: |
           test -f build/DFRTests.exe
+          test -f build/DFRDialogTests.exe
           ctest --test-dir build --output-on-failure
 
       - name: Build the installers

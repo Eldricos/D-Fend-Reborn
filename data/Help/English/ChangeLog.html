@@ -71,8 +71,11 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
 <a onclick="return Work('reborn057')" name="reborn057" href="#"><h2>&raquo; D-Fend Reborn 0.5.7 (not released yet)</h2></a>
 <div id="reborn057">
 <ul>
+  <li>[Fix] D-Fend Reborn could crash when it was closed after "Look up game information" had been used.</li>
   <li>Linux: the AppImage and the tar.gz include DOSBox Staging (folder <tt>DOSBox</tt> next to the program, as on Windows); a DOSBox installed on the system is not needed any more. The tar.gz uses it in portable mode (its settings file is <tt>DOSBox/dosbox-staging.conf</tt>).</li>
   <li>Multiple profiles editor: the settings use Qt layouts instead of fixed pixel positions. With display scaling or larger fonts the setting names are no longer cut off; the values of all sections start after the longest setting name and the window gets wider if needed.</li>
+  <li>Settings, profiles and lists are saved via a temporary file: if the program is ended or the disk is full while saving, the old file stays intact instead of being left empty or incomplete.</li>
+  <li>With larger fonts or display scaling, buttons and labels of some dialogs (e.g. Info, link list editor, package creation) cut off their texts; the dialogs get larger now.</li>
 </ul>
 </div>
 
