@@ -17,12 +17,11 @@
 
 struct TControlData {
     QWidget* Control = nullptr;
-    int RelTop = 0;
 };
 struct TSettingData {
     int ID = 0;
     QCheckBox* CheckBox = nullptr;
-    int RelTop = 0;
+    QWidget* Row = nullptr;  // holds the value controls (grid column next to the check box)
     QList<TControlData> Values;
 };
 struct TSectionData {
@@ -31,7 +30,6 @@ struct TSectionData {
     TImageWidget* Image = nullptr;
     QLabel* Info = nullptr;
     QList<TSettingData> Settings;
-    int LastRelY = 0;
 };
 class TMultipleProfilesEditorForm : public TVclForm
 {
@@ -56,7 +54,7 @@ public:
     //   HelpButton.OnClick = HelpButtonClick
 protected:
     void showEvent(QShowEvent* E) override;  // OnShow
-    bool eventFilter(QObject* Watched, QEvent* E) override;  // caption clicks, mouse wheel, scroll box resize
+    bool eventFilter(QObject* Watched, QEvent* E) override;  // caption clicks, mouse wheel
 public slots:
     void FormCreate(QObject* Sender);
     void FormShow(QObject* Sender);
@@ -69,11 +67,12 @@ public slots:
 private:
     QList<TSectionData> Sections;
     TImageList* ImageList = nullptr;  // DFM ImageList (non visual)
-    // Anchors=[akLeft,akTop,akRight] / [akTop,akRight] of the controls created at runtime in the scroll box
-    struct TAnchoredControl { QWidget* Control = nullptr; int RightGap = 0; bool StretchWidth = false; };
-    QList<TAnchoredControl> AnchoredControls;
-    void AnchorRight(QWidget* Control, bool StretchWidth);
-    void UpdateAnchoredControls();
+    // Controls created at runtime in the scroll box: one grid row per caption, section info and setting
+    // (column 0: section image, 1: caption / check box, 2: value controls)
+    QGridLayout* SettingsLayout = nullptr;
+    int GridRow = 0;
+    QWidget* AddValueRow(QCheckBox* CheckBox, QWidget* Control, int ValueWidth);
+    void PrepareScrollBoxControl(QWidget* W);
     void InitSettings();
     void CaptionClick(QObject* Sender);
     void CheckBoxClick(QObject* Sender);

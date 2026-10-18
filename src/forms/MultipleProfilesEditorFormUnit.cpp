@@ -17,18 +17,12 @@ static void CheckListSetChecked(QListWidget* L, int I, bool B) { L->item(I)->set
 // ListBox.Items.Objects[I] (BuildCheckList stores the TGame pointer as Qt::UserRole data)
 static TGame* CheckListGame(QListWidget* L, int I) { return static_cast<TGame*>(L->item(I)->data(Qt::UserRole).value<void*>()); }
 
-// VCL default control heights (the dynamic controls are positioned like in the original)
-static const int ComboBoxHeight = 21;
-static const int EditHeight = 21;
-static const int SpinEditHeight = 22;
-static const int CheckBoxHeight = 17;
-
 /* Tools */
 
-static const int CheckboxWidth = 315;
+// Minimum widths of the value controls (as in the original; wider if the texts need it)
 static const int ValueWidth = 105;
 static const int EditWidth = 200;
-static const int DefaultIndent = 35;
+static const int ReplaceFolderIndent = 20;
 
 static TStringList* GetAllUserInfoKeys(TGameDB* GameDB)
 {
@@ -188,6 +182,17 @@ static const char* const PriorityBackground[5] = {"pause", "lower", "normal", "h
 TMultipleProfilesEditorForm::TMultipleProfilesEditorForm(QWidget* AOwner) : TVclForm(AOwner)
 {
     ui.setupUi(this);
+
+    // Settings page: the controls are created in InitSettings. The layout has to exist
+    // before VclLayout::setupForm, so the scroll box gives its contents the visible width.
+    SettingsLayout = new QGridLayout(ui.ScrollBox_Contents);
+    SettingsLayout->setContentsMargins(10, 6, 10, 8);
+    SettingsLayout->setHorizontalSpacing(8);
+    SettingsLayout->setVerticalSpacing(6);
+    SettingsLayout->setColumnStretch(2, 1);
+    ui.ScrollBox_Contents->setBackgroundRole(QPalette::Base);
+    ui.ScrollBox_Contents->setAutoFillBackground(true);
+
     VclLayout::setupForm(this);
 
     ImageList = TImageList::FromResource("MultipleProfilesEditorFormUnit", "ImageList");
@@ -222,11 +227,6 @@ void TMultipleProfilesEditorForm::showEvent(QShowEvent* E)
 
 bool TMultipleProfilesEditorForm::eventFilter(QObject* Watched, QEvent* E)
 {
-    if (Watched == ui.ScrollBox->viewport() && E->type() == QEvent::Resize) {
-        UpdateAnchoredControls();
-        return false;
-    }
-
     if (E->type() == QEvent::MouseButtonRelease && Watched->property("SectionCaption").toBool()) {
         CaptionClick(Watched);  // Label.OnClick
         return true;
@@ -242,28 +242,6 @@ bool TMultipleProfilesEditorForm::eventFilter(QObject* Watched, QEvent* E)
     }
 
     return TVclForm::eventFilter(Watched, E);
-}
-
-void TMultipleProfilesEditorForm::AnchorRight(QWidget* Control, bool StretchWidth)
-{
-    TAnchoredControl A;
-    A.Control = Control;
-    A.RightGap = ui.ScrollBox->viewport()->width() - (Control->x() + Control->width());
-    A.StretchWidth = StretchWidth;
-    AnchoredControls.append(A);
-}
-
-void TMultipleProfilesEditorForm::UpdateAnchoredControls()
-{
-    const int CW = ui.ScrollBox->viewport()->width();
-    ui.ScrollBox_Contents->resize(CW, ui.ScrollBox_Contents->height());
-    for (const TAnchoredControl& A : AnchoredControls) {
-        if (A.StretchWidth) {
-            A.Control->resize(qMax(0, CW - A.RightGap - A.Control->x()), A.Control->height());
-        } else {
-            A.Control->move(CW - A.RightGap - A.Control->width(), A.Control->y());
-        }
-    }
 }
 
 void TMultipleProfilesEditorForm::FormCreate(QObject* Sender)
@@ -307,8 +285,49 @@ void TMultipleProfilesEditorForm::FormShow(QObject* Sender)
     BuildSelectPopupMenu(ui.PopupMenu, GameDB, [this](QObject* S) { SelectButtonClick(S); }, false);
 
     InitSettings();
+    SettingsLayout->addItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding), GridRow, 0);  // keeps the rows at the top
+
+    // The value controls of all sections start at the same position (after the longest setting name)
+    int W = 0;
+    for (const TSectionData& Sec : Sections) for (const TSettingData& Set : Sec.Settings) W = qMax(W, Set.CheckBox->sizeHint().width());
+    SettingsLayout->setColumnMinimumWidth(1, W);
+
+    // Window width: enough for the settings of all sections (long setting names or translations)
+    for (TSectionData& Sec : Sections) Sec.Open = true;
+    CaptionClick(nullptr);
+    SettingsLayout->activate();
+    VclLayout::fitPages(ui.TabSheet1, 0, {ui.TabSheet1, ui.TabSheet2});
+    for (TSectionData& Sec : Sections) Sec.Open = false;
+
     CaptionClick(nullptr);
     CheckBoxClick(nullptr);
+}
+
+void TMultipleProfilesEditorForm::PrepareScrollBoxControl(QWidget* W)
+{
+    W->setProperty("ScrollBoxControl", true);
+    W->installEventFilter(this);
+}
+
+// Grid row of a setting: check box (column 1) and the value controls (column 2)
+QWidget* TMultipleProfilesEditorForm::AddValueRow(QCheckBox* CheckBox, QWidget* Control, int ValueWidth)
+{
+    QWidget* Row = new QWidget(ui.ScrollBox_Contents);
+    QHBoxLayout* L = new QHBoxLayout(Row);
+    L->setContentsMargins(0, 0, 0, 0);
+    L->setSpacing(4);
+    if (ValueWidth < 0) {
+        Control->setSizePolicy(QSizePolicy::Expanding, Control->sizePolicy().verticalPolicy());
+        L->addWidget(Control, 1);
+    } else {
+        Control->setMinimumWidth(ValueWidth);
+        L->addWidget(Control);
+        L->addStretch(1);
+    }
+    SettingsLayout->addWidget(CheckBox, GridRow, 1, Qt::AlignLeft | Qt::AlignVCenter);
+    SettingsLayout->addWidget(Row, GridRow, 2);
+    GridRow++;
+    return Row;
 }
 
 void TMultipleProfilesEditorForm::AddCaption(const QString& Name)
@@ -321,31 +340,32 @@ void TMultipleProfilesEditorForm::AddCaption(const QString& Name)
     I = Sections.size();
 
     M = new TImageWidget(Parent);
-    M->setGeometry(10, 0, ImageList->Width(), ImageList->Height());
+    M->setFixedSize(ImageList->Width(), ImageList->Height());
     M->setProperty("tag", I);
-    M->setProperty("ScrollBoxControl", true);
-    M->installEventFilter(this);
+    PrepareScrollBoxControl(M);
     connect(M, &TImageWidget::clicked, this, [this, M]() { CaptionClick(M); });
 
     L = new QLabel(Parent);
     QFont F = L->font(); F.setPointSize(F.pointSize() + 1); F.setBold(true); L->setFont(F);
-    L->move(33, 0);
     L->setProperty("tag", I);
     L->setProperty("SectionCaption", true);
-    L->setProperty("ScrollBoxControl", true);
     L->setCursor(Qt::PointingHandCursor);
-    L->installEventFilter(this);
+    PrepareScrollBoxControl(L);
     L->setText(Name);
-    L->adjustSize();  // AutoSize:=True
 
     L2 = new QLabel(Parent);
-    L2->move(DefaultIndent, 0);
     L2->setVisible(false);
-    L2->setProperty("ScrollBoxControl", true);
-    L2->installEventFilter(this);
+    PrepareScrollBoxControl(L2);
+
+    SettingsLayout->addWidget(M, GridRow, 0, Qt::AlignCenter);
+    SettingsLayout->addWidget(L, GridRow, 1, 1, 2);
+    GridRow++;
+    SettingsLayout->addWidget(L2, GridRow, 1, 1, 2);
+    GridRow++;
+    M->show(); L->show();
 
     TSectionData D;
-    D.Caption = L; D.Image = M; D.Info = L2; D.Open = false; D.LastRelY = 0;
+    D.Caption = L; D.Image = M; D.Info = L2; D.Open = false;
     Sections.append(D);
 }
 
@@ -353,7 +373,6 @@ void TMultipleProfilesEditorForm::AddCaption(const QString& Name)
 static QCheckBox* CreateSettingCheckBox(QWidget* Parent, QObject* Filter, const QString& Name)
 {
     QCheckBox* CheckBox = new QCheckBox(Parent);
-    CheckBox->setGeometry(DefaultIndent, 0, CheckboxWidth, CheckBoxHeight);
     CheckBox->setChecked(false);
     CheckBox->setText(Name);
     CheckBox->setProperty("ScrollBoxControl", true);
@@ -368,42 +387,31 @@ void TMultipleProfilesEditorForm::AddSetting(int ID, const QString& Name, TStrin
     QWidget* Parent = ui.ScrollBox_Contents;
     TSectionData& S = Sections.last();
 
-    S.LastRelY += 6;
-
     CheckBox = CreateSettingCheckBox(Parent, this, Name);
     connect(CheckBox, &QCheckBox::clicked, this, [this, CheckBox]() { CheckBoxClick(CheckBox); });
 
     ComboBox = new QComboBox(Parent);
-    {
-        const int Left = DefaultIndent + CheckboxWidth + 2;
-        int Width;
-        if (ValueWidth < 0) Width = ui.ScrollBox->viewport()->width() - 4 - Left; else Width = ValueWidth;
-        ComboBox->setGeometry(Left, 0, Width, ComboBoxHeight);
-        if (ValueWidth < 0) AnchorRight(ComboBox, true);
-        ComboBox->setEditable(Editable);  // csDropDown / csDropDownList
-        if (Values == nullptr) { ComboBox->addItem(RemoveUnderline(LanguageSetup->No())); ComboBox->addItem(RemoveUnderline(LanguageSetup->Yes())); } else ComboBox->addItems(Values->ToQStringList());
-        if ((!Editable) && (ComboBox->count() > 0)) ComboBox->setCurrentIndex(0); else { ComboBox->setCurrentIndex(-1); if (Editable) ComboBox->setEditText(""); }
-        ComboBox->setEnabled(false);
-        // OnDropDown: the items do not change, so the drop down width is set once here
-        ComboBoxDropDown(ComboBox);
-        connect(ComboBox, &QComboBox::currentTextChanged, this, [this, ComboBox]() { ComboBoxChange(ComboBox); });
-    }
-    ComboBox->setProperty("ScrollBoxControl", true);
-    ComboBox->installEventFilter(this);
+    ComboBox->setEditable(Editable);  // csDropDown / csDropDownList
+    // Full width combo boxes: long items (e.g. web addresses) must not make the window wider
+    if (ValueWidth < 0) { ComboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon); ComboBox->setMinimumContentsLength(8); }
+    if (Values == nullptr) { ComboBox->addItem(RemoveUnderline(LanguageSetup->No())); ComboBox->addItem(RemoveUnderline(LanguageSetup->Yes())); } else ComboBox->addItems(Values->ToQStringList());
+    if ((!Editable) && (ComboBox->count() > 0)) ComboBox->setCurrentIndex(0); else { ComboBox->setCurrentIndex(-1); if (Editable) ComboBox->setEditText(""); }
+    ComboBox->setEnabled(false);
+    // OnDropDown: the items do not change, so the drop down width is set once here
+    ComboBoxDropDown(ComboBox);
+    connect(ComboBox, &QComboBox::currentTextChanged, this, [this, ComboBox]() { ComboBoxChange(ComboBox); });
+    PrepareScrollBoxControl(ComboBox);
     SetComboHint(ComboBox);
 
     TSettingData D;
     D.CheckBox = CheckBox;
-    D.RelTop = S.LastRelY + 2;
+    D.Row = AddValueRow(CheckBox, ComboBox, ValueWidth);
 
     TControlData C;
     C.Control = ComboBox;
-    C.RelTop = S.LastRelY;
     D.Values.append(C);
     D.ID = ID;
     S.Settings.append(D);
-
-    S.LastRelY += ComboBox->height();
 
     if (FreeValues && (Values != nullptr)) delete Values;
 }
@@ -415,35 +423,22 @@ void TMultipleProfilesEditorForm::AddEditSetting(int ID, const QString& Name, co
     QWidget* Parent = ui.ScrollBox_Contents;
     TSectionData& S = Sections.last();
 
-    S.LastRelY += 6;
-
     CheckBox = CreateSettingCheckBox(Parent, this, Name);
     connect(CheckBox, &QCheckBox::clicked, this, [this, CheckBox]() { CheckBoxClick(CheckBox); });
 
     Edit = new QLineEdit(Parent);
-    {
-        const int Left = DefaultIndent + CheckboxWidth + 2;
-        int Width;
-        if (ValueWidth < 0) Width = ui.ScrollBox->viewport()->width() - 4 - Left; else Width = ValueWidth;
-        Edit->setGeometry(Left, 0, Width, EditHeight);
-        if (ValueWidth < 0) AnchorRight(Edit, true);
-        Edit->setText(Default); Edit->setEnabled(false);
-    }
-    Edit->setProperty("ScrollBoxControl", true);
-    Edit->installEventFilter(this);
+    Edit->setText(Default); Edit->setEnabled(false);
+    PrepareScrollBoxControl(Edit);
 
     TSettingData D;
     D.CheckBox = CheckBox;
-    D.RelTop = S.LastRelY + 2;
+    D.Row = AddValueRow(CheckBox, Edit, ValueWidth);
 
     TControlData C;
     C.Control = Edit;
-    C.RelTop = S.LastRelY;
     D.Values.append(C);
     D.ID = ID;
     S.Settings.append(D);
-
-    S.LastRelY += Edit->height();
 }
 
 void TMultipleProfilesEditorForm::AddYesNoSetting(int ID, const QString& Name)
@@ -454,29 +449,22 @@ void TMultipleProfilesEditorForm::AddYesNoSetting(int ID, const QString& Name)
 void TMultipleProfilesEditorForm::AddSettingWithEdit(int ID, const QString& Name, TStringList* Values, bool Editable, int ValueWidth, bool FreeValues)
 {
     QLineEdit* Edit;
-    int I;
-    QWidget* C;
 
     AddSetting(ID, Name, Values, Editable, ValueWidth, FreeValues);
 
     TSettingData& S = Sections.last().Settings.last();
 
-    I = S.Values.size();
-    C = S.Values[I - 1].Control;
+    // The edit field fills the rest of the row (instead of the stretch after a fixed width combo box)
+    QBoxLayout* L = static_cast<QBoxLayout*>(S.Row->layout());
+    if (ValueWidth >= 0) delete L->takeAt(L->count() - 1);
 
-    Edit = new QLineEdit(ui.ScrollBox_Contents);
-    {
-        const int Left = C->x() + C->width() + 4;
-        Edit->setGeometry(Left, 0, ui.ScrollBox->viewport()->width() - 4 - Left, EditHeight);
-        AnchorRight(Edit, true);
-        Edit->setEnabled(false);
-    }
-    Edit->setProperty("ScrollBoxControl", true);
-    Edit->installEventFilter(this);
+    Edit = new QLineEdit(S.Row);
+    Edit->setEnabled(false);
+    PrepareScrollBoxControl(Edit);
+    L->addWidget(Edit, 1);
 
     TControlData D;
     D.Control = Edit;
-    D.RelTop = S.Values[I - 1].RelTop;
     S.Values.append(D);
 }
 
@@ -487,37 +475,24 @@ void TMultipleProfilesEditorForm::AddSpinSetting(int ID, const QString& Name, in
     QWidget* Parent = ui.ScrollBox_Contents;
     TSectionData& S = Sections.last();
 
-    S.LastRelY += 6;
-
     CheckBox = CreateSettingCheckBox(Parent, this, Name);
     connect(CheckBox, &QCheckBox::clicked, this, [this, CheckBox]() { CheckBoxClick(CheckBox); });
 
     SpinEdit = new QSpinBox(Parent);
-    {
-        const int Left = DefaultIndent + CheckboxWidth + 2;
-        int Width;
-        if (ValueWidth < 0) Width = ui.ScrollBox->viewport()->width() - 4 - Left; else Width = ValueWidth;
-        SpinEdit->setGeometry(Left, 0, Width, SpinEditHeight);
-        if (ValueWidth < 0) AnchorRight(SpinEdit, true);
-        SpinEdit->setMinimum(MinVal); SpinEdit->setMaximum(MaxVal);
-        if (DefaultVal == -1) SpinEdit->setValue(MinVal); else SpinEdit->setValue(DefaultVal);
-        SpinEdit->setEnabled(false);
-    }
-    SpinEdit->setProperty("ScrollBoxControl", true);
-    SpinEdit->installEventFilter(this);
+    SpinEdit->setMinimum(MinVal); SpinEdit->setMaximum(MaxVal);
+    if (DefaultVal == -1) SpinEdit->setValue(MinVal); else SpinEdit->setValue(DefaultVal);
+    SpinEdit->setEnabled(false);
+    PrepareScrollBoxControl(SpinEdit);
 
     TSettingData D;
     D.CheckBox = CheckBox;
-    D.RelTop = S.LastRelY + 2;
+    D.Row = AddValueRow(CheckBox, SpinEdit, ValueWidth);
 
     TControlData C;
     C.Control = SpinEdit;
-    C.RelTop = S.LastRelY;
     D.Values.append(C);
     D.ID = ID;
     S.Settings.append(D);
-
-    S.LastRelY += SpinEdit->height();
 }
 
 bool TMultipleProfilesEditorForm::DefaultValueOnList(const QString& List, const QString& Value)
@@ -542,7 +517,6 @@ void TMultipleProfilesEditorForm::AddReplaceMountingSetting(int ID, const QStrin
     QLineEdit* Edit;
     QToolButton* Button;
     TStringList* List;
-    const int Indent = 20;
     QWidget* Parent = ui.ScrollBox_Contents;
 
     List = GetReplaceFolderList(GameDB);
@@ -551,28 +525,31 @@ void TMultipleProfilesEditorForm::AddReplaceMountingSetting(int ID, const QStrin
 
     TSectionData& S = Sections.last();
 
-    S.LastRelY += 6;
-
     CheckBox = CreateSettingCheckBox(Parent, this, Name);
     connect(CheckBox, &QCheckBox::clicked, this, [this, CheckBox]() { CheckBoxClick(CheckBox); });
 
-    Label1 = new QLabel(Parent);
-    Label1->move(DefaultIndent + Indent, 0); Label1->setText(FromLabel); Label1->adjustSize();
+    // Below the check box (indented): "from" folder list and "to" folder with the select button
+    QWidget* Row = new QWidget(Parent);
+    QGridLayout* L = new QGridLayout(Row);
+    L->setContentsMargins(ReplaceFolderIndent, 0, 0, 0);
+    L->setHorizontalSpacing(10);
+    L->setVerticalSpacing(2);
+    L->setColumnStretch(1, 1);
 
-    Label2 = new QLabel(Parent);
-    Label2->move(DefaultIndent + Indent + EditWidth + 10, 0); Label2->setText(ToLabel); Label2->adjustSize();
+    Label1 = new QLabel(Row); Label1->setText(FromLabel);
+    Label2 = new QLabel(Row); Label2->setText(ToLabel);
 
-    ComboBox = new QComboBox(Parent);
-    ComboBox->setGeometry(DefaultIndent + Indent, 0, EditWidth, ComboBoxHeight);
+    ComboBox = new QComboBox(Row);
+    ComboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
+    ComboBox->setMinimumWidth(EditWidth);
     ComboBox->addItems(List->ToQStringList()); ComboBox->setCurrentIndex(0); ComboBox->setEnabled(false);
+    ComboBoxDropDown(ComboBox);
     SetComboHint(ComboBox);
 
-    Edit = new QLineEdit(Parent);
-    Edit->setGeometry(DefaultIndent + Indent + EditWidth + 10, 0, 100, EditHeight);
+    Edit = new QLineEdit(Row);
     Edit->setEnabled(false);
 
-    Button = new QToolButton(Parent);
-    Button->setGeometry(ui.ScrollBox->viewport()->width() - 10 - 23, 0, 23, 22);
+    Button = new QToolButton(Row);
     Button->setProperty("tag", ID);
     connect(Button, &QToolButton::clicked, this, [this, Button]() { SelectFolderButtonClick(Button); });
     Button->setToolTip(LanguageSetup->ChooseFolder());
@@ -580,33 +557,34 @@ void TMultipleProfilesEditorForm::AddReplaceMountingSetting(int ID, const QStrin
     Button->setAutoRaise(true);
     Button->setIcon(ImageList->Icon(0));
 
-    Edit->resize(Button->x() - 4 - Edit->x(), Edit->height());
     Label1->setBuddy(ComboBox);
     Label2->setBuddy(Edit);
-    AnchorRight(Edit, true);
-    AnchorRight(Button, false);
 
-    for (QWidget* W : {static_cast<QWidget*>(Label1), static_cast<QWidget*>(Label2), static_cast<QWidget*>(ComboBox), static_cast<QWidget*>(Edit), static_cast<QWidget*>(Button)}) {
-        W->setProperty("ScrollBoxControl", true);
-        W->installEventFilter(this);
-    }
+    L->addWidget(Label1, 0, 0);
+    L->addWidget(Label2, 0, 1, 1, 2);
+    L->addWidget(ComboBox, 1, 0);
+    L->addWidget(Edit, 1, 1);
+    L->addWidget(Button, 1, 2);
+
+    for (QWidget* W : {static_cast<QWidget*>(Label1), static_cast<QWidget*>(Label2), static_cast<QWidget*>(ComboBox), static_cast<QWidget*>(Edit), static_cast<QWidget*>(Button)}) PrepareScrollBoxControl(W);
+
+    SettingsLayout->addWidget(CheckBox, GridRow, 1, 1, 2, Qt::AlignLeft | Qt::AlignVCenter);
+    GridRow++;
+    SettingsLayout->addWidget(Row, GridRow, 1, 1, 2);
+    GridRow++;
 
     TSettingData D;
     D.CheckBox = CheckBox;
-    D.RelTop = S.LastRelY + 2;
-
-    S.LastRelY += CheckBox->height() + 2 + 4;
+    D.Row = Row;
 
     TControlData C;
-    C.Control = ComboBox; C.RelTop = S.LastRelY + Label1->height() + 2; D.Values.append(C);
-    C.Control = Edit; C.RelTop = S.LastRelY + Label1->height() + 2; D.Values.append(C);
-    C.Control = Button; C.RelTop = S.LastRelY + Label1->height() + 2; D.Values.append(C);
-    C.Control = Label1; C.RelTop = S.LastRelY; D.Values.append(C);
-    C.Control = Label2; C.RelTop = S.LastRelY; D.Values.append(C);
+    C.Control = ComboBox; D.Values.append(C);
+    C.Control = Edit; D.Values.append(C);
+    C.Control = Button; D.Values.append(C);
+    C.Control = Label1; D.Values.append(C);
+    C.Control = Label2; D.Values.append(C);
     D.ID = ID;
     S.Settings.append(D);
-
-    S.LastRelY += Label1->height() + 2 + ComboBox->height();
 }
 
 void TMultipleProfilesEditorForm::InitSettings()
@@ -888,55 +866,33 @@ void TMultipleProfilesEditorForm::InitSettings()
 
 void TMultipleProfilesEditorForm::CaptionClick(QObject* Sender)
 {
-    int I, J, K, C, LastY, VertScrollBarPos;
+    int I, J, C, VertScrollBarPos;
 
     VertScrollBarPos = ui.ScrollBox->verticalScrollBar()->value();
-    ui.ScrollBox_Contents->setUpdatesEnabled(false);  // ScrollBox.AutoScroll:=False;
+    ui.ScrollBox_Contents->setUpdatesEnabled(false);
 
     if (Sender != nullptr) {
         const int Tag = Sender->property("tag").toInt();
         Sections[Tag].Open = !Sections[Tag].Open;
     }
 
-    LastY = 0;
-
     for (I = 0; I < Sections.size(); I++) {
         TSectionData& Sec = Sections[I];
         if (Sec.Open) Sec.Image->setPicture(ImageList->Pixmap(2)); else Sec.Image->setPicture(ImageList->Pixmap(1));
 
-        Sec.Caption->move(Sec.Caption->x(), LastY);
-        Sec.Image->move(Sec.Image->x(), LastY + 2);
-        LastY += Sec.Caption->height() + 2;
-
-        Sec.Info->setVisible(!Sec.Open);
-        if (Sec.Open) {
-            for (J = 0; J < Sec.Settings.size(); J++) {
-                Sec.Settings[J].CheckBox->move(Sec.Settings[J].CheckBox->x(), LastY + Sec.Settings[J].RelTop);
-                Sec.Settings[J].CheckBox->setVisible(true);
-                for (K = 0; K < Sec.Settings[J].Values.size(); K++) {
-                    QWidget* W = Sec.Settings[J].Values[K].Control;
-                    W->move(W->x(), LastY + Sec.Settings[J].Values[K].RelTop);
-                    W->setVisible(true);
-                }
-            }
-            LastY += Sec.LastRelY + 8;
-        } else {
-            Sec.Info->move(Sec.Info->x(), LastY);
+        if (!Sec.Open) {
             C = 0; for (J = 0; J < Sec.Settings.size(); J++) if (Sec.Settings[J].CheckBox->isChecked()) C++;
             Sec.Info->setText(Format(LanguageSetup->ChangeProfilesSectionInfo(), {C, (int)Sec.Settings.size()}));
-            Sec.Info->adjustSize();  // AutoSize:=True
-            LastY += Sec.Info->height() + 6;
-            for (J = 0; J < Sec.Settings.size(); J++) {
-                Sec.Settings[J].CheckBox->setVisible(false);
-                for (K = 0; K < Sec.Settings[J].Values.size(); K++) Sec.Settings[J].Values[K].Control->setVisible(false);
-            }
+        }
+        Sec.Info->setVisible(!Sec.Open);
+        for (J = 0; J < Sec.Settings.size(); J++) {
+            Sec.Settings[J].CheckBox->setVisible(Sec.Open);
+            Sec.Settings[J].Row->setVisible(Sec.Open);
         }
     }
 
-    // ScrollBox.AutoScroll:=True; -> size of the scroll area contents
-    // (vclContentsHeight: kept by the layout code when the dialog is resized)
-    ui.ScrollBox_Contents->setProperty("vclContentsHeight", LastY);
-    ui.ScrollBox_Contents->resize(ui.ScrollBox->viewport()->width(), LastY);
+    // New size of the scroll box contents before the old position is restored
+    QCoreApplication::sendPostedEvents(nullptr, QEvent::LayoutRequest);
     ui.ScrollBox_Contents->setUpdatesEnabled(true);
     ui.ScrollBox->verticalScrollBar()->setValue(VertScrollBarPos);
 }
@@ -1335,10 +1291,10 @@ void TMultipleProfilesEditorForm::FormKeyDown(QObject* Sender, int& Key, TShiftS
 static bool ScrollBoxWheelTarget(QScrollArea* ScrollBox, QWidget* Contents, QTabWidget* PageControl, const QPoint& MousePos)
 {
     QWidget* Active = QApplication::focusWidget();
-    bool B = (Active == ScrollBox) || ((Active != nullptr) && (Active->parentWidget() == Contents));
+    bool B = (Active == ScrollBox) || ((Active != nullptr) && Contents->isAncestorOf(Active));
     if ((!B) && (PageControl->currentIndex() == 1)) {
         QWidget* C = QApplication::widgetAt(MousePos);
-        B = (C == ScrollBox) || (C == ScrollBox->viewport()) || (C == Contents) || ((C != nullptr) && (C->parentWidget() == Contents));
+        B = (C == ScrollBox) || (C == ScrollBox->viewport()) || (C == Contents) || ((C != nullptr) && Contents->isAncestorOf(C));
     }
     return B;
 }
