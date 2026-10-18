@@ -3,9 +3,10 @@
 // Every dialog is opened (with a test profile where it needs one), checked
 // and closed again with Cancel:
 //   * it opens without crashing,
-//   * no text of a label, button, check box or radio button is cut off and
-//     no such control lies outside of its parent (all pages of tab controls
-//     and of the page trees of the profile editor and the program options).
+//   * no text of a label, button, check box or radio button is cut off, no
+//     such control lies outside of its parent and positioned buttons do not
+//     overlap (all pages of tab controls and of the page trees of the profile
+//     editor and the program options).
 // Each dialog is tested with the normal font and with a larger font (as with
 // display scaling or a larger system font).
 //
@@ -164,6 +165,19 @@ void CheckVisibleControls(QWidget* Dlg, const QString& Where, QStringList& Probl
     }
 }
 
+// Buttons positioned like in the original (not in a Qt layout) must not overlap
+// (e.g. after a button got wider for its text)
+void CheckButtonOverlaps(QWidget* Dlg, const QString& Where, QStringList& Problems)
+{
+    QList<QPushButton*> Buttons;
+    for (QPushButton* B : Dlg->findChildren<QPushButton*>())
+        if (B->isVisibleTo(Dlg) && B->parentWidget() && !B->parentWidget()->layout()) Buttons << B;
+    for (int I = 0; I < Buttons.size(); I++)
+        for (int J = I + 1; J < Buttons.size(); J++)
+            if (Buttons[I]->parentWidget() == Buttons[J]->parentWidget() && Buttons[I]->geometry().intersects(Buttons[J]->geometry()))
+                Problems << QStringLiteral("%1: %2 overlaps %3").arg(Where, Describe(Buttons[I]), Describe(Buttons[J]));
+}
+
 void Settle()
 {
     for (int I = 0; I < 5; I++) { QCoreApplication::processEvents(); QTest::qWait(10); }
@@ -176,6 +190,7 @@ void CheckDialog(QWidget* Dlg, bool TreePages, QStringList& Problems)
     const QString Name = Dlg->objectName();
     if (qEnvironmentVariableIsSet("DFR_DEBUG")) qDebug() << "SIZE" << Name << Dlg->size() << "design" << Dlg->property("vclDesignWidth").toInt() << Dlg->property("vclDesignHeight").toInt();
     CheckVisibleControls(Dlg, Name, Problems);
+    CheckButtonOverlaps(Dlg, Name, Problems);
 
     if (TreePages) {
         for (QTreeWidget* Tree : Dlg->findChildren<QTreeWidget*>()) {
@@ -207,6 +222,7 @@ void CheckDialog(QWidget* Dlg, bool TreePages, QStringList& Problems)
 void CloseModalWindows()
 {
     while (QWidget* M = QApplication::activeModalWidget()) {
+        qInfo("closing %s %s", M->metaObject()->className(), qPrintable(M->objectName()));
         if (auto* D = qobject_cast<QDialog*>(M)) D->QDialog::done(QDialog::Rejected); else M->close();
         QCoreApplication::processEvents();
     }
@@ -324,6 +340,13 @@ private slots:
         PrgConsts_Initialization();
         LoggingUnit_Initialization();
         PrgSetupUnit_Initialization();
+        // Not the first start: no DOSBox search on the whole disk, no first run
+        // wizard, no searches for tools and no update of the program data
+        PrgSetup->SetDOSBoxFullSearchDone(true);
+        PrgSetup->SetDFendVersion(GetNormalFileVersionAsString());
+        PrgSetupUnit_Finalization();   // (writes Settings/DFend.ini)
+        PrgSetupUnit_Initialization();
+        QVERIFY(!PrgSetup->FirstRun());
         LanguageSetupUnit_Initialization();
         DOSBoxCountUnit_Initialization();
         GameDBUnit_Initialization();

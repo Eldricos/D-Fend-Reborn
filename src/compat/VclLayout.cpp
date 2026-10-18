@@ -489,6 +489,27 @@ static void growForControls(QWidget *Top)
     if (Top->isVisible()) Top->move(Top->x() - (Need.width() - Old.width()) / 2, Top->y() - (Need.height() - Old.height()) / 2);
 }
 
+// Buttons positioned like in the original (not in a Qt layout): wider if their
+// text needs more space; the buttons next to them in the same row move along
+static void widenPositionedButtons(QWidget *Top)
+{
+    for (QPushButton *B : Top->findChildren<QPushButton *>()) {
+        QWidget *P = B->parentWidget();
+        if (!P || P->layout() || !B->isVisibleTo(Top) || B->text().isEmpty()) continue;
+        const int D = B->sizeHint().width() - B->width();
+        if (D <= 0) continue;
+        const QString A = B->property("vclAnchors").toString();
+        const bool Right = A.contains("akRight") && !A.contains("akLeft");   // grows to the left
+        const QRect G = B->geometry();
+        for (QPushButton *O : P->findChildren<QPushButton *>(Qt::FindDirectChildrenOnly)) {
+            if (O == B || qAbs(O->y() - G.y()) > 4) continue;
+            if (!Right && O->x() >= G.right()) setBounds(O, O->x() + D, O->y(), O->width(), O->height());
+            if (Right && O->geometry().right() <= G.x()) setBounds(O, O->x() - D, O->y(), O->width(), O->height());
+        }
+        setBounds(B, Right ? G.x() - D : G.x(), G.y(), G.width() + D, G.height());
+    }
+}
+
 class FitControlsOnShow : public QObject
 {
 public:
@@ -501,6 +522,7 @@ public:
             QTimer::singleShot(0, this, [T]() {
                 if (!T) return;
                 updateDesignMinimums(T);
+                widenPositionedButtons(T);
                 // (frames are created as windows and embedded later)
                 if (T->isWindow() && !T->property("vclFitOnShow").toBool()) growForControls(T);
             });

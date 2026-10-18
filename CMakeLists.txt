@@ -71,7 +71,11 @@ if(DFR_BUILD_TESTS)
         qt_add_executable(DFRDialogTests tests/DialogTests.cpp)
         target_link_libraries(DFRDialogTests PRIVATE DFendCore Qt6::Test)
         target_compile_definitions(DFRDialogTests PRIVATE DFR_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
-        add_test(NAME DFRDialogTests COMMAND DFRDialogTests WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+        # (-silent: only failures, warnings and the totals are reported; also
+        # written to DFRDialogTests.txt, the build check shows it on failures)
+        add_test(NAME DFRDialogTests COMMAND DFRDialogTests -silent -o DFRDialogTests.txt,txt -o -,txt WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+        # console programs on Windows too (the test output appears in ctest)
+        set_target_properties(DFRTests DFRDialogTests PROPERTIES WIN32_EXECUTABLE FALSE)
         # a 1920x1080 screen (the default offscreen screen is 800x800, smaller
         # than real desktops: windows could not get as large as they need)
         file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/offscreen-screen.json
