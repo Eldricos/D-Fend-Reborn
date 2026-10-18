@@ -3,6 +3,7 @@
 #include <QCoreApplication>
 #include <QFile>
 #include <QFileInfo>
+#include <QSaveFile>
 #include <QDirIterator>
 #include <QStringDecoder>
 #include <QStringEncoder>
@@ -629,10 +630,20 @@ QString ReadTextFile(const QString &FileName, bool *Ok, bool *IsUtf8)
     return DecodeAnsi(data);
 }
 
+bool WriteFileSafely(const QString &FileName, const QByteArray &Data)
+{
+    // The data goes to a temporary file first, which replaces the old file only
+    // when everything was written: a crash, power loss or a full disk while
+    // saving leaves the old file intact (settings, profiles, lists).
+    QSaveFile f(ToNativePath(FileName));
+    f.setDirectWriteFallback(true);  // folder without write permission (only the file is writable)
+    if (!f.open(QIODevice::WriteOnly)) return false;
+    if (f.write(Data) != Data.size()) { f.cancelWriting(); return false; }
+    return f.commit();
+}
+
 bool WriteTextFile(const QString &FileName, const QString &Text, bool Utf8, bool Bom)
 {
-    QFile f(ToNativePath(FileName));
-    if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) return false;
     QByteArray data;
     if (Utf8) {
         if (Bom) data = "\xEF\xBB\xBF";
@@ -640,9 +651,7 @@ bool WriteTextFile(const QString &FileName, const QString &Text, bool Utf8, bool
     } else {
         data = EncodeAnsi(Text);
     }
-    bool ok = f.write(data) == data.size();
-    f.close();
-    return ok;
+    return WriteFileSafely(FileName, data);
 }
 
 // ---------------------------------------------------------------------------

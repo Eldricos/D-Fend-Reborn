@@ -411,6 +411,105 @@ public:
     bool FDone = false;
 };
 
+// ---------------------------------------------------------------------------
+// Controls that need more space than at design time (larger fonts, display
+// scaling, long translations)
+// ---------------------------------------------------------------------------
+
+// The layout converter (tools/ui2layout.py) keeps the design width of buttons,
+// labels, tab controls etc. as their minimumSize. In Qt an explicit minimum
+// size replaces the size a control needs, so its text would be cut off when it
+// needs more: the minimum becomes the larger of both (recorded in
+// setupForm, updated before the window is shown).
+static bool isTextControl(QWidget *W)
+{
+    return qobject_cast<QLabel *>(W) || qobject_cast<QGroupBox *>(W) || qobject_cast<QTabWidget *>(W)
+           || (qobject_cast<QAbstractButton *>(W) && !qobject_cast<QToolButton *>(W));
+}
+
+static void recordDesignMinimums(QWidget *Top)
+{
+    for (QWidget *W : Top->findChildren<QWidget *>()) {
+        if (!isTextControl(W) || !W->parentWidget() || !W->parentWidget()->layout()) continue;
+        const QSize M = W->minimumSize();
+        if (M.width() > 0 || M.height() > 0) W->setProperty("vclDesignMin", M);
+    }
+}
+
+static void updateDesignMinimums(QWidget *Top)
+{
+    for (QWidget *W : Top->findChildren<QWidget *>()) {
+        const QVariant D = W->property("vclDesignMin");
+        if (!D.isValid()) continue;
+        const QSize M = D.toSize(), H = W->minimumSizeHint();
+        const QSize N(M.width() > 0 ? qMax(M.width(), H.width()) : 0, M.height() > 0 ? qMax(M.height(), H.height()) : 0);
+        if (N != W->minimumSize()) W->setMinimumSize(N);
+    }
+}
+
+static bool inScrollArea(QWidget *W, QWidget *Top)
+{
+    for (QWidget *P = W->parentWidget(); P && P != Top; P = P->parentWidget())
+        if (qobject_cast<QAbstractScrollArea *>(P)) return true;
+    return false;
+}
+
+// Resizable windows: larger if their layout needs more space. Windows whose
+// panels are positioned by alignment (no layout of the window itself): larger
+// if a panel with a layout needs more space.
+static void growForControls(QWidget *Top)
+{
+    QSize Need = Top->size();
+    if (Top->layout()) {
+        Need = Need.expandedTo(Top->minimumSizeHint());
+    } else {
+        int DW = 0, DH = 0;
+        for (QWidget *W : Top->findChildren<QWidget *>()) {
+            if (!W->layout() || !W->isVisibleTo(Top) || !W->parentWidget() || W->parentWidget()->layout() || inScrollArea(W, Top)) continue;
+            const QSize H = W->minimumSizeHint();
+            if (!H.isValid()) continue;
+            DW = qMax(DW, H.width() - W->width());
+            const QString A = W->property("vclAlign").toString();
+            if (A == "alTop" || A == "alBottom") {
+                if (H.height() > W->height()) setAlignedExtent(W, H.height());
+            } else {
+                DH = qMax(DH, H.height() - W->height());
+            }
+        }
+        Need += QSize(qMax(0, DW), qMax(0, DH));
+    }
+    if (QScreen *Scr = Top->screen()) Need = Need.boundedTo(Scr->availableGeometry().size() - (Top->frameGeometry().size() - Top->size()));
+    if (Need == Top->size()) return;
+    const QSize Old = Top->size();
+    if (Top->minimumWidth() == Top->maximumWidth() && Top->minimumHeight() == Top->maximumHeight()) Top->setFixedSize(Need);
+    else {
+        Top->setMinimumSize(Top->minimumSize().expandedTo(Need));
+        Top->resize(Need);
+    }
+    if (Top->isVisible()) Top->move(Top->x() - (Need.width() - Old.width()) / 2, Top->y() - (Need.height() - Old.height()) / 2);
+}
+
+class FitControlsOnShow : public QObject
+{
+public:
+    explicit FitControlsOnShow(QWidget *Top) : QObject(Top), FTop(Top) { Top->installEventFilter(this); }
+    bool eventFilter(QObject *O, QEvent *E) override
+    {
+        if (O == FTop && E->type() == QEvent::Show) {
+            // (after the texts of the form's OnShow code)
+            QPointer<QWidget> T = FTop;
+            QTimer::singleShot(0, this, [T]() {
+                if (!T) return;
+                updateDesignMinimums(T);
+                // (frames are created as windows and embedded later)
+                if (T->isWindow() && !T->property("vclFitOnShow").toBool()) growForControls(T);
+            });
+        }
+        return false;
+    }
+    QWidget *FTop;
+};
+
 // Fixed size dialog with a Qt layout (converted .ui): design size, or larger
 // if the controls need more space (scaling, fonts, translations).
 class FitOnShow : public QObject
@@ -432,6 +531,7 @@ public:
     }
     void fit(bool KeepCenter)
     {
+        updateDesignMinimums(FTop);
         QLayout *L = FTop->layout();
         L->activate();
         const QSize Old = FTop->size();
@@ -468,7 +568,7 @@ static void applyWindowSettings(QWidget *Top)
         Top->setWindowFlags(F);
     }
     if (BS == "bsDialog" || BS == "bsSingle" || BS == "bsToolWindow") {
-        if (Top->layout()) new FitOnShow(Top);   // texts are set after setupForm
+        if (Top->layout()) { new FitOnShow(Top); Top->setProperty("vclFitOnShow", true); }   // texts are set after setupForm
         else Top->setFixedSize(Top->size());
     } else {
         int MW = Top->property("vclMinWidth").toInt(), MH = Top->property("vclMinHeight").toInt();
@@ -950,8 +1050,10 @@ void setupForm(QWidget *Top)
     } else {
         installEngines(Top);
     }
+    recordDesignMinimums(Top);
     applyWindowSettings(Top);
     new AutoSizeOnShow(Top);
+    if (Top->isWindow() && !qobject_cast<QMainWindow *>(Top)) new FitControlsOnShow(Top);
 }
 
 }  // namespace VclLayout

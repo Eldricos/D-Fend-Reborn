@@ -2,6 +2,7 @@
 //
 //   * conf files for DOSBox Staging and DOSBox-X (DOSBoxConfUnit)
 //   * detection of the DOSBox version of an installation (DOSBoxKindOfFile)
+//   * saving files via a temporary file (settings, profiles, lists)
 //   * saving and loading profiles (TGame), including the DOSBox Staging
 //     settings
 //   * all auto setup templates of data/NewUserData/AutoSetup: they can be
@@ -326,6 +327,23 @@ private slots:
         QCOMPARE(DOSBoxKindOfFile(D + "e/dosbox"), dkDOSBoxX);
         QCOMPARE(DOSBoxKindOfFile(D + "f/dosbox.exe"), dkDOSBox);
         QCOMPARE(DOSBoxKind(QString()), dkDOSBox);
+    }
+
+    // ----- saving files ----------------------------------------------------
+
+    // Settings and profiles are written via a temporary file (WriteFileSafely)
+    void safeFileSaving()
+    {
+        const QString File = TempPrgDir + "SafeSave.txt";
+        QVERIFY(WriteTextFile(File, "first", true));
+        QVERIFY(WriteTextFile(File, "second\r\nline", true));
+        QCOMPARE(ReadTextFile(File), QString("second\r\nline"));
+        // no temporary files left behind
+        const QStringList Left = QDir(FPrgDir.path()).entryList({"SafeSave*"}, QDir::Files);
+        QCOMPARE(Left, QStringList({"SafeSave.txt"}));
+        // a folder that does not exist: error, nothing written
+        QVERIFY(!WriteTextFile(TempPrgDir + "Missing" + PathDelim + "File.txt", "x", true));
+        QVERIFY(!QFileInfo::exists(TempPrgDir + "Missing"));
     }
 
     // ----- profiles ---------------------------------------------------------

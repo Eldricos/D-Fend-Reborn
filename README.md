@@ -25,10 +25,15 @@ cmake --build build
 
 or open `CMakeLists.txt` in Qt Creator.
 
-Automated tests (`tests/CoreTests.cpp`, built if Qt Test is installed): conf
-files for DOSBox Staging and DOSBox-X, the DOSBox version detection, saving
-and loading profiles and the conf files of all auto setup templates. Run them
-with
+Automated tests (built if Qt Test is installed):
+* `tests/CoreTests.cpp`: conf files for DOSBox Staging and DOSBox-X, the
+  DOSBox version detection, saving files, saving and loading profiles and the
+  conf files of all auto setup templates.
+* `tests/DialogTests.cpp`: opens the main window and every dialog (all tabs and
+  pages) with the normal and a larger font and checks that no texts are cut
+  off.
+
+Run them with
 
 ```
 ctest --test-dir build --output-on-failure

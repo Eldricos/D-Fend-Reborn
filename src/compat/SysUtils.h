@@ -241,6 +241,8 @@ void FindClose(TSearchRec &F);
 // Reads a whole text file.  UTF-8 (with or without BOM) is detected, everything
 // else is decoded with the system 8 bit codepage (as Delphi 2007 did).
 QString ReadTextFile(const QString &FileName, bool *Ok = nullptr, bool *IsUtf8 = nullptr);
+// Writes Data to FileName via a temporary file (the old file stays intact if writing fails)
+bool WriteFileSafely(const QString &FileName, const QByteArray &Data);
 bool WriteTextFile(const QString &FileName, const QString &Text, bool Utf8 = false, bool Bom = false);
 QByteArray EncodeAnsi(const QString &S);
 QString DecodeAnsi(const QByteArray &B);

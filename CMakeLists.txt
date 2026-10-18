@@ -52,7 +52,8 @@ target_link_libraries(DFendReborn PRIVATE DFendCore)
 qt_add_executable(DFRPackageTool tools/PackageTool/main.cpp)
 target_link_libraries(DFRPackageTool PRIVATE DFendCore)
 
-# Automated tests (tests/CoreTests.cpp; run with ctest). Built if Qt Test
+# Automated tests (tests/CoreTests.cpp, tests/DialogTests.cpp; run with
+# ctest). Built if Qt Test
 # is installed.
 option(DFR_BUILD_TESTS "Build the automated tests" ON)
 if(DFR_BUILD_TESTS)
@@ -66,6 +67,16 @@ if(DFR_BUILD_TESTS)
         # (no windows are shown; on systems without a display Qt needs the
         # "offscreen" platform)
         set_tests_properties(DFRTests PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
+        # all dialogs: open, check for cut off texts (normal and large font), close
+        qt_add_executable(DFRDialogTests tests/DialogTests.cpp)
+        target_link_libraries(DFRDialogTests PRIVATE DFendCore Qt6::Test)
+        target_compile_definitions(DFRDialogTests PRIVATE DFR_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
+        add_test(NAME DFRDialogTests COMMAND DFRDialogTests WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+        # a 1920x1080 screen (the default offscreen screen is 800x800, smaller
+        # than real desktops: windows could not get as large as they need)
+        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/offscreen-screen.json
+             "{\"screens\": [{\"name\": \"Test\", \"x\": 0, \"y\": 0, \"width\": 1920, \"height\": 1080, \"logicalDpi\": 96, \"logicalBaseDpi\": 96, \"dpr\": 1}]}\n")
+        set_tests_properties(DFRDialogTests PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen:configfile=offscreen-screen.json")
     else()
         message(STATUS "Qt Test not found: the automated tests are not built")
     endif()

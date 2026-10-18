@@ -629,7 +629,9 @@ TGameDB::TGameDB(const QString& ADir, bool ATimeStampCheck)
 
 TGameDB::~TGameDB()
 {
-    if (PrgSetup->BinaryCache()) {
+    // (PrgSetup is gone already when a list kept until the program ends is freed, e.g.
+    // the auto setup templates of "Look up game information")
+    if ((PrgSetup != nullptr) && PrgSetup->BinaryCache()) {
         if (FGameList->size() > 20) StoreBinCache(); else DeleteFile(FDir + CacheFile);
     }
     Clear();
@@ -1167,11 +1169,7 @@ void TGameDB::StoreBinCache()
     }
     StFinal.close();
 
-    QFile F(ToNativePath(FDir + CacheFile));
-    if (F.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-        F.write(StFinal.data());
-        F.close();
-    }
+    WriteFileSafely(FDir + CacheFile, StFinal.data());
 
     for (int K = 0; K < 26; K++) delete Index[K];
 }
