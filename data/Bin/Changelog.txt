@@ -1,6 +1,14 @@
 D-Fend Reborn Changelog
 
 
+Version 0.5.7 (not released yet)
+================================
+- Linux: the AppImage and the tar.gz include DOSBox Staging (folder DOSBox
+  next to the program, as on Windows); a DOSBox installed on the system is
+  not needed any more. The tar.gz uses it in portable mode (its settings
+  file is DOSBox/dosbox-staging.conf).
+
+
 Version 0.5.6 (10/18/2026)
 ==========================
 - [Fix] Search for updates: the status texts (e.g. "List update check

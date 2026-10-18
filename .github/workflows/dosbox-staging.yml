@@ -1,5 +1,6 @@
 # Checks once a week whether a new version of DOSBox Staging (the DOSBox
-# included in the Windows downloads, cmake/DOSBoxStaging.cmake) is available.
+# included in the Windows and Linux downloads, cmake/DOSBoxStaging.cmake) is
+# available.
 # If so, it opens an issue with the steps to update it (one issue per version).
 # "Run workflow" (Actions > DOSBox Staging update) checks immediately.
 name: DOSBox Staging update
@@ -47,8 +48,8 @@ jobs:
 
           Steps:
           1. \`python3 tools/update-dosbox-staging.py apply\` - writes the new version and the
-             SHA-256 checksum of the Windows zip to \`cmake/DOSBoxStaging.cmake\`.
-          2. Build (Windows) and test some games, also with old profiles. Check the
+             SHA-256 checksums of the Windows zip and the Linux tar.xz to \`cmake/DOSBoxStaging.cmake\`.
+          2. Build (Windows and Linux) and test some games, also with old profiles. Check the
              release notes for renamed or removed settings and, if needed, adapt
              \`src/core/DOSBoxConfUnit.cpp\` (start DOSBox Staging with a game and
              look for "CONFIG:" warnings in its console / log).

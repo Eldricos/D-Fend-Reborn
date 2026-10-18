@@ -40,6 +40,10 @@ jobs:
           test -f build/Help/English/Index.html
           # the Linux build must not contain the Windows helper programs
           if ls build/Bin/*.exe build/Bin/*.dll 2>/dev/null; then echo "Windows programs in Linux build"; exit 1; fi
+          # included DOSBox Staging (cmake/DOSBoxStaging.cmake)
+          test -x build/DOSBox/dosbox
+          test -f build/DOSBox/SOURCE.txt
+          build/DOSBox/dosbox --version
 
       - name: Run the tests
         run: |

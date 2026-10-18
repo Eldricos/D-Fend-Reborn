@@ -49,16 +49,20 @@ installed copy: `Bin` (helper programs, links, cheats database, 7-Zip),
 `Lang` (program translations), `Help` (the help pages), `IconSets` and
 `NewUserData` (templates, AutoSetup profiles, FreeDOS, Doszip, ...).
 
-The Windows build includes [DOSBox Staging](https://www.dosbox-staging.org/)
-(folder `DOSBox` next to `DFend.exe`): CMake downloads the official Windows
-release of the version set in `cmake/DOSBoxStaging.cmake` (with its SHA-256
-checksum) when it configures the build folder. Configure with
-`-DDFR_BUNDLE_DOSBOX=OFF` to build without it (no internet access).
+The Windows and Linux (x86_64) builds include
+[DOSBox Staging](https://www.dosbox-staging.org/) (folder `DOSBox` next to the
+program): CMake downloads the official Windows or Linux release of the
+version set in `cmake/DOSBoxStaging.cmake` (with its SHA-256 checksum) when
+it configures the build folder. Configure with `-DDFR_BUNDLE_DOSBOX=OFF` to
+build without it (no internet access, or to use the system DOSBox). Build
+folders configured before Linux bundling existed keep the option off; set
+`-DDFR_BUNDLE_DOSBOX=ON` or use a new build folder. The Linux release of
+DOSBox Staging needs glibc 2.34 or newer.
 
 Every build copies them next to the executable (`cmake/DeployData.cmake`),
 so a build can be run directly:
 
-* `Bin`, `Lang`, `IconSets`, `NewUserData` (and on Windows `DOSBox`) are
+* `Bin`, `Lang`, `IconSets`, `NewUserData` (and `DOSBox` when bundled) are
   refreshed on each build.
   On Linux/macOS the Windows programs in `Bin` (`*.exe`, `*.dll`) are left
   out; the installed system programs are used instead (see below).
@@ -68,7 +72,8 @@ so a build can be run directly:
   build folder. Delete `Settings/.DataDeployed` to copy it again.
 
 On Linux the program uses these system programs (install them with the
-package manager): `dosbox` (DOSBox Staging or DOSBox), `7z`/`7za`/`7zz`
+package manager): `dosbox` (only without the bundled DOSBox Staging; DOSBox
+Staging or DOSBox), `7z`/`7za`/`7zz`
 (p7zip or 7zip, for zip/7z archives), `mkfs.fat` (dosfstools, for creating
 disk images), `oggenc` (vorbis-tools), `curl` (FTP downloads in the package
 manager) and optionally `lame` and `scummvm`.

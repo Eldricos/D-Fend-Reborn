@@ -4,8 +4,8 @@
 # Install/D-Fend-Reborn-Setup.nsi): the contents of NewUserData become the
 # data folders next to the program (Templates, AutoSetup, IconLibrary,
 # Capture, Settings, VirtualHD\FREEDOS, VirtualHD\DOSZIP) and the
-# NewUserData folder is removed. The included DOSBox Staging (Windows) is set
-# to its portable mode.
+# NewUserData folder is removed. The included DOSBox Staging (Windows or
+# Linux) is set to its portable mode.
 #
 # Usage: portable-layout.sh <program folder>
 set -e
@@ -23,12 +23,15 @@ if [ -f "$D/Bin/Cheats.xml" ]; then cp "$D/Bin/Cheats.xml" "$D/Settings/"; fi
 cp -R "$N/FREEDOS" "$D/VirtualHD/FREEDOS"
 cp -R "$N/DOSZIP" "$D/VirtualHD/DOSZIP"
 
-# Windows: included DOSBox Staging in portable mode (its settings, key
-# mapper file and captures in the DOSBox folder instead of the user profile):
-# DOSBox Staging uses the "portable layout" if dosbox-staging.conf is next to
-# its program file
+# Included DOSBox Staging in portable mode (its settings, key mapper file
+# and captures in the DOSBox folder instead of the user profile / home
+# folder): DOSBox Staging uses the "portable layout" if dosbox-staging.conf
+# is next to its program file
 if [ -f "$D/DOSBox/dosbox.exe" ] && [ ! -f "$D/DOSBox/dosbox-staging.conf" ]; then
     printf '# DOSBox Staging settings (portable copy of D-Fend Reborn)\r\n' > "$D/DOSBox/dosbox-staging.conf"
+fi
+if [ -f "$D/DOSBox/dosbox" ] && [ ! -f "$D/DOSBox/dosbox-staging.conf" ]; then
+    printf '# DOSBox Staging settings (D-Fend Reborn program folder)\n' > "$D/DOSBox/dosbox-staging.conf"
 fi
 
 rm -rf "$N"
