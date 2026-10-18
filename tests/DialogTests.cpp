@@ -207,6 +207,7 @@ void CheckDialog(QWidget* Dlg, bool TreePages, QStringList& Problems)
 void CloseModalWindows()
 {
     while (QWidget* M = QApplication::activeModalWidget()) {
+        qInfo("closing %s %s", M->metaObject()->className(), qPrintable(M->objectName()));
         if (auto* D = qobject_cast<QDialog*>(M)) D->QDialog::done(QDialog::Rejected); else M->close();
         QCoreApplication::processEvents();
     }
@@ -324,6 +325,13 @@ private slots:
         PrgConsts_Initialization();
         LoggingUnit_Initialization();
         PrgSetupUnit_Initialization();
+        // Not the first start: no DOSBox search on the whole disk, no first run
+        // wizard, no searches for tools and no update of the program data
+        PrgSetup->SetDOSBoxFullSearchDone(true);
+        PrgSetup->SetDFendVersion(GetNormalFileVersionAsString());
+        PrgSetupUnit_Finalization();   // (writes Settings/DFend.ini)
+        PrgSetupUnit_Initialization();
+        QVERIFY(!PrgSetup->FirstRun());
         LanguageSetupUnit_Initialization();
         DOSBoxCountUnit_Initialization();
         GameDBUnit_Initialization();
