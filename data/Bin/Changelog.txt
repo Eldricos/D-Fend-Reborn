@@ -1,8 +1,8 @@
 D-Fend Reborn Changelog
 
 
-Version 0.5.6 (not released yet)
-================================
+Version 0.5.6 (10/18/2026)
+==========================
 - [Fix] Search for updates: the status texts (e.g. "List update check
   completed.") were cut off.
 - Package manager: the old D-Fend Reloaded lists of language add-ons and
