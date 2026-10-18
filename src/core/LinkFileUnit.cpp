@@ -306,6 +306,19 @@ TLinkFile::TLinkFile(const QString& AFileNameOnly, bool AAllowLinesAndSubs, int 
     LoadData();
 }
 
+void TLinkFile::UpgradeLinks(const QList<QPair<QString, QString>>& OldNew)
+{
+    for (const auto& P : OldNew) {
+        for (int I = FDataLinks->Count() - 1; I >= 0; I--) {
+            if ((*FDataLinks)[I] != P.first) continue;
+            if (P.second.isEmpty()) { FDataNames->Delete(I); FDataLinks->Delete(I); }
+            else FDataLinks->SetStrings(I, P.second);
+            FChanged = true;
+        }
+    }
+    if (FChanged) SaveData();
+}
+
 TLinkFile::~TLinkFile()
 {
     if (FChanged) SaveData();

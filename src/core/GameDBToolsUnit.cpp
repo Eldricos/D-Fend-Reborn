@@ -1798,7 +1798,7 @@ TGame *BuildDefaultDosProfile(TGameDB *GameDB, bool CopyFiles_)
     result->SetStartFullscreen(false);
     result->SetCaptureFolder(MakeRelPath(IncludeTrailingPathDelimiter(PrgSetup->CaptureDir()) + DosBoxDOSProfile, PrgSetup->BaseDir()));
     result->SetGenre("Program");
-    result->SetWWW(1, QStringLiteral("http:/") + QStringLiteral("/www.dosbox.com"));
+    result->SetWWW(1, QStringLiteral("https://www.dosbox-staging.org"));
     result->SetName(DosBoxDOSProfile);
     result->SetFavorite(true);
     result->SetDeveloper("DOSBox Team");

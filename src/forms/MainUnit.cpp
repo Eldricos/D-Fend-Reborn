@@ -828,6 +828,28 @@ void TDFendRebornMainForm::FormCreate(QObject *Sender)
     LogInfo("Loading Links.txt and SearchLinks.txt");
     HelpMenuLinkFile = new TLinkFile("Links.txt", true, ID_HelpOldGames);
     SearchLinkFile = new TLinkFile("SearchLinks.txt", false, ID_ProfileSearchGame);
+    // Lists edited by the user: addresses of D-Fend Reloaded that changed
+    // (search pages of the sites, https, sites that no longer exist or no
+    // longer offer what the link was for)
+    HelpMenuLinkFile->UpgradeLinks({
+        {QStringLiteral("http://vogons.zetafleet.com"), QStringLiteral("https://www.vogons.org")},
+        {QStringLiteral("http://www.mobygames.com"), QStringLiteral("https://www.mobygames.com")},
+        {QStringLiteral("http://www.squakenet.com/"), QString()},
+        {QStringLiteral("http://www.thelegacy.de/"), QString()},
+        {QStringLiteral("http://www.3drealms.com/downloads.html"), QString()},
+        {QStringLiteral("http://liberatedgames.org/"), QString()},
+        {QStringLiteral("http://en.wikipedia.org/wiki/List_of_commercial_games_released_as_freeware"), QStringLiteral("https://en.wikipedia.org/wiki/List_of_commercial_games_released_as_freeware")},
+        {QStringLiteral("http://en.wikipedia.org/wiki/List_of_freeware_games"), QStringLiteral("https://en.wikipedia.org/wiki/List_of_freeware_games")},
+        {QStringLiteral("http://en.wikipedia.org/wiki/List_of_open_source_games"), QStringLiteral("https://en.wikipedia.org/wiki/List_of_open_source_games")}
+    });
+    SearchLinkFile->UpgradeLinks({
+        {QStringLiteral("http://thegamesdb.net/search/?string=<GAMENAME>&function=Search"), QStringLiteral("https://thegamesdb.net/search.php?name=<GAMENAME>")},
+        {QStringLiteral("http://www.mobygames.com/search/quick?game=<GAMENAME>&p=-1&search=Go"), QStringLiteral("https://www.mobygames.com/search/?q=<GAMENAME>")},
+        {QStringLiteral("http://www.squakenet.com/pc_games/?q=<GAMENAME>"), QString()},
+        {QStringLiteral("http://www.thelegacy.de/Museum/SQLFrameset.php3?SearchValue=<GAMENAME>&searchEntity=TITLE&misc=yes&quick=yes&list=SQLlist_games.php3"), QString()},
+        {QStringLiteral("http://www.google.com/search?q=<GAMENAME>"), QStringLiteral("https://www.google.com/search?q=<GAMENAME>")},
+        {QStringLiteral("http://en.wikipedia.org/wiki/<GAMENAME>"), QStringLiteral("https://en.wikipedia.org/w/index.php?search=<GAMENAME>")}
+    });
 
     LogInfo("Initializating of data viewer area");
     ViewFilesFrame = new TViewFilesFrame(ui.DataFilesTab);
@@ -3595,8 +3617,10 @@ void TDFendRebornMainForm::MenuWork(QObject *Sender)
             SetFormEnabled(true);
             break;
         /*Help*/
-        case 6001: ShellOpen(QString("http:/") + "/www.dosbox.com/wiki/"); break;
-        case 6002: ShellOpen(QString("http:/") + "/www.dosbox.com/wiki/Special_Keys"); break;
+        // DOSBox Staging (the DOSBox included with D-Fend Reborn); the manual
+        // pages are versioned, DFR_STAGING_DOCS_VERSION: included version
+        case 6001: ShellOpen(QStringLiteral("https://www.dosbox-staging.org/getting-started/introduction/")); break;
+        case 6002: ShellOpen(QStringLiteral("https://www.dosbox-staging.org/" DFR_STAGING_DOCS_VERSION "/manual/appendices/shortcuts/")); break;
         case 6003:
             if (FileExists(DOSBoxExe)) {
                 DefaultGame = new TGame(PrgSetup);
@@ -3606,9 +3630,9 @@ void TDFendRebornMainForm::MenuWork(QObject *Sender)
                 MessageDlg(Format(LanguageSetup->MessageCouldNotFindFile(), {DOSBoxExe}), mtError, mbOK, 0);
             }
             break;
-        case 6004: ShellOpen(QString("http:/") + "/www.dosbox.com/comp_list.php?letter=a"); break;
+        case 6004: ShellOpen(QStringLiteral("https://www.dosbox.com/comp_list.php?letter=a")); break;   // (DOSBox Staging has no compatibility list)
         case 6005: ShellOpen(QString("http:/") + "/pain.scene.org/service_dosbox.php"); break;
-        case 6006: ShellOpen(QString("http:/") + "/www.dosbox.com/wiki/Commands"); break;
+        case 6006: ShellOpen(QStringLiteral("https://www.dosbox-staging.org/manual/")); break;
         case 6007:
             if (FileExists(DOSBoxExe)) {
                 DefaultGame = new TGame(PrgSetup);
@@ -3625,7 +3649,7 @@ void TDFendRebornMainForm::MenuWork(QObject *Sender)
         case 6010: ShowUpdateCheckDialog(this, GameDB, SearchLinkFile); break;
         case 6014: ShowStatisticsDialog(this, GameDB); break;
         case 6015: ShowInfoDialog(this); break;
-        case 6016: ShellOpen(QString("http:/") + "/www.dosbox.com/"); break;
+        case 6016: ShellOpen(QStringLiteral("https://www.dosbox-staging.org/")); break;
         case 6017:
             if (Trim(PrgSetup->ScummVMPath()) != "" && FileExists(IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + "Readme.txt"))
                 OpenFileInEditor(IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + "Readme.txt");

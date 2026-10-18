@@ -71,6 +71,13 @@ endif()
 set(DFR_COMPAT_VERSION 1.4.4)
 target_compile_definitions(DFendCore PUBLIC DFR_VERSION="${PROJECT_VERSION}" DFR_COMPAT_VERSION="${DFR_COMPAT_VERSION}")
 
+# Version of the DOSBox Staging manual pages the help menu links to (the
+# included DOSBox Staging version, cmake/DOSBoxStaging.cmake; also used
+# without the included DOSBox, e.g. on Linux).
+file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/cmake/DOSBoxStaging.cmake" _StagingVersionLine REGEX "^set\\(DFR_DOSBOX_STAGING_VERSION ")
+string(REGEX MATCH "([0-9]+)\\.([0-9]+)" _StagingDocsVersion "${_StagingVersionLine}")
+target_compile_definitions(DFendCore PUBLIC DFR_STAGING_DOCS_VERSION="${_StagingDocsVersion}")
+
 if(WIN32)
     target_link_libraries(DFendCore PUBLIC shell32 ole32 oleaut32 user32 advapi32 winmm uuid)
     target_compile_definitions(DFendCore PUBLIC UNICODE _UNICODE NOMINMAX WIN32_LEAN_AND_MEAN)
