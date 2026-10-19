@@ -3,6 +3,8 @@ D-Fend Reborn Changelog
 
 Version 0.5.7 (not released yet)
 ================================
+- [Fix] The help buttons of the dialogs showed a wrong icon (a dark "S");
+  they show the help icon of the main window now.
 - [Fix] D-Fend Reborn could crash when it was closed after "Look up game
   information" had been used.
 - Linux: the AppImage and the tar.gz include DOSBox Staging (folder DOSBox
