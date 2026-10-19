@@ -33,6 +33,7 @@
 #include "TextEditPopupUnit.h"
 #include "HelpTools.h"
 #include "MainUnit.h"
+#include "ColorScheme.h"
 
 int main(int argc, char *argv[])
 {
@@ -75,6 +76,7 @@ int main(int argc, char *argv[])
     PrgConsts_Initialization();
     LoggingUnit_Initialization();
     PrgSetupUnit_Initialization();
+    ApplyColorScheme(PrgSetup->ColorScheme());   // light / dark colours (before the first window)
     LanguageSetupUnit_Initialization();
     DOSBoxCountUnit_Initialization();
     GameDBUnit_Initialization();

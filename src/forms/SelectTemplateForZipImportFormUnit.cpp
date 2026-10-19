@@ -1,5 +1,6 @@
 // C++ port of SelectTemplateForZipImportFormUnit.pas (implementation section).
 #include "SelectTemplateForZipImportFormUnit.h"
+#include "ColorScheme.h"
 #include "VirtualKeys.h"
 
 #include "CommonTools.h"
@@ -66,7 +67,7 @@ void TSelectTemplateForZipImportForm::FormCreate(QObject * /*Sender*/)
     // SetVistaFonts(self); Font.Charset:=... - not needed with Qt
     {
         QPalette P = ui.WarningLabel->palette();
-        P.setColor(QPalette::WindowText, TColorToQColor(clRed));
+        P.setColor(QPalette::WindowText, TextColor(clRed));
         ui.WarningLabel->setPalette(P);
     }
 

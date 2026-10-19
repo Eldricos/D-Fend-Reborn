@@ -1,6 +1,15 @@
 D-Fend Reborn Changelog
 
 
+Version 0.5.8 (not released yet)
+================================
+- Dark mode: the program windows follow the light or dark colors of Windows
+  or the Linux desktop, also when they are switched while the program runs.
+  Program options, "User interface" page, "Colors": as set in the operating
+  system, light or dark. Links, hints and warnings stay readable with dark
+  colors. (Windows: the dark colors use the Fusion style.)
+
+
 Version 0.5.7 (10/19/2026)
 ==========================
 - [Fix] The help buttons of the dialogs showed a wrong icon (a dark "S");

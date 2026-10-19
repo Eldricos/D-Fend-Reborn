@@ -1120,6 +1120,10 @@ constexpr int NR_SetupFormDataPrivacyDeleteHistory = 44803;
 constexpr int NR_SetupFormDataPrivacyDeleteHistoryDone = 44804;
 constexpr int NR_SetupFormDataPrivacyOpenHistoryFile = 44805;
 constexpr int NR_SetupFormDataPrivacyInfo = 44806;
+constexpr int NR_SetupFormColorScheme = 44807;   // D-Fend Reborn
+constexpr int NR_SetupFormColorSchemeSystem = 44808;   // D-Fend Reborn
+constexpr int NR_SetupFormColorSchemeLight = 44809;   // D-Fend Reborn
+constexpr int NR_SetupFormColorSchemeDark = 44810;   // D-Fend Reborn
 constexpr int NR_HistoryForm = 44901;
 constexpr int NR_HistoryGame = 44902;
 constexpr int NR_HistoryDateTime = 44903;
@@ -4339,6 +4343,14 @@ public:
     void SetSetupFormDataPrivacyOpenHistoryFile(const QString& Value) { SetString(NR_SetupFormDataPrivacyOpenHistoryFile, Value); }
     QString SetupFormDataPrivacyInfo() { return GetString(NR_SetupFormDataPrivacyInfo); }
     void SetSetupFormDataPrivacyInfo(const QString& Value) { SetString(NR_SetupFormDataPrivacyInfo, Value); }
+    QString SetupFormColorScheme() { return GetString(NR_SetupFormColorScheme); }
+    void SetSetupFormColorScheme(const QString& Value) { SetString(NR_SetupFormColorScheme, Value); }
+    QString SetupFormColorSchemeSystem() { return GetString(NR_SetupFormColorSchemeSystem); }
+    void SetSetupFormColorSchemeSystem(const QString& Value) { SetString(NR_SetupFormColorSchemeSystem, Value); }
+    QString SetupFormColorSchemeLight() { return GetString(NR_SetupFormColorSchemeLight); }
+    void SetSetupFormColorSchemeLight(const QString& Value) { SetString(NR_SetupFormColorSchemeLight, Value); }
+    QString SetupFormColorSchemeDark() { return GetString(NR_SetupFormColorSchemeDark); }
+    void SetSetupFormColorSchemeDark(const QString& Value) { SetString(NR_SetupFormColorSchemeDark, Value); }
     QString HistoryForm() { return GetString(NR_HistoryForm); }
     void SetHistoryForm(const QString& Value) { SetString(NR_HistoryForm, Value); }
     QString HistoryGame() { return GetString(NR_HistoryGame); }

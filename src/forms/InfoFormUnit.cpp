@@ -77,6 +77,7 @@ TInfoForm::TInfoForm(QWidget *AOwner) : TVclForm(AOwner)
     ui.HomepageLabel->setText(DFRebornHomepage);   // (the original showed its sourceforge homepage)
     ui.HomepageLabel->installEventFilter(this);
     ui.HomepageLabel->setCursor(Qt::PointingHandCursor);
+    ui.HomepageLabel->setForegroundRole(QPalette::Link);   // (clNavy)
 
     Timer = new QTimer(this);
     Timer->setInterval(100);

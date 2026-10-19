@@ -1,5 +1,6 @@
 // C++ port of UpdateCheckFormUnit.pas (implementation section).
 #include "UpdateCheckFormUnit.h"
+#include "ColorScheme.h"
 
 #include <QGuiApplication>
 
@@ -67,13 +68,7 @@ void TUpdateCheckForm::FormCreate(QObject * /*Sender*/)
     SetStatus(ui.StatusLabelCheats, LanguageSetup->UpdateCheckDialogStatusNotYetChecked(), clGrayText);
 
     ui.DFRHomepageLabel->setText(LanguageSetup->MenuHelpUpdatesURL());
-    {
-        QPalette P = ui.DFRHomepageLabel->palette();
-        P.setColor(QPalette::WindowText, TColorToQColor(clBlue));
-        ui.DFRHomepageLabel->setPalette(P);
-        QFont F = ui.DFRHomepageLabel->font(); F.setUnderline(true); ui.DFRHomepageLabel->setFont(F);
-    }
-    ui.DFRHomepageLabel->setCursor(Qt::PointingHandCursor);
+    VclLayout::makeLinkLabel(ui.DFRHomepageLabel);
 
     // (the layout makes the window wide enough for the download text; the
     // height is what the controls need)
@@ -85,7 +80,7 @@ void TUpdateCheckForm::SetStatus(QLabel *ALabel, const QString &AText, TColor AC
     ALabel->setText(AText);
     VclLayout::fitHeight(this);   // (longer status texts: the window gets wider if needed)
     QPalette P = ALabel->palette();
-    P.setColor(QPalette::WindowText, TColorToQColor(AColor));
+    P.setColor(QPalette::WindowText, TextColor(AColor));
     ALabel->setPalette(P);
     UpdateWindow();
 }

@@ -87,7 +87,6 @@
                   <item row="5" column="0" colspan="2">
                     <widget class="QLabel" name="HomepageLabel">
                       <property name="font"><font><underline>true</underline></font></property>
-                      <property name="styleSheet"><string notr="true">#HomepageLabel { color: #000080; }</string></property>
                       <property name="text"><string>https://github.com/Eldricos/D-Fend-Reborn</string></property>
                       <property name="textFormat"><enum>Qt::PlainText</enum></property>
                       <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>

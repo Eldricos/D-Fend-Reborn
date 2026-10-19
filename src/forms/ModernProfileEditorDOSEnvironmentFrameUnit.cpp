@@ -1,5 +1,6 @@
 // C++ port of ModernProfileEditorDOSEnvironmentFrameUnit.pas (implementation section).
 #include "ModernProfileEditorDOSEnvironmentFrameUnit.h"
+#include "ColorScheme.h"
 
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
@@ -13,8 +14,8 @@
 static void SetFontColor(QWidget* W, TColor Color)
 {
     QPalette P = W->palette();
-    P.setColor(QPalette::WindowText, TColorToQColor(Color));
-    P.setColor(QPalette::Text, TColorToQColor(Color));
+    P.setColor(QPalette::WindowText, TextColor(Color));
+    P.setColor(QPalette::Text, TextColor(Color));
     W->setPalette(P);
 }
 
