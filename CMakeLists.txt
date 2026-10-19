@@ -113,7 +113,7 @@ string(REGEX MATCH "([0-9]+)\\.([0-9]+)" _StagingDocsVersion "${_StagingVersionL
 target_compile_definitions(DFendCore PUBLIC DFR_STAGING_DOCS_VERSION="${_StagingDocsVersion}")
 
 if(WIN32)
-    target_link_libraries(DFendCore PUBLIC shell32 ole32 oleaut32 user32 advapi32 winmm uuid)
+    target_link_libraries(DFendCore PUBLIC shell32 ole32 oleaut32 user32 advapi32 winmm uuid dwmapi)
     target_compile_definitions(DFendCore PUBLIC UNICODE _UNICODE NOMINMAX WIN32_LEAN_AND_MEAN)
 endif()
 

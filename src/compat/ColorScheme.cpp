@@ -8,6 +8,11 @@
 #include <QTimer>
 #include <QWidget>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#include <dwmapi.h>
+#endif
+
 namespace {
 
 int FScheme = -1;
@@ -73,6 +78,23 @@ QPalette DarkPalette()
     return P;
 }
 
+#ifdef Q_OS_WIN
+// Title bars of the open windows: light or dark. Windows draws the window
+// frame again only when it changes (e.g. resizing, minimizing), so the frames
+// are redrawn here.
+void UpdateTitleBars()
+{
+    for (QWidget* W : QApplication::topLevelWidgets()) {
+        if (!W->testAttribute(Qt::WA_WState_Created) || !W->isVisible()) continue;
+        const HWND H = reinterpret_cast<HWND>(W->winId());
+        const BOOL Dark = FDark ? TRUE : FALSE;
+        DwmSetWindowAttribute(H, 20 /*DWMWA_USE_IMMERSIVE_DARK_MODE*/, &Dark, sizeof(Dark));
+        SetWindowPos(H, nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+        RedrawWindow(H, nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE | RDW_UPDATENOW);
+    }
+}
+#endif
+
 void UpdateStyleSheets()
 {
     for (QWidget* W : QApplication::allWidgets()) {
@@ -113,6 +135,10 @@ void Apply()
 
     FDark = Dark;
     UpdateStyleSheets();
+#ifdef Q_OS_WIN
+    // (after Qt has set the colours of the window frames)
+    QTimer::singleShot(0, qApp, [] { UpdateTitleBars(); });
+#endif
     FInApply = false;
 }
 
