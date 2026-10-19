@@ -67,11 +67,7 @@ void TProviderForm::FormShow(QObject* Sender)
     SetFontStyle(ui.ProviderNameLabel, true, false);
     ui.ProviderTextLabel->setText(ProviderText);
     ui.ProviderURLLabel->setText(ProviderURL);
-    {
-        QPalette P = ui.ProviderURLLabel->palette();
-        P.setColor(QPalette::WindowText, TColorToQColor(clBlue));
-        ui.ProviderURLLabel->setPalette(P);
-    }
+    ui.ProviderURLLabel->setForegroundRole(QPalette::Link);   // Font.Color:=clBlue
     SetFontStyle(ui.ProviderURLLabel, false, true);
     ui.ProviderURLLabel->setCursor(Qt::PointingHandCursor);
 }

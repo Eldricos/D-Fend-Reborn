@@ -1131,6 +1131,10 @@ void TLanguageSetup::SetupLanguageStrings3()
     AddStringRec(NR_SetupFormDataPrivacyDeleteHistoryDone, QStringLiteral("SetupForm"), QStringLiteral("DataPrivacy.DeleteHistory.Done"), QStringLiteral("All recorded history information have been deleted."));
     AddStringRec(NR_SetupFormDataPrivacyOpenHistoryFile, QStringLiteral("SetupForm"), QStringLiteral("DataPrivacy.OpenHistoryFile"), QStringLiteral("Open history file in text editor"));
     AddStringRec(NR_SetupFormDataPrivacyInfo, QStringLiteral("SetupForm"), QStringLiteral("DataPrivacy.Info"), QStringLiteral("The recorded history information is stored locally only and is shown when opening the \"View history\" dialog from the \"Extras\" menu."));
+    AddStringRec(NR_SetupFormColorScheme, QStringLiteral("SetupForm"), QStringLiteral("ColorScheme"), QStringLiteral("Colors:"));
+    AddStringRec(NR_SetupFormColorSchemeSystem, QStringLiteral("SetupForm"), QStringLiteral("ColorScheme.System"), QStringLiteral("As set in the operating system"));
+    AddStringRec(NR_SetupFormColorSchemeLight, QStringLiteral("SetupForm"), QStringLiteral("ColorScheme.Light"), QStringLiteral("Light"));
+    AddStringRec(NR_SetupFormColorSchemeDark, QStringLiteral("SetupForm"), QStringLiteral("ColorScheme.Dark"), QStringLiteral("Dark"));
     AddStringRec(NR_HistoryForm, QStringLiteral("HistoryForm"), QStringLiteral("Caption"), QStringLiteral("History"));
     AddStringRec(NR_HistoryGame, QStringLiteral("HistoryForm"), QStringLiteral("Game"), QStringLiteral("Game"));
     AddStringRec(NR_HistoryDateTime, QStringLiteral("HistoryForm"), QStringLiteral("DateTime"), QStringLiteral("Date and time"));

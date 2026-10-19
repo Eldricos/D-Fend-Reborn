@@ -1,6 +1,7 @@
 #include "VclLayout.h"
 #include "VclForm.h"
 #include "VclWidgets.h"
+#include "ColorScheme.h"
 
 #include <QAbstractButton>
 #include <QAbstractScrollArea>
@@ -1049,9 +1050,8 @@ void onLabelClick(QLabel *Label, std::function<void()> Handler)
 void makeLinkLabel(QLabel *Label)
 {
     if (Label == nullptr) return;
-    QPalette P = Label->palette();
-    P.setColor(QPalette::WindowText, QColor(0, 0, 255));   // clBlue
-    Label->setPalette(P);
+    // clBlue: the link colour of the palette (also readable with dark colours)
+    Label->setForegroundRole(QPalette::Link);
     QFont F = Label->font();
     F.setUnderline(true);
     Label->setFont(F);
@@ -1073,6 +1073,12 @@ void setupForm(QWidget *Top)
         installEngines(Top);
     }
     recordDesignMinimums(Top);
+    // style sheets with fixed light colours: colours of the colour scheme
+    for (QWidget *W : Top->findChildren<QWidget *>()) {
+        if (!W->styleSheet().contains('#') || W->property("vclLightStyleSheet").isValid()) continue;
+        W->setProperty("vclLightStyleSheet", W->styleSheet());
+        W->setStyleSheet(ColorSchemeStyleSheet(W->styleSheet()));
+    }
     applyWindowSettings(Top);
     new AutoSizeOnShow(Top);
     if (Top->isWindow() && !qobject_cast<QMainWindow *>(Top)) new FitControlsOnShow(Top);

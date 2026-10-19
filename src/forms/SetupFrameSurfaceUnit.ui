@@ -49,6 +49,26 @@
               <property name="minimumSize"><size><width>281</width><height>0</height></size></property>
             </widget>
           </item>
+          <item row="2" column="0" colspan="2">
+            <spacer name="SetupFrameSurface_Section1_Gap">
+              <property name="orientation"><enum>Qt::Vertical</enum></property>
+              <property name="sizeType"><enum>QSizePolicy::Fixed</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>0</width><height>8</height></size></property>
+            </spacer>
+          </item>
+          <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="ColorSchemeLabel">
+              <property name="text"><string>Colors:</string></property>
+              <property name="textFormat"><enum>Qt::PlainText</enum></property>
+              <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
+            </widget>
+          </item>
+          <item row="4" column="0" alignment="Qt::AlignLeft">
+            <widget class="QComboBox" name="ColorSchemeComboBox">
+              <property name="editable"><bool>false</bool></property>
+              <property name="minimumSize"><size><width>281</width><height>0</height></size></property>
+            </widget>
+          </item>
           <item row="0" column="1">
             <spacer name="SetupFrameSurface_Section1_HFill">
               <property name="orientation"><enum>Qt::Horizontal</enum></property>

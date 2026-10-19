@@ -506,6 +506,7 @@ void TPrgSetup::ReadSettings()
     AddIntegerRec(38, "ProgramSets", "ThumbnailCacheSize", 500);
     AddIntegerRec(39, "ProgramSets", "DataReaderSource", 0);
     AddIntegerRec(40, "ProgramSets", "GameInfoSource", 0);   // D-Fend Reborn: 0=auto setup templates, 1=Wikidata
+    AddIntegerRec(41, "ProgramSets", "ColorScheme", 0);   // D-Fend Reborn: 0=as the operating system, 1=light, 2=dark
 }
 
 void TPrgSetup::InitDirs()

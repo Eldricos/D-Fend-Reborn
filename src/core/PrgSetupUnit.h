@@ -510,6 +510,8 @@ public:
     int DataReaderSource() { return GetInteger(39); }
     int GameInfoSource() { return GetInteger(40); }
     void SetGameInfoSource(int Value) { SetInteger(40, Value); }
+    int ColorScheme() { return GetInteger(41); }   // TColorScheme (ColorScheme.h)
+    void SetColorScheme(int Value) { SetInteger(41, Value); }
     void SetDataReaderSource(int Value) { SetInteger(39, Value); }
     int DOSBoxSettingsCount() { return GetListCount(0); }
     TDOSBoxSetting* DOSBoxSettings(int I) { return GetDOSBoxSettings(I); }

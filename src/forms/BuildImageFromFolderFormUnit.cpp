@@ -1,5 +1,6 @@
 // C++ port of BuildImageFromFolderFormUnit.pas (implementation section).
 #include "BuildImageFromFolderFormUnit.h"
+#include "ColorScheme.h"
 #include "PhysicalDrivesUnit.h"
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
@@ -33,7 +34,7 @@ static bool IsRemovableDrive(QChar C)
 static void SetLabelFontColor(QLabel* L, TColor C)
 {
     QPalette P = L->palette();
-    P.setColor(QPalette::WindowText, (C == clGrayText) ? L->palette().color(QPalette::Disabled, QPalette::WindowText) : TColorToQColor(C));
+    P.setColor(QPalette::WindowText, (C == clGrayText) ? L->palette().color(QPalette::Disabled, QPalette::WindowText) : TextColor(C));
     L->setPalette(P);
 }
 

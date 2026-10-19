@@ -7,6 +7,7 @@
 #include "IconLoaderUnit.h"
 #include "PrgConsts.h"
 #include "Dialogs.h"
+#include "ColorScheme.h"
 
 namespace {
 // TCheckListBox helpers
@@ -54,6 +55,8 @@ void TSetupFrameSurface::InitGUIAndLoadSetup(TInitData &InitData)
     QListWidget *L = ui.IconSetListbox;
     /* NoFlicker(IconSetListbox); - will cause trouble */
     ui.StartSizeComboBox->setCurrentIndex(Max(0, Min(ui.StartSizeComboBox->count() - 1, PrgSetup->StartWindowSize())));
+    while (ui.ColorSchemeComboBox->count() < 3) ui.ColorSchemeComboBox->addItem(QString());
+    ui.ColorSchemeComboBox->setCurrentIndex(Max(0, Min(2, PrgSetup->ColorScheme())));
     ShortName = new TStringList;
     LongName = new TStringList;
     Author = new TStringList;
@@ -88,6 +91,13 @@ void TSetupFrameSurface::LoadLanguage()
     ui.StartSizeComboBox->setItemText(3, LanguageSetup->SetupFormStartSizeMaximized());
     ui.StartSizeComboBox->setItemText(4, LanguageSetup->SetupFormStartSizeFullscreen());
     ui.StartSizeComboBox->setCurrentIndex(I);
+    ui.ColorSchemeLabel->setText(LanguageSetup->SetupFormColorScheme());
+    I = ui.ColorSchemeComboBox->currentIndex();
+    while (ui.ColorSchemeComboBox->count() < 3) ui.ColorSchemeComboBox->addItem(QString());
+    ui.ColorSchemeComboBox->setItemText(csSystem, LanguageSetup->SetupFormColorSchemeSystem());
+    ui.ColorSchemeComboBox->setItemText(csLight, LanguageSetup->SetupFormColorSchemeLight());
+    ui.ColorSchemeComboBox->setItemText(csDark, LanguageSetup->SetupFormColorSchemeDark());
+    ui.ColorSchemeComboBox->setCurrentIndex(I);
     ui.IconSetLabel->setText(LanguageSetup->SetupFormIconSet());
     ui.IconSetPreviewLabel->setText(LanguageSetup->SetupFormIconSetPreview());
     ui.IconSetAuthorLabel->setText(LanguageSetup->SetupFormIconSetAuthor());
@@ -111,6 +121,7 @@ void TSetupFrameSurface::HideFrame()
 void TSetupFrameSurface::RestoreDefaults()
 {
     ui.StartSizeComboBox->setCurrentIndex(0);
+    ui.ColorSchemeComboBox->setCurrentIndex(csSystem);
 }
 
 void TSetupFrameSurface::SaveSetup()
@@ -118,6 +129,7 @@ void TSetupFrameSurface::SaveSetup()
     QString S;
     int I;
     PrgSetup->SetStartWindowSize(ui.StartSizeComboBox->currentIndex());
+    PrgSetup->SetColorScheme(Max(0, ui.ColorSchemeComboBox->currentIndex()));
     S.clear();
     for (I = 0; I < ui.IconSetListbox->count(); I++) if (IsChecked(ui.IconSetListbox, I)) { S = (*ShortName)[I]; break; }
     if (!S.isEmpty()) PrgSetup->SetIconSet(S);

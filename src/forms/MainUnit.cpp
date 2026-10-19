@@ -1,5 +1,6 @@
 // C++ port of MainUnit.pas (implementation section).
 #include "MainUnit.h"
+#include "ColorScheme.h"
 
 #include <QClipboard>
 #include <QGuiApplication>
@@ -255,6 +256,9 @@ TDFendRebornMainForm::TDFendRebornMainForm(QWidget *AOwner) : QMainWindow(AOwner
     DFendRebornMainForm = this;
     ui.setupUi(this);
     VclLayout::setupForm(this);
+    // the operating system switched between light and dark colours: the colours of the lists
+    // (copied from the palette when they are not set in the program options) are loaded again
+    AddColorSchemeChangedHandler(this, [this]() { LoadGUISetup(false); });
 
     // The application ends when the main form is closed (Delphi), not when the
     // last visible window is closed (the main form may be hidden in the tray).
@@ -2744,6 +2748,7 @@ void TDFendRebornMainForm::LoadGUISetup(bool PrgStart)
     QString S;
 
     LogInfo("### Start of LoadGUISetup ###");
+    ApplyColorScheme(PrgSetup->ColorScheme());   // (light / dark colours, program options)
     LogInfo("Setting visible state of menu and toolbar icons");
     if (!PrgSetup->ShowMainMenu() && !PrgSetup->ShowToolbar()) PrgSetup->SetShowMainMenu(true);
 

@@ -172,11 +172,11 @@ void TLanguageEditorForm::FormResize(QObject* Sender)
 void TLanguageEditorForm::TabDrawCell(QObject* Sender, int ACol, int ARow, QRect Rect, int State)
 {
     Q_UNUSED(Sender); Q_UNUSED(Rect); Q_UNUSED(State);
-    // Owner draw of the fixed columns: light gray background ($F7F7F7), not editable
+    // Owner draw of the fixed columns: light gray background ($F7F7F7; the alternating row colour of the palette), not editable
     if ((ARow > 0) && (ACol < 2)) {
         QTableWidgetItem* It = ui.Tab->item(ARow - 1, ACol);
         if (It == nullptr) return;
-        It->setBackground(TColorToQColor(0xF7F7F7));
+        It->setBackground(ui.Tab->palette().color(QPalette::AlternateBase));
         It->setFlags(It->flags() & ~Qt::ItemIsEditable);
     }
 }

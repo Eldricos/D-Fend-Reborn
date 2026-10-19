@@ -1,5 +1,6 @@
 // C++ port of TemplateFormUnit.pas (implementation section).
 #include "TemplateFormUnit.h"
+#include "ColorScheme.h"
 #include "VirtualKeys.h"
 
 #include "LanguageSetupUnit.h"
@@ -372,7 +373,7 @@ void TTemplateForm::ListViewAdvancedCustomDrawItem(TListView* Sender, TListItem*
     DefaultDraw = true;
     if (Item == nullptr) return;
     // Canvas.Font.Color:=clBlue / clWindowText (only assign on change - SetTextColor repaints the item)
-    const QColor C = ((Item->Data() != nullptr) && (ItemGame(Item) == DefaultTemplate)) ? TColorToQColor(clBlue) : QColor();
+    const QColor C = ((Item->Data() != nullptr) && (ItemGame(Item) == DefaultTemplate)) ? TextColor(clBlue) : QColor();
     if (Item->TextColor() != C) Item->SetTextColor(C);
 }
 

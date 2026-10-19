@@ -7,8 +7,9 @@
 //     such control lies outside of its parent and positioned buttons do not
 //     overlap (all pages of tab controls and of the page trees of the profile
 //     editor and the program options).
-// Each dialog is tested with the normal font and with a larger font (as with
-// display scaling or a larger system font).
+// Each dialog is tested with the normal font, with a larger font (as with
+// display scaling or a larger system font) and with dark colors; with dark
+// colors the texts must also be readable on their background (contrast).
 //
 // Run: ctest (or the DFRDialogTests executable). The tests work in a
 // temporary program folder; the data of a D-Fend Reborn installation is not
@@ -17,6 +18,7 @@
 // printed.
 #include <QtTest>
 #include <QTemporaryDir>
+#include <cmath>
 
 #include "CommonTools.h"
 #include "PrgConsts.h"
@@ -41,6 +43,7 @@
 #include "LinkFileUnit.h"
 #include "HelpConsts.h"
 #include "MainUnit.h"
+#include "ColorScheme.h"
 
 #include "BuildImageFromFolderFormUnit.h"
 #include "BuildZipPackagesFormUnit.h"
@@ -165,6 +168,43 @@ void CheckVisibleControls(QWidget* Dlg, const QString& Where, QStringList& Probl
     }
 }
 
+// Contrast ratio of two colours (WCAG: 1 = same, 21 = black on white)
+double ContrastRatio(const QColor& A, const QColor& B)
+{
+    auto L = [](const QColor& C) {
+        auto Ch = [](double V) { return (V <= 0.03928) ? V / 12.92 : std::pow((V + 0.055) / 1.055, 2.4); };
+        return 0.2126 * Ch(C.redF()) + 0.7152 * Ch(C.greenF()) + 0.0722 * Ch(C.blueF());
+    };
+    const double LA = L(A), LB = L(B);
+    return (qMax(LA, LB) + 0.05) / (qMin(LA, LB) + 0.05);
+}
+
+// Texts of labels, buttons, check boxes and radio buttons must be readable on
+// their background (e.g. no fixed dark blue link colour with dark colours)
+void CheckContrast(QWidget* Dlg, const QString& Where, QStringList& Problems)
+{
+    for (QWidget* W : Dlg->findChildren<QWidget*>()) {
+        if (!W->isVisibleTo(Dlg) || !W->isEnabled()) continue;
+        QString Text;
+        if (auto* L = qobject_cast<QLabel*>(W)) { if (!L->pixmap().isNull()) continue; Text = L->text(); }
+        else if (auto* B = qobject_cast<QAbstractButton*>(W)) Text = B->text();
+        else continue;
+        if (Text.trimmed().isEmpty()) continue;
+        const QColor Fg = W->palette().color(W->foregroundRole());
+        QColor Bg;
+        if (qobject_cast<QPushButton*>(W)) Bg = W->palette().color(QPalette::Button);
+        else for (QWidget* P = W; P != nullptr; P = P->parentWidget()) {
+            if (P->autoFillBackground() || P->isWindow() || (P->parentWidget() && qobject_cast<QAbstractScrollArea*>(P->parentWidget()->parentWidget()))) {
+                Bg = P->palette().color(P->backgroundRole());
+                break;
+            }
+        }
+        const double R = ContrastRatio(Fg, Bg);
+        if (R < 3.0)
+            Problems << QStringLiteral("%1: %2 is hard to read (text %3 on %4, contrast %5)").arg(Where, Describe(W), Fg.name(), Bg.name()).arg(R, 0, 'f', 1);
+    }
+}
+
 // Buttons positioned like in the original (not in a Qt layout) must not overlap
 // (e.g. after a button got wider for its text)
 void CheckButtonOverlaps(QWidget* Dlg, const QString& Where, QStringList& Problems)
@@ -191,6 +231,7 @@ void CheckDialog(QWidget* Dlg, bool TreePages, QStringList& Problems)
     if (qEnvironmentVariableIsSet("DFR_DEBUG")) qDebug() << "SIZE" << Name << Dlg->size() << "design" << Dlg->property("vclDesignWidth").toInt() << Dlg->property("vclDesignHeight").toInt();
     CheckVisibleControls(Dlg, Name, Problems);
     CheckButtonOverlaps(Dlg, Name, Problems);
+    if (DarkColorScheme()) CheckContrast(Dlg, Name, Problems);
 
     if (TreePages) {
         for (QTreeWidget* Tree : Dlg->findChildren<QTreeWidget*>()) {
@@ -424,23 +465,29 @@ private slots:
     void mainWindow_data()
     {
         QTest::addColumn<int>("FontIncrease");
-        QTest::newRow("normal font") << 0;
-        QTest::newRow("large font") << 4;
+        QTest::addColumn<bool>("Dark");
+        QTest::newRow("normal font") << 0 << false;
+        QTest::newRow("large font") << 4 << false;
+        QTest::newRow("dark colors") << 0 << true;
     }
 
     void mainWindow()
     {
         QFETCH(int, FontIncrease);
+        QFETCH(bool, Dark);
         QFont F = FDefaultFont;
         F.setPointSizeF(F.pointSizeF() + FontIncrease);
         QApplication::setFont(F);
+        ApplyColorScheme(Dark ? csDark : csLight);
         MainForm->show();
         Settle();
         CloseModalWindows();
         QStringList Problems;
         CheckVisibleControls(MainForm, MainForm->objectName(), Problems);
+        if (Dark) CheckContrast(MainForm, MainForm->objectName(), Problems);
         MainForm->hide();
         QApplication::setFont(FDefaultFont);
+        ApplyColorScheme(csLight);
         QVERIFY2(Problems.isEmpty(), qPrintable("\n" + Problems.join("\n")));
     }
 
@@ -450,9 +497,11 @@ private slots:
     {
         QTest::addColumn<int>("Index");
         QTest::addColumn<int>("FontIncrease");
+        QTest::addColumn<bool>("Dark");
         for (int I = 0; I < Tests.size(); I++) {
-            QTest::newRow(QByteArray(Tests[I].Name) + "/normal font") << I << 0;
-            QTest::newRow(QByteArray(Tests[I].Name) + "/large font") << I << 4;
+            QTest::newRow(QByteArray(Tests[I].Name) + "/normal font") << I << 0 << false;
+            QTest::newRow(QByteArray(Tests[I].Name) + "/large font") << I << 4 << false;
+            QTest::newRow(QByteArray(Tests[I].Name) + "/dark colors") << I << 0 << true;
         }
     }
 
@@ -460,11 +509,13 @@ private slots:
     {
         QFETCH(int, Index);
         QFETCH(int, FontIncrease);
+        QFETCH(bool, Dark);
         const TDialogTest& T = Tests[Index];
 
         QFont F = FDefaultFont;
         F.setPointSizeF(F.pointSizeF() + FontIncrease);
         QApplication::setFont(F);
+        ApplyColorScheme(Dark ? csDark : csLight);
 
         // The dialog runs modally: a timer checks and closes it (with Cancel)
         QStringList Problems;
@@ -487,6 +538,7 @@ private slots:
         // a second modal window (e.g. opened by the closing code) is closed too
         CloseModalWindows();
         QApplication::setFont(FDefaultFont);
+        ApplyColorScheme(csLight);
 
         QVERIFY2(Opened, "the dialog was not shown");
         QVERIFY2(Problems.isEmpty(), qPrintable("\n" + Problems.join("\n")));
