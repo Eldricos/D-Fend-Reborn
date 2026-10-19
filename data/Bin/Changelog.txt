@@ -1,8 +1,8 @@
 D-Fend Reborn Changelog
 
 
-Version 0.5.7 (not released yet)
-================================
+Version 0.5.7 (10/19/2026)
+==========================
 - [Fix] The help buttons of the dialogs showed a wrong icon (a dark "S");
   they show the help icon of the main window now.
 - [Fix] D-Fend Reborn could crash when it was closed after "Look up game
