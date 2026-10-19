@@ -79,9 +79,9 @@ QPalette DarkPalette()
 }
 
 #ifdef Q_OS_WIN
-// Title bars of the open windows: light or dark. Windows draws the window
-// frame again only when it changes (e.g. resizing, minimizing), so the frames
-// are redrawn here.
+// Title bars of the open windows: light or dark. Windows draws the title bar
+// again only when the window is activated / deactivated or changes its size,
+// so both are simulated here (as other programs do, e.g. Notepad++).
 void UpdateTitleBars()
 {
     for (QWidget* W : QApplication::topLevelWidgets()) {
@@ -89,6 +89,17 @@ void UpdateTitleBars()
         const HWND H = reinterpret_cast<HWND>(W->winId());
         const BOOL Dark = FDark ? TRUE : FALSE;
         DwmSetWindowAttribute(H, 20 /*DWMWA_USE_IMMERSIVE_DARK_MODE*/, &Dark, sizeof(Dark));
+        // caption drawn as inactive and then again in its real state
+        const bool Active = (GetActiveWindow() == H);
+        SendMessageW(H, WM_NCACTIVATE, Active ? FALSE : TRUE, 0);
+        SendMessageW(H, WM_NCACTIVATE, Active ? TRUE : FALSE, 0);
+        // size changed by one pixel and back (normal windows; maximized ones are drawn again by the frame change)
+        RECT R;
+        if (!IsZoomed(H) && !IsIconic(H) && GetWindowRect(H, &R)) {
+            const UINT F = SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER;
+            SetWindowPos(H, nullptr, 0, 0, R.right - R.left + 1, R.bottom - R.top, F);
+            SetWindowPos(H, nullptr, 0, 0, R.right - R.left, R.bottom - R.top, F);
+        }
         SetWindowPos(H, nullptr, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
         RedrawWindow(H, nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE | RDW_UPDATENOW);
     }
@@ -136,8 +147,8 @@ void Apply()
     FDark = Dark;
     UpdateStyleSheets();
 #ifdef Q_OS_WIN
-    // (after Qt has set the colours of the window frames)
-    QTimer::singleShot(0, qApp, [] { UpdateTitleBars(); });
+    // (after Qt and Windows have finished their own updates of the windows)
+    QTimer::singleShot(150, qApp, [] { UpdateTitleBars(); });
 #endif
     FInApply = false;
 }
