@@ -644,6 +644,59 @@ private slots:
         QVERIFY(SamePath(G2.ScummVMDataDir, L + "data"));
     }
 
+    void steamGames()
+    {
+        // Steam library: steamapps/appmanifest_<ID>.acf, steamapps/common/<game>
+        const QString Lib = FPrgDir.path() + "/SteamLibrary/";
+        WriteFile(Lib + "steamapps/appmanifest_9010.acf", "\"AppState\"\n{\n\t\"appid\"\t\t\"9010\"\n\t\"name\"\t\t\"Wolfenstein 3D\"\n\t\"installdir\"\t\t\"Wolfenstein 3D\"\n}\n");
+        WriteFile(Lib + "steamapps/appmanifest_1812290.acf", "\"AppState\"\n{\n\t\"appid\"\t\t\"1812290\"\n\t\"name\"\t\t\"The Elder Scrolls: Arena\"\n\t\"installdir\"\t\t\"Arena\"\n}\n");
+        // DOSBox and the conf files in a subfolder "base", settings in dosbox.conf
+        const QString W = Lib + "steamapps/common/Wolfenstein 3D/";
+        WriteFile(W + "base/DOSBox.exe", "exe");
+        WriteFile(W + "base/dosbox.conf", "[cpu]\r\ncycles=fixed 10000\r\n[autoexec]\r\n");
+        WriteFile(W + "base/wolf3d.conf", "[autoexec]\r\nmount c .\r\nc:\r\nwolf3d.exe\r\nexit\r\n");
+        WriteFile(W + "base/setup.conf", "[autoexec]\r\nmount c .\r\nc:\r\nsetup\r\nexit\r\n");
+        WriteFile(W + "base/WOLF3D.EXE", "exe");
+        WriteFile(W + "base/SETUP.EXE", "exe");
+        // conf file in the game folder, DOSBox in "DOSBox-0.74", a network variant
+        const QString A = Lib + "steamapps/common/Arena/";
+        WriteFile(A + "DOSBox-0.74/DOSBox.exe", "exe");
+        WriteFile(A + "arena.conf", "[dosbox]\r\nmemsize=16\r\n[autoexec]\r\nmount c \"..\\ARENA\"\r\nc:\r\nACD.EXE -Ssbpdig.adv -IOS220 -IRQS7 -DMAS1\r\n");
+        WriteFile(A + "arena_net.conf", "[autoexec]\r\nmount c \"..\\ARENA\"\r\nc:\r\nNET.EXE\r\n");
+        WriteFile(A + "ARENA/ACD.EXE", "exe");
+        WriteFile(A + "ARENA/NET.EXE", "exe");
+
+        for (const QString& F : {Lib, Lib + "steamapps", Lib + "steamapps/common"}) QCOMPARE(FindSteamGames(F).size(), 2);
+        const QList<TGOGGame> Games = FindSteamGames(Lib);
+        const TGOGGame& Arena = Games[0];
+        const TGOGGame& Wolf = Games[1];
+        QCOMPARE(Arena.Name, QString("The Elder Scrolls: Arena"));
+        QCOMPARE(Arena.ID, QString("1812290"));
+        QVERIFY(SamePath(Arena.WorkingDir, A + "DOSBox-0.74"));
+        QCOMPARE(Arena.GameConfs.size(), 1);
+        QVERIFY(SamePath(Arena.GameConfs[0], A + "arena.conf"));
+        QCOMPARE(Wolf.Name, QString("Wolfenstein 3D"));
+        QVERIFY(SamePath(Wolf.WorkingDir, W + "base"));
+        QCOMPARE(Wolf.GameConfs.size(), 2);
+        // a single game folder
+        QCOMPARE(FindSteamGames(W).size(), 1);
+        QCOMPARE(FindSteamGames(W)[0].Name, QString("Wolfenstein 3D"));
+        // the folder with the games is not taken for one game
+        QCOMPARE(FindGOGGames(Lib + "steamapps/common").size(), 2);
+
+        TGameDB DB(TempPrgDir + "SteamConfs" + PathDelim);
+        TGame* P = ImportGOGGame(&DB, Wolf);
+        QVERIFY(P != nullptr);
+        QCOMPARE(P->Cycles(), QString("10000"));
+        QVERIFY(SamePath(MakeAbsPath(P->GameExe(), PrgSetup->BaseDir()), W + "base/WOLF3D.EXE"));
+        QVERIFY(SamePath(MakeAbsPath(P->SetupExe(), PrgSetup->BaseDir()), W + "base/SETUP.EXE"));
+        P = ImportGOGGame(&DB, Arena);
+        QVERIFY(P != nullptr);
+        QVERIFY(SamePath(MakeAbsPath(P->Mount0().split(';')[0], PrgSetup->BaseDir()), A + "ARENA"));
+        QVERIFY(SamePath(MakeAbsPath(P->GameExe(), PrgSetup->BaseDir()), A + "ARENA/ACD.EXE"));
+        QCOMPARE(P->GameParameters(), QString("-Ssbpdig.adv -IOS220 -IRQS7 -DMAS1"));
+    }
+
     // ----- profiles ---------------------------------------------------------
 
     void profileSaveAndLoad()

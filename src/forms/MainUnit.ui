@@ -452,6 +452,7 @@
           <addaction name="MenuFileImportFolder" />
           <addaction name="MenuFileImportFolderWithInstallationSupport" />
           <addaction name="MenuFileImportGOG" />
+          <addaction name="MenuFileImportSteam" />
           <addaction name="N39" />
           <addaction name="MenuFileImportDownload" />
         </widget>
@@ -1256,6 +1257,10 @@
     <action name="MenuFileImportGOG">
       <property name="text"><string>Import GOG games...</string></property>
       <property name="tag" stdset="0"><number>1018</number></property>
+    </action>
+    <action name="MenuFileImportSteam">
+      <property name="text"><string>Import Steam games...</string></property>
+      <property name="tag" stdset="0"><number>1019</number></property>
     </action>
     <action name="MenuFileImportDownload">
       <property name="text"><string>Download packages...</string></property>

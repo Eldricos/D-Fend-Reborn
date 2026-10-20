@@ -304,7 +304,7 @@ TDFendRebornMainForm::TDFendRebornMainForm(QWidget *AOwner) : QMainWindow(AOwner
         {ui.VideoPopupOpen, 38}, {ui.VideoPopupOpenCaptureFolder, 11}, {ui.VideoPopupImport, 21},
         {ui.VideoPopupSave, 30}, {ui.VideoPopupDelete, 5},
         {ui.MenuFileImportConfFile, 16}, {ui.MenuFileImportProfFile, 34}, {ui.MenuFileImportZIPFile, 39},
-        {ui.MenuFileImportFolder, 11}, {ui.MenuFileImportGOG, 11}, {ui.MenuFileImportDownload, 31}, {ui.MenuFileExportGamesList, 32},
+        {ui.MenuFileImportFolder, 11}, {ui.MenuFileImportGOG, 11}, {ui.MenuFileImportSteam, 11}, {ui.MenuFileImportDownload, 31}, {ui.MenuFileExportGamesList, 32},
         {ui.MenuFileCreateConf, 16}, {ui.MenuFileCreateProf, 34}, {ui.MenuFileCreateZIP, 39},
         {ui.MenuFileCreateInstaller, 25}, {ui.MenuFileExportBuildZipPackages, 39},
         {ui.MenuFileExportBuildInstaller, 25}, {ui.MenuFileExportTransferProfiles, 15},
@@ -399,7 +399,7 @@ TDFendRebornMainForm::TDFendRebornMainForm(QWidget *AOwner) : QMainWindow(AOwner
     const QList<QAction *> MenuWorkActions = {
         ui.ButtonClose, ui.ButtonRun, ui.ButtonRunSetup, ui.ButtonAdd, ui.ButtonEdit, ui.ButtonDelete, ui.ButtonHelp,
         ui.MenuFileImportConfFile, ui.MenuFileImportProfFile, ui.MenuFileImportXMLFile, ui.MenuFileImportZIPFile,
-        ui.MenuFileImportZIPFileWithInstallationSupport, ui.MenuFileImportFolder, ui.MenuFileImportFolderWithInstallationSupport, ui.MenuFileImportGOG,
+        ui.MenuFileImportZIPFileWithInstallationSupport, ui.MenuFileImportFolder, ui.MenuFileImportFolderWithInstallationSupport, ui.MenuFileImportGOG, ui.MenuFileImportSteam,
         ui.MenuFileImportDownload, ui.MenuFileExportGamesList, ui.MenuFileCreateConf, ui.MenuFileCreateProf,
         ui.MenuFileCreateXML, ui.MenuFileCreateZIP, ui.MenuFileCreateInstaller, ui.MenuFileExportBuildZipPackages,
         ui.MenuFileExportBuildInstaller, ui.MenuFileExportTransferProfiles, ui.MenuFileCreateXMlPackageList,
@@ -1079,6 +1079,7 @@ void TDFendRebornMainForm::LoadMenuLanguage()
     ui.MenuFileImportFolder->setText(LanguageSetup->MenuFileImportFolder());
     ui.MenuFileImportFolderWithInstallationSupport->setText(LanguageSetup->MenuFileImportFolderWithInstallationSupport());
     ui.MenuFileImportGOG->setText(LanguageSetup->MenuFileImportGOG());
+    ui.MenuFileImportSteam->setText(LanguageSetup->MenuFileImportSteam());
     ui.MenuFileImportDownload->setText(LanguageSetup->MenuFileImportDownload());
     ui.MenuFileExport->setTitle(LanguageSetup->MenuFileExport());
     ui.MenuFileExportGamesList->setText(LanguageSetup->MenuFileExportGamesList());
@@ -3158,13 +3159,15 @@ void TDFendRebornMainForm::MenuWork(QObject *Sender)
             ClearListBeforeReload();
             ReloadAndSelect(G);
             break;
-        case 1018: {
-            // DOS games of GOG.com: one game folder or a folder with several games
-            const QStringList GOGFolders = DefaultGOGFolders();
-            S = GOGFolders.isEmpty() ? GetSpecialFolder(winId(), CSIDL_DESKTOPDIRECTORY) : QDir::toNativeSeparators(GOGFolders[0]);
-            if (!SelectDirectory(THandle(0), LanguageSetup->MenuFileImportGOGCaption(), S)) return;
-            const QList<TGOGGame> Games = FindGOGGames(S);
-            if (Games.isEmpty()) { MessageDlg(Format(LanguageSetup->MenuFileImportGOGNone(), {S}), mtInformation, mbOK, 0); return; }
+        case 1018:
+        case 1019: {
+            // DOS games of GOG.com / Steam: one game folder or a folder with several games
+            const bool Steam = (ATag == 1019);
+            const QStringList Folders = Steam ? DefaultSteamFolders() : DefaultGOGFolders();
+            S = Folders.isEmpty() ? GetSpecialFolder(winId(), CSIDL_DESKTOPDIRECTORY) : QDir::toNativeSeparators(Folders[0]);
+            if (!SelectDirectory(THandle(0), Steam ? LanguageSetup->MenuFileImportSteamCaption() : LanguageSetup->MenuFileImportGOGCaption(), S)) return;
+            const QList<TGOGGame> Games = Steam ? FindSteamGames(S) : FindGOGGames(S);
+            if (Games.isEmpty()) { MessageDlg(Format(Steam ? LanguageSetup->MenuFileImportSteamNone() : LanguageSetup->MenuFileImportGOGNone(), {S}), mtInformation, mbOK, 0); return; }
             QStringList Imported, Skipped;
             G = nullptr;
             for (const TGOGGame& Game : Games) {
@@ -3176,7 +3179,7 @@ void TDFendRebornMainForm::MenuWork(QObject *Sender)
             }
             if ((Games.size() > 1) || !Skipped.isEmpty()) {
                 T.clear();
-                if (!Imported.isEmpty()) T = LanguageSetup->MenuFileImportGOGImported() + "\n" + Imported.join("\n");
+                if (!Imported.isEmpty()) T = (Steam ? LanguageSetup->MenuFileImportSteamImported() : LanguageSetup->MenuFileImportGOGImported()) + "\n" + Imported.join("\n");
                 if (!Skipped.isEmpty()) T += (T.isEmpty() ? QString() : QStringLiteral("\n\n")) + LanguageSetup->MenuFileImportGOGSkipped() + "\n" + Skipped.join("\n");
                 MessageDlg(T, mtInformation, mbOK, 0);
             }
