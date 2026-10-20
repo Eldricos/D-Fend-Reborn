@@ -3,6 +3,7 @@
 //   * conf files for DOSBox Staging and DOSBox-X (DOSBoxConfUnit)
 //   * detection of the DOSBox version of an installation (DOSBoxKindOfFile)
 //   * saving files via a temporary file (settings, profiles, lists)
+//   * the game detection of ScummVM (output of "scummvm --detect")
 //   * saving and loading profiles (TGame), including the DOSBox Staging
 //     settings
 //   * all auto setup templates of data/NewUserData/AutoSetup: they can be
@@ -22,6 +23,7 @@
 #include "LoggingUnit.h"
 #include "PrgConsts.h"
 #include "PrgSetupUnit.h"
+#include "ScummVMToolsUnit.h"
 
 namespace {
 
@@ -345,6 +347,77 @@ private slots:
         QVERIFY(!WriteTextFile(TempPrgDir + "Missing" + PathDelim + "File.txt", "x", true));
         QVERIFY(!QFileInfo::exists(TempPrgDir + "Missing"));
     }
+
+
+    // ----- ScummVM game detection (scummvm --detect) ------------------------
+
+    void scummVMDetectOutput()
+    {
+        // output of ScummVM 2.8 (with a warning before the table)
+        const QStringList Out = {
+            "WARNING: FSNode::createReadStream: 'scummvm.ini' does not exist!",
+            "GameID                         Description                                                Full Path",
+            "------------------------------ ---------------------------------------------------------- ---------------------------------------------------------",
+            "sky:sky                        Beneath a Steel Sky (v0.0372 CD/DOS)                       /games/BASS",
+            "queen:queen                    Flight of the Amazon Queen (CD/DOS/English)                C:\\Games\\Amazon Queen",
+        };
+        const QList<TScummVMDetectedGame> G = ParseScummVMDetectOutput(Out);
+        QCOMPARE(G.size(), 2);
+        QCOMPARE(G[0].ID, QString("sky:sky"));
+        QCOMPARE(G[0].Description, QString("Beneath a Steel Sky (v0.0372 CD/DOS)"));
+        QCOMPARE(G[0].Path, QString("/games/BASS"));
+        QCOMPARE(G[1].ID, QString("queen:queen"));
+        QCOMPARE(G[1].Path, QString("C:\\Games\\Amazon Queen"));
+        // no game found
+        QVERIFY(ParseScummVMDetectOutput({"WARNING: ScummVM could not find any game in /games/empty",
+                                          "WARNING: Consider using --recursive to search inside subdirectories"}).isEmpty());
+        QVERIFY(ParseScummVMDetectOutput({}).isEmpty());
+    }
+
+    void scummVMDetectedIDs()
+    {
+        // list of "scummvm -z": with engine prefix (ScummVM 2.5+) or without
+        for (bool Prefix : {true, false}) {
+            TScummVMGamesList L;
+            TStringList St;
+            St.Add("Game ID                        Full Title");
+            St.Add("------------------------------ -----------------------------------------------------------");
+            St.Add(QString(Prefix ? "sky:sky" : "sky").leftJustified(31) + "Beneath a Steel Sky");
+            St.Add(QString(Prefix ? "scumm:monkey" : "monkey").leftJustified(31) + "The Secret of Monkey Island");
+            QVERIFY(L.LoadListFromScummVMStringList(&St));
+            const QString Sky = Prefix ? "sky:sky" : "sky";
+            QCOMPARE(L.NameFromDetectedID("sky:sky"), Sky);
+            QCOMPARE(L.NameFromDetectedID("sky"), Sky);
+            QCOMPARE(L.NameFromDetectedID("SKY:SKY"), Sky);
+            QCOMPARE(L.DescriptionFromName(L.NameFromDetectedID("scumm:monkey")), QString("The Secret of Monkey Island"));
+            QCOMPARE(L.NameFromDetectedID("queen:queen"), QString());
+            QCOMPARE(L.NameFromDetectedID(""), QString());
+        }
+    }
+
+#ifndef Q_OS_WIN
+    void scummVMDetectRun()
+    {
+        // a fake ScummVM: prints the table with the folder it was given
+        const QString Dir = FPrgDir.path() + "/FakeScummVM/";
+        WriteFile(Dir + "scummvm",
+                  "#!/bin/sh\n"
+                  "P=\"\"; for A in \"$@\"; do case \"$A\" in --path=*) P=\"${A#--path=}\";; esac; done\n"
+                  "echo 'GameID   Description          Full Path'\n"
+                  "echo '-------- -------------------- ---------'\n"
+                  "echo \"sky:sky  Beneath a Steel Sky  $P\"\n");
+        QFile::setPermissions(Dir + "scummvm", QFile::permissions(Dir + "scummvm") | QFileDevice::ExeOwner);
+        const QString Game = FPrgDir.path() + "/Games/Steel Sky";
+        QDir().mkpath(Game);
+        const QList<TScummVMDetectedGame> G = DetectScummVMGames(Game, Dir);
+        QCOMPARE(G.size(), 1);
+        QCOMPARE(G[0].ID, QString("sky:sky"));
+        QCOMPARE(G[0].Path, Game);   // folder with a space passed as one argument
+        // folder that does not exist / ScummVM not found
+        QVERIFY(DetectScummVMGames(FPrgDir.path() + "/Missing", Dir).isEmpty());
+        QVERIFY(DetectScummVMGames(Game, FPrgDir.path() + "/NoScummVM/").isEmpty());
+    }
+#endif
 
     // ----- profiles ---------------------------------------------------------
 

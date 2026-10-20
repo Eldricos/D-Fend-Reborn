@@ -560,7 +560,7 @@ public:
         const QSize Old = FTop->size();
         QSize New = Old.expandedTo(FTop->minimumSizeHint());
         // wrapped texts need more height at this width
-        if (L->hasHeightForWidth()) New.setHeight(qMax(New.height(), L->totalHeightForWidth(New.width())));
+        if (L->hasHeightForWidth()) New.setHeight(qMax(New.height(), L->totalMinimumHeightForWidth(New.width())));
         if (New == Old && FTop->minimumSize() == Old) return;
         FTop->setFixedSize(New);
         if (KeepCenter && New != Old) FTop->move(FTop->x() - (New.width() - Old.width()) / 2, FTop->y() - (New.height() - Old.height()) / 2);
@@ -937,7 +937,7 @@ void fitHeight(QWidget *W)
     L->invalidate();
     L->activate();
     const int Wd = qMax(W->width(), W->minimumSizeHint().width());
-    int H = L->hasHeightForWidth() ? L->totalHeightForWidth(Wd) : L->totalMinimumSize().height();
+    int H = L->hasHeightForWidth() ? L->totalMinimumHeightForWidth(Wd) : L->totalMinimumSize().height();
     H = qMax(H, W->minimumSizeHint().height());
     if (W->isWindow()) {
         if (W->minimumWidth() == W->maximumWidth() || W->property("vclBorderStyle").toString() == "bsDialog") W->setFixedSize(Wd, H);
@@ -951,7 +951,7 @@ static QSize pageMinimum(QWidget *P, int Width)
 {
     QSize S = P->layout() ? P->minimumSizeHint() : QSize(0, 0);
     if (P->layout() && P->layout()->hasHeightForWidth())   // wrapped texts
-        S.setHeight(qMax(S.height(), P->layout()->totalHeightForWidth(qMax(Width, S.width()))));
+        S.setHeight(qMax(S.height(), P->layout()->totalMinimumHeightForWidth(qMax(Width, S.width()))));
     // scroll boxes: their contents need the width (the height can scroll)
     for (QScrollArea *A : P->findChildren<QScrollArea *>()) {
         QWidget *C = A->widget();

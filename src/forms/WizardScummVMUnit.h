@@ -36,6 +36,7 @@ public:
     //   DataFolderShowButton.OnClick = DataFolderShowButtonClick
 public slots:
     void FolderInfoButtonClick(QObject* Sender);
+    void DetectGame();   // D-Fend Reborn: game recognized by ScummVM
     void DataFolderShowButtonClick(QObject* Sender);
     void ButtonWork(QObject* Sender);
 };

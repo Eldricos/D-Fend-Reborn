@@ -93,11 +93,18 @@
         </widget>
       </item>
       <item row="8" column="0" colspan="5">
+        <widget class="QLabel" name="DetectInfoLabel">
+          <property name="text"><string notr="true"/></property>
+          <property name="textFormat"><enum>Qt::PlainText</enum></property>
+          <property name="wordWrap"><bool>true</bool></property>
+        </widget>
+      </item>
+      <item row="9" column="0" colspan="5">
         <widget class="QCheckBox" name="DataFolderAutomaticCheckBox">
           <property name="text"><string>Verzeichnis für zusätzliche Dateien automatisch festlegen</string></property>
         </widget>
       </item>
-      <item row="9" column="0" alignment="Qt::AlignLeft">
+      <item row="10" column="0" alignment="Qt::AlignLeft">
         <widget class="QPushButton" name="DataFolderShowButton">
           <property name="text"><string>Zusätzliche Dateien konfigurieren</string></property>
           <property name="icon"><iconset resource="../../resources/dfend.qrc"><normaloff>:/glyphs/1caf3e36d49c7929.png</normaloff></iconset></property>
@@ -106,7 +113,7 @@
           <property name="minimumSize"><size><width>257</width><height>0</height></size></property>
         </widget>
       </item>
-      <item row="10" column="0" colspan="2">
+      <item row="11" column="0" colspan="2">
         <widget class="QLabel" name="BaseInfoLabel3">
           <property name="visible"><bool>false</bool></property>
           <property name="text"><string>Zusätzliche Dateien (Handbücher usw.)</string></property>
@@ -114,7 +121,7 @@
           <property name="alignment"><set>Qt::AlignLeft|Qt::AlignTop</set></property>
         </widget>
       </item>
-      <item row="11" column="0" colspan="2">
+      <item row="12" column="0" colspan="2">
         <widget class="QLabel" name="DataFolderEdit_EditLabel">
           <property name="text"><string>Verzeichnis mit den zusätzlichen Dateien (optional)</string></property>
           <property name="textFormat"><enum>Qt::PlainText</enum></property>
@@ -123,12 +130,12 @@
           <property name="visible"><bool>false</bool></property>
         </widget>
       </item>
-      <item row="12" column="0" colspan="4">
+      <item row="13" column="0" colspan="4">
         <widget class="QLineEdit" name="DataFolderEdit">
           <property name="visible"><bool>false</bool></property>
         </widget>
       </item>
-      <item row="12" column="4" alignment="Qt::AlignRight">
+      <item row="13" column="4" alignment="Qt::AlignRight">
         <widget class="QToolButton" name="DataFolderButton">
           <property name="visible"><bool>false</bool></property>
           <property name="tag" stdset="0"><number>3</number></property>
@@ -137,7 +144,7 @@
           <property name="minimumSize"><size><width>23</width><height>0</height></size></property>
         </widget>
       </item>
-      <item row="13" column="0" colspan="2">
+      <item row="14" column="0" colspan="2">
         <widget class="QLabel" name="BaseDataFolderEdit_EditLabel">
           <property name="text"><string>Empfohlenes übergeordnetes Verzeichnis für das Zusatzdaten-Verzeichnis</string></property>
           <property name="textFormat"><enum>Qt::PlainText</enum></property>
@@ -146,13 +153,13 @@
           <property name="visible"><bool>false</bool></property>
         </widget>
       </item>
-      <item row="14" column="0" colspan="3">
+      <item row="15" column="0" colspan="3">
         <widget class="QLineEdit" name="BaseDataFolderEdit">
           <property name="visible"><bool>false</bool></property>
           <property name="readOnly"><bool>true</bool></property>
         </widget>
       </item>
-      <item row="14" column="3" colspan="2" alignment="Qt::AlignRight">
+      <item row="15" column="3" colspan="2" alignment="Qt::AlignRight">
         <widget class="QToolButton" name="BaseDataFolderButton">
           <property name="visible"><bool>false</bool></property>
           <property name="tag" stdset="0"><number>2</number></property>
@@ -169,7 +176,7 @@
           <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
         </spacer>
       </item>
-      <item row="15" column="0">
+      <item row="16" column="0">
         <spacer name="WizardScummVMFrame_VFill">
           <property name="orientation"><enum>Qt::Vertical</enum></property>
           <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
