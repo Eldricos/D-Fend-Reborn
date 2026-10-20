@@ -32,6 +32,8 @@ TWizardScummVMFrame::TWizardScummVMFrame(QWidget *AOwner) : QWidget(AOwner)
     VclLayout::setupForm(this);
 
     connect(ui.ProgramButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.ProgramButton); });
+    // the game in a folder that was typed in is recognized too
+    connect(ui.ProgramEdit, &QLineEdit::editingFinished, this, [this]() { if (ui.ProgramEdit->isModified()) { ui.ProgramEdit->setModified(false); DetectGame(); } });
     connect(ui.GamesFolderButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.GamesFolderButton); });
     connect(ui.FolderInfoButton, &QToolButton::clicked, this, [this]() { FolderInfoButtonClick(ui.FolderInfoButton); });
     connect(ui.BaseDataFolderButton, &QToolButton::clicked, this, [this]() { ButtonWork(ui.BaseDataFolderButton); });
@@ -103,6 +105,7 @@ void TWizardScummVMFrame::ButtonWork(QObject* Sender)
         if (!SelectDirectory(THandle(0), LanguageSetup->ChooseFolder(), S)) return;
         S = MakeRelPath(S, PrgSetup->BaseDir(), true);
         ui.ProgramEdit->setText(S);
+        DetectGame();
         break;
     case 2: OpenFolder(ui.BaseDataFolderEdit->text()); break;   // ShellExecute(...,'explore',...)
     case 3:
@@ -143,6 +146,24 @@ void TWizardScummVMFrame::WriteDataToGame(TGame* Game)
             Game->SetDataDir(QString());
         }
     }
+}
+
+void TWizardScummVMFrame::DetectGame()
+{
+    // ScummVM recognizes the game in the folder (scummvm --detect); the game is selected
+    ui.DetectInfoLabel->clear();
+    if (Trim(ui.ProgramEdit->text()).isEmpty()) return;
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    const QList<TScummVMDetectedGame> Games = DetectScummVMGames(ui.ProgramEdit->text());
+    QApplication::restoreOverrideCursor();
+    if (Games.isEmpty()) {
+        ui.DetectInfoLabel->setText(LanguageSetup->WizardFormScummVMNotDetected());
+        return;
+    }
+    ui.DetectInfoLabel->setText(Format(LanguageSetup->WizardFormScummVMDetected(), {Games[0].Description}));
+    const QString Description = ScummVMGamesList->DescriptionFromName(ScummVMGamesList->NameFromDetectedID(Games[0].ID));
+    const int I = ui.GameNameComboBox->findText(Description);
+    if (I >= 0) ui.GameNameComboBox->setCurrentIndex(I);
 }
 
 void TWizardScummVMFrame::FolderInfoButtonClick(QObject* Sender)

@@ -1247,6 +1247,8 @@ constexpr int NR_WizardFormWizardModeAlwaysAllPages = 50317;
 constexpr int NR_WizardFormDoubleProfile = 50318;
 constexpr int NR_WizardFormInstallationSupportInfo1 = 50319;
 constexpr int NR_WizardFormInstallationSupportInfo2 = 50320;
+constexpr int NR_WizardFormScummVMDetected = 50321;   // D-Fend Reborn
+constexpr int NR_WizardFormScummVMNotDetected = 50322;   // D-Fend Reborn
 constexpr int NR_CreateShortcutForm = 51001;
 constexpr int NR_CreateShortcutFormLinkName = 51002;
 constexpr int NR_CreateShortcutFormLinkComment = 51003;
@@ -4597,6 +4599,10 @@ public:
     void SetWizardFormInstallationSupportInfo1(const QString& Value) { SetString(NR_WizardFormInstallationSupportInfo1, Value); }
     QString WizardFormInstallationSupportInfo2() { return GetString(NR_WizardFormInstallationSupportInfo2); }
     void SetWizardFormInstallationSupportInfo2(const QString& Value) { SetString(NR_WizardFormInstallationSupportInfo2, Value); }
+    QString WizardFormScummVMDetected() { return GetString(NR_WizardFormScummVMDetected); }
+    void SetWizardFormScummVMDetected(const QString& Value) { SetString(NR_WizardFormScummVMDetected, Value); }
+    QString WizardFormScummVMNotDetected() { return GetString(NR_WizardFormScummVMNotDetected); }
+    void SetWizardFormScummVMNotDetected(const QString& Value) { SetString(NR_WizardFormScummVMNotDetected, Value); }
     QString CreateShortcutForm() { return GetString(NR_CreateShortcutForm); }
     void SetCreateShortcutForm(const QString& Value) { SetString(NR_CreateShortcutForm, Value); }
     QString CreateShortcutFormLinkName() { return GetString(NR_CreateShortcutFormLinkName); }

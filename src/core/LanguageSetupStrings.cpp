@@ -1259,6 +1259,8 @@ void TLanguageSetup::SetupLanguageStrings3()
     AddStringRec(NR_WizardFormDoubleProfile, QStringLiteral("WizardForm"), QStringLiteral("DoubleProfile"), QStringLiteral("There is already a profile named %s for this game file in the games list. Do you really want to create a second profile for the same game?"));
     AddStringRec(NR_WizardFormInstallationSupportInfo1, QStringLiteral("WizardForm"), QStringLiteral("InstallationSupportInfo1"), QStringLiteral("If the game you want to add needs to be installed first, you should use the"));
     AddStringRec(NR_WizardFormInstallationSupportInfo2, QStringLiteral("WizardForm"), QStringLiteral("InstallationSupportInfo2"), QStringLiteral("Game installation wizard"));
+    AddStringRec(NR_WizardFormScummVMDetected, QStringLiteral("WizardForm"), QStringLiteral("ScummVMDetected"), QStringLiteral("Recognized by ScummVM: %s"));
+    AddStringRec(NR_WizardFormScummVMNotDetected, QStringLiteral("WizardForm"), QStringLiteral("ScummVMNotDetected"), QStringLiteral("ScummVM did not recognize a game in this folder."));
     AddStringRec(NR_CreateShortcutForm, QStringLiteral("CreateShortcutForm"), QStringLiteral("Caption"), QStringLiteral("Create shortcut"));
     AddStringRec(NR_CreateShortcutFormLinkName, QStringLiteral("CreateShortcutForm"), QStringLiteral("LinkName"), QStringLiteral("Link name"));
     AddStringRec(NR_CreateShortcutFormLinkComment, QStringLiteral("CreateShortcutForm"), QStringLiteral("LinkComment"), QStringLiteral("Link comment"));

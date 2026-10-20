@@ -491,7 +491,17 @@ void TModernProfileEditorBaseFrame::ExeSelectButtonClick(QObject* Sender)
         } else {
             S = MakeAbsPath(ui.GameEdit->text(), PrgSetup->BaseDir());
         }
-        if (SelectDirectory(THandle(0), LanguageSetup->ProfileEditorScummVMGameFolderCaption(), S)) ui.GameEdit->setText(MakeRelPath(S, PrgSetup->BaseDir(), true));
+        if (SelectDirectory(THandle(0), LanguageSetup->ProfileEditorScummVMGameFolderCaption(), S)) {
+            ui.GameEdit->setText(MakeRelPath(S, PrgSetup->BaseDir(), true));
+            // D-Fend Reborn: the game ScummVM recognizes in the folder is selected
+            QApplication::setOverrideCursor(Qt::WaitCursor);
+            const QList<TScummVMDetectedGame> Games = DetectScummVMGames(S);
+            QApplication::restoreOverrideCursor();
+            if (!Games.isEmpty()) {
+                const int I = ComboIndexOf(ui.GameComboBox, ScummVMGamesList->DescriptionFromName(ScummVMGamesList->NameFromDetectedID(Games[0].ID)));
+                if (I >= 0) { ui.GameComboBox->setCurrentIndex(I); GameComboBoxChange(ui.GameComboBox); }
+            }
+        }
         break;
     case 3:
         if (Trim(ui.GameZipEdit->text()) == "") {

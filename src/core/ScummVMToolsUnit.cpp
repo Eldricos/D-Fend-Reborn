@@ -6,6 +6,9 @@
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
 
+#include <QRegularExpression>
+#include <memory>
+
 TScummVMGamesList* ScummVMGamesList = nullptr;
 
 // { TScummVMGamesList }
@@ -102,6 +105,8 @@ bool TScummVMGamesList::LoadListFromScummVMFile(const QString& ScummVMPrgFile)
 bool TScummVMGamesList::LoadListFromScummVMStringList(TStringList* St)
 {
     int I, Mode, J, K;
+    FName->Clear();
+    FLongName->Clear();
     Mode = 0; J = 10;
     for (I = 0; I < St->Count(); I++) switch (Mode) {
         case 0:
@@ -131,4 +136,60 @@ QString TScummVMGamesList::NameFromDescription(const QString& Description)
     int I = FLongName->IndexOf(Description);
     if (I >= 0) result = (*FName)[I];
     return result;
+}
+
+QString TScummVMGamesList::NameFromDetectedID(const QString& ID)
+{
+    const QString S = Trim(LowerCase(ID));
+    if (S.isEmpty()) return QString();
+    if (FName->IndexOf(S) >= 0) return (*FName)[FName->IndexOf(S)];
+    // the list and the detection may differ in the engine prefix ("engine:game" / "game")
+    auto GamePart = [](const QString& X) { return X.mid(X.indexOf(':') + 1); };
+    for (int I = 0; I < FName->Count(); I++) if (GamePart(LowerCase((*FName)[I])) == GamePart(S)) return (*FName)[I];
+    return QString();
+}
+
+QString TScummVMGamesList::DescriptionFromName(const QString& Name)
+{
+    const int I = FName->IndexOf(Name);
+    return (I >= 0) ? (*FLongName)[I] : QString();
+}
+
+QList<TScummVMDetectedGame> ParseScummVMDetectOutput(const QStringList& Lines)
+{
+    // GameID        Description          Full Path
+    // ------------- -------------------- ----------
+    // sky:sky       Beneath a Steel Sky  /games/BASS
+    QList<TScummVMDetectedGame> Result;
+    QList<int> Start;   // column starts (from the line of dashes)
+    for (const QString& Line : Lines) {
+        if (Start.isEmpty()) {
+            const QString T = Line.trimmed();
+            if (!T.startsWith(QLatin1String("---")) || T.contains(QRegularExpression("[^- ]"))) continue;
+            for (int I = 0; I < Line.length(); I++) if ((Line[I] == '-') && ((I == 0) || (Line[I - 1] == ' '))) Start << I;
+            if (Start.size() < 2) Start.clear();
+            continue;
+        }
+        if (Line.trimmed().isEmpty() || Line.startsWith(QLatin1String("WARNING"))) continue;
+        auto Column = [&](int Nr) {
+            const int From = Start[Nr];
+            return (Nr + 1 < Start.size()) ? Line.mid(From, Start[Nr + 1] - From).trimmed() : Line.mid(From).trimmed();
+        };
+        TScummVMDetectedGame G;
+        G.ID = Column(0);
+        G.Description = Column(1);
+        if (Start.size() > 2) G.Path = Column(2);
+        if (!G.ID.isEmpty() && !G.ID.contains(' ')) Result << G;
+    }
+    return Result;
+}
+
+QList<TScummVMDetectedGame> DetectScummVMGames(const QString& Folder, const QString& ScummVMPath)
+{
+    const QString Prg = IncludeTrailingPathDelimiter(Trim(ScummVMPath).isEmpty() ? PrgSetup->ScummVMPath() : Trim(ScummVMPath)) + ScummPrgFile;
+    const QString Dir = ExcludeTrailingPathDelimiter(MakeAbsPath(Folder, PrgSetup->BaseDir()));
+    if (Trim(Folder).isEmpty() || !FileExists(Prg) || !DirectoryExists(Dir)) return {};
+    std::unique_ptr<TStringList> St(RunAndGetOutput(Prg, "--detect \"--path=" + QDir::toNativeSeparators(Dir) + "\"", true));
+    if (!St) return {};
+    return ParseScummVMDetectOutput(St->ToQStringList());
 }

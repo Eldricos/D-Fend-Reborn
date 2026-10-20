@@ -18,6 +18,13 @@ public:
     virtual ~TScummVMGamesList();
     bool LoadListFromScummVM(bool WarnIfScummVMNotFound, const QString& CustomScummVMPath = QString());
     QString NameFromDescription(const QString& Description);
+    // D-Fend Reborn: name in the list for a game ID of "scummvm --detect"
+    // ("engine:game" or "game", as the ScummVM version writes it); "" if the
+    // game is not in the list
+    QString NameFromDetectedID(const QString& ID);
+    QString DescriptionFromName(const QString& Name);
+    // Reads the output of "scummvm -z" (list of the supported games)
+    bool LoadListFromScummVMStringList(TStringList* St);
     // properties
     int Count() { return GetCount(); }
     TStringList* NamesList() const { return FName; }
@@ -31,7 +38,18 @@ private:
     void SaveConfig();
     int GetCount();
     bool LoadListFromScummVMFile(const QString& ScummVMPrgFile);
-    bool LoadListFromScummVMStringList(TStringList* St);
     QString GetScummVMIniFile();
 };
 extern TScummVMGamesList* ScummVMGamesList;
+
+// D-Fend Reborn: game detection of ScummVM ("scummvm --detect --path=...")
+struct TScummVMDetectedGame {
+    QString ID;            // e.g. "sky:sky" (older ScummVM versions: "sky")
+    QString Description;   // e.g. "Beneath a Steel Sky (v0.0372 CD/DOS)"
+    QString Path;
+};
+// Games ScummVM recognizes in Folder (empty: no game recognized or ScummVM
+// not found; ScummVMPath: folder of ScummVM, default: program options)
+QList<TScummVMDetectedGame> DetectScummVMGames(const QString& Folder, const QString& ScummVMPath = QString());
+// Reads the table of "scummvm --detect" (other output lines are ignored)
+QList<TScummVMDetectedGame> ParseScummVMDetectOutput(const QStringList& Lines);
