@@ -33,6 +33,7 @@
 #include "BuildInstallerForSingleGameFormUnit.h"
 #include "ModernProfileEditorFormUnit.h"
 #include "GOGImportUnit.h"
+#include "MissingGamesFormUnit.h"
 #include "ListViewImageUnit.h"
 #include "StatisticsFormUnit.h"
 #include "CacheChooseFormUnit.h"
@@ -420,7 +421,7 @@ TDFendRebornMainForm::TDFendRebornMainForm(QWidget *AOwner) : QMainWindow(AOwner
         ui.MenuExtrasCheatingApply, ui.MenuExtrasCheatingEdit, ui.MenuExtrasCheatingSearch, ui.MenuExtrasCreateImage,
         ui.MenuExtrasCreateIMGImage, ui.MenuExtrasWriteIMGImage, ui.MenuExtrasImageFromFolder, ui.MenuExtrasExtractImage,
         ui.MenuExtrasCreateISOImage, ui.MenuExtrasImageFromProfile, ui.MenuExtrasScanGamesFolder,
-        ui.MenuExtrasCheckProfiles, ui.MenuExtrasChangeProfiles, ui.MenuExtrasDeinstallMultipleGames,
+        ui.MenuExtrasCheckProfiles, ui.MenuExtrasMissingGames, ui.MenuExtrasChangeProfiles, ui.MenuExtrasDeinstallMultipleGames,
         ui.MenuExtrasTransferProfiles, ui.MenuExtrasCreateShortcuts,
         ui.MenuExtrasTranslationDFendReborn, ui.MenuExtrasTranslationDOSBox,
         ui.MenuHelpHelp, ui.MenuHelpHelpContent, ui.MenuHelpIntroduction, ui.MenuHelpGetGames, ui.MenuHelpAddingGames,
@@ -1188,6 +1189,7 @@ void TDFendRebornMainForm::LoadMenuLanguage()
     ui.MenuExtrasChangeProfiles->setText(LanguageSetup->MenuExtrasChangeProfiles());
     ui.MenuExtrasCreateShortcuts->setText(LanguageSetup->MenuExtrasCreateShortcuts());
     ui.MenuExtrasCheckProfiles->setText(LanguageSetup->MenuExtrasCheckProfiles());
+    ui.MenuExtrasMissingGames->setText(LanguageSetup->MenuExtrasMissingGames());
     ui.MenuExtrasTranslation->setTitle(LanguageSetup->MenuExtrasTranslationEditor());
     ui.MenuExtrasTranslationDFendReborn->setText(LanguageSetup->MenuExtrasTranslationEditorDFendReborn());
     ui.MenuExtrasTranslationDOSBox->setText(LanguageSetup->MenuExtrasTranslationEditorDOSBox());
@@ -3605,6 +3607,15 @@ void TDFendRebornMainForm::MenuWork(QObject *Sender)
             delete St;
             break;
         }
+        case 5026:
+            // games moved or uninstalled (e.g. GOG and Steam games)
+            UpdateGameNotes(); LastSelectedGame = nullptr;
+            if (ShowMissingGamesDialog(this, GameDB)) {
+                ui.ListView->Items()->Clear();
+                InitTreeViewForGamesList(ui.TreeView, GameDB);
+                TreeViewChange(Sender, ui.TreeView->currentItem());
+            }
+            break;
         case 5018:
             if (ShowScanGamesFolderResultsDialog(this, GameDB)) {
                 InitTreeViewForGamesList(ui.TreeView, GameDB);

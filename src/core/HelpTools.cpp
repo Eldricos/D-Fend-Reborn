@@ -160,6 +160,7 @@ static QString HelpContextPage(qintptr ID)
         {ID_ExtrasEditCheatDB, "ExtrasEditCheatDB"},
         {ID_ExtrasSearchAddress, "ExtrasSearchAddress"},
         {ID_ExtrasDOSBoxLanguageEditor, "ExtrasLanguageEditorDOSBox"},
+        {ID_ExtrasMissingGames, "ExtrasMissingGames"},
         {ID_HelpForum, "HelpForum"},
         {ID_HelpStatistics, "HelpStatistics"},
         {ID_HelpOperationMode, "HelpOperationMode"},

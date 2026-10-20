@@ -1,5 +1,6 @@
 // C++ port of GameDBToolsUnit.pas (implementation section).
 #include "GameDBToolsUnit.h"
+#include "GameLocationUnit.h"
 
 #include <QThread>
 #include <QPainter>
@@ -3021,6 +3022,12 @@ TStringList *CheckGameDB(TGameDB *GameDB)
                     }
                 }
             }
+        }
+
+        // (D-Fend Reborn: mounted folders and image files)
+        for (const QString& D : MissingDrivePaths(Game)) {
+            const int P = D.indexOf(QLatin1Char(';'));
+            Error(Format(LanguageSetup->MissingFilesDrive(), {QDir::toNativeSeparators(D.mid(P + 1)), D.left(P)}));
         }
 
         S = Trim(Game->CaptureFolder());

@@ -13,6 +13,12 @@ Version 0.5.9 (not released yet)
   same import for the DOS games Steam sells with DOSBox; conf files with any
   name in the game folder or a subfolder, the names of the games from Steam,
   Steam libraries found via libraryfolders.vdf.
+- Extras | Find missing games: lists the games whose program files or
+  folders do not exist any more (e.g. GOG or Steam games that were
+  uninstalled or moved to another folder or drive); moved games are searched
+  in a chosen folder and their profiles changed to the new location, the
+  profiles of uninstalled games can be deleted. "Check profiles for not
+  existing files" also checks the mounted folders and image files.
 - [Fix] Linux: ScummVM games did not start when "Hide ScummVM console" was
   set (the option --no-console only exists in the Windows version).
 

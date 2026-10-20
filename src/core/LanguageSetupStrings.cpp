@@ -339,6 +339,7 @@ void TLanguageSetup::SetupLanguageStrings1()
     AddStringRec(NR_MenuExtrasChangeProfiles, QStringLiteral("Menu"), QStringLiteral("Extras.ChangeProfiles"), QStringLiteral("Edit multiple profiles..."));
     AddStringRec(NR_MenuExtrasCreateShortcuts, QStringLiteral("Menu"), QStringLiteral("Extras.CreateShortcuts"), QStringLiteral("Create shortcuts for multiple games..."));
     AddStringRec(NR_MenuExtrasCheckProfiles, QStringLiteral("Menu"), QStringLiteral("Extras.CheckProfiles"), QStringLiteral("Check profiles for not existing files..."));
+    AddStringRec(NR_MenuExtrasMissingGames, QStringLiteral("Menu"), QStringLiteral("Extras.MissingGames"), QStringLiteral("Find missing games..."));
     AddStringRec(NR_MenuExtrasTranslationEditor, QStringLiteral("Menu"), QStringLiteral("Extras.TranslationEditor"), QStringLiteral("Translation editor"));
     AddStringRec(NR_MenuExtrasTranslationEditorDFendReborn, QStringLiteral("Menu"), QStringLiteral("Extras.TranslationEditor.DFendReloaded"), QStringLiteral("D-Fend Reborn translation editor..."));
     AddStringRec(NR_MenuExtrasTranslationEditorDOSBox, QStringLiteral("Menu"), QStringLiteral("Extras.TranslationEditor.DOSBox"), QStringLiteral("DOSBox translation editor..."));
@@ -1658,6 +1659,18 @@ void TLanguageSetup::SetupLanguageStrings3()
     AddStringRec(NR_MissingFilesDataDirectory, QStringLiteral("MissingFilesCheck"), QStringLiteral("DataDirectory"), QStringLiteral("The data directory \"%s\" does not exist."));
     AddStringRec(NR_MissingFilesExtraFile, QStringLiteral("MissingFilesCheck"), QStringLiteral("ExtraFile"), QStringLiteral("The extra file \"%s\" does not exist."));
     AddStringRec(NR_MissingFilesExtraDirectory, QStringLiteral("MissingFilesCheck"), QStringLiteral("ExtraDirectory"), QStringLiteral("The extra directory \"%s\" does not exist."));
+    AddStringRec(NR_MissingFilesDrive, QStringLiteral("MissingFilesCheck"), QStringLiteral("Drive"), QStringLiteral("The folder or image file \"%s\" of drive %s: does not exist."));
+    AddStringRec(NR_MissingGamesCaption, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.Caption"), QStringLiteral("Missing games"));
+    AddStringRec(NR_MissingGamesInfo, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.Info"), QStringLiteral("The program files or folders of these games do not exist any more, e.g. because the games were uninstalled or moved to another folder or drive (for example a Steam library). Search the new location of moved games, or delete the profiles of games that are no longer installed."));
+    AddStringRec(NR_MissingGamesNone, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.None"), QStringLiteral("The program files and folders of all games are available."));
+    AddStringRec(NR_MissingGamesProfile, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.Profile"), QStringLiteral("Profile"));
+    AddStringRec(NR_MissingGamesMissing, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.Missing"), QStringLiteral("Not found"));
+    AddStringRec(NR_MissingGamesSearch, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.Search"), QStringLiteral("Search new location..."));
+    AddStringRec(NR_MissingGamesSearchCaption, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.Search.Caption"), QStringLiteral("Select the folder the games were moved to (e.g. the new GOG folder or Steam library)"));
+    AddStringRec(NR_MissingGamesDelete, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.Delete"), QStringLiteral("Delete profiles"));
+    AddStringRec(NR_MissingGamesDeleteConfirm, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.Delete.Confirm"), QStringLiteral("Delete the profiles of the %s selected games? Only the profiles are deleted, no game files."));
+    AddStringRec(NR_MissingGamesFound, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.Found"), QStringLiteral("Found in the new location:"));
+    AddStringRec(NR_MissingGamesNotFound, QStringLiteral("MissingFilesCheck"), QStringLiteral("Games.NotFound"), QStringLiteral("Not found in this folder:"));
 }
 
 void TLanguageSetup::SetupLanguageStrings4()

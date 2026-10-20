@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Find missing games</title>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="Global.css">
+  <script language="JavaScript" type="text/javascript" src="Global.js"></script>
+  <meta name="keywords" content="Menu, Extras, missing games, moved, uninstalled, GOG, Steam">
+</head>
+<body>
+
+<p class="content">
+Menu: &nbsp; <b>Extras</b> | <b>Find missing games</b>
+</p>
+
+<h1>Find missing games</h1>
+
+<p>
+Games imported from <a href="FileImportGOG.html">GOG</a> or <a href="FileImportSteam.html">Steam</a> stay in the
+folders of these stores. If a game is uninstalled there, or moved to another folder or drive (for example when a
+Steam library is moved), its profile points to files that do not exist any more. The same can happen with any
+other game whose folder was moved or deleted.
+</p>
+
+<p>
+This dialog lists all profiles whose program file, setup program, mounted folders or image files (for ScummVM games:
+the game folder) are missing. The column "Not found" shows the first missing file; hold the mouse over it to see all
+of them. Select the games to work on with the check boxes:
+</p>
+
+<ul>
+  <li><b>Search new location:</b> select the folder the games are in now. This can be the game folder itself, a folder
+  containing the game folders (e.g. the new <tt>GOG Games</tt> folder) or a Steam library (its folder or
+  <tt>steamapps\common</tt>). If a game is found there, all paths of its profile (program files, drives, extra
+  files and folders) are changed to the new location; the settings of the profile stay as they are. Games that are not
+  found are listed and keep their profiles unchanged.</li>
+  <li><b>Delete profiles:</b> deletes the profiles of the selected games, e.g. of games that were uninstalled. Only the
+  profiles are deleted; no game files are touched.</li>
+</ul>
+
+<p>
+Physical CD drives mounted in a profile are not checked (they are only available while a disc is inserted).
+</p>
+
+<p>&nbsp;</p>
+
+<p class="smallH">See also:</p>
+<p class="smallT">
+  <a href="ExtrasCheckProfiles.html">Check profiles for not existing files</a><br />
+  <a href="FileImportGOG.html">Importing GOG games</a><br />
+  <a href="FileImportSteam.html">Importing Steam games</a>
+</p>
+
+</body>
+</html>

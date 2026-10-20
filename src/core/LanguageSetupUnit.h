@@ -350,6 +350,7 @@ constexpr int NR_MenuExtrasTransferProfiles = 34033;
 constexpr int NR_MenuExtrasChangeProfiles = 34034;
 constexpr int NR_MenuExtrasCreateShortcuts = 34035;
 constexpr int NR_MenuExtrasCheckProfiles = 34036;
+constexpr int NR_MenuExtrasMissingGames = 34040;   // D-Fend Reborn
 constexpr int NR_MenuExtrasTranslationEditor = 34037;
 constexpr int NR_MenuExtrasTranslationEditorDFendReborn = 34038;
 constexpr int NR_MenuExtrasTranslationEditorDOSBox = 34039;
@@ -1646,6 +1647,18 @@ constexpr int NR_MissingFilesIconFile = 82009;
 constexpr int NR_MissingFilesDataDirectory = 82010;
 constexpr int NR_MissingFilesExtraFile = 82011;
 constexpr int NR_MissingFilesExtraDirectory = 82012;
+constexpr int NR_MissingFilesDrive = 82013;   // D-Fend Reborn
+constexpr int NR_MissingGamesCaption = 82020;   // D-Fend Reborn
+constexpr int NR_MissingGamesInfo = 82021;   // D-Fend Reborn
+constexpr int NR_MissingGamesNone = 82022;   // D-Fend Reborn
+constexpr int NR_MissingGamesProfile = 82023;   // D-Fend Reborn
+constexpr int NR_MissingGamesMissing = 82024;   // D-Fend Reborn
+constexpr int NR_MissingGamesSearch = 82025;   // D-Fend Reborn
+constexpr int NR_MissingGamesSearchCaption = 82026;   // D-Fend Reborn
+constexpr int NR_MissingGamesDelete = 82027;   // D-Fend Reborn
+constexpr int NR_MissingGamesDeleteConfirm = 82028;   // D-Fend Reborn
+constexpr int NR_MissingGamesFound = 82029;   // D-Fend Reborn
+constexpr int NR_MissingGamesNotFound = 82030;   // D-Fend Reborn
 constexpr int NR_OperationModeCaption = 83001;
 constexpr int NR_OperationModeTopLabel = 83002;
 constexpr int NR_OperationModeOpModePrgDir = 83003;
@@ -2821,6 +2834,8 @@ public:
     void SetMenuExtrasCreateShortcuts(const QString& Value) { SetString(NR_MenuExtrasCreateShortcuts, Value); }
     QString MenuExtrasCheckProfiles() { return GetString(NR_MenuExtrasCheckProfiles); }
     void SetMenuExtrasCheckProfiles(const QString& Value) { SetString(NR_MenuExtrasCheckProfiles, Value); }
+    QString MenuExtrasMissingGames() { return GetString(NR_MenuExtrasMissingGames); }
+    void SetMenuExtrasMissingGames(const QString& Value) { SetString(NR_MenuExtrasMissingGames, Value); }
     QString MenuExtrasTranslationEditor() { return GetString(NR_MenuExtrasTranslationEditor); }
     void SetMenuExtrasTranslationEditor(const QString& Value) { SetString(NR_MenuExtrasTranslationEditor, Value); }
     QString MenuExtrasTranslationEditorDFendReborn() { return GetString(NR_MenuExtrasTranslationEditorDFendReborn); }
@@ -5406,6 +5421,30 @@ public:
     void SetMissingFilesExtraFile(const QString& Value) { SetString(NR_MissingFilesExtraFile, Value); }
     QString MissingFilesExtraDirectory() { return GetString(NR_MissingFilesExtraDirectory); }
     void SetMissingFilesExtraDirectory(const QString& Value) { SetString(NR_MissingFilesExtraDirectory, Value); }
+    QString MissingFilesDrive() { return GetString(NR_MissingFilesDrive); }
+    void SetMissingFilesDrive(const QString& Value) { SetString(NR_MissingFilesDrive, Value); }
+    QString MissingGamesCaption() { return GetString(NR_MissingGamesCaption); }
+    void SetMissingGamesCaption(const QString& Value) { SetString(NR_MissingGamesCaption, Value); }
+    QString MissingGamesInfo() { return GetString(NR_MissingGamesInfo); }
+    void SetMissingGamesInfo(const QString& Value) { SetString(NR_MissingGamesInfo, Value); }
+    QString MissingGamesNone() { return GetString(NR_MissingGamesNone); }
+    void SetMissingGamesNone(const QString& Value) { SetString(NR_MissingGamesNone, Value); }
+    QString MissingGamesProfile() { return GetString(NR_MissingGamesProfile); }
+    void SetMissingGamesProfile(const QString& Value) { SetString(NR_MissingGamesProfile, Value); }
+    QString MissingGamesMissing() { return GetString(NR_MissingGamesMissing); }
+    void SetMissingGamesMissing(const QString& Value) { SetString(NR_MissingGamesMissing, Value); }
+    QString MissingGamesSearch() { return GetString(NR_MissingGamesSearch); }
+    void SetMissingGamesSearch(const QString& Value) { SetString(NR_MissingGamesSearch, Value); }
+    QString MissingGamesSearchCaption() { return GetString(NR_MissingGamesSearchCaption); }
+    void SetMissingGamesSearchCaption(const QString& Value) { SetString(NR_MissingGamesSearchCaption, Value); }
+    QString MissingGamesDelete() { return GetString(NR_MissingGamesDelete); }
+    void SetMissingGamesDelete(const QString& Value) { SetString(NR_MissingGamesDelete, Value); }
+    QString MissingGamesDeleteConfirm() { return GetString(NR_MissingGamesDeleteConfirm); }
+    void SetMissingGamesDeleteConfirm(const QString& Value) { SetString(NR_MissingGamesDeleteConfirm, Value); }
+    QString MissingGamesFound() { return GetString(NR_MissingGamesFound); }
+    void SetMissingGamesFound(const QString& Value) { SetString(NR_MissingGamesFound, Value); }
+    QString MissingGamesNotFound() { return GetString(NR_MissingGamesNotFound); }
+    void SetMissingGamesNotFound(const QString& Value) { SetString(NR_MissingGamesNotFound, Value); }
     QString OperationModeCaption() { return GetString(NR_OperationModeCaption); }
     void SetOperationModeCaption(const QString& Value) { SetString(NR_OperationModeCaption, Value); }
     QString OperationModeTopLabel() { return GetString(NR_OperationModeTopLabel); }
