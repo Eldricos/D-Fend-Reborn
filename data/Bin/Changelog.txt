@@ -1,8 +1,8 @@
 D-Fend Reborn Changelog
 
 
-Version 0.5.8 (not released yet)
-================================
+Version 0.5.8 (10/20/2026)
+==========================
 - Dark mode: the program windows follow the light or dark colors of Windows
   or the Linux desktop, also when they are switched while the program runs.
   Program options, "User interface" page, "Colors": as set in the operating
