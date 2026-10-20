@@ -128,6 +128,10 @@ private:
     TValueListEditorWidget* StagingValueListEditor = nullptr;   // "DOSBox Staging" tab (StagingSettings)
     void InitStagingSheet();
     void StagingEditButtonClick(int Row);
+    QList<QStringList> StagingBaseValues;   // pick lists of the "Default values" page
+    QString StagingChoicesInstallation;
+    bool StagingChoicesLoaded = false;
+    void UpdateStagingChoices(const QString& Installation);
     void MarkIgnoredDOSBoxSettings();
     void LoadMountingList();
     QChar NextFreeDriveLetter();
