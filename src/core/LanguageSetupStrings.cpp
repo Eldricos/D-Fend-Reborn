@@ -206,6 +206,10 @@ void TLanguageSetup::SetupLanguageStrings1()
     AddStringRec(NR_MenuFileImportGOGNone, QStringLiteral("Menu"), QStringLiteral("File.Import.GOG.None"), QStringLiteral("No DOS games from GOG were found in %s."));
     AddStringRec(NR_MenuFileImportGOGImported, QStringLiteral("Menu"), QStringLiteral("File.Import.GOG.Imported"), QStringLiteral("Imported GOG games:"));
     AddStringRec(NR_MenuFileImportGOGSkipped, QStringLiteral("Menu"), QStringLiteral("File.Import.GOG.Skipped"), QStringLiteral("Already in the games list (not imported again):"));
+    AddStringRec(NR_MenuFileImportSteam, QStringLiteral("Menu"), QStringLiteral("File.Import.Steam"), QStringLiteral("Import Steam games..."));
+    AddStringRec(NR_MenuFileImportSteamCaption, QStringLiteral("Menu"), QStringLiteral("File.Import.Steam.Caption"), QStringLiteral("Select the folder of a Steam game or a Steam library folder"));
+    AddStringRec(NR_MenuFileImportSteamNone, QStringLiteral("Menu"), QStringLiteral("File.Import.Steam.None"), QStringLiteral("No DOS games from Steam were found in %s."));
+    AddStringRec(NR_MenuFileImportSteamImported, QStringLiteral("Menu"), QStringLiteral("File.Import.Steam.Imported"), QStringLiteral("Imported Steam games:"));
     AddStringRec(NR_MenuFileImportDownload, QStringLiteral("Menu"), QStringLiteral("File.Import.Download"), QStringLiteral("Download packages..."));
     AddStringRec(NR_MenuFileExport, QStringLiteral("Menu"), QStringLiteral("File.Export"), QStringLiteral("Export"));
     AddStringRec(NR_MenuFileExportGamesList, QStringLiteral("Menu"), QStringLiteral("File.Export.GamesList"), QStringLiteral("Export &gamelist..."));

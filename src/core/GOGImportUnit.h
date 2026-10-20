@@ -52,6 +52,15 @@ QList<TGOGGame> FindGOGGames(const QString& Folder);
 // Folders GOG installs its games to on this computer (existing ones)
 QStringList DefaultGOGFolders();
 
+// Steam: DOS games released with DOSBox (the same import; conf files with
+// any name in the game folder or a subfolder, name and ID of the game from
+// steamapps/appmanifest_<ID>.acf). Folder: a game folder, steamapps/common,
+// a Steam library folder or the Steam folder.
+QList<TGOGGame> FindSteamGames(const QString& Folder);
+
+// steamapps/common folders of the Steam libraries on this computer
+QStringList DefaultSteamFolders();
+
 // Creates a profile for the game (nullptr: no conf file could be read)
 TGame* ImportGOGGame(TGameDB* GameDB, const TGOGGame& Game);
 

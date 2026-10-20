@@ -244,6 +244,10 @@ constexpr int NR_MenuFileImportGOGCaption = 30044;   // D-Fend Reborn
 constexpr int NR_MenuFileImportGOGNone = 30045;   // D-Fend Reborn
 constexpr int NR_MenuFileImportGOGImported = 30046;   // D-Fend Reborn
 constexpr int NR_MenuFileImportGOGSkipped = 30047;   // D-Fend Reborn
+constexpr int NR_MenuFileImportSteam = 30048;   // D-Fend Reborn
+constexpr int NR_MenuFileImportSteamCaption = 30049;   // D-Fend Reborn
+constexpr int NR_MenuFileImportSteamNone = 30050;   // D-Fend Reborn
+constexpr int NR_MenuFileImportSteamImported = 30051;   // D-Fend Reborn
 constexpr int NR_MenuView = 31001;
 constexpr int NR_MenuViewShowMenubar = 31002;
 constexpr int NR_MenuViewShowMenubarWarning = 31003;
@@ -2555,6 +2559,14 @@ public:
     void SetMenuFileImportGOGImported(const QString& Value) { SetString(NR_MenuFileImportGOGImported, Value); }
     QString MenuFileImportGOGSkipped() { return GetString(NR_MenuFileImportGOGSkipped); }
     void SetMenuFileImportGOGSkipped(const QString& Value) { SetString(NR_MenuFileImportGOGSkipped, Value); }
+    QString MenuFileImportSteam() { return GetString(NR_MenuFileImportSteam); }
+    void SetMenuFileImportSteam(const QString& Value) { SetString(NR_MenuFileImportSteam, Value); }
+    QString MenuFileImportSteamCaption() { return GetString(NR_MenuFileImportSteamCaption); }
+    void SetMenuFileImportSteamCaption(const QString& Value) { SetString(NR_MenuFileImportSteamCaption, Value); }
+    QString MenuFileImportSteamNone() { return GetString(NR_MenuFileImportSteamNone); }
+    void SetMenuFileImportSteamNone(const QString& Value) { SetString(NR_MenuFileImportSteamNone, Value); }
+    QString MenuFileImportSteamImported() { return GetString(NR_MenuFileImportSteamImported); }
+    void SetMenuFileImportSteamImported(const QString& Value) { SetString(NR_MenuFileImportSteamImported, Value); }
     QString MenuFileImportDownload() { return GetString(NR_MenuFileImportDownload); }
     void SetMenuFileImportDownload(const QString& Value) { SetString(NR_MenuFileImportDownload, Value); }
     QString MenuFileExport() { return GetString(NR_MenuFileExport); }

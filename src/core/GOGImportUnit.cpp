@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QRegularExpression>
+#include <QSettings>
 #include "Classes.h"
 #include "CommonTools.h"
 #include "GameDBToolsUnit.h"
@@ -355,46 +356,118 @@ QString RelPath(const QString& Path)
     return MakeRelPath(QDir::toNativeSeparators(Path), PrgSetup->BaseDir(), true);
 }
 
+bool HasMounts(const QStringList& Autoexec)
+{
+    for (const QString& L : Autoexec) {
+        const QString S = StripAt(L).toLower();
+        if (S.startsWith(QLatin1String("mount ")) || S.startsWith(QLatin1String("imgmount "))) return true;
+    }
+    return false;
+}
+
+bool HasDOSBoxProgram(const QString& Dir)
+{
+    for (const QString& E : QDir(Dir).entryList(QDir::Files))
+        if ((E.compare(QLatin1String("dosbox.exe"), Qt::CaseInsensitive) == 0) || (E == QLatin1String("dosbox"))) return true;
+    return false;
+}
+
+QStringList ConfFilesIn(const QString& Dir)
+{
+    QStringList R;
+    for (const QString& E : QDir(Dir).entryList(QDir::Files, QDir::Name | QDir::IgnoreCase))
+        if (QFileInfo(E).suffix().compare(QLatin1String("conf"), Qt::CaseInsensitive) == 0) R << QDir::cleanPath(QDir(Dir).filePath(E));
+    return R;
+}
+
+// Other releases with DOSBox (e.g. Steam): conf files with any name in the
+// game folder or one of its subfolders (e.g. "base", "DOSBox-0.74"); the
+// one that mounts something and starts the game (not a setup or network
+// variant), the settings of a dosbox.conf next to it before it
+bool ReadAnyConfFiles(const QString& Folder, TGOGGame& Game)
+{
+    QStringList Dirs = {QDir::cleanPath(Folder)};
+    for (const QFileInfo& Sub : QDir(Folder).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::IgnoreCase)) Dirs << QDir::cleanPath(Sub.absoluteFilePath());
+    static const QStringList SetupWords = {QStringLiteral("setup"), QStringLiteral("settings"), QStringLiteral("config")};
+    static const QStringList OtherWords = {QStringLiteral("server"), QStringLiteral("client"), QStringLiteral("multi"), QStringLiteral("ipx"), QStringLiteral("net")};
+    auto Contains = [](const QString& Name, const QStringList& Words) { for (const QString& W : Words) if (Name.contains(W)) return true; return false; };
+    QString Best, Setup;
+    int BestRank = 99;
+    for (const QString& Dir : Dirs) {
+        for (const QString& F : ConfFilesIn(Dir)) {
+            if (!HasMounts(ReadConfs({F}).Autoexec)) continue;
+            const QString Name = QFileInfo(F).completeBaseName().toLower();
+            if (Contains(Name, SetupWords)) { if (Setup.isEmpty()) Setup = F; continue; }
+            int Rank = Name.endsWith(QLatin1String("_single")) ? 0 : (Contains(Name, OtherWords) ? 2 : 1);
+            if ((Rank < BestRank) || ((Rank == BestRank) && (QFileInfo(F).fileName().length() < QFileInfo(Best).fileName().length()) && (QFileInfo(F).absolutePath() == QFileInfo(Best).absolutePath()))) { Best = F; BestRank = Rank; }
+        }
+    }
+    if (Best.isEmpty()) return false;
+    const QString ConfDir = QFileInfo(Best).absolutePath();
+    // settings before the conf file: <name>.conf for <name>_single.conf, dosbox.conf
+    QStringList Base;
+    const QString BaseName = QFileInfo(Best).completeBaseName();
+    if (BaseName.endsWith(QLatin1String("_single"), Qt::CaseInsensitive)) {
+        const QString F = FindPath(ConfDir, BaseName.left(BaseName.length() - 7) + QStringLiteral(".conf"));
+        if (!F.isEmpty()) Base << F;
+    }
+    const QString DOSBoxConf = FindPath(ConfDir, QStringLiteral("dosbox.conf"));
+    if (!DOSBoxConf.isEmpty() && (DOSBoxConf != Best) && !Base.contains(DOSBoxConf)) Base.prepend(DOSBoxConf);
+    Game.GameConfs = Base + QStringList{Best};
+    if (!Setup.isEmpty()) Game.SetupConfs = Base + QStringList{Setup};
+    // working folder: the folder of the DOSBox program (relative mount paths)
+    Game.WorkingDir = ConfDir;
+    if (!HasDOSBoxProgram(ConfDir)) {
+        for (const QString& Dir : Dirs) {
+            if (QFileInfo(Dir).fileName().startsWith(QLatin1String("dosbox"), Qt::CaseInsensitive) && HasDOSBoxProgram(Dir)) { Game.WorkingDir = Dir; break; }
+        }
+    }
+    return true;
+}
+
+}  // namespace
+
+namespace {
+
+// AnyConfFiles: also conf files with other names in subfolders (not for a
+// folder that may contain several games)
+bool ReadGame(const QString& Folder, TGOGGame& Game, bool AnyConfFiles)
+{
+    Game = TGOGGame();
+    if (!QFileInfo(Folder).isDir()) return false;
+    const QString F = QDir::cleanPath(QFileInfo(Folder).absoluteFilePath());
+    auto Reset = [&Game, &F]() { Game = TGOGGame(); Game.Folder = F; };
+    Reset();
+    bool OK = ReadInfoFile(F, Game) || ReadConfFiles(F, Game);
+    // (a DOS game: the conf files mount something)
+    if (OK && !Game.ScummVM && !HasMounts(ReadConfs(Game.GameConfs).Autoexec)) OK = false;
+    if (!OK) { Reset(); OK = ReadScummVMFiles(F, Game); }
+    if (!OK && AnyConfFiles) { Reset(); OK = ReadAnyConfFiles(F, Game); }
+    if (!OK) return false;
+    if (Game.Name.isEmpty()) Game.Name = QFileInfo(Game.Folder).fileName();
+    return true;
+}
+
 }  // namespace
 
 bool ReadGOGGame(const QString& Folder, TGOGGame& Game)
 {
-    Game = TGOGGame();
-    if (!QFileInfo(Folder).isDir()) return false;
-    Game.Folder = QDir::cleanPath(QFileInfo(Folder).absoluteFilePath());
-    if (!ReadInfoFile(Game.Folder, Game) && !ReadConfFiles(Game.Folder, Game)) {
-        const QString F = Game.Folder;
-        Game = TGOGGame();
-        Game.Folder = F;
-        if (!ReadScummVMFiles(Game.Folder, Game)) return false;
-    }
-    if (Game.ScummVM) {
-        if (Game.Name.isEmpty()) Game.Name = QFileInfo(Game.Folder).fileName();
-        return true;
-    }
-    // (a DOS game: the conf files mount something)
-    const TConfData D = ReadConfs(Game.GameConfs);
-    bool Mounts = false;
-    for (const QString& L : D.Autoexec) {
-        const QString S = StripAt(L).toLower();
-        if (S.startsWith(QLatin1String("mount ")) || S.startsWith(QLatin1String("imgmount "))) { Mounts = true; break; }
-    }
-    if (!Mounts) return false;
-    if (Game.Name.isEmpty()) Game.Name = QFileInfo(Game.Folder).fileName();
-    return true;
+    return ReadGame(Folder, Game, true);
 }
 
 QList<TGOGGame> FindGOGGames(const QString& Folder)
 {
     QList<TGOGGame> R;
     TGOGGame G;
-    if (ReadGOGGame(Folder, G)) { R << G; return R; }
+    if (ReadGame(Folder, G, false)) { R << G; return R; }
     // subfolders (e.g. "GOG Games") and their subfolders (e.g. "GOG Galaxy" -> "Games")
     for (const QFileInfo& Sub : QDir(Folder).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::IgnoreCase)) {
         if (ReadGOGGame(Sub.absoluteFilePath(), G)) { R << G; continue; }
         for (const QFileInfo& Sub2 : QDir(Sub.absoluteFilePath()).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::IgnoreCase))
             if (ReadGOGGame(Sub2.absoluteFilePath(), G)) R << G;
     }
+    // (a game folder with the conf files in a subfolder)
+    if (R.isEmpty() && ReadGOGGame(Folder, G)) R << G;
     return R;
 }
 
@@ -408,6 +481,98 @@ QStringList DefaultGOGFolders()
 #endif
     QStringList R;
     for (const QString& F : L) if (QFileInfo(F).isDir()) R << F;
+    return R;
+}
+
+namespace {
+
+// Steam: steamapps/appmanifest_<ID>.acf ("appid", "name", "installdir")
+void ReadSteamManifest(TGOGGame& Game)
+{
+    const QDir Common = QFileInfo(Game.Folder).dir();
+    if (Common.dirName().compare(QLatin1String("common"), Qt::CaseInsensitive) != 0) return;
+    const QDir SteamApps(QDir::cleanPath(Common.absolutePath() + QStringLiteral("/..")));
+    static const QRegularExpression KeyValue(QStringLiteral("\"(\\w+)\"\\s+\"([^\"]*)\""));
+    const QString InstallDir = QFileInfo(Game.Folder).fileName();
+    for (const QString& E : SteamApps.entryList({QStringLiteral("appmanifest_*.acf")}, QDir::Files)) {
+        QFile F(SteamApps.filePath(E));
+        if (!F.open(QIODevice::ReadOnly | QIODevice::Text)) continue;
+        QString Name, ID, Dir;
+        auto It = KeyValue.globalMatch(QString::fromUtf8(F.readAll()));
+        while (It.hasNext()) {
+            const auto M = It.next();
+            const QString K = M.captured(1).toLower();
+            if ((K == QLatin1String("appid")) && ID.isEmpty()) ID = M.captured(2);
+            else if ((K == QLatin1String("name")) && Name.isEmpty()) Name = M.captured(2);
+            else if ((K == QLatin1String("installdir")) && Dir.isEmpty()) Dir = M.captured(2);
+        }
+        if (Dir.compare(InstallDir, Qt::CaseInsensitive) != 0) continue;
+        if (!Name.isEmpty()) Game.Name = Name;
+        Game.ID = ID;
+        return;
+    }
+}
+
+// steamapps/common of a Steam folder, a library folder or a steamapps folder
+QString SteamCommonFolder(const QString& Folder)
+{
+    for (const QString& Rel : {QStringLiteral("steamapps/common"), QStringLiteral("common")}) {
+        const QString P = FindPath(Folder, Rel);
+        if (!P.isEmpty() && QFileInfo(P).isDir()) return P;
+    }
+    return QString();
+}
+
+}  // namespace
+
+QList<TGOGGame> FindSteamGames(const QString& Folder)
+{
+    const QString Common = SteamCommonFolder(Folder);
+    QList<TGOGGame> R;
+    TGOGGame G;
+    if (QFileInfo(QDir::cleanPath(Folder)).dir().dirName().compare(QLatin1String("common"), Qt::CaseInsensitive) == 0) {
+        // a game folder (steamapps/common/<game>)
+        if (ReadGOGGame(Folder, G)) R << G;
+    } else if (Common.isEmpty()) {
+        R = FindGOGGames(Folder);
+    } else {
+        for (const QFileInfo& Sub : QDir(Common).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::IgnoreCase))
+            if (ReadGOGGame(Sub.absoluteFilePath(), G)) R << G;
+    }
+    for (TGOGGame& G : R) ReadSteamManifest(G);
+    return R;
+}
+
+QStringList DefaultSteamFolders()
+{
+    QStringList Steam;
+#ifdef Q_OS_WIN
+    const QString Reg = QSettings(QStringLiteral("HKEY_CURRENT_USER\\Software\\Valve\\Steam"), QSettings::NativeFormat).value(QStringLiteral("SteamPath")).toString();
+    if (!Reg.isEmpty()) Steam << QDir::fromNativeSeparators(Reg);
+    Steam << QStringLiteral("C:/Program Files (x86)/Steam") << QStringLiteral("C:/Program Files/Steam");
+#else
+    Steam << QDir::homePath() + QStringLiteral("/.steam/steam") << QDir::homePath() + QStringLiteral("/.local/share/Steam")
+          << QDir::homePath() + QStringLiteral("/.var/app/com.valvesoftware.Steam/.local/share/Steam");
+#endif
+    // library folders: steamapps/libraryfolders.vdf ("path")
+    QStringList Libraries;
+    static const QRegularExpression PathRE(QStringLiteral("\"path\"\\s+\"([^\"]*)\""), QRegularExpression::CaseInsensitiveOption);
+    for (const QString& S : Steam) {
+        if (!QFileInfo(S).isDir()) continue;
+        Libraries << S;
+        QFile F(S + QStringLiteral("/steamapps/libraryfolders.vdf"));
+        if (!F.open(QIODevice::ReadOnly | QIODevice::Text)) continue;
+        auto It = PathRE.globalMatch(QString::fromUtf8(F.readAll()));
+        while (It.hasNext()) Libraries << QString(It.next().captured(1)).replace(QStringLiteral("\\\\"), QStringLiteral("/"));
+    }
+    QStringList R;
+    for (const QString& L : Libraries) {
+        const QString C = SteamCommonFolder(L);
+        if (C.isEmpty()) continue;
+        bool Known = false;
+        for (const QString& X : R) if (QFileInfo(X).canonicalFilePath() == QFileInfo(C).canonicalFilePath()) Known = true;
+        if (!Known) R << C;
+    }
     return R;
 }
 

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Import Steam games</title>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="Global.css">
+  <script language="JavaScript" type="text/javascript" src="Global.js"></script>
+  <meta name="keywords" content="Menu, File, Import, Steam">
+</head>
+<body>
+
+<p class="content">
+Menu: &nbsp; <b>File</b> | <b>Import</b> | <b>Import Steam games</b>
+</p>
+
+<h1>Import Steam games</h1>
+
+<p>
+Many DOS games sold on <a href="https://store.steampowered.com/">Steam</a> come with their own DOSBox and DOSBox
+configuration files, like the games of GOG.com. This function creates D-Fend Reborn profiles for these games, so they
+can be started with the DOSBox of D-Fend Reborn (DOSBox Staging) and managed like all other games. The game files stay
+in the Steam library; nothing is copied.
+</p>
+
+<p>
+Select the folder of one game (e.g. <tt>...\steamapps\common\Wolfenstein 3D</tt>) or a Steam library: the Steam
+folder, a library folder or its <tt>steamapps\common</tt> folder. The dialog starts in the first Steam library found
+on this computer (the libraries are listed in Steam's file <tt>steamapps\libraryfolders.vdf</tt>). All DOS games found
+are imported; games that are already in the games list are skipped. The names of the games are taken from Steam
+(<tt>appmanifest_*.acf</tt> files).
+</p>
+
+<p>
+The DOSBox configuration files of a Steam game can have any name; they are searched in the game folder and its
+subfolders (e.g. <tt>base</tt> or <tt>DOSBox-0.74</tt>). The configuration file that mounts the game and starts it is
+used; variants for the setup program (<tt>setup</tt> or <tt>settings</tt> in the name) give the setup program of the
+profile, variants for network games are ignored. Settings in a <tt>dosbox.conf</tt> next to it are imported as well.
+Everything else works as described for <a href="FileImportGOG.html">GOG games</a>: drives, program file, parameters,
+games starting with a menu and games using ScummVM.
+</p>
+
+<p>
+Steam games whose start options are only stored in Steam itself (DOSBox started without configuration file) cannot
+be recognized; use the <a href="ProfileWithWizard.html">profile wizard</a> for these.
+</p>
+
+<p>&nbsp;</p>
+
+<p class="smallH">See also:</p>
+<p class="smallT">
+  <a href="FileImportGOG.html">Importing GOG games</a><br />
+  <a href="FileImportConf.html">Importing conf files</a>
+</p>
+
+</body>
+</html>

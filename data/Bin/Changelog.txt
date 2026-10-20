@@ -9,6 +9,10 @@ Version 0.5.9 (not released yet)
   program); one game folder or a folder with several games, the game files
   stay where they are. Games GOG sells with ScummVM (e.g. Beneath a Steel
   Sky) get ScummVM profiles.
+- Import of DOS games from Steam (File | Import | Import Steam games): the
+  same import for the DOS games Steam sells with DOSBox; conf files with any
+  name in the game folder or a subfolder, the names of the games from Steam,
+  Steam libraries found via libraryfolders.vdf.
 - [Fix] Linux: ScummVM games did not start when "Hide ScummVM console" was
   set (the option --no-console only exists in the Windows version).
 
