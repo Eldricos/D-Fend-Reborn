@@ -262,7 +262,10 @@ QString GetScummVMCommandLine(const QString& INIFile, const QString& GameName, c
 
     result = "";
     if (!Trim(AdditionalCommandLine).isEmpty()) result = result + AdditionalCommandLine + " ";
+#ifdef Q_OS_WIN
+    // (only the Windows version of ScummVM has a console window and this option)
     if (PrgSetup->HideScummVMConsole()) result = result + "--no-console ";
+#endif
 
     result = result + "--config=\"" + INIFile + "\" " + RenderModeParam + PlatformParam + GameName;
     return result;

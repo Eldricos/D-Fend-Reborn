@@ -604,6 +604,46 @@ private slots:
         QVERIFY(!ReadGOGGame(D + "data", None));
     }
 
+    void gogScummVMGames()
+    {
+        // Windows version: goggame-<ID>.info starts ScummVM with "-c ..\\beneath.ini sky"
+        const QString D = FPrgDir.path() + "/GOGScummVM/Beneath a Steel Sky/";
+        WriteFile(D + "goggame-1207658695.info", "{\"gameId\": \"1207658695\", \"name\": \"Beneath a Steel Sky\", \"playTasks\": [{\"arguments\": \"-c \\\"..\\\\beneath.ini\\\" sky\", \"category\": \"game\", \"isPrimary\": true, \"name\": \"Beneath a Steel Sky\", \"path\": \"ScummVM\\\\scummvm.exe\", \"type\": \"FileTask\", \"workingDir\": \"ScummVM\"}]}");
+        WriteFile(D + "ScummVM/scummvm.exe", "exe");
+        WriteFile(D + "beneath.ini", "[scummvm]\r\nfullscreen=true\r\n\r\n[sky]\r\ngameid=sky\r\ndescription=Beneath a Steel Sky (v0.0372 CD/DOS)\r\npath=..\\\r\nlanguage=gb\r\n");
+        WriteFile(D + "SKY.DSK", "data");
+        TGOGGame G;
+        QVERIFY(ReadGOGGame(D, G));
+        QVERIFY(G.ScummVM);
+        QCOMPARE(G.Name, QString("Beneath a Steel Sky"));
+        QCOMPARE(G.ScummVMGameID, QString("sky"));
+        QVERIFY(SamePath(G.ScummVMDataDir, D));
+        QCOMPARE(G.ScummVMLanguage, QString("gb"));
+        TGameDB DB(TempPrgDir + "GOGConfs3" + PathDelim);
+        TGame* P = ImportGOGGame(&DB, G);
+        QVERIFY(P != nullptr);
+        QCOMPARE(P->ProfileMode(), QString("ScummVM"));
+        QCOMPARE(P->ScummVMGame(), QString("sky"));
+        QVERIFY(SamePath(MakeAbsPath(P->ScummVMPath(), PrgSetup->BaseDir()), D));
+        QCOMPARE(P->ScummVMLanguage(), QString("gb"));
+        QVERIFY(GOGGameInList(&DB, G));
+        // found when the folder with all games is chosen
+        QCOMPARE(FindGOGGames(FPrgDir.path() + "/GOGScummVM").size(), 1);
+
+        // Linux version: no info file, ini file with "engineid", data folder next to the scummvm folder
+        const QString L = FPrgDir.path() + "/GOGScummVM/Linux Sky/";
+        WriteFile(L + "gameinfo", "Beneath a Steel Sky\n1.0\n");
+        QDir().mkpath(L + "scummvm");
+        WriteFile(L + "data/SKY.DSK", "data");
+        WriteFile(L + "bass.ini", "[sky-cd]\nengineid=sky\ngameid=sky\npath=../data\n");
+        TGOGGame G2;
+        QVERIFY(ReadGOGGame(L, G2));
+        QVERIFY(G2.ScummVM);
+        QCOMPARE(G2.Name, QString("Beneath a Steel Sky"));
+        QCOMPARE(G2.ScummVMGameID, QString("sky:sky"));
+        QVERIFY(SamePath(G2.ScummVMDataDir, L + "data"));
+    }
+
     // ----- profiles ---------------------------------------------------------
 
     void profileSaveAndLoad()

@@ -14,6 +14,11 @@
 // (and setup program) of the game. If the autoexec section does more than
 // starting one program (e.g. a menu), it is kept and replaces the start of
 // the game.
+//
+// Some games are shipped with ScummVM instead of DOSBox (e.g. Beneath a
+// Steel Sky): the start entry runs ScummVM with an ini file ("-c") and a
+// game name; the ini file names the game ID and the data folder. These games
+// get a ScummVM profile.
 #pragma once
 
 #include <QString>
@@ -31,12 +36,17 @@ struct TGOGGame {
     QStringList GameConfs;    // conf files for starting the game (in order)
     QStringList SetupConfs;   // conf files for the setup program
     QString Icon;             // goggame-<ID>.ico
+    // games shipped with ScummVM
+    bool ScummVM = false;
+    QString ScummVMGameID;    // "gameid" or "engineid:gameid" of the ScummVM ini file
+    QString ScummVMDataDir;   // folder with the game data
+    QString ScummVMLanguage, ScummVMPlatform, ScummVMExtraPath;
 };
 
-// Is Folder the folder of a GOG DOS game? (Game: the data of the game)
+// Is Folder the folder of a GOG DOS (or ScummVM) game? (Game: the data of the game)
 bool ReadGOGGame(const QString& Folder, TGOGGame& Game);
 
-// GOG DOS games in Folder: Folder itself or its subfolders (e.g. "GOG Games")
+// GOG DOS and ScummVM games in Folder: Folder itself or its subfolders (e.g. "GOG Games")
 QList<TGOGGame> FindGOGGames(const QString& Folder);
 
 // Folders GOG installs its games to on this computer (existing ones)
