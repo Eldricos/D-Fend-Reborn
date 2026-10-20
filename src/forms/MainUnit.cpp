@@ -32,6 +32,7 @@
 #include "BuildInstallerFormUnit.h"
 #include "BuildInstallerForSingleGameFormUnit.h"
 #include "ModernProfileEditorFormUnit.h"
+#include "GOGImportUnit.h"
 #include "ListViewImageUnit.h"
 #include "StatisticsFormUnit.h"
 #include "CacheChooseFormUnit.h"
@@ -303,7 +304,7 @@ TDFendRebornMainForm::TDFendRebornMainForm(QWidget *AOwner) : QMainWindow(AOwner
         {ui.VideoPopupOpen, 38}, {ui.VideoPopupOpenCaptureFolder, 11}, {ui.VideoPopupImport, 21},
         {ui.VideoPopupSave, 30}, {ui.VideoPopupDelete, 5},
         {ui.MenuFileImportConfFile, 16}, {ui.MenuFileImportProfFile, 34}, {ui.MenuFileImportZIPFile, 39},
-        {ui.MenuFileImportFolder, 11}, {ui.MenuFileImportDownload, 31}, {ui.MenuFileExportGamesList, 32},
+        {ui.MenuFileImportFolder, 11}, {ui.MenuFileImportGOG, 11}, {ui.MenuFileImportDownload, 31}, {ui.MenuFileExportGamesList, 32},
         {ui.MenuFileCreateConf, 16}, {ui.MenuFileCreateProf, 34}, {ui.MenuFileCreateZIP, 39},
         {ui.MenuFileCreateInstaller, 25}, {ui.MenuFileExportBuildZipPackages, 39},
         {ui.MenuFileExportBuildInstaller, 25}, {ui.MenuFileExportTransferProfiles, 15},
@@ -398,7 +399,7 @@ TDFendRebornMainForm::TDFendRebornMainForm(QWidget *AOwner) : QMainWindow(AOwner
     const QList<QAction *> MenuWorkActions = {
         ui.ButtonClose, ui.ButtonRun, ui.ButtonRunSetup, ui.ButtonAdd, ui.ButtonEdit, ui.ButtonDelete, ui.ButtonHelp,
         ui.MenuFileImportConfFile, ui.MenuFileImportProfFile, ui.MenuFileImportXMLFile, ui.MenuFileImportZIPFile,
-        ui.MenuFileImportZIPFileWithInstallationSupport, ui.MenuFileImportFolder, ui.MenuFileImportFolderWithInstallationSupport,
+        ui.MenuFileImportZIPFileWithInstallationSupport, ui.MenuFileImportFolder, ui.MenuFileImportFolderWithInstallationSupport, ui.MenuFileImportGOG,
         ui.MenuFileImportDownload, ui.MenuFileExportGamesList, ui.MenuFileCreateConf, ui.MenuFileCreateProf,
         ui.MenuFileCreateXML, ui.MenuFileCreateZIP, ui.MenuFileCreateInstaller, ui.MenuFileExportBuildZipPackages,
         ui.MenuFileExportBuildInstaller, ui.MenuFileExportTransferProfiles, ui.MenuFileCreateXMlPackageList,
@@ -1077,6 +1078,7 @@ void TDFendRebornMainForm::LoadMenuLanguage()
     ui.MenuFileImportZIPFileWithInstallationSupport->setText(LanguageSetup->MenuFileImportZIPWithInstallationSupport());
     ui.MenuFileImportFolder->setText(LanguageSetup->MenuFileImportFolder());
     ui.MenuFileImportFolderWithInstallationSupport->setText(LanguageSetup->MenuFileImportFolderWithInstallationSupport());
+    ui.MenuFileImportGOG->setText(LanguageSetup->MenuFileImportGOG());
     ui.MenuFileImportDownload->setText(LanguageSetup->MenuFileImportDownload());
     ui.MenuFileExport->setTitle(LanguageSetup->MenuFileExport());
     ui.MenuFileExportGamesList->setText(LanguageSetup->MenuFileExportGamesList());
@@ -3156,6 +3158,33 @@ void TDFendRebornMainForm::MenuWork(QObject *Sender)
             ClearListBeforeReload();
             ReloadAndSelect(G);
             break;
+        case 1018: {
+            // DOS games of GOG.com: one game folder or a folder with several games
+            const QStringList GOGFolders = DefaultGOGFolders();
+            S = GOGFolders.isEmpty() ? GetSpecialFolder(winId(), CSIDL_DESKTOPDIRECTORY) : QDir::toNativeSeparators(GOGFolders[0]);
+            if (!SelectDirectory(THandle(0), LanguageSetup->MenuFileImportGOGCaption(), S)) return;
+            const QList<TGOGGame> Games = FindGOGGames(S);
+            if (Games.isEmpty()) { MessageDlg(Format(LanguageSetup->MenuFileImportGOGNone(), {S}), mtInformation, mbOK, 0); return; }
+            QStringList Imported, Skipped;
+            G = nullptr;
+            for (const TGOGGame& Game : Games) {
+                if (GOGGameInList(GameDB, Game)) { Skipped << Game.Name; continue; }
+                TGame* NewGame = ImportGOGGame(GameDB, Game);
+                if (NewGame == nullptr) continue;
+                Imported << Game.Name;
+                G = NewGame;
+            }
+            if ((Games.size() > 1) || !Skipped.isEmpty()) {
+                T.clear();
+                if (!Imported.isEmpty()) T = LanguageSetup->MenuFileImportGOGImported() + "\n" + Imported.join("\n");
+                if (!Skipped.isEmpty()) T += (T.isEmpty() ? QString() : QStringLiteral("\n\n")) + LanguageSetup->MenuFileImportGOGSkipped() + "\n" + Skipped.join("\n");
+                MessageDlg(T, mtInformation, mbOK, 0);
+            }
+            if (G == nullptr) return;
+            ClearListBeforeReload();
+            ReloadAndSelect(G);
+            break;
+        }
         /*View*/
         case 2001:
             PrgSetup->SetShowTree(!PrgSetup->ShowTree());

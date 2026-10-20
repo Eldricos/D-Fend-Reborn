@@ -1,6 +1,15 @@
 D-Fend Reborn Changelog
 
 
+Version 0.5.9 (not released yet)
+================================
+- Import of DOS games bought at GOG.com (File | Import | Import GOG games):
+  profiles are created from the DOSBox configuration files GOG ships with
+  the games (settings, mounted folders and CD images, program file and setup
+  program); one game folder or a folder with several games, the game files
+  stay where they are.
+
+
 Version 0.5.8 (10/20/2026)
 ==========================
 - Dark mode: the program windows follow the light or dark colors of Windows

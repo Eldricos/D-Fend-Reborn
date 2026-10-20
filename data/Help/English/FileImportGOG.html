@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Import GOG games</title>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="Global.css">
+  <script language="JavaScript" type="text/javascript" src="Global.js"></script>
+  <meta name="keywords" content="Menu, File, Import, GOG, GOG.com, GOG Galaxy">
+</head>
+<body>
+
+<p class="content">
+Menu: &nbsp; <b>File</b> | <b>Import</b> | <b>Import GOG games</b>
+</p>
+
+<h1>Import GOG games</h1>
+
+<p>
+DOS games bought at <a href="https://www.gog.com/">GOG.com</a> come with their own DOSBox and DOSBox
+configuration files. This function creates D-Fend Reborn profiles for these games, so they can be started
+with the DOSBox of D-Fend Reborn (DOSBox Staging) and managed like all other games. The game files stay where
+GOG (or GOG Galaxy) has installed them; nothing is copied.
+</p>
+
+<p>
+Select the folder of one game (e.g. <tt>C:\GOG Games\Duke Nukem 3D</tt>) or the folder with all your GOG
+games (e.g. <tt>C:\GOG Games</tt> or <tt>C:\Program Files (x86)\GOG Galaxy\Games</tt>; Linux:
+<tt>~/GOG Games</tt>). All DOS games found in it are imported; games that are already in the games list
+(same name or a program file in the game folder) are skipped. Games for Windows are ignored.
+</p>
+
+<p>
+For every game the profile gets:
+</p>
+<ul>
+  <li>the name of the game and its GOG icon,</li>
+  <li>the settings of the DOSBox configuration files of GOG (e.g. full screen, CPU cycles, sound card),</li>
+  <li>the folders and CD images GOG mounts (e.g. the <tt>game.ins</tt> / <tt>game.gog</tt> CD image) as drives,</li>
+  <li>the program file of the game and its parameters, and the setup program (from the "Settings" start entry of GOG).</li>
+</ul>
+
+<p>
+Some GOG games start with a menu (e.g. to choose between two games or languages). For these the commands of
+GOG are kept in the autoexec section of the profile, and they replace the normal start of the game
+("Profile editor", page "DOS environment").
+</p>
+
+<p>
+The folders are found via the <tt>goggame-*.info</tt> file of the game (Windows) or via the files
+<tt>dosbox*.conf</tt> and <tt>dosbox*_single.conf</tt> next to a <tt>dosbox</tt> folder (Linux and older
+GOG versions).
+</p>
+
+<p>&nbsp;</p>
+
+<p class="smallH">See also:</p>
+<p class="smallT">
+  <a href="FileImportConf.html">Importing conf files</a><br />
+  <a href="FileImportFolder.html">Importing folders</a>
+</p>
+
+</body>
+</html>

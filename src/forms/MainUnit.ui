@@ -451,6 +451,7 @@
           <addaction name="MenuFileImportZIPFileWithInstallationSupport" />
           <addaction name="MenuFileImportFolder" />
           <addaction name="MenuFileImportFolderWithInstallationSupport" />
+          <addaction name="MenuFileImportGOG" />
           <addaction name="N39" />
           <addaction name="MenuFileImportDownload" />
         </widget>
@@ -1251,6 +1252,10 @@
     <action name="MenuFileImportFolderWithInstallationSupport">
       <property name="text"><string>Import folder with installation support...</string></property>
       <property name="tag" stdset="0"><number>1017</number></property>
+    </action>
+    <action name="MenuFileImportGOG">
+      <property name="text"><string>Import GOG games...</string></property>
+      <property name="tag" stdset="0"><number>1018</number></property>
     </action>
     <action name="MenuFileImportDownload">
       <property name="text"><string>Download packages...</string></property>

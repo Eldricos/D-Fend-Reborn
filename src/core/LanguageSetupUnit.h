@@ -239,6 +239,11 @@ constexpr int NR_MenuFileExportBuildZipPackagesWait = 30039;
 constexpr int NR_MenuFileExportBuildZipPackagesSplit = 30040;
 constexpr int NR_MenuFileSetup = 30041;
 constexpr int NR_MenuFileQuit = 30042;
+constexpr int NR_MenuFileImportGOG = 30043;   // D-Fend Reborn
+constexpr int NR_MenuFileImportGOGCaption = 30044;   // D-Fend Reborn
+constexpr int NR_MenuFileImportGOGNone = 30045;   // D-Fend Reborn
+constexpr int NR_MenuFileImportGOGImported = 30046;   // D-Fend Reborn
+constexpr int NR_MenuFileImportGOGSkipped = 30047;   // D-Fend Reborn
 constexpr int NR_MenuView = 31001;
 constexpr int NR_MenuViewShowMenubar = 31002;
 constexpr int NR_MenuViewShowMenubarWarning = 31003;
@@ -2540,6 +2545,16 @@ public:
     void SetMenuFileImportFolderCaption(const QString& Value) { SetString(NR_MenuFileImportFolderCaption, Value); }
     QString MenuFileImportFolderWithInstallationSupport() { return GetString(NR_MenuFileImportFolderWithInstallationSupport); }
     void SetMenuFileImportFolderWithInstallationSupport(const QString& Value) { SetString(NR_MenuFileImportFolderWithInstallationSupport, Value); }
+    QString MenuFileImportGOG() { return GetString(NR_MenuFileImportGOG); }
+    void SetMenuFileImportGOG(const QString& Value) { SetString(NR_MenuFileImportGOG, Value); }
+    QString MenuFileImportGOGCaption() { return GetString(NR_MenuFileImportGOGCaption); }
+    void SetMenuFileImportGOGCaption(const QString& Value) { SetString(NR_MenuFileImportGOGCaption, Value); }
+    QString MenuFileImportGOGNone() { return GetString(NR_MenuFileImportGOGNone); }
+    void SetMenuFileImportGOGNone(const QString& Value) { SetString(NR_MenuFileImportGOGNone, Value); }
+    QString MenuFileImportGOGImported() { return GetString(NR_MenuFileImportGOGImported); }
+    void SetMenuFileImportGOGImported(const QString& Value) { SetString(NR_MenuFileImportGOGImported, Value); }
+    QString MenuFileImportGOGSkipped() { return GetString(NR_MenuFileImportGOGSkipped); }
+    void SetMenuFileImportGOGSkipped(const QString& Value) { SetString(NR_MenuFileImportGOGSkipped, Value); }
     QString MenuFileImportDownload() { return GetString(NR_MenuFileImportDownload); }
     void SetMenuFileImportDownload(const QString& Value) { SetString(NR_MenuFileImportDownload, Value); }
     QString MenuFileExport() { return GetString(NR_MenuFileExport); }
