@@ -201,6 +201,11 @@ void TLanguageSetup::SetupLanguageStrings1()
     AddStringRec(NR_MenuFileImportFolder, QStringLiteral("Menu"), QStringLiteral("File.Import.Folder"), QStringLiteral("Import folder..."));
     AddStringRec(NR_MenuFileImportFolderCaption, QStringLiteral("Menu"), QStringLiteral("File.Import.Folder.Caption"), QStringLiteral("Select folder to import"));
     AddStringRec(NR_MenuFileImportFolderWithInstallationSupport, QStringLiteral("Menu"), QStringLiteral("File.Import.FolderWithInstallationSupport"), QStringLiteral("Import folder with installation support..."));
+    AddStringRec(NR_MenuFileImportGOG, QStringLiteral("Menu"), QStringLiteral("File.Import.GOG"), QStringLiteral("Import GOG games..."));
+    AddStringRec(NR_MenuFileImportGOGCaption, QStringLiteral("Menu"), QStringLiteral("File.Import.GOG.Caption"), QStringLiteral("Select the folder of a GOG game or the folder with your GOG games"));
+    AddStringRec(NR_MenuFileImportGOGNone, QStringLiteral("Menu"), QStringLiteral("File.Import.GOG.None"), QStringLiteral("No DOS games from GOG were found in %s."));
+    AddStringRec(NR_MenuFileImportGOGImported, QStringLiteral("Menu"), QStringLiteral("File.Import.GOG.Imported"), QStringLiteral("Imported GOG games:"));
+    AddStringRec(NR_MenuFileImportGOGSkipped, QStringLiteral("Menu"), QStringLiteral("File.Import.GOG.Skipped"), QStringLiteral("Already in the games list (not imported again):"));
     AddStringRec(NR_MenuFileImportDownload, QStringLiteral("Menu"), QStringLiteral("File.Import.Download"), QStringLiteral("Download packages..."));
     AddStringRec(NR_MenuFileExport, QStringLiteral("Menu"), QStringLiteral("File.Export"), QStringLiteral("Export"));
     AddStringRec(NR_MenuFileExportGamesList, QStringLiteral("Menu"), QStringLiteral("File.Export.GamesList"), QStringLiteral("Export &gamelist..."));

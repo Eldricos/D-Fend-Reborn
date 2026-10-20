@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>GOG-Spiele importieren</title>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="Global.css">
+  <script language="JavaScript" type="text/javascript" src="Global.js"></script>
+  <meta name="keywords" content="Men&uuml;, Datei, Import, GOG, GOG.com, GOG Galaxy">
+</head>
+<body>
+
+<p class="content">
+Men&uuml;: &nbsp; <b>Datei</b> | <b>Import</b> | <b>GOG-Spiele importieren</b>
+</p>
+
+<h1>GOG-Spiele importieren</h1>
+
+<p>
+Bei <a href="https://www.gog.com/">GOG.com</a> gekaufte DOS-Spiele werden mit einem eigenen DOSBox und eigenen
+DOSBox-Konfigurationsdateien geliefert. Diese Funktion erstellt D-Fend-Reborn-Profile f&uuml;r diese Spiele, so dass
+sie mit dem DOSBox von D-Fend Reborn (DOSBox Staging) gestartet und wie alle anderen Spiele verwaltet werden
+k&ouml;nnen. Die Spieldateien bleiben dort, wo GOG (bzw. GOG Galaxy) sie installiert hat; es wird nichts kopiert.
+</p>
+
+<p>
+W&auml;hlen Sie den Ordner eines Spiels (z.&nbsp;B. <tt>C:\GOG Games\Duke Nukem 3D</tt>) oder den Ordner mit allen
+GOG-Spielen (z.&nbsp;B. <tt>C:\GOG Games</tt> oder <tt>C:\Program Files (x86)\GOG Galaxy\Games</tt>; Linux:
+<tt>~/GOG Games</tt>). Alle darin gefundenen DOS-Spiele werden importiert; Spiele, die bereits in der Spieleliste
+sind (gleicher Name oder eine Programmdatei im Spielordner), werden &uuml;bersprungen. Windows-Spiele werden ignoriert.
+</p>
+
+<p>
+F&uuml;r jedes Spiel erh&auml;lt das Profil:
+</p>
+<ul>
+  <li>den Namen des Spiels und sein GOG-Symbol,</li>
+  <li>die Einstellungen aus den DOSBox-Konfigurationsdateien von GOG (z.&nbsp;B. Vollbild, CPU-Zyklen, Soundkarte),</li>
+  <li>die Ordner und CD-Abbilder, die GOG einbindet (z.&nbsp;B. das CD-Abbild <tt>game.ins</tt> / <tt>game.gog</tt>), als Laufwerke,</li>
+  <li>die Programmdatei des Spiels mit ihren Parametern und das Setup-Programm (aus dem Starteintrag "Settings" von GOG).</li>
+</ul>
+
+<p>
+Manche GOG-Spiele starten mit einem Men&uuml; (z.&nbsp;B. zur Auswahl zwischen zwei Spielen oder Sprachen). Bei diesen
+werden die Befehle von GOG im Autoexec-Abschnitt des Profils &uuml;bernommen und ersetzen den normalen Start des Spiels
+("Profileditor", Seite "DOS-Umgebung").
+</p>
+
+<p>
+Die Ordner werden &uuml;ber die Datei <tt>goggame-*.info</tt> des Spiels (Windows) oder &uuml;ber die Dateien
+<tt>dosbox*.conf</tt> und <tt>dosbox*_single.conf</tt> neben einem Ordner <tt>dosbox</tt> (Linux und &auml;ltere
+GOG-Versionen) erkannt.
+</p>
+
+<p>&nbsp;</p>
+
+<p class="smallH">Siehe auch:</p>
+<p class="smallT">
+  <a href="FileImportConf.html">Conf-Dateien importieren</a><br />
+  <a href="FileImportFolder.html">Ordner importieren</a>
+</p>
+
+</body>
+</html>

@@ -5,6 +5,7 @@
 //   * saving files via a temporary file (settings, profiles, lists)
 //   * the game detection of ScummVM (output of "scummvm --detect")
 //   * shaders, SoundFonts and MT-32 ROM folders found for DOSBox Staging
+//   * import of GOG.com DOS games (goggame-*.info, DOSBox conf files)
 //   * saving and loading profiles (TGame), including the DOSBox Staging
 //     settings
 //   * all auto setup templates of data/NewUserData/AutoSetup: they can be
@@ -14,6 +15,7 @@
 // Run: ctest (or the DFRTests executable). The tests work in a temporary
 // program folder; the data of a D-Fend Reborn installation is not touched.
 #include <QtTest>
+#include <memory>
 #include <QTemporaryDir>
 
 #include "CommonTools.h"
@@ -26,6 +28,7 @@
 #include "PrgSetupUnit.h"
 #include "ScummVMToolsUnit.h"
 #include "StagingResourcesUnit.h"
+#include "GOGImportUnit.h"
 
 namespace {
 
@@ -74,6 +77,17 @@ void WriteFile(const QString& FileName, const QByteArray& Data = QByteArray())
     QFile F(FileName);
     QVERIFY(F.open(QIODevice::WriteOnly));
     F.write(Data);
+}
+
+// same file (Windows: any case)
+bool SamePath(const QString& A, const QString& B)
+{
+    const QString X = QDir::cleanPath(QDir::fromNativeSeparators(A)), Y = QDir::cleanPath(QDir::fromNativeSeparators(B));
+#ifdef Q_OS_WIN
+    return X.compare(Y, Qt::CaseInsensitive) == 0;
+#else
+    return X == Y;
+#endif
 }
 
 QStringList Messages;   // message boxes since the last ClearMessages
@@ -480,6 +494,114 @@ private slots:
         QVERIFY(Dirs.ShaderPresets.contains(D + "/resources/shader-presets"));
         QCOMPARE(Dirs.SoundFonts.value(0), D + "/soundfonts");
         QCOMPARE(Dirs.MT32Roms.value(0), D + "/mt32-roms");
+    }
+
+    // ----- GOG games ----------------------------------------------------------
+
+    void gogWindowsGame()
+    {
+        // Windows version: goggame-<ID>.info, DOSBOX folder, conf paths relative to it
+        // (in other case than the files), CD image game.ins
+        const QString Root = FPrgDir.path() + "/GOG Games/";
+        const QString D = Root + "Duke Nukem 3D/";
+        WriteFile(D + "goggame-1207658730.info", "{\n"
+" \"gameId\": \"1207658730\", \"name\": \"Duke Nukem 3D: Atomic Edition\",\n"
+" \"playTasks\": [\n"
+"  {\"arguments\": \"-conf \\\"..\\\\dosboxDuke3D.conf\\\" -conf \\\"..\\\\dosboxDuke3D_single.conf\\\" -noconsole -c \\\"exit\\\"\",\n"
+"   \"category\": \"game\", \"isPrimary\": true, \"name\": \"Duke Nukem 3D\", \"path\": \"DOSBOX\\\\dosbox.exe\", \"type\": \"FileTask\", \"workingDir\": \"DOSBOX\"},\n"
+"  {\"category\": \"document\", \"name\": \"Manual\", \"path\": \"Manual.pdf\", \"type\": \"FileTask\"},\n"
+"  {\"arguments\": \"-conf \\\"..\\\\dosboxDuke3D.conf\\\" -conf \\\"..\\\\dosboxDuke3D_settings.conf\\\" -noconsole -c \\\"exit\\\"\",\n"
+"   \"category\": \"tool\", \"name\": \"Settings\", \"path\": \"DOSBOX\\\\dosbox.exe\", \"type\": \"FileTask\", \"workingDir\": \"DOSBOX\"}\n"
+" ]\n"
+"}");
+        WriteFile(D + "goggame-1207658730.ico", "ico");
+        WriteFile(D + "DOSBOX/dosbox.exe", "exe");
+        WriteFile(D + "dosboxDuke3D.conf", "[sdl]\r\nfullscreen=true\r\noutput=opengl\r\n\r\n[cpu]\r\ncycles=fixed 20000\r\n\r\n[autoexec]\r\n# nothing\r\n");
+        WriteFile(D + "dosboxDuke3D_single.conf", "[autoexec]\r\n@echo off\r\nmount C \"..\"\r\nimgmount d \"..\\game.ins\" -t iso -fs iso\r\nc:\r\ncls\r\ncd DUKE3D\r\nDUKE3D.EXE /nosound\r\nexit\r\n");
+        WriteFile(D + "dosboxDuke3D_settings.conf", "[autoexec]\r\n@echo off\r\nmount C \"..\"\r\nc:\r\ncd duke3d\r\nsetup\r\nexit\r\n");
+        WriteFile(D + "game.ins", "FILE \"game.gog\" BINARY\r\n");
+        WriteFile(D + "Duke3D/DUKE3D.EXE", "exe");
+        WriteFile(D + "Duke3D/SETUP.EXE", "exe");
+        // (a GOG game that is no DOS game)
+        WriteFile(Root + "Other Game/goggame-1.info", "{\"gameId\": \"1\", \"name\": \"Other Game\", \"playTasks\": [{\"category\": \"game\", \"isPrimary\": true, \"path\": \"game.exe\", \"type\": \"FileTask\"}]}");
+
+        const QList<TGOGGame> Games = FindGOGGames(Root);
+        QCOMPARE(Games.size(), 1);
+        const TGOGGame& G = Games[0];
+        QCOMPARE(G.Name, QString("Duke Nukem 3D: Atomic Edition"));
+        QCOMPARE(G.ID, QString("1207658730"));
+        QVERIFY(SamePath(G.WorkingDir, D + "DOSBOX"));
+        QCOMPARE(G.GameConfs.size(), 2);
+        QCOMPARE(G.SetupConfs.size(), 2);
+        QVERIFY(SamePath(G.Icon, D + "goggame-1207658730.ico"));
+
+        TGameDB DB(TempPrgDir + "GOGConfs" + PathDelim);
+        TGame* P = ImportGOGGame(&DB, G);
+        QVERIFY(P != nullptr);
+        QCOMPARE(P->Name(), G.Name);
+        QCOMPARE(P->NrOfMounts(), 2);
+        QStringList M0 = P->Mount0().split(';'), M1 = P->Mount1().split(';');
+        QVERIFY(SamePath(MakeAbsPath(M0[0], PrgSetup->BaseDir()), D));
+        QCOMPARE(M0[1], QString("Drive"));
+        QCOMPARE(M0[2], QString("C"));
+        QVERIFY(SamePath(MakeAbsPath(M1[0], PrgSetup->BaseDir()), D + "game.ins"));
+        QCOMPARE(M1[1], QString("CDROMIMAGE"));
+        QCOMPARE(M1[2], QString("D"));
+        QVERIFY(SamePath(MakeAbsPath(P->GameExe(), PrgSetup->BaseDir()), D + "Duke3D/DUKE3D.EXE"));
+        QCOMPARE(P->GameParameters(), QString("/nosound"));
+        QVERIFY(SamePath(MakeAbsPath(P->SetupExe(), PrgSetup->BaseDir()), D + "Duke3D/SETUP.EXE"));
+        QVERIFY(!P->AutoexecOverridegamestart());
+        QVERIFY(Trim(P->Autoexec()).isEmpty());
+        QVERIFY(P->StartFullscreen());
+        QCOMPARE(P->Cycles(), QString("20000"));
+        QVERIFY(GOGGameInList(&DB, G));
+        // the conf file for DOSBox: drives and start of the game
+        std::unique_ptr<TStringList> Conf(BuildConfFile(P, false, false, -1, nullptr, false));
+        QVERIFY(Conf != nullptr);
+        const QString Text = Conf->ToQStringList().join("\n");
+        QVERIFY2(Text.contains(QRegularExpression("^mount C ", QRegularExpression::MultilineOption | QRegularExpression::CaseInsensitiveOption)), qPrintable(Text));
+        QVERIFY2(Text.contains(QRegularExpression("^imgmount D .*game\\.ins", QRegularExpression::MultilineOption | QRegularExpression::CaseInsensitiveOption)), qPrintable(Text));
+        QVERIFY2(Text.contains(QRegularExpression("^DUKE3D\\.EXE /nosound$", QRegularExpression::MultilineOption | QRegularExpression::CaseInsensitiveOption)), qPrintable(Text));
+    }
+
+    void gogLinuxGameAndMenu()
+    {
+        // Linux version: "gameinfo", "dosbox" folder, conf files next to it, CD folder
+        const QString D = FPrgDir.path() + "/GOGLinux/Ultima Underworld/";
+        WriteFile(D + "gameinfo", "Ultima Underworld 1+2\n2.0.0.4\n");
+        QDir().mkpath(D + "dosbox");
+        WriteFile(D + "dosboxUW.conf", "[dosbox]\nmemsize=32\n[autoexec]\n");
+        WriteFile(D + "dosboxUW_single.conf", "[autoexec]\nmount C \"../data\"\nmount D \"../data/cd\" -t cdrom -label UW\nc:\ncd uw\nuw.exe\nexit\n");
+        WriteFile(D + "data/UW/UW.EXE", "exe");
+        QDir().mkpath(D + "data/cd");
+        TGOGGame G;
+        QVERIFY(ReadGOGGame(D, G));
+        QCOMPARE(G.Name, QString("Ultima Underworld 1+2"));
+        QVERIFY(SamePath(G.WorkingDir, D + "dosbox"));
+        TGameDB DB(TempPrgDir + "GOGConfs2" + PathDelim);
+        TGame* P = ImportGOGGame(&DB, G);
+        QVERIFY(P != nullptr);
+        QCOMPARE(P->NrOfMounts(), 2);
+        QCOMPARE(P->Mount1().split(';').value(1), QString("CDROM"));
+        QVERIFY(SamePath(MakeAbsPath(P->GameExe(), PrgSetup->BaseDir()), D + "data/UW/UW.EXE"));
+        QCOMPARE(P->Memory(), 32);
+
+        // a menu in the autoexec section: kept, it starts the game
+        QStringList Mounts;
+        const QStringList Rest = GOGMountsFromAutoexec({"mount c \"..\\data\"", "c:", "cd uw", "choice /c12 Which game", "if errorlevel 2 goto two", "uw.exe", "goto end", ":two", "uw2.exe", ":end"}, D + "dosbox", D, Mounts);
+        QCOMPARE(Mounts.size(), 1);
+        QCOMPARE(Rest.size(), 9);
+        QString Exe, Parameters;
+        QStringList Before;
+        QVERIFY(!GOGProgramFromAutoexec(Rest, Mounts, Exe, Parameters, Before));
+        // lines before the program (e.g. "set") stay, "cd\" and ".." work
+        QVERIFY(GOGProgramFromAutoexec({"set BLASTER=A220 I7 D1", "c:", "cd\\uw\\..\\uw", "UW /x"}, Mounts, Exe, Parameters, Before));
+        QVERIFY(SamePath(Exe, D + "data/UW/UW.EXE"));
+        QCOMPARE(Parameters, QString("/x"));
+        QCOMPARE(Before, QStringList({"set BLASTER=A220 I7 D1"}));
+        // no game: no GOG folder
+        TGOGGame None;
+        QVERIFY(!ReadGOGGame(D + "data", None));
     }
 
     // ----- profiles ---------------------------------------------------------
