@@ -595,6 +595,7 @@
         <addaction name="N17" />
         <addaction name="MenuExtrasScanGamesFolder" />
         <addaction name="MenuExtrasCheckProfiles" />
+        <addaction name="MenuExtrasMissingGames" />
         <addaction name="MenuExtrasChangeProfiles" />
         <addaction name="MenuExtrasDeinstallMultipleGames" />
         <addaction name="MenuExtrasTransferProfiles" />
@@ -1718,6 +1719,10 @@
     <action name="MenuExtrasCheckProfiles">
       <property name="text"><string>Check profiles for not existing files...</string></property>
       <property name="tag" stdset="0"><number>5016</number></property>
+    </action>
+    <action name="MenuExtrasMissingGames">
+      <property name="text"><string>Find missing games...</string></property>
+      <property name="tag" stdset="0"><number>5026</number></property>
     </action>
     <action name="MenuExtrasChangeProfiles">
       <property name="text"><string>Edit multiple profiles...</string></property>

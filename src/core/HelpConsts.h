@@ -131,6 +131,7 @@ constexpr int ID_ExtrasImageFromProfile = 3020;
 constexpr int ID_ExtrasEditCheatDB = 3021;
 constexpr int ID_ExtrasSearchAddress = 3022;
 constexpr int ID_ExtrasDOSBoxLanguageEditor = 3023;
+constexpr int ID_ExtrasMissingGames = 3024;   // D-Fend Reborn
 constexpr int ID_HelpForum = 4001;
 constexpr int ID_HelpStatistics = 4003;
 constexpr int ID_HelpOperationMode = 4004;

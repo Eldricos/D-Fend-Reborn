@@ -72,6 +72,7 @@
 #include "MakeBootImageFromProfileFormUnit.h"
 #include "MiniRunFormUnit.h"
 #include "ModernProfileEditorFormUnit.h"
+#include "MissingGamesFormUnit.h"
 #include "MultipleProfilesEditorFormUnit.h"
 #include "OperationModeInfoFormUnit.h"
 #include "PackageCreationFormUnit.h"
@@ -327,6 +328,7 @@ private:
             // (the Show function needs FreeDOS and mkfs.fat: the form is shown directly)
             {"MakeBootImageFromProfile", false, [this] { auto* F = new TMakeBootImageFromProfileForm(nullptr); F->GameDB = GameDB; F->SelectGame = TestGame(); F->ShowModal(); delete F; }},
             {"MiniRun", false, [this] { ShowMiniRunDialog(nullptr, GameDB); }},
+            {"MissingGames", false, [this] { ShowMissingGamesDialog(nullptr, GameDB); }},
             {"MultipleProfilesEditor", false, [this] { ShowMultipleProfilesEditorDialog(nullptr, GameDB); }},
             {"MultipleTemplatesEditor", false, [this] { ShowMultipleProfilesEditorDialog(nullptr, TemplateDB, true); }},
             {"OperationModeInfo", false, [] { ShowOperationModeInfoDialog(nullptr); }},

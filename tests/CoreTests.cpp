@@ -6,6 +6,7 @@
 //   * the game detection of ScummVM (output of "scummvm --detect")
 //   * shaders, SoundFonts and MT-32 ROM folders found for DOSBox Staging
 //   * import of GOG.com DOS games (goggame-*.info, DOSBox conf files)
+//   * missing games: games moved to another folder are found again
 //   * saving and loading profiles (TGame), including the DOSBox Staging
 //     settings
 //   * all auto setup templates of data/NewUserData/AutoSetup: they can be
@@ -29,6 +30,7 @@
 #include "ScummVMToolsUnit.h"
 #include "StagingResourcesUnit.h"
 #include "GOGImportUnit.h"
+#include "GameLocationUnit.h"
 
 namespace {
 
@@ -695,6 +697,54 @@ private slots:
         QVERIFY(SamePath(MakeAbsPath(P->Mount0().split(';')[0], PrgSetup->BaseDir()), A + "ARENA"));
         QVERIFY(SamePath(MakeAbsPath(P->GameExe(), PrgSetup->BaseDir()), A + "ARENA/ACD.EXE"));
         QCOMPARE(P->GameParameters(), QString("-Ssbpdig.adv -IOS220 -IRQS7 -DMAS1"));
+    }
+
+    void missingGames()
+    {
+        // a game folder (program file, folder drive, CD image) moved from "Old/GOG Games" to "New/Games"
+        const QString Old = FPrgDir.path() + "/Location/Old/GOG Games/Duke Nukem 3D/";
+        WriteFile(Old + "Duke3D/DUKE3D.EXE", "exe");
+        WriteFile(Old + "Duke3D/SETUP.EXE", "exe");
+        WriteFile(Old + "game.ins", "cue");
+        TGame G(TempPrgDir + "Confs" + PathDelim + "Missing Game.prof");
+        G.SetName("Missing Game");
+        G.SetGameExe(MakeRelPath(QDir::toNativeSeparators(Old + "Duke3D/DUKE3D.EXE"), PrgSetup->BaseDir()));
+        G.SetSetupExe(MakeRelPath(QDir::toNativeSeparators(Old + "Duke3D/SETUP.EXE"), PrgSetup->BaseDir()));
+        G.SetNrOfMounts(3);
+        G.SetMount0(QDir::toNativeSeparators(Old) + ";Drive;C;false;;");
+        G.SetMount1(QDir::toNativeSeparators(Old + "game.ins") + ";CDROMIMAGE;D;;;");
+        G.SetMount2(QStringLiteral("E:\;CDROM;E;false;;"));   // (a physical CD drive: not checked)
+        QCOMPARE(GamePaths(&G).size(), 4);
+        QVERIFY(MissingGamePaths(&G).isEmpty());
+
+        QVERIFY(QDir().mkpath(FPrgDir.path() + "/Location/New/Games"));
+        QVERIFY(QDir().rename(Old, FPrgDir.path() + "/Location/New/Games/Duke Nukem 3D"));
+        QCOMPARE(MissingGamePaths(&G).size(), 4);
+        // wrong folder: not found, profile unchanged
+        const QString Exe = G.GameExe();
+        QVERIFY(!RelocateGame(&G, FPrgDir.path() + "/Location/Old"));
+        QCOMPARE(G.GameExe(), Exe);
+        // the folder the game was moved to
+        QVERIFY(RelocateGame(&G, FPrgDir.path() + "/Location/New/Games"));
+        QVERIFY(MissingGamePaths(&G).isEmpty());
+        const QString New = FPrgDir.path() + "/Location/New/Games/Duke Nukem 3D/";
+        QVERIFY(SamePath(MakeAbsPath(G.GameExe(), PrgSetup->BaseDir()), New + "Duke3D/DUKE3D.EXE"));
+        QVERIFY(SamePath(MakeAbsPath(G.Mount1().split(';')[0], PrgSetup->BaseDir()), New + "game.ins"));
+        QCOMPARE(G.Mount2(), QString("E:\;CDROM;E;false;;"));
+
+        // a Steam library moved to another drive: the new library folder is chosen
+        const QString LibOld = FPrgDir.path() + "/Location/DriveA/SteamLibrary/";
+        WriteFile(LibOld + "steamapps/common/Wolfenstein 3D/base/WOLF3D.EXE", "exe");
+        TGame W(TempPrgDir + "Confs" + PathDelim + "Missing Wolf.prof");
+        W.SetGameExe(MakeRelPath(QDir::toNativeSeparators(LibOld + "steamapps/common/Wolfenstein 3D/base/WOLF3D.EXE"), PrgSetup->BaseDir()));
+        W.SetNrOfMounts(1);
+        W.SetMount0(QDir::toNativeSeparators(LibOld + "steamapps/common/Wolfenstein 3D/base/") + ";Drive;C;false;;");
+        QVERIFY(QDir().mkpath(FPrgDir.path() + "/Location/DriveB"));
+        QVERIFY(QDir().rename(LibOld, FPrgDir.path() + "/Location/DriveB/Steam"));
+        QCOMPARE(MissingGamePaths(&W).size(), 2);
+        QVERIFY(RelocateGame(&W, FPrgDir.path() + "/Location/DriveB/Steam"));
+        QVERIFY(MissingGamePaths(&W).isEmpty());
+        QVERIFY(SamePath(MakeAbsPath(W.GameExe(), PrgSetup->BaseDir()), FPrgDir.path() + "/Location/DriveB/Steam/steamapps/common/Wolfenstein 3D/base/WOLF3D.EXE"));
     }
 
     // ----- profiles ---------------------------------------------------------
