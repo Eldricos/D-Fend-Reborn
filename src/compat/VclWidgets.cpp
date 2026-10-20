@@ -362,7 +362,7 @@ public:
         QStringList Pick = index.data(RolePickList).toStringList();
         const bool ReadOnly = index.data(RoleReadOnly).toBool();
         const QString Mask = index.data(RoleEditMask).toString();
-        if (index.column() == 1 && !Pick.isEmpty()) {
+        if (index.column() == 1 && !Pick.isEmpty() && !index.data(RoleEllipsis).toBool()) {
             auto *C = new QComboBox(parent);
             C->addItems(Pick);
             C->setEditable(!ReadOnly && !index.data(RolePickListReadOnly).toBool());
@@ -374,13 +374,24 @@ public:
             auto *L = new QHBoxLayout(W);
             L->setContentsMargins(0, 0, 0, 0);
             L->setSpacing(0);
-            auto *E = new QLineEdit(W);
-            E->setObjectName("edit");
-            E->setReadOnly(ReadOnly);
-            if (!Mask.isEmpty()) E->setValidator(new QRegularExpressionValidator(EditMaskToRegex(Mask), E));
+            QWidget *E;
+            if (!Pick.isEmpty() && !ReadOnly) {
+                // pick list and ellipsis button (e.g. files found and "choose file")
+                auto *C = new QComboBox(W);
+                C->setObjectName("combo");
+                C->addItems(Pick);
+                C->setEditable(true);
+                E = C;
+            } else {
+                auto *LE = new QLineEdit(W);
+                LE->setObjectName("edit");
+                LE->setReadOnly(ReadOnly);
+                if (!Mask.isEmpty()) LE->setValidator(new QRegularExpressionValidator(EditMaskToRegex(Mask), LE));
+                E = LE;
+            }
             auto *B = new QToolButton(W);
             B->setText("...");
-            L->addWidget(E);
+            L->addWidget(E, 1);
             L->addWidget(B);
             W->setFocusProxy(E);
             int Row = index.row();
@@ -396,6 +407,7 @@ public:
     void setEditorData(QWidget *editor, const QModelIndex &index) const override
     {
         if (auto *C = qobject_cast<QComboBox *>(editor)) { C->setCurrentText(index.data().toString()); return; }
+        if (auto *C = editor->findChild<QComboBox *>("combo")) { C->setCurrentText(index.data().toString()); return; }
         if (auto *E = editor->findChild<QLineEdit *>("edit")) { E->setText(index.data().toString()); return; }
         QStyledItemDelegate::setEditorData(editor, index);
     }
@@ -405,6 +417,7 @@ public:
         const QString Mask = index.data(RoleEditMask).toString();
         auto Accept = [&Mask](const QString &S) { return Mask.isEmpty() || EditMaskToRegex(Mask).match(S).hasMatch(); };
         if (auto *C = qobject_cast<QComboBox *>(editor)) { if (Accept(C->currentText())) model->setData(index, C->currentText()); return; }
+        if (auto *C = editor->findChild<QComboBox *>("combo")) { model->setData(index, C->currentText()); return; }
         if (auto *E = editor->findChild<QLineEdit *>("edit")) { if (E->isReadOnly() || Accept(E->text())) model->setData(index, E->text()); return; }
         if (auto *E = qobject_cast<QLineEdit *>(editor)) { if (Accept(E->text())) model->setData(index, E->text()); return; }
         QStyledItemDelegate::setModelData(editor, model, index);

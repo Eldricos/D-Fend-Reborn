@@ -4,6 +4,7 @@
 //   * detection of the DOSBox version of an installation (DOSBoxKindOfFile)
 //   * saving files via a temporary file (settings, profiles, lists)
 //   * the game detection of ScummVM (output of "scummvm --detect")
+//   * shaders, SoundFonts and MT-32 ROM folders found for DOSBox Staging
 //   * saving and loading profiles (TGame), including the DOSBox Staging
 //     settings
 //   * all auto setup templates of data/NewUserData/AutoSetup: they can be
@@ -24,6 +25,7 @@
 #include "PrgConsts.h"
 #include "PrgSetupUnit.h"
 #include "ScummVMToolsUnit.h"
+#include "StagingResourcesUnit.h"
 
 namespace {
 
@@ -418,6 +420,67 @@ private slots:
         QVERIFY(DetectScummVMGames(Game, FPrgDir.path() + "/NoScummVM/").isEmpty());
     }
 #endif
+
+    // ----- DOSBox Staging shaders, SoundFonts, MT-32 ROMs ----------------------
+
+    void stagingShaders()
+    {
+        const QString D = FPrgDir.path() + "/StagingShaders/";
+        WriteFile(D + "resources/shaders/crt/crt-hyllian.glsl");
+        WriteFile(D + "resources/shaders/scaler/xbr-lv3.glsl");
+        WriteFile(D + "resources/shaders/interpolation/sharp.glsl");
+        WriteFile(D + "resources/shaders/_internal/integer-upscale.glsl");
+        WriteFile(D + "resources/shader-presets/crt/crt-hyllian/vga-4k.preset");
+        WriteFile(D + "resources/shader-presets/crt/crt-hyllian/ega-1080p.preset");
+        WriteFile(D + "resources/shader-presets/misc/fixvideo/scanlines.preset");   // (shader not there)
+        WriteFile(D + "user/shaders/my-shader.glsl");
+        WriteFile(D + "user/shaders/scaler/xbr-lv3.glsl");   // (twice: listed once)
+        const QStringList L = StagingShaderNames({D + "resources/shaders", D + "user/shaders"}, {D + "resources/shader-presets"});
+        const QStringList Expected = {"crt-auto", "crt-auto-machine", "crt-auto-arcade", "crt-auto-arcade-sharp", "sharp", "bilinear", "nearest",
+                                      "crt/crt-hyllian", "crt/crt-hyllian:ega-1080p", "crt/crt-hyllian:vga-4k",
+                                      "interpolation/sharp", "my-shader", "scaler/xbr-lv3"};
+        QCOMPARE(L, Expected);
+        // no folders: the built-in names
+        QCOMPARE(StagingShaderNames({D + "missing"}, {}).size(), 7);
+    }
+
+    void stagingSoundFontsAndRoms()
+    {
+        const QString D = FPrgDir.path() + "/StagingSF/";
+        WriteFile(D + "a/GeneralUser GS.sf2");
+        WriteFile(D + "a/Sub/Arachno.SF2");
+        WriteFile(D + "a/readme.txt");
+        WriteFile(D + "b/FluidR3.sf3");
+        WriteFile(D + "b/GeneralUser GS.sf2");   // (same name in a later folder)
+        const QStringList SF = StagingSoundFonts({D + "a", D + "b", D + "missing"});
+        QCOMPARE(SF.size(), 3);
+        QCOMPARE(SF[0], QString("FluidR3.sf3"));
+        QCOMPARE(SF[1], QString("GeneralUser GS.sf2"));
+        QCOMPARE(QDir::fromNativeSeparators(MakeAbsPath(SF[2], PrgSetup->BaseDir())), D + "a/Sub/Arachno.SF2");
+
+        const QString R = FPrgDir.path() + "/StagingROMs/";
+        WriteFile(R + "roms/MT32_CONTROL.ROM", QByteArray(65536, 0));
+        WriteFile(R + "roms/cm32l/CM32L_PCM.ROM", QByteArray(1048576, 0));
+        WriteFile(R + "roms/other/notes.txt", "no ROM");
+        WriteFile(R + "empty/readme.txt", "no ROM");
+        const QStringList Roms = StagingMT32RomDirs({R + "roms", R + "empty"});
+        QCOMPARE(Roms.size(), 2);
+        QCOMPARE(QDir::cleanPath(QDir::fromNativeSeparators(MakeAbsPath(Roms[0], PrgSetup->BaseDir()))), QDir::cleanPath(R + "roms"));
+        QCOMPARE(QDir::cleanPath(QDir::fromNativeSeparators(MakeAbsPath(Roms[1], PrgSetup->BaseDir()))), R + "roms/cm32l");
+    }
+
+    void stagingSearchDirs()
+    {
+        // portable layout (dosbox-staging.conf next to the program): its folder is the configuration folder
+        const QString D = QDir::cleanPath(FPrgDir.path() + "/StagingPortable");
+        WriteFile(D + "/dosbox-staging.conf", "# test\n");
+        const TStagingSearchDirs Dirs = StagingSearchDirs(D + "/dosbox");
+        QVERIFY(Dirs.Shaders.contains(D + "/resources/shaders"));
+        QVERIFY(Dirs.Shaders.contains(D + "/shaders"));
+        QVERIFY(Dirs.ShaderPresets.contains(D + "/resources/shader-presets"));
+        QCOMPARE(Dirs.SoundFonts.value(0), D + "/soundfonts");
+        QCOMPARE(Dirs.MT32Roms.value(0), D + "/mt32-roms");
+    }
 
     // ----- profiles ---------------------------------------------------------
 

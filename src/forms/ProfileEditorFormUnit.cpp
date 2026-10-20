@@ -1,5 +1,6 @@
 // C++ port of ProfileEditorFormUnit.pas (implementation section).
 #include "ProfileEditorFormUnit.h"
+#include "StagingResourcesUnit.h"
 
 #include <QHeaderView>
 
@@ -1335,6 +1336,24 @@ void TProfileEditorForm::MarkIgnoredDOSBoxSettings()
     for (const TRow& R : Rows) SetRowIgnored(R.E, R.Row, DOSBoxSettingIgnored(Kind, QLatin1String(R.Section), QLatin1String(R.Key)), Hint);
     // ("DOSBox Staging" tab: only used by DOSBox Staging)
     for (int I = 0; I < StagingSettingCount; I++) SetRowIgnored(StagingValueListEditor, I, Kind != dkStaging, LanguageSetup->ProfileEditorStagingOnly());
+    UpdateStagingChoices(Installation);
+}
+
+// shaders, SoundFonts and MT-32 ROM folders found for the DOSBox of the profile
+void TProfileEditorForm::UpdateStagingChoices(const QString& Installation)
+{
+    if (StagingChoicesLoaded && (Installation == StagingChoicesInstallation)) return;
+    StagingChoicesLoaded = true;
+    StagingChoicesInstallation = Installation;
+    while (StagingBaseValues.size() < StagingSettingCount) StagingBaseValues.append(StagingValueListEditor->pickList(StagingBaseValues.size()));
+    for (int I = 0; I < StagingSettingCount; I++) {
+        const QStringList Found = StagingSettingChoices(I, Installation);
+        QStringList Values = StagingBaseValues[I];
+        if (Found.isEmpty() && (StagingValueListEditor->pickList(I).size() == Values.size())) continue;
+        if (!Found.isEmpty() && Values.isEmpty()) Values << QStringLiteral("default");
+        for (const QString& V : Found) if (!Values.contains(V, Qt::CaseInsensitive)) Values << V;
+        StagingValueListEditor->setPickList(I, Values);
+    }
 }
 
 void TProfileEditorForm::InitStagingSheet()

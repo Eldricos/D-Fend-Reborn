@@ -24,7 +24,7 @@ configuration file). In the classic profile editor these settings are on the tab
 </p>
 
 <ul>
-  <li><b>Shader</b> (<tt>[render] shader</tt>): how the picture is scaled to the window or screen. <tt>crt-auto</tt> (default of DOSBox Staging) emulates a CRT monitor matching the video mode of the game, <tt>crt-auto-machine</tt> a monitor matching the emulated video card, <tt>crt-auto-arcade</tt> / <tt>crt-auto-arcade-sharp</tt> an arcade monitor with thick scanlines; <tt>sharp</tt> gives sharp pixels without blur, <tt>bilinear</tt> a smooth image, <tt>nearest</tt> unfiltered pixels. Other shaders of DOSBox Staging can be entered by name (e.g. <tt>scaler/xbr-lv3</tt>). This replaces the scalers of DOSBox 0.74.</li>
+  <li><b>Shader</b> (<tt>[render] shader</tt>): how the picture is scaled to the window or screen. <tt>crt-auto</tt> (default of DOSBox Staging) emulates a CRT monitor matching the video mode of the game, <tt>crt-auto-machine</tt> a monitor matching the emulated video card, <tt>crt-auto-arcade</tt> / <tt>crt-auto-arcade-sharp</tt> an arcade monitor with thick scanlines; <tt>sharp</tt> gives sharp pixels without blur, <tt>bilinear</tt> a smooth image, <tt>nearest</tt> unfiltered pixels. The list also contains the shaders the DOSBox Staging of the profile has (e.g. <tt>scaler/xbr-lv3</tt>, also your own shaders in the <tt>shaders</tt> folder of DOSBox Staging) and their presets (e.g. <tt>crt/crt-hyllian:vga-4k</tt>); other shaders can be entered by name. This replaces the scalers of DOSBox 0.74.</li>
   <li><b>Integer scaling</b> (<tt>[render] integer_scaling</tt>): only scale by whole numbers (<tt>vertical</tt>, <tt>horizontal</tt>), <tt>auto</tt> (for the CRT shaders) or <tt>off</tt>.</li>
   <li><b>Viewport size</b> (<tt>[render] viewport</tt>): the maximum area used for the picture: <tt>fit</tt> (window or screen), a size like <tt>1280x960</tt> or a percentage of the desktop like <tt>80%</tt>.</li>
   <li><b>CGA composite monitor emulation</b> (<tt>[composite] composite</tt>): NTSC composite colours for CGA, PCjr and Tandy games: <tt>auto</tt>, <tt>on</tt> or <tt>off</tt>.</li>
@@ -36,11 +36,15 @@ configuration file). In the classic profile editor these settings are on the tab
   <li><b>Crossfeed</b> (<tt>[mixer] crossfeed</tt>): mixes the left and the right channel of OPL / Game Blaster music a bit (better with headphones): <tt>light</tt>, <tt>normal</tt>, <tt>strong</tt>.</li>
   <li><b>Parallel port sound device</b> (<tt>[speaker] lpt_dac</tt>): <tt>disney</tt> (Disney Sound Source), <tt>covox</tt> (Covox Speech Thing), <tt>ston1</tt> (Stereo-on-1) or <tt>none</tt>. If this is "default", the Disney Sound Source setting of the profile is used.</li>
   <li><b>IBM PS/1 Audio</b> (<tt>[speaker] ps1audio</tt>): emulation of the IBM PS/1 Audio card.</li>
-  <li><b>SoundFont for FluidSynth</b> (<tt>[fluidsynth] soundfont</tt>): the SoundFont (<tt>.sf2</tt>) used if the MIDI device of the profile is <tt>fluidsynth</tt>: a file or the name of a SoundFont in the <tt>soundfonts</tt> folder of DOSBox Staging.</li>
+  <li><b>SoundFont for FluidSynth</b> (<tt>[fluidsynth] soundfont</tt>): the SoundFont (<tt>.sf2</tt>) used if the MIDI device of the profile is <tt>fluidsynth</tt>: a file or the name of a SoundFont in the <tt>soundfonts</tt> folder of DOSBox Staging. The list contains the SoundFonts found in the folders DOSBox Staging searches (its <tt>soundfonts</tt> folder; Windows: also <tt>C:\soundfonts</tt>; Linux: also e.g. <tt>/usr/share/sounds/sf2</tt> and <tt>/usr/share/soundfonts</tt>); with "..." you can choose any other file.</li>
   <li><b>Roland MT-32 model</b> (<tt>[mt32] model</tt>): the model used if the MIDI device of the profile is <tt>mt32</tt> (<tt>cm32l</tt>, <tt>mt32</tt>, <tt>mt32_old</tt>, <tt>mt32_new</tt> or an exact version like <tt>mt32_204</tt>).</li>
-  <li><b>Folder with the Roland MT-32 ROM files</b> (<tt>[mt32] romdir</tt>): the folder with the MT-32 / CM-32L ROM files (otherwise the <tt>mt32-roms</tt> folder of DOSBox Staging is used).</li>
+  <li><b>Folder with the Roland MT-32 ROM files</b> (<tt>[mt32] romdir</tt>): the folder with the MT-32 / CM-32L ROM files (otherwise the <tt>mt32-roms</tt> folder of DOSBox Staging is used). The list contains the folders (and their subfolders) with ROM files in the places DOSBox Staging searches (its <tt>mt32-roms</tt> folder; Windows: also <tt>C:\mt32-rom-data</tt>; Linux: also e.g. <tt>/usr/share/mt32-rom-data</tt>), e.g. a subfolder with the CM-32L ROMs.</li>
   <li><b>Mouse capture</b> (<tt>[mouse] mouse_capture</tt>): <tt>onclick</tt> (capture the mouse when clicking into the window), <tt>onstart</tt>, <tt>seamless</tt> (move the mouse freely between DOSBox and the desktop) or <tt>nomouse</tt>. If this is "default", the "Auto lock mouse" setting of the profile is used.</li>
 </ul>
+
+<p>
+The <tt>soundfonts</tt>, <tt>mt32-roms</tt> and <tt>shaders</tt> folders of the DOSBox Staging included with D-Fend Reborn are in its program folder (folder <tt>DOSBox</tt>). For a DOSBox Staging installed separately they are in its configuration folder (Windows: <tt>%LOCALAPPDATA%\DOSBox</tt>; Linux: <tt>~/.config/dosbox</tt>).
+</p>
 
 <p>
 A value chosen here takes precedence over the value D-Fend Reborn derives from the settings of the other pages

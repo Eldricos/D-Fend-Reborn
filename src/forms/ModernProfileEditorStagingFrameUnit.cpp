@@ -16,6 +16,7 @@
 #include "HelpConsts.h"
 #include "LanguageSetupUnit.h"
 #include "PrgSetupUnit.h"
+#include "StagingResourcesUnit.h"
 
 TModernProfileEditorStagingFrame::TModernProfileEditorStagingFrame(QWidget* AOwner) : QWidget(AOwner)
 {
@@ -50,8 +51,10 @@ void TModernProfileEditorStagingFrame::InitGUI(TModernProfileEditorInitData& Ini
         {"midi", LanguageSetup->ProfileEditorSoundMIDI()},
         {"mouse", LanguageSetup->ProfileEditorMouseSheet()},
     };
+    Installation = InitData.CurrentDOSBoxInstallation;
     Boxes.clear();
-    for (int I = 0; I < StagingSettingCount; I++) Boxes.append(nullptr);
+    BaseValues.clear();
+    for (int I = 0; I < StagingSettingCount; I++) { Boxes.append(nullptr); BaseValues.append(QStringList()); }
     for (const auto& G : Groups) {
         auto* Box = new QGroupBox(G.Title, Content);
         Box->setObjectName(QStringLiteral("Staging_") + QLatin1String(G.Group));
@@ -72,6 +75,7 @@ void TModernProfileEditorStagingFrame::InitGUI(TModernProfileEditorInitData& Ini
             Values.removeAll(QStringLiteral("default"));
             Values.prepend(QStringLiteral("default"));
             C->addItems(Values);
+            BaseValues[I] = Values;
             C->setToolTip(QStringLiteral("[%1] %2").arg(QLatin1String(S.Section), QLatin1String(S.Key)));
             Boxes[I] = C;
             QWidget* Field = C;
@@ -94,6 +98,36 @@ void TModernProfileEditorStagingFrame::InitGUI(TModernProfileEditorInitData& Ini
         ContentLayout->addWidget(Box);
     }
     ContentLayout->addStretch(1);
+}
+
+void TModernProfileEditorStagingFrame::showEvent(QShowEvent* Event)
+{
+    QWidget::showEvent(Event);
+    UpdateChoices();
+}
+
+// shaders, SoundFonts and MT-32 ROM folders found for the DOSBox of the profile
+// (the DOSBox installation can be changed on the "DOSBox" page)
+void TModernProfileEditorStagingFrame::UpdateChoices()
+{
+    const QString S = (Installation != nullptr) ? *Installation : QString();
+    if (ChoicesLoaded && (S == ChoicesInstallation)) return;
+    ChoicesLoaded = true;
+    ChoicesInstallation = S;
+    for (int I = 0; I < StagingSettingCount; I++) {
+        QComboBox* C = Boxes[I];
+        if (C == nullptr) continue;
+        const QStringList Found = StagingSettingChoices(I, S);
+        if (Found.isEmpty() && (C->count() == BaseValues[I].size())) continue;
+        QStringList Values = BaseValues[I];
+        for (const QString& V : Found) if (!Values.contains(V, Qt::CaseInsensitive)) Values << V;
+        const QString Current = C->currentText();
+        const QSignalBlocker Blocker(C);
+        C->clear();
+        C->addItems(Values);
+        const int Index = C->findText(Current, Qt::MatchFixedString);
+        if (Index >= 0) C->setCurrentIndex(Index); else C->setEditText(Current);
+    }
 }
 
 void TModernProfileEditorStagingFrame::BrowseClick(int I)

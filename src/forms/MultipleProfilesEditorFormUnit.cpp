@@ -8,6 +8,7 @@
 #include "HelpConsts.h"
 #include "HelpTools.h"
 #include "PrgSetupUnit.h"
+#include "StagingResourcesUnit.h"
 
 TMultipleProfilesEditorForm* MultipleProfilesEditorForm = nullptr;
 
@@ -834,6 +835,8 @@ void TMultipleProfilesEditorForm::InitSettings()
         St = ValueToList(ConfOpt->StagingValues(I), ";,");
         for (J = St->Count() - 1; J >= 0; J--) if (Trim((*St)[J]).isEmpty() || (Trim((*St)[J]) == "default")) St->Delete(J);
         St->Insert(0, "default");
+        // (shaders, SoundFonts and MT-32 ROM folders found for the default DOSBox installation)
+        for (const QString& V : StagingSettingChoices(I, QString())) if (St->IndexOf(V) < 0) St->Add(V);
         AddSetting(16001 + I, LanguageSetup->ProfileEditorStagingSetting(I), St, StagingSettings[I].Kind != skList, -1, true);
         if (auto* C = qobject_cast<QComboBox*>(Sections.last().Settings.last().Values[0].Control)) if (C->isEditable()) C->setEditText("default");
     }

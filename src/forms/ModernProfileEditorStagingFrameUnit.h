@@ -18,5 +18,13 @@ public:
     void GetGame(TGame* Game) override;
 private:
     QList<QComboBox*> Boxes;   // StagingSettings[I]
+    QList<QStringList> BaseValues;   // values of the "Default values" page
+    PString Installation = nullptr;   // DOSBox installation of the profile
+    QString ChoicesInstallation;
+    bool ChoicesLoaded = false;
+    void UpdateChoices();
+protected:
+    void showEvent(QShowEvent* Event) override;
+private:
     void BrowseClick(int I);
 };
