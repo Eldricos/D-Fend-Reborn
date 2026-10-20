@@ -12,6 +12,7 @@
 #include "GameDBToolsUnit.h"
 #include "GameDBUnit.h"
 #include "PrgSetupUnit.h"
+#include "ScummVMToolsUnit.h"
 
 namespace {
 
@@ -83,6 +84,90 @@ bool IsDOSBoxTask(const QJsonObject& T)
     return QFileInfo(P).fileName().startsWith(QLatin1String("dosbox"), Qt::CaseInsensitive);
 }
 
+bool IsScummVMTask(const QJsonObject& T)
+{
+    QString P = T.value(QLatin1String("path")).toString();
+    P.replace(QLatin1Char('\\'), QLatin1Char('/'));
+    return QFileInfo(P).fileName().startsWith(QLatin1String("scummvm"), Qt::CaseInsensitive);
+}
+
+// first existing path of Rel below one of the folders
+QString FindPathIn(const QStringList& Bases, const QString& Rel)
+{
+    for (const QString& B : Bases) {
+        if (B.isEmpty()) continue;
+        const QString P = FindPath(B, Rel);
+        if (!P.isEmpty()) return P;
+    }
+    return QString();
+}
+
+// Game of a ScummVM ini file (section Target or the only game section);
+// relative paths: as ScummVM sees them (working folder) or below the game folder
+bool ReadScummVMIni(const QString& IniFile, const QString& Target, const QString& WorkingDir, TGOGGame& Game)
+{
+    TStringList St;
+    if (!St.LoadFromFile(IniFile)) return false;
+    QMap<QString, QMap<QString, QString>> Sections;
+    QStringList Order;
+    QString Section;
+    for (int I = 0; I < St.Count(); I++) {
+        const QString S = St[I].trimmed();
+        if (S.isEmpty() || S.startsWith(QLatin1Char('#')) || S.startsWith(QLatin1Char(';'))) continue;
+        if (S.startsWith(QLatin1Char('[')) && S.endsWith(QLatin1Char(']'))) { Section = S.mid(1, S.length() - 2).trimmed().toLower(); if (!Order.contains(Section)) Order << Section; continue; }
+        const int P = S.indexOf(QLatin1Char('='));
+        if ((P > 0) && !Section.isEmpty()) Sections[Section].insert(S.left(P).trimmed().toLower(), S.mid(P + 1).trimmed());
+    }
+    QString Sec = Target.toLower();
+    if (!Sections.contains(Sec) || !Sections[Sec].contains(QLatin1String("gameid"))) {
+        Sec.clear();
+        for (const QString& O : Order) {
+            if ((O == QLatin1String("scummvm")) || !Sections[O].contains(QLatin1String("gameid"))) continue;
+            if (!Sec.isEmpty()) return false;   // (several games: which one?)
+            Sec = O;
+        }
+        if (Sec.isEmpty()) return false;
+    }
+    const QMap<QString, QString> K = Sections[Sec];
+    const QString GameID = K.value(QLatin1String("gameid")), EngineID = K.value(QLatin1String("engineid"));
+    if (GameID.isEmpty()) return false;
+    Game.ScummVM = true;
+    Game.ScummVMGameID = EngineID.isEmpty() ? GameID : EngineID + QLatin1Char(':') + GameID;
+    const QStringList Bases = {WorkingDir, Game.Folder, QFileInfo(IniFile).absolutePath()};
+    const QString Path = K.value(QLatin1String("path"));
+    if (Game.ScummVMDataDir.isEmpty()) Game.ScummVMDataDir = Path.isEmpty() ? Game.Folder : FindPathIn(Bases, Path);
+    if (!K.value(QLatin1String("extrapath")).isEmpty()) Game.ScummVMExtraPath = FindPathIn(Bases, K.value(QLatin1String("extrapath")));
+    Game.ScummVMLanguage = K.value(QLatin1String("language"));
+    Game.ScummVMPlatform = K.value(QLatin1String("platform"));
+    if (Game.Name.isEmpty()) Game.Name = K.value(QLatin1String("description"));
+    return !Game.ScummVMDataDir.isEmpty();
+}
+
+// ScummVM start entry: "-c <ini>" / "--config=<ini>", "-p <path>" / "--path=<path>", game name
+bool ReadScummVMTask(const QString& Arguments, const QString& WorkingDir, TGOGGame& Game)
+{
+    const QStringList P = SplitParameters(Arguments);
+    QString Ini, Path, Target;
+    for (int I = 0; I < P.size(); I++) {
+        const QString A = P[I];
+        if (((A == QLatin1String("-c")) || (A == QLatin1String("-p"))) && (I + 1 < P.size())) { (A == QLatin1String("-c") ? Ini : Path) = P[++I]; continue; }
+        if (A.startsWith(QLatin1String("--config="))) { Ini = A.mid(9); continue; }
+        if (A.startsWith(QLatin1String("--path="))) { Path = A.mid(7); continue; }
+        if (!A.startsWith(QLatin1Char('-'))) Target = A;
+    }
+    const QStringList Bases = {WorkingDir, Game.Folder};
+    if (!Path.isEmpty()) Game.ScummVMDataDir = FindPathIn(Bases, Path);
+    if (!Ini.isEmpty()) {
+        const QString IniFile = FindPathIn(Bases, Ini);
+        if (!IniFile.isEmpty() && ReadScummVMIni(IniFile, Target, WorkingDir, Game)) return true;
+    }
+    // (no ini file: the game name is the game ID)
+    if (Target.isEmpty() || Game.ScummVMDataDir.isEmpty()) return false;
+    Game.ScummVM = true;
+    Game.ScummVMGameID = Target;
+    return true;
+}
+
 // goggame-<ID>.info (Windows versions)
 bool ReadInfoFile(const QString& Folder, TGOGGame& Game)
 {
@@ -105,7 +190,31 @@ bool ReadInfoFile(const QString& Folder, TGOGGame& Game)
             const QString Name = T.value(QLatin1String("name")).toString().toLower();
             if (!IsGame(T) || Name.contains(QLatin1String("setup")) || Name.contains(QLatin1String("settings")) || Name.contains(QLatin1String("config"))) { SetupTask = T; break; }
         }
-        if (GameTask.isEmpty()) continue;
+        auto SetInfo = [&]() {
+            Game.Name = Info.value(QLatin1String("name")).toString().trimmed();
+            Game.ID = Info.value(QLatin1String("gameId")).toString();
+            if (Game.ID.isEmpty()) Game.ID = InfoName.mid(8, InfoName.length() - 13);
+            const QString Icon = QDir(Folder).filePath(QStringLiteral("goggame-") + Game.ID + QStringLiteral(".ico"));
+            if (QFileInfo::exists(Icon)) Game.Icon = QDir::cleanPath(Icon);
+        };
+        if (GameTask.isEmpty()) {
+            // a game shipped with ScummVM?
+            QJsonObject ScummVMTask;
+            for (const QJsonValue& V : Tasks) {
+                const QJsonObject T = V.toObject();
+                if (!IsScummVMTask(T) || !IsGame(T)) continue;
+                if (ScummVMTask.isEmpty() || T.value(QLatin1String("isPrimary")).toBool()) ScummVMTask = T;
+            }
+            if (ScummVMTask.isEmpty()) continue;
+            const QString WD = ScummVMTask.value(QLatin1String("workingDir")).toString();
+            const QString WorkingDir = WD.isEmpty() ? QDir::cleanPath(Folder) : FindPath(Folder, WD);
+            Game.WorkingDir = WorkingDir.isEmpty() ? QDir::cleanPath(Folder) : WorkingDir;
+            SetInfo();
+            if (ReadScummVMTask(ScummVMTask.value(QLatin1String("arguments")).toString(), Game.WorkingDir, Game)) return true;
+            Game = TGOGGame();
+            Game.Folder = QDir::cleanPath(Folder);
+            continue;
+        }
         QString WD = GameTask.value(QLatin1String("workingDir")).toString();
         const QString WorkingDir = WD.isEmpty() ? QDir::cleanPath(Folder) : FindPath(Folder, WD);
         if (WorkingDir.isEmpty()) continue;
@@ -118,11 +227,7 @@ bool ReadInfoFile(const QString& Folder, TGOGGame& Game)
             const QString SetupDir = WD.isEmpty() ? QDir::cleanPath(Folder) : FindPath(Folder, WD);
             if (!SetupDir.isEmpty()) Game.SetupConfs = ConfsOfArguments(SetupTask.value(QLatin1String("arguments")).toString(), SetupDir);
         }
-        Game.Name = Info.value(QLatin1String("name")).toString().trimmed();
-        Game.ID = Info.value(QLatin1String("gameId")).toString();
-        if (Game.ID.isEmpty()) Game.ID = InfoName.mid(8, InfoName.length() - 13);
-        const QString Icon = QDir(Folder).filePath(QStringLiteral("goggame-") + Game.ID + QStringLiteral(".ico"));
-        if (QFileInfo::exists(Icon)) Game.Icon = QDir::cleanPath(Icon);
+        SetInfo();
         return true;
     }
     return false;
@@ -170,6 +275,29 @@ bool ReadConfFiles(const QString& Folder, TGOGGame& Game)
     if (Info.open(QIODevice::ReadOnly | QIODevice::Text)) Game.Name = QString::fromUtf8(Info.readLine()).trimmed();
     const QString Icon = FindPath(Folder, QStringLiteral("support/icon.png"));
     if (!Icon.isEmpty()) Game.Icon = Icon;
+    return true;
+}
+
+// ScummVM games without goggame-<ID>.info (Linux versions): an ini file
+// with a game section in the game folder, otherwise ScummVM's own detection
+// (only if there is a "scummvm" folder)
+bool ReadScummVMFiles(const QString& Folder, TGOGGame& Game)
+{
+    const QString ScummVMDir = FindSubFolder(Folder, QStringLiteral("scummvm"));
+    Game.WorkingDir = ScummVMDir.isEmpty() ? QDir::cleanPath(Folder) : QDir::cleanPath(ScummVMDir);
+    QFile Info(QDir(Folder).filePath(QStringLiteral("gameinfo")));
+    if (Info.open(QIODevice::ReadOnly | QIODevice::Text)) Game.Name = QString::fromUtf8(Info.readLine()).trimmed();
+    const QString Icon = FindPath(Folder, QStringLiteral("support/icon.png"));
+    if (!Icon.isEmpty()) Game.Icon = Icon;
+    for (const QString& E : QDir(Folder).entryList({QStringLiteral("*.ini")}, QDir::Files, QDir::Name))
+        if (ReadScummVMIni(QDir(Folder).filePath(E), QString(), Game.WorkingDir, Game)) return true;
+    if (ScummVMDir.isEmpty()) return false;
+    const QList<TScummVMDetectedGame> Detected = DetectScummVMGames(Folder);
+    if (Detected.isEmpty()) return false;
+    Game.ScummVM = true;
+    Game.ScummVMGameID = Detected[0].ID;
+    Game.ScummVMDataDir = QDir::cleanPath(QDir::fromNativeSeparators(Detected[0].Path));
+    if (Game.Name.isEmpty()) Game.Name = Detected[0].Description;
     return true;
 }
 
@@ -234,7 +362,16 @@ bool ReadGOGGame(const QString& Folder, TGOGGame& Game)
     Game = TGOGGame();
     if (!QFileInfo(Folder).isDir()) return false;
     Game.Folder = QDir::cleanPath(QFileInfo(Folder).absoluteFilePath());
-    if (!ReadInfoFile(Game.Folder, Game) && !ReadConfFiles(Game.Folder, Game)) return false;
+    if (!ReadInfoFile(Game.Folder, Game) && !ReadConfFiles(Game.Folder, Game)) {
+        const QString F = Game.Folder;
+        Game = TGOGGame();
+        Game.Folder = F;
+        if (!ReadScummVMFiles(Game.Folder, Game)) return false;
+    }
+    if (Game.ScummVM) {
+        if (Game.Name.isEmpty()) Game.Name = QFileInfo(Game.Folder).fileName();
+        return true;
+    }
     // (a DOS game: the conf files mount something)
     const TConfData D = ReadConfs(Game.GameConfs);
     bool Mounts = false;
@@ -390,15 +527,56 @@ bool GOGGameInList(TGameDB* GameDB, const TGOGGame& Game)
     for (int I = 0; I < GameDB->Count(); I++) {
         TGame* G = GameDB->Game(I);
         if (G->Name().compare(Game.Name, Qt::CaseInsensitive) == 0) return true;
-        if (Trim(G->GameExe()).isEmpty()) continue;
-        const QString Exe = QDir::cleanPath(QDir::fromNativeSeparators(MakeAbsPath(G->GameExe(), PrgSetup->BaseDir())));
-        if (Exe.startsWith(Folder, Qt::CaseInsensitive)) return true;
+        for (const QString& F : {G->GameExe(), G->ScummVMPath()}) {
+            if (Trim(F).isEmpty()) continue;
+            const QString P = QDir::cleanPath(QDir::fromNativeSeparators(MakeAbsPath(F, PrgSetup->BaseDir()))) + QLatin1Char('/');
+            if (P.startsWith(Folder, Qt::CaseInsensitive)) return true;
+        }
     }
     return false;
 }
 
+namespace {
+
+void SetCaptureFolderAndIcon(TGame* G, const TGOGGame& Game)
+{
+    // capture folder as for new profiles, icon
+    QString S = IncludeTrailingPathDelimiter(PrgSetup->CaptureDir()) + MakeFileSysOKFolderName(Game.Name) + PathDelim;
+    int I = 0;
+    while ((!PrgSetup->IgnoreDirectoryCollisions()) && DirectoryExists(MakeAbsPath(S, PrgSetup->BaseDir()))) {
+        I++;
+        S = IncludeTrailingPathDelimiter(PrgSetup->CaptureDir()) + MakeFileSysOKFolderName(Game.Name) + IntToStr(I) + PathDelim;
+    }
+    G->SetCaptureFolder(MakeRelPath(S, PrgSetup->BaseDir()));
+    if (!Game.Icon.isEmpty()) G->SetIcon(MakeRelPath(QDir::toNativeSeparators(Game.Icon), PrgSetup->BaseDir()));
+}
+
+TGame* ImportGOGScummVMGame(TGameDB* GameDB, const TGOGGame& Game)
+{
+    // game name as in the list of the installed ScummVM ("engine:game" or "game")
+    QString ID = Game.ScummVMGameID;
+    if (ScummVMGamesList != nullptr) {
+        if (ScummVMGamesList->Count() == 0) ScummVMGamesList->LoadListFromScummVM(false);
+        const QString N = ScummVMGamesList->NameFromDetectedID(ID);
+        if (!N.isEmpty()) ID = N;
+    }
+    TGame* G = GameDB->Game(GameDB->Add(Game.Name));
+    G->SetProfileMode(QStringLiteral("ScummVM"));
+    G->SetScummVMGame(ID);
+    G->SetScummVMPath(MakeRelPath(QDir::toNativeSeparators(Game.ScummVMDataDir), PrgSetup->BaseDir()));
+    G->SetScummVMLanguage(Game.ScummVMLanguage.toLower());
+    if (!Game.ScummVMPlatform.isEmpty()) G->SetScummVMPlatform(Game.ScummVMPlatform.toLower());
+    if (!Game.ScummVMExtraPath.isEmpty()) G->SetScummVMExtraPath(MakeRelPath(QDir::toNativeSeparators(Game.ScummVMExtraPath), PrgSetup->BaseDir()));
+    SetCaptureFolderAndIcon(G, Game);
+    G->StoreAllValues();
+    return G;
+}
+
+}  // namespace
+
 TGame* ImportGOGGame(TGameDB* GameDB, const TGOGGame& Game)
 {
+    if (Game.ScummVM) return ImportGOGScummVMGame(GameDB, Game);
     const TConfData Data = ReadConfs(Game.GameConfs);
     if (Data.Sections.isEmpty() && Data.Autoexec.isEmpty()) return nullptr;
 
@@ -450,15 +628,7 @@ TGame* ImportGOGGame(TGameDB* GameDB, const TGOGGame& Game)
         }
     }
 
-    // capture folder as for new profiles, icon
-    QString S = IncludeTrailingPathDelimiter(PrgSetup->CaptureDir()) + MakeFileSysOKFolderName(Game.Name) + PathDelim;
-    int I = 0;
-    while ((!PrgSetup->IgnoreDirectoryCollisions()) && DirectoryExists(MakeAbsPath(S, PrgSetup->BaseDir()))) {
-        I++;
-        S = IncludeTrailingPathDelimiter(PrgSetup->CaptureDir()) + MakeFileSysOKFolderName(Game.Name) + IntToStr(I) + PathDelim;
-    }
-    G->SetCaptureFolder(MakeRelPath(S, PrgSetup->BaseDir()));
-    if (!Game.Icon.isEmpty()) G->SetIcon(MakeRelPath(QDir::toNativeSeparators(Game.Icon), PrgSetup->BaseDir()));
+    SetCaptureFolderAndIcon(G, Game);
     G->StoreAllValues();
     return G;
 }
