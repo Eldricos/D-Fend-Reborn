@@ -401,6 +401,16 @@ private:
     void LoadMenuLanguage();
     void InitGUI(bool FirstInit);
     void InitViewStyle();
+    // MenuWork of each menu (ATag: the command number)
+    void FileMenuWork(QObject* Sender, int ATag);
+    void ViewMenuWork(QObject* Sender, int ATag);
+    void RunMenuWork(QObject* Sender, int ATag);
+    void ProfileMenuWork(QObject* Sender, int ATag);
+    void ExtrasMenuWork(QObject* Sender, int ATag);
+    void HelpMenuWork(QObject* Sender, int ATag);
+    bool NoGameSelected();
+    void ReloadAndSelect(QObject* Sender, TGame* AGame);
+    void ClearListBeforeReload();
     void SelectGame(TGame* AGame);
     void SelectGame(const QString& AGameName);
     void LoadAbandonLinks();
