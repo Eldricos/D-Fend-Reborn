@@ -18,3 +18,12 @@
   `data/Lang/Readme_OperationMode.txt` and the help page on translations).
 * **Code:** C++17 / Qt 6, see README.md for building. Pull requests are
   checked by the "Build" workflow (Linux and Windows).
+* **Texts of the program** (language strings): all strings are defined in
+  [src/core/LanguageStrings.inc](src/core/LanguageStrings.inc), one line each
+  (number, accessor, section and key in the language files, English text).
+  Add a new one with
+  `python3 tools/langstrings.py add <Section> <Key> <Name> "English" "German"`;
+  it writes the line and the texts in `data/Lang/English.ini` and
+  `German.ini`, the program uses it as `LanguageSetup-><Name>()`.
+  `python3 tools/langstrings.py check` (also run by the "Build" workflow)
+  checks that the table and the two language files agree.
