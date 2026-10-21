@@ -131,6 +131,7 @@ static THandle RunFile2(const QString& FileName, const QString& Parameters, bool
     ShellExecInfo.lpDirectory = WDir.c_str();
     ShellExecInfo.nShow = SW_SHOW;
 
+    if (ExternalStartHook) { ExternalStartHook(FileName); return InvalidHandle; }
     if (ShellExecuteExW(&ShellExecInfo)) {
         result = 0;
         if (ShellExecInfo.hProcess != nullptr) {

@@ -44,6 +44,7 @@
 #include "HelpConsts.h"
 #include "MainUnit.h"
 #include "ColorScheme.h"
+#include "Process.h"
 
 #include "BuildImageFromFolderFormUnit.h"
 #include "BuildZipPackagesFormUnit.h"
@@ -100,10 +101,15 @@
 
 namespace {
 
-// Message boxes of the program code: no windows in the tests
+// What the menu command test records (messages, windows, started programs)
+QStringList* Record = nullptr;
+
+// Message boxes of the program code: no windows in the tests (questions are
+// answered with Cancel / No)
 int TestMessageDlg(const QString& Caption, const QString& Msg, TMsgDlgType DlgType, TMsgDlgButtons Buttons)
 {
-    Q_UNUSED(Caption); Q_UNUSED(Msg); Q_UNUSED(DlgType);
+    Q_UNUSED(Caption); Q_UNUSED(DlgType);
+    if (Record != nullptr) *Record << "message: " + Msg.simplified().left(80);
     if (Buttons & mbCancel) return mrCancel;
     if (Buttons & mbNo) return mrNo;
     return mrOk;
@@ -380,6 +386,13 @@ private slots:
         QDir().mkpath(FPrgDir.path() + "/VirtualHD/GAME");
 
         MessageDlgHook = TestMessageDlg;
+        // no programs, documents, web pages or folders are opened
+        ExternalStartHook = [](const QString& What) {
+            // (the end of the path / URL: the temporary folder differs on each run)
+            QString W = QDir::fromNativeSeparators(What);
+            while (W.endsWith('/')) W.chop(1);
+            if (Record != nullptr) *Record << "start: " + W.mid(W.lastIndexOf('/') + 1).left(80);
+        };
         PrgConsts_Initialization();
         LoggingUnit_Initialization();
         PrgSetupUnit_Initialization();
@@ -544,6 +557,90 @@ private slots:
 
         QVERIFY2(Opened, "the dialog was not shown");
         QVERIFY2(Problems.isEmpty(), qPrintable("\n" + Problems.join("\n")));
+    }
+
+    // ----- menu commands ---------------------------------------------------
+    //
+    // Every command of the main window (menus, tool bar and popup menus; one
+    // action for each command number) is run once with the test profile
+    // selected. Dialogs are closed with Cancel, questions answered with No,
+    // nothing is started. The test checks that no command crashes or leaves
+    // a window open, and prints what each command did (windows, messages,
+    // programs / documents it would start): with DFR_DEBUG set, these lines
+    // can be compared before and after changes of the main window code.
+
+    // The actions of a command (menu, tool bar, popup menus)
+    QList<QAction*> CommandActions(int Tag)
+    {
+        QList<QAction*> L;
+        for (QAction* A : MainForm->findChildren<QAction*>())
+            if ((A->property("tag").toInt() == Tag) && (A->menu() == nullptr)) L << A;
+        return L;
+    }
+
+    void menuCommands_data()
+    {
+        QTest::addColumn<int>("Command");
+        // not run: Quit, package manager and update check (internet)
+        const QSet<int> Skip = {1007, 1011, 6010};
+        QMap<int, QString> Commands;
+        for (QAction* A : MainForm->findChildren<QAction*>()) {
+            const int Tag = A->property("tag").toInt();
+            if ((Tag < 1000) || (Tag > 6999) || Skip.contains(Tag) || A->menu() != nullptr) continue;
+            const QString Name = A->objectName().isEmpty() ? A->text().remove('&') : A->objectName();
+            if (!Commands.contains(Tag) || (Name < Commands[Tag])) Commands[Tag] = Name;
+        }
+        for (auto It = Commands.cbegin(); It != Commands.cend(); ++It)
+            QTest::newRow(qPrintable(QString::number(It.key()) + " " + It.value())) << It.key();
+    }
+
+    void menuCommands()
+    {
+        QFETCH(int, Command);
+        MainForm->show();
+        Settle();
+        if ((MainForm->ui.ListView->Selected() == nullptr) && (MainForm->ui.ListView->Items()->Count() > 0))
+            MainForm->ui.ListView->SetSelected(MainForm->ui.ListView->Items()->Item(0));
+        Settle();
+        QVERIFY2(MainForm->ui.ListView->Selected() != nullptr, "the test profile is not selected");
+        // an enabled action of the command (the menu items of a command may
+        // be enabled differently)
+        const QList<QAction*> Actions = CommandActions(Command);
+        QVERIFY(!Actions.isEmpty());
+        QAction* A = Actions[0];
+        for (QAction* B : Actions) if (B->isEnabled()) { A = B; break; }
+
+        QStringList Done;
+        const QList<QWidget*> Before = QApplication::topLevelWidgets();
+        QTimer Timer;
+        Timer.setInterval(50);
+        int Seen = 0;
+        connect(&Timer, &QTimer::timeout, this, [&]() {
+            QWidget* M = QApplication::activeModalWidget();
+            if (M == nullptr) { Seen = 0; return; }
+            if (++Seen < 3) return;   // let the dialog finish its OnShow work
+            Seen = 0;
+            Done << QStringLiteral("window: %1 %2").arg(M->metaObject()->className(), M->objectName());
+            if (auto* D = qobject_cast<QDialog*>(M)) D->QDialog::done(QDialog::Rejected); else M->close();
+        });
+        Record = &Done;
+        Timer.start();
+        if (A->isEnabled()) A->trigger(); else Done << "disabled";
+        Settle();
+        Timer.stop();
+        CloseModalWindows();
+        // windows the command opened (not modal)
+        for (QWidget* W : QApplication::topLevelWidgets())
+            if (W->isVisible() && !Before.contains(W) && (W != MainForm) && !qobject_cast<QMenu*>(W)) {
+                Done << QStringLiteral("window: %1 %2").arg(W->metaObject()->className(), W->objectName());
+                W->close();
+            }
+        for (QMenu* M : MainForm->findChildren<QMenu*>()) if (M->isVisible()) { Done << "menu: " + M->objectName(); M->close(); }
+        Settle();
+        Record = nullptr;
+
+        if (qEnvironmentVariableIsSet("DFR_DEBUG")) qInfo("COMMAND %d: %s", Command, qPrintable(Done.join(" | ")));
+        QVERIFY2(QApplication::activeModalWidget() == nullptr, "a window is still open");
     }
 };
 
