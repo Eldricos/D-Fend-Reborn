@@ -18,7 +18,7 @@ possible** – keep unit structure, identifiers, control flow and comments.
 | `resources/` | images extracted from the DFMs (`glyphs/`, `imagelists/`, `pictures/`, `icons/`, `vcl/`) and `dfend.qrc` |
 | `tools/dfm2ui.py` | DFM → Qt Designer `.ui` converter (re-run after changing the converter) |
 | `tools/pas2h.py` | generated the initial C++ headers from the Pascal `interface` sections |
-| `tools/langstrings.py` | generates `src/core/LanguageSetupStrings.cpp` (default English strings) |
+| `tools/langstrings.py` | language strings: `check` / `sync` / `add` for `src/core/LanguageStrings.inc` (the table of all strings) and `data/Lang/English.ini` / `German.ini` (originally: generated the default strings from the Pascal source) |
 | `tools/check_headers.sh` | compiles every header on its own (`-fsyntax-only`) |
 | `tools/formpreview/` | renders a `.ui` file to PNG (visual check of the conversion) |
 

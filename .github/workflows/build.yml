@@ -37,6 +37,8 @@ jobs:
         run: |
           test -x build/DFend
           test -f build/Lang/English.ini
+          # language strings: table (src/core/LanguageStrings.inc), English.ini and German.ini agree
+          python3 tools/langstrings.py check
           test -f build/Help/English/Index.html
           # the Linux build must not contain the Windows helper programs
           if ls build/Bin/*.exe build/Bin/*.dll 2>/dev/null; then echo "Windows programs in Linux build"; exit 1; fi

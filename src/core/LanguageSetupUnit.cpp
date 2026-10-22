@@ -1,6 +1,6 @@
 // C++ port of LanguageSetupUnit.pas (implementation section).
-// The bodies of TLanguageSetup::SetupLanguageStrings1..5 (the default English
-// strings) are generated into LanguageSetupStrings.cpp by tools/langstrings.py.
+// The default English strings are registered by SetupLanguageStrings
+// (LanguageSetupStrings.cpp) from the table in LanguageStrings.inc.
 #include "LanguageSetupUnit.h"
 #include "CommonTools.h"
 #include "PrgConsts.h"
@@ -178,11 +178,7 @@ TLanguageSetup::TLanguageSetup(const QString& FileName_, bool MinimalInit)
         }
 
         if (!MinimalInit) {
-            SetupLanguageStrings1();
-            SetupLanguageStrings2();
-            SetupLanguageStrings3();
-            SetupLanguageStrings4();
-            SetupLanguageStrings5();
+            SetupLanguageStrings();
             /* Needed to split this; compiler said "Too many local constants. Use shorter procedures." */
         }
     } catch (...) {

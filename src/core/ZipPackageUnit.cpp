@@ -229,7 +229,7 @@ static bool CreateInfoFile(TGame* Game, const QString& Dir)
     St.Add("");
     if (ScummVMMode(Game)) {
         St.Add("You can also run the game from this package without having D-Fend Reborn");
-        St.Add("installed. All you need is ScummVM (http:/" "/www.scummvm.org/). You can just use");
+        St.Add("installed. All you need is ScummVM (https:/" "/www.scummvm.org/). You can just use");
         St.Add("the ini file from this folder to run the game inside ScummVM.");
     }
     if (DOSBoxMode(Game)) {

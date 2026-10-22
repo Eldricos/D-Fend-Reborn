@@ -80,10 +80,13 @@ bool TScummVMGamesList::LoadListFromScummVM(bool WarnIfScummVMNotFound, const QS
     } else {
         S = IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + ScummPrgFile;
     }
-#ifndef Q_OS_WIN
-#endif
     if (!FileExists(S)) {
-        if (WarnIfScummVMNotFound) MessageDlg(Format(LanguageSetup->MessageFileNotFound(), {S}), mtError, mbOK, 0);
+        if (WarnIfScummVMNotFound) {
+            if (Trim(CustomScummVMPath).isEmpty() && Trim(PrgSetup->ScummVMPath()).isEmpty())
+                MessageDlg(LanguageSetup->MessageScummVMNotConfigured(), mtError, mbOK, 0);
+            else
+                MessageDlg(Format(LanguageSetup->MessageFileNotFound(), {S}), mtError, mbOK, 0);
+        }
         return false;
     }
 

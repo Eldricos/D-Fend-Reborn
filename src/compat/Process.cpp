@@ -17,6 +17,16 @@
 #include <cerrno>
 #endif
 
+TExternalStartHook ExternalStartHook;
+
+// true: the hook got What, nothing is started
+static bool Hooked(const QString &What)
+{
+    if (!ExternalStartHook) return false;
+    ExternalStartHook(What);
+    return true;
+}
+
 QStringList SplitCommandLine(const QString &CommandLine)
 {
     QStringList R;
@@ -38,6 +48,7 @@ QStringList SplitCommandLine(const QString &CommandLine)
 
 THandle StartProcess(const QString &Program, const QStringList &Arguments, const QString &WorkingDir, TShowWindowMode Show)
 {
+    if (Hooked(Program)) return 0;
     QProcess P;
     P.setProgram(ToNativePath(Program));
     P.setArguments(Arguments);
@@ -70,6 +81,7 @@ THandle StartProcessCommandLine(const QString &CommandLine, const QString &Worki
 int RunProcessAndWait(const QString &Program, const QStringList &Arguments, const QString &WorkingDir, bool HideWindow,
                       bool ProcessEventsWhileWaiting)
 {
+    if (Hooked(Program)) return -1;
     QProcess P;
     QString Dir = WorkingDir.isEmpty() ? ExtractFilePath(Program) : WorkingDir;
     if (!Dir.isEmpty()) P.setWorkingDirectory(ToNativePath(Dir));
@@ -96,6 +108,7 @@ int RunProcessAndWait(const QString &Program, const QStringList &Arguments, cons
 
 QString RunProcessAndGetOutput(const QString &Program, const QStringList &Arguments, const QString &WorkingDir, int TimeoutMs)
 {
+    if (Hooked(Program)) return QString();
     QProcess P;
     if (!WorkingDir.isEmpty()) P.setWorkingDirectory(ToNativePath(WorkingDir));
     P.setProcessChannelMode(QProcess::MergedChannels);
@@ -157,17 +170,24 @@ bool ShellOpen(const QString &FileOrUrl, const QString &Parameters, const QStrin
             FI.suffix().compare("bat", Qt::CaseInsensitive) == 0)
             return StartProcess(F, SplitCommandLine(Parameters), WorkingDir) != 0;
     }
-    if (IsUrl) return QDesktopServices::openUrl(QUrl(F));
-    return QDesktopServices::openUrl(QUrl::fromLocalFile(ToNativePath(F)));
+    if (IsUrl) return OpenDesktopUrl(QUrl(F));
+    return OpenDesktopUrl(QUrl::fromLocalFile(ToNativePath(F)));
 }
 
 bool OpenFolder(const QString &Folder)
 {
-    return QDesktopServices::openUrl(QUrl::fromLocalFile(ToNativePath(Folder)));
+    return OpenDesktopUrl(QUrl::fromLocalFile(ToNativePath(Folder)));
+}
+
+bool OpenDesktopUrl(const QUrl &Url)
+{
+    if (Hooked(Url.toString())) return false;
+    return QDesktopServices::openUrl(Url);
 }
 
 THandle StartProcessNative(const QString &PrgFile, const QString &Params, const QString &WorkDir, const QStringList &EnvAdd)
 {
+    if (Hooked(PrgFile)) return 0;
     QProcess P;
     P.setProgram(ToNativePath(PrgFile));
 #ifdef Q_OS_WIN

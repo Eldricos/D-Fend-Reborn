@@ -68,7 +68,7 @@ void TSetupFrameScummVM::LoadLanguage()
     ui.HideConsoleCheckBox->setText(LanguageSetup->SetupFormHideScummVMConsole());
     ui.CommandLineEdit_EditLabel->setText(LanguageSetup->SetupFormScummVMAdditionalParameters());
     ui.ScummVMDownloadURLInfo->setText(LanguageSetup->SetupFormScummVMDownloadURL());
-    ui.ScummVMDownloadURL->setText(QString("http:/") + "/www.scummvm.org/downloads.php");
+    ui.ScummVMDownloadURL->setText(QStringLiteral("https://www.scummvm.org/downloads/"));
     VclLayout::makeLinkLabel(ui.ScummVMDownloadURL);
     setProperty("HelpContext", ID_FileOptionsScummVM);
 }

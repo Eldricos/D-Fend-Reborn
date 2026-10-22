@@ -9,7 +9,7 @@
 #include "HelpConsts.h"
 
 #include <QApplication>
-#include <QDesktopServices>
+#include "Process.h"
 #include <QDir>
 #include <QHash>
 #include <QUrl>
@@ -188,7 +188,7 @@ static THandle OpenHelpPage(const QString &HelpFolder, const QString &Page)
     if (!FileExists(Folder + Name)) return 0;
     QUrl URL = QUrl::fromLocalFile(QDir::fromNativeSeparators(Folder + Name));
     if (!Anchor.isEmpty()) URL.setFragment(Anchor);
-    return QDesktopServices::openUrl(URL) ? 1 : 0;
+    return OpenDesktopUrl(URL) ? 1 : 0;
 }
 
 // HtmlHelp emulation for the HTML help folders (Help/<Language>/*.html),

@@ -11,7 +11,7 @@
 #include <QStandardPaths>
 #include <QImageReader>
 #include <QImageWriter>
-#include <QDesktopServices>
+#include "Process.h"
 #include <QThread>
 #ifdef DFR_HAVE_DBUS
 #include <QDBusInterface>
@@ -633,6 +633,7 @@ static void PrepareProcess(QProcess &P, bool HideWindow)
 TStringList* RunAndGetOutput(const QString& PrgFile, const QString& Parameters, bool HideWindow)
 {
     if (!FileExists(PrgFile)) return nullptr;
+    if (ExternalStartHook) { ExternalStartHook(PrgFile); return nullptr; }
 
     QProcess P;
     PrepareProcess(P, HideWindow);
@@ -659,6 +660,7 @@ TStringList* RunAndGetOutput(const QString& PrgFile, const QString& Parameters, 
 bool RunWithInput(const QString& PrgFile, const QString& Parameters, bool HideWindow, TStringList* StdIn)
 {
     if (!FileExists(PrgFile)) return false;
+    if (ExternalStartHook) { ExternalStartHook(PrgFile); return false; }
 
     QByteArray MSt;
     for (int I = 0; I < StdIn->Count(); I++) MSt += EncodeAnsi((*StdIn)[I]) + QByteArray(LineBreak.toLatin1());
@@ -1782,7 +1784,7 @@ void OpenFileInEditor(const QString& FileName)
 #ifndef Q_OS_WIN
     // No Notepad outside Windows: use the editor registered in the desktop environment
     if (SameText(Editor, QStringLiteral("Notepad.exe"))) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(FileName));
+        OpenDesktopUrl(QUrl::fromLocalFile(FileName));
         return;
     }
 #endif

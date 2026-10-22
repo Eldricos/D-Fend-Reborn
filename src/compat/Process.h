@@ -3,7 +3,16 @@
 // keep running when D-Fend Reborn is closed - exactly like the original.
 #pragma once
 
+#include <functional>
 #include "Classes.h"
+
+class QUrl;
+
+// D-Fend Reborn addition: the tests set this hook so that no program is
+// started and no document, URL or folder is opened: the hook gets the
+// program / document and the functions below report a failure.
+using TExternalStartHook = std::function<void(const QString &What)>;
+extern TExternalStartHook ExternalStartHook;
 
 enum TShowWindowMode { swNormal, swHide, swMinimized, swMaximized };
 
@@ -36,6 +45,8 @@ void TerminateProcessById(THandle Pid);
 bool ShellOpen(const QString &FileOrUrl, const QString &Parameters = QString(), const QString &WorkingDir = QString());
 // Opens the folder in the file manager (explorer.exe Folder)
 bool OpenFolder(const QString &Folder);
+// QDesktopServices::openUrl (with ExternalStartHook)
+bool OpenDesktopUrl(const QUrl &Url);
 
 // Splits a Windows style command line into program + arguments
 QStringList SplitCommandLine(const QString &CommandLine);
