@@ -175,10 +175,8 @@ void TDFendRebornMainForm::FileMenuWork(QObject *Sender, int ATag)
         }
         case 1009:
             OpenDialog->DefaultExt = "xml";
-            /*OpenDialog.Title:=LanguageSetup.MenuFileImportXMLTitle;*/
-            OpenDialog->Title = "XML import";
-            /*OpenDialog.Filter:=LanguageSetup.MenuFileImportXMLFilter;*/
-            OpenDialog->Filter = "XML files (*.xml)|*xml|All files|*.*";
+            OpenDialog->Title = LanguageSetup->MenuFileImportXMLTitle();
+            OpenDialog->Filter = LanguageSetup->MenuFileImportXMLFilter();
             if (!OpenDialog->Execute()) return;
             if (ui.ListView->Selected() != nullptr) G = GameOf(ui.ListView->Selected()); else G = nullptr;
             S = ImportXMLFile(GameDB, OpenDialog->FileName);
@@ -828,6 +826,7 @@ void TDFendRebornMainForm::ExtrasMenuWork(QObject *Sender, int ATag)
 void TDFendRebornMainForm::HelpMenuWork(QObject *Sender, int ATag)
 {
     TGame *DefaultGame;
+    QString S;
     const QString DOSBoxExe = DOSBoxExeFileOfInstallation(0);
 
     switch (ATag) {
@@ -864,15 +863,20 @@ void TDFendRebornMainForm::HelpMenuWork(QObject *Sender, int ATag)
         case 6014: ShowStatisticsDialog(this, GameDB); break;
         case 6015: ShowInfoDialog(this); break;
         case 6016: ShellOpen(QStringLiteral("https://www.dosbox-staging.org/")); break;
-        case 6017:
-            if (Trim(PrgSetup->ScummVMPath()) != "" && FileExists(IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + "Readme.txt"))
-                OpenFileInEditor(IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + "Readme.txt");
-            else
-                ShellOpen(QString("http:/") + "/www.scummvm.org/documentation.php");
+        case 6017: {
+            // the readme of the ScummVM installation (newer versions: README.md),
+            // otherwise the online documentation
+            S = "";
+            if (Trim(PrgSetup->ScummVMPath()) != "")
+                for (const char *F : {"Readme.txt", "README.txt", "README.md", "README"})
+                    if (FileExists(IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + F)) { S = IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + F; break; }
+            if (S != "") OpenFileInEditor(S); else ShellOpen(QStringLiteral("https://docs.scummvm.org/"));
             break;
-        case 6018: ShellOpen(QString("http:/") + "/www.scummvm.org/faq.php"); break;
-        case 6019: ShellOpen(QString("http:/") + "/www.scummvm.org/"); break;
-        case 6020: ShellOpen(QString("http:/") + "/www.scummvm.org/compatibility.php"); break;
+        }
+        // (the old .php pages of scummvm.org do not exist any more)
+        case 6018: ShellOpen(QStringLiteral("https://docs.scummvm.org/en/latest/help/faq.html")); break;
+        case 6019: ShellOpen(QStringLiteral("https://www.scummvm.org/")); break;
+        case 6020: ShellOpen(QStringLiteral("https://www.scummvm.org/compatibility/")); break;
         case 6021: ShowListScummVMGamesDialog(this); break;
         case 6022: ShowOperationModeInfoDialog(this); break;
         case 6024: ApplicationHelpCommand(HELP_CONTEXT, ID_Menu); break;

@@ -298,7 +298,12 @@ private:
     TDFendRebornMainForm* MainForm = nullptr;
     QList<TDialogTest> Tests;
 
-    TGame* TestGame() { return GameDB->Game(0); }
+    // the DOSBox test profile
+    TGame* TestGame()
+    {
+        for (int I = 0; I < GameDB->Count(); I++) if (GameDB->Game(I)->Name() == "Test Game") return GameDB->Game(I);
+        return nullptr;
+    }
 
     void InitTests()
     {
@@ -430,8 +435,31 @@ private slots:
             G.StoreAllValues();
             G.UpdateFile();
         }
+        // a ScummVM and a Windows profile (for the menu commands, which work
+        // differently for them)
+        QDir().mkpath(FPrgDir.path() + "/VirtualHD/MONKEY");
+        QDir().mkpath(FPrgDir.path() + "/VirtualHD/WINGAME");
+        QFile(FPrgDir.path() + "/VirtualHD/WINGAME/WINGAME.EXE").open(QIODevice::WriteOnly);
+        {
+            TGame G(TempPrgDir + "Confs" + PathDelim + "Test ScummVM Game.prof");
+            G.SetName("Test ScummVM Game");
+            G.SetProfileMode("ScummVM");
+            G.SetScummVMGame("monkey");
+            G.SetScummVMPath(".\\VirtualHD\\MONKEY\\");
+            G.StoreAllValues();
+            G.UpdateFile();
+        }
+        {
+            TGame G(TempPrgDir + "Confs" + PathDelim + "Test Windows Game.prof");
+            G.SetName("Test Windows Game");
+            G.SetProfileMode("Windows");
+            G.SetGameExe(".\\VirtualHD\\WINGAME\\WINGAME.EXE");
+            G.StoreAllValues();
+            G.UpdateFile();
+        }
         GameDB = new TGameDB(TempPrgDir + "Confs" + PathDelim);
-        QCOMPARE(GameDB->Count(), 1);
+        QCOMPARE(GameDB->Count(), 3);
+        QVERIFY(TestGame() != nullptr);
         TemplateDB = new TGameDB(TempPrgDir + "Templates" + PathDelim);
         AutoSetupDB = new TGameDB(TempPrgDir + "AutoSetup" + PathDelim);
         SearchLinkFile = new TLinkFile("SearchLinks.txt", false, ID_ProfileSearchGame);
@@ -562,12 +590,14 @@ private slots:
     // ----- menu commands ---------------------------------------------------
     //
     // Every command of the main window (menus, tool bar and popup menus; one
-    // action for each command number) is run once with the test profile
-    // selected. Dialogs are closed with Cancel, questions answered with No,
-    // nothing is started. The test checks that no command crashes or leaves
-    // a window open, and prints what each command did (windows, messages,
-    // programs / documents it would start): with DFR_DEBUG set, these lines
-    // can be compared before and after changes of the main window code.
+    // action for each command number) is run once with the DOSBox test
+    // profile selected, the commands of the Run and Profile menus also with
+    // the ScummVM and the Windows test profile. Dialogs are closed with
+    // Cancel, questions answered with No, nothing is started. The test checks
+    // that no command crashes or leaves a window open, and prints what each
+    // command did (windows, messages, programs / documents it would start):
+    // with DFR_DEBUG set, these lines can be compared before and after
+    // changes of the main window code.
 
     // The actions of a command (menu, tool bar, popup menus)
     QList<QAction*> CommandActions(int Tag)
@@ -580,6 +610,7 @@ private slots:
 
     void menuCommands_data()
     {
+        QTest::addColumn<QString>("Profile");
         QTest::addColumn<int>("Command");
         // not run: Quit, package manager and update check (internet)
         const QSet<int> Skip = {1007, 1011, 6010};
@@ -591,18 +622,27 @@ private slots:
             if (!Commands.contains(Tag) || (Name < Commands[Tag])) Commands[Tag] = Name;
         }
         for (auto It = Commands.cbegin(); It != Commands.cend(); ++It)
-            QTest::newRow(qPrintable(QString::number(It.key()) + " " + It.value())) << It.key();
+            QTest::newRow(qPrintable(QString::number(It.key()) + " " + It.value())) << "Test Game" << It.key();
+        for (const char* Profile : {"Test ScummVM Game", "Test Windows Game"})
+            for (auto It = Commands.cbegin(); It != Commands.cend(); ++It)
+                if ((It.key() >= 3000) && (It.key() <= 4999))
+                    QTest::newRow(qPrintable(QString(Profile) + "/" + QString::number(It.key()) + " " + It.value())) << QString(Profile) << It.key();
     }
 
     void menuCommands()
     {
+        QFETCH(QString, Profile);
         QFETCH(int, Command);
         MainForm->show();
         Settle();
-        if ((MainForm->ui.ListView->Selected() == nullptr) && (MainForm->ui.ListView->Items()->Count() > 0))
-            MainForm->ui.ListView->SetSelected(MainForm->ui.ListView->Items()->Item(0));
+        TListItems* Items = MainForm->ui.ListView->Items();
+        for (int I = 0; I < Items->Count(); I++) {
+            TGame* G = static_cast<TGame*>(Items->Item(I)->Data());
+            if ((G != nullptr) && (G->Name() == Profile)) { MainForm->ui.ListView->SetSelected(Items->Item(I)); break; }
+        }
         Settle();
-        QVERIFY2(MainForm->ui.ListView->Selected() != nullptr, "the test profile is not selected");
+        TListItem* Sel = MainForm->ui.ListView->Selected();
+        QVERIFY2((Sel != nullptr) && (Sel->Data() != nullptr) && (static_cast<TGame*>(Sel->Data())->Name() == Profile), "the test profile is not selected");
         // an enabled action of the command (the menu items of a command may
         // be enabled differently)
         const QList<QAction*> Actions = CommandActions(Command);
@@ -639,7 +679,7 @@ private slots:
         Settle();
         Record = nullptr;
 
-        if (qEnvironmentVariableIsSet("DFR_DEBUG")) qInfo("COMMAND %d: %s", Command, qPrintable(Done.join(" | ")));
+        if (qEnvironmentVariableIsSet("DFR_DEBUG")) qInfo("COMMAND %s %d: %s", qPrintable(Profile), Command, qPrintable(Done.join(" | ")));
         QVERIFY2(QApplication::activeModalWidget() == nullptr, "a window is still open");
     }
 };

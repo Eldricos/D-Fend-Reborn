@@ -483,6 +483,9 @@ LANG_STRING(SoundsPopupSaveOggAll, SoundsPopupSaveOggAll, 38155, "Menu", "Sounds
 LANG_STRING(TreeViewPopupUserDefinedCategories, TreeViewPopupUserDefinedCategories, 38181, "Menu", "TreeViewPopup.UserDefinedCategories", "Setup user-defined categories...")
 LANG_STRING(ToolbarPopupSetupButtons, ToolbarPopupSetupButtons, 38182, "Menu", "ToolbarPopup.SetupButtons", "Setup toolbar buttons...")
 LANG_STRING(ToolbarPopupSetupIconSet, ToolbarPopupSetupIconSet, 38183, "Menu", "ToolbarPopup.SetupIconSet", "Setup icon set...")
+LANG_STRING(MenuFileImportXML, MenuFileImportXML, 38184, "Menu", "File.Import.XML", "Import XML file...")
+LANG_STRING(MenuFileImportXMLTitle, MenuFileImportXMLTitle, 38185, "Menu", "File.Import.XML.Title", "Import XML profile file")
+LANG_STRING(MenuFileImportXMLFilter, MenuFileImportXMLFilter, 38186, "Menu", "File.Import.XML.Filter", "XML files (*.xml)|*.xml|All files (*.*)|*.*")
 
 // ----- [Capture]
 LANG_STRING(CaptureScreenshots, CaptureScreenshots, 38201, "Capture", "Screenshots", "Screenshots")

@@ -999,6 +999,7 @@ void TDFendRebornMainForm::LoadMenuLanguage()
     ui.MenuFileImport->setTitle(LanguageSetup->MenuFileImport());
     ui.MenuFileImportConfFile->setText(LanguageSetup->MenuFileImportConf());
     ui.MenuFileImportProfFile->setText(LanguageSetup->MenuFileImportProf());
+    ui.MenuFileImportXMLFile->setText(LanguageSetup->MenuFileImportXML());
     ui.MenuFileImportZIPFile->setText(LanguageSetup->MenuFileImportZIP());
     ui.MenuFileImportZIPFileWithInstallationSupport->setText(LanguageSetup->MenuFileImportZIPWithInstallationSupport());
     ui.MenuFileImportFolder->setText(LanguageSetup->MenuFileImportFolder());
@@ -2923,13 +2924,38 @@ void TDFendRebornMainForm::AfterSetupDialog(const QString &ColWidthsParam, const
     SelectGame(G);
 }
 
+// D-Fend Reborn: newest dosbox-x*.conf of the user configuration folder of
+// DOSBox-X (it writes dosbox-x-<version>.conf there), empty if there is none
+static QString NewestDOSBoxXUserConfFile(const QString& UserDir)
+{
+    const QFileInfoList L = QDir(UserDir).entryInfoList({"dosbox-x*.conf"}, QDir::Files, QDir::Time);
+    return L.isEmpty() ? QString() : QDir::toNativeSeparators(L.first().absoluteFilePath());
+}
+
 // D-Fend Reborn: primary configuration file of DOSBox Staging (portable
 // layout: dosbox-staging.conf next to the program file) and of DOSBox-X
-// (dosbox-x.conf in the program folder)
+// (dosbox-x.conf in the program folder, otherwise dosbox-x-<version>.conf
+// in its user configuration folder: %LOCALAPPDATA%\DOSBox-X on Windows,
+// ~/.config/dosbox-x on Linux, e.g. for a DOSBox-X installed with the
+// package manager in /usr/bin)
 static QString OtherDOSBoxUserConfFile(const QString& DOSBoxFile, TDOSBoxKind Kind, WId Window)
 {
     const QString Dir = IncludeTrailingPathDelimiter(ExtractFilePath(DOSBoxFile));
-    if (Kind == dkDOSBoxX) return Dir + "dosbox-x.conf";
+    if (Kind == dkDOSBoxX) {
+        if (FileExists(Dir + "dosbox-x.conf")) return Dir + "dosbox-x.conf";
+#ifdef Q_OS_WIN
+        const QString UserDir = IncludeTrailingPathDelimiter(GetSpecialFolder(Window, CSIDL_LOCAL_APPDATA)) + "DOSBox-X\\";
+        const QString Missing = Dir + "dosbox-x.conf";
+#else
+        QString Config = qEnvironmentVariable("XDG_CONFIG_HOME");
+        if (Config.isEmpty()) Config = IncludeTrailingPathDelimiter(QDir::homePath()) + ".config";
+        const QString UserDir = IncludeTrailingPathDelimiter(Config) + "dosbox-x/";
+        const QString Missing = UserDir + "dosbox-x.conf";
+#endif
+        const QString S = NewestDOSBoxXUserConfFile(UserDir);
+        // (none: the file named in the error message)
+        return S.isEmpty() ? Missing : S;
+    }
     if (FileExists(Dir + "dosbox-staging.conf")) return Dir + "dosbox-staging.conf";
 #ifdef Q_OS_WIN
     return IncludeTrailingPathDelimiter(GetSpecialFolder(Window, CSIDL_LOCAL_APPDATA)) + "DOSBox\\dosbox-staging.conf";
