@@ -226,6 +226,7 @@ LANG_STRING(MessageCouldNotActivateXML, MessageCouldNotActivateXML, 20110, "Mess
 LANG_STRING(MessageZipImportDuplicateWarning, MessageZipImportDuplicateWarning, 20111, "Messages", "ZipImportDuplicateWarning", "The game from the archive to import is named %s. There is already a profile with this name in the games list. Do you want to uninstall this game before importing the archive file? (If you click \"No\" a new profile entry is created but the directories of the old and the new profile might get mixed up. It is recommended to uninstall to old profile.)")
 LANG_STRING(MessageNoFloppyDrive, MessageNoFloppyDrive, 20112, "Messages", "ReadWrite.NoFloppyDrive", "There is no floppy drive connected to your system.")
 LANG_STRING(MessageNoCDDrive, MessageNoCDDrive, 20113, "Messages", "ReadWrite.NoCDDrive", "There is no CD drive connected to your system.")
+LANG_STRING(MessageScummVMNotConfigured, MessageScummVMNotConfigured, 20114, "Messages", "ScummVMNotConfigured", "No ScummVM folder is set. You can set it on the \"ScummVM\" page of the program options.")
 
 // ----- [Menu]
 LANG_STRING(MenuFile, MenuFile, 30001, "Menu", "File", "&File")
@@ -394,7 +395,6 @@ LANG_STRING(MenuHelpDOSBoxFAQ, MenuHelpDOSBoxFAQ, 35003, "Menu", "Help.DOSBox.FA
 LANG_STRING(MenuHelpDOSBoxHotkeys, MenuHelpDOSBoxHotkeys, 35004, "Menu", "Help.DOSBox.Hotkeys", "&Hotkeys (Webpage)")
 LANG_STRING(MenuHelpDOSBoxHotkeysDOSBox, MenuHelpDOSBoxHotkeysDOSBox, 35005, "Menu", "Help.DOSBox.Hotkeys.DOSBox", "&Hotkeys (DOSBox)")
 LANG_STRING(MenuHelpDOSBoxCompatibility, MenuHelpDOSBoxCompatibility, 35006, "Menu", "Help.DOSBox.Compatibility", "Compatibility list (Webpage)")
-LANG_STRING(MenuHelpDemoCompatibility, MenuHelpDemoCompatibility, 35007, "Menu", "Help.DOSBox.DemoCompatibility", "Demo compatibility list (Webpage)")
 LANG_STRING(MenuHelpDOSBoxIntro, MenuHelpDOSBoxIntro, 35008, "Menu", "Help.DOSBox.Intro", "Introduction (Webpage)")
 LANG_STRING(MenuHelpDOSBoxIntroDOSBox, MenuHelpDOSBoxIntroDOSBox, 35009, "Menu", "Help.DOSBox.Intro.DOSBox", "Introduction (DOSBox)")
 LANG_STRING(MenuHelpDOSBoxReadme, MenuHelpDOSBoxReadme, 35010, "Menu", "Help.DOSBox.Readme", "Manual")

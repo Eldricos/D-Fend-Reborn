@@ -619,7 +619,6 @@
           <addaction name="N14" />
           <addaction name="MenuHelpDosBoxHomepage" />
           <addaction name="MenuHelpDosBoxCompatibility" />
-          <addaction name="MenuHelpDemoCompatibility" />
         </widget>
         <widget class="QMenu" name="MenuHelpScummVM">
           <property name="title"><string>ScummVM</string></property>
@@ -1826,10 +1825,6 @@
     <action name="MenuHelpDosBoxCompatibility">
       <property name="text"><string>Compatibility list (Webpage)</string></property>
       <property name="tag" stdset="0"><number>6004</number></property>
-    </action>
-    <action name="MenuHelpDemoCompatibility">
-      <property name="text"><string>Demo compatibility list (Webpage)</string></property>
-      <property name="tag" stdset="0"><number>6005</number></property>
     </action>
     <action name="N16">
       <property name="vclSeparator" stdset="0"><bool>true</bool></property>

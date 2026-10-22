@@ -289,7 +289,10 @@ static THandle RunScummVM(const QString& INIFile, const QString& GameName, const
 #endif
     if (!FileExists(PrgFile)) {
         ApplicationRestore();
-        MessageDlg(Format(LanguageSetup->MessageCouldNotFindScummVM(), {PrgFile}), mtError, mbOK, 0);
+        if (Trim(PrgSetup->ScummVMPath()).isEmpty())
+            MessageDlg(LanguageSetup->MessageScummVMNotConfigured(), mtError, mbOK, 0);
+        else
+            MessageDlg(Format(LanguageSetup->MessageCouldNotFindScummVM(), {PrgFile}), mtError, mbOK, 0);
         return result;
     }
 

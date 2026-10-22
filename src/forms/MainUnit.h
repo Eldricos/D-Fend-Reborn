@@ -185,7 +185,6 @@ public:
     //   MenuHelpDosBoxHotkeysDosbox.OnClick = MenuWork
     //   MenuHelpDosBoxHomepage.OnClick = MenuWork
     //   MenuHelpDosBoxCompatibility.OnClick = MenuWork
-    //   MenuHelpDemoCompatibility.OnClick = MenuWork
     //   MenuHelpScummVMReadme.OnClick = MenuWork
     //   MenuHelpScummVMFAQ.OnClick = MenuWork
     //   MenuHelpScummVMHomepage.OnClick = MenuWork

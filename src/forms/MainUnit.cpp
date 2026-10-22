@@ -351,7 +351,7 @@ TDFendRebornMainForm::TDFendRebornMainForm(QWidget *AOwner) : QMainWindow(AOwner
         ui.MenuHelpHelp, ui.MenuHelpHelpContent, ui.MenuHelpIntroduction, ui.MenuHelpGetGames, ui.MenuHelpAddingGames,
         ui.MenuHelpHomepage, ui.MenuHelpForum, ui.MenuHelpDosBoxFAQ, ui.MenuHelpDosBoxIntro, ui.MenuHelpDosBoxIntroDosBox,
         ui.MenuHelpDosBoxHotkeys, ui.MenuHelpDosBoxHotkeysDosbox, ui.MenuHelpDosBoxHomepage,
-        ui.MenuHelpDosBoxCompatibility, ui.MenuHelpDemoCompatibility, ui.MenuHelpScummVMReadme, ui.MenuHelpScummVMFAQ,
+        ui.MenuHelpDosBoxCompatibility, ui.MenuHelpScummVMReadme, ui.MenuHelpScummVMFAQ,
         ui.MenuHelpScummVMHomepage, ui.MenuHelpScummVMCompatibility, ui.MenuHelpScummVMCompatibilityIntern,
         ui.MenuHelpStatistics, ui.MenuHelpOperationMode, ui.MenuHelpUpdates, ui.MenuHelpAbout,
         ui.PopupRunGame, ui.PopupRunSetup, ui.PopupEdit, ui.PopupCopy, ui.PopupDelete, ui.PopupDeinstall,
@@ -1128,7 +1128,6 @@ void TDFendRebornMainForm::LoadMenuLanguage()
     ui.MenuHelpDosBoxHotkeysDosbox->setText(LanguageSetup->MenuHelpDOSBoxHotkeysDOSBox());
     ui.MenuHelpDosBoxHomepage->setText(LanguageSetup->MenuHelpDOSBoxHomepage());
     ui.MenuHelpDosBoxCompatibility->setText(LanguageSetup->MenuHelpDOSBoxCompatibility());
-    ui.MenuHelpDemoCompatibility->setText(LanguageSetup->MenuHelpDemoCompatibility());
     ui.MenuHelpScummVM->setTitle(LanguageSetup->MenuHelpScummVM());
     ui.MenuHelpScummVMReadme->setText(LanguageSetup->MenuHelpScummVMReadme());
     ui.MenuHelpScummVMFAQ->setText(LanguageSetup->MenuHelpScummVMFAQ());

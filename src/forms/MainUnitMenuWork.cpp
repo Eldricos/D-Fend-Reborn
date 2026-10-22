@@ -435,7 +435,9 @@ void TDFendRebornMainForm::RunMenuWork(QObject *Sender, int ATag)
             break;
         case 3005: OpenDOSBoxDefaultConfFile(); break;
         case 3006:
-            if (FileExists(IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + ScummPrgFile))
+            if (Trim(PrgSetup->ScummVMPath()).isEmpty())
+                MessageDlg(LanguageSetup->MessageScummVMNotConfigured(), mtError, mbOK, 0);
+            else if (FileExists(IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + ScummPrgFile))
                 StartProcess(IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + ScummPrgFile, QStringList(), IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()));
             else
                 MessageDlg(Format(LanguageSetup->MessageCouldNotFindFile(), {IncludeTrailingPathDelimiter(PrgSetup->ScummVMPath()) + ScummPrgFile}), mtError, mbOK, 0);
@@ -844,7 +846,6 @@ void TDFendRebornMainForm::HelpMenuWork(QObject *Sender, int ATag)
             }
             break;
         case 6004: ShellOpen(QStringLiteral("https://www.dosbox.com/comp_list.php?letter=a")); break;   // (DOSBox Staging has no compatibility list)
-        case 6005: ShellOpen(QString("http:/") + "/pain.scene.org/service_dosbox.php"); break;
         case 6006: ShellOpen(QStringLiteral("https://www.dosbox-staging.org/manual/")); break;
         case 6007:
             if (FileExists(DOSBoxExe)) {
