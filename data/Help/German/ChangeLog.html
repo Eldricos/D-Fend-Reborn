@@ -17,6 +17,7 @@ D-Fend Reborn basiert auf D-Fend Reloaded 1.4.4 von Alexander Herzog. Die ersten
 
 <p class="small">
   <b>D-Fend Reborn</b><br />
+  <a href="#reborn0510">D-Fend Reborn 0.5.10 (24.10.2026)</a><br />
   <a href="#reborn059">D-Fend Reborn 0.5.9 (20.10.2026)</a><br />
   <a href="#reborn058">D-Fend Reborn 0.5.8 (20.10.2026)</a><br />
   <a href="#reborn057">D-Fend Reborn 0.5.7 (19.10.2026)</a><br />
@@ -73,6 +74,19 @@ D-Fend Reborn basiert auf D-Fend Reloaded 1.4.4 von Alexander Herzog. Die ersten
 <p>
 Die einzelnen Eintr&auml;ge zur Versionsgeschichte von D-Fend Reloaded liegen leider nur auf Englisch vor.
 </p>
+
+<a onclick="return Work('reborn0510')" name="reborn0510" href="#"><h2>&raquo; D-Fend Reborn 0.5.10 (24.10.2026)</h2></a>
+<div id="reborn0510">
+<ul>
+  <li>[Fix] Ausf&uuml;hren | DOSBox-Konfiguration &ouml;ffnen mit DOSBox-X: Gibt es im Programmordner keine dosbox-x.conf, wird die neueste dosbox-x*.conf aus dem Benutzerordner von DOSBox-X ge&ouml;ffnet (%LOCALAPPDATA%\DOSBox-X unter Windows, ~/.config/dosbox-x unter Linux). Mit einem &uuml;ber die Paketverwaltung von Linux installierten DOSBox-X meldete das Programm "/usr/bin/dosbox-x.conf existiert nicht".</li>
+  <li>[Fix] Hilfe | ScummVM: Die Links zu Handbuch, FAQ und Kompatibilit&auml;tsliste f&uuml;hren zu den aktuellen Seiten der ScummVM-Website (die alten Seiten gibt es nicht mehr); eine README.md im ScummVM-Ordner (neuere Versionen) wird ebenfalls als Handbuch angezeigt. Auch der Download-Link auf der Seite ScummVM der Programmeinstellungen wurde aktualisiert.</li>
+  <li>[Fix] Ohne ScummVM-Ordner melden das Starten eines ScummVM-Spiels, Ausf&uuml;hren | ScummVM starten und der Profileditor eines ScummVM-Profils, dass kein ScummVM-Ordner eingestellt ist und wo er festgelegt werden kann (bisher "ScummVM does not exist at: /scummvm").</li>
+  <li>[Fix] Datei | Import | XML-Datei importieren: Men&uuml;punkt, Titel und Dateifilter des Dateidialogs sind &uuml;bersetzbar; der Filter zeigte auch Dateien, die ohne Punkt auf "xml" enden.</li>
+  <li>[Fix] Die Meldung, wenn ein Ordner nicht gel&ouml;scht werden konnte, sprach von einer Datei (sie verwendete seit D-Fend Reloaded den Text der Meldung f&uuml;r Dateien).</li>
+  <li>Hilfe | DOSBox | Demo-Kompatibilit&auml;tsliste entfernt: Die Website wird nicht mehr gepflegt (Zertifikatsprobleme, defekte Links).</li>
+  <li>Intern: alle Texte des Programms in einer Tabelle (neue Texte mit tools/langstrings.py), die Befehle des Hauptfensters in einer Funktion je Men&uuml;, ein automatischer Test, der jeden Befehl des Hauptfensters ausf&uuml;hrt.</li>
+</ul>
+</div>
 
 <a onclick="return Work('reborn059')" name="reborn059" href="#"><h2>&raquo; D-Fend Reborn 0.5.9 (20.10.2026)</h2></a>
 <div id="reborn059">

@@ -17,6 +17,7 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
 
 <p class="small">
   <b>D-Fend Reborn</b><br />
+  <a href="#reborn0510">D-Fend Reborn 0.5.10 (10/24/2026)</a><br />
   <a href="#reborn059">D-Fend Reborn 0.5.9 (10/20/2026)</a><br />
   <a href="#reborn058">D-Fend Reborn 0.5.8 (10/20/2026)</a><br />
   <a href="#reborn057">D-Fend Reborn 0.5.7 (10/19/2026)</a><br />
@@ -69,6 +70,19 @@ D-Fend Reborn is based on D-Fend Reloaded 1.4.4 by Alexander Herzog. The first e
   <a href="#ver011">Version 0.1.1 (12/18/2007)</a><br />
   <a href="#ver010">Version 0.1.0 (11/08/2007)</a>
 </p>
+
+<a onclick="return Work('reborn0510')" name="reborn0510" href="#"><h2>&raquo; D-Fend Reborn 0.5.10 (10/24/2026)</h2></a>
+<div id="reborn0510">
+<ul>
+  <li>[Fix] Run | Open DOSBox configuration file with DOSBox-X: when there is no dosbox-x.conf in the program folder, the newest dosbox-x*.conf of the DOSBox-X user folder is opened (%LOCALAPPDATA%\DOSBox-X on Windows, ~/.config/dosbox-x on Linux). With a DOSBox-X installed by the Linux package manager the program said "/usr/bin/dosbox-x.conf does not exist".</li>
+  <li>[Fix] Help | ScummVM: the manual, FAQ and compatibility list links lead to the current pages of the ScummVM website (the old pages do not exist any more); a README.md in the ScummVM folder (newer versions) is shown as the manual too. The download link on the ScummVM page of the program options is updated as well.</li>
+  <li>[Fix] Without a ScummVM folder, starting a ScummVM game, Run | Run ScummVM and the profile editor of a ScummVM profile say that no ScummVM folder is set and where to set it (was "ScummVM does not exist at: /scummvm").</li>
+  <li>[Fix] File | Import | Import XML file: the menu item, the title and the file filter of the file dialog can be translated; the filter also showed files ending in "xml" without a dot.</li>
+  <li>[Fix] The message shown when a folder could not be deleted said "file" (it used the text of the file message since D-Fend Reloaded).</li>
+  <li>Help | DOSBox | Demo compatibility list removed: the website is no longer maintained (certificate problems, broken links).</li>
+  <li>Internal: all texts of the program in one table (new texts with tools/langstrings.py), the commands of the main window in one function per menu, an automated test that runs every command of the main window.</li>
+</ul>
+</div>
 
 <a onclick="return Work('reborn059')" name="reborn059" href="#"><h2>&raquo; D-Fend Reborn 0.5.9 (10/20/2026)</h2></a>
 <div id="reborn059">

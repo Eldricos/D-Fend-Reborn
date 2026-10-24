@@ -1,6 +1,6 @@
 # D-Fend Reborn – all changes since the Delphi conversion
 
-D-Fend Reborn started as a conversion of **D-Fend Reloaded 1.4.4** (Delphi, Windows only, by Alexander Herzog) to **C++ and Qt 6**. This list covers everything changed since that conversion, up to **version 0.5.9** (10/20/2026). It is based on the change log of each release and on the commit history of the repository. Many fixes and internal changes in the commits never made it into the change log, so they are listed here too.
+D-Fend Reborn started as a conversion of **D-Fend Reloaded 1.4.4** (Delphi, Windows only, by Alexander Herzog) to **C++ and Qt 6**. This list covers everything changed since that conversion, up to **version 0.5.10** (10/24/2026). It is based on the change log of each release and on the commit history of the repository. Many fixes and internal changes in the commits never made it into the change log, so they are listed here too.
 
 The version in brackets is the release that first contained the change.
 
@@ -95,6 +95,9 @@ Legend: **Added** = new feature · **Changed** = different behaviour or look · 
 - **Added** – The classic profile editor's value list can show a pick list and a "..." button together. (0.5.8)
 - **Changed** – Help menu (DOSBox): getting started, keyboard shortcuts, manual and homepage of DOSBox Staging; the Program Options download link points to Staging. (0.5.6)
 - **Removed** – The DOSBox 0.74 video codec installer (`InstallVideoCodec.exe`); videos are played with Qt Multimedia. (0.5.4)
+- **Fixed** – Run | Open DOSBox configuration file with DOSBox-X opens the newest `dosbox-x*.conf` of the DOSBox-X user folder (`%LOCALAPPDATA%\DOSBox-X`, `~/.config/dosbox-x`) when there is none in the program folder, e.g. for a DOSBox-X installed by the Linux package manager. (0.5.10)
+- **Removed** – Help | DOSBox | Demo compatibility list: the website is no longer maintained. (0.5.10)
+- **Fixed** – ScummVM: Help menu links (manual, FAQ, compatibility list) and the download link in the program options lead to the current pages of the ScummVM website; a `README.md` in the ScummVM folder is shown as the manual. Without a ScummVM folder the program says so instead of "ScummVM does not exist at: /scummvm". (0.5.10)
 
 ## 5. Importing games (0.5.8 – 0.5.9)
 
@@ -183,6 +186,8 @@ Legend: **Added** = new feature · **Changed** = different behaviour or look · 
 - **Fixed** – Dutch, Spanish, Portuguese-BR: the "Parameters" text of the extra programs dialog had a wrong key and was never used.
 - **Fixed** – The installer language setting had no effect: it still used the D-Fend Reloaded registry key.
 - **Fixed** – "Restore defaults" in the ScummVM options now sets "Hide ScummVM console" to its real default (on).
+- **Fixed** – File | Import | Import XML file: the menu item and the file dialog texts can be translated; the file filter required the dot of `.xml`. (0.5.10)
+- **Fixed** – The "could not delete folder" message used the key of "could not delete file" (since D-Fend Reloaded), so it said "file"; it has its own key now. (0.5.10)
 
 ## 13. Saving, robustness and Windows fixes
 
@@ -219,8 +224,11 @@ Legend: **Added** = new feature · **Changed** = different behaviour or look · 
 - **Added** – Weekly "DOSBox Staging update" workflow that opens an issue when a new Staging release is out (`tools/update-dosbox-staging.py`).
 - **Added** – Other workflows: "Help links" (`tools/check_help_links.py`), "AutoSetup templates" and "Game packages".
 - **Added** – `DFRPackageTool`: builds game packages and package lists without windows.
+- **Changed** – All language strings are defined in one table, `src/core/LanguageStrings.inc` (number, accessor, section, key, English text); `tools/langstrings.py` adds new strings and checks the table against `English.ini` and `German.ini` (run by the build check). Before, each text needed edits in five places. (0.5.10)
+- **Changed** – The commands of the main window are carried out in one function per menu (`src/forms/MainUnitMenuWork.cpp`) instead of one 730-line switch. (0.5.10)
+- **Added** – Test of all main window commands: each menu, tool bar and popup menu command is run with a DOSBox, a ScummVM and a Windows test profile; a test hook stops programs, web pages and folders from being opened. (0.5.10)
 - **Changed** – The original data files were sorted into `data/` and are copied next to the executable by every build. Delphi leftovers, unused DLLs and duplicated files were removed.
 
 ---
 
-*Releases: 0.5.0 (10/14/2026) · 0.5.1 – 0.5.4 (10/15/2026) · 0.5.5 (10/16/2026) · 0.5.6 (10/18/2026) · 0.5.7 (10/19/2026) · 0.5.8 (10/20/2026) · 0.5.9 (10/20/2026)*
+*Releases: 0.5.0 (10/14/2026) · 0.5.1 – 0.5.4 (10/15/2026) · 0.5.5 (10/16/2026) · 0.5.6 (10/18/2026) · 0.5.7 (10/19/2026) · 0.5.8 (10/20/2026) · 0.5.9 (10/20/2026) · 0.5.10 (10/24/2026)*
